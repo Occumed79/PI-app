@@ -1,8 +1,8 @@
 # Human Systems Intelligence
 
-A GitHub-ready Vite + React + Tailwind prototype for a manager-facing behavioral interpretation tool.
+A full-stack Vite + React + Express + Neon Postgres prototype for a manager-facing behavioral interpretation tool.
 
-## Included tabs
+## Included app tabs
 
 - Dashboard
 - Profiles
@@ -20,36 +20,96 @@ A GitHub-ready Vite + React + Tailwind prototype for a manager-facing behavioral
 - Framer Motion
 - Recharts
 - Lucide React icons
+- Express
+- Neon Postgres
+- Render Web Service
 
-## Run locally
+## Local development
+
+Install dependencies:
 
 ```bash
 npm install
+```
+
+Run the React dev server:
+
+```bash
 npm run dev
 ```
 
-## Build
+Run the backend server after building the frontend:
 
 ```bash
 npm run build
+npm start
 ```
 
-## Upload to GitHub
+## Neon setup
 
-1. Create a new empty GitHub repository.
-2. Unzip this package.
-3. Upload all files from the unzipped `human-systems-intelligence` folder.
-4. Commit to `main`.
+1. Create a Neon project.
+2. Create or open a database.
+3. Copy the pooled connection string.
+4. In the Neon SQL editor, run:
 
-## Deploy notes
+```sql
+-- copy and run the contents of server/schema.sql
+```
 
-For Vercel or Render static site deployment:
+The schema creates:
 
-- Build command: `npm run build`
-- Publish directory: `dist`
+- `profiles`
+- `saved_comparisons`
+- `inference_runs`
 
-If routing is added later, add a static-site rewrite rule:
+It also seeds the 17 profile records.
 
-- Source: `/*`
-- Destination: `/index.html`
-- Action: Rewrite
+## Render setup
+
+Use **Render Web Service**, not Static Site.
+
+Recommended Render settings:
+
+```txt
+Environment: Node
+Build Command: npm install && npm run build
+Start Command: npm start
+Health Check Path: /api/health
+```
+
+Add these environment variables in Render:
+
+```txt
+NODE_ENV=production
+DATABASE_URL=your_neon_connection_string
+CLIENT_ORIGIN=your_render_url_or_frontend_url
+```
+
+If `CLIENT_ORIGIN` causes CORS friction during early testing, leave it blank temporarily and the server can be adjusted later.
+
+## Health checks
+
+After deployment, test:
+
+```txt
+/api/health
+/api/db/health
+```
+
+Expected behavior:
+
+- `/api/health` confirms the Render service is running.
+- `/api/db/health` confirms whether Neon is connected.
+
+## API endpoints
+
+```txt
+GET  /api/health
+GET  /api/db/health
+GET  /api/profiles
+POST /api/profiles
+```
+
+## Important deployment note
+
+Render must build the Vite frontend first. The Express server then serves the generated `dist` folder and exposes API routes from the same web service.
