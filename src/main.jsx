@@ -1,10 +1,10 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
-import FullApp from "./FullApp.jsx";
+import RootApp from "./RootApp.jsx";
 import "./index.css";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
-    <FullApp />
+    <RootApp />
   </React.StrictMode>
 );
