@@ -11,7 +11,7 @@ const __dirname = path.dirname(__filename);
 const app = express();
 const port = process.env.PORT || 10000;
 const clientOrigin = process.env.CLIENT_ORIGIN || '*';
-const aiProvider = (process.env.AI_PROVIDER || 'gemini').toLowerCase();
+const aiProvider = (process.env.AI_PROVIDER || 'auto').toLowerCase();
 
 app.use(cors({ origin: clientOrigin }));
 app.use(express.json({ limit: '2mb' }));
@@ -23,8 +23,7 @@ function safeArray(value) {
 function getAiConfigured() {
   if (aiProvider === 'gemini') return Boolean(process.env.GEMINI_API_KEY);
   if (aiProvider === 'groq') return Boolean(process.env.GROQ_API_KEY);
-  if (aiProvider === 'openai') return Boolean(process.env.OPENAI_API_KEY);
-  return Boolean(process.env.GEMINI_API_KEY || process.env.GROQ_API_KEY || process.env.OPENAI_API_KEY);
+  return Boolean(process.env.GEMINI_API_KEY || process.env.GROQ_API_KEY);
 }
 
 function fallbackScenarioAnalysis({ employeeProfile }) {
@@ -64,7 +63,7 @@ function fallbackScenarioAnalysis({ employeeProfile }) {
       'What support would reduce friction or rework?',
       'Is the issue mainly pace, priority, communication, authority, workload, or process clarity?',
     ],
-    confidenceNote: 'Fallback answer generated without AI because no AI provider key is configured. Add a rotated GEMINI_API_KEY or GROQ_API_KEY in Render for live AI analysis.',
+    confidenceNote: 'Fallback answer generated without AI because Gemini and Groq are not configured or both failed. Add rotated GEMINI_API_KEY and GROQ_API_KEY in Render for live AI analysis.',
   };
 }
 
@@ -149,37 +148,40 @@ async function callGroqForScenario(payload) {
   return parseJsonText(data.choices?.[0]?.message?.content);
 }
 
-async function callOpenAIForScenario(payload) {
-  const apiKey = process.env.OPENAI_API_KEY;
-  if (!apiKey) return null;
-
-  const model = process.env.OPENAI_MODEL || 'gpt-4.1-mini';
-  const response = await fetch('https://api.openai.com/v1/responses', {
-    method: 'POST',
-    headers: { Authorization: `Bearer ${apiKey}`, 'Content-Type': 'application/json' },
-    body: JSON.stringify({ model, store: false, temperature: 0.25, max_output_tokens: 1600, input: scenarioPrompt(payload) }),
-  });
-
-  if (!response.ok) throw new Error(`OpenAI request failed: ${response.status} ${await response.text()}`);
-  const data = await response.json();
-  const textOutput = data.output_text || data.output?.flatMap((item) => item.content || []).find((content) => content.type === 'output_text')?.text;
-  if (!textOutput) throw new Error('OpenAI response did not include output_text.');
-  return parseJsonText(textOutput);
-}
-
-async function callAiForScenario(payload) {
-  if (aiProvider === 'groq') return callGroqForScenario(payload);
-  if (aiProvider === 'openai') return callOpenAIForScenario(payload);
-  if (aiProvider === 'gemini') return callGeminiForScenario(payload);
-
-  if (process.env.GEMINI_API_KEY) return callGeminiForScenario(payload);
-  if (process.env.GROQ_API_KEY) return callGroqForScenario(payload);
-  if (process.env.OPENAI_API_KEY) return callOpenAIForScenario(payload);
+async function tryProvider(providerName, fn, payload, errors) {
+  try {
+    const result = await fn(payload);
+    if (result) return { provider: providerName, result };
+  } catch (error) {
+    errors.push(`${providerName}: ${error.message}`);
+  }
   return null;
 }
 
+async function callAiForScenario(payload) {
+  const errors = [];
+
+  if (aiProvider === 'gemini') {
+    const geminiOnly = await tryProvider('gemini', callGeminiForScenario, payload, errors);
+    return geminiOnly || { provider: 'fallback', result: null, errors };
+  }
+
+  if (aiProvider === 'groq') {
+    const groqOnly = await tryProvider('groq', callGroqForScenario, payload, errors);
+    return groqOnly || { provider: 'fallback', result: null, errors };
+  }
+
+  const geminiFirst = await tryProvider('gemini', callGeminiForScenario, payload, errors);
+  if (geminiFirst) return geminiFirst;
+
+  const groqSecond = await tryProvider('groq', callGroqForScenario, payload, errors);
+  if (groqSecond) return groqSecond;
+
+  return { provider: 'fallback', result: null, errors };
+}
+
 app.get('/api/health', (_req, res) => {
-  res.json({ ok: true, service: 'human-systems-intelligence', environment: process.env.NODE_ENV || 'development', databaseConfigured: Boolean(process.env.DATABASE_URL), aiProvider, aiConfigured: getAiConfigured() });
+  res.json({ ok: true, service: 'human-systems-intelligence', environment: process.env.NODE_ENV || 'development', databaseConfigured: Boolean(process.env.DATABASE_URL), aiProvider, aiConfigured: getAiConfigured(), fallbackOrder: aiProvider === 'auto' ? ['gemini', 'groq', 'built-in-fallback'] : [aiProvider, 'built-in-fallback'] });
 });
 
 app.get('/api/db/health', async (_req, res) => {
@@ -191,13 +193,9 @@ app.post('/api/ai/scenario-analysis', async (req, res) => {
   const { scenario, employeeProfile, managerGoal } = req.body || {};
   if (!scenario || typeof scenario !== 'string' || scenario.trim().length < 8) return res.status(400).json({ ok: false, message: 'A scenario question of at least 8 characters is required.' });
 
-  try {
-    const aiResult = await callAiForScenario({ scenario: scenario.trim(), employeeProfile: employeeProfile || {}, managerGoal: managerGoal || '' });
-    const analysis = aiResult || fallbackScenarioAnalysis({ employeeProfile: employeeProfile || {} });
-    return res.json({ ok: true, source: aiResult ? aiProvider : 'fallback', analysis });
-  } catch (error) {
-    return res.status(500).json({ ok: false, message: error.message });
-  }
+  const aiAttempt = await callAiForScenario({ scenario: scenario.trim(), employeeProfile: employeeProfile || {}, managerGoal: managerGoal || '' });
+  const analysis = aiAttempt.result || fallbackScenarioAnalysis({ employeeProfile: employeeProfile || {} });
+  return res.json({ ok: true, source: aiAttempt.result ? aiAttempt.provider : 'fallback', providerErrors: aiAttempt.errors || [], analysis });
 });
 
 app.get('/api/profiles', async (_req, res) => {
