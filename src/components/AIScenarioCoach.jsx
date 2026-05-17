@@ -10,6 +10,7 @@ import {
   MessageSquareText,
   ShieldCheck,
   Sparkles,
+  Target,
 } from 'lucide-react';
 import { allLenses } from '../data/lenses.js';
 import { profiles } from '../data/profiles.js';
