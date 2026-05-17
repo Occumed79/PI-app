@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
-import { Brain, ClipboardList, Layers3, Sparkles } from 'lucide-react';
+import { BrainCircuit, ClipboardList, Layers3 } from 'lucide-react';
 import FullApp from './FullApp.jsx';
 import EmployeeBuilder from './components/EmployeeBuilder.jsx';
+import AIScenarioCoach from './components/AIScenarioCoach.jsx';
 
 function cx(...classes) {
   return classes.filter(Boolean).join(' ');
@@ -30,14 +31,15 @@ export default function RootApp() {
                 <Pill>Human Systems Intelligence</Pill>
                 <Pill>Transparent Inference</Pill>
                 <Pill>Custom Profiles</Pill>
+                <Pill>AI Scenario Coach</Pill>
               </div>
               <h1 className="mt-3 text-2xl font-bold tracking-tight text-white sm:text-4xl">PI-App Control Center</h1>
               <p className="mt-2 max-w-4xl text-sm leading-6 text-white/60">
-                Use the full intelligence system to explore every lens, or open the Employee Builder to create a person-specific working profile with included, estimated, unknown, and excluded factors clearly separated.
+                Explore every lens, build a person-specific working profile, or ask the AI Scenario Coach for cautious, nonjudgmental manager guidance using the selected profile context.
               </p>
             </div>
 
-            <div className="grid gap-2 rounded-3xl border border-white/10 bg-black/20 p-2 sm:grid-cols-2">
+            <div className="grid gap-2 rounded-3xl border border-white/10 bg-black/20 p-2 sm:grid-cols-3">
               <button
                 type="button"
                 onClick={() => setMode('system')}
@@ -67,15 +69,34 @@ export default function RootApp() {
                   <div className="text-xs opacity-70">Create working profile</div>
                 </div>
               </button>
+
+              <button
+                type="button"
+                onClick={() => setMode('ai')}
+                className={cx(
+                  'flex items-center gap-3 rounded-2xl border px-4 py-3 text-left transition',
+                  mode === 'ai' ? 'border-emerald-300/40 bg-emerald-500/15 text-white' : 'border-white/10 bg-white/[0.04] text-white/55 hover:bg-white/10'
+                )}
+              >
+                <BrainCircuit className="h-5 w-5" />
+                <div>
+                  <div className="text-sm font-semibold">AI Scenario Coach</div>
+                  <div className="text-xs opacity-70">Ask what happened</div>
+                </div>
+              </button>
             </div>
           </div>
         </div>
 
-        {mode === 'system' ? (
-          <FullApp />
-        ) : (
+        {mode === 'system' && <FullApp />}
+        {mode === 'builder' && (
           <div className="rounded-[2rem] border border-white/10 bg-white/[0.03] p-0 shadow-2xl shadow-black/20">
             <EmployeeBuilder />
+          </div>
+        )}
+        {mode === 'ai' && (
+          <div className="rounded-[2rem] border border-white/10 bg-white/[0.03] p-0 shadow-2xl shadow-black/20">
+            <AIScenarioCoach />
           </div>
         )}
       </div>
