@@ -1,10 +1,10 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
-import HumanSystemsIntelligenceApp from "./App.jsx";
+import FullApp from "./FullApp.jsx";
 import "./index.css";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
-    <HumanSystemsIntelligenceApp />
+    <FullApp />
   </React.StrictMode>
 );
