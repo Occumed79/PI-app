@@ -3,9 +3,8 @@ import express from 'express';
 import cors from 'cors';
 import path from 'path';
 import { fileURLToPath } from 'url';
-import pg from 'pg';
+import { checkDatabaseConnection, pool } from './db.js';
 
-const { Pool } = pg;
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
@@ -16,39 +15,18 @@ const clientOrigin = process.env.CLIENT_ORIGIN || '*';
 app.use(cors({ origin: clientOrigin }));
 app.use(express.json({ limit: '1mb' }));
 
-const pool = process.env.DATABASE_URL
-  ? new Pool({
-      connectionString: process.env.DATABASE_URL,
-      ssl: process.env.NODE_ENV === 'production' ? { rejectUnauthorized: false } : false,
-    })
-  : null;
+app.get('/api/health', (_req, res) => {
+  res.json({
+    ok: true,
+    service: 'human-systems-intelligence',
+    environment: process.env.NODE_ENV || 'development',
+    databaseConfigured: Boolean(process.env.DATABASE_URL),
+  });
+});
 
-app.get('/api/health', async (_req, res) => {
-  const dbConfigured = Boolean(pool);
-
-  if (!pool) {
-    return res.json({
-      ok: true,
-      service: 'human-systems-intelligence',
-      database: 'not_configured',
-    });
-  }
-
-  try {
-    await pool.query('select 1 as ok');
-    return res.json({
-      ok: true,
-      service: 'human-systems-intelligence',
-      database: dbConfigured ? 'connected' : 'not_configured',
-    });
-  } catch (error) {
-    return res.status(500).json({
-      ok: false,
-      service: 'human-systems-intelligence',
-      database: 'error',
-      message: error.message,
-    });
-  }
+app.get('/api/db/health', async (_req, res) => {
+  const result = await checkDatabaseConnection();
+  res.status(result.ok ? 200 : result.configured ? 500 : 503).json(result);
 });
 
 app.get('/api/profiles', async (_req, res) => {
@@ -61,12 +39,40 @@ app.get('/api/profiles', async (_req, res) => {
 
   try {
     const result = await pool.query(
-      `select id, name, group_name, dominance, extraversion, patience, formality, summary
+      `select id, name, group_name, dominance, extraversion, patience, formality, summary, created_at, updated_at
        from profiles
        order by group_name, name`
     );
 
     return res.json({ ok: true, profiles: result.rows });
+  } catch (error) {
+    return res.status(500).json({ ok: false, message: error.message });
+  }
+});
+
+app.post('/api/profiles', async (req, res) => {
+  if (!pool) {
+    return res.status(503).json({
+      ok: false,
+      message: 'DATABASE_URL is not configured on the Render service.',
+    });
+  }
+
+  const { name, groupName, dominance, extraversion, patience, formality, summary } = req.body || {};
+
+  if (!name || !groupName) {
+    return res.status(400).json({ ok: false, message: 'name and groupName are required.' });
+  }
+
+  try {
+    const result = await pool.query(
+      `insert into profiles (name, group_name, dominance, extraversion, patience, formality, summary)
+       values ($1, $2, $3, $4, $5, $6, $7)
+       returning id, name, group_name, dominance, extraversion, patience, formality, summary, created_at, updated_at`,
+      [name, groupName, dominance ?? null, extraversion ?? null, patience ?? null, formality ?? null, summary ?? null]
+    );
+
+    return res.status(201).json({ ok: true, profile: result.rows[0] });
   } catch (error) {
     return res.status(500).json({ ok: false, message: error.message });
   }
