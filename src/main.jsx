@@ -1,10 +1,10 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
-import VisualLensWorkspace from "./VisualLensWorkspace.jsx";
+import HumanSystemsIntelligenceApp from "./App.jsx";
 import "./index.css";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
-    <VisualLensWorkspace />
+    <HumanSystemsIntelligenceApp />
   </React.StrictMode>
 );
