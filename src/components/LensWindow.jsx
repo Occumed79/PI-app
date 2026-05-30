@@ -2,6 +2,7 @@ import React from 'react';
 import { Info, Lightbulb, AlertTriangle, TrendingUp, BookOpen } from 'lucide-react';
 import { LENSES, LENS_META } from '../data/lensData';
 import { PI_PROFILES } from '../data/profiles';
+import { LensRadar, DimensionBars, StressHeatmap, ProfileCompare, DevelopmentArc, InsightCards, GlowOrb, SpectrumSlider } from './lens/index.js';
 
 function ScoreChip({ label, value, color }) {
   const levels = { 'Very Low':10,'Low':25,'Low-Moderate':40,'Moderate':55,'Moderate-High':65,'High':78,'Very High':92 };
@@ -112,6 +113,66 @@ export default function LensWindow({ lensId, profileId }) {
             </div>
           </div>
         </div>
+
+
+        {/* ── Visual Components ── */}
+        {lens.visuals && (
+          <div className="space-y-5 mb-6">
+            {lens.visuals.radar && (
+              <LensRadar
+                dimensions={lens.visuals.radar.dimensions}
+                title={lens.visuals.radar.title}
+              />
+            )}
+            {lens.visuals.spectra && (
+              <SpectrumSlider
+                spectra={lens.visuals.spectra}
+                title="Dimension Spectra"
+              />
+            )}
+            {lens.visuals.dimensionBars && (
+              <DimensionBars
+                dimensions={lens.visuals.dimensionBars}
+                title="Dimension Breakdown"
+              />
+            )}
+            {activeProfile && lens.visuals.developmentArc && lens.visuals.developmentArc[activeProfile.id] && (
+              <DevelopmentArc
+                natural={lens.visuals.developmentArc[activeProfile.id].natural}
+                stress={lens.visuals.developmentArc[activeProfile.id].stress}
+                growth={lens.visuals.developmentArc[activeProfile.id].growth}
+                color={activeProfile.color}
+              />
+            )}
+            {lens.visuals.insightCards && (
+              <InsightCards
+                cards={lens.visuals.insightCards}
+                title="Key Takeaways"
+                columns={3}
+              />
+            )}
+            {lens.visuals.stressHeatmap && (
+              <StressHeatmap
+                profiles={lens.visuals.stressHeatmap}
+                title="Stress Risk by Profile"
+              />
+            )}
+            {lens.visuals.profileCompare && activeProfile && (
+              <ProfileCompare
+                profiles={PI_PROFILES}
+                getDimensions={(profileId) => {
+                  const prof = lens.profiles[profileId];
+                  if (!prof || !lens.visuals.compareDimensions) return [];
+                  return lens.visuals.compareDimensions.map((label, i) => ({
+                    label,
+                    value: prof.compareValues?.[i] ?? 50,
+                  }));
+                }}
+                dimensionLabels={lens.visuals.compareDimensions || []}
+              />
+            )}
+          </div>
+        )}
 
         {/* Profile Filter Pills */}
         {!profileId && (
