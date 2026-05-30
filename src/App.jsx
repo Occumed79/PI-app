@@ -1,7 +1,9 @@
-import React, { useMemo, useState } from "react";
-import LensExplorer from "./components/LensExplorer.jsx";
+import React, { useMemo, useState, useCallback } from "react";
+import LensWindow from "./components/LensWindow.jsx";
 import EmployeeBuilderMode from "./components/modes/EmployeeBuilder.jsx";
 import AIScenarioCoachMode from "./components/modes/AIScenarioCoach.jsx";
+import { LENSES, LENS_META, LENS_CATEGORIES } from "./data/lensData.js";
+import { PI_PROFILES } from "./data/profiles.js";
 import { motion, AnimatePresence } from "framer-motion";
 import {
   BarChart,
@@ -1081,6 +1083,99 @@ function StrengthMap() {
   );
 }
 
+
+// ─── Lenses View ─────────────────────────────────────────────────────────────
+function LensesView({ selectedProfile }) {
+  const [activeLensId, setActiveLensId] = useState(null);
+  const [search, setSearch] = useState('');
+  const [activeCategory, setActiveCategory] = useState(null);
+
+  // Map profile name -> id for LensWindow
+  const profileId = PI_PROFILES.find(p => p.name === selectedProfile.name)?.id || null;
+
+  const filteredMeta = Object.entries(LENS_META).filter(([id, m]) => {
+    const matchSearch = !search || m.name.toLowerCase().includes(search.toLowerCase());
+    const matchCat = !activeCategory || m.category === activeCategory;
+    return matchSearch && matchCat;
+  });
+
+  return (
+    <div className="grid gap-5 lg:grid-cols-12">
+      {/* Sidebar */}
+      <Card className="lg:col-span-3">
+        <div className="p-5">
+          <h3 className="text-sm font-semibold text-white mb-3">Lenses</h3>
+          {/* Search */}
+          <div className="relative mb-3">
+            <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-3.5 w-3.5 text-white/30" />
+            <input
+              value={search} onChange={e => setSearch(e.target.value)}
+              placeholder="Search lenses..."
+              className="w-full rounded-xl border border-white/10 bg-black/25 py-2 pl-8 pr-3 text-xs text-white outline-none placeholder:text-white/30 focus:border-sky-300/30"
+            />
+          </div>
+          {/* Category filters */}
+          <div className="flex flex-wrap gap-1 mb-4">
+            <button
+              onClick={() => setActiveCategory(null)}
+              className={cx("rounded-full px-2.5 py-1 text-[10px] transition border", !activeCategory ? "bg-white/20 border-white/30 text-white" : "bg-white/5 border-white/10 text-white/50 hover:bg-white/10")}
+            >All</button>
+            {LENS_CATEGORIES.map(cat => (
+              <button key={cat.id} onClick={() => setActiveCategory(activeCategory === cat.id ? null : cat.id)}
+                className={cx("rounded-full px-2.5 py-1 text-[10px] transition border", activeCategory === cat.id ? "bg-white/20 border-white/30 text-white" : "bg-white/5 border-white/10 text-white/50 hover:bg-white/10")}>
+                {cat.label.split(" ")[0]}
+              </button>
+            ))}
+          </div>
+          {/* Lens list */}
+          <div className="space-y-0.5 max-h-[520px] overflow-y-auto">
+            {LENS_CATEGORIES.map(cat => {
+              const catLenses = filteredMeta.filter(([, m]) => m.category === cat.id);
+              if (catLenses.length === 0) return null;
+              return (
+                <div key={cat.id} className="mb-3">
+                  <p className={cx("text-[10px] font-semibold uppercase tracking-wider mb-1 bg-gradient-to-r bg-clip-text text-transparent", cat.color)}>{cat.label}</p>
+                  {catLenses.map(([id, m]) => (
+                    <button key={id} onClick={() => setActiveLensId(id)}
+                      className={cx("w-full text-left px-3 py-1.5 rounded-lg text-xs transition", activeLensId === id ? "bg-white/15 text-white border border-white/20" : "text-white/55 hover:text-white hover:bg-white/[0.06]")}>
+                      {m.name}
+                    </button>
+                  ))}
+                </div>
+              );
+            })}
+          </div>
+        </div>
+      </Card>
+
+      {/* Main panel */}
+      <div className="lg:col-span-9">
+        {activeLensId ? (
+          <LensWindow lensId={activeLensId} profileId={profileId} />
+        ) : (
+          <Card>
+            <div className="p-8 text-center">
+              <Layers3 className="mx-auto h-10 w-10 text-white/20 mb-4" />
+              <h3 className="text-lg font-semibold text-white mb-2">Select a lens to explore</h3>
+              <p className="text-sm text-white/45 max-w-md mx-auto">Choose from {Object.keys(LENS_META).length} behavioral intelligence lenses. Each one maps PI profile data to a different psychological framework.</p>
+              <div className="mt-6 grid gap-3 md:grid-cols-2 xl:grid-cols-4">
+                {LENS_CATEGORIES.map(cat => (
+                  <button key={cat.id} onClick={() => setActiveCategory(cat.id === activeCategory ? null : cat.id)}
+                    className={cx("rounded-2xl border p-4 text-left transition hover:bg-white/[0.08]", cat.bg, cat.border)}>
+                    <div className={cx("text-xs font-semibold mb-1 bg-gradient-to-r bg-clip-text text-transparent", cat.color)}>{cat.label}</div>
+                    <div className="text-lg font-bold text-white">{Object.values(LENS_META).filter(m => m.category === cat.id).length}</div>
+                    <div className="text-xs text-white/40">frameworks</div>
+                  </button>
+                ))}
+              </div>
+            </div>
+          </Card>
+        )}
+      </div>
+    </div>
+  );
+}
+
 export default function HumanSystemsIntelligenceApp() {
   const [activeTab, setActiveTab] = useState("dashboard");
   const [selectedProfile, setSelectedProfile] = useState(profiles[0]);
@@ -1157,9 +1252,9 @@ export default function HumanSystemsIntelligenceApp() {
             {activeTab === "meaning" && <MeaningGuide />}
             {activeTab === "matrix" && <ScoreMatrix />}
             {activeTab === "brain" && <StrengthMap />}
-            {activeTab === "lenses" && <LensExplorer profile={selectedProfile.name} />}
+            {activeTab === "lenses" && <LensesView selectedProfile={selectedProfile} />}
             {activeTab === "builder" && <EmployeeBuilderMode />}
-            {activeTab === "coach" && <AIScenarioCoachMode profile={selectedProfile.name} />}
+            {activeTab === "coach" && <AIScenarioCoachMode profile={selectedProfile.name.toLowerCase()} />}
           </motion.main>
         </AnimatePresence>
       </div>
