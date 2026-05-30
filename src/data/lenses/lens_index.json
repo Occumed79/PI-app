@@ -1,0 +1,562 @@
+{
+  "01_big_five_ocean": {
+    "lens": "Big Five / OCEAN",
+    "file": "01_Big_Five_OCEAN.txt",
+    "json": "individual/01_big_five_ocean.json"
+  },
+  "01_insights_discovery_color_model": {
+    "lens": "Insights Discovery (Color Model)",
+    "file": "01_Insights_Discovery_Color_Model.txt",
+    "json": "individual/01_insights_discovery_color_model.json"
+  },
+  "02_disc_crosswalk": {
+    "lens": "DISC Crosswalk",
+    "file": "02_DISC_Crosswalk.txt",
+    "json": "individual/02_disc_crosswalk.json"
+  },
+  "02_workplace_big_five_pro": {
+    "lens": "Workplace Big Five Pro",
+    "file": "02_Workplace_Big_Five_Pro.txt",
+    "json": "individual/02_workplace_big_five_pro.json"
+  },
+  "03_cognitive_ability_gma_wonderlic": {
+    "lens": "Cognitive Ability / GMA / Wonderlic",
+    "file": "03_Cognitive_Ability_GMA_Wonderlic.txt",
+    "json": "individual/03_cognitive_ability_gma_wonderlic.json"
+  },
+  "03_cognitive_processing_style": {
+    "lens": "Cognitive Processing Style",
+    "file": "03_Cognitive_Processing_Style.txt",
+    "json": "individual/03_cognitive_processing_style.json"
+  },
+  "04_decision_making_style": {
+    "lens": "Decision-Making Style",
+    "file": "04_Decision_Making_Style.txt",
+    "json": "individual/04_decision_making_style.json"
+  },
+  "04_hogan_hpi": {
+    "lens": "Hogan HPI",
+    "file": "04_Hogan_HPI.txt",
+    "json": "individual/04_hogan_hpi.json"
+  },
+  "05_hogan_hds_derailers": {
+    "lens": "Hogan HDS Derailers",
+    "file": "05_Hogan_HDS_Derailers.txt",
+    "json": "individual/05_hogan_hds_derailers.json"
+  },
+  "05_self_determination_theory_sdt": {
+    "lens": "Self-Determination Theory (SDT)",
+    "file": "05_Self_Determination_Theory_SDT.txt",
+    "json": "individual/05_self_determination_theory_sdt.json"
+  },
+  "06_16pf": {
+    "lens": "16PF",
+    "file": "06_16PF.txt",
+    "json": "individual/06_16pf.json"
+  },
+  "06_learning_design_style_non_vark": {
+    "lens": "Learning Design Style (non-VARK)",
+    "file": "06_Learning_Design_Style_non_VARK.txt",
+    "json": "individual/06_learning_design_style_non_vark.json"
+  },
+  "07_learning_agility_growth_mindset": {
+    "lens": "Learning Agility & Growth Mindset",
+    "file": "07_Learning_Agility_Growth_Mindset.txt",
+    "json": "individual/07_learning_agility_growth_mindset.json"
+  },
+  "07_social_cognition": {
+    "lens": "Social Cognition",
+    "file": "07_Social_Cognition.txt",
+    "json": "individual/07_social_cognition.json"
+  },
+  "08_executive_function_model": {
+    "lens": "Executive Function Model",
+    "file": "08_Executive_Function_Model.txt",
+    "json": "individual/08_executive_function_model.json"
+  },
+  "08_team_synthesis_matrix": {
+    "lens": "Team Synthesis Matrix",
+    "file": "08_Team_Synthesis_Matrix.txt",
+    "json": "individual/08_team_synthesis_matrix.json"
+  },
+  "09_cognitive_reflection_test_crt": {
+    "lens": "Cognitive Reflection Test (CRT)",
+    "file": "09_Cognitive_Reflection_Test_CRT.txt",
+    "json": "individual/09_cognitive_reflection_test_crt.json"
+  },
+  "09_hexaco": {
+    "lens": "HEXACO",
+    "file": "09_HEXACO.txt",
+    "json": "individual/09_hexaco.json"
+  },
+  "10_kolbe_a_index_conation": {
+    "lens": "Kolbe A Index (Conation)",
+    "file": "10_Kolbe_A_Index_Conation.txt",
+    "json": "individual/10_kolbe_a_index_conation.json"
+  },
+  "10_mbti_crosswalk": {
+    "lens": "MBTI Crosswalk",
+    "file": "10_MBTI_Crosswalk.txt",
+    "json": "individual/10_mbti_crosswalk.json"
+  },
+  "11_hbdi_herrmann_brain_dominance_instrument": {
+    "lens": "HBDI - Herrmann Brain Dominance Instrument",
+    "file": "11_HBDI_Herrmann_Brain_Dominance_Instrument.txt",
+    "json": "individual/11_hbdi_herrmann_brain_dominance_instrument.json"
+  },
+  "11_keirsey_temperaments": {
+    "lens": "Keirsey Temperaments",
+    "file": "11_Keirsey_Temperaments.txt",
+    "json": "individual/11_keirsey_temperaments.json"
+  },
+  "12_cliftonstrengths_34_themes": {
+    "lens": "CliftonStrengths 34 Themes",
+    "file": "12_CliftonStrengths_34_Themes.txt",
+    "json": "individual/12_cliftonstrengths_34_themes.json"
+  },
+  "12_kai_kirton_adaption_innovation_inventory": {
+    "lens": "KAI - Kirton Adaption-Innovation Inventory",
+    "file": "12_KAI_Kirton_Adaption_Innovation_Inventory.txt",
+    "json": "individual/12_kai_kirton_adaption_innovation_inventory.json"
+  },
+  "13_thomas_kilmann_conflict_mode_tki": {
+    "lens": "Thomas-Kilmann Conflict Mode (TKI)",
+    "file": "13_Thomas_Kilmann_Conflict_Mode_TKI.txt",
+    "json": "individual/13_thomas_kilmann_conflict_mode_tki.json"
+  },
+  "13_via_character_strengths_24": {
+    "lens": "VIA Character Strengths",
+    "file": "13_VIA_Character_Strengths_24.txt",
+    "json": "individual/13_via_character_strengths_24.json"
+  },
+  "14_enneagram_core_types_and_27_subtypes": {
+    "lens": "Enneagram Core Types and Subtypes",
+    "file": "14_Enneagram_Core_Types_and_27_Subtypes.txt",
+    "json": "individual/14_enneagram_core_types_and_27_subtypes.json"
+  },
+  "14_interpersonal_dynamics_inventory": {
+    "lens": "Interpersonal Dynamics Inventory",
+    "file": "14_Interpersonal_Dynamics_Inventory.txt",
+    "json": "individual/14_interpersonal_dynamics_inventory.json"
+  },
+  "15_feedback_sensitivity_lens": {
+    "lens": "Feedback Sensitivity Lens",
+    "file": "15_Feedback_Sensitivity_Lens.txt",
+    "json": "individual/15_feedback_sensitivity_lens.json"
+  },
+  "15_reiss_motivation_profile": {
+    "lens": "Reiss Motivation Profile",
+    "file": "15_Reiss_Motivation_Profile.txt",
+    "json": "individual/15_reiss_motivation_profile.json"
+  },
+  "16pf_lens": {
+    "lens": "Sixteen Personality Factor (16PF) Lens",
+    "file": "16PF_Lens.txt",
+    "json": "individual/16pf_lens.json"
+  },
+  "16_motivational_maps": {
+    "lens": "Motivational Maps",
+    "file": "16_Motivational_Maps.txt",
+    "json": "individual/16_motivational_maps.json"
+  },
+  "16_trust_and_psychological_safety_lens": {
+    "lens": "Trust and Psychological Safety Lens",
+    "file": "16_Trust_and_Psychological_Safety_Lens.txt",
+    "json": "individual/16_trust_and_psychological_safety_lens.json"
+  },
+  "17_eq_i_2_0_emotional_intelligence": {
+    "lens": "EQ-i 2.0 Emotional Intelligence",
+    "file": "17_EQ_i_2_0_Emotional_Intelligence.txt",
+    "json": "individual/17_eq_i_2_0_emotional_intelligence.json"
+  },
+  "17_relational_needs_firo_b_lens": {
+    "lens": "Relational Needs FIRO-B Lens",
+    "file": "17_Relational_Needs_FIRO_B_Lens.txt",
+    "json": "individual/17_relational_needs_firo_b_lens.json"
+  },
+  "18_msceit_ability_based_eq": {
+    "lens": "MSCEIT Ability-Based EQ",
+    "file": "18_MSCEIT_Ability_Based_EQ.txt",
+    "json": "individual/18_msceit_ability_based_eq.json"
+  },
+  "18_metacognition": {
+    "lens": "Metacognition",
+    "file": "18_Metacognition.txt",
+    "json": "individual/18_metacognition.json"
+  },
+  "19_cognitive_flexibility_lens": {
+    "lens": "Cognitive Flexibility Lens",
+    "file": "19_Cognitive_Flexibility_Lens.txt",
+    "json": "individual/19_cognitive_flexibility_lens.json"
+  },
+  "19_social_styles_driver_analytical_amiable_expressive": {
+    "lens": "Social Styles",
+    "file": "19_Social_Styles_Driver_Analytical_Amiable_Expressive.txt",
+    "json": "individual/19_social_styles_driver_analytical_amiable_expressive.json"
+  },
+  "20_cognitive_load_working_style_1": {
+    "lens": "Cognitive Load & Working Style",
+    "file": "20_Cognitive_Load_Working_Style(1).txt",
+    "json": "individual/20_cognitive_load_working_style_1.json"
+  },
+  "20_cognitive_load_working_style": {
+    "lens": "Cognitive Load & Working Style",
+    "file": "20_Cognitive_Load_Working_Style.txt",
+    "json": "individual/20_cognitive_load_working_style.json"
+  },
+  "21_schwartz_values_inventory_workplace_mapping_1": {
+    "lens": "Schwartz Values Inventory (Workplace Mapping)",
+    "file": "21_Schwartz_Values_Inventory_Workplace_Mapping(1).txt",
+    "json": "individual/21_schwartz_values_inventory_workplace_mapping_1.json"
+  },
+  "21_schwartz_values_inventory_workplace_mapping": {
+    "lens": "Schwartz Values Inventory (Workplace Mapping)",
+    "file": "21_Schwartz_Values_Inventory_Workplace_Mapping.txt",
+    "json": "individual/21_schwartz_values_inventory_workplace_mapping.json"
+  },
+  "22_strength_deployment_inventory_sdi_1": {
+    "lens": "Strength Deployment Inventory (SDI)",
+    "file": "22_Strength_Deployment_Inventory_SDI(1).txt",
+    "json": "individual/22_strength_deployment_inventory_sdi_1.json"
+  },
+  "22_strength_deployment_inventory_sdi": {
+    "lens": "Strength Deployment Inventory (SDI)",
+    "file": "22_Strength_Deployment_Inventory_SDI.txt",
+    "json": "individual/22_strength_deployment_inventory_sdi.json"
+  },
+  "23_spiral_dynamics_graves_values_workplace_mapping_1": {
+    "lens": "Spiral Dynamics / Graves Values (Workplace Mapping)",
+    "file": "23_Spiral_Dynamics_Graves_Values_Workplace_Mapping(1).txt",
+    "json": "individual/23_spiral_dynamics_graves_values_workplace_mapping_1.json"
+  },
+  "23_spiral_dynamics_graves_values_workplace_mapping": {
+    "lens": "Spiral Dynamics / Graves Values (Workplace Mapping)",
+    "file": "23_Spiral_Dynamics_Graves_Values_Workplace_Mapping.txt",
+    "json": "individual/23_spiral_dynamics_graves_values_workplace_mapping.json"
+  },
+  "24_work_values_inventory_practical_workplace_priorities": {
+    "lens": "Work Values Inventory (practical workplace priorities)",
+    "file": "24_Work_Values_Inventory_practical_workplace_priorities.txt",
+    "json": "individual/24_work_values_inventory_practical_workplace_priorities.json"
+  },
+  "25_purpose_meaning_lens_what_fuels_sustained_engagement": {
+    "lens": "Purpose & Meaning Lens (what fuels sustained engagement)",
+    "file": "25_Purpose_Meaning_Lens_what_fuels_sustained_engagement.txt",
+    "json": "individual/25_purpose_meaning_lens_what_fuels_sustained_engagement.json"
+  },
+  "26_belbin_team_roles": {
+    "lens": "Belbin Team Roles",
+    "file": "26_Belbin_Team_Roles.txt",
+    "json": "individual/26_belbin_team_roles.json"
+  },
+  "27_team_management_systems_tms": {
+    "lens": "Team Management Systems (TMS)",
+    "file": "27_Team_Management_Systems_TMS.txt",
+    "json": "individual/27_team_management_systems_tms.json"
+  },
+  "28_lencioni_team_dynamics": {
+    "lens": "Lencioni Team Dynamics",
+    "file": "28_Lencioni_Team_Dynamics.txt",
+    "json": "individual/28_lencioni_team_dynamics.json"
+  },
+  "29_leadership_circle_profile": {
+    "lens": "Leadership Circle Profile",
+    "file": "29_Leadership_Circle_Profile.txt",
+    "json": "individual/29_leadership_circle_profile.json"
+  },
+  "30_neurodiversity_support_lens_neurodivergence_and_cognitive_accessibility": {
+    "lens": "Neurodiversity Support Lens - Neurodivergence and Cognitive Accessibility",
+    "file": "30_Neurodiversity_Support_Lens_Neurodivergence_and_Cognitive_Accessibility.txt",
+    "json": "individual/30_neurodiversity_support_lens_neurodivergence_and_cognitive_accessibility.json"
+  },
+  "31_lived_experience_context_lens": {
+    "lens": "Lived Experience Context Lens",
+    "file": "31_Lived_Experience_Context_Lens.txt",
+    "json": "individual/31_lived_experience_context_lens.json"
+  },
+  "32_referenced_but_not_detailed_in_uploaded_document": {
+    "lens": "REFERENCED BUT NOT DETAILED IN THE UPLOADED DOCUMENT",
+    "file": "32_Referenced_But_Not_Detailed_In_Uploaded_Document.txt",
+    "json": "individual/32_referenced_but_not_detailed_in_uploaded_document.json"
+  },
+  "belbin_team_roles_lens": {
+    "lens": "Belbin Team Roles Lens",
+    "file": "Belbin_Team_Roles_Lens.txt",
+    "json": "individual/belbin_team_roles_lens.json"
+  },
+  "big_five_lens": {
+    "lens": "Big Five (OCEAN) Lens",
+    "file": "Big_Five_Lens.txt",
+    "json": "individual/big_five_lens.json"
+  },
+  "cd_risc_lens": {
+    "lens": "Connor‑Davidson Resilience Scale (CD‑RISC) Lens",
+    "file": "CD_RISC_Lens.txt",
+    "json": "individual/cd_risc_lens.json"
+  },
+  "cliftonstrengths_lens": {
+    "lens": "CliftonStrengths (StrengthsFinder) Lens",
+    "file": "CliftonStrengths_Lens.txt",
+    "json": "individual/cliftonstrengths_lens.json"
+  },
+  "cognitive_ability_lens": {
+    "lens": "General Mental Ability (Cognitive Ability) Lens",
+    "file": "Cognitive_Ability_Lens.txt",
+    "json": "individual/cognitive_ability_lens.json"
+  },
+  "cognitive_flexibility_lens": {
+    "lens": "Cognitive Flexibility Lens",
+    "file": "Cognitive_Flexibility_Lens.txt",
+    "json": "individual/cognitive_flexibility_lens.json"
+  },
+  "cognitive_load_working_style_lens": {
+    "lens": "Cognitive Load & Working Style Lens",
+    "file": "Cognitive_Load_Working_Style_Lens.txt",
+    "json": "individual/cognitive_load_working_style_lens.json"
+  },
+  "cognitive_processing_style": {
+    "lens": "Cognitive Processing Style Lens",
+    "file": "Cognitive_Processing_Style.txt",
+    "json": "individual/cognitive_processing_style.json"
+  },
+  "cognitive_reflection_test": {
+    "lens": "Cognitive Reflection Test (CRT) Lens",
+    "file": "Cognitive_Reflection_Test.txt",
+    "json": "individual/cognitive_reflection_test.json"
+  },
+  "controller_neurodivergence": {
+    "lens": "Controller — Neurodivergence & Cognitive Accessibility",
+    "file": "Controller_Neurodivergence.txt",
+    "json": "individual/controller_neurodivergence.json"
+  },
+  "copenhagen_burnout_inventory_lens": {
+    "lens": "Copenhagen Burnout Inventory (CBI) Lens",
+    "file": "Copenhagen_Burnout_Inventory_Lens.txt",
+    "json": "individual/copenhagen_burnout_inventory_lens.json"
+  },
+  "disc_lens": {
+    "lens": "DISC Behavioral Styles Lens",
+    "file": "DISC_Lens.txt",
+    "json": "individual/disc_lens.json"
+  },
+  "decision_making_style": {
+    "lens": "Decision‑Making Style Lens",
+    "file": "Decision_Making_Style.txt",
+    "json": "individual/decision_making_style.json"
+  },
+  "eqi_2_0_lens_1": {
+    "lens": "Emotional Intelligence (EQ‑i 2.0) Lens",
+    "file": "EQi_2.0_Lens(1).txt",
+    "json": "individual/eqi_2_0_lens_1.json"
+  },
+  "enneagram_lens_1": {
+    "lens": "Enneagram Lens",
+    "file": "Enneagram_Lens(1).txt",
+    "json": "individual/enneagram_lens_1.json"
+  },
+  "executive_function_model_1": {
+    "lens": "Executive Function Model Lens",
+    "file": "Executive_Function_Model(1).txt",
+    "json": "individual/executive_function_model_1.json"
+  },
+  "feedback_sensitivity_lens_1": {
+    "lens": "Feedback Sensitivity Lens",
+    "file": "Feedback_Sensitivity_Lens(1).txt",
+    "json": "individual/feedback_sensitivity_lens_1.json"
+  },
+  "hbdi_lens_1": {
+    "lens": "Herrmann Brain Dominance Instrument (HBDI) Lens",
+    "file": "HBDI_Lens(1).txt",
+    "json": "individual/hbdi_lens_1.json"
+  },
+  "hexaco_lens_1": {
+    "lens": "HEXACO Personality Model Lens",
+    "file": "HEXACO_Lens(1).txt",
+    "json": "individual/hexaco_lens_1.json"
+  },
+  "hogan_development_survey_lens_1": {
+    "lens": "Hogan Development Survey (HDS) Lens",
+    "file": "Hogan_Development_Survey_Lens(1).txt",
+    "json": "individual/hogan_development_survey_lens_1.json"
+  },
+  "hogan_personality_inventory_lens_1": {
+    "lens": "Hogan Personality Inventory (HPI) Lens",
+    "file": "Hogan_Personality_Inventory_Lens(1).txt",
+    "json": "individual/hogan_personality_inventory_lens_1.json"
+  },
+  "insights_discovery_color_model_1": {
+    "lens": "Insights Discovery (Color Model) Lens",
+    "file": "Insights_Discovery_Color_Model(1).txt",
+    "json": "individual/insights_discovery_color_model_1.json"
+  },
+  "interpersonal_dynamics_inventory_1": {
+    "lens": "Interpersonal Dynamics Inventory Lens",
+    "file": "Interpersonal_Dynamics_Inventory(1).txt",
+    "json": "individual/interpersonal_dynamics_inventory_1.json"
+  },
+  "kai_lens_1": {
+    "lens": "Kirton Adaption–Innovation Inventory (KAI) Lens",
+    "file": "KAI_Lens(1).txt",
+    "json": "individual/kai_lens_1.json"
+  },
+  "keirsey_temperament_lens_1": {
+    "lens": "Keirsey Temperament Theory Lens",
+    "file": "Keirsey_Temperament_Lens(1).txt",
+    "json": "individual/keirsey_temperament_lens_1.json"
+  },
+  "kolbe_a_index_1": {
+    "lens": "Kolbe A Index (Conation) Lens",
+    "file": "Kolbe_A_Index(1).txt",
+    "json": "individual/kolbe_a_index_1.json"
+  },
+  "leadership_circle_profile_lens_1": {
+    "lens": "Leadership Circle Profile (LCP) Lens",
+    "file": "Leadership_Circle_Profile_Lens(1).txt",
+    "json": "individual/leadership_circle_profile_lens_1.json"
+  },
+  "leadership_versatility_index_lens_1": {
+    "lens": "Leadership Versatility Index (LVI) Lens",
+    "file": "Leadership_Versatility_Index_Lens(1).txt",
+    "json": "individual/leadership_versatility_index_lens_1.json"
+  },
+  "learning_design_style_1": {
+    "lens": "Learning Design Style (Non‑VARK) Lens",
+    "file": "Learning_Design_Style(1).txt",
+    "json": "individual/learning_design_style_1.json"
+  },
+  "lencioni_team_dynamics_lens_1": {
+    "lens": "Lencioni Team Dynamics (Five Dysfunctions) Lens",
+    "file": "Lencioni_Team_Dynamics_Lens(1).txt",
+    "json": "individual/lencioni_team_dynamics_lens_1.json"
+  },
+  "lived_experience_context_lens_1": {
+    "lens": "Lived Experience Context Lens",
+    "file": "Lived_Experience_Context_Lens(1).txt",
+    "json": "individual/lived_experience_context_lens_1.json"
+  },
+  "lominger_competency_lens_1": {
+    "lens": "Lominger Leadership Architect Competency Lens",
+    "file": "Lominger_Competency_Lens(1).txt",
+    "json": "individual/lominger_competency_lens_1.json"
+  },
+  "mbti_lens": {
+    "lens": "Myers‑Briggs Type Indicator (MBTI) Lens",
+    "file": "MBTI_Lens.txt",
+    "json": "individual/mbti_lens.json"
+  },
+  "msceit_lens": {
+    "lens": "Mayer‑Salovey‑Caruso Emotional Intelligence Test (MSCEIT) Lens",
+    "file": "MSCEIT_Lens.txt",
+    "json": "individual/msceit_lens.json"
+  },
+  "maslach_burnout_inventory_lens": {
+    "lens": "Maslach Burnout Inventory (MBI) Lens",
+    "file": "Maslach_Burnout_Inventory_Lens.txt",
+    "json": "individual/maslach_burnout_inventory_lens.json"
+  },
+  "metacognition_lens": {
+    "lens": "Metacognition Lens",
+    "file": "Metacognition_Lens.txt",
+    "json": "individual/metacognition_lens.json"
+  },
+  "neurodiversity_support_lens": {
+    "lens": "Neurodiversity Support Lens",
+    "file": "Neurodiversity_Support_Lens.txt",
+    "json": "individual/neurodiversity_support_lens.json"
+  },
+  "perceived_stress_scale_lens": {
+    "lens": "Perceived Stress Scale (PSS) Lens",
+    "file": "Perceived_Stress_Scale_Lens.txt",
+    "json": "individual/perceived_stress_scale_lens.json"
+  },
+  "purpose_and_meaning_lens": {
+    "lens": "Purpose & Meaning Lens",
+    "file": "Purpose_and_Meaning_Lens.txt",
+    "json": "individual/purpose_and_meaning_lens.json"
+  },
+  "relational_needs_firob": {
+    "lens": "Relational Needs – FIRO‑B Lens",
+    "file": "Relational_Needs_FIROB.txt",
+    "json": "individual/relational_needs_firob.json"
+  },
+  "schwartz_values_inventory": {
+    "lens": "Schwartz Values Inventory Lens",
+    "file": "Schwartz_Values_Inventory.txt",
+    "json": "individual/schwartz_values_inventory.json"
+  },
+  "self_determination_theory": {
+    "lens": "Self‑Determination Theory (SDT) Lens",
+    "file": "Self_Determination_Theory.txt",
+    "json": "individual/self_determination_theory.json"
+  },
+  "situational_leadership_lens": {
+    "lens": "Situational Leadership Lens",
+    "file": "Situational_Leadership_Lens.txt",
+    "json": "individual/situational_leadership_lens.json"
+  },
+  "social_cognition": {
+    "lens": "Social Cognition Lens",
+    "file": "Social_Cognition.txt",
+    "json": "individual/social_cognition.json"
+  },
+  "social_styles_lens": {
+    "lens": "Social Styles Lens",
+    "file": "Social_Styles_Lens.txt",
+    "json": "individual/social_styles_lens.json"
+  },
+  "specialist_neurodivergence": {
+    "lens": "Specialist — Neurodivergence & Cognitive Accessibility",
+    "file": "Specialist_Neurodivergence.txt",
+    "json": "individual/specialist_neurodivergence.json"
+  },
+  "spiral_dynamics_lens": {
+    "lens": "Spiral Dynamics (Graves Values) Lens",
+    "file": "Spiral_Dynamics_Lens.txt",
+    "json": "individual/spiral_dynamics_lens.json"
+  },
+  "strength_deployment_inventory": {
+    "lens": "Strength Deployment Inventory (SDI) Lens",
+    "file": "Strength_Deployment_Inventory.txt",
+    "json": "individual/strength_deployment_inventory.json"
+  },
+  "tki_lens": {
+    "lens": "Thomas–Kilmann Conflict Mode (TKI) Lens",
+    "file": "TKI_Lens.txt",
+    "json": "individual/tki_lens.json"
+  },
+  "team_management_systems_lens": {
+    "lens": "Team Management Systems (TMS) Lens",
+    "file": "Team_Management_Systems_Lens.txt",
+    "json": "individual/team_management_systems_lens.json"
+  },
+  "trust_psychological_safety_lens": {
+    "lens": "Trust and Psychological Safety Lens",
+    "file": "Trust_Psychological_Safety_Lens.txt",
+    "json": "individual/trust_psychological_safety_lens.json"
+  },
+  "via_character_strengths_lens": {
+    "lens": "VIA Character Strengths Lens",
+    "file": "VIA_Character_Strengths_Lens.txt",
+    "json": "individual/via_character_strengths_lens.json"
+  },
+  "who5_wellbeing_index_lens": {
+    "lens": "WHO‑5 Well‑Being Index Lens",
+    "file": "WHO5_Wellbeing_Index_Lens.txt",
+    "json": "individual/who5_wellbeing_index_lens.json"
+  },
+  "work_values_inventory": {
+    "lens": "Work Values Inventory Lens",
+    "file": "Work_Values_Inventory.txt",
+    "json": "individual/work_values_inventory.json"
+  },
+  "workplace_big_five_pro": {
+    "lens": "Workplace Big Five Pro Lens",
+    "file": "Workplace_Big_Five_Pro.txt",
+    "json": "individual/workplace_big_five_pro.json"
+  },
+  "workplace_stress_lens": {
+    "lens": "Workplace Stress Lens",
+    "file": "Workplace_Stress_Lens.txt",
+    "json": "individual/workplace_stress_lens.json"
+  }
+}
