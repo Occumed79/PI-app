@@ -4431,6 +4431,1259 @@ Cognitive Load & Working Style
 | Scholar | Intensive analytic processing | Very High for research | Paralysis when forced to act fast | ca://s?q=Scholar_Cognitive_Load |
 `,
   },
+  {
+    id: "schwartz-values-inventory-workplace-mapping",
+    lens: "Schwartz Values Inventory (Workplace Mapping)",
+    status: "COMPLETE",
+    source: "Untitled 5.txt",
+    content: `LENS: Schwartz Values Inventory (Workplace Mapping)
+STATUS: COMPLETE
+SOURCE: Untitled 5.txt
+DEDUPLICATION / CLEANUP NOTE: Converted the one-cell-per-line table from the transcript into a readable text table. Duplicate status/check-in text was removed.
+================================================================================
+
+Schwartz Values Inventory (Workplace Mapping)
+
+| Profile | Top Value(s) | Work Expression | Stress | Link |
+|---|---|---|---|---|
+| Analyzer | Conformity; Security | Rules, accuracy, reliability | Frustrated by ambiguity | ca://s?q=Analyzer_Schwartz_Values |
+| Controller | Security; Power | Control, governance, order | Resists loss of authority | ca://s?q=Controller_Schwartz_Values |
+| Specialist | Achievement; Security | Mastery, competence, standards | Threatened by incompetence | ca://s?q=Specialist_Schwartz_Values |
+| Strategist | Self‑direction; Achievement | Vision, autonomy, impact | Stifled by bureaucracy | ca://s?q=Strategist_Schwartz_Values |
+| Venturer | Stimulation; Self‑direction | Risk, novelty, autonomy | Chafes under rules | ca://s?q=Venturer_Schwartz_Values |
+| Altruist | Benevolence; Universalism | Helping, team cohesion | Hurt by exclusion | ca://s?q=Altruist_Schwartz_Values |
+| Captain | Power; Achievement | Lead, deliver, influence | Reacts to disloyalty | ca://s?q=Captain_Schwartz_Values |
+| Collaborator | Benevolence; Tradition | Teamwork, fairness | Distressed by conflict | ca://s?q=Collaborator_Schwartz_Values |
+| Maverick | Stimulation; Self‑direction | Disruption, novelty | Frustrated by constraints | ca://s?q=Maverick_Schwartz_Values |
+| Persuader | Self‑direction; Stimulation | Influence, visibility | Sensitive to rejection | ca://s?q=Persuader_Schwartz_Values |
+| Promoter | Stimulation; Hedonism | Energy, visibility, excitement | Moves on after slights | ca://s?q=Promoter_Schwartz_Values |
+| Adapter | Benevolence; Conformity | Fit in, support, adapt | Over‑extends to belong | ca://s?q=Adapter_Schwartz_Values |
+| Craftsman | Conformity; Achievement | Quality, standards, craft | Distressed by sloppy work | ca://s?q=Craftsman_Schwartz_Values |
+| Guardian | Security; Tradition | Preserve systems, continuity | Resists rapid change | ca://s?q=Guardian_Schwartz_Values |
+| Operator | Conformity; Security | Reliable execution, order | Frustrated by chaos | ca://s?q=Operator_Schwartz_Values |
+| Individualist | Self‑direction; Stimulation | Autonomy, originality | Withdraws under control | ca://s?q=Individualist_Schwartz_Values |
+| Scholar | Self‑direction; Universalism | Knowledge, rigor, truth | Overwhelmed by triviality | ca://s?q=Scholar_Schwartz_Values |
+`,
+  },
+  {
+    id: "strength-deployment-inventory-sdi",
+    lens: "Strength Deployment Inventory (SDI)",
+    status: "COMPLETE",
+    source: "Untitled 5.txt",
+    content: `LENS: Strength Deployment Inventory (SDI)
+STATUS: COMPLETE
+SOURCE: Untitled 5.txt
+DEDUPLICATION / CLEANUP NOTE: Converted the one-cell-per-line table from the transcript into a readable text table. Duplicate status/check-in text was removed.
+================================================================================
+
+Strength Deployment Inventory (SDI)
+
+| Profile | Primary Motive (SDI) | Secondary Motive | Stress Pattern | Link |
+|---|---|---|---|---|
+| Analyzer | Task‑oriented (Blue) | Avoids interpersonal focus | Withdraws into critique | ca://s?q=Analyzer_SDI |
+| Controller | Task‑oriented (Blue) | Power/assertion under stress | Becomes controlling, punitive | ca://s?q=Controller_SDI |
+| Specialist | Task‑oriented (Blue) | Competence validation | Withdraws, defends expertise | ca://s?q=Specialist_SDI |
+| Strategist | Task‑oriented (Blue) | Vision‑driven (move to Red when pressed) | Over‑asserts logic, steamrolls | ca://s?q=Strategist_SDI |
+| Venturer | Self‑oriented (Red) | Task‑driven opportunism | Impulsive, challenges others | ca://s?q=Venturer_SDI |
+| Altruist | People‑oriented (Green) | Harmonizing with tasks | Over‑accommodates, pleases | ca://s?q=Altruist_SDI |
+| Captain | Self‑oriented (Red) | Task focus for results | Dominates, demands loyalty | ca://s?q=Captain_SDI |
+| Collaborator | People‑oriented (Green) | Consensus facilitation | Avoids conflict, over‑yields | ca://s?q=Collaborator_SDI |
+| Maverick | Self‑oriented (Red) | Creative task focus | Provokes to test limits | ca://s?q=Maverick_SDI |
+| Persuader | People‑oriented (Green) | Influence for outcomes | Personalizes feedback, emotional | ca://s?q=Persuader_SDI |
+| Promoter | Self‑oriented (Red) | Social activation | Over‑promises, dramatic reactions | ca://s?q=Promoter_SDI |
+| Adapter | People‑oriented (Green) | Flexible task support | Over‑adjusts to keep peace | ca://s?q=Adapter_SDI |
+| Craftsman | Task‑oriented (Blue) | Quality preservation | Perfectionism, withdraws | ca://s?q=Craftsman_SDI |
+| Guardian | Task‑oriented (Blue) | Protect group norms | Defensive, resists change | ca://s?q=Guardian_SDI |
+| Operator | Task‑oriented (Blue) | Reliability focus | Rigid enforcement of process | ca://s?q=Operator_SDI |
+| Individualist | Self‑oriented (Red) | Autonomy first | Detaches, challenges constraints | ca://s?q=Individualist_SDI |
+| Scholar | Task‑oriented (Blue) | Truth/accuracy drive | Over‑analysis, slow to act | ca://s?q=Scholar_SDI |
+`,
+  },
+  {
+    id: "spiral-dynamics-graves-values-workplace-mapping",
+    lens: "Spiral Dynamics / Graves Values (Workplace Mapping)",
+    status: "COMPLETE",
+    source: "Untitled 5.txt",
+    content: `LENS: Spiral Dynamics / Graves Values (Workplace Mapping)
+STATUS: COMPLETE
+SOURCE: Untitled 5.txt
+DEDUPLICATION / CLEANUP NOTE: Converted the one-cell-per-line table from the transcript into a readable text table. Duplicate status/check-in text was removed.
+================================================================================
+
+Spiral Dynamics / Graves Values (Workplace Mapping)
+
+| Profile | Primary Value Tier | Work Expression | Stress Shift | Link |
+|---|---|---|---|---|
+| Analyzer | Blue (Order) | Rules, predictability, competence | Tightens rules under threat | ca://s?q=Analyzer_Spiral_Dynamics |
+| Controller | Blue (Order) | Governance, hierarchy | Becomes more authoritarian | ca://s?q=Controller_Spiral_Dynamics |
+| Specialist | Blue → Orange | Expertise, measurable achievement | Retreats to technical silo | ca://s?q=Specialist_Spiral_Dynamics |
+| Strategist | Yellow / Turquoise (Integrative) | Systems thinking, purpose | Over‑complex framing under pressure | ca://s?q=Strategist_Spiral_Dynamics |
+| Venturer | Orange → Red | Competitive, entrepreneurial | Escalates risk‑taking when stressed | ca://s?q=Venturer_Spiral_Dynamics |
+| Altruist | Green | Community, fairness, care | Over‑sacrifices when threatened | ca://s?q=Altruist_Spiral_Dynamics |
+| Captain | Red → Orange | Command, results | More forceful, less collaborative | ca://s?q=Captain_Spiral_Dynamics |
+| Collaborator | Green | Team cohesion, inclusion | Withdraws if excluded | ca://s?q=Collaborator_Spiral_Dynamics |
+| Maverick | Yellow / Orange | Novelty, challenge norms | Provokes chaos under constraint | ca://s?q=Maverick_Spiral_Dynamics |
+| Persuader | Orange → Green | Influence, social leverage | Personalizes setbacks | ca://s?q=Persuader_Spiral_Dynamics |
+| Promoter | Red → Orange | Visibility, activation | Seeks new stage after rejection | ca://s?q=Promoter_Spiral_Dynamics |
+| Adapter | Green → Blue | Fit‑in, pragmatic support | Over‑adjusts to group norms | ca://s?q=Adapter_Spiral_Dynamics |
+| Craftsman | Blue | Craft, standards, duty | Tightens standards, delays delivery | ca://s?q=Craftsman_Spiral_Dynamics |
+| Guardian | Blue | Preservation, continuity | Strong resistance to change | ca://s?q=Guardian_Spiral_Dynamics |
+| Operator | Blue | Reliability, process | Becomes procedural and blunt | ca://s?q=Operator_Spiral_Dynamics |
+| Individualist | Yellow / Orange | Autonomy, uniqueness | Withdraws into idiosyncrasy | ca://s?q=Individualist_Spiral_Dynamics |
+| Scholar | Yellow / Blue | Knowledge, systems | Over‑refines models, delays action | ca://s?q=Scholar_Spiral_Dynamics |
+`,
+  },
+  {
+    id: "work-values-inventory-practical-workplace-priorities",
+    lens: "Work Values Inventory (practical workplace priorities)",
+    status: "COMPLETE",
+    source: "Untitled 5.txt",
+    content: `LENS: Work Values Inventory (practical workplace priorities)
+STATUS: COMPLETE
+SOURCE: Untitled 5.txt
+DEDUPLICATION / CLEANUP NOTE: Converted the one-cell-per-line table from the transcript into a readable text table. Duplicate status/check-in text was removed.
+================================================================================
+
+Work Values Inventory (practical workplace priorities)
+
+| Profile | Top Work Value(s) | How It Shows Up at Work | When Frustrated | Link |
+|---|---|---|---|---|
+| Analyzer | Accuracy, Security | Detailed procedures, low error tolerance | Blames ambiguity | ca://s?q=Analyzer_Work_Values |
+| Controller | Authority, Order | Clear roles, enforcement | Tightens control, punitive | ca://s?q=Controller_Work_Values |
+| Specialist | Mastery, Competence | Deep technical ownership | Withdraws from non‑expert tasks | ca://s?q=Specialist_Work_Values |
+| Strategist | Autonomy, Impact | Big‑picture projects, ownership | Frustrated by bureaucracy | ca://s?q=Strategist_Work_Values |
+| Venturer | Autonomy, Stimulation | Fast experiments, risk projects | Breaks rules, seeks new outlets | ca://s?q=Venturer_Work_Values |
+| Altruist | Relatedness, Service | Mentoring, team support | Takes criticism personally | ca://s?q=Altruist_Work_Values |
+| Captain | Achievement, Power | Leads, drives outcomes | Reacts strongly to disloyalty | ca://s?q=Captain_Work_Values |
+| Collaborator | Cooperation, Fairness | Facilitates, mediates | Withdraws if excluded | ca://s?q=Collaborator_Work_Values |
+| Maverick | Creativity, Freedom | Breaks molds, ideates | Provokes to regain autonomy | ca://s?q=Maverick_Work_Values |
+| Persuader | Recognition, Influence | Networking, selling ideas | Over‑emotional when ignored | ca://s?q=Persuader_Work_Values |
+| Promoter | Excitement, Visibility | Events, launches, hype | Moves on quickly after slights | ca://s?q=Promoter_Work_Values |
+| Adapter | Belonging, Flexibility | Bridges teams, adapts roles | Over‑extends to fit in | ca://s?q=Adapter_Work_Values |
+| Craftsman | Quality, Pride | High standards, craftsmanship | Paralysis when standards threatened | ca://s?q=Craftsman_Work_Values |
+| Guardian | Stability, Tradition | Protects processes, history | Resists rapid change | ca://s?q=Guardian_Work_Values |
+| Operator | Reliability, Orderliness | Executes, maintains systems | Frustrated by chaos | ca://s?q=Operator_Work_Values |
+| Individualist | Autonomy, Originality | Independent projects, unique solutions | Withdraws under micromanage | ca://s?q=Individualist_Work_Values |
+| Scholar | Knowledge, Truth | Research, evidence, rigor | Disengages from trivial tasks | ca://s?q=Scholar_Work_Values |
+`,
+  },
+  {
+    id: "purpose--meaning-lens-what-fuels-sustained-engagement",
+    lens: "Purpose & Meaning Lens (what fuels sustained engagement)",
+    status: "COMPLETE",
+    source: "Untitled 5.txt",
+    content: `LENS: Purpose & Meaning Lens (what fuels sustained engagement)
+STATUS: COMPLETE
+SOURCE: Untitled 5.txt
+DEDUPLICATION / CLEANUP NOTE: Converted the one-cell-per-line table from the transcript into a readable text table. Duplicate status/check-in text was removed.
+================================================================================
+
+Purpose & Meaning Lens (what fuels sustained engagement)
+
+| Profile | Primary Source of Meaning | Best Role Fit for Purpose | Loss of Meaning Looks Like | Link |
+|---|---|---|---|---|
+| Analyzer | Mastery and correctness | QA, analytics, compliance | Feels pointless, disengages | ca://s?q=Analyzer_Purpose_Meaning |
+| Controller | Order and influence | Governance, ops leadership | Sees chaos, becomes punitive | ca://s?q=Controller_Purpose_Meaning |
+| Specialist | Deep expertise impact | R&D, specialist contributor | Alienated by broad tasks | ca://s?q=Specialist_Purpose_Meaning |
+| Strategist | Shaping systems and legacy | Strategy, transformation lead | Bureaucracy drains motivation | ca://s?q=Strategist_Purpose_Meaning |
+| Venturer | Creating new possibilities | Founder, product explorer | Stifled by rules, seeks exit | ca://s?q=Venturer_Purpose_Meaning |
+| Altruist | Helping others grow | People ops, coaching, care roles | Hurt by exclusion or coldness | ca://s?q=Altruist_Purpose_Meaning |
+| Captain | Leading impact and results | Executive, mission lead | Feels undermined, reacts strongly | ca://s?q=Captain_Purpose_Meaning |
+| Collaborator | Building belonging | Team lead, community builder | Withdraws when team fractures | ca://s?q=Collaborator_Purpose_Meaning |
+| Maverick | Challenging the status quo | Innovation labs, skunkworks | Boredom leads to provocation | ca://s?q=Maverick_Purpose_Meaning |
+| Persuader | Moving people to action | Sales, advocacy, evangelism | Feels invisible, loses drive | ca://s?q=Persuader_Purpose_Meaning |
+| Promoter | Sparking energy and attention | Events, launches, growth roles | Seeks new stages, abandons tasks | ca://s?q=Promoter_Purpose_Meaning |
+| Adapter | Being useful and included | Program coordinator, support roles | Over‑giving, loses identity | ca://s?q=Adapter_Purpose_Meaning |
+| Craftsman | Pride in workmanship | Engineering, craft roles | Disillusioned by sloppy outcomes | ca://s?q=Craftsman_Purpose_Meaning |
+| Guardian | Preserving continuity | Risk, compliance, stewardship roles | Anxiety when norms erode | ca://s?q=Guardian_Purpose_Meaning |
+| Operator | Delivering dependable results | Operations, logistics, production | Frustrated by unpredictability | ca://s?q=Operator_Purpose_Meaning |
+| Individualist | Expressing unique identity | Creative lead, solo contributor | Feels constrained, withdraws | ca://s?q=Individualist_Purpose_Meaning |
+| Scholar | Advancing understanding | Research, analytics, policy | Loses interest in surface work | ca://s?q=Scholar_Purpose_Meaning |
+`,
+  },
+  {
+    id: "belbin-team-roles",
+    lens: "Belbin Team Roles",
+    status: "COMPLETE",
+    source: "Untitled 5.txt",
+    content: `LENS: Belbin Team Roles
+STATUS: COMPLETE
+SOURCE: Untitled 5.txt
+DEDUPLICATION / CLEANUP NOTE: Converted the one-cell-per-line table from the transcript into a readable text table. Duplicate status/check-in text was removed.
+================================================================================
+
+Belbin Team Roles
+
+| Profile | Primary Belbin Role | Secondary Role | Team Risk Under Stress | Deep dive |
+|---|---|---|---|---|
+| Analyzer | Monitor Evaluator |  |  |  |
+| Specialist | Over‑critical, stalls decisions | ca://s?q=Analyzer_Belbin |  |  |
+| Controller | Implementer | Shaper | Overly rigid, suppresses ideas | ca://s?q=Controller_Belbin |
+| Specialist |  |  |  |  |
+| Specialist | Monitor Evaluator | Siloed knowledge, poor handoffs | ca://s?q=Specialist_Belbin |  |
+| Strategist | Plant | Monitor Evaluator | Over‑theorizes, misses detail | ca://s?q=Strategist_Belbin |
+| Venturer | Shaper | Plant | Pushes risk, provokes conflict | ca://s?q=Venturer_Belbin |
+| Altruist | Teamworker | Resource Investigator | Over‑accommodates, avoids hard calls | ca://s?q=Altruist_Belbin |
+| Captain | Shaper | Coordinator | Dominates, reduces buy‑in | ca://s?q=Captain_Belbin |
+| Collaborator | Teamworker | Coordinator | Avoids confrontation, delays closure | ca://s?q=Collaborator_Belbin |
+| Maverick | Plant | Resource Investigator | Idea chaos, poor follow‑through | ca://s?q=Maverick_Belbin |
+| Persuader | Resource Investigator | Teamworker | Over‑optimistic, glosses risks | ca://s?q=Persuader_Belbin |
+| Promoter | Resource Investigator | Shaper | Over‑promises, inconsistent delivery | ca://s?q=Promoter_Belbin |
+| Adapter | Teamworker | Implementer | Over‑adjusts, loses direction | ca://s?q=Adapter_Belbin |
+| Craftsman | Implementer | Completer Finisher | Perfectionism causes bottlenecks | ca://s?q=Craftsman_Belbin |
+| Guardian | Completer Finisher | Implementer | Excess caution, resists change | ca://s?q=Guardian_Belbin |
+| Operator | Implementer | Completer Finisher | Rigid routines block innovation | ca://s?q=Operator_Belbin |
+| Individualist | Plant |  |  |  |
+| Specialist | Detached, undermines team norms | ca://s?q=Individualist_Belbin |  |  |
+| Scholar | Monitor Evaluator |  |  |  |
+| Specialist | Over‑analysis delays action | ca://s?q=Scholar_Belbin |  |  |
+`,
+  },
+  {
+    id: "team-management-systems-tms",
+    lens: "Team Management Systems (TMS)",
+    status: "COMPLETE",
+    source: "Untitled 5.txt",
+    content: `LENS: Team Management Systems (TMS)
+STATUS: COMPLETE
+SOURCE: Untitled 5.txt
+DEDUPLICATION / CLEANUP NOTE: Converted the one-cell-per-line table from the transcript into a readable text table. Duplicate status/check-in text was removed.
+================================================================================
+
+Team Management Systems TMS
+
+| Profile | Preferred Team Role | Contribution Style | Failure Mode | Deep dive |
+|---|---|---|---|---|
+| Analyzer | Analyzer/Inspector | Data, quality control | Paralysis by detail | ca://s?q=Analyzer_TMS |
+| Controller | Planner/Inspector | Process governance | Bureaucratic bottleneck | ca://s?q=Controller_TMS |
+| Specialist |  |  |  |  |
+| Specialist | Deep technical input | Knowledge siloing | ca://s?q=Specialist_TMS |  |
+| Strategist | Strategic Planner | Vision and scenarios | Over‑complex plans | ca://s?q=Strategist_TMS |
+| Venturer | Explorer/Innovator | Opportunity spotting | Reckless pivots | ca://s?q=Venturer_TMS |
+| Altruist | Team Builder | Cohesion and morale | Over‑sacrifice for harmony | ca://s?q=Altruist_TMS |
+| Captain | Driver | Decisive execution | Bulldozes dissent | ca://s?q=Captain_TMS |
+| Collaborator | Facilitator | Consensus building | Avoids tough tradeoffs | ca://s?q=Collaborator_TMS |
+| Maverick | Innovator | Disruptive ideas | Breaks process continuity | ca://s?q=Maverick_TMS |
+| Persuader | Communicator | Influence and buy‑in | Emotional overreach | ca://s?q=Persuader_TMS |
+| Promoter |  |  |  |  |
+| Promoter | Rallying energy | Short‑lived momentum | ca://s?q=Promoter_TMS |  |
+| Adapter | Supporter | Flexible role coverage | Loses own priorities | ca://s?q=Adapter_TMS |
+| Craftsman | Inspector/Implementer | Quality delivery | Perfection delays launch | ca://s?q=Craftsman_TMS |
+| Guardian |  |  |  |  |
+| Controller | Risk management | Blocks necessary change | ca://s?q=Guardian_TMS |  |
+| Operator | Implementer | Reliable execution | Stalls when novelty required | ca://s?q=Operator_TMS |
+| Individualist | Independent Contributor | Unique solutions | Misalignment with team goals | ca://s?q=Individualist_TMS |
+| Scholar | Analyst | Research and validation | Over‑testing before action | ca://s?q=Scholar_TMS |
+`,
+  },
+  {
+    id: "lencioni-team-dynamics",
+    lens: "Lencioni Team Dynamics",
+    status: "COMPLETE",
+    source: "Untitled 5.txt",
+    content: `LENS: Lencioni Team Dynamics
+STATUS: COMPLETE
+SOURCE: Untitled 5.txt
+DEDUPLICATION / CLEANUP NOTE: Converted the one-cell-per-line table from the transcript into a readable text table. Duplicate status/check-in text was removed.
+================================================================================
+
+Lencioni Team Dynamics
+
+| Profile | Likely Strength Against Lencioni Fears | Weakness That Fuels Dysfunction | Stress Trigger | Deep dive |
+|---|---|---|---|---|
+| Analyzer | Absence of Trust: guarded reliability | Avoids vulnerability, hides doubts | Criticism of competence | ca://s?q=Analyzer_Lencioni |
+| Controller | Fear of Conflict: enforces order | Suppresses debate, enforces compliance | Challenges to authority | ca://s?q=Controller_Lencioni |
+| Specialist | Lack of Commitment: needs clarity | Withdraws from ambiguous goals | Being asked outside expertise | ca://s?q=Specialist_Lencioni |
+| Strategist | Avoidance of Accountability: big vision | Skips follow‑through on details | Micromanagement of vision | ca://s?q=Strategist_Lencioni |
+| Venturer | Inattention to Results: chases new wins | Moves on before delivery | Slow decision cycles | ca://s?q=Venturer_Lencioni |
+| Altruist | Absence of Trust: builds rapport | Over‑accommodates, avoids hard truth | Interpersonal tension | ca://s?q=Altruist_Lencioni |
+| Captain | Fear of Conflict: decisive leader | Intimidates, reduces candid debate | Public challenge to decisions | ca://s?q=Captain_Lencioni |
+| Collaborator | Absence of Trust: fosters inclusion | Avoids accountability to keep peace | Exclusion from decisions | ca://s?q=Collaborator_Lencioni |
+| Maverick | Inattention to Results: idea focus | Disrupts execution, seeks novelty | Process constraints | ca://s?q=Maverick_Lencioni |
+| Persuader | Fear of Conflict: skilled mediator | Personalizes disagreements | Public rejection | ca://s?q=Persuader_Lencioni |
+| Promoter | Inattention to Results: seeks spotlight | Prioritizes visibility over outcomes | Ignored contributions | ca://s?q=Promoter_Lencioni |
+| Adapter | Lack of Commitment: seeks consensus | Over‑adjusts, dilutes decisions | Forced rapid choices | ca://s?q=Adapter_Lencioni |
+| Craftsman | Absence of Trust: reliable but reserved | Perfectionism stalls team progress | Rushed timelines | ca://s?q=Craftsman_Lencioni |
+| Guardian | Fear of Conflict: protects norms | Resists change, avoids debate | Radical proposals | ca://s?q=Guardian_Lencioni |
+| Operator | Lack of Commitment: prefers clarity | Avoids ambiguity, delays buy‑in | Vague goals | ca://s?q=Operator_Lencioni |
+| Individualist | Absence of Trust: values autonomy | Withdraws, undermines cohesion | Micromanagement | ca://s?q=Individualist_Lencioni |
+| Scholar | Lack of Commitment: needs evidence | Over‑analysis prevents decisions | Pressure for quick answers | ca://s?q=Scholar_Lencioni |
+`,
+  },
+  {
+    id: "leadership-circle-profile",
+    lens: "Leadership Circle Profile",
+    status: "COMPLETE",
+    source: "Untitled 5.txt",
+    content: `LENS: Leadership Circle Profile
+STATUS: COMPLETE
+SOURCE: Untitled 5.txt
+DEDUPLICATION / CLEANUP NOTE: Converted the one-cell-per-line table from the transcript into a readable text table. Duplicate status/check-in text was removed.
+================================================================================
+
+Leadership Circle Profile
+
+| Profile | Creative Leadership Strengths | Reactive Leadership Triggers | Development Focus | Deep dive |
+|---|---|---|---|---|
+| Analyzer | Strategic clarity, quality control | Defensive perfectionism | Practice vulnerability and delegation | ca://s?q=Analyzer_Leadership_Circle |
+| Controller | Decisive governance, reliability | Authoritarian control under stress | Build coaching and listening skills | ca://s?q=Controller_Leadership_Circle |
+| Specialist | Technical credibility, depth | Withdrawal when challenged | Broaden influence beyond domain | ca://s?q=Specialist_Leadership_Circle |
+| Strategist | Visionary systems thinking | Over‑detached intellectualism | Translate vision into measurable steps | ca://s?q=Strategist_Leadership_Circle |
+| Venturer | Opportunity orientation, boldness | Impulsivity and risk taking | Strengthen risk filters and follow‑through | ca://s?q=Venturer_Leadership_Circle |
+| Altruist | People development, empathy | Over‑pleasing, avoids hard choices | Practice direct feedback and boundaries | ca://s?q=Altruist_Leadership_Circle |
+| Captain | Command presence, decisive action | Intimidation under pressure | Cultivate inclusion and listening | ca://s?q=Captain_Leadership_Circle |
+| Collaborator | Team building, facilitation | Avoids accountability to keep harmony | Strengthen decision discipline | ca://s?q=Collaborator_Leadership_Circle |
+| Maverick | Creative disruption, challenge status quo | Provocation that alienates | Channel novelty into structured pilots | ca://s?q=Maverick_Leadership_Circle |
+| Persuader | Inspiring communication, influence | Emotional reactivity | Anchor influence with evidence and follow‑up | ca://s?q=Persuader_Leadership_Circle |
+| Promoter | Energy, rallying teams | Short attention, overcommitment | Build systems for sustained delivery | ca://s?q=Promoter_Leadership_Circle |
+| Adapter | Flexibility, situational leadership | Over‑adjustment, loss of voice | Strengthen assertiveness and clarity | ca://s?q=Adapter_Leadership_Circle |
+| Craftsman | Operational excellence, standards | Perfectionism that stalls teams | Balance quality with pragmatic deadlines | ca://s?q=Craftsman_Leadership_Circle |
+| Guardian | Stewardship, risk management | Defensive resistance to change | Develop change leadership skills | ca://s?q=Guardian_Leadership_Circle |
+| Operator | Reliable execution, accountability | Rigid enforcement under stress | Increase tolerance for ambiguity | ca://s?q=Operator_Leadership_Circle |
+| Individualist | Authentic independence, original thinking | Withdrawal when constrained | Integrate others into creative process | ca://s?q=Individualist_Leadership_Circle |
+| Scholar | Intellectual rigor, evidence‑based decisions | Paralysis by analysis | Practice decisive action and simplification | ca://s?q=Scholar_Leadership_Circle |
+`,
+  },
+  {
+    id: "neurodiversity-support-lens--neurodivergence-and-cognitive-accessibility",
+    lens: "Neurodiversity Support Lens - Neurodivergence and Cognitive Accessibility",
+    status: "PARTIAL / EXTRACTED CONTENT ONLY",
+    source: "Untitled 5.txt",
+    content: `LENS: Neurodiversity Support Lens - Neurodivergence and Cognitive Accessibility
+STATUS: PARTIAL / EXTRACTED CONTENT ONLY
+SOURCE: Untitled 5.txt
+DEDUPLICATION / CLEANUP NOTE: Merged the expanded neurodivergence/cognitive-accessibility profile blocks found in the document. The document contains detailed standalone blocks for Venturer, Controller, Specialist, and Strategist; it does not contain a complete 17-profile final lens table for this lens.
+================================================================================
+
+Venturer — Neurodivergence & Cognitive Accessibility (expanded)
+For each subcategory: Manifestation | Behavior impact | Distortion of typical Venturer pattern | Real‑life snapshot | Work / bandwidth impact | Risk if ignored | Best way to approach (peer, non‑managerial)
+Then: Micro‑accommodations, Peer scripts (2 lines), Trial metrics (simple, 2 items), Suggested tools / supports, Privacy phrasing the person can use.
+
+ADHD
+  - Manifestation: High drive for novelty, rapid idea generation, difficulty sustaining follow‑through on multi‑step projects.
+  - Behavior impact: Starts many initiatives, abandons some quickly, jumps between opportunities when stimulation wanes.
+  - Distortion: Venturer’s healthy opportunism becomes scattered impulsivity and unfinished bets.
+  - Snapshot: Pitches three new product ideas in a week, then shifts to a side hustle before any reach pilot stage.
+  - Work / bandwidth impact: Resource churn, unclear priorities, teammates left to clean up half‑finished work.
+  - Risk if ignored: Credibility loss, fractured team trust, repeated failed launches.
+  - Best way to approach: Validate energy and ideas; convert impulses into time‑boxed experiments with clear stop rules.
+Micro‑accommodations
+  - Short, time‑boxed pilots (2–4 weeks) with explicit success/fail criteria.
+  - Visible “parking lot” board for ideas; limit active experiments to 1–2 at a time.
+Peer scripts
+  - “Love that energy — can we pick one small pilot and cap it at two weeks so we can test it fast?”
+  - “Can I help you turn this into a 3‑step experiment we can finish this sprint?”
+Trial metrics
+  - Number of active pilots limited to ≤2; completion rate per month.
+  - Stakeholder satisfaction score after each pilot (1–5).
+Tools / supports
+  - Kanban board with WIP limits (Trello/Jira); short daily check‑ins; timers and calendar blocks.
+Privacy phrasing
+  - “I’m experimenting with a short, time‑boxed pilot and would like to keep it low‑visibility until we have results.”
+
+Executive Function Differences
+  - Manifestation: Difficulty sequencing multi‑stage initiatives and keeping parallel timelines aligned.
+  - Behavior impact: Starts bold initiatives but misses coordination steps (stakeholder comms, resourcing).
+  - Distortion: Venturer’s rapid scaling instincts become chaotic rollouts without integration.
+  - Snapshot: Launches a beta without a support plan; customer issues pile up.
+  - Work / bandwidth impact: Operational firefighting, reputational risk.
+  - Risk if ignored: Failed launches and wasted effort.
+  - Best way to approach: Offer to co‑create a simple phase checklist and a single owner for each handoff.
+Micro‑accommodations
+  - Phase checklist template (3–5 items) required before launch.
+  - Short “handoff note” that must be posted to the team board.
+Peer scripts
+  - “Let’s map the three handoffs and who owns them — I’ll draft the checklist with you.”
+  - “Can we add a one‑page launch note so ops know what to expect?”
+Trial metrics
+  - % of launches with completed handoff note; number of post‑launch incidents.
+Tools / supports
+  - Lightweight RACI; shared calendar milestones; simple handoff template.
+Privacy phrasing
+  - “I prefer to document the launch steps in a short note so we can avoid surprises.”
+
+Time Blindness
+  - Manifestation: Underestimates time to scale or operationalize ideas; optimistic timelines.
+  - Behavior impact: Commits to aggressive dates; pressures others for rapid delivery.
+  - Distortion: Venturer’s speed becomes unrealistic demands on teammates.
+  - Snapshot: Announces a “next‑week” demo that requires cross‑team work not yet scheduled.
+  - Work / bandwidth impact: Team stress, rushed quality, missed dependencies.
+  - Risk if ignored: Burned‑out collaborators and failed commitments.
+  - Best way to approach: Use historical benchmarks and require minimal lead times for cross‑team asks.
+Micro‑accommodations
+  - Default buffer rules (e.g., +30% time on estimates for cross‑team work).
+  - Pre‑commitment check: “Do you have the resources to deliver by X?”
+Peer scripts
+  - “Love the timeline — can we add a two‑week buffer so ops can staff it?”
+  - “If we treat this as a 3‑week pilot instead of 3 days, we’ll get cleaner results.”
+Trial metrics
+  - % of commitments met on first deadline; average buffer added to estimates.
+Tools / supports
+  - Historical timeline dashboard; simple estimation checklist.
+Privacy phrasing
+  - “I’m trying a more conservative timeline this time to make sure we hit it.”
+
+Task Initiation Difficulty
+  - Manifestation: Hesitation to start when the first step is ambiguous; needs a clear activation cue.
+  - Behavior impact: Delays until conditions feel “right,” then bursts into action.
+  - Distortion: Venturer’s quick starts become stalled ideation cycles.
+  - Snapshot: Has a great plan but waits for a perfect dataset before running a small test.
+  - Work / bandwidth impact: Missed market windows and slow learning.
+  - Risk if ignored: Lost opportunities.
+  - Best way to approach: Provide a single, tiny first action and offer to co‑start.
+Micro‑accommodations
+  - “First 15‑minute task” note attached to every new idea.
+  - Pairing for the first session (buddy system).
+Peer scripts
+  - “Let’s do the first 30 minutes together — I’ll set the timer and we’ll get it started.”
+  - “What’s one tiny test we can run in a day?”
+Trial metrics
+  - Time from idea to first action; number of ideas that reach pilot stage.
+Tools / supports
+  - 15‑minute kickoff slots; checklist with a single first action.
+Privacy phrasing
+  - “I work best if someone helps me start the first 30 minutes — can you pair with me?”
+
+Context‑Switching Difficulty
+  - Manifestation: High cost to move between ideation and execution; needs recovery time after interruptions.
+  - Behavior impact: Prefers bursts of uninterrupted work; resists frequent ad‑hoc asks.
+  - Distortion: Venturer’s agility becomes brittle; may miss urgent coordination needs.
+  - Snapshot: Skips quick syncs to protect creative flow and then misses alignment.
+  - Work / bandwidth impact: Coordination gaps and delayed responses.
+  - Risk if ignored: Misalignment and friction.
+  - Best way to approach: Use short async updates and schedule brief, focused syncs.
+Micro‑accommodations
+  - Protected creative blocks; a single daily 15‑minute alignment window.
+  - Async 3‑bullet updates for non‑urgent items.
+Peer scripts
+  - “I’ll send a 3‑bullet update after your focus block — no need to interrupt.”
+  - “Can we reserve 15 minutes at 4pm for quick alignment?”
+Trial metrics
+  - Number of interruptions during focus blocks; % of items resolved via async updates.
+Tools / supports
+  - Shared async update template; calendar focus blocks.
+Privacy phrasing
+  - “I’m protecting a 2‑hour creative block — please send a 3‑bullet update if it’s not urgent.”
+
+Hyperfocus Patterns
+  - Manifestation: Deep immersion in one idea to the exclusion of others; loses track of time and other commitments.
+  - Behavior impact: Produces exceptional work in one area while other responsibilities lag.
+  - Distortion: Venturer’s productive obsession becomes neglect of team needs.
+  - Snapshot: Builds a prototype obsessively and misses a scheduled stakeholder demo.
+  - Work / bandwidth impact: Imbalanced delivery and missed commitments.
+  - Risk if ignored: Team frustration and missed deadlines.
+  - Best way to approach: Agree on visible stop signals and scheduled check‑ins.
+Micro‑accommodations
+  - Visible “stop” signal (calendar flag or Slack status) and mandatory mid‑pilot check‑in.
+  - Shared checklist of other priorities to surface neglected items.
+Peer scripts
+  - “This is brilliant — can we set a mid‑pilot check‑in so we don’t lose other priorities?”
+  - “If you hit X, pause and ping me so we can re‑prioritize.”
+Trial metrics
+  - Number of missed commitments while in hyperfocus; % of pilots with mid‑pilot check‑ins.
+Tools / supports
+  - Shared progress board; automated reminders.
+Privacy phrasing
+  - “I’m deep in a focused sprint — I’ll set a mid‑sprint check‑in so we stay aligned.”
+
+Rejection Sensitivity
+  - Manifestation: Strong emotional reaction to critique; may withdraw or react defensively.
+  - Behavior impact: Avoids early feedback or doubles down when challenged.
+  - Distortion: Venturer’s boldness becomes brittle defensiveness or secrecy.
+  - Snapshot: Stops sharing ideas after a blunt critique and launches solo.
+  - Work / bandwidth impact: Reduced iteration and collaboration.
+  - Risk if ignored: Isolation and stalled improvement.
+  - Best way to approach: Use private, strengths‑based feedback and pair critique with explicit appreciation.
+Micro‑accommodations
+  - Private feedback first; public recognition paired with one improvement suggestion.
+  - “Safe preview” sessions with a trusted peer before public sharing.
+Peer scripts
+  - “This part landed well; one tweak that could help is X — want to iterate together?”
+  - “Can I give you private feedback before the next demo?”
+Trial metrics
+  - Frequency of private previews; change in willingness to share early drafts.
+Tools / supports
+  - Private feedback channel; short feedback template (What worked / One improvement).
+Privacy phrasing
+  - “I prefer private feedback on early drafts — can we do that for the next two demos?”
+
+Masking Fatigue
+  - Manifestation: Exhaustion from constantly adapting persona to fit expectations; reduced spontaneity.
+  - Behavior impact: Fewer informal contributions, increased withdrawal, occasional emotional outbursts.
+  - Distortion: Venturer’s charismatic risk‑taking becomes muted or inconsistent.
+  - Snapshot: Stops attending informal brainstorms after long periods of code‑switching.
+  - Work / bandwidth impact: Loss of creative input and leadership energy.
+  - Risk if ignored: Burnout and disengagement.
+  - Best way to approach: Offer low‑visibility contribution channels and validate recovery time.
+Micro‑accommodations
+  - Option to contribute via written idea drops; permission for short recovery days after high‑visibility events.
+  - Rotate public presentation duties.
+Peer scripts
+  - “If you want, drop the idea in this doc and I’ll surface it for you.”
+  - “Take a recovery half‑day after the pitch — we’ve got your back.”
+Trial metrics
+  - Number of low‑visibility contributions; self‑reported energy after recovery days.
+Tools / supports
+  - Shared idea doc; opt‑out mechanism for public events.
+Privacy phrasing
+  - “I’m opting for a low‑visibility contribution this round while I recharge.”
+
+Social Communication Load
+  - Manifestation: Extra effort to manage impressions and persuade; fatigue from repeated social selling.
+  - Behavior impact: Prefers demos and high‑impact moments over long stakeholder campaigns.
+  - Distortion: Venturer’s persuasive edge becomes inconsistent outreach and reliance on spectacle.
+  - Snapshot: Focuses on a big launch event but neglects follow‑through with key stakeholders.
+  - Work / bandwidth impact: Short‑term visibility but weak sustained buy‑in.
+  - Risk if ignored: Initiatives fizzle after initial hype.
+  - Best way to approach: Provide concise templates for stakeholder updates and offer co‑presenting support.
+Micro‑accommodations
+  - 3‑slide executive summary template; co‑presenter for Q&A.
+  - Short, repeatable stakeholder touchpoints scheduled in advance.
+Peer scripts
+  - “I’ll co‑present the Q&A so you can focus on the pitch.”
+  - “Can I draft a 3‑slide summary you can use for quick outreach?”
+Trial metrics
+  - % of stakeholders reached with scheduled touchpoints; follow‑through rate after launch.
+Tools / supports
+  - Slide template; co‑presenter pairing.
+Privacy phrasing
+  - “I’d like to co‑present the Q&A so I can focus on the demo.”
+
+Need for Written Instructions
+  - Manifestation: Performs best with clear, concise written steps for experiments and launches.
+  - Behavior impact: Requests templates and resists ambiguous verbal instructions.
+  - Distortion: Venturer’s improvisational strengths are constrained by over‑reliance on written rules.
+  - Snapshot: Asks for a one‑page launch checklist before greenlighting a demo.
+  - Work / bandwidth impact: Higher clarity but slower spontaneity.
+  - Risk if ignored: Missteps from misremembered verbal agreements.
+  - Best way to approach: Provide short, one‑page checklists and a sample first action.
+Micro‑accommodations
+  - One‑page launch checklist; 3‑bullet “what success looks like” note.
+Peer scripts
+  - “Here’s a one‑page checklist — want me to fill the first section with you?”
+  - “If you give me 3 bullets of success criteria, I’ll draft the checklist.”
+Trial metrics
+  - % of launches with checklist; number of clarifying follow‑ups after launch.
+Tools / supports
+  - Checklist template; shared doc.
+Privacy phrasing
+  - “Can we capture the launch steps in one short doc so I can move fast with clarity?”
+
+Need for Reduced Interruption
+  - Manifestation: Creative flow is fragile; interruptions derail momentum.
+  - Behavior impact: Protects long creative blocks; declines ad‑hoc asks.
+  - Distortion: Venturer’s responsiveness to emergent opportunities is reduced.
+  - Snapshot: Sets long focus blocks and misses a last‑minute customer call.
+  - Work / bandwidth impact: Missed urgent signals vs. higher quality creative output.
+  - Risk if ignored: Lost opportunities or poor quality work.
+  - Best way to approach: Define clear escalation rules and use async updates for non‑urgent items.
+Micro‑accommodations
+  - Agreed focus windows and a single escalation contact for true emergencies.
+  - Async 3‑bullet updates for non‑urgent items.
+Peer scripts
+  - “If it’s urgent, text me with ‘URGENT’ and I’ll respond; otherwise send a 3‑bullet update.”
+  - “I’ll respect your focus block — can you set the escalation contact?”
+Trial metrics
+  - Number of escalations during focus blocks; % of items resolved async.
+Tools / supports
+  - Slack status conventions; shared escalation contact.
+Privacy phrasing
+  - “I’m in a focus block — text URGENT if it can’t wait.”
+
+Need for Structure Without Shame
+  - Manifestation: Prefers some predictable scaffolding but may feel embarrassed to ask for it.
+  - Behavior impact: Creates private systems or avoids asking for structure publicly.
+  - Distortion: Venturer’s spontaneity becomes hidden inefficiency.
+  - Snapshot: Keeps a private idea queue rather than sharing it for prioritization.
+  - Work / bandwidth impact: Misalignment and duplicated effort.
+  - Risk if ignored: Friction and missed coordination.
+  - Best way to approach: Normalize lightweight templates and invite co‑creation of structure.
+Micro‑accommodations
+  - Shared idea queue with WIP limits; optional template for pilots.
+  - Normalize “structure as productivity” language.
+Peer scripts
+  - “Can I add this to our shared queue and help prioritize it?”
+  - “We use a short template for pilots — want me to fill it with you?”
+Trial metrics
+  - % of ideas in shared queue; time from idea to prioritized pilot.
+Tools / supports
+  - Shared idea doc; WIP limits.
+Privacy phrasing
+  - “I keep an idea queue — can we add this to the shared list so it’s visible?”
+
+Dyslexia / Dyscalculia / Dysgraphia / Dyspraxia
+  - Manifestation: Extra time for reading, numeric modeling, or handwriting tasks; prefers visual or typed outputs.
+  - Behavior impact: Slower documentation, reliance on tools, or delegation of numeric tasks.
+  - Distortion: Venturer’s verbal charisma may not translate into timely written follow‑ups.
+  - Snapshot: Gives a compelling pitch but the follow‑up doc arrives late.
+  - Work / bandwidth impact: Delay in documentation and handoffs.
+  - Risk if ignored: Miscommunication and missed opportunities.
+  - Best way to approach: Offer scribe support, templates, and assistive tools.
+Micro‑accommodations
+  - Scribe or co‑author for write‑ups; templates for follow‑ups.
+  - Allow spoken notes to be transcribed.
+Peer scripts
+  - “I can draft the follow‑up doc from your notes — want me to?”
+  - “If you prefer, record a quick voice note and I’ll transcribe it.”
+Trial metrics
+  - Time from pitch to published follow‑up; % of follow‑ups co‑authored.
+Tools / supports
+  - Speech‑to‑text; shared templates; co‑authoring.
+Privacy phrasing
+  - “I prefer to record a quick voice note for follow‑up — can I send that instead of drafting?”
+
+Auditory Processing / Sensory Processing / Tourette Syndrome
+  - Manifestation: Difficulty following rapid multi‑speaker discussions; sensory overload increases stress and tics.
+  - Behavior impact: Prefers structured turn‑taking, captions, and written summaries; may self‑limit verbal participation.
+  - Distortion: Venturer’s live charisma may be reduced in noisy or chaotic settings.
+  - Snapshot: Leaves a loud brainstorming session early and submits a written idea afterward.
+  - Work / bandwidth impact: Reduced live presence and slower consensus building.
+  - Risk if ignored: Exclusion and missed input.
+  - Best way to approach: Use captions, share slides/notes in advance, and normalize opt‑outs.
+Micro‑accommodations
+  - Captions on calls; slides and notes shared in advance; opt‑out option for noisy sessions.
+  - Private channels for questions.
+Peer scripts
+  - “I’ll share the slides and notes in advance so you can pick what to comment on.”
+  - “If it’s noisy, drop your idea in this doc and I’ll read it aloud for you.”
+Trial metrics
+  - Number of contributions via written channels; self‑reported comfort in meetings.
+Tools / supports
+  - Live captions; shared slide decks; quiet rooms.
+Privacy phrasing
+  - “I’ll skip the noisy session and drop my idea in the doc — please read it aloud if needed.”
+
+Working Memory / Processing Speed Differences
+  - Manifestation: Needs external aids to hold multiple threads and extra time to synthesize.
+  - Behavior impact: Prefers pre‑reads and reflection time; slower in rapid exchanges.
+  - Distortion: Venturer’s quick verbal ideation may not convert to timely, integrated plans.
+  - Snapshot: Offers strong verbal direction in a meeting but needs extra time to produce a coherent plan.
+  - Work / bandwidth impact: Slower documentation and handoffs; higher quality after reflection.
+  - Risk if ignored: Hasty decisions and missed nuance.
+  - Best way to approach: Provide concise pre‑reads, short recap pauses, and allow reflection windows.
+Micro‑accommodations
+  - Pre‑reads 24–48 hours before meetings; 5‑minute recap pauses in sessions.
+  - Allow post‑meeting reflection time before finalizing decisions.
+Peer scripts
+  - “I’ll send a 2‑slide summary before the meeting so you can reflect.”
+  - “Let’s pause for five minutes after the pitch so you can gather thoughts.”
+Trial metrics
+  - % of decisions postponed for reflection; quality of final plans after reflection.
+Tools / supports
+  - Pre‑read templates; meeting recap prompts.
+Privacy phrasing
+  - “I prefer a short pre‑read and a five‑minute pause after the meeting to finalize my input.”
+
+Next steps I’ll take now
+    1    Retroactively upgrade the Neurodivergence sections for Analyzer, Controller, Specialist, and Strategist to this expanded format (micro‑accommodations, peer scripts, trial metrics, tools, privacy phrasing).
+    2    Continue the profile sequence and produce the next profile (Promoter) with the same expanded neurodivergence depth, unless you want a different order.
+    3    Deliver each profile’s full 15‑category matrix as before, with the neurodivergence domain in this richer format.
+If that plan looks right, I’ll immediately upgrade the four completed profiles and then proceed to the next profile in order. I’m starting the retroactive upgrades now and will post the updated Analyzer neurodivergence block first, then Controller, Specialist, Strategist, and then continue the sequence.
+
+Controller, Specialist, and Strategist (You did analyzer well..... but pay detailed attention to strategist as that would be my category and it is the best way for me to affirm how much of this we are getting right)
+
+Controller — Neurodivergence & Cognitive Accessibility (expanded)
+For each subcategory below you’ll find Manifestation | Behavior impact | Distortion of typical Controller pattern | Real‑life snapshot | Work / bandwidth impact | Risk if ignored | Best way to approach, followed by Micro‑accommodations, Peer scripts (2 lines), Trial metrics (2 items), Suggested tools / supports, and Privacy phrasing.
+ADHD
+  - Manifestation: Urgency to act, quick pivots, difficulty sustaining multi‑step follow‑through.
+  - Behavior impact: Starts many fixes, shifts priorities abruptly, pressures teams for immediate results.
+  - Distortion: Decisive leadership becomes impulsive directives and brittle micromanagement.
+  - Snapshot: Announces a new initiative mid‑meeting and expects same‑day deliverables.
+  - Work / bandwidth impact: Fragmented priorities; teams chase shifting goals.
+  - Risk if ignored: Credibility loss and repeated failed launches.
+  - Best way to approach: Validate energy; convert impulses into time‑boxed experiments with explicit stop rules.
+  - Micro‑accommodations: 2–4 week pilots with clear stop criteria; WIP limits on active initiatives.
+  - Peer scripts: “Love this — can we cap it to a two‑week pilot and agree exit criteria?” / “Let’s pick one small experiment and I’ll help scope it.”
+  - Trial metrics: # active pilots ≤2; pilot completion rate.
+  - Tools / supports: Kanban with WIP limits; timers; short daily check‑ins.
+  - Privacy phrasing: “I’m running a short, low‑visibility pilot and will share results after the test.”
+Executive Function Differences
+  - Manifestation: Trouble sequencing delegation and multi‑phase rollouts.
+  - Behavior impact: Hoards decisions; handoffs fail.
+  - Distortion: Delegation becomes decision hoarding and bottlenecks.
+  - Snapshot: Keeps final approvals, creating single‑point failure.
+  - Work / bandwidth impact: Slower throughput; missed scaling.
+  - Risk if ignored: Burnout and missed deadlines.
+  - Best way to approach: Co‑create simple phase checklists and visible handoff notes.
+  - Micro‑accommodations: One‑page phase template; mandatory handoff note.
+  - Peer scripts: “Can I draft the handoff checklist with you?” / “Let’s name owners for each phase so nothing slips.”
+  - Trial metrics: % launches with handoff note; post‑launch incidents.
+  - Tools / supports: Lightweight RACI; shared milestone calendar.
+  - Privacy phrasing: “I prefer a short handoff note before launch — can we do that?”
+Time Blindness
+  - Manifestation: Optimistic timelines; underestimates alignment work.
+  - Behavior impact: Compressed deadlines; pressure on peers.
+  - Distortion: Timeline setting becomes erratic and stressful.
+  - Snapshot: Announces a next‑week rollout that needs cross‑team work.
+  - Work / bandwidth impact: Rushed quality, missed dependencies.
+  - Risk if ignored: Burned‑out collaborators and failed commitments.
+  - Best way to approach: Use historical benchmarks and require minimal lead times.
+  - Micro‑accommodations: Default buffer rules (+30%); pre‑commitment resource check.
+  - Peer scripts: “Can we add a two‑week buffer so ops can staff it?” / “If we treat this as a 3‑week pilot, we’ll get cleaner results.”
+  - Trial metrics: % commitments met; average buffer added.
+  - Tools / supports: Timeline dashboard; estimation checklist.
+  - Privacy phrasing: “I’m trying a more conservative timeline this time to ensure delivery.”
+Task Initiation Difficulty
+  - Manifestation: Hesitation to start ambiguous initiatives; waits for perfect conditions.
+  - Behavior impact: Delays strategic moves; misses windows.
+  - Distortion: Caution becomes paralysis.
+  - Snapshot: Waits for perfect data before a small test.
+  - Work / bandwidth impact: Missed opportunities.
+  - Risk if ignored: Competitive disadvantage.
+  - Best way to approach: Provide a single first action and offer to co‑start.
+  - Micro‑accommodations: “First 15‑minute task” note; pairing for kickoff.
+  - Peer scripts: “Let’s do the first 30 minutes together — I’ll set the timer.” / “What’s one tiny test we can run in a day?”
+  - Trial metrics: Time from idea to first action; # ideas reaching pilot.
+  - Tools / supports: 15‑minute kickoff slots; checklist with first action.
+  - Privacy phrasing: “I work best if someone helps me start the first 30 minutes — can you pair?”
+Context‑Switching Difficulty
+  - Manifestation: High cost to move between strategy and operations.
+  - Behavior impact: Protects long blocks; resists ad‑hoc asks.
+  - Distortion: Responsiveness reduces; perceived uncooperativeness.
+  - Snapshot: Skips quick syncs to protect planning time.
+  - Work / bandwidth impact: Coordination gaps.
+  - Risk if ignored: Missed signals.
+  - Best way to approach: Use short async updates and scheduled focused syncs.
+  - Micro‑accommodations: Protected planning blocks; daily 15‑minute alignment window.
+  - Peer scripts: “I’ll send a 3‑bullet update after your focus block.” / “Can we reserve 15 minutes at 4pm for alignment?”
+  - Trial metrics: Interruptions during focus blocks; % items resolved async.
+  - Tools / supports: Async update template; calendar focus blocks.
+  - Privacy phrasing: “I’m protecting a 2‑hour planning block — please send a 3‑bullet update if it’s not urgent.”
+Hyperfocus Patterns
+  - Manifestation: Deep immersion in one problem; neglects other responsibilities.
+  - Behavior impact: Over‑engineering; missed handoffs.
+  - Distortion: Thoroughness becomes counterproductive perfectionism.
+  - Snapshot: Spends days refining a process while other tasks pile up.
+  - Work / bandwidth impact: Opportunity cost; delayed outcomes.
+  - Risk if ignored: Resource waste and team frustration.
+  - Best way to approach: Agree on visible stop signals and time‑boxed refinement.
+  - Micro‑accommodations: Mid‑pilot check‑ins; shared priority checklist.
+  - Peer scripts: “This is great — set a mid‑pilot check‑in so we don’t lose other priorities.” / “If you hit X, pause and ping me.”
+  - Trial metrics: Missed commitments while hyperfocused; % pilots with mid‑pilot check‑ins.
+  - Tools / supports: Shared progress board; automated reminders.
+  - Privacy phrasing: “I’m in a focused sprint — I’ll set a mid‑sprint check‑in so we stay aligned.”
+Rejection Sensitivity
+  - Manifestation: Strong reaction to critique; may withdraw or retaliate.
+  - Behavior impact: Defensive decisions; avoids feedback.
+  - Distortion: Confidence becomes brittle defensiveness.
+  - Snapshot: Cuts off discussion after a perceived slight.
+  - Work / bandwidth impact: Reduced psychological safety.
+  - Risk if ignored: Escalation and fractured relationships.
+  - Best way to approach: Use private, strengths‑based feedback and pair critique with appreciation.
+  - Micro‑accommodations: Private previews; public recognition paired with one improvement.
+  - Peer scripts: “This part landed well; one tweak is X — want to iterate together?” / “Can I give you private feedback before the next demo?”
+  - Trial metrics: Frequency of private previews; willingness to share early drafts.
+  - Tools / supports: Private feedback channel; short feedback template.
+  - Privacy phrasing: “I prefer private feedback on early drafts — can we do that for the next two demos?”
+Masking Fatigue
+  - Manifestation: Exhaustion from maintaining composed persona; reduced spontaneity.
+  - Behavior impact: Short temper, withdrawal, occasional outbursts.
+  - Distortion: Steady exterior becomes unpredictable.
+  - Snapshot: Snaps at a peer after holding stress in.
+  - Work / bandwidth impact: Volatile interactions; trust erosion.
+  - Risk if ignored: Burnout and exits.
+  - Best way to approach: Offer low‑visibility decompression and normalize recovery breaks.
+  - Micro‑accommodations: Option for low‑visibility contributions; short recovery days after high‑visibility events.
+  - Peer scripts: “Take a recovery half‑day after the pitch — we’ve got your back.” / “If you want, drop the idea in this doc and I’ll surface it.”
+  - Trial metrics: # low‑visibility contributions; self‑reported energy after recovery.
+  - Tools / supports: Shared idea doc; opt‑out mechanism.
+  - Privacy phrasing: “I’m opting for a low‑visibility contribution this round while I recharge.”
+Social Communication Load
+  - Manifestation: Extra effort to manage tone and influence; fatigue from persuasion.
+  - Behavior impact: Overly formal or transactional communication.
+  - Distortion: Influence becomes less relational.
+  - Snapshot: Sends memos instead of informal check‑ins.
+  - Work / bandwidth impact: Reduced buy‑in and cohesion.
+  - Risk if ignored: Polarized conversations.
+  - Best way to approach: Provide concise templates and offer co‑presenting support.
+  - Micro‑accommodations: 3‑slide executive summary template; co‑presenter for Q&A.
+  - Peer scripts: “I’ll co‑present the Q&A so you can focus on the pitch.” / “Can I draft a 3‑slide summary you can use?”
+  - Trial metrics: % stakeholders reached; follow‑through rate post‑launch.
+  - Tools / supports: Slide template; co‑presenter pairing.
+  - Privacy phrasing: “I’d like to co‑present the Q&A so I can focus on the demo.”
+Need for Written Instructions
+  - Manifestation: Prefers documented decision rules and templates.
+  - Behavior impact: Insists on written approvals; slows agility.
+  - Distortion: Governance becomes bureaucratic friction.
+  - Snapshot: Requires written sign‑off for routine changes.
+  - Work / bandwidth impact: Slower responsiveness.
+  - Risk if ignored: Misalignment and frustration.
+  - Best way to approach: Co‑create concise templates that balance clarity and speed.
+  - Micro‑accommodations: One‑page decision rubrics; “fast lane” exceptions.
+  - Peer scripts: “Here’s a one‑page rubric — want me to draft the first version?” / “We can use a fast lane for urgent items and document after.”
+  - Trial metrics: % decisions using rubric; time to decision in fast lane.
+  - Tools / supports: One‑page templates; shared doc.
+  - Privacy phrasing: “Can we capture the decision criteria in one short doc so I can approve quickly?”
+Need for Reduced Interruption
+  - Manifestation: Performance drops with frequent interruptions; enforces quiet blocks.
+  - Behavior impact: Declines ad‑hoc collaboration; enforces focus windows.
+  - Distortion: Control becomes exclusionary.
+  - Snapshot: Marks calendar as unavailable and ignores pings.
+  - Work / bandwidth impact: Coordination friction vs. better deep work.
+  - Risk if ignored: Missed urgent issues.
+  - Best way to approach: Define clear escalation rules and respect focus windows.
+  - Micro‑accommodations: Focus windows; single escalation contact.
+  - Peer scripts: “If it’s urgent, text URGENT and I’ll respond; otherwise send a 3‑bullet update.” / “I’ll respect your focus block — who should I contact if it’s urgent?”
+  - Trial metrics: # escalations during focus blocks; % items resolved async.
+  - Tools / supports: Slack status conventions; escalation contact.
+  - Privacy phrasing: “I’m in a focus block — text URGENT if it can’t wait.”
+Need for Structure Without Shame
+  - Manifestation: Wants predictable scaffolding but may feel embarrassed to ask.
+  - Behavior impact: Creates private systems; misalignment.
+  - Distortion: Spontaneity becomes hidden inefficiency.
+  - Snapshot: Keeps a private idea queue rather than sharing it.
+  - Work / bandwidth impact: Duplicated effort and friction.
+  - Risk if ignored: Missed coordination.
+  - Best way to approach: Normalize lightweight templates and co‑creation of structure.
+  - Micro‑accommodations: Shared idea queue; optional pilot template.
+  - Peer scripts: “Can I add this to our shared queue and help prioritize it?” / “We use a short template for pilots — want me to fill it with you?”
+  - Trial metrics: % ideas in shared queue; time to prioritized pilot.
+  - Tools / supports: Shared idea doc; WIP limits.
+  - Privacy phrasing: “Can we add this to the shared list so it’s visible without making it public yet?”
+Dyslexia / Dyscalculia / Dysgraphia / Dyspraxia
+  - Manifestation: Extra time for reading, numeric modeling, handwriting; prefers typed/visual outputs.
+  - Behavior impact: Slower documentation; delegates numeric tasks or asks for scribe help.
+  - Distortion: Verbal decisiveness may not translate into timely written follow‑ups.
+  - Snapshot: Gives a compelling directive but the follow‑up doc arrives late.
+  - Work / bandwidth impact: Delay in documentation and handoffs.
+  - Risk if ignored: Miscommunication and missed opportunities.
+  - Best way to approach: Offer scribe support, templates, and assistive tools.
+  - Micro‑accommodations: Co‑author follow‑ups; speech‑to‑text for notes.
+  - Peer scripts: “I can draft the follow‑up doc from your notes — want me to?” / “Record a quick voice note and I’ll transcribe it.”
+  - Trial metrics: Time from decision to published follow‑up; % follow‑ups co‑authored.
+  - Tools / supports: Speech‑to‑text; shared templates; co‑authoring.
+  - Privacy phrasing: “I prefer to record a quick voice note for follow‑up — can I send that instead of drafting?”
+Auditory Processing / Sensory Processing / Tourette Syndrome
+  - Manifestation: Difficulty in noisy, multi‑speaker settings; sensory overload increases stress.
+  - Behavior impact: Prefers structured turn‑taking, captions, and written summaries.
+  - Distortion: Command presence reduced in chaotic settings.
+  - Snapshot: Leaves a loud meeting early and sends a formal follow‑up.
+  - Work / bandwidth impact: Reduced live presence; slower consensus.
+  - Risk if ignored: Exclusion and missed input.
+  - Best way to approach: Share slides/notes in advance; use captions and opt‑out options.
+  - Micro‑accommodations: Captions; slides in advance; quiet rooms.
+  - Peer scripts: “I’ll share slides and notes in advance so you can pick what to comment on.” / “Drop your idea in this doc and I’ll read it aloud if needed.”
+  - Trial metrics: # contributions via written channels; comfort rating in meetings.
+  - Tools / supports: Live captions; shared slide decks; quiet rooms.
+  - Privacy phrasing: “I’ll skip the noisy session and drop my idea in the doc — please read it aloud if needed.”
+Working Memory / Processing Speed Differences
+  - Manifestation: Needs external aids and extra time to synthesize multiple threads.
+  - Behavior impact: Prefers pre‑reads and reflection pauses; slower in rapid exchanges.
+  - Distortion: Quick decisions become delayed but often higher quality.
+  - Snapshot: Asks to postpone a decision to integrate inputs.
+  - Work / bandwidth impact: Slower cadence but better outcomes after reflection.
+  - Risk if ignored: Hasty decisions and missed nuance.
+  - Best way to approach: Provide concise pre‑reads and short reflection windows.
+  - Micro‑accommodations: Pre‑reads 24–48 hours ahead; 5‑minute recap pauses.
+  - Peer scripts: “I’ll send a 2‑slide summary before the meeting so you can reflect.” / “Let’s pause five minutes after the pitch so you can gather thoughts.”
+  - Trial metrics: % decisions postponed for reflection; quality of final plans.
+  - Tools / supports: Pre‑read templates; meeting recap prompts.
+  - Privacy phrasing: “I prefer a short pre‑read and a five‑minute pause after the meeting to finalize my input.”
+
+Specialist — Neurodivergence & Cognitive Accessibility (expanded)
+ADHD
+  - Manifestation: Difficulty initiating broad exploratory work; hyperfocus on narrow technical problems.
+  - Behavior impact: Long stalls then exhaustive deep dives; missed integration.
+  - Distortion: Depth becomes uneven—excellent modules but poor synthesis.
+  - Snapshot: Delivers an exhaustive 60‑page compendium overnight after a long stall.
+  - Work / bandwidth impact: Handoffs suffer; integration lags.
+  - Risk if ignored: Missed deadlines and reputation risk.
+  - Best way to approach: Break research into micro‑questions with scheduled check‑ins.
+  - Micro‑accommodations: Micro‑questions with acceptance criteria; 30‑minute weekly syncs.
+  - Peer scripts: “Can we break this into three micro‑questions and check in weekly?” / “Want to pair for the first 30 minutes to get started?”
+  - Trial metrics: Time to first deliverable; % experiments documented.
+  - Tools / supports: Experiment templates; timers; shared note templates.
+  - Privacy phrasing: “I’m breaking this into small questions and will share the first draft next week.”
+Executive Function Differences
+  - Manifestation: Trouble sequencing experiments and documenting results.
+  - Behavior impact: Deep experiments with delayed write‑ups.
+  - Distortion: Findings remain siloed.
+  - Snapshot: Runs a deep experiment but delays methods write‑up.
+  - Work / bandwidth impact: Lost knowledge and duplicated effort.
+  - Risk if ignored: Wasted effort.
+  - Best way to approach: Use experiment templates with mandatory short write‑ups at milestones.
+  - Micro‑accommodations: Mandatory short write‑up at each milestone; template prompts.
+  - Peer scripts: “Can you add a 1‑page methods note at milestone X?” / “I’ll help capture the methods while you run the test.”
+  - Trial metrics: % experiments with milestone write‑ups; time to publish results.
+  - Tools / supports: Templates; shared lab notebook.
+  - Privacy phrasing: “I’ll add a short methods note at each milestone so we don’t lose the findings.”
+Time Blindness
+  - Manifestation: Optimistic estimates for exploratory work.
+  - Behavior impact: Overpromises on prototypes.
+  - Distortion: Reliability perceived as low.
+  - Snapshot: Promises a prototype in a week that needs a month.
+  - Work / bandwidth impact: Credibility loss.
+  - Risk if ignored: Missed deadlines.
+  - Best way to approach: Use historical benchmarks and micro‑deadlines.
+  - Micro‑accommodations: Phase estimates based on past projects; buffer rules.
+  - Peer scripts: “Let’s use last project X as a benchmark and add a buffer.” / “Can we set micro‑deadlines for each phase?”
+  - Trial metrics: % deadlines met; average buffer used.
+  - Tools / supports: Timeline templates; milestone trackers.
+  - Privacy phrasing: “I’m using a conservative timeline based on past projects.”
+Task Initiation Difficulty
+  - Manifestation: Paralysis without a clear first experiment.
+  - Behavior impact: Delays exploratory work.
+  - Distortion: Curiosity stalls.
+  - Snapshot: Asks for a sample dataset before starting.
+  - Work / bandwidth impact: Slow starts.
+  - Risk if ignored: Missed innovation windows.
+  - Best way to approach: Provide a one‑sentence first action and pair for kickoff.
+  - Micro‑accommodations: 30‑minute kickoff pairing; first‑action note.
+  - Peer scripts: “What’s one tiny test we can run in a day?” / “I’ll pair for the first session to get you started.”
+  - Trial metrics: Time to first action; # ideas reaching pilot.
+  - Tools / supports: Kickoff slots; checklists.
+  - Privacy phrasing: “Can we pair for the first 30 minutes so I can get started?”
+Context‑Switching Difficulty
+  - Manifestation: High cost moving between deep work and meetings.
+  - Behavior impact: Declines ad‑hoc collaboration; needs recovery time.
+  - Distortion: Single‑threading reduces cross‑team input.
+  - Snapshot: Skips a quick sync and asks for a written summary.
+  - Work / bandwidth impact: Misalignment and missed dependencies.
+  - Risk if ignored: Project delays.
+  - Best way to approach: Batch meetings and provide written briefs.
+  - Micro‑accommodations: Batch meetings; written briefs; scheduled catch‑ups.
+  - Peer scripts: “I’ll send a short brief instead of interrupting your flow.” / “Can we schedule a 20‑minute sync after your deep work?”
+  - Trial metrics: # missed syncs; % items resolved via briefs.
+  - Tools / supports: Pre‑read templates; async update channels.
+  - Privacy phrasing: “I prefer a short brief and a scheduled 20‑minute sync after my deep work.”
+Hyperfocus Patterns
+  - Manifestation: Intense immersion in one technical area; neglects integration.
+  - Behavior impact: Exceptional depth, uneven delivery.
+  - Distortion: Tunnel vision reduces product fit.
+  - Snapshot: Builds a brilliant algorithm but misses integration deadlines.
+  - Work / bandwidth impact: Imbalanced delivery.
+  - Risk if ignored: Team friction.
+  - Best way to approach: Visible stop signals and scheduled handoffs.
+  - Micro‑accommodations: Mid‑pilot check‑ins; shared priority list.
+  - Peer scripts: “Set a mid‑pilot check‑in so we don’t lose other priorities.” / “Ping me when you hit X so we can re‑prioritize.”
+  - Trial metrics: Missed commitments; % pilots with check‑ins.
+  - Tools / supports: Progress board; reminders.
+  - Privacy phrasing: “I’m in a focused sprint — I’ll set a mid‑sprint check‑in.”
+Rejection Sensitivity
+  - Manifestation: Avoids early drafts; over‑polishes before sharing.
+  - Behavior impact: Slower iteration; hidden perfectionism.
+  - Distortion: Iterative learning stalls.
+  - Snapshot: Circulates near‑final drafts privately.
+  - Work / bandwidth impact: Slower improvement.
+  - Risk if ignored: Isolation.
+  - Best way to approach: Private, specific feedback and early safe previews.
+  - Micro‑accommodations: Private preview sessions; feedback sandwich (strength + one tweak).
+  - Peer scripts: “Can I preview this privately and give one focused suggestion?” / “This is strong; one tweak that could help is X.”
+  - Trial metrics: # private previews; change in early sharing frequency.
+  - Tools / supports: Private feedback channels; short feedback templates.
+  - Privacy phrasing: “I prefer private previews on early drafts — can we do that?”
+Masking Fatigue
+  - Manifestation: Exhaustion from adapting communication; fewer informal contributions.
+  - Behavior impact: Reduced spontaneity and creativity.
+  - Distortion: Curiosity suppressed.
+  - Snapshot: Stops contributing to casual brainstorms.
+  - Work / bandwidth impact: Lowered creativity.
+  - Risk if ignored: Burnout.
+  - Best way to approach: Low‑visibility contribution channels and recovery time.
+  - Micro‑accommodations: Idea doc for async contributions; recovery half‑days.
+  - Peer scripts: “Drop your idea in this doc and I’ll surface it.” / “Take a recovery half‑day after the sprint.”
+  - Trial metrics: # async contributions; energy after recovery.
+  - Tools / supports: Shared idea doc; opt‑out options.
+  - Privacy phrasing: “I’ll drop my idea in the doc this round while I recharge.”
+Social Communication Load
+  - Manifestation: Extra effort to translate technical work for non‑technical audiences.
+  - Behavior impact: Prefers detailed memos over live summaries.
+  - Distortion: Influence outside the team weakens.
+  - Snapshot: Sends a long technical memo instead of a short executive summary.
+  - Work / bandwidth impact: Slower stakeholder alignment.
+  - Risk if ignored: Technical input sidelined.
+  - Best way to approach: Provide executive summary templates and co‑presenting support.
+  - Micro‑accommodations: 3‑bullet executive summary template; co‑presenter for town halls.
+  - Peer scripts: “I’ll draft a 3‑bullet summary you can use for the execs.” / “Want me to co‑present the non‑technical part?”
+  - Trial metrics: % stakeholders reached; follow‑through after presentations.
+  - Tools / supports: Summary templates; co‑presenter pairing.
+  - Privacy phrasing: “Can I send a 3‑bullet summary for the execs and have you present it?”
+Need for Written Instructions
+  - Manifestation: Performs best with documented protocols and examples.
+  - Behavior impact: Requests templates; resists ambiguous verbal instructions.
+  - Distortion: Agility reduced by over‑reliance on written rules.
+  - Snapshot: Asks for a step‑by‑step protocol before running an experiment.
+  - Work / bandwidth impact: Higher accuracy, slower responsiveness.
+  - Risk if ignored: Errors from misremembered verbal instructions.
+  - Best way to approach: Supply concise protocols and short examples.
+  - Micro‑accommodations: Protocol templates; short example files.
+  - Peer scripts: “Here’s a short protocol — want me to fill the first section?” / “If you give me an example, I’ll adapt it.”
+  - Trial metrics: % tasks with templates; # clarifying follow‑ups.
+  - Tools / supports: Templates; example library.
+  - Privacy phrasing: “I prefer a short protocol and an example before I start.”
+Need for Reduced Interruption
+  - Manifestation: Deep work easily derailed by interruptions.
+  - Behavior impact: Uses long focus blocks; declines ad‑hoc asks.
+  - Distortion: Collaboration limited to scheduled windows.
+  - Snapshot: Marks calendar busy and doesn’t respond to pings.
+  - Work / bandwidth impact: Coordination gaps vs. higher quality outputs.
+  - Risk if ignored: Chronic inefficiency.
+  - Best way to approach: Respect focus blocks and use async updates.
+  - Micro‑accommodations: Focus blocks; async 3‑bullet updates.
+  - Peer scripts: “I’ll send a 3‑bullet update after your block.” / “If urgent, text URGENT.”
+  - Trial metrics: Interruptions during blocks; % items resolved async.
+  - Tools / supports: Calendar focus blocks; async templates.
+  - Privacy phrasing: “I’m in a focus block — please send a 3‑bullet update if it’s not urgent.”
+Need for Structure Without Shame
+  - Manifestation: Prefers templates but may not ask publicly.
+  - Behavior impact: Creates private systems; misalignment.
+  - Distortion: Rigor becomes hidden inefficiency.
+  - Snapshot: Keeps private templates others don’t see.
+  - Work / bandwidth impact: Duplicated effort.
+  - Risk if ignored: Friction.
+  - Best way to approach: Normalize shared templates and co‑creation.
+  - Micro‑accommodations: Shared templates; optional structure workshops.
+  - Peer scripts: “Can I share a short template that might help?” / “Want to co‑create a standard we can all use?”
+  - Trial metrics: % team using template; time saved.
+  - Tools / supports: Shared template library.
+  - Privacy phrasing: “I have a short template that helps me — can I share it?”
+Dyslexia / Dyscalculia / Dysgraphia / Dyspraxia
+  - Manifestation: Extra time for reading/writing/numeric tasks; prefers assistive tools.
+  - Behavior impact: Slower document turnaround; reliance on tools or delegation.
+  - Distortion: Output quality high but throughput drops.
+  - Snapshot: Spends extra hours polishing a short methods section.
+  - Work / bandwidth impact: Slower publication cadence.
+  - Risk if ignored: Missed deadlines.
+  - Best way to approach: Offer scribe support, templates, and assistive tech.
+  - Micro‑accommodations: Co‑authoring; speech‑to‑text; calculators.
+  - Peer scripts: “I can help draft the write‑up from your notes.” / “Record a voice note and I’ll transcribe it.”
+  - Trial metrics: Time to publish; % co‑authored docs.
+  - Tools / supports: Speech‑to‑text; templates; co‑authoring.
+  - Privacy phrasing: “I prefer to record a voice note for the write‑up — can I send that?”
+Auditory Processing / Sensory Processing / Tourette Syndrome
+  - Manifestation: Difficulty in fast spoken exchanges; sensory overload.
+  - Behavior impact: Prefers captions, slides, and written follow‑ups.
+  - Distortion: Live participation reduced.
+  - Snapshot: Asks for meeting notes after a rapid Q&A.
+  - Work / bandwidth impact: Misunderstandings and repeated clarifications.
+  - Risk if ignored: Errors and exclusion.
+  - Best way to approach: Use captions, share slides in advance, allow written follow‑ups.
+  - Micro‑accommodations: Captions; slides/notes in advance; quiet rooms.
+  - Peer scripts: “I’ll share slides and notes before the meeting.” / “Drop your questions in the doc and I’ll read them aloud.”
+  - Trial metrics: # written contributions; meeting comfort rating.
+  - Tools / supports: Live captions; shared decks.
+  - Privacy phrasing: “I’ll drop my questions in the doc and follow up after the meeting.”
+Working Memory / Processing Speed Differences
+  - Manifestation: Needs external aids and extra time to synthesize.
+  - Behavior impact: Prefers pre‑reads and reflection time.
+  - Distortion: Synthesis speed reduced but quality improves after reflection.
+  - Snapshot: Requests pre‑reads and postpones a decision.
+  - Work / bandwidth impact: Slower cadence but higher quality.
+  - Risk if ignored: Hasty decisions.
+  - Best way to approach: Provide concise pre‑reads and short reflection pauses.
+  - Micro‑accommodations: Pre‑reads 24–48 hours ahead; 5‑minute recap pauses.
+  - Peer scripts: “I’ll send a 2‑slide summary before the meeting.” / “Let’s pause five minutes after the pitch.”
+  - Trial metrics: % decisions postponed for reflection; quality of final plans.
+  - Tools / supports: Pre‑read templates; recap prompts.
+  - Privacy phrasing: “I prefer a short pre‑read and a five‑minute pause after the meeting.”
+
+Strategist — Neurodivergence & Cognitive Accessibility (fully expanded, high‑detail)
+I focused extra depth here as you requested. Each subcategory below follows the full schema plus practical micro‑accommodations, short peer scripts, trial metrics, suggested tools/supports, and a privacy‑first phrasing the person can use. I emphasized approaches that preserve strategic influence while protecting cognitive bandwidth and social safety.
+ADHD
+  - Manifestation: Rapid idea generation, impatience with slow alignment, difficulty sustaining long, multi‑stakeholder programs.
+  - Behavior impact: Launches many strategic threads; abandons some before integration; seeks high‑stimulus solutions.
+  - Distortion of typical Strategist pattern: Breadth becomes scattered ideation without follow‑through; visionary credibility erodes.
+  - Real‑life snapshot: Proposes five initiatives in a week, then pivots when one stalls.
+  - Work / bandwidth impact: Resource churn, fragmented priorities, stakeholder confusion.
+  - Risk if ignored: Initiative fatigue, credibility loss, wasted resources.
+  - Best way to approach: Channel urgency into short, time‑boxed experiments with explicit stop rules and visible trackers.
+  - Micro‑accommodations:
+    * Convert big ideas into 2–4 week pilots with explicit success/fail criteria.
+    * Public board with WIP limits; cap active strategic pilots to 1–2.
+    * Peer scripts:
+    * “Love this — can we convert it into a two‑week pilot with clear stop rules?”
+    * “Let’s pick one small experiment and I’ll help scope the success criteria.”
+    * Trial metrics:
+    * active pilots limited to ≤2; pilot completion rate.
+    * Stakeholder satisfaction (1–5) after each pilot.
+    * Tools / supports: Kanban with WIP limits; short weekly 15‑minute syncs; timers and calendar blocks.
+    * Privacy phrasing: “I’m running a short, low‑visibility pilot and will share results after the test.”
+Executive Function Differences
+  - Manifestation: Difficulty sequencing multi‑phase programs and keeping timelines aligned across stakeholders.
+  - Behavior impact: Overfocus on one phase; misses integration and stakeholder comms.
+  - Distortion: Orchestration becomes uneven; pilots fail to scale.
+  - Real‑life snapshot: Launches a pilot without a scaling plan; ops scramble.
+  - Work / bandwidth impact: Bottlenecks at handoffs; missed scaling opportunities.
+  - Risk if ignored: Failed pilots and wasted resources.
+  - Best way to approach: Use simple sequencing templates, mandatory handoff notes, and visible owners for each phase.
+  - Micro‑accommodations: Phase checklist (3–5 items); one‑page handoff note required before phase transition.
+  - Peer scripts: “Let’s map the three handoffs and owners — I’ll draft the checklist.” / “Can we require a one‑page handoff before scaling?”
+  - Trial metrics: % launches with completed handoff note; post‑launch incidents.
+  - Tools / supports: Lightweight RACI; shared milestone calendar; handoff template.
+  - Privacy phrasing: “I prefer a short handoff note before scaling so we avoid surprises.”
+Time Blindness
+  - Manifestation: Underestimates time for alignment, approvals, and organizational change.
+  - Behavior impact: Sets aggressive launch dates; compresses stakeholder engagement.
+  - Distortion: Timeline optimism becomes credibility risk.
+  - Real‑life snapshot: Announces a Q3 rollout stakeholders can’t operationalize.
+  - Work / bandwidth impact: Rushed implementations, missed dependencies.
+  - Risk if ignored: Reputation damage and failed rollouts.
+  - Best way to approach: Use historical benchmarks, built‑in buffers, and visible countdowns.
+  - Micro‑accommodations: Default buffer rules (+25–40%); pre‑commitment resource check; visible countdowns.
+  - Peer scripts: “Can we add a two‑week buffer for alignment so ops can staff it?” / “Let’s use last project X as a benchmark and add a buffer.”
+  - Trial metrics: % commitments met; average buffer added.
+  - Tools / supports: Historical timeline dashboard; estimation checklist; shared calendar milestones.
+  - Privacy phrasing: “I’m using a conservative timeline this time to make sure we hit it.”
+Task Initiation Difficulty
+  - Manifestation: Paralysis when the first step is ambiguous; waits for perfect data or conditions.
+  - Behavior impact: Delays exploratory tests; misses market windows.
+  - Distortion: Readiness to test hypotheses becomes stalled planning.
+  - Real‑life snapshot: Waits for perfect market data before running a small experiment.
+  - Work / bandwidth impact: Slow learning and missed opportunities.
+  - Risk if ignored: Competitive disadvantage.
+  - Best way to approach: Provide a one‑sentence first action, a 30‑minute kickoff pairing, and a minimal viable experiment template.
+  - Micro‑accommodations: One‑sentence first action; 30‑minute co‑start session; minimal experiment template.
+  - Peer scripts: “What’s one tiny test we can run in a day?” / “I’ll pair for the first 30 minutes to lower activation energy.”
+  - Trial metrics: Time from idea to first action; # ideas reaching pilot.
+  - Tools / supports: Kickoff pairing slots; simple experiment templates.
+  - Privacy phrasing: “Can we do a 30‑minute co‑start so I can get this moving?”
+Context‑Switching Difficulty
+  - Manifestation: High cognitive cost switching between strategic thinking and operational firefighting.
+  - Behavior impact: Protects long deep‑work blocks; resists ad‑hoc operational asks.
+  - Distortion: Adaptability reduces; perceived uncooperativeness increases.
+  - Real‑life snapshot: Skips daily standups to protect a strategy deep‑work block.
+  - Work / bandwidth impact: Coordination gaps and slower response to emergent issues.
+  - Risk if ignored: Missed signals and stakeholder frustration.
+  - Best way to approach: Agree on protected deep‑work windows, concise async briefs, and a clear escalation path for true emergencies.
+  - Micro‑accommodations: Protected core hours; 3‑bullet async updates; single escalation contact.
+  - Peer scripts: “I’ll send a 3‑bullet update after your focus block — no need to interrupt.” / “If it’s urgent, text URGENT and I’ll respond.”
+  - Trial metrics: # interruptions during deep work; % items resolved async.
+  - Tools / supports: Async update templates; calendar focus blocks; escalation rules.
+  - Privacy phrasing: “I’m protecting a 3‑hour strategy block — text URGENT if it can’t wait.”
+Hyperfocus Patterns
+  - Manifestation: Intense immersion in one strategic angle; neglects alternatives and stakeholder signals.
+  - Behavior impact: Produces persuasive cases for one path while ignoring counter signals.
+  - Distortion: Conviction becomes tunnel vision and blind spots.
+  - Real‑life snapshot: Crafts an elaborate plan for one market and misses signals in others.
+  - Work / bandwidth impact: Imbalanced resource allocation and blind spots.
+  - Risk if ignored: Strategic myopia and missed threats.
+  - Best way to approach: Require forced alternative framing, time‑boxed deep dives, and scheduled cross‑checks.
+  - Micro‑accommodations: Devil’s‑advocate 10‑minute counter scenarios; time‑boxed deep dives with post‑dive cross‑checks.
+  - Peer scripts: “Can you give a 10‑minute counter‑scenario summary so we surface blind spots?” / “Let’s time‑box this deep dive to two weeks and schedule a cross‑check.”
+  - Trial metrics: # counter scenarios produced; % deep dives with cross‑checks.
+  - Tools / supports: Structured scenario templates; scheduled cross‑checks.
+  - Privacy phrasing: “I’m doing a time‑boxed deep dive and will share counter scenarios at the mid‑point.”
+Rejection Sensitivity
+  - Manifestation: Strong emotional reaction to critique; may withdraw or double down defensively.
+  - Behavior impact: Avoids early feedback; becomes rigid when challenged.
+  - Distortion: Openness to iteration becomes brittle defensiveness.
+  - Real‑life snapshot: Stops sharing drafts after a blunt comment and circulates a final version only.
+  - Work / bandwidth impact: Slower iteration and reduced team input.
+  - Risk if ignored: Stalled refinement and isolation.
+  - Best way to approach: Start with private, strengths‑based feedback, then one specific improvement; encourage small public wins.
+  - Micro‑accommodations: Private preview sessions; feedback sandwich (strength + one tweak).
+  - Peer scripts: “This is strong — one tweak that could help is X; want to iterate together?” / “Can I give you private feedback before the next demo?”
+  - Trial metrics: Frequency of private previews; change in early sharing frequency.
+  - Tools / supports: Private feedback channels; short feedback templates.
+  - Privacy phrasing: “I prefer private feedback on early drafts — can we do that for the next two demos?”
+Masking Fatigue
+  - Manifestation: Exhaustion from maintaining a polished, persuasive persona in high‑stakes settings.
+  - Behavior impact: Reduced spontaneity, fewer informal check‑ins, occasional withdrawal.
+  - Distortion: Charismatic advocacy becomes less frequent and less authentic.
+  - Real‑life snapshot: Declines to attend informal strategy dinners after a week of presentations.
+  - Work / bandwidth impact: Loss of informal influence and slower coalition building.
+  - Risk if ignored: Burnout and diminished leadership presence.
+  - Best way to approach: Offer low‑visibility contribution channels, co‑presenting support, and normalize recovery breaks.
+  - Micro‑accommodations: Written input channels; co‑presenter for Q&A; recovery half‑days after major events.
+  - Peer scripts: “I’ll co‑present the Q&A so you can focus on the pitch.” / “Take a recovery half‑day after the presentation — we’ll cover.”
+  - Trial metrics: # low‑visibility contributions; self‑reported recovery effectiveness.
+  - Tools / supports: Shared idea doc; co‑presenter pairing; opt‑out options.
+  - Privacy phrasing: “I’ll contribute in writing this round while I recharge.”
+Social Communication Load
+  - Manifestation: Extra effort to translate complex strategy into accessible narratives; fatigue from repeated persuasion.
+  - Behavior impact: Prefers crafted memos and one‑on‑one briefings over repeated public pitches.
+  - Distortion: Storytelling presence in broad forums weakens.
+  - Real‑life snapshot: Sends a polished memo and asks a peer to present it in a town hall.
+  - Work / bandwidth impact: Slower buy‑in and reliance on proxies.
+  - Risk if ignored: Strategy fails to land across the org.
+  - Best way to approach: Provide executive summary templates, co‑presenting support, and scheduled short stakeholder touchpoints.
+  - Micro‑accommodations: 3‑slide summary template; co‑presenter for town halls; scheduled touchpoints.
+  - Peer scripts: “I’ll draft a 3‑slide summary and co‑present the Q&A.” / “Can I handle the Q&A so you can focus on the narrative?”
+  - Trial metrics: % stakeholders reached; follow‑through rate after launch.
+  - Tools / supports: Summary templates; co‑presenter pairing; stakeholder cadence.
+  - Privacy phrasing: “I’d like to co‑present the Q&A so I can focus on the narrative.”
+Need for Written Instructions
+  - Manifestation: Performs best when decision rules and escalation paths are documented.
+  - Behavior impact: Requests clear frameworks; slows ad‑hoc pivots.
+  - Distortion: Agility reduced by over‑reliance on written rules.
+  - Real‑life snapshot: Insists on a documented decision rubric before approving a pilot.
+  - Work / bandwidth impact: Higher clarity but slower responsiveness.
+  - Risk if ignored: Misalignment and inconsistent decisions.
+  - Best way to approach: Provide concise decision rubrics and a “fast lane” for urgent decisions with post‑hoc documentation.
+  - Micro‑accommodations: One‑page decision rubrics; fast‑lane exception process.
+  - Peer scripts: “Here’s a one‑page rubric — want me to draft it?” / “We can use a fast lane for urgent items and document after.”
+  - Trial metrics: % decisions using rubric; time to decision in fast lane.
+  - Tools / supports: One‑page templates; shared doc.
+  - Privacy phrasing: “Can we capture the decision criteria in one short doc so I can approve quickly?”
+Need for Reduced Interruption
+  - Manifestation: Deep strategic thinking is fragile; interruptions derail momentum.
+  - Behavior impact: Protects long blocks; declines ad‑hoc asks.
+  - Distortion: Responsiveness to emergent opportunities reduces.
+  - Real‑life snapshot: Sets “do not disturb” during strategy sprints and misses quick alignment calls.
+  - Work / bandwidth impact: Missed urgent signals vs. higher quality strategy.
+  - Risk if ignored: Lost opportunities or poor quality work.
+  - Best way to approach: Define clear escalation rules and use async updates for non‑urgent items.
+  - Micro‑accommodations: Protected deep‑work windows; single escalation contact; async 3‑bullet updates.
+  - Peer scripts: “If it’s urgent, text URGENT and I’ll respond; otherwise send a 3‑bullet update.” / “I’ll respect your deep‑work window — who should I contact if it’s urgent?”
+  - Trial metrics: # escalations during deep work; % items resolved async.
+  - Tools / supports: Slack status conventions; escalation contact; async templates.
+  - Privacy phrasing: “I’m in a deep‑work block — text URGENT if it can’t wait.”
+Need for Structure Without Shame
+  - Manifestation: Prefers explicit frameworks but may hesitate to request them publicly.
+  - Behavior impact: Creates private structures; misalignment with team norms.
+  - Distortion: Frameworks become idiosyncratic and hard to socialize.
+  - Real‑life snapshot: Uses a personal strategy template others don’t see.
+  - Work / bandwidth impact: Miscommunication and duplicated effort.
+  - Risk if ignored: Friction and hidden workload.
+  - Best way to approach: Normalize shared templates and invite co‑creation as a productivity improvement.
+  - Micro‑accommodations: Shared strategy templates; optional structure workshops.
+  - Peer scripts: “Can I share a short template that might help?” / “Want to co‑create a standard we can all use?”
+  - Trial metrics: % team using template; time saved.
+  - Tools / supports: Shared template library; short workshops.
+  - Privacy phrasing: “I have a short template that helps me — can I share it with you?”
+Dyslexia / Dyscalculia / Dysgraphia / Dyspraxia
+  - Manifestation: Extra time for reading, numeric modeling, or handwriting; prefers visual or typed outputs.
+  - Behavior impact: Strong verbal strategy but slower written artifacts.
+  - Distortion: Verbal fluency not matched by timely documentation.
+  - Real‑life snapshot: Delivers a compelling verbal plan but the written roadmap is delayed.
+  - Work / bandwidth impact: Delay in documentation and handoffs.
+  - Risk if ignored: Miscommunication and missed opportunities.
+  - Best way to approach: Offer scribe support, templates, and assistive tech; pair for documentation.
+  - Micro‑accommodations: Scribe/co‑author for write‑ups; speech‑to‑text; templates for roadmaps.
+  - Peer scripts: “I’ll draft the first roadmap from your notes — want me to?” / “Record a quick voice note and I’ll transcribe it.”
+  - Trial metrics: Time from verbal plan to published roadmap; % co‑authored docs.
+  - Tools / supports: Speech‑to‑text; co‑authoring tools; templates.
+  - Privacy phrasing: “I prefer to record a voice note for the roadmap — can I send that instead of drafting?”
+Auditory Processing / Sensory Processing / Tourette Syndrome
+  - Manifestation: Difficulty following rapid multi‑speaker debates; sensory overload in long sessions.
+  - Behavior impact: Prefers structured turn‑taking, captions, and written summaries; may opt out of noisy workshops.
+  - Distortion: Live facilitation presence reduced.
+  - Real‑life snapshot: Leaves a noisy offsite early and submits a written strategy afterward.
+  - Work / bandwidth impact: Reduced live facilitation and slower consensus.
+  - Risk if ignored: Exclusion and missed input.
+  - Best way to approach: Share slides/notes in advance, use captions, allow written Q&A, and normalize opt‑outs.
+  - Micro‑accommodations: Captions; slides/notes in advance; opt‑out channels; quiet rooms.
+  - Peer scripts: “I’ll share slides and notes before the session so you can pick what to comment on.” / “Drop your questions in the doc and I’ll read them aloud.”
+  - Trial metrics: # written contributions; meeting comfort rating.
+  - Tools / supports: Live captions; shared decks; quiet rooms.
+  - Privacy phrasing: “I’ll drop my input in the doc and follow up after the session.”
+Working Memory / Processing Speed Differences
+  - Manifestation: Needs external aids to hold multiple threads and extra time to synthesize complex inputs.
+  - Behavior impact: Requests pre‑reads and reflection time; slower in rapid exchanges.
+  - Distortion: Rapid synthesis becomes delayed but often higher quality.
+  - Real‑life snapshot: Asks to postpone a decision to allow integration of inputs.
+  - Work / bandwidth impact: Slower decision cadence but better outcomes after reflection.
+  - Risk if ignored: Hasty decisions and missed nuance.
+  - Best way to approach: Provide concise pre‑reads, short recap pauses, and allow reflection windows before finalizing decisions.
+  - Micro‑accommodations: Pre‑reads 24–48 hours ahead; 5‑minute recap pauses in meetings; short reflection windows.
+  - Peer scripts: “I’ll send a 2‑slide summary before the meeting so you can reflect.” / “Let’s pause five minutes after the pitch so you can gather thoughts.”
+  - Trial metrics: % decisions postponed for reflection; quality of final plans.
+  - Tools / supports: Pre‑read templates; meeting recap prompts; checklist recaps.
+  - Privacy phrasing: “I prefer a short pre‑read and a five‑minute pause after the meeting to finalize my input.”
+
+If this matches what you want, I’ll (1) retroactively replace the Neurodivergence sections for Controller, Specialist, and Strategist in your master toolkit with these expanded blocks, and (2) continue the sequence and upgrade the remaining profiles the same way.
+`,
+  },
 ];
 
 // Index by id for O(1) lookup
