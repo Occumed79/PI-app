@@ -11723,6 +11723,381 @@ The table below maps the 17 Predictive Index (PI) behavioural profiles to their 
 * Under stress, people often overuse their strengths.  For example, a red captain under pressure may become domineering, while a blue altruist may self‑sacrifice.  Use the stress column above to anticipate and mitigate these reactions.
 * Encourage teams to identify and appreciate each other’s motivational blends.  Balanced teams that include blue, red, green and hub energies can draw on a wider range of strengths and reduce blind spots.`,
   },
+  {
+    id: "team-management-systems-tms-lens",
+    lens: "Team Management Systems (TMS) Lens",
+    status: "",
+    source: "Team_Management_Systems_Lens.txt",
+    content: `
+Team Management Systems (TMS) Lens
+=================================
+
+**Overview**
+
+The Team Management Systems (TMS) framework, developed by Charles Margerison and Dick McCann, assesses work preferences and maps people into eight roles around a wheel.  It is based on four underlying preference dimensions: Extroverted vs. Introverted, Practical vs. Creative, Analytical vs. Beliefs‑based and Structured vs. Flexiblehttps://tms.global/products/products-tmp/#:~:text=TMP%20maps%20preferences%20across%20four,people%20prefer%20to%20work%20together.  The eight team roles are:
+
+* **Creator‑Innovator:** Generates original ideas and explores possibilitieshttps://tms.global/products/products-tmp/#:~:text=TMP%20maps%20preferences%20across%20four,people%20prefer%20to%20work%20together.
+* **Explorer‑Promoter:** Tests ideas in the real world, builds networks and sells new conceptshttps://tms.global/products/products-tmp/#:~:text=TMP%20maps%20preferences%20across%20four,people%20prefer%20to%20work%20together.
+* **Assessor‑Developer:** Analyses options, improves ideas and evaluates proposalshttps://tms.global/products/products-tmp/#:~:text=TMP%20maps%20preferences%20across%20four,people%20prefer%20to%20work%20together.
+* **Thruster‑Organiser:** Drives tasks, sets goals and organises resourceshttps://tms.global/products/products-tmp/#:~:text=TMP%20maps%20preferences%20across%20four,people%20prefer%20to%20work%20together.
+* **Concluder‑Producer:** Turns plans into reality through reliable executionhttps://tms.global/products/products-tmp/#:~:text=TMP%20maps%20preferences%20across%20four,people%20prefer%20to%20work%20together.
+* **Controller‑Inspector:** Maintains standards, checks details and ensures compliancehttps://tms.global/products/products-tmp/#:~:text=TMP%20maps%20preferences%20across%20four,people%20prefer%20to%20work%20together.
+* **Upholder‑Maintainer:** Supports the team, preserves culture and keeps morale highhttps://tms.global/products/products-tmp/#:~:text=TMP%20maps%20preferences%20across%20four,people%20prefer%20to%20work%20together.
+* **Reporter‑Adviser:** Gathers information, provides perspective and ensures everyone is heardhttps://tms.global/products/products-tmp/#:~:text=TMP%20maps%20preferences%20across%20four,people%20prefer%20to%20work%20together.
+
+Teams require a balance of these roles across the four work preference dimensions.  Individuals usually have one or two preferred roles and can flex to others as needed.
+
+**TMS Role Crosswalk by PI Profile**
+
+The table below suggests the likely TMS role(s) for each PI profile.  The primary column shows the most natural fit; the secondary column indicates an alternate role.
+
+| PI Profile | Primary TMS role | Secondary role | Notes |
+|---|---|---|---|
+| **Analyzer** | Controller‑Inspector | Assessor‑Developer | Focuses on analysis, quality and compliance. |
+| **Controller** | Thruster‑Organiser | Controller‑Inspector | Sets direction, organises resources and enforces standards. |
+| **Specialist** | Reporter‑Adviser | Creator‑Innovator | Provides specialist knowledge and gathers information; also contributes original insights. |
+| **Strategist** | Assessor‑Developer | Creator‑Innovator | Improves ideas and designs systems; also conceptualises future possibilities. |
+| **Venturer** | Explorer‑Promoter | Thruster‑Organiser | Tests new ideas in the market and drives initiatives. |
+| **Altruist** | Upholder‑Maintainer | Reporter‑Adviser | Supports team morale and ensures voices are heard. |
+| **Captain** | Thruster‑Organiser | Explorer‑Promoter | Drives action and rallies stakeholders. |
+| **Collaborator** | Upholder‑Maintainer | Explorer‑Promoter | Builds cohesion and promotes ideas externally. |
+| **Maverick** | Creator‑Innovator | Explorer‑Promoter | Generates innovative concepts and seeks opportunities. |
+| **Persuader** | Explorer‑Promoter | Reporter‑Adviser | Sells ideas and maintains relationships; also listens and advises. |
+| **Promoter** | Explorer‑Promoter | Thruster‑Organiser | Energises others and drives campaigns forward. |
+| **Adapter** | Reporter‑Adviser | Upholder‑Maintainer | Gathers perspectives and supports morale. |
+| **Craftsman** | Concluder‑Producer | Controller‑Inspector | Executes reliably and ensures standards. |
+| **Guardian** | Upholder‑Maintainer | Controller‑Inspector | Preserves stability and checks compliance. |
+| **Operator** | Concluder‑Producer | Controller‑Inspector | Translates plans into action and maintains quality. |
+| **Individualist** | Creator‑Innovator | Assessor‑Developer | Generates unique approaches and refines them. |
+| **Scholar** | Reporter‑Adviser | Assessor‑Developer | Collects knowledge and evaluates ideas. |
+
+**Using this lens**
+
+* A balanced project team should include creative visionaries, promoters, evaluators, organisers, producers, inspectors, maintainers and advisers.  When roles are missing, performance suffers—for example, without a Controller‑Inspector, quality may drop.
+* Use this lens to assign tasks: let Explorer‑Promoters handle outreach, Controller‑Inspectors manage risk and quality, and Concluder‑Producers deliver outcomes.  Rotate roles periodically to develop versatility.
+* The preference dimensions (extroversion/introversion, practical/creative, analytical/beliefs‑based, structured/flexible) help explain why teammates may conflict or complement one another.  For example, a structured Thruster‑Organiser may clash with a flexible Creator‑Innovator; deliberate conversations can harness both perspectives.`,
+  },
+  {
+    id: "thomaskilmann-conflict-mode-tki-lens",
+    lens: "Thomas\u2013Kilmann Conflict Mode (TKI) Lens",
+    status: "",
+    source: "TKI_Lens.txt",
+    content: `
+Thomas–Kilmann Conflict Mode (TKI) Lens
+
+**Overview**
+
+The Thomas–Kilmann Conflict Mode Instrument (TKI) identifies five approaches to conflict, based on levels of assertiveness and cooperativeness:
+
+1. **Competing** – assertive and uncooperative (win–lose).  Uses power to pursue one’s own concerns.
+2. **Collaborating** – assertive and cooperative (win–win).  Seeks solutions that satisfy all parties.
+3. **Compromising** – intermediate assertiveness and cooperativeness.  Finds a mutually acceptable solution by giving up something.
+4. **Avoiding** – unassertive and uncooperative.  Delays or withdraws from conflict.
+5. **Accommodating** – unassertive and cooperative.  Yields to others’ concerns at the expense of one’s own.
+
+The table below summarises each PI profile’s typical conflict mode pattern, including their primary, secondary and low‑use modes, stress‑triggered behaviour, strengths and vulnerabilities.
+
+**Crosswalk by PI Profile**
+
+| PI Profile | Primary mode | Secondary mode | Low‑use mode | Stress‑triggered mode | Conflict strength | Conflict vulnerability | Rationale |
+|---|---|---|---|---|---|---|---|
+| **Analyzer** | Avoiding | Compromising | Collaborating | Over‑analysis → delay | De‑escalation | Avoids necessary confrontation | Prefers to withdraw and analyse |
+| **Controller** | Competing | Compromising | Accommodating | Domineering | Clear boundaries | Escalation risk | Direct and power‑based |
+| **Specialist** | Avoiding | Compromising | Competing | Withdrawal | Reduces unnecessary conflict | Silence → misalignment | Technical focus over conflict |
+| **Strategist** | Collaborating | Competing | Accommodating | Over‑assertive logic | Win‑win problem solving | Can steamroll others | Balances vision with assertion |
+| **Venturer** | Competing | Collaborating | Avoiding | Aggressive push | Fast resolution | High conflict intensity | Bold and goal‑driven |
+| **Altruist** | Accommodating | Collaborating | Competing | Over‑giving | Relationship preservation | Self‑sacrifice | People‑first orientation |
+| **Captain** | Competing | Collaborating | Avoiding | Domination | Decisive resolution | Intimidation | Command and action |
+| **Collaborator** | Collaborating | Accommodating | Competing | Avoidance | Harmony and integration | Over‑compromise | Relational and consensus‑driven |
+| **Maverick** | Competing | Collaborating | Accommodating | Provocation | Breakthrough solutions | Conflict escalation | Creative disruptor |
+| **Persuader** | Collaborating | Compromising | Avoiding | Emotional escalation | Win‑win influence | Over‑personalisation | Influence oriented |
+| **Promoter** | Compromising | Collaborating | Avoiding | Reactive emotion | Quick agreements | Over‑promising | Expressive negotiator |
+| **Adapter** | Accommodating | Compromising | Competing | Withdrawal | Flexibility | Loss of voice | Situational harmony |
+| **Craftsman** | Avoiding | Compromising | Collaborating | Perfectionistic retreat | Reduces unnecessary conflict | Bottlenecks | Quality driven |
+| **Guardian** | Avoiding | Compromising | Competing | Over‑caution | Stability | Delayed resolution | Stewardship orientation |
+| **Operator** | Compromising | Avoiding | Collaborating | Rigid routine | Practical middle ground | Avoids deeper issues | Process oriented |
+| **Individualist** | Avoiding | Collaborating | Accommodating | Detached withdrawal | Reduces emotional escalation | Misalignment | Independent focus |
+| **Scholar** | Avoiding | Collaborating | Competing | Over‑analysis | De‑escalation | Slow resolution | Intellectual, not confrontational |
+
+**Applying the TKI lens**
+
+* Understand primary modes to anticipate how colleagues will respond to conflict.  Competing types push for their agenda, accommodating types yield, avoiders disengage, collaborators seek integration and compromisers split the difference.
+* Stress amplifies patterns: Controllers become domineering, Collaborators avoid, Mavericks provoke.  Recognise these triggers and provide alternative pathways (e.g., mediated dialogue or structured problem solving).
+* Teams benefit from complementary modes: Collaborators can bridge between competing and avoiding colleagues; Compromisers help broker deals; Innovators (Mavericks) need support from mediators to prevent escalation.
+`,
+  },
+  {
+    id: "via-character-strengths-lens",
+    lens: "VIA Character Strengths Lens",
+    status: "",
+    source: "VIA_Character_Strengths_Lens.txt",
+    content: `
+VIA Character Strengths Lens
+===========================
+
+**Overview and theoretical background**
+
+The **VIA Character Strengths** framework, developed by Chris Peterson and
+Martin Seligman, classifies 24 positive traits that contribute to human
+flourishing.  These strengths are organized under six virtues:
+**Wisdom**, **Courage**, **Humanity**, **Justice**, **Temperance** and
+**Transcendence**https://positivepsychology.com/classification-character-strengths-virtues/#:~:text=appropriate%2C%20reflecting%20our%20personality%20and,Niemiec%2C%202018.  Character strengths are
+expressed through thoughts, feelings and behaviors, and research suggests
+that using one’s “signature strengths” enhances wellbeing and
+performancehttps://positivepsychology.com/classification-character-strengths-virtues/#:~:text=appropriate%2C%20reflecting%20our%20personality%20and,Niemiec%2C%202018.  Examples include curiosity,
+prudence, perseverance, kindness, teamwork, gratitude and hope.
+
+**Virtues and representative strengths**
+
+- **Wisdom** – creativity, curiosity, judgment, love of learning, perspective.
+- **Courage** – bravery, perseverance, honesty, zest.
+- **Humanity** – love, kindness, social intelligence.
+- **Justice** – fairness, leadership, teamwork.
+- **Temperance** – forgiveness, humility, prudence, self‑regulation.
+- **Transcendence** – appreciation of beauty, gratitude, hope, humor,
+  spirituality.
+
+The VIA framework encourages identifying and applying one’s signature
+strengths in daily life rather than trying to be strong in all areas.
+
+**Cross‑framework translation with PI profiles**
+
+The table below proposes likely signature strengths for each PI profile.
+“Virtue cluster” identifies the virtue group; “Strength expression”
+describes how the strength may manifest; “Development note” suggests
+ways to leverage or balance the strength.
+
+| PI profile | Signature strengths (examples) | Virtue cluster | Strength expression | Development note |
+|---|---|---|---|---|
+| **Analyzer** | Prudence, Judgment, Love of Learning | Temperance, Wisdom | Exercises careful judgment; enjoys acquiring knowledge; plans thoroughly. | Balance prudence with openness; share insights; recognize when “good enough” is sufficient. |
+| **Controller** | Leadership, Perseverance, Honesty | Justice, Courage | Takes charge, sets clear goals and persists; straightforward communicator. | Pair leadership with empathy; temper perseverance with flexibility and listening. |
+| **Specialist** | Perseverance, Prudence, Fairness | Courage, Temperance, Justice | Delivers reliable work; respects rules and equity. | Practice kindness toward self; embrace curiosity and creativity. |
+| **Strategist** | Perspective, Judgment, Leadership | Wisdom, Justice | Sees the big picture and plans long term; guides others. | Cultivate humility; integrate humanity strengths like kindness to increase influence. |
+| **Venturer** | Creativity, Zest, Hope | Wisdom, Courage, Transcendence | Generates novel solutions; acts with enthusiasm; envisions possibilities. | Develop prudence and perseverance to sustain momentum; consider others’ needs. |
+| **Individualist** | Creativity, Curiosity, Independence | Wisdom | Thinks outside the box and pursues interests deeply. | Engage social intelligence; balance autonomy with teamwork; share ideas. |
+| **Scholar** | Love of Learning, Perspective, Prudence | Wisdom, Temperance | Seeks understanding; considers multiple viewpoints; plans carefully. | Take brave action; express gratitude and humor; avoid overanalyzing. |
+| **Altruist** | Kindness, Social Intelligence, Fairness | Humanity, Justice | Supports others and fosters harmony; advocates for equity. | Practice self‑care; develop courage to confront issues; avoid enabling. |
+| **Captain** | Leadership, Hope, Bravery | Justice, Transcendence, Courage | Inspires optimism, takes decisive action and leads change. | Balance courage with humility; appreciate beauty in others’ work; cultivate gratitude. |
+| **Collaborator** | Teamwork, Kindness, Humility | Justice, Humanity, Temperance | Builds consensus and supports teammates; avoids ego. | Strengthen assertiveness and perseverance; voice opinions even when uncomfortable. |
+| **Maverick** | Creativity, Bravery, Humor | Wisdom, Courage, Transcendence | Challenges norms with wit; pursues daring ideas. | Develop prudence and fairness; temper risk‑taking with consideration for impact. |
+| **Persuader** | Social Intelligence, Hope, Humor | Humanity, Transcendence | Reads people well; generates enthusiasm; uses positive energy. | Focus on honesty and discipline; ground optimism with facts; listen actively. |
+| **Promoter** | Gratitude, Social Intelligence, Zest | Transcendence, Humanity, Courage | Appreciates opportunities; networks enthusiastically; energizes others. | Build prudence and perseverance; avoid superficiality; channel enthusiasm into concrete plans. |
+| **Adapter** | Humility, Fairness, Perseverance | Temperance, Justice, Courage | Balances perspectives and adapts to others; works steadily. | Cultivate leadership and creativity; assert ideas and boundaries; develop hope. |
+| **Artisan** | Creativity, Appreciation of Beauty, Prudence | Wisdom, Transcendence, Temperance | Crafts elegant solutions; attends to detail; admires high standards. | Share innovations early; build social connections; integrate teamwork. |
+| **Guardian** | Fairness, Prudence, Kindness | Justice, Temperance, Humanity | Maintains order, supports colleagues and ensures equity. | Embrace openness to change; practice courage in voicing ideas; incorporate humor to lighten rigidity. |
+| **Operator** | Humility, Kindness, Perseverance | Temperance, Humanity, Courage | Works diligently; supports team without seeking spotlight. | Build confidence and hope; explore curiosity; adopt a growth mindset. |
+
+**Practical implications**
+
+Applying the VIA lens shifts the focus from fixing deficits to harnessing
+strengths.  For instance, an Analyzer’s prudence can be a powerful asset
+when evaluating risk, but they might also practice gratitude and hope to
+avoid excessive caution.  Teams benefit when leaders like Captains use
+bravery and hope to motivate while tempering with humility.  Recognizing
+the signature strengths of each PI profile encourages appreciation,
+aligns roles with intrinsic motivators and fosters a culture of
+wellbeing and authenticity.
+`,
+  },
+  {
+    id: "who5-wellbeing-index-lens",
+    lens: "WHO\u20115 Well\u2011Being Index Lens",
+    status: "",
+    source: "WHO5_Wellbeing_Index_Lens.txt",
+    content: `
+WHO‑5 Well‑Being Index Lens
+===========================
+
+**Overview**
+
+The WHO‑5 Well‑Being Index is a short self‑report tool developed by the World Health Organization to assess emotional wellbeing.  It contains five positively worded statements measuring mood, vitality and general interest over the last two weekshttps://www.weguide.health/instruments/who-5-well-being-index#:~:text=The%20WHO,spot%20potential%20issues%20early%20on.  Respondents rate each statement on a 6‑point scale from 0 (“at no time”) to 5 (“all of the time”).  The five items are summed (0–25) and multiplied by four to give a percentage scorehttps://www.weguide.health/instruments/who-5-well-being-index#:~:text=The%20WHO,spot%20potential%20issues%20early%20on.  A score below 50 indicates poor wellbeing and suggests the need for further evaluation for depressionhttps://www.weguide.health/instruments/who-5-well-being-index#:~:text=The%20WHO,spot%20potential%20issues%20early%20on.
+
+The WHO‑5 statements assess:
+
+1. Feeling cheerful and in good spirits.
+2. Feeling calm and relaxed.
+3. Feeling active and vigorous.
+4. Waking up feeling fresh and rested.
+5. Being interested in daily lifehttps://www.weguide.health/instruments/who-5-well-being-index#:~:text=The%20WHO,spot%20potential%20issues%20early%20on.
+
+**Well‑Being Crosswalk by PI Profile**
+
+While the WHO‑5 is generic, patterns of wellbeing can vary across profiles based on stressors and work styles.  The table below identifies potential wellbeing challenges and suggests supports.
+
+| PI Profile | Potential wellbeing challenges | Suggested supports |
+|---|---|---|
+| **Analyzer** | Mental fatigue from constant analysis; difficulty relaxing | Encourage breaks, mindfulness and engaging in non‑work hobbies. |
+| **Controller** | High tension from control and responsibility | Promote delegation, exercise and setting boundaries to enhance calmness. |
+| **Specialist** | Energy dips from deep concentration and limited social interaction | Schedule social activities, ensure restful sleep and vary tasks. |
+| **Strategist** | Cognitive overload and sleep disruption due to complex planning | Practise reflective pauses, ensure regular sleep and engage in exercise. |
+| **Venturer** | Hyper‑arousal from high‑risk projects leading to poor rest | Introduce recovery cycles, meditation and quiet time. |
+| **Altruist** | Emotional strain from supporting others | Encourage self‑care routines, peer support groups and gratitude practices. |
+| **Captain** | Stress from leading under pressure | Practise stress‑management techniques, schedule breaks and maintain hobbies. |
+| **Collaborator** | Over‑commitment to others; difficulty saying no | Teach boundary setting, schedule personal time and cultivate assertiveness. |
+| **Maverick** | Fluctuating mood from creative highs and setbacks | Develop resilience, practise mindfulness and ensure stable routines. |
+| **Persuader** | Energy drained from constant engagement and persuasion | Alternate social and solo tasks, take rest days and practise deep breathing. |
+| **Promoter** | Burnout from continual visibility and performance | Designate offline time, ensure sleep quality and foster supportive friendships. |
+| **Adapter** | Stress from juggling multiple roles | Prioritise tasks, practise time management and seek help when needed. |
+| **Craftsman** | Rigid focus leading to neglect of wellbeing | Build physical activity into routine, relax standards occasionally and connect socially. |
+| **Guardian** | Stress from preserving stability; difficulty switching off | Encourage relaxation practices, vacations and team support. |
+| **Operator** | Fatigue from repetitive tasks and high workload | Vary tasks, schedule breaks and engage in rejuvenating activities. |
+| **Individualist** | Isolation and overwork due to independence | Cultivate social connections, take breaks and explore creative hobbies. |
+| **Scholar** | Sleep disruption from research and analysis | Maintain sleep hygiene, practise meditation and balance work with leisure. |
+
+**Using this lens**
+
+* Use the WHO‑5 as a quick pulse check on wellbeing, either periodically or when someone exhibits signs of distress.  Scores below 50 signal that additional support may be neededhttps://www.weguide.health/instruments/who-5-well-being-index#:~:text=The%20WHO,spot%20potential%20issues%20early%20on.
+* Encourage employees to reflect on what activities improve each WHO‑5 item—e.g., exercise may enhance vitality (Item 3), while hobbies increase interest in daily life (Item 5).
+* Combine the WHO‑5 with other lenses (burnout, stress) to build a holistic picture of wellbeing.  Provide targeted interventions and resources based on the combination of scores and profile‑specific challenges.`,
+  },
+  {
+    id: "work-values-inventory-lens",
+    lens: "Work Values Inventory Lens",
+    status: "",
+    source: "Work_Values_Inventory.txt",
+    content: `
+Work Values Inventory Lens
+==========================
+
+**Overview**
+
+The Work Values Inventory (also called the Work Values Assessment) identifies the core rewards people seek from their jobs.  It typically outlines six universal values:
+
+* **Achievement:** Desire for results‑oriented jobs where one can use one’s abilities and see tangible accomplishmentswww.ahfc.us/application/files/5316/3164/1932/work-values-assessment.pdf#:~:text=Definitions%20%E2%80%A2%20Global%20aspects%20of,strongest%20abilities%2C%20giving%20them%20a.
+* **Independence:** Preference for jobs that allow autonomy, decision‑making and creative freedomwww.ahfc.us/application/files/5316/3164/1932/work-values-assessment.pdf#:~:text=Definitions%20%E2%80%A2%20Global%20aspects%20of,strongest%20abilities%2C%20giving%20them%20a.
+* **Recognition:** Seeking advancement, status and prestige in workwww.ahfc.us/application/files/5316/3164/1932/work-values-assessment.pdf#:~:text=Definitions%20%E2%80%A2%20Global%20aspects%20of,strongest%20abilities%2C%20giving%20them%20a.
+* **Relationships:** Valuing jobs that provide opportunities to serve others, build friendships and collaboratewww.ahfc.us/application/files/5316/3164/1932/work-values-assessment.pdf#:~:text=Definitions%20%E2%80%A2%20Global%20aspects%20of,strongest%20abilities%2C%20giving%20them%20a.
+* **Support:** Looking for supportive management and co‑workers who are considerate and fairwww.ahfc.us/application/files/5316/3164/1932/work-values-assessment.pdf#:~:text=Definitions%20%E2%80%A2%20Global%20aspects%20of,strongest%20abilities%2C%20giving%20them%20a.
+* **Working Conditions:** Wanting secure jobs with good pay, comfortable surroundings and predictable workwww.ahfc.us/application/files/5316/3164/1932/work-values-assessment.pdf#:~:text=Definitions%20%E2%80%A2%20Global%20aspects%20of,strongest%20abilities%2C%20giving%20them%20a.
+
+Understanding an individual’s hierarchy of these values helps managers align roles, rewards and recognition.  The values are not mutually exclusive; most people desire a combination, but certain values dominate.
+
+**Work Values Crosswalk by PI Profile**
+
+This table matches each PI profile with its likely top two work values (primary and secondary).  These assignments are based on the behavioural drives associated with each profile.
+
+| PI Profile | Primary work value | Secondary work value | Notes |
+|---|---|---|---|
+| **Analyzer** | Independence | Achievement | Analyzers value autonomy to pursue rigorous analysis and want to see tangible outcomes. |
+| **Controller** | Achievement | Recognition | Controllers seek to accomplish tasks and often measure success through position and authority. |
+| **Specialist** | Relationships | Support | Specialists crave collaboration and dependable support structures to produce high‑quality work. |
+| **Strategist** | Achievement | Independence | Strategists desire challenging goals and the freedom to chart the path. |
+| **Venturer** | Achievement | Independence | Venturers thrive on ambitious targets and autonomy to innovate. |
+| **Altruist** | Relationships | Support | Altruists value meaningful interaction and supportive cultures. |
+| **Captain** | Recognition | Achievement | Captains enjoy leading, gaining prestige and seeing results. |
+| **Collaborator** | Relationships | Recognition | Collaborators seek connection and appreciation for bringing people together. |
+| **Maverick** | Independence | Achievement | Mavericks favour freedom to explore and opportunities to accomplish unique projects. |
+| **Persuader** | Recognition | Independence | Persuaders enjoy status and the freedom to influence others. |
+| **Promoter** | Recognition | Independence | Promoters value prestige and autonomy, often in fast‑paced, public‑facing roles. |
+| **Adapter** | Working Conditions | Relationships | Adapters prefer stable, predictable environments and harmonious relationships. |
+| **Craftsman** | Achievement | Independence | Craftsmen seek mastery and autonomy to perfect their craft. |
+| **Guardian** | Support | Working Conditions | Guardians prioritise security, predictability and a supportive team. |
+| **Operator** | Support | Working Conditions | Operators look for clear expectations, fairness and stable environments. |
+| **Individualist** | Independence | Achievement | Individualists want freedom to innovate and recognition for unique contributions. |
+| **Scholar** | Relationships | Independence | Scholars appreciate collegial relationships and the autonomy to pursue knowledge. |
+
+**Using this lens**
+
+* Align assignments and recognition with an individual’s work values.  For example, an Altruist might be motivated by opportunities to mentor colleagues, whereas a Venturer might be energised by ambitious growth targets.
+* Conflicts often arise when work values clash.  A Controller who prioritises achievement may frustrate a Guardian who values stable working conditions.  Use the crosswalk to anticipate and address these tensions.
+* When designing roles, combine value considerations with other lenses (e.g., decision‑making style, cognitive processing) to create meaningful and motivating work for each team member.`,
+  },
+  {
+    id: "workplace-big-five-pro-lens",
+    lens: "Workplace Big Five Pro Lens",
+    status: "",
+    source: "Workplace_Big_Five_Pro.txt",
+    content: `
+Workplace Big Five Pro Lens
+
+**Overview**
+
+The Workplace Big Five Pro (WBF5) is a psychometrically robust version of the traditional OCEAN model used in organisational psychology.  It measures five broad domains—Need for Stability (N), Extraversion (E), Originality (O), Accommodation (A) and Consolidation (C)—at a facet‑level, providing deeper insight into workplace behaviour.  The crosswalk below summarises the typical scores for each PI profile across these domains, along with their stress expression and a one‑line rationale.  Scores are expressed qualitatively (Low, Moderate, High, Very High) to highlight relative patterns rather than absolute numbers.
+
+**WBF5 Domain Definitions**
+
+* **Need for Stability (N)** – how calm versus reactive a person is under stress.  Low N individuals stay calm; high N individuals are more sensitive to stress.
+* **Extraversion (E)** – degree of sociability and energy.  Low E profiles prefer quiet focus, while high E types are expressive and energised by people.
+* **Originality (O)** – openness to new experiences and innovation.  Low O individuals are concrete and practical; high O profiles are imaginative and abstract.
+* **Accommodation (A)** – tendency to be agreeable versus challenging.  Low A individuals question and assert; high A people are cooperative and sensitive.
+* **Consolidation (C)** – preference for organisation and methodical work.  Low C types are spontaneous; high C profiles are planful and disciplined.
+
+**Crosswalk by PI Profile**
+
+| PI Profile | N (Need for Stability) | E (Extraversion) | O (Originality) | A (Accommodation) | C (Consolidation) | Stress expression | Rationale |
+|---|---|---|---|---|---|---|---|
+| **Analyzer** | Low | Low | Moderate | Low | Very High | Over‑analysis, rigidity | Precision and low social drive create a calm, structured style |
+| **Controller** | Low‑Moderate | Low | Low‑Moderate | Very Low | Very High | Rule‑enforcement and inflexibility | Seeks order and authority with moderate stress tolerance |
+| **Specialist** | Low | Low | Moderate‑High (domain‑specific) | Moderate | Very High | Withdrawal and over‑focus | Depth and precision define their working style |
+| **Strategist** | Low | Moderate | Very High | Low | High | Over‑assertive vision | Systems thinking and drive promote innovation |
+| **Venturer** | Moderate | High | High | Low | Low | Impulsive risk taking | Bold, opportunistic and sociable |
+| **Altruist** | Low | Moderate | Moderate | Very High | Moderate | Over‑accommodation | People‑first orientation with moderate structure |
+| **Captain** | Low | High | Moderate | Low | High | Domineering behaviour | Commanding presence balanced by planning |
+| **Collaborator** | Low | Moderate | Moderate | Very High | Moderate | Conflict avoidance | Harmony and facilitation are central |
+| **Maverick** | Low | High | Very High | Low | Low | Chaos creation | Creative disruptor who resists structure |
+| **Persuader** | Low | Very High | Moderate | Moderate | Low | Over‑selling | Influence and charisma fuel their style |
+| **Promoter** | Moderate | Very High | High | Moderate | Low | Over‑promising | Energetic activation with low structure |
+| **Adapter** | Low | Moderate | Moderate | High | Moderate | Quiet withdrawal | Flexible and relational approach |
+| **Craftsman** | Low | Low | Low | Moderate | Very High | Perfectionism | Quality and standards drive behaviour |
+| **Guardian** | Low | Low | Low | High | Very High | Defensive caution | Stewardship and stability are key |
+| **Operator** | Low | Low | Low | High | Very High | Rigid process | Execution and reliability dominate |
+| **Individualist** | Moderate | Low‑Moderate | Very High | Low | Moderate | Withdrawal into autonomy | Creative and independent thinker |
+| **Scholar** | Low | Low | Very High | Moderate | Very High | Over‑analysis | Analytical and methodical mindset |
+
+**Application guidance**
+
+* High Consolidation (C) profiles (e.g., Analyzer, Controller, Specialist) need structure, planning and clear processes.  Provide detailed instructions and allow time for methodical work.
+* Low Accommodation (A) profiles (e.g., Controller, Strategist, Maverick) may challenge ideas and resist compromise.  Focus on logic and respect their need to debate.
+* High Originality (O) profiles (e.g., Strategist, Maverick, Individualist) thrive on innovation and conceptual thinking.  Engage them with open‑ended problems and strategy work.
+* High Extraversion (E) types (e.g., Persuader, Promoter) gain energy from interaction.  Make space for collaboration and visible recognition.
+* High Need for Stability (N) scores (e.g., Venturer moderate, Promoter moderate) indicate reactivity; anticipate stress triggers and build resilience through clear communication and support.
+`,
+  },
+  {
+    id: "workplace-stress-lens",
+    lens: "Workplace Stress Lens",
+    status: "",
+    source: "Workplace_Stress_Lens.txt",
+    content: `
+Workplace Stress Lens
+=====================
+
+**Overview**
+
+Stress is the nonspecific reaction to demands placed upon the body and mind.  While acute stress can motivate performance, chronic stress undermines health and productivity.  The Workplace Stress Scale™ is an 8‑item tool that helps individuals assess how often they experience common stressors at work—such as unsafe conditions, negative impact on wellbeing, excessive workload, inability to express opinions, interference with personal life, lack of control, inadequate recognition and underutilised skillswww.stress.org/wp-content/uploads/2023/02/The-Workplace-Stress-Scale.pdf#:~:text=Directions%20for%20The%20Workplace%20Stress,statements%20describe%20how%20you%20feel.  Respondents rate each item on a 5‑point scale from “never” to “very often”; total scores indicate stress levels, from chilled out (<15) to potentially dangerous (>31)www.stress.org/wp-content/uploads/2023/02/The-Workplace-Stress-Scale.pdf#:~:text=5.
+
+Interpretation guidelines suggest focusing on items with high scores to identify specific stressors and implementing tailored solutionswww.stress.org/wp-content/uploads/2023/02/The-Workplace-Stress-Scale.pdf.  Since stress responses vary, not all stress‑reduction techniques work for everyonewww.stress.org/wp-content/uploads/2023/02/The-Workplace-Stress-Scale.pdf#:~:text=Some%20Useful%20Tips%20on%20Reducing,prove%20stressful%20when%20arbitrarily%20imposed.
+
+**Stressors Crosswalk by PI Profile**
+
+This table summarises the work stressors most likely to affect each PI profile and suggests targeted interventions.
+
+| PI Profile | Typical stressors (from the Workplace Stress Scale) | Targeted interventions |
+|---|---|---|
+| **Analyzer** | Unreasonable deadlines, lack of control over tasks, underutilised skills | Negotiate realistic timelines, seek autonomy in methods and propose projects aligned with strengths. |
+| **Controller** | Unsafe conditions (metaphorically: chaotic environments), too much work, inadequate recognition | Implement clear processes, delegate workload and request feedback from leaders. |
+| **Specialist** | Inability to express opinions, feeling underappreciated, too many deadlines | Establish regular check‑ins, advocate for recognition and co‑design workloads. |
+| **Strategist** | Excessive workload, interference with personal life, lack of control | Prioritise initiatives, set boundaries and delegate. |
+| **Venturer** | Inadequate recognition, underutilised skills, too many deadlines | Seek stretch assignments, showcase achievements and collaborate on realistic timeframes. |
+| **Altruist** | Unsafe conditions (emotional), feeling that job impacts wellbeing, inability to express feelings | Create psychologically safe spaces, advocate for wellbeing and communicate needs assertively. |
+| **Captain** | Inadequate recognition, too much work, lack of control over resources | Delegate, build support structures and request resources commensurate with responsibility. |
+| **Collaborator** | Inability to express opinions, conflict between work and personal life | Set boundaries, use feedback channels and schedule downtime. |
+| **Maverick** | Too many unreasonable deadlines, lack of autonomy, underutilised creative skills | Negotiate for autonomy, propose innovative projects and manage workload proactively. |
+| **Persuader** | Inadequate recognition, inability to express opinions due to hierarchical constraints | Seek mentorship, build coalitions and develop channels for influence. |
+| **Promoter** | Too much work, underutilised talents, lack of control | Prioritise tasks, advocate for opportunities to use strengths and clarify decision authority. |
+| **Adapter** | Lack of control, unsafe conditions (uncertainty), too many deadlines | Establish clear roles, request structure and prioritise tasks. |
+| **Craftsman** | Underutilised skills, excessive workload, inadequate recognition | Communicate capabilities, negotiate timelines and seek acknowledgement. |
+| **Guardian** | Unsafe conditions (constant change), too much work, lack of control | Advocate for stability, plan workload and build influence. |
+| **Operator** | Too much work, lack of control, underutilised skills | Streamline tasks, request autonomy and propose improvements. |
+| **Individualist** | Inability to express opinions, underutilised skills, lack of control | Negotiate autonomy, find outlets for expression and seek roles aligned with strengths. |
+| **Scholar** | Underutilised skills, lack of recognition, interference with personal life | Seek projects matching expertise, share achievements and manage boundaries. |
+
+**Using this lens**
+
+* Use the Workplace Stress Scale to pinpoint specific stressors rather than relying on a general sense of being stressed.  High scores on particular items indicate targeted areas for actionwww.stress.org/wp-content/uploads/2023/02/The-Workplace-Stress-Scale.pdf#:~:text=Directions%20for%20The%20Workplace%20Stress,statements%20describe%20how%20you%20feel.
+* Address systemic factors such as workload, recognition, autonomy and psychological safety.  Stress interventions should be customised to individual profiles and stressor patterns.
+* Educate teams that stress reduction techniques vary by person.  Encourage experimentation (e.g., jogging, meditation, time management) and respect individual preferenceswww.stress.org/wp-content/uploads/2023/02/The-Workplace-Stress-Scale.pdf#:~:text=Some%20Useful%20Tips%20on%20Reducing,prove%20stressful%20when%20arbitrarily%20imposed.`,
+  },
 ];
 
 // Index by id for O(1) lookup
