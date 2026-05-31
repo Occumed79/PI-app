@@ -336,9 +336,9 @@ export default function EmployeeBuilder() {
     setEmployee((current) => ({ ...current, [field]: value }));
   }
 
-  function saveCurrentProfile() {
+  function createCurrentProfile() {
     const normalized = touchSavedProfile(normalizeSavedProfile({
-      id: activeProfileId && employee.name ? activeProfileId : makeProfileId(),
+      id: makeProfileId(),
       employee: {
         name: employee.name || 'Untitled employee profile',
         role: employee.role,
@@ -347,11 +347,12 @@ export default function EmployeeBuilder() {
       },
       baseProfileName,
     }));
-    const next = [normalized, ...savedProfiles.filter((item) => item.id !== normalized.id)];
+    const next = [normalized, ...savedProfiles];
     setSavedProfiles(next);
     saveProfilesToStorage(next);
     setActiveProfileId(normalized.id);
-    setNotice(`Saved ${normalized.employee.name}. ${canonicalLenses.length} cleaned lenses now apply automatically through ${normalized.baseProfileName}.`);
+    setSelectedLensId(null);
+    setNotice(`Created ${normalized.employee.name}. ${canonicalLenses.length} cleaned lenses now apply automatically through ${normalized.baseProfileName}.`);
     setEmployee({ name: '', role: '', department: '', notes: '' });
   }
 
@@ -429,8 +430,8 @@ export default function EmployeeBuilder() {
               </select>
             </label>
             <TextArea label="Notes" value={employee.notes} onChange={(value) => updateEmployee('notes', value)} placeholder="Optional context or manager notes." />
-            <button type="button" onClick={saveCurrentProfile} className="inline-flex items-center justify-center gap-2 rounded-2xl border border-emerald-300/30 bg-emerald-500/15 px-4 py-3 text-sm font-semibold text-white hover:bg-emerald-500/25">
-              <Save className="h-4 w-4" /> Create / Save employee card
+            <button type="button" onClick={createCurrentProfile} className="inline-flex items-center justify-center gap-2 rounded-2xl border border-emerald-300/30 bg-emerald-500/15 px-4 py-3 text-sm font-semibold text-white hover:bg-emerald-500/25">
+              <Save className="h-4 w-4" /> Create employee card
             </button>
             {notice && <div className="rounded-2xl border border-white/10 bg-white/[0.05] px-4 py-3 text-sm text-white/65">{notice}</div>}
           </div>
