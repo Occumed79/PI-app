@@ -21,6 +21,22 @@ export const PI_PROFILES = [
 export const PROFILE_GROUPS = {
   Analytical:  { color:"from-sky-500 to-indigo-600",    bg:"bg-sky-500/10",     border:"border-sky-400/30",     dot:"bg-sky-400"    },
   Social:      { color:"from-fuchsia-500 to-rose-500",  bg:"bg-fuchsia-500/10", border:"border-fuchsia-400/30", dot:"bg-fuchsia-400" },
-  Stabilizing: { color:"from-emerald-500 to-teal-500",  bg:"bg-emerald-500/10", border:"border-emerald-400/30", dot:"bg-emerald-400" },
+  Stabilizing: { color:"from-emerald-500 to-teal-500",  bg:"bg-emerald-500/10", border:"border-emerald-400/30", dot:"bg-emerald-400"   },
   Persistent:  { color:"from-amber-500 to-orange-500",  bg:"bg-amber-500/10",   border:"border-amber-400/30",   dot:"bg-amber-400"   },
 };
+
+// Backward-compatible exports used by FullApp.jsx and older components.
+export const groups = PROFILE_GROUPS;
+
+export const profiles = PI_PROFILES.map((profile) => ({
+  ...profile,
+  scores: {
+    Dominance: profile.dominance,
+    Extraversion: profile.extraversion,
+    Patience: profile.patience,
+    Formality: profile.formality,
+  },
+  behaviors: profile.behaviors || [],
+  workWith: profile.workWith || profile.needs || [],
+  bestFor: profile.bestFor || [],
+}));
