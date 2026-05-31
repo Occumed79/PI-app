@@ -421,7 +421,7 @@ export default function EmployeeBuilder() {
           <div className="grid gap-4">
             <TextInput label="Employee name or alias" value={employee.name} onChange={(value) => updateEmployee('name', value)} placeholder="Employee A" />
             <TextInput label="Role / job title" value={employee.role} onChange={(value) => updateEmployee('role', value)} placeholder="Case Manager, QA Analyst, Supervisor..." />
-            <TextInput label="Department / team" value={employee.department} onChange={(value) => updateEmployee('department')} placeholder="Team / department" />
+            <TextInput label="Department / team" value={employee.department} onChange={(value) => updateEmployee('department', value)} placeholder="Team / department" />
             <label className="block">
               <span className="mb-2 block text-sm text-white/60">Connected PI profile</span>
               <select value={baseProfileName} onChange={(event) => setBaseProfileName(event.target.value)} className="w-full rounded-2xl border border-white/10 bg-black/30 px-4 py-3 text-sm text-white outline-none focus:border-sky-300/40">
