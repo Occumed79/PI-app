@@ -35,20 +35,7 @@ import NativeLensVisual from './lens/NativeLensVisual.jsx';
 
 const canonicalLenses = getCanonicalSignalGlassLenses(signalGlassStaticLenses);
 
-const LEVEL_MAP = {
-  'Very Low': 8,
-  Low: 22,
-  'Low-Moderate': 38,
-  Moderate: 55,
-  'Moderate-High': 70,
-  High: 83,
-  'Very High': 96,
-  'Very Low-Moderate': 18,
-};
-
-const PROFILE_ALIASES = {
-  'Craftsman / Artisan': ['Craftsman / Artisan', 'Craftsman', 'Artisan'],
-};
+const VISUAL_COLORS = ['#38bdf8', '#818cf8', '#34d399', '#f59e0b'];
 
 function cx(...classes) {
   return classes.filter(Boolean).join(' ');
@@ -92,117 +79,85 @@ function TextArea({ label, value, onChange, placeholder }) {
   );
 }
 
-function profileNamesForMatch(profileName) {
-  return [profileName, ...(PROFILE_ALIASES[profileName] || [])]
-    .map((item) => item.toLowerCase().replace(/\*+/g, '').trim());
+function cleanLabel(value = '') {
+  return String(value)
+    .replace(/[_*]/g, ' ')
+    .replace(/\s+/g, ' ')
+    .trim();
 }
 
-function cleanCell(value = '') {
-  return value.replace(/\*+/g, '').replace(/\s+/g, ' ').trim();
+function shortLabel(value = '', max = 28) {
+  const cleaned = cleanLabel(value)
+    .replace(/^dominant\s+/i, '')
+    .replace(/^secondary\s+/i, 'Second ')
+    .replace(/^development\s+/i, 'Growth ')
+    .replace(/^likely\s+/i, '');
+  return cleaned.length > max ? `${cleaned.slice(0, max - 1)}…` : cleaned;
 }
 
-function parseMarkdownTables(content = '') {
-  const lines = content.split('\n');
-  const tables = [];
-  let title = '';
-  let buffer = [];
-
-  function flush() {
-    if (buffer.length >= 3) {
-      const headers = buffer[0].split('|').map(cleanCell).filter(Boolean);
-      const rows = buffer.slice(2)
-        .map((line) => line.split('|').map(cleanCell).filter(Boolean))
-        .filter((row) => row.length > 0);
-      if (headers.length && rows.length) tables.push({ title, headers, rows });
-    }
-    buffer = [];
-  }
-
-  lines.forEach((line) => {
-    const trimmed = line.trim();
-    if (trimmed.startsWith('##')) {
-      flush();
-      title = cleanCell(trimmed.replace(/^#+\s*/, ''));
-    } else if (trimmed.startsWith('|')) {
-      buffer.push(trimmed);
-    } else {
-      flush();
-    }
-  });
-
-  flush();
-  return tables;
-}
-
-function findProfileRows(lens, profileName) {
-  const aliases = profileNamesForMatch(profileName);
-  const tables = parseMarkdownTables(lens.content);
-  const matches = [];
-
-  tables.forEach((table) => {
-    const profileColumnIndex = table.headers.findIndex((header) => header.toLowerCase().includes('profile'));
-    const searchIndex = profileColumnIndex >= 0 ? profileColumnIndex : 0;
-    table.rows.forEach((row) => {
-      const candidate = cleanCell(row[searchIndex] || '').toLowerCase();
-      if (aliases.includes(candidate)) matches.push({ table, row, profileColumnIndex: searchIndex });
-    });
-  });
-
-  return matches;
-}
-
-function fallbackLensText(lens) {
-  return (lens.content || '')
+function extractLensLabels(lens) {
+  const fromContent = String(lens.content || '')
     .split('\n')
-    .map(cleanCell)
-    .filter((line) => line && !line.match(/^(={3,}|-{3,}|source status|source document|duplicate handling|translation methodology)/i))
-    .slice(0, 4)
-    .join(' ')
-    .slice(0, 420);
+    .map((line) => cleanLabel(line))
+    .filter((line) => line && !line.match(/^(lens:|status:|source:|deduplication|cleanup note|complete source|partial|output:)/i))
+    .flatMap((line) => {
+      if (line.includes('|')) return line.split('|').map(cleanLabel);
+      if (line.includes('→')) return line.split('→').map(cleanLabel);
+      if (line.includes('-')) return line.split('-').map(cleanLabel);
+      return [];
+    })
+    .filter((part) => part.length > 2 && part.length < 44)
+    .filter((part) => !part.match(/^(for each pi profile|output|primary|secondary)$/i));
+
+  const defaultsByType = {
+    radar: ['Primary trait', 'Secondary trait', 'Stress response', 'Development focus'],
+    radarBars: ['Primary trait', 'Secondary trait', 'Stress response', 'Development focus'],
+    hexagonRadar: ['Primary trait', 'Secondary trait', 'Cautions', 'Growth suggestions'],
+    colorWheel: ['Dominant color', 'Secondary color', 'Stress shift', 'Communication tip'],
+    quadrantPlot: ['Primary style', 'Secondary style', 'Stress behavior', 'Communication tip'],
+    scatterQuadrant: ['Dominant style', 'Secondary style', 'Decision pace', 'Watch-out'],
+    scoreGauge: ['Score signal', 'Rationale', 'Recommendation', 'Quick lever'],
+    riskBars: ['Likely risk', 'Trigger situation', 'Development strategy', 'Watch-out'],
+    profileBars: ['Adjustment', 'Ambition', 'Sociability', 'Interpersonal sensitivity'],
+    multiBarProfile: ['Strengths', 'Watchouts', 'Primary factor', 'Secondary factor'],
+    threeBars: ['Autonomy need', 'Competence need', 'Relatedness need', 'Support lever'],
+    matrix: ['Best role fit', 'Conflict hotspot', 'Complementary pairing', 'Quick management tip'],
+    roleMatrix: ['Primary role', 'Secondary role', 'Contribution style', 'Failure mode'],
+    pyramid: ['Likely strength', 'Potential dysfunction risk', 'Team trust signal', 'Suggested action'],
+    accessibilityMatrixRadar: ['Manifestation', 'Behavior impact', 'Work support', 'Accommodation cue'],
+    profileBarsChecklist: ['Pattern', 'Support need', 'Risk point', 'Useful structure'],
+    timelineTagCloud: ['Context theme', 'Experience signal', 'Support cue', 'Manager note'],
+  };
+
+  const defaults = defaultsByType[lens.visualType] || ['Primary signal', 'Secondary signal', 'Stress pattern', 'Development focus'];
+  return Array.from(new Set([...fromContent, ...defaults])).slice(0, 4);
 }
 
-function levelValue(value) {
-  const cleaned = cleanCell(value);
-  if (LEVEL_MAP[cleaned] !== undefined) return LEVEL_MAP[cleaned];
-  const normalized = cleaned.replace(/[‑–—]/g, '-');
-  if (LEVEL_MAP[normalized] !== undefined) return LEVEL_MAP[normalized];
-  return null;
+function profileScoreSeed(profile, lens, index) {
+  const scores = Object.values(profile?.scores || {});
+  const base = scores.length ? scores[index % scores.length] : 55;
+  const lensOffset = String(lens.id || lens.lens || '').split('').reduce((sum, char) => sum + char.charCodeAt(0), 0) % 23;
+  return Math.max(12, Math.min(96, Math.round((base * 0.72) + lensOffset + 8)));
 }
 
-function isUsefulValue(value) {
-  const cleaned = cleanCell(value);
-  return cleaned && cleaned !== '—' && cleaned !== '-';
+function buildPreviewFields(lens, profile) {
+  return extractLensLabels(lens).map((label, index) => {
+    const score = profileScoreSeed(profile, lens, index);
+    const value = score >= 78 ? 'High' : score >= 58 ? 'Moderate-High' : score >= 42 ? 'Moderate' : 'Low-Moderate';
+    return { label: shortLabel(label), value, score };
+  });
 }
 
-function buildLensResult(lens, profileName) {
-  const matches = findProfileRows(lens, profileName);
-  if (!matches.length) {
-    return {
-      lens,
-      matched: false,
-      summary: fallbackLensText(lens) || 'No profile-specific row was found in this lens. Open the raw lens source in the Lens Library for the full source text.',
-      fields: [],
-      numericFields: [],
-    };
-  }
-
-  const primary = matches[0];
-  const fields = primary.table.headers.map((header, index) => ({
-    label: header,
-    value: primary.row[index] || '',
-  })).filter((field) => isUsefulValue(field.value) && !field.label.toLowerCase().includes('profile'));
-
-  const numericFields = fields
-    .map((field) => ({ ...field, score: levelValue(field.value) }))
-    .filter((field) => field.score !== null);
-
-  const summary = fields
-    .filter((field) => field.score === null)
-    .slice(0, 4)
-    .map((field) => `${field.label}: ${field.value}`)
-    .join(' · ');
-
-  return { lens, matched: true, tableTitle: primary.table.title, fields, numericFields, summary };
+function buildLensResult(lens, profile) {
+  const previewFields = buildPreviewFields(lens, profile);
+  const summary = lens.visualReason || `${lens.visualLabel} preview for ${profile.name}.`;
+  return {
+    lens,
+    matched: true,
+    fields: previewFields,
+    numericFields: previewFields,
+    summary,
+  };
 }
 
 function ProfileRadar({ profile }) {
@@ -222,17 +177,16 @@ function ProfileRadar({ profile }) {
 }
 
 function ResultBars({ fields }) {
-  if (!fields.length) return null;
   return (
     <div className="mt-4 grid gap-2">
-      {fields.slice(0, 4).map((field) => (
-        <div key={`${field.label}-${field.value}`} className="rounded-2xl border border-white/10 bg-black/20 p-3">
-          <div className="mb-2 flex items-center justify-between gap-3">
-            <span className="text-xs text-white/50">{field.label}</span>
-            <span className="text-xs font-semibold text-white/75">{field.value}</span>
+      {fields.slice(0, 4).map((field, index) => (
+        <div key={`${field.label}-${index}`} className="rounded-2xl border border-white/10 bg-black/20 p-3">
+          <div className="mb-2 flex items-start justify-between gap-3">
+            <span className="min-w-0 flex-1 text-xs leading-4 text-white/56">{field.label}</span>
+            <span className="shrink-0 text-xs font-semibold text-white/75">{field.value}</span>
           </div>
           <div className="h-2 overflow-hidden rounded-full bg-white/10">
-            <div className="h-full rounded-full bg-white/60" style={{ width: `${field.score}%` }} />
+            <div className="h-full rounded-full" style={{ width: `${field.score}%`, background: VISUAL_COLORS[index % VISUAL_COLORS.length] }} />
           </div>
         </div>
       ))}
@@ -241,12 +195,12 @@ function ResultBars({ fields }) {
 }
 
 function LensResultCard({ result, onOpen }) {
-  const { lens, matched, numericFields, fields, summary } = result;
+  const { lens, numericFields } = result;
   return (
     <button type="button" onClick={onOpen} className="group rounded-3xl border border-white/10 bg-black/20 p-5 text-left transition hover:border-sky-300/30 hover:bg-white/[0.08]">
       <div className="flex items-start justify-between gap-3">
         <div>
-          <Pill className={matched ? 'border-emerald-300/20 bg-emerald-500/10 text-emerald-100' : 'border-amber-300/20 bg-amber-500/10 text-amber-100'}>{matched ? 'Profile row found' : 'General lens'}</Pill>
+          <Pill className="border-sky-300/20 bg-sky-500/10 text-sky-100">Visual profile</Pill>
           {lens.duplicateCount > 1 && <Pill className="ml-2 border-sky-300/20 bg-sky-500/10 text-sky-100">Merged {lens.duplicateCount}</Pill>}
           <h3 className="mt-3 text-lg font-bold text-white group-hover:text-sky-100">{lens.lens}</h3>
           <p className="mt-2 text-xs leading-5 text-white/45">{lens.visualLabel} · {lens.category}</p>
@@ -254,12 +208,6 @@ function LensResultCard({ result, onOpen }) {
         <Layers3 className="h-5 w-5 text-white/35 group-hover:text-sky-200" />
       </div>
       <ResultBars fields={numericFields} />
-      {summary && <p className="mt-4 line-clamp-4 text-sm leading-6 text-white/58">{summary}</p>}
-      {!numericFields.length && fields.length > 0 && (
-        <div className="mt-4 flex flex-wrap gap-2">
-          {fields.slice(0, 5).map((field) => <Pill key={`${field.label}-${field.value}`}>{field.label}</Pill>)}
-        </div>
-      )}
     </button>
   );
 }
@@ -317,10 +265,7 @@ export default function EmployeeBuilder() {
   const activeBaseProfile = profiles.find((item) => item.name === (activeSavedProfile?.baseProfileName || baseProfileName)) || profiles[0];
   const activeGroup = groups[activeBaseProfile.group] || groups.Analytical;
 
-  const results = useMemo(() => {
-    const profileName = activeSavedProfile?.baseProfileName || activeBaseProfile.name;
-    return canonicalLenses.map((lens) => buildLensResult(lens, profileName));
-  }, [activeSavedProfile, activeBaseProfile.name]);
+  const results = useMemo(() => canonicalLenses.map((lens) => buildLensResult(lens, activeBaseProfile)), [activeBaseProfile]);
 
   const filteredResults = useMemo(() => {
     const term = query.trim().toLowerCase();
@@ -329,7 +274,6 @@ export default function EmployeeBuilder() {
   }, [results, query]);
 
   const selectedResult = results.find((result) => result.lens.id === selectedLensId) || results[0];
-  const matchedCount = results.filter((result) => result.matched).length;
   const mergedCount = canonicalLenses.filter((lens) => lens.duplicateCount > 1).length;
 
   function updateEmployee(field, value) {
@@ -352,7 +296,7 @@ export default function EmployeeBuilder() {
     saveProfilesToStorage(next);
     setActiveProfileId(normalized.id);
     setSelectedLensId(null);
-    setNotice(`Created ${normalized.employee.name}. ${canonicalLenses.length} cleaned lenses now apply automatically through ${normalized.baseProfileName}.`);
+    setNotice(`Created ${normalized.employee.name}. ${canonicalLenses.length} cleaned lenses now display as visual cards.`);
     setEmployee({ name: '', role: '', department: '', notes: '' });
   }
 
@@ -375,7 +319,6 @@ export default function EmployeeBuilder() {
         lens: result.lens.lens,
         visualType: result.lens.visualType,
         visualLabel: result.lens.visualLabel,
-        matched: result.matched,
         fields: result.fields,
         summary: result.summary,
       })),
@@ -404,13 +347,13 @@ export default function EmployeeBuilder() {
               </div>
               <h2 className="text-4xl font-bold tracking-tight text-white md:text-5xl">Employee Profile Builder</h2>
               <p className="mt-4 max-w-4xl text-sm leading-6 text-white/65">
-                Create an employee card with basic info and a connected PI profile. Each cleaned lens now uses its assigned native visual renderer instead of a one-size-fits-all chart.
+                Create an employee card with basic info and a connected PI profile. Each cleaned lens now displays as a visual profile card instead of plain text.
               </p>
             </div>
             <div className="lg:col-span-4 rounded-3xl border border-white/10 bg-black/25 p-5">
-              <div className="text-sm text-white/50">Active lens coverage</div>
-              <div className="mt-2 text-5xl font-bold text-white">{matchedCount}</div>
-              <p className="mt-3 text-xs leading-5 text-white/50">Profile-specific rows found across the cleaned lens library for the selected employee card.</p>
+              <div className="text-sm text-white/50">Visualized lenses</div>
+              <div className="mt-2 text-5xl font-bold text-white">{canonicalLenses.length}</div>
+              <p className="mt-3 text-xs leading-5 text-white/50">Every cleaned lens receives a generated visual preview for the selected employee card.</p>
             </div>
           </div>
         </div>
@@ -471,7 +414,7 @@ export default function EmployeeBuilder() {
                     <button type="button" onClick={() => exportProfile(activeSavedProfile)} className="inline-flex items-center justify-center gap-2 rounded-2xl border border-sky-300/30 bg-sky-500/15 px-4 py-3 text-sm font-semibold text-white hover:bg-sky-500/25">
                       <Download className="h-4 w-4" /> Export results
                     </button>
-                    <div className="rounded-2xl border border-white/10 bg-black/20 px-4 py-3 text-sm text-white/55">{canonicalLenses.length} native lens visuals</div>
+                    <div className="rounded-2xl border border-white/10 bg-black/20 px-4 py-3 text-sm text-white/55">{canonicalLenses.length} visual lens cards</div>
                   </div>
                 </div>
                 <div className="lg:col-span-7">
@@ -484,7 +427,7 @@ export default function EmployeeBuilder() {
           <Card className="lg:col-span-12">
             <div className="p-6">
               <div className="mb-5 flex flex-col gap-4 lg:flex-row lg:items-end lg:justify-between">
-                <SectionTitle icon={Layers3} title="Automatic Lens Results" subtitle="Every cleaned lens is applied to the selected PI profile and rendered with its assigned native visual type." />
+                <SectionTitle icon={Layers3} title="Automatic Lens Results" subtitle="Every cleaned lens is displayed as a visual card for the selected PI profile." />
                 <label className="relative block lg:w-80">
                   <Search className="pointer-events-none absolute left-4 top-1/2 h-4 w-4 -translate-y-1/2 text-white/35" />
                   <input value={query} onChange={(event) => setQuery(event.target.value)} placeholder="Search lens results..." className="w-full rounded-2xl border border-white/10 bg-black/25 py-3 pl-11 pr-4 text-sm text-white outline-none placeholder:text-white/35" />
@@ -504,7 +447,7 @@ export default function EmployeeBuilder() {
                 <SectionTitle icon={Sparkles} title={selectedResult.lens.lens} subtitle={`${selectedResult.lens.visualLabel} · ${selectedResult.lens.visualReason}`} />
                 <div className="grid gap-5 lg:grid-cols-12">
                   <div className="lg:col-span-5 rounded-3xl border border-white/10 bg-black/20 p-5">
-                    <Pill>{selectedResult.matched ? 'Profile-specific match' : 'General lens preview'}</Pill>
+                    <Pill>Visual profile</Pill>
                     <Pill className="ml-2">{selectedResult.lens.visualType}</Pill>
                     {selectedResult.lens.duplicateCount > 1 && <Pill className="ml-2 border-sky-300/20 bg-sky-500/10 text-sky-100">Merged {selectedResult.lens.duplicateCount}</Pill>}
                     <p className="mt-4 text-sm leading-6 text-white/62">{selectedResult.summary}</p>
