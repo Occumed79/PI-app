@@ -14,17 +14,12 @@ import {
   UserRound,
 } from 'lucide-react';
 import {
-  Bar,
-  BarChart,
-  CartesianGrid,
   PolarAngleAxis,
   PolarGrid,
   Radar,
   RadarChart,
   ResponsiveContainer,
   Tooltip,
-  XAxis,
-  YAxis,
 } from 'recharts';
 import { signalGlassStaticLenses } from '../data/signalGlassStaticLenses.js';
 import { getCanonicalSignalGlassLenses } from '../data/lensVisualRegistry.js';
@@ -36,6 +31,7 @@ import {
   saveProfilesToStorage,
   touchSavedProfile,
 } from '../data/savedProfiles.js';
+import NativeLensVisual from './lens/NativeLensVisual.jsx';
 
 const canonicalLenses = getCanonicalSignalGlassLenses(signalGlassStaticLenses);
 
@@ -229,7 +225,7 @@ function ResultBars({ fields }) {
   if (!fields.length) return null;
   return (
     <div className="mt-4 grid gap-2">
-      {fields.slice(0, 6).map((field) => (
+      {fields.slice(0, 4).map((field) => (
         <div key={`${field.label}-${field.value}`} className="rounded-2xl border border-white/10 bg-black/20 p-3">
           <div className="mb-2 flex items-center justify-between gap-3">
             <span className="text-xs text-white/50">{field.label}</span>
@@ -407,7 +403,7 @@ export default function EmployeeBuilder() {
               </div>
               <h2 className="text-4xl font-bold tracking-tight text-white md:text-5xl">Employee Profile Builder</h2>
               <p className="mt-4 max-w-4xl text-sm leading-6 text-white/65">
-                Create an employee card with basic info and a connected PI profile. The app now uses the cleaned canonical lens list so duplicate framework entries do not produce mismatched visuals.
+                Create an employee card with basic info and a connected PI profile. Each cleaned lens now uses its assigned native visual renderer instead of a one-size-fits-all chart.
               </p>
             </div>
             <div className="lg:col-span-4 rounded-3xl border border-white/10 bg-black/25 p-5">
@@ -425,7 +421,7 @@ export default function EmployeeBuilder() {
           <div className="grid gap-4">
             <TextInput label="Employee name or alias" value={employee.name} onChange={(value) => updateEmployee('name', value)} placeholder="Employee A" />
             <TextInput label="Role / job title" value={employee.role} onChange={(value) => updateEmployee('role', value)} placeholder="Case Manager, QA Analyst, Supervisor..." />
-            <TextInput label="Department / team" value={employee.department} onChange={(value) => updateEmployee('department', value)} placeholder="Team / department" />
+            <TextInput label="Department / team" value={employee.department} onChange={(value) => updateEmployee('department')} placeholder="Team / department" />
             <label className="block">
               <span className="mb-2 block text-sm text-white/60">Connected PI profile</span>
               <select value={baseProfileName} onChange={(event) => setBaseProfileName(event.target.value)} className="w-full rounded-2xl border border-white/10 bg-black/30 px-4 py-3 text-sm text-white outline-none focus:border-sky-300/40">
@@ -474,7 +470,7 @@ export default function EmployeeBuilder() {
                     <button type="button" onClick={() => exportProfile(activeSavedProfile)} className="inline-flex items-center justify-center gap-2 rounded-2xl border border-sky-300/30 bg-sky-500/15 px-4 py-3 text-sm font-semibold text-white hover:bg-sky-500/25">
                       <Download className="h-4 w-4" /> Export results
                     </button>
-                    <div className="rounded-2xl border border-white/10 bg-black/20 px-4 py-3 text-sm text-white/55">{canonicalLenses.length} cleaned lenses applied automatically</div>
+                    <div className="rounded-2xl border border-white/10 bg-black/20 px-4 py-3 text-sm text-white/55">{canonicalLenses.length} native lens visuals</div>
                   </div>
                 </div>
                 <div className="lg:col-span-7">
@@ -487,7 +483,7 @@ export default function EmployeeBuilder() {
           <Card className="lg:col-span-12">
             <div className="p-6">
               <div className="mb-5 flex flex-col gap-4 lg:flex-row lg:items-end lg:justify-between">
-                <SectionTitle icon={Layers3} title="Automatic Lens Results" subtitle="Every cleaned lens is applied to the selected PI profile. Duplicate framework variants are merged into one canonical output." />
+                <SectionTitle icon={Layers3} title="Automatic Lens Results" subtitle="Every cleaned lens is applied to the selected PI profile and rendered with its assigned native visual type." />
                 <label className="relative block lg:w-80">
                   <Search className="pointer-events-none absolute left-4 top-1/2 h-4 w-4 -translate-y-1/2 text-white/35" />
                   <input value={query} onChange={(event) => setQuery(event.target.value)} placeholder="Search lens results..." className="w-full rounded-2xl border border-white/10 bg-black/25 py-3 pl-11 pr-4 text-sm text-white outline-none placeholder:text-white/35" />
@@ -513,30 +509,8 @@ export default function EmployeeBuilder() {
                     <p className="mt-4 text-sm leading-6 text-white/62">{selectedResult.summary}</p>
                     <div className="mt-4 text-xs leading-5 text-white/35">Source: {selectedResult.lens.source || 'Uploaded source'} · Category: {selectedResult.lens.category}</div>
                   </div>
-                  <div className="lg:col-span-7 rounded-3xl border border-white/10 bg-black/20 p-5">
-                    {selectedResult.numericFields.length > 0 ? (
-                      <div className="h-72">
-                        <ResponsiveContainer width="100%" height="100%">
-                          <BarChart data={selectedResult.numericFields.slice(0, 8)} margin={{ top: 10, right: 20, left: -20, bottom: 0 }}>
-                            <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,.08)" />
-                            <XAxis dataKey="label" tick={{ fill: 'rgba(255,255,255,.55)', fontSize: 10 }} interval={0} angle={-20} textAnchor="end" height={70} />
-                            <YAxis domain={[0, 100]} tick={{ fill: 'rgba(255,255,255,.45)', fontSize: 11 }} />
-                            <Tooltip contentStyle={{ background: 'rgba(15,23,42,.95)', border: '1px solid rgba(255,255,255,.12)', borderRadius: 16, color: '#fff' }} />
-                            <Bar dataKey="score" radius={[10, 10, 4, 4]} fill="rgba(125,211,252,.78)" />
-                          </BarChart>
-                        </ResponsiveContainer>
-                      </div>
-                    ) : (
-                      <div className="grid gap-3 md:grid-cols-2">
-                        {selectedResult.fields.slice(0, 10).map((field) => (
-                          <div key={`${field.label}-${field.value}`} className="rounded-2xl border border-white/10 bg-white/[0.05] p-4">
-                            <div className="text-xs uppercase tracking-[0.16em] text-white/35">{field.label}</div>
-                            <div className="mt-2 text-sm leading-6 text-white/70">{field.value}</div>
-                          </div>
-                        ))}
-                        {!selectedResult.fields.length && <div className="text-sm leading-6 text-white/50">No structured profile row was available for this lens.</div>}
-                      </div>
-                    )}
+                  <div className="lg:col-span-7">
+                    <NativeLensVisual lens={selectedResult.lens} result={selectedResult} profile={activeBaseProfile} />
                   </div>
                 </div>
               </div>
