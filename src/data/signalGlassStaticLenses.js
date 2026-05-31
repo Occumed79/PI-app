@@ -1276,7 +1276,7 @@ Every profile has a unique SDT signature.
  SELF‑DETERMINATION THEORY — COMPLETE
 This lens moves from  →  COMPLETE.
 `,
-  }
+  },
   {
     id: "16pf",
     lens: "16PF",
