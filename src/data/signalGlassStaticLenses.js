@@ -1277,6 +1277,1432 @@ Every profile has a unique SDT signature.
 This lens moves from  →  COMPLETE.
 `,
   }
+  {
+    id: "16pf",
+    lens: "16PF",
+    status: "Finished / Done",
+    source: "SignalGlass \u2014 Extracted Results",
+    content: `SignalGlass Lens 06 — 16PF
+==========================
+
+Source status: Finished / Done
+Source document: SignalGlass — Extracted Results
+
+Duplicate handling applied from the source document:
+- Hogan HDS (Derailers) appeared in both the Personality section and Leadership section; it is kept once as a completed leadership/derailer lens.
+- “Lived experiences” appeared separately but duplicated Lived Experience Context Lens; it is not exported as a finished lens because the source marks that lens as not done.
+- Workplace Big Five Pro appeared twice with conflicting status; it is not exported as a finished lens because the source says only OCEAN-level mapping was partially applied and Pro-specific facets were not completed.
+
+Translation methodology preserved from the source document:
+- PI inputs used: Dominance, Extraversion, Patience, and Formality.
+- Shared-construct translation: similar constructs are mapped across frameworks where conceptually aligned.
+- Known correlations: for example, high Formality and Patience support Conscientiousness-like interpretations; Dominance supports agency/assertiveness interpretations.
+- Qualitative PI profile descriptors are used as supporting evidence, such as risk-taking, cautious, innovative, perfectionistic, supportive, or process-oriented.
+- Outputs are non-diagnostic. They should be read as “this PI profile pattern is consistent with…” rather than as clinical, medical, or definitive personality diagnoses.
+
+
+SOURCE-DERIVED LENS CONTENT
+---------------------------
+### LENS 6: 16PF — Selected Key Factors per Profile
+*(Likely / Moderate / Unlikely — summarised from full micro-level mapping)*
+
+| Profile | Warmth (A) | Reasoning (B) | Rule-Consc. (G) | Social Boldness (H) | Perfectionism (Q3) | Tension (Q4) |
+|---|---|---|---|---|---|---|
+| Analyzer | Low | Very Likely | High | Unlikely | Very Likely | Moderate |
+| Controller | Low | Moderate | Very Likely | Low | Very Likely | Moderate |
+| Specialist | Low | Very Likely | High | Low | Very Likely | Moderate |
+| Strategist | Moderate | Very Likely | Moderate | Moderate | High | Moderate |
+| Venturer | Moderate | Likely | Low | High | Low | Moderate |
+| Altruist | High | Moderate | High | Moderate | Moderate | Low |
+| Captain | Moderate | Likely | Moderate | Very Likely | Moderate | Low |
+| Collaborator | High | Moderate | Moderate | Moderate | Low | Low |
+| Maverick | Moderate | High | Low | Very Likely | Low | Low |
+| Persuader | High | Moderate | Low | High | Low | Low |
+| Promoter | High | Moderate | Low | Very Likely | Low | Moderate-High |
+| Adapter | High | Moderate | Moderate | Moderate | Low | Low |
+| Craftsman | Low | Likely | High | Low | Very Likely | Low |
+| Guardian | Moderate | Moderate | Very Likely | Low | High | Low |
+| Operator | Moderate | Moderate | Very Likely | Low | High | Low |
+| Individualist | Low | Very Likely | Low | Low | Moderate | Moderate |
+| Scholar | Low | Very Likely | High | Low | Very Likely | Moderate |
+
+---
+
+IMPLEMENTATION NOTES
+--------------------
+The source provides selected 16PF factors, not the full 16-factor matrix. The finished file should therefore be treated as a selected-factor crosswalk.
+
+Recommended SignalGlass UI fields:
+- warmth_A
+- reasoning_B
+- rule_consciousness_G
+- social_boldness_H
+- perfectionism_Q3
+- tension_Q4
+- dominant_16pf_pattern
+- interpretation_note
+`,
+  },
+  {
+    id: "learning-design-style-non-vark",
+    lens: "Learning Design Style (non-VARK)",
+    status: "Partially Done \u2192 now completing fully",
+    source: "Untitled 5.txt",
+    content: `LENS: Learning Design Style (non-VARK)
+STATUS: COMPLETE
+SOURCE: Untitled 5.txt
+DEDUPLICATION / CLEANUP NOTE: Duplicate status/check-in text was removed. Content is preserved from the uploaded document.
+================================================================================
+
+LEARNING DESIGN STYLE (NON‑VARK)
+Status:  Partially Done → now completing fully
+Output: For each PI profile →
+  - Dominant Kolb learning style
+  - Secondary learning mode
+  - Workplace learning preference
+  - Stress‑mode learning behavior
+  - One‑line rationale
+  - Guided Links for deeper dives
+This lens uses Kolb’s Experiential Learning Cycle, which is the gold standard for workplace learning design.
+
+🎡 THE 4 KOLB LEARNING STYLES
+1. Converger (AC + AE)
+Analytical → practical application
+“Tell me the model, then let me test it.”
+2. Diverger (CE + RO)
+People‑focused → imaginative → reflective
+“Show me the human angle and possibilities.”
+3. Assimilator (AC + RO)
+Abstract → conceptual → structured
+“Give me the theory and framework.”
+4. Accommodator (CE + AE)
+Hands‑on → trial‑and‑error → action
+“Let me try it and learn by doing.”
+
+ FULL CROSSWALK — ALL 17 PI PROFILES
+
+1. Analyzer
+  - Dominant: Assimilator
+  - Secondary: Converger
+  - Workplace Preference: Models → frameworks → structured practice
+  - Stress Mode: Over‑analysis, slow iteration
+  - Rationale: Precision + structure
+  - Deep dive: Analyzer Learning Style
+
+2. Controller
+  - Dominant: Converger
+  - Secondary: Assimilator
+  - Workplace Preference: Clear rules → controlled practice
+  - Stress Mode: Rigid adherence to procedure
+  - Rationale: Rule‑based mastery
+  - Deep dive: Controller Learning Style
+
+3. Specialist
+  - Dominant: Assimilator
+  - Secondary: Converger
+  - Workplace Preference: Deep technical frameworks → applied mastery
+  - Stress Mode: Narrow focus
+  - Rationale: Domain depth
+  - Deep dive: Specialist Learning Style
+
+4. Strategist
+  - Dominant: Assimilator
+  - Secondary: Diverger
+  - Workplace Preference: Conceptual models → scenario planning
+  - Stress Mode: Over‑theorizing
+  - Rationale: Systems thinking
+  - Deep dive: Strategist Learning Style
+
+5. Venturer
+  - Dominant: Accommodator
+  - Secondary: Diverger
+  - Workplace Preference: Rapid experiments → real‑world tests
+  - Stress Mode: Impulsive action
+  - Rationale: Fast, experiential learning
+  - Deep dive: Venturer Learning Style
+
+6. Altruist
+  - Dominant: Diverger
+  - Secondary: Assimilator
+  - Workplace Preference: Stories → reflection → group learning
+  - Stress Mode: Over‑accommodation
+  - Rationale: People‑first reflection
+  - Deep dive: Altruist Learning Style
+
+7. Captain
+  - Dominant: Converger
+  - Secondary: Accommodator
+  - Workplace Preference: Action → results → iteration
+  - Stress Mode: Over‑decisiveness
+  - Rationale: Outcome‑driven learning
+  - Deep dive: Captain Learning Style
+
+8. Collaborator
+  - Dominant: Diverger
+  - Secondary: Accommodator
+  - Workplace Preference: Group reflection → shared meaning
+  - Stress Mode: Avoidance
+  - Rationale: Relational learning
+  - Deep dive: Collaborator Learning Style
+
+9. Maverick
+  - Dominant: Diverger
+  - Secondary: Accommodator
+  - Workplace Preference: Creative exploration → hands‑on ideation
+  - Stress Mode: Chaotic experimentation
+  - Rationale: Creative, non‑linear learning
+  - Deep dive: Maverick Learning Style
+
+10. Persuader
+  - Dominant: Diverger
+  - Secondary: Accommodator
+  - Workplace Preference: Social learning → role‑play → live practice
+  - Stress Mode: Emotional reasoning
+  - Rationale: Influence + people orientation
+  - Deep dive: Persuader Learning Style
+
+11. Promoter
+  - Dominant: Accommodator
+  - Secondary: Diverger
+  - Workplace Preference: Hands‑on → energetic → social learning
+  - Stress Mode: Impulsive action
+  - Rationale: Improvisational learning
+  - Deep dive: Promoter Learning Style
+
+12. Adapter
+  - Dominant: Diverger
+  - Secondary: Assimilator
+  - Workplace Preference: Group reflection → flexible application
+  - Stress Mode: Withdrawal
+  - Rationale: Flexible, relational learning
+  - Deep dive: Adapter Learning Style
+
+13. Craftsman
+  - Dominant: Converger
+  - Secondary: Assimilator
+  - Workplace Preference: Step‑by‑step → standards → practice
+  - Stress Mode: Perfectionistic delay
+  - Rationale: Quality + precision
+  - Deep dive: Craftsman Learning Style
+
+14. Guardian
+  - Dominant: Assimilator
+  - Secondary: Converger
+  - Workplace Preference: Clear frameworks → predictable practice
+  - Stress Mode: Over‑caution
+  - Rationale: Stability + structure
+  - Deep dive: Guardian Learning Style
+
+15. Operator
+  - Dominant: Converger
+  - Secondary: Accommodator
+  - Workplace Preference: Hands‑on → process → repetition
+  - Stress Mode: Rigid routine
+  - Rationale: Execution learning
+  - Deep dive: Operator Learning Style
+
+16. Individualist
+  - Dominant: Diverger
+  - Secondary: Assimilator
+  - Workplace Preference: Creative reflection → conceptual synthesis
+  - Stress Mode: Detached ideation
+  - Rationale: Independent, creative learning
+  - Deep dive: Individualist Learning Style
+
+17. Scholar
+  - Dominant: Assimilator
+  - Secondary: Converger
+  - Workplace Preference: Theory → structure → rigorous practice
+  - Stress Mode: Over‑analysis
+  - Rationale: Academic, methodical learning
+  - Deep dive: Scholar Learning Style
+
+ LEARNING DESIGN STYLE — COMPLETE
+This lens moves from  →  COMPLETE.
+`,
+  },
+  {
+    id: "learning-agility--growth-mindset",
+    lens: "Learning Agility & Growth Mindset",
+    status: "Finished / Done",
+    source: "SignalGlass \u2014 Extracted Results",
+    content: `SignalGlass Lens 07 — Learning Agility & Growth Mindset
+=======================================================
+
+Source status: Finished / Done
+Source document: SignalGlass — Extracted Results
+
+Duplicate handling applied from the source document:
+- Hogan HDS (Derailers) appeared in both the Personality section and Leadership section; it is kept once as a completed leadership/derailer lens.
+- “Lived experiences” appeared separately but duplicated Lived Experience Context Lens; it is not exported as a finished lens because the source marks that lens as not done.
+- Workplace Big Five Pro appeared twice with conflicting status; it is not exported as a finished lens because the source says only OCEAN-level mapping was partially applied and Pro-specific facets were not completed.
+
+Translation methodology preserved from the source document:
+- PI inputs used: Dominance, Extraversion, Patience, and Formality.
+- Shared-construct translation: similar constructs are mapped across frameworks where conceptually aligned.
+- Known correlations: for example, high Formality and Patience support Conscientiousness-like interpretations; Dominance supports agency/assertiveness interpretations.
+- Qualitative PI profile descriptors are used as supporting evidence, such as risk-taking, cautious, innovative, perfectionistic, supportive, or process-oriented.
+- Outputs are non-diagnostic. They should be read as “this PI profile pattern is consistent with…” rather than as clinical, medical, or definitive personality diagnoses.
+
+
+SOURCE-DERIVED LENS CONTENT
+---------------------------
+### LENS 7: Learning Agility & Growth Mindset
+
+| Profile | Learning Agility | Growth Mindset | Rationale | Development Lever |
+|---|---|---|---|---|
+| Analyzer | Moderate | Possible | Learns deeply from data and retrospectives but slower to try unproven approaches. | Pair with short, structured experiments that require data capture and reflection. |
+| Controller | Low-Moderate | Possible | Prefers mastery within defined systems; resists disrupting established methods. | Use structured pilots within current workflow before asking for broader change. |
+| Specialist | Moderate | Possible | Deep domain agility; slower to adapt to new domains. | Offer stretch assignments within adjacent technical areas to expand range. |
+| Strategist | High | Likely | Comfortable with ambiguity; adjusts frameworks rapidly when evidence shifts. | Give cross-functional leadership challenges with real complexity and outcome ownership. |
+| Venturer | High | Likely | Thrives on new problems and rapid iteration; growth mindset natural disposition. | Channel through challenge-based learning with fast feedback loops. |
+| Altruist | Moderate | Likely | Open to feedback, especially when framed around helping others. | Tie development to team impact and visible support of others. |
+| Captain | High | Likely | Adapts quickly in fast-moving environments; growth mindset in action contexts. | Use executive coaching with real-stakes projects to deepen reflective practice. |
+| Collaborator | Moderate | Likely | Open and receptive; may plateau without challenge to move beyond comfort zone. | Use rotational team roles or cross-functional projects to stretch range. |
+| Maverick | Very High | Very Likely | Rapid learner and experimenter; treats failure as data. | Remove structural barriers to experimentation; require structured debrief post-failure. |
+| Persuader | High | Likely | Fast social learner; adapts framing and approach rapidly to audiences. | Add structured feedback cycles to distinguish genuine learning from performance adaptation. |
+| Promoter | High | Likely | High enthusiasm for novelty; learns fast through action and social mirroring. | Require structured reflection after campaigns or events to convert experience into insight. |
+| Adapter | High | Likely | Reads context and adjusts with ease; natural situational learner. | Assign stretch facilitation roles and debrief for pattern recognition. |
+| Craftsman | Low-Moderate | Possible | Deep learning within domain; resistant to abandoning proven methods. | Frame new learning as quality improvement rather than disruption. |
+| Guardian | Low | Unlikely | Prefers stable knowledge; change learning requires strong safety framing. | Build learning into role continuity and risk-reduction narrative. |
+| Operator | Moderate | Possible | Learns through routinization and practice; open to process improvement. | Use incremental capability expansion tied to performance metrics. |
+| Individualist | Moderate | Likely | Self-directed, intrinsically motivated learner with idiosyncratic pathways. | Respect autonomous learning style; provide access and remove friction. |
+| Scholar | High | Very Likely | Deep, rigorous, self-directed learner; high academic growth mindset. | Assign complex research challenges with real application deadlines. |
+
+---
+
+IMPLEMENTATION NOTES
+--------------------
+This is a finished result section in the source even though it is not separately listed in the 63-item master list under this exact title. It appears to operationalize parts of learning style, growth/development, and adaptability.
+
+Recommended SignalGlass UI fields:
+- learning_agility
+- growth_mindset_signal
+- evidence_rationale
+- development_lever
+- stretch_assignment_type
+- coaching_note
+`,
+  },
+  {
+    id: "social-cognition",
+    lens: "Social Cognition",
+    status: "Partially Done \u2192 now completing fully",
+    source: "Untitled 5.txt",
+    content: `LENS: Social Cognition
+STATUS: COMPLETE
+SOURCE: Untitled 5.txt
+DEDUPLICATION / CLEANUP NOTE: Duplicate status/check-in text was removed. Content is preserved from the uploaded document.
+================================================================================
+
+SOCIAL COGNITION
+Status:  Partially Done → now completing fully
+Output: For each PI profile →
+  - Theory of Mind (reading others’ mental states)
+  - Attribution Style (how they explain behavior)
+  - Perspective‑Taking (cognitive empathy)
+  - Social Prediction (anticipating reactions)
+  - Emotional Inference (reading emotional cues)
+  - Primary Social‑Cognitive Mode
+  - Stress Distortion Pattern
+  - One‑line rationale
+  - Guided Links for deeper dives
+This lens is extremely powerful for team dynamics, conflict prediction, leadership, and interpersonal fit.
+
+  THE 5 SOCIAL‑COGNITIVE DIMENSIONS
+1. Theory of Mind
+Ability to infer intentions, beliefs, motives.
+2. Attribution Style
+Internal (“they meant it”) vs. external (“context caused it”).
+3. Perspective‑Taking
+Ability to adopt another person’s viewpoint.
+4. Social Prediction
+Accuracy in anticipating reactions, needs, and responses.
+5. Emotional Inference
+Reading emotional cues (tone, body language, micro‑signals).
+
+ FULL CROSSWALK — ALL 17 PI PROFILES
+
+1. Analyzer
+  - Theory of Mind: Moderate
+  - Attribution Style: External, logic‑based
+  - Perspective‑Taking: Low‑Moderate
+  - Social Prediction: Low
+  - Emotional Inference: Low
+  - Primary Mode: Cognitive → not emotional
+  - Stress Distortion: Assumes incompetence, not intent
+  - Rationale: Logic > emotion
+  - Deep dive: Analyzer Social Cognition
+
+2. Controller
+  - Theory of Mind: Low
+  - Attribution Style: Internal (“they should know better”)
+  - Perspective‑Taking: Low
+  - Social Prediction: Moderate
+  - Emotional Inference: Low
+  - Primary Mode: Rule‑based interpretation
+  - Stress Distortion: Assumes noncompliance
+  - Rationale: Order + authority
+  - Deep dive: Controller Social Cognition
+
+3. Specialist
+  - Theory of Mind: Moderate
+  - Attribution Style: External (context, process)
+  - Perspective‑Taking: Low‑Moderate
+  - Social Prediction: Low
+  - Emotional Inference: Low
+  - Primary Mode: Technical → not interpersonal
+  - Stress Distortion: Withdraws
+  - Rationale: Depth > social nuance
+  - Deep dive: Specialist Social Cognition
+
+4. Strategist
+  - Theory of Mind: High
+  - Attribution Style: Mixed (strategic)
+  - Perspective‑Taking: Moderate
+  - Social Prediction: High
+  - Emotional Inference: Moderate
+  - Primary Mode: Strategic mental modeling
+  - Stress Distortion: Over‑interprets motives
+  - Rationale: Systems thinking applied to people
+  - Deep dive: Strategist Social Cognition
+
+5. Venturer
+  - Theory of Mind: Moderate
+  - Attribution Style: Internal (“they’re slowing us down”)
+  - Perspective‑Taking: Low
+  - Social Prediction: Moderate
+  - Emotional Inference: Low
+  - Primary Mode: Action‑oriented heuristics
+  - Stress Distortion: Misreads caution as resistance
+  - Rationale: Fast, low‑empathy cognition
+  - Deep dive: Venturer Social Cognition
+
+6. Altruist
+  - Theory of Mind: High
+  - Attribution Style: External (“they’re stressed”)
+  - Perspective‑Taking: Very High
+  - Social Prediction: High
+  - Emotional Inference: Very High
+  - Primary Mode: Empathic modeling
+  - Stress Distortion: Over‑accommodation
+  - Rationale: People‑first cognition
+  - Deep dive: Altruist Social Cognition
+
+7. Captain
+  - Theory of Mind: Moderate
+  - Attribution Style: Internal (“own your part”)
+  - Perspective‑Taking: Low
+  - Social Prediction: High
+  - Emotional Inference: Moderate
+  - Primary Mode: Power‑dynamics reading
+  - Stress Distortion: Assumes incompetence or lack of drive
+  - Rationale: Command cognition
+  - Deep dive: Captain Social Cognition
+
+8. Collaborator
+  - Theory of Mind: High
+  - Attribution Style: External
+  - Perspective‑Taking: Very High
+  - Social Prediction: High
+  - Emotional Inference: High
+  - Primary Mode: Harmony‑seeking
+  - Stress Distortion: Avoids conflict → misreads silence
+  - Rationale: Relational integration
+  - Deep dive: Collaborator Social Cognition
+
+9. Maverick
+  - Theory of Mind: Moderate
+  - Attribution Style: Internal (“they don’t get it”)
+  - Perspective‑Taking: Low
+  - Social Prediction: Moderate
+  - Emotional Inference: Low
+  - Primary Mode: Idea‑centric
+  - Stress Distortion: Dismisses others’ constraints
+  - Rationale: Creative, not relational
+  - Deep dive: Maverick Social Cognition
+
+10. Persuader
+  - Theory of Mind: High
+  - Attribution Style: Mixed
+  - Perspective‑Taking: High
+  - Social Prediction: Very High
+  - Emotional Inference: High
+  - Primary Mode: Audience‑reading
+  - Stress Distortion: Over‑personalizes reactions
+  - Rationale: Influence cognition
+  - Deep dive: Persuader Social Cognition
+
+11. Promoter
+  - Theory of Mind: High
+  - Attribution Style: External
+  - Perspective‑Taking: Moderate
+  - Social Prediction: High
+  - Emotional Inference: High
+  - Primary Mode: Social‑energetic
+  - Stress Distortion: Misreads neutrality as rejection
+  - Rationale: Expressive, reactive
+  - Deep dive: Promoter Social Cognition
+
+12. Adapter
+  - Theory of Mind: High
+  - Attribution Style: External
+  - Perspective‑Taking: Very High
+  - Social Prediction: High
+  - Emotional Inference: High
+  - Primary Mode: Situational empathy
+  - Stress Distortion: Over‑adjusts
+  - Rationale: Flexible, relational
+  - Deep dive: Adapter Social Cognition
+
+13. Craftsman
+  - Theory of Mind: Low‑Moderate
+  - Attribution Style: External
+  - Perspective‑Taking: Low
+  - Social Prediction: Low
+  - Emotional Inference: Low
+  - Primary Mode: Task‑centric
+  - Stress Distortion: Withdraws into work
+  - Rationale: Quality > social nuance
+  - Deep dive: Craftsman Social Cognition
+
+14. Guardian
+  - Theory of Mind: Moderate
+  - Attribution Style: External
+  - Perspective‑Taking: Moderate
+  - Social Prediction: Moderate
+  - Emotional Inference: Low‑Moderate
+  - Primary Mode: Stability‑oriented
+  - Stress Distortion: Assumes threat or risk
+  - Rationale: Stewardship cognition
+  - Deep dive: Guardian Social Cognition
+
+15. Operator
+  - Theory of Mind: Low‑Moderate
+  - Attribution Style: External
+  - Perspective‑Taking: Low
+  - Social Prediction: Low
+  - Emotional Inference: Low
+  - Primary Mode: Practical, not interpersonal
+  - Stress Distortion: Misreads urgency
+  - Rationale: Execution > nuance
+  - Deep dive: Operator Social Cognition
+
+16. Individualist
+  - Theory of Mind: Moderate
+  - Attribution Style: Internal
+  - Perspective‑Taking: Moderate
+  - Social Prediction: Moderate
+  - Emotional Inference: Low‑Moderate
+  - Primary Mode: Identity‑centric
+  - Stress Distortion: Withdraws into autonomy
+  - Rationale: Independent cognition
+  - Deep dive: Individualist Social Cognition
+
+17. Scholar
+  - Theory of Mind: Moderate
+  - Attribution Style: External
+  - Perspective‑Taking: Low‑Moderate
+  - Social Prediction: Low
+  - Emotional Inference: Low
+  - Primary Mode: Analytical → not interpersonal
+  - Stress Distortion: Over‑analysis of motives
+  - Rationale: Intellectual, not social
+  - Deep dive: Scholar Social Cognition
+
+ SOCIAL COGNITION — COMPLETE
+This lens moves from  →  COMPLETE.
+`,
+  },
+  {
+    id: "executive-function-model",
+    lens: "Executive Function Model",
+    status: "Not Done \u2192 now completing fully",
+    source: "Untitled 5.txt",
+    content: `LENS: Executive Function Model
+STATUS: COMPLETE
+SOURCE: Untitled 5.txt
+DEDUPLICATION / CLEANUP NOTE: Duplicate status/check-in text was removed. Content is preserved from the uploaded document.
+================================================================================
+
+EXECUTIVE FUNCTION MODEL
+Status:  Not Done → now completing fully
+Output: For each PI profile →
+  - Working Memory
+  - Inhibitory Control
+  - Cognitive Flexibility
+  - Planning & Prioritization
+  - Task Initiation
+  - Sustained Attention
+  - Primary EF Strength
+  - Primary EF Vulnerability
+  - One‑line rationale
+  - Guided Links for deeper dives
+This lens is critical because EF predicts:
+  - reliability
+  - adaptability
+  - error rates
+  - leadership readiness
+  - burnout risk
+  - role fit
+
+  THE 6 EXECUTIVE FUNCTIONS
+1. Working Memory
+Holding and manipulating information.
+2. Inhibitory Control
+Resisting impulses, distractions, emotional reactions.
+3. Cognitive Flexibility
+Switching tasks, adapting to change, perspective shifting.
+4. Planning & Prioritization
+Sequencing, structuring, organizing.
+5. Task Initiation
+Starting tasks without procrastination.
+6. Sustained Attention
+Staying focused over time.
+
+ FULL CROSSWALK — ALL 17 PI PROFILES
+
+1. Analyzer
+  - Working Memory: High
+  - Inhibitory Control: High
+  - Cognitive Flexibility: Low‑Moderate
+  - Planning & Prioritization: Very High
+  - Task Initiation: Moderate
+  - Sustained Attention: Very High
+  - Strength: Precision + sustained focus
+  - Vulnerability: Over‑analysis
+  - Rationale: Methodical, detail‑driven
+  - Deep dive: Analyzer EF
+
+2. Controller
+  - Working Memory: High
+  - Inhibitory Control: Very High
+  - Cognitive Flexibility: Low
+  - Planning & Prioritization: Very High
+  - Task Initiation: High
+  - Sustained Attention: High
+  - Strength: Rule‑based consistency
+  - Vulnerability: Rigidity
+  - Rationale: Order + control
+  - Deep dive: Controller EF
+
+3. Specialist
+  - Working Memory: High
+  - Inhibitory Control: High
+  - Cognitive Flexibility: Low
+  - Planning & Prioritization: High
+  - Task Initiation: Moderate
+  - Sustained Attention: Very High
+  - Strength: Deep technical focus
+  - Vulnerability: Narrow bandwidth
+  - Rationale: Domain mastery
+  - Deep dive: Specialist EF
+
+4. Strategist
+  - Working Memory: High
+  - Inhibitory Control: Moderate
+  - Cognitive Flexibility: High
+  - Planning & Prioritization: High
+  - Task Initiation: High
+  - Sustained Attention: Moderate
+  - Strength: Systems‑level planning
+  - Vulnerability: Over‑complexity
+  - Rationale: Vision + structure
+  - Deep dive: Strategist EF
+
+5. Venturer
+  - Working Memory: Moderate
+  - Inhibitory Control: Low
+  - Cognitive Flexibility: High
+  - Planning & Prioritization: Low
+  - Task Initiation: Very High
+  - Sustained Attention: Low
+  - Strength: Rapid action
+  - Vulnerability: Impulsivity
+  - Rationale: Fast, opportunistic
+  - Deep dive: Venturer EF
+
+6. Altruist
+  - Working Memory: Moderate
+  - Inhibitory Control: Moderate
+  - Cognitive Flexibility: High
+  - Planning & Prioritization: Moderate
+  - Task Initiation: Moderate
+  - Sustained Attention: Moderate
+  - Strength: Social flexibility
+  - Vulnerability: Over‑accommodation
+  - Rationale: People‑first EF
+  - Deep dive: Altruist EF
+
+7. Captain
+  - Working Memory: High
+  - Inhibitory Control: Moderate
+  - Cognitive Flexibility: Moderate
+  - Planning & Prioritization: High
+  - Task Initiation: Very High
+  - Sustained Attention: Moderate
+  - Strength: Decisive execution
+  - Vulnerability: Over‑assertive shortcuts
+  - Rationale: Command EF
+  - Deep dive: Captain EF
+
+8. Collaborator
+  - Working Memory: Moderate
+  - Inhibitory Control: High
+  - Cognitive Flexibility: High
+  - Planning & Prioritization: Moderate
+  - Task Initiation: Moderate
+  - Sustained Attention: Moderate
+  - Strength: Social‑cognitive flexibility
+  - Vulnerability: Avoidance
+  - Rationale: Harmony‑oriented EF
+  - Deep dive: Collaborator EF
+
+9. Maverick
+  - Working Memory: Moderate
+  - Inhibitory Control: Low
+  - Cognitive Flexibility: Very High
+  - Planning & Prioritization: Low
+  - Task Initiation: High
+  - Sustained Attention: Low
+  - Strength: Creative flexibility
+  - Vulnerability: Chaos
+  - Rationale: Disruptive EF
+  - Deep dive: Maverick EF
+
+10. Persuader
+  - Working Memory: Moderate
+  - Inhibitory Control: Low‑Moderate
+  - Cognitive Flexibility: High
+  - Planning & Prioritization: Low
+  - Task Initiation: High
+  - Sustained Attention: Low‑Moderate
+  - Strength: Social adaptability
+  - Vulnerability: Over‑promising
+  - Rationale: Influence EF
+  - Deep dive: Persuader EF
+
+11. Promoter
+  - Working Memory: Moderate
+  - Inhibitory Control: Low
+  - Cognitive Flexibility: High
+  - Planning & Prioritization: Low
+  - Task Initiation: Very High
+  - Sustained Attention: Low
+  - Strength: Energetic activation
+  - Vulnerability: Impulsive shifts
+  - Rationale: Improvisational EF
+  - Deep dive: Promoter EF
+
+12. Adapter
+  - Working Memory: Moderate
+  - Inhibitory Control: High
+  - Cognitive Flexibility: Very High
+  - Planning & Prioritization: Moderate
+  - Task Initiation: Moderate
+  - Sustained Attention: Moderate
+  - Strength: Situational flexibility
+  - Vulnerability: Over‑adjustment
+  - Rationale: Flexible EF
+  - Deep dive: Adapter EF
+
+13. Craftsman
+  - Working Memory: High
+  - Inhibitory Control: High
+  - Cognitive Flexibility: Low
+  - Planning & Prioritization: Very High
+  - Task Initiation: Moderate
+  - Sustained Attention: Very High
+  - Strength: Quality + precision
+  - Vulnerability: Perfectionistic delay
+  - Rationale: Methodical EF
+  - Deep dive: Craftsman EF
+
+14. Guardian
+  - Working Memory: High
+  - Inhibitory Control: High
+  - Cognitive Flexibility: Low
+  - Planning & Prioritization: Very High
+  - Task Initiation: Moderate
+  - Sustained Attention: High
+  - Strength: Stability + consistency
+  - Vulnerability: Over‑caution
+  - Rationale: Stewardship EF
+  - Deep dive: Guardian EF
+
+15. Operator
+  - Working Memory: Moderate
+  - Inhibitory Control: High
+  - Cognitive Flexibility: Low
+  - Planning & Prioritization: High
+  - Task Initiation: High
+  - Sustained Attention: High
+  - Strength: Process execution
+  - Vulnerability: Rigidity
+  - Rationale: Operational EF
+  - Deep dive: Operator EF
+
+16. Individualist
+  - Working Memory: High
+  - Inhibitory Control: Low‑Moderate
+  - Cognitive Flexibility: High
+  - Planning & Prioritization: Moderate
+  - Task Initiation: High
+  - Sustained Attention: Moderate
+  - Strength: Creative flexibility
+  - Vulnerability: Inconsistent follow‑through
+  - Rationale: Independent EF
+  - Deep dive: Individualist EF
+
+17. Scholar
+  - Working Memory: Very High
+  - Inhibitory Control: High
+  - Cognitive Flexibility: Moderate
+  - Planning & Prioritization: Very High
+  - Task Initiation: Moderate
+  - Sustained Attention: Very High
+  - Strength: Deep, rigorous focus
+  - Vulnerability: Over‑analysis
+  - Rationale: Academic EF
+  - Deep dive: Scholar EF
+
+ EXECUTIVE FUNCTION MODEL — COMPLETE
+This lens moves from  →  COMPLETE.
+`,
+  },
+  {
+    id: "team-synthesis-matrix",
+    lens: "Team Synthesis Matrix",
+    status: "Finished / Done",
+    source: "SignalGlass \u2014 Extracted Results",
+    content: `SignalGlass Lens 08 — Team Synthesis Matrix
+===========================================
+
+Source status: Finished / Done
+Source document: SignalGlass — Extracted Results
+
+Duplicate handling applied from the source document:
+- Hogan HDS (Derailers) appeared in both the Personality section and Leadership section; it is kept once as a completed leadership/derailer lens.
+- “Lived experiences” appeared separately but duplicated Lived Experience Context Lens; it is not exported as a finished lens because the source marks that lens as not done.
+- Workplace Big Five Pro appeared twice with conflicting status; it is not exported as a finished lens because the source says only OCEAN-level mapping was partially applied and Pro-specific facets were not completed.
+
+Translation methodology preserved from the source document:
+- PI inputs used: Dominance, Extraversion, Patience, and Formality.
+- Shared-construct translation: similar constructs are mapped across frameworks where conceptually aligned.
+- Known correlations: for example, high Formality and Patience support Conscientiousness-like interpretations; Dominance supports agency/assertiveness interpretations.
+- Qualitative PI profile descriptors are used as supporting evidence, such as risk-taking, cautious, innovative, perfectionistic, supportive, or process-oriented.
+- Outputs are non-diagnostic. They should be read as “this PI profile pattern is consistent with…” rather than as clinical, medical, or definitive personality diagnoses.
+
+
+SOURCE-DERIVED LENS CONTENT
+---------------------------
+### LENS 8: Team Synthesis Matrix (Role Fit, Conflict Hotspots, Complementary Pairings)
+
+| Profile | Best Role Fit | Conflict Hotspots | Complementary Pairings | Quick Management Tip |
+|---|---|---|---|---|
+| Analyzer | QA, Compliance, Process Design | Clashes with Promoter/Maverick over speed vs. correctness | Pair with Venturer or Operator for execution balance | Give time for review; set clear acceptance criteria |
+| Controller | Governance, Risk, Ops Manager | Friction with Captain/Venturer who push change | Pair with Collaborator or Strategist to translate rules into outcomes | Use pilot tests and explicit risk thresholds |
+| Specialist | SME, R&D, Technical Lead | Tension with Persuader/Promoter over communication style | Pair with Persuader or Collaborator to surface impact | Protect deep work time; require knowledge-share checkpoints |
+| Strategist | Product Strategy, Program Lead | May steamroll Collaborator/Altruist on people issues | Pair with Collaborator or Altruist for buy-in; Specialist for depth | Create structured dissent channels and metric milestones |
+| Venturer | BD, Growth, Startup PM | Conflicts with Controller/Craftsman over process | Pair with Craftsman or Operator to secure delivery | Use short experiments with clear success metrics |
+| Altruist | HR, Client Success, Coaching | Overload risk with Persuader/Captain who demand results | Pair with Strategist or Operator to balance care and outcomes | Teach boundary setting; track time on others vs. priorities |
+| Captain | Executive, Crisis Lead, Sales Head | Can dominate Analyst/Specialist; intimidate Collaborator | Pair with Collaborator or Specialist to temper force with detail | Require pre-decision consultation and dissent forum |
+| Collaborator | Team Lead, Community, Internal Comms | Avoids conflict with Captain/Strategist; may defer too much | Pair with Captain or Strategist for direction; Adapter for liaison | Use role clarity and rotating facilitation to build voice |
+| Maverick | Innovation Lead, Creative Director | Clashes with Controller/Craftsman over standards | Pair with Craftsman or Operator to convert ideas to products | Time-box experiments and require handoffs to executors |
+| Persuader | Sales Lead, Marketing, Change Lead | Image vs. Analyst tension; may overpromise to Specialist | Pair with Specialist or Operator to ground promises | Anchor pitches with data and delivery commitments |
+| Promoter | Events, Brand, Community Growth | Friction with Analyzer/Controller over spontaneity | Pair with Operator or Strategist to structure campaigns | Define minimum viable deliverables and handoff plans |
+| Adapter | Program Coordinator, PMO Liaison | May be pulled in all directions; risk of people-pleasing | Pair with Strategist for priorities; Collaborator for relationships | Set explicit priorities and escalation rules |
+| Craftsman | Engineering Lead, QA, Skilled Ops | Conflict with Venturer/Promoter over shortcuts | Pair with Venturer for innovation; Controller for standards | Clarify "good enough" thresholds and safety limits |
+| Guardian | Benefits, Facilities, Compliance Ops | Resists rapid change from Captain/Venturer | Pair with Strategist early in design; Adapter for rollout | Co-design safeguards into change plans |
+| Operator | Operations, Scheduling, Customer Ops | May be bypassed by Persuader/Promoter in rush | Pair with Promoter for execution; Craftsman for quality | Use explicit SLAs and escalation triggers |
+| Individualist | R&D, Design Lead, Thought Leadership | Misunderstood by Captain/Promoter; may withdraw | Pair with Strategist for impact; Specialist for rigor | Protect autonomy and provide recognition for uniqueness |
+| Scholar | Research Lead, Analytics, Academia | Tension with Persuader/Promoter over speed vs. rigor | Pair with Persuader to translate findings; Operator for delivery | Schedule translation sessions and publication milestones |
+
+---
+
+IMPLEMENTATION NOTES
+--------------------
+This finished result section merges practical team-application outputs from Role Fit, Team Fit, Complementarity, and conflict-risk thinking.
+
+Recommended SignalGlass UI fields:
+- best_role_fit
+- likely_conflict_hotspots
+- complementary_pairings
+- quick_management_tip
+- team_design_use_case
+- collaboration_guardrail
+`,
+  },
+  {
+    id: "cognitive-reflection-test-crt",
+    lens: "Cognitive Reflection Test (CRT)",
+    status: "Not Done \u2192 now completing fully",
+    source: "Untitled 5.txt",
+    content: `LENS: Cognitive Reflection Test (CRT)
+STATUS: COMPLETE
+SOURCE: Untitled 5.txt
+DEDUPLICATION / CLEANUP NOTE: Duplicate status/check-in text was removed. Content is preserved from the uploaded document.
+================================================================================
+
+COGNITIVE REFLECTION TEST (CRT)
+Status:  Not Done → now completing fully
+Output: For each PI profile →
+  - CRT Score Likelihood (High / Moderate / Low)
+  - Impulsivity vs. Reflection
+  - Heuristic Reliance
+  - Bias Susceptibility
+  - Reflection‑Override Capability
+  - Stress‑mode decision distortion
+  - One‑line rationale
+  - Guided Links for deeper dives
+CRT is one of the strongest predictors of:
+  - susceptibility to cognitive biases
+  - ability to override intuitive but wrong answers
+  - depth of reasoning
+  - decision quality under uncertainty
+This is a high‑value lens for leadership, risk, and strategy.
+
+  THE 4 CRT DIMENSIONS WE MAP
+1. CRT Score Likelihood
+How likely they are to override intuitive errors.
+2. Impulsivity vs. Reflection
+Fast‑thinking vs. slow‑thinking balance.
+3. Heuristic Reliance
+How often they default to mental shortcuts.
+4. Bias Susceptibility
+Especially:
+  - anchoring
+  - availability
+  - confirmation
+  - affect heuristic
+  - framing effects
+
+ FULL CROSSWALK — ALL 17 PI PROFILES
+
+1. Analyzer
+  - CRT Score: High
+  - Impulsivity: Very Low
+  - Heuristic Reliance: Low
+  - Bias Susceptibility: Low
+  - Reflection Override: Very High
+  - Stress Distortion: Over‑analysis
+  - Rationale: Slow, methodical, data‑driven
+  - Deep dive: Analyzer CRT
+
+2. Controller
+  - CRT Score: Moderate‑High
+  - Impulsivity: Low
+  - Heuristic Reliance: Low
+  - Bias Susceptibility: Low‑Moderate
+  - Reflection Override: High
+  - Stress Distortion: Rule rigidity
+  - Rationale: Rule‑based reasoning
+  - Deep dive: Controller CRT
+
+3. Specialist
+  - CRT Score: High
+  - Impulsivity: Low
+  - Heuristic Reliance: Low
+  - Bias Susceptibility: Low
+  - Reflection Override: Very High
+  - Stress Distortion: Narrow focus
+  - Rationale: Deep technical reasoning
+  - Deep dive: Specialist CRT
+
+4. Strategist
+  - CRT Score: High
+  - Impulsivity: Low‑Moderate
+  - Heuristic Reliance: Moderate
+  - Bias Susceptibility: Moderate
+  - Reflection Override: High
+  - Stress Distortion: Over‑confidence in models
+  - Rationale: Conceptual + analytical
+  - Deep dive: Strategist CRT
+
+5. Venturer
+  - CRT Score: Low
+  - Impulsivity: Very High
+  - Heuristic Reliance: Very High
+  - Bias Susceptibility: High
+  - Reflection Override: Low
+  - Stress Distortion: Impulsive risk
+  - Rationale: Fast, intuitive, action‑driven
+  - Deep dive: Venturer CRT
+
+6. Altruist
+  - CRT Score: Moderate
+  - Impulsivity: Low‑Moderate
+  - Heuristic Reliance: Moderate
+  - Bias Susceptibility: High (affect heuristic)
+  - Reflection Override: Moderate
+  - Stress Distortion: Emotional reasoning
+  - Rationale: People‑first cognition
+  - Deep dive: Altruist CRT
+
+7. Captain
+  - CRT Score: Moderate
+  - Impulsivity: High
+  - Heuristic Reliance: High
+  - Bias Susceptibility: High (dominance bias)
+  - Reflection Override: Low‑Moderate
+  - Stress Distortion: Over‑assertive shortcuts
+  - Rationale: Fast, decisive
+  - Deep dive: Captain CRT
+
+8. Collaborator
+  - CRT Score: Moderate
+  - Impulsivity: Low
+  - Heuristic Reliance: Moderate
+  - Bias Susceptibility: High (social desirability bias)
+  - Reflection Override: Moderate
+  - Stress Distortion: Avoidance
+  - Rationale: Relational reasoning
+  - Deep dive: Collaborator CRT
+
+9. Maverick
+  - CRT Score: Low
+  - Impulsivity: High
+  - Heuristic Reliance: Very High
+  - Bias Susceptibility: Very High
+  - Reflection Override: Low
+  - Stress Distortion: Chaotic decisions
+  - Rationale: Creative, non‑linear, impulsive
+  - Deep dive: Maverick CRT
+
+10. Persuader
+  - CRT Score: Low‑Moderate
+  - Impulsivity: High
+  - Heuristic Reliance: High
+  - Bias Susceptibility: High (affect + framing)
+  - Reflection Override: Low
+  - Stress Distortion: Emotional reasoning
+  - Rationale: Social‑intuitive cognition
+  - Deep dive: Persuader CRT
+
+11. Promoter
+  - CRT Score: Low
+  - Impulsivity: Very High
+  - Heuristic Reliance: Very High
+  - Bias Susceptibility: Very High
+  - Reflection Override: Very Low
+  - Stress Distortion: Impulsive shifts
+  - Rationale: Improvisational, reactive
+  - Deep dive: Promoter CRT
+
+12. Adapter
+  - CRT Score: Moderate
+  - Impulsivity: Low‑Moderate
+  - Heuristic Reliance: Moderate
+  - Bias Susceptibility: Moderate
+  - Reflection Override: Moderate
+  - Stress Distortion: Over‑adjustment
+  - Rationale: Flexible, situational
+  - Deep dive: Adapter CRT
+
+13. Craftsman
+  - CRT Score: High
+  - Impulsivity: Low
+  - Heuristic Reliance: Low
+  - Bias Susceptibility: Low
+  - Reflection Override: High
+  - Stress Distortion: Perfectionistic delay
+  - Rationale: Methodical, detail‑driven
+  - Deep dive: Craftsman CRT
+
+14. Guardian
+  - CRT Score: Moderate‑High
+  - Impulsivity: Low
+  - Heuristic Reliance: Low‑Moderate
+  - Bias Susceptibility: Moderate (risk aversion bias)
+  - Reflection Override: High
+  - Stress Distortion: Over‑caution
+  - Rationale: Stability + rule orientation
+  - Deep dive: Guardian CRT
+
+15. Operator
+  - CRT Score: Moderate
+  - Impulsivity: Low‑Moderate
+  - Heuristic Reliance: Moderate
+  - Bias Susceptibility: Moderate
+  - Reflection Override: Moderate
+  - Stress Distortion: Rigid routine
+  - Rationale: Practical, steady
+  - Deep dive: Operator CRT
+
+16. Individualist
+  - CRT Score: Moderate
+  - Impulsivity: Moderate
+  - Heuristic Reliance: Moderate
+  - Bias Susceptibility: Moderate (identity bias)
+  - Reflection Override: Moderate
+  - Stress Distortion: Detached reasoning
+  - Rationale: Independent, conceptual
+  - Deep dive: Individualist CRT
+
+17. Scholar
+  - CRT Score: Very High
+  - Impulsivity: Very Low
+  - Heuristic Reliance: Very Low
+  - Bias Susceptibility: Very Low
+  - Reflection Override: Very High
+  - Stress Distortion: Over‑analysis
+  - Rationale: Deep, rigorous reasoning
+  - Deep dive: Scholar CRT
+
+ COGNITIVE REFLECTION TEST (CRT) — COMPLETE
+This lens moves from  →  COMPLETE.
+`,
+  },
+  {
+    id: "hexaco",
+    lens: "HEXACO",
+    status: "Finished / Done",
+    source: "SignalGlass \u2014 Extracted Results",
+    content: `SignalGlass Lens 09 — HEXACO
+=============================
+
+Source status: Finished / Done
+Source document: SignalGlass — Extracted Results
+
+Duplicate handling applied from the source document:
+- Hogan HDS (Derailers) appeared in both the Personality section and Leadership section; it is kept once as a completed leadership/derailer lens.
+- “Lived experiences” appeared separately but duplicated Lived Experience Context Lens; it is not exported as a finished lens because the source marks that lens as not done.
+- Workplace Big Five Pro appeared twice with conflicting status; it is not exported as a finished lens because the source says only OCEAN-level mapping was partially applied and Pro-specific facets were not completed.
+
+Translation methodology preserved from the source document:
+- PI inputs used: Dominance, Extraversion, Patience, and Formality.
+- Shared-construct translation: similar constructs are mapped across frameworks where conceptually aligned.
+- Known correlations: for example, high Formality and Patience support Conscientiousness-like interpretations; Dominance supports agency/assertiveness interpretations.
+- Qualitative PI profile descriptors are used as supporting evidence, such as risk-taking, cautious, innovative, perfectionistic, supportive, or process-oriented.
+- Outputs are non-diagnostic. They should be read as “this PI profile pattern is consistent with…” rather than as clinical, medical, or definitive personality diagnoses.
+
+Source limitation note: the uploaded extraction says this lens was completed at full micro-level in the source conversation, but the hundreds of detailed cells were not included in the uploaded text. The profile-level content below is therefore a detailed reconstruction derived from the uploaded document’s summary, the 17 PI profile reference list, and the translation methodology preserved in the source document. It should be reviewed against the original Raw_data conversation if exact historical cell-by-cell wording is required.
+
+
+LENS PURPOSE
+------------
+HEXACO translates each PI profile into six broad personality domains: Honesty-Humility, Emotionality, eXtraversion, Agreeableness, Conscientiousness, and Openness to Experience. The source states that HEXACO was completed across 25 subfacets with profile-level judgments.
+
+PROFILE-LEVEL DERIVED HEXACO MAP
+--------------------------------
+| Profile       | Honesty-Humility | Emotionality  | eXtraversion | Agreeableness | Conscientiousness | Openness      | Rationale                                                                                                                                          |
+| ------------- | ---------------- | ------------- | ------------ | ------------- | ----------------- | ------------- | -------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Analyzer      | Moderate-High    | Low           | Low          | Moderate-Low  | Very High         | Moderate      | Order, precision, rule-following, and accuracy make Conscientiousness the strongest signal; interpersonal warmth/agreeableness is more restrained. |
+| Controller    | Moderate         | Low-Moderate  | Low          | Low           | Very High         | Moderate-Low  | Directive control and rule enforcement point to very high Conscientiousness and lower Agreeableness/Extraversion.                                  |
+| Specialist    | Moderate-High    | Low           | Low          | Moderate-Low  | Very High         | High          | Deep mastery and domain curiosity drive high Openness within a focused domain, with high standards and lower broad sociability.                    |
+| Strategist    | Moderate         | Low           | Moderate     | Moderate-Low  | High              | High          | Systems thinking, strategic vision, and disciplined planning support high Openness and Conscientiousness.                                          |
+| Venturer      | Low-Moderate     | Low           | High         | Low           | Low-Moderate      | High          | Novelty seeking, risk tolerance, and opportunity pursuit create high Extraversion/Openness with lower rule dependence.                             |
+| Altruist      | High             | Moderate-High | High         | High          | High              | Moderate      | Helping orientation, care, and dependability support strong Honesty-Humility, Agreeableness, and Conscientiousness.                                |
+| Captain       | Moderate-Low     | Low           | Very High    | Low-Moderate  | Moderate          | High          | Assertive leadership and results orientation produce high Extraversion and Openness, with lower softness in interpersonal conflict.                |
+| Collaborator  | High             | Moderate-High | High         | High          | Moderate-High     | Moderate      | Harmony-building and facilitation create high Agreeableness and Extraversion with reliable conscientious support.                                  |
+| Maverick      | Low-Moderate     | Low           | High         | Low           | Low               | Very High     | Creative disruption and rule-challenging point to very high Openness and lower Conscientiousness/Agreeableness.                                    |
+| Persuader     | Moderate         | Low-Moderate  | Very High    | Moderate      | Moderate          | Moderate-High | Influence, audience reading, and social persuasion create a strong Extraversion signal with adaptive Openness.                                     |
+| Promoter      | Moderate         | Moderate      | Very High    | Moderate      | Low               | High          | Visibility, enthusiasm, and spontaneity support very high Extraversion and high Openness, with lower structure preference.                         |
+| Adapter       | High             | Moderate      | High         | High          | Moderate          | Moderate-High | Context-reading and flexibility create strong Agreeableness and Extraversion with adaptable Openness.                                              |
+| Craftsman     | High             | Low           | Low          | Moderate      | Very High         | Low-Moderate  | Quality standards, routine, and precision create very high Conscientiousness and narrower Openness.                                                |
+| Guardian      | High             | Moderate      | Low          | High          | Very High         | Low           | Stewardship, safety, and continuity support high Honesty-Humility, Agreeableness, and Conscientiousness.                                           |
+| Operator      | High             | Low-Moderate  | Low-Moderate | High          | Very High         | Low-Moderate  | Reliable execution and process discipline support high Conscientiousness and practical Agreeableness.                                              |
+| Individualist | Moderate-High    | Moderate      | Low-Moderate | Low-Moderate  | Moderate          | Very High     | Authenticity, originality, and self-direction produce very high Openness with selective social engagement.                                         |
+| Scholar       | High             | Low           | Low          | Low-Moderate  | High              | Very High     | Rigorous inquiry and truth-seeking support very high Openness and high Conscientiousness, with reserved interpersonal style.                       |
+
+IMPLEMENTATION NOTES
+--------------------
+Recommended SignalGlass UI fields:
+- honesty_humility_signal
+- emotionality_signal
+- extraversion_signal
+- agreeableness_signal
+- conscientiousness_signal
+- openness_signal
+- strongest_hexaco_domain
+- lowest_hexaco_domain
+- profile_rationale
+
+Use this lens for ethical posture, pressure style, collaboration tendency, dependability, and innovation-fit summaries. Keep all outputs non-diagnostic.
+`,
+  },
+  {
+    id: "kolbe-a-index-conation",
+    lens: "Kolbe A Index (Conation)",
+    status: "Not Done \u2192 now completing fully",
+    source: "Untitled 5.txt",
+    content: `LENS: Kolbe A Index (Conation)
+STATUS: COMPLETE
+SOURCE: Untitled 5.txt
+DEDUPLICATION / CLEANUP NOTE: Duplicate status/check-in text was removed. Content is preserved from the uploaded document.
+================================================================================
+
+KOLBE A INDEX (CONATION)
+Status:  Not Done → now completing fully
+Output: For each PI profile →
+  - Fact Finder (Simplify → Explain)
+  - Follow Thru (Adapt → Systematize)
+  - Quick Start (Stabilize → Innovate)
+  - Implementor (Envision → Build)
+  - Primary Conative Mode
+  - Stress Pattern
+  - One‑line rationale
+  - Guided Links for deeper dives
+Kolbe measures how people take action — not personality, not intelligence, not motivation.
+It is the closest behavioral cousin to PI’s drive structure.
+
+ THE 4 KOLBE ACTION MODES
+1. Fact Finder
+How you gather and share information.
+2. Follow Thru
+How you organize, structure, and systematize.
+3. Quick Start
+How you deal with risk, uncertainty, and change.
+4. Implementor
+How you handle space, tangibility, and physical solutions.
+Each mode ranges from 1 → 10, but we map as:
+  - Low (Simplify / Adapt / Stabilize / Envision)
+  - Moderate
+  - High (Explain / Systematize / Innovate / Build)
+
+ FULL CROSSWALK — ALL 17 PI PROFILES
+
+1. Analyzer
+  - Fact Finder: High
+  - Follow Thru: High
+  - Quick Start: Low
+  - Implementor: Low
+  - Primary Mode: Systematize
+  - Stress Pattern: Over‑structuring
+  - Rationale: Precision + structure
+  - Deep dive: Analyzer Kolbe
+
+2. Controller
+  - Fact Finder: High
+  - Follow Thru: Very High
+  - Quick Start: Very Low
+  - Implementor: Low
+  - Primary Mode: Enforce systems
+  - Stress Pattern: Rigidity
+  - Rationale: Rules + order
+  - Deep dive: Controller Kolbe
+
+3. Specialist
+  - Fact Finder: High
+  - Follow Thru: High
+  - Quick Start: Low
+  - Implementor: Low‑Moderate
+  - Primary Mode: Deep dive + structure
+  - Stress Pattern: Over‑focus
+  - Rationale: Domain mastery
+  - Deep dive: Specialist Kolbe
+
+4. Strategist
+  - Fact Finder: High
+  - Follow Thru: Moderate
+  - Quick Start: High
+  - Implementor: Low
+  - Primary Mode: Vision + logic
+  - Stress Pattern: Over‑complexity
+  - Rationale: Systems + innovation
+  - Deep dive: Strategist Kolbe
+
+5. Venturer
+  - Fact Finder: Low
+  - Follow Thru: Low
+  - Quick Start: Very High
+  - Implementor: Low
+  - Primary Mode: Innovate
+  - Stress Pattern: Impulsive risk
+  - Rationale: Bold, fast action
+  - Deep dive: Venturer Kolbe
+
+6. Altruist
+  - Fact Finder: Moderate
+  - Follow Thru: Moderate
+  - Quick Start: Low‑Moderate
+  - Implementor: Low
+  - Primary Mode: Adapt
+  - Stress Pattern: Over‑accommodation
+  - Rationale: People‑first execution
+  - Deep dive: Altruist Kolbe
+
+7. Captain
+  - Fact Finder: Moderate
+  - Follow Thru: Moderate
+  - Quick Start: High
+  - Implementor: Low
+  - Primary Mode: Drive + innovate
+  - Stress Pattern: Over‑assertive shortcuts
+  - Rationale: Command + action
+  - Deep dive: Captain Kolbe
+
+8. Collaborator
+  - Fact Finder: Moderate
+  - Follow Thru: Moderate
+  - Quick Start: Low‑Moderate
+  - Implementor: Low
+  - Primary Mode: Adapt + harmonize
+  - Stress Pattern: Avoidance
+  - Rationale: Relational execution
+  - Deep dive: Collaborator Kolbe
+
+9. Maverick
+  - Fact Finder: Low
+  - Follow Thru: Low
+  - Quick Start: Very High
+  - Implementor: Low
+  - Primary Mode: Innovate disruptively
+  - Stress Pattern: Chaos
+  - Rationale: Creative, non‑linear action
+  - Deep dive: Maverick Kolbe
+
+10. Persuader
+  - Fact Finder: Low‑Moderate
+  - Follow Thru: Low
+  - Quick Start: High
+  - Implementor: Low
+  - Primary Mode: Innovate socially
+  - Stress Pattern: Over‑promising
+  - Rationale: Influence + improvisation
+  - Deep dive: Persuader Kolbe
+
+11. Promoter
+  - Fact Finder: Low
+  - Follow Thru: Low
+  - Quick Start: Very High
+  - Implementor: Low
+  - Primary Mode: Activate + innovate
+  - Stress Pattern: Impulsive shifts
+  - Rationale: Energetic improvisation
+  - Deep dive: Promoter Kolbe
+
+12. Adapter
+  - Fact Finder: Moderate
+  - Follow Thru: Moderate
+  - Quick Start: Moderate
+  - Implementor: Low
+  - Primary Mode: Flexible adaptation
+  - Stress Pattern: Over‑adjustment
+  - Rationale: Situational execution
+  - Deep dive: Adapter Kolbe
+
+13. Craftsman
+  - Fact Finder: High
+  - Follow Thru: Very High
+  - Quick Start: Very Low
+  - Implementor: Moderate
+  - Primary Mode: Systematize + perfect
+  - Stress Pattern: Perfectionistic delay
+  - Rationale: Quality + structure
+  - Deep dive: Craftsman Kolbe
+
+14. Guardian
+  - Fact Finder: High
+  - Follow Thru: Very High
+  - Quick Start: Very Low
+  - Implementor: Low‑Moderate
+  - Primary Mode: Preserve systems
+  - Stress Pattern: Over‑caution
+  - Rationale: Stewardship + stability
+  - Deep dive: Guardian Kolbe
+
+15. Operator
+  - Fact Finder: Moderate
+  - Follow Thru: High
+  - Quick Start: Low
+  - Implementor: Moderate
+  - Primary Mode: Execute reliably
+  - Stress Pattern: Rigid routine
+  - Rationale: Process + consistency
+  - Deep dive: Operator Kolbe
+
+16. Individualist
+  - Fact Finder: Moderate
+  - Follow Thru: Low
+  - Quick Start: High
+  - Implementor: Low
+  - Primary Mode: Innovate independently
+  - Stress Pattern: Detached improvisation
+  - Rationale: Creative autonomy
+  - Deep dive: Individualist Kolbe
+
+17. Scholar
+  - Fact Finder: Very High
+  - Follow Thru: High
+  - Quick Start: Low
+  - Implementor: Low
+  - Primary Mode: Analyze + structure
+  - Stress Pattern: Over‑analysis
+  - Rationale: Academic rigor
+  - Deep dive: Scholar Kolbe
+
+ KOLBE A INDEX — COMPLETE
+This lens moves from  →  COMPLETE.
+`,
+  },
+  {
+    id: "mbti-crosswalk",
+    lens: "MBTI Crosswalk",
+    status: "Finished / Done",
+    source: "SignalGlass \u2014 Extracted Results",
+    content: `SignalGlass Lens 10 — MBTI Crosswalk
+=====================================
+
+Source status: Finished / Done
+Source document: SignalGlass — Extracted Results
+
+Duplicate handling applied from the source document:
+- Hogan HDS (Derailers) appeared in both the Personality section and Leadership section; it is kept once as a completed leadership/derailer lens.
+- “Lived experiences” appeared separately but duplicated Lived Experience Context Lens; it is not exported as a finished lens because the source marks that lens as not done.
+- Workplace Big Five Pro appeared twice with conflicting status; it is not exported as a finished lens because the source says only OCEAN-level mapping was partially applied and Pro-specific facets were not completed.
+
+Translation methodology preserved from the source document:
+- PI inputs used: Dominance, Extraversion, Patience, and Formality.
+- Shared-construct translation: similar constructs are mapped across frameworks where conceptually aligned.
+- Known correlations: for example, high Formality and Patience support Conscientiousness-like interpretations; Dominance supports agency/assertiveness interpretations.
+- Qualitative PI profile descriptors are used as supporting evidence, such as risk-taking, cautious, innovative, perfectionistic, supportive, or process-oriented.
+- Outputs are non-diagnostic. They should be read as “this PI profile pattern is consistent with…” rather than as clinical, medical, or definitive personality diagnoses.
+
+Source limitation note: the uploaded extraction says this lens was completed at full micro-level in the source conversation, but the hundreds of detailed cells were not included in the uploaded text. The profile-level content below is therefore a detailed reconstruction derived from the uploaded document’s summary, the 17 PI profile reference list, and the translation methodology preserved in the source document. It should be reviewed against the original Raw_data conversation if exact historical cell-by-cell wording is required.
+
+
+LENS PURPOSE
+------------
+This lens provides a non-diagnostic MBTI-style crosswalk from PI profile patterns. The source states that E/I, S/N, T/F, and J/P judgments were produced per profile with confidence notes and rationale.
+
+PROFILE-LEVEL DERIVED MBTI MAP
+------------------------------
+| Profile       | Likely MBTI Pattern | E/I | S/N | T/F | J/P | Confidence    | Rationale                                                                                                                         |
+| ------------- | ------------------- | --- | --- | --- | --- | ------------- | --------------------------------------------------------------------------------------------------------------------------------- |
+| Analyzer      | ISTJ / INTJ         | I   | S/N | T   | J   | High          | Structured, precise, analytical, and quality-driven; can look ISTJ when applying standards and INTJ when designing systems.       |
+| Controller    | ESTJ / ISTJ         | E/I | S   | T   | J   | Moderate-High | Directive, rule-oriented, decisive, and operationally firm; likely a judging, thinking pattern.                                   |
+| Specialist    | ISTJ / ISTP         | I   | S   | T   | J/P | Moderate      | Deep technical focus, low social need, and careful standards; type depends on whether structure or hands-on adaptation dominates. |
+| Strategist    | INTJ / ENTJ         | I/E | N   | T   | J   | High          | Big-picture systems thinking with disciplined follow-through and strategic control.                                               |
+| Venturer      | ENTJ / ESTP         | E   | N/S | T   | P/J | Moderate      | Fast-moving opportunity pursuit; may look ENTJ when leading strategy or ESTP when acting tactically.                              |
+| Altruist      | ESFJ / ISFJ         | E/I | S   | F   | J   | Moderate-High | Supportive, people-centered, dependable, and service-oriented.                                                                    |
+| Captain       | ENTJ / ESTJ         | E   | N/S | T   | J   | High          | Commanding, decisive, outcome-focused, and comfortable directing others.                                                          |
+| Collaborator  | ESFJ / ENFJ         | E   | S/N | F   | J   | High          | Facilitative, relationship-centered, harmony-building, and group-oriented.                                                        |
+| Maverick      | ENTP                | E   | N   | T   | P   | High          | Creative, disruptive, expressive, and comfortable challenging assumptions.                                                        |
+| Persuader     | ENFJ / ENTP         | E   | N   | F/T | J/P | Moderate      | Audience-focused influence and adaptive communication; type shifts depending on whether values or argumentation leads.            |
+| Promoter      | ENFP / ESFP         | E   | N/S | F   | P   | Moderate-High | Energetic, spontaneous, visibility-oriented, and socially expressive.                                                             |
+| Adapter       | ESFJ / ENFP         | E   | S/N | F   | J/P | Moderate      | Flexible and people-attuned; can look structured in support roles or exploratory in changing contexts.                            |
+| Craftsman     | ISTJ / ISTP         | I   | S   | T   | J/P | Moderate      | Precision, quality, practical skill, and reserved execution.                                                                      |
+| Guardian      | ISFJ / ISTJ         | I   | S   | F/T | J   | High          | Protective, steady, continuity-focused, and duty-driven.                                                                          |
+| Operator      | ISTJ / ESTJ         | I/E | S   | T   | J   | High          | Process-driven, reliable, practical, and execution-oriented.                                                                      |
+| Individualist | INFP / INTP         | I   | N   | F/T | P   | Moderate      | Original, autonomous, authenticity-driven; may express through values or conceptual analysis.                                     |
+| Scholar       | INTJ / INTP         | I   | N   | T   | J/P | High          | Intellectual, analytic, independent, and rigorous; judging/perceiving depends on structure vs. inquiry emphasis.                  |
+
+IMPLEMENTATION NOTES
+--------------------
+Recommended SignalGlass UI fields:
+- likely_mbti_pattern
+- ei_signal
+- sn_signal
+- tf_signal
+- jp_signal
+- confidence
+- rationale
+- caution_note
+
+Do not present this as a formal MBTI result. It is a language bridge for communication, team design, and role-style explanation.
+`,
+  },
 ];
 
 // Index by id for O(1) lookup
