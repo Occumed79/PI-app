@@ -10908,6 +10908,821 @@ Different profiles interpret and respond to stress differently.  The table below
 * Normalise discussion of stress and encourage individuals to identify triggers and coping mechanisms.  Provide training on relaxation techniques, time management and cognitive reframing.
 * Combine the PSS with other lenses (burnout, wellbeing) to gain a holistic view of psychological stress and tailor support to each profile’s needs.`,
   },
+  {
+    id: "purpose--meaning-lens",
+    lens: "Purpose & Meaning Lens",
+    status: "",
+    source: "Purpose_and_Meaning_Lens.txt",
+    content: `
+Purpose & Meaning Lens
+======================
+
+**Overview**
+
+Research shows that people are motivated not only by pay but by a sense of purpose and meaning in their work.  Meaningful work activates neurochemical pathways associated with reward and connection, improving engagement and resiliencehttps://www.peoplekult.com/post/the-power-of-purpose-how-meaningful-work-impacts-your-brain-and-your-engagement#:~:text=compensation%3F%20While%20competitive%20salaries%20and,edge%20neuroscience.  A 2026 report emphasises that workers value purpose alongside income and that investing in purpose can enhance productivity and employee well‑beingbw.bse.eu/wp-content/uploads/1578.pdf.  In neuroscience terms, purposeful work taps into the brain’s need for connection, growth and contribution.
+
+Purpose derives from three sources:
+
+* **Personal fulfilment:** Work that aligns with one’s values and identity (e.g., craftsmanship, intellectual curiosity, helping others).
+* **Social impact:** Contributing to others, a team, a community or a societal cause.
+* **Mission alignment:** Feeling that the organisation’s goals matter and are worth pursuing.
+
+When purpose is missing, employees may disengage or burn out even if compensation is adequate.  Conversely, aligning individuals with roles and missions that matter to them can increase motivation, resilience and creativity.
+
+**Purpose Orientation Crosswalk by PI Profile**
+
+This table identifies the predominant source of meaning for each PI profile.  The secondary column captures another important driver.  Use these insights to craft narratives and assignments that resonate with each style.
+
+| PI Profile | Primary source of meaning | Secondary source | Notes |
+|---|---|---|---|
+| **Analyzer** | Personal fulfilment through mastery and knowledge | Mission alignment | Analyzers derive meaning from solving complex problems and aligning their expertise with organisational goals. |
+| **Controller** | Mission alignment through results and success | Personal fulfilment | Controllers find purpose in achieving strategic objectives and demonstrating competence. |
+| **Specialist** | Personal fulfilment through expertise and craftsmanship | Social impact | Specialists feel purposeful when their deep expertise contributes to projects that matter to colleagues or customers. |
+| **Strategist** | Mission alignment with vision and systems change | Personal fulfilment | Strategists seek to improve the organisation and enjoy the intellectual challenge of designing future directions. |
+| **Venturer** | Personal fulfilment through challenge and exploration | Mission alignment | Venturers are energised by new ventures and feel purposeful when driving ambitious growth. |
+| **Altruist** | Social impact and helping others | Mission alignment | Altruists derive meaning from supporting colleagues and aligning work with community or social good. |
+| **Captain** | Mission alignment through leading teams to success | Recognition | Captains feel purposeful when they rally teams around a mission and are recognised for their leadership. |
+| **Collaborator** | Social impact through teamwork | Personal fulfilment | Collaborators find meaning in building relationships and ensuring everyone is included. |
+| **Maverick** | Personal fulfilment through creative freedom | Mission alignment | Mavericks feel purposeful when they can innovate and disrupt to move the organisation forward. |
+| **Persuader** | Social impact through influence and motivation | Recognition | Persuaders derive meaning from inspiring others and being appreciated for their charisma. |
+| **Promoter** | Recognition and social impact | Personal fulfilment | Promoters find meaning in energising others and receiving public acknowledgement. |
+| **Adapter** | Social impact through support and stability | Working conditions | Adapters derive meaning from creating harmony and ensuring smooth operations. |
+| **Craftsman** | Personal fulfilment through quality and craft | Mission alignment | Craftsmen feel purposeful when their meticulous work contributes to a larger goal. |
+| **Guardian** | Social impact through stewardship | Working conditions | Guardians find meaning in protecting team cohesion and upholding traditions and systems. |
+| **Operator** | Mission alignment through efficient execution | Working conditions | Operators feel purposeful when operations run smoothly and meet objectives. |
+| **Individualist** | Personal fulfilment through autonomy and originality | Mission alignment | Individualists derive meaning from creating unique approaches and aligning them with organisational goals. |
+| **Scholar** | Personal fulfilment through learning and wisdom | Social impact | Scholars find purpose in generating knowledge that benefits others and shapes the organisation’s future. |
+
+**Using this lens**
+
+* To enhance engagement, connect tasks to the type of purpose that resonates with the individual.  For example, emphasise the impact on customers for an Altruist or the intellectual challenge for an Analyzer.
+* Regularly communicate how a project contributes to the organisation’s mission and to broader societal goals.  Even highly independent profiles want to know why their work matters.
+* Encourage people to articulate their personal sources of meaning.  Understanding colleagues’ purposes fosters empathy and helps leaders align roles and recognition.`,
+  },
+  {
+    id: "relational-needs--firob-lens",
+    lens: "Relational Needs \u2013 FIRO\u2011B Lens",
+    status: "",
+    source: "Relational_Needs_FIROB.txt",
+    content: `
+Relational Needs – FIRO‑B Lens
+
+**Overview**
+
+The Fundamental Interpersonal Relations Orientation–Behaviour (FIRO‑B) model assesses interpersonal needs in three domains:
+
+1. **Inclusion** – desire for belonging and social interaction.
+2. **Control** – desire for influence, responsibility and structure.
+3. **Affection** – desire for closeness and personal connection.
+
+Each need can be high (actively expressed), moderate or low (preferring independence).  The table below summarises each PI profile’s primary need, typical expression and stress behaviour when that need is unmet.
+
+**Crosswalk by PI Profile**
+
+| PI Profile | Primary FIRO‑B need | Typical expression | Stress behaviour |
+|---|---|---|---|
+| **Analyzer** | Control | Seeks clarity and boundaries | Withdraws or micromanages |
+| **Controller** | Control | Direct leadership and rule‑setting | Domineering when unmet |
+| **Specialist** | Inclusion (low) | Works independently | Isolation and guardedness |
+| **Strategist** | Control | Strategic influence | Frustration with limits |
+| **Venturer** | Inclusion | Seeks opportunities and visibility | Impulsive risk taking |
+| **Altruist** | Affection | Supportive and relational | Over‑giving and hurt feelings |
+| **Captain** | Control | Command presence | Aggressive when blocked |
+| **Collaborator** | Inclusion | Builds teams and invites input | Feels excluded and withdraws |
+| **Maverick** | Inclusion | Wants recognition for ideas | Provokes to be noticed |
+| **Persuader** | Affection | Socially engaging and warm | Takes rejection personally |
+| **Promoter** | Inclusion | Public energy and networking | Over‑promises to belong |
+| **Adapter** | Affection | Nurtures relationships | Over‑adjusts to fit in |
+| **Craftsman** | Control | Standards and ownership | Perfectionism when ignored |
+| **Guardian** | Control | Protects group norms | Resistant to change |
+| **Operator** | Control | Executes reliably | Frustrated by ambiguity |
+| **Individualist** | Affection (low) | Values autonomy | Withdraws from forced intimacy |
+| **Scholar** | Control | Seeks intellectual recognition | Retreats into analysis |
+
+**Implications**
+
+* High Control needs (e.g., Controller, Captain, Guardian) require clear roles, authority and decision rights.  When control feels threatened, these individuals may become domineering or resistant to change.  Provide transparency and involve them in setting the structure.
+* High Inclusion needs (e.g., Venturer, Collaborator) thrive on being part of the group and visible.  Ensure they are involved in discussions and recognise their contributions.  Exclusion triggers withdrawal or provocative behaviour.
+* High Affection needs (e.g., Altruist, Persuader) seek closeness and support.  Create opportunities for personal connection and show appreciation.  They may over‑extend themselves to maintain harmony.
+* Low Inclusion or Affection (e.g., Specialist, Individualist) prefer independence; respect their space and avoid forcing social interaction.
+`,
+  },
+  {
+    id: "schwartz-values-inventory-lens",
+    lens: "Schwartz Values Inventory Lens",
+    status: "",
+    source: "Schwartz_Values_Inventory.txt",
+    content: `
+Schwartz Values Inventory Lens
+
+**Overview**
+
+Shalom Schwartz’s Values Inventory identifies universal values that guide behaviour.  In a workplace context, these values translate into motivations such as conformity, achievement, stimulation, benevolence and self‑direction.  The table below lists the top values for each PI profile, how they express these values at work and what frustrates them when those values are threatened.
+
+**Crosswalk by PI Profile**
+
+| PI Profile | Top value(s) | Work expression | Stress trigger |
+|---|---|---|---|
+| **Analyzer** | Conformity; Security | Follows rules, emphasises accuracy and reliability | Frustrated by ambiguity |
+| **Controller** | Security; Power | Enforces order and control, seeks authority | Resists loss of authority |
+| **Specialist** | Achievement; Security | Demonstrates mastery, maintains high standards | Threatened by incompetence |
+| **Strategist** | Self‑direction; Achievement | Pursues vision, autonomy and impact | Stifled by bureaucracy |
+| **Venturer** | Stimulation; Self‑direction | Seeks risk, novelty and autonomy | Chafes under rules |
+| **Altruist** | Benevolence; Universalism | Supports team cohesion and fairness | Hurt by exclusion |
+| **Captain** | Power; Achievement | Leads teams, drives results and influence | Reacts to disloyalty |
+| **Collaborator** | Benevolence; Tradition | Facilitates teamwork and fairness | Distressed by conflict |
+| **Maverick** | Stimulation; Self‑direction | Breaks moulds, pursues novelty | Frustrated by constraints |
+| **Persuader** | Self‑direction; Stimulation | Seeks influence and visibility | Sensitive to rejection |
+| **Promoter** | Stimulation; Hedonism | Drives energy, visibility and excitement | Moves on quickly after slights |
+| **Adapter** | Benevolence; Conformity | Fits in, supports and adapts to the group | Over‑extends to belong |
+| **Craftsman** | Conformity; Achievement | Upholds quality, standards and craft | Distressed by sloppy work |
+| **Guardian** | Security; Tradition | Preserves processes, history and continuity | Resists rapid change |
+| **Operator** | Conformity; Security | Executes reliably and maintains order | Frustrated by chaos |
+| **Individualist** | Self‑direction; Stimulation | Expresses autonomy and originality | Withdraws under control |
+| **Scholar** | Self‑direction; Universalism | Pursues knowledge, rigour and truth | Overwhelmed by trivial tasks |
+
+**Using this lens**
+
+* Align tasks and rewards with core values: Offer vision and autonomy to Strategists and Individualists; provide rule clarity and stability for Analyzers and Operators; emphasise teamwork and fairness for Altruists and Collaborators.
+* Recognise stress triggers: Bureaucracy demotivates Strategists; loss of control threatens Controllers; sloppy work frustrates Craftsmen; rapid change unsettles Guardians.  Anticipate these triggers and tailor interventions accordingly.
+`,
+  },
+  {
+    id: "selfdetermination-theory-sdt-lens",
+    lens: "Self\u2011Determination Theory (SDT) Lens",
+    status: "",
+    source: "Self_Determination_Theory.txt",
+    content: `
+Self‑Determination Theory (SDT) Lens
+
+**Overview**
+
+Self‑Determination Theory posits that human motivation and wellbeing depend on the satisfaction of three psychological needs:
+
+1. **Autonomy** – the need for freedom, choice and self‑direction.
+2. **Competence** – the need to feel capable, effective and masterful.
+3. **Relatedness** – the need for connection, belonging and interpersonal warmth.
+
+A person’s SDT signature influences how they engage at work, respond to feedback and sustain motivation.  The table below summarises each PI profile’s relative need levels, primary driver, stress triggers and rationale.
+
+**Crosswalk by PI Profile**
+
+| PI Profile | Autonomy need | Competence need | Relatedness need | Primary SDT driver | Stress trigger | Rationale |
+|---|---|---|---|---|---|---|
+| **Analyzer** | Low‑Moderate | Very High | Low | Competence | Feeling unprepared or rushed | Mastery and precision are core motivators |
+| **Controller** | Low | High | Low | Competence (rule‑based) | Loss of control or unclear rules | Seeks order and authority |
+| **Specialist** | Moderate | Very High | Low‑Moderate | Competence | Being forced outside expertise | Deep mastery orientation |
+| **Strategist** | High | High | Low | Autonomy + Competence | Constraints and bureaucracy | Vision and ownership drive them |
+| **Venturer** | Very High | High | Low | Autonomy | Micromanagement | Bold, self‑directed risk taker |
+| **Altruist** | Low‑Moderate | Moderate | Very High | Relatedness | Interpersonal tension | People‑first orientation |
+| **Captain** | Very High | High | Low‑Moderate | Autonomy | Loss of authority | Command and ownership focus |
+| **Collaborator** | Low | Moderate | Very High | Relatedness | Conflict or exclusion | Harmony and inclusion matter most |
+| **Maverick** | Very High | High | Low | Autonomy | Constraints and rules | Creative independence |
+| **Persuader** | Moderate | Moderate | High | Relatedness | Social rejection | Influence and connection |
+| **Promoter** | High | Moderate | High | Relatedness + Autonomy | Feeling ignored or constrained | Expressive and energetic |
+| **Adapter** | Low‑Moderate | Moderate | High | Relatedness | Over‑commitment | Flexible and relational |
+| **Craftsman** | Low‑Moderate | Very High | Low | Competence | Quality compromise | Precision and standards |
+| **Guardian** | Low | High | Moderate | Competence (stability‑based) | Change without safeguards | Stewardship and continuity |
+| **Operator** | Low‑Moderate | High | Moderate | Competence | Process breakdown | Execution and reliability |
+| **Individualist** | Very High | High | Low | Autonomy | Loss of creative freedom | Independent and expressive |
+| **Scholar** | Moderate | Very High | Low | Competence | Unclear expectations | Rigorous, methodical mastery |
+
+**Practical implications**
+
+* To motivate autonomy‑driven profiles (e.g., Strategist, Venturer, Individualist), provide choice and empower them to define how work is done.  Avoid micromanagement.
+* Competence‑driven profiles (e.g., Analyzer, Specialist, Scholar) thrive on mastery and clarity; invest in skills development and give them time to prepare.  Ambiguity triggers stress.
+* Relatedness‑driven profiles (e.g., Altruist, Collaborator) need connection and belonging.  Create collaborative environments, recognise contributions and minimise interpersonal tension.
+* When multiple needs are high (e.g., Strategist has high autonomy and competence), balance them—offer ownership of challenging projects with clear goals and respect for their expertise.
+`,
+  },
+  {
+    id: "situational-leadership-lens",
+    lens: "Situational Leadership Lens",
+    status: "",
+    source: "Situational_Leadership_Lens.txt",
+    content: `
+Situational Leadership Lens
+==========================
+
+**Overview**
+
+The Situational Leadership model, developed by Paul Hersey and Ken Blanchard, posits that effective leaders adapt their style based on the development level of their followers.  There are four leadership styles and four corresponding development levelsqualitycharters.org/wp-content/uploads/2016/09/Situational-Leadership-Quick-Reference-Guide.pdf#:~:text=Four%20Leadership%20Styles%20S1%20%3D,Low%20Directive%2C%20Low%20Supportive:
+
+* **Directing (S1):** High directive, low supportive.  The leader defines roles and tells people what, how and when to do tasksqualitycharters.org/wp-content/uploads/2016/09/Situational-Leadership-Quick-Reference-Guide.pdf#:~:text=Four%20Leadership%20Styles%20S1%20%3D,Low%20Directive%2C%20Low%20Supportive.  Appropriate for **D1** employees who have low competence but high commitmentqualitycharters.org/wp-content/uploads/2016/09/Situational-Leadership-Quick-Reference-Guide.pdf#:~:text=Four%20Leadership%20Styles%20S1%20%3D,Low%20Directive%2C%20Low%20Supportive.
+* **Coaching (S2):** High directive, high supportive.  The leader provides direction and also encourages and supports.  Suits **D2** employees (some competence, low commitment)qualitycharters.org/wp-content/uploads/2016/09/Situational-Leadership-Quick-Reference-Guide.pdf#:~:text=Four%20Leadership%20Styles%20S1%20%3D,Low%20Directive%2C%20Low%20Supportive.
+* **Supporting (S3):** Low directive, high supportive.  The leader facilitates and shares decision making.  Works for **D3** employees (high competence, variable commitment)qualitycharters.org/wp-content/uploads/2016/09/Situational-Leadership-Quick-Reference-Guide.pdf#:~:text=Four%20Leadership%20Styles%20S1%20%3D,Low%20Directive%2C%20Low%20Supportive.
+* **Delegating (S4):** Low directive, low supportive.  The leader turns over responsibility for decisions and implementation.  Appropriate for **D4** employees who are competent and highly committedqualitycharters.org/wp-content/uploads/2016/09/Situational-Leadership-Quick-Reference-Guide.pdf#:~:text=Four%20Leadership%20Styles%20S1%20%3D,Low%20Directive%2C%20Low%20Supportive.
+
+Leaders must assess the competence and motivation of each follower and choose the style that best supports their development.  Effective leaders flex across styles as followers grow.
+
+**Situational Style Crosswalk by PI Profile**
+
+This table identifies the leadership style each PI profile is most comfortable using and which style they should develop to become more versatile.
+
+| PI Profile | Natural leadership style | Development level focus | Suggested development |
+|---|---|---|---|
+| **Analyzer** | Supporting (S3) | D3: competent but cautious | Practise delegating authority (S4) and coaching to build engagement when others lack motivation. |
+| **Controller** | Directing (S1) | D1: low competence, high commitment | Develop coaching (S2) and supporting (S3) skills to empower and involve others. |
+| **Specialist** | Supporting (S3) | D3: high competence, variable commitment | Practise directing (S1) for new team members and delegating (S4) when appropriate. |
+| **Strategist** | Coaching (S2) | D2: some competence, low commitment | Develop delegating (S4) skills to empower competent teams and avoid micromanagement. |
+| **Venturer** | Coaching (S2) | D1/D2: early‑stage ventures | Practise delegating (S4) to sustain growth and directing (S1) to align novices. |
+| **Altruist** | Supporting (S3) | D3: relationship oriented | Develop directing (S1) to provide clarity and coaching (S2) to motivate when enthusiasm dips. |
+| **Captain** | Directing/Coaching (S1/S2) | D1/D2: forming teams | Practise supporting (S3) to empower skilled contributors and delegating (S4) for autonomy. |
+| **Collaborator** | Supporting (S3) | D3: cohesive teams | Develop directing (S1) to offer structure and delegating (S4) to trust competent peers. |
+| **Maverick** | Coaching (S2) | D2: developing competence | Practise supporting (S3) to listen more and delegating (S4) to empower others. |
+| **Persuader** | Coaching (S2) | D2: motivational focus | Develop supporting (S3) to share decision making and directing (S1) for novice teams. |
+| **Promoter** | Coaching (S2) | D2: enthusiastic but learning | Practise supporting (S3) for experienced peers and delegating (S4) to avoid micromanaging. |
+| **Adapter** | Supporting (S3) | D3: competent colleagues | Develop directing (S1) for novices and delegating (S4) to empower capable team members. |
+| **Craftsman** | Supporting (S3) | D3: skilled individuals | Develop directing (S1) for new hires and delegating (S4) to trust others with tasks. |
+| **Guardian** | Supporting (S3) | D3: stable teams | Develop coaching (S2) to inspire and delegating (S4) to build autonomy. |
+| **Operator** | Directing (S1) | D1: procedural tasks | Develop coaching (S2) and supporting (S3) to engage and empower skilled employees. |
+| **Individualist** | Delegating (S4) | D4: high competence, high commitment | Practise coaching (S2) to support less experienced colleagues and supporting (S3) to collaborate. |
+| **Scholar** | Supporting (S3) | D3: knowledge workers | Develop coaching (S2) to motivate and delegating (S4) to empower research teams. |
+
+**Using this lens**
+
+* Continuously assess the competence and commitment of individuals.  Tailor your leadership style accordingly: novices need clear direction; developing contributors benefit from coaching; experienced staff thrive with support or delegation.
+* Encourage leaders to develop flexibility across all four styles.  Practise the style that feels least natural—this builds leadership agility and prevents over‑using one approach.
+* Communicate openly about development levels and encourage employees to articulate when they need more guidance versus autonomy.  Situational leadership is a dynamic partnership between leader and follower.`,
+  },
+  {
+    id: "social-cognition-lens",
+    lens: "Social Cognition Lens",
+    status: "",
+    source: "Social_Cognition.txt",
+    content: `
+Social Cognition Lens
+
+**Overview**
+
+Social cognition refers to how people perceive, interpret and predict social information.  Five dimensions are particularly relevant in organisational contexts:
+
+1. **Theory of Mind** – ability to infer others’ intentions, beliefs and motives.
+2. **Attribution Style** – whether a person explains behaviour by internal factors (intentional, personality) or external factors (circumstance, context).
+3. **Perspective‑Taking** – capacity to adopt another person’s viewpoint cognitively (distinct from emotional empathy).
+4. **Social Prediction** – accuracy in anticipating others’ reactions, needs and responses.
+5. **Emotional Inference** – ability to read emotional cues such as tone, body language and micro‑signals.
+
+The crosswalk below summarises each PI profile’s social‑cognitive signature, including their primary mode and stress‑distortion pattern.  “Primary mode” indicates the dominant approach used to interpret social situations.
+
+**Crosswalk by PI Profile**
+
+| PI Profile | Theory of Mind | Attribution style | Perspective‑taking | Social prediction | Emotional inference | Primary mode | Stress distortion | Rationale |
+|---|---|---|---|---|---|---|---|---|
+| **Analyzer** | Moderate | External, logic‑based | Low‑Moderate | Low | Low | Cognitive rather than emotional | Assumes incompetence, not intent | Logic > emotion |
+| **Controller** | Low | Internal (“they should know better”) | Low | Moderate | Low | Rule‑based interpretation | Assumes non‑compliance | Order + authority |
+| **Specialist** | Moderate | External (context, process) | Low‑Moderate | Low | Low | Technical rather than interpersonal | Withdraws | Depth > social nuance |
+| **Strategist** | High | Mixed (strategic) | Moderate | High | Moderate | Strategic mental modelling | Over‑interprets motives | Systems thinking applied to people |
+| **Venturer** | Moderate | Internal (“they’re slowing us down”) | Low | Moderate | Low | Action‑oriented heuristics | Misreads caution as resistance | Fast, low‑empathy cognition |
+| **Altruist** | High | External (“they’re stressed”) | Very High | High | Very High | Empathic modelling | Over‑accommodation | People‑first cognition |
+| **Captain** | Moderate | Internal (“own your part”) | Low | High | Moderate | Power‑dynamics reading | Assumes incompetence or lack of drive | Command cognition |
+| **Collaborator** | High | External | Very High | High | High | Harmony‑seeking | Avoids conflict → misreads silence | Relational integration |
+| **Maverick** | Moderate | Internal (“they don’t get it”) | Low | Moderate | Low | Idea‑centric | Dismisses others’ constraints | Creative, not relational |
+| **Persuader** | High | Mixed | High | Very High | High | Audience‑reading | Over‑personalises reactions | Influence cognition |
+| **Promoter** | High | External | Moderate | High | High | Social‑energetic | Misreads neutrality as rejection | Expressive, reactive |
+| **Adapter** | High | External | Very High | High | High | Situational empathy | Over‑adjusts | Flexible, relational |
+| **Craftsman** | Low‑Moderate | External | Low | Low | Low | Task‑centric | Withdraws into work | Quality > social nuance |
+| **Guardian** | Moderate | External | Moderate | Moderate | Low‑Moderate | Stability‑oriented | Assumes threat or risk | Stewardship cognition |
+| **Operator** | Low‑Moderate | External | Low | Low | Low | Practical rather than interpersonal | Misreads urgency | Execution > nuance |
+| **Individualist** | Moderate | Internal | Moderate | Moderate | Low‑Moderate | Identity‑centric | Withdraws into autonomy | Independent cognition |
+| **Scholar** | Moderate | External | Low‑Moderate | Low | Low | Analytical rather than interpersonal | Over‑analysis of motives | Intellectual, not social |
+
+**Applying this lens**
+
+* High social‑cognitive profiles (e.g., Altruist, Collaborator, Persuader) excel at anticipating others’ reactions and building rapport; leverage them in stakeholder management and team facilitation.
+* Low theory‑of‑mind or emotional inference (e.g., Analyzer, Craftsman) does not mean indifference—it reflects a preference for logic over social cues.  Be explicit about expectations and context; avoid assuming they “just know” how others feel.
+* Stress distortions reveal risk: Controllers assume non‑compliance, Venturers misinterpret caution as resistance, Collaborators avoid conflict and may misread silence.  Encourage open dialogue and clarify intent to reduce misinterpretations.
+* Primary modes hint at communication channels: Data and logic for cognitive types, empathy and storytelling for relational types, systems mapping for strategists and creative brainstorming for mavericks.
+`,
+  },
+  {
+    id: "social-styles-lens",
+    lens: "Social Styles Lens",
+    status: "",
+    source: "Social_Styles_Lens.txt",
+    content: `
+Social Styles Lens
+==================
+
+**Overview and theoretical background**
+
+The **Social Styles** model, developed by Merrill and Reid, categorizes
+people’s interaction preferences along two dimensions: **assertiveness**
+(how forcefully someone expresses opinions) and **responsiveness** (how
+openly they display emotions).  The intersection of these axes produces
+four stylesfile:///home/oai/redirect.html#:~:text=The%20four%20social%20styles%2C%20Expressive%2C,evenly%20divided%20among%20the%20population:
+
+1. **Driver** – high assertiveness and low responsiveness.  Drivers are
+   direct, action‑oriented and decisive but may be bluntfile:///home/oai/redirect.html#:~:text=Driver%3A%20highly%20assertive%20%26%20low,responsiveness.
+2. **Expressive** – high assertiveness and high responsiveness.  Expressives
+   are enthusiastic, spontaneous risk‑takers who share opinions freelyfile:///home/oai/redirect.html#:~:text=Expressive%3A%20highly%20assertive%20%26%20highly,responsive.
+3. **Amiable** – low assertiveness and high responsiveness.  Amiables are
+   supportive, relationship‑focused and co‑operative but may shy away
+   from conflictfile:///home/oai/redirect.html#:~:text=Amiable%3A%20low%20assertiveness%20%26%20highly,responsive.
+4. **Analytical** – low assertiveness and low responsiveness.  Analyticals
+   are detail‑oriented, logical and cautious; they rely on data and
+   prefer thorough decision makingfile:///home/oai/redirect.html#:~:text=Analytical%3A%20low%20assertiveness%20%26%20low,responsiveness.
+
+Social Style is about surface behavior, not motivation; recognizing
+styles helps adjust communication for clarity and rapport.
+
+**Cross‑framework translation with PI profiles**
+
+The table below aligns PI profiles to Social Styles.  “Primary style”
+indicates the dominant quadrant; “Secondary tendencies” note nuance;
+“Interaction tip” provides advice for working with that style.
+
+| PI profile | Primary style | Secondary tendencies | Interaction tip |
+|---|---|---|---|
+| **Analyzer** | Analytical | Amiable | Provide data, time for analysis and clear expectations; avoid pushing for rapid decisions. |
+| **Controller** | Driver | Analytical | Be concise and results‑focused; present logical arguments; respect their need for control while offering collaboration. |
+| **Specialist** | Analytical | Amiable | Give clear instructions; allow autonomy and time; show appreciation of expertise. |
+| **Strategist** | Driver | Analytical | Tie ideas to strategic outcomes; provide room for input; help balance analysis with action. |
+| **Venturer** | Driver | Expressive | Convey possibilities and challenges; be direct yet supportive; encourage them to consider details and impact. |
+| **Individualist** | Analytical | Driver | Outline frameworks and logic; respect independence; avoid micromanagement; encourage open dialogue. |
+| **Scholar** | Analytical | Amiable | Share thorough information; solicit ideas; support them through decision processes. |
+| **Altruist** | Amiable | Analytical | Build rapport; express appreciation; avoid abrupt demands; include them in planning with clear steps. |
+| **Captain** | Driver | Expressive | Be straightforward and visionary; recognize achievements; provide concise updates; invite collaboration. |
+| **Collaborator** | Amiable | Expressive | Show empathy; invite participation; provide reassurance when change occurs; make decisions collaboratively. |
+| **Maverick** | Expressive | Driver | Emphasize innovation and opportunity; be flexible; establish boundaries and accountability. |
+| **Persuader** | Expressive | Amiable | Engage in dialogue and brainstorming; show enthusiasm; encourage focus and follow‑through. |
+| **Promoter** | Expressive | Amiable | Provide social opportunities; set expectations clearly; balance enthusiasm with structure. |
+| **Adapter** | Amiable | Analytical | Seek input and consensus; provide clarity about objectives; support decision making. |
+| **Artisan** | Analytical | Driver | Respect precision; provide context and goals; encourage communication of progress. |
+| **Guardian** | Amiable | Analytical | Build trust; explain reasons for change; provide support and reassurance; avoid rushing decisions. |
+| **Operator** | Amiable | Analytical | Use calm, clear explanations; encourage questions; provide hands‑on examples; acknowledge contributions. |
+
+**Practical implications**
+
+Understanding social styles enables tailored communication.  Drivers like
+Controllers and Captains appreciate efficiency and directness, while
+Analyticals like Analyzers and Specialists need data and time to decide.
+Expressives such as Mavericks and Persuaders respond to enthusiasm and
+vision but may require gentle redirection to details.  Amiables like
+Collaborators and Guardians thrive on rapport and harmony and should be
+engaged in decision making rather than being told what to do.  Adjusting
+tone, pace and format to someone’s style builds trust and reduces
+misunderstandings.
+`,
+  },
+  {
+    id: "specialist--neurodivergence--cognitive-accessibility",
+    lens: "Specialist \u2014 Neurodivergence & Cognitive Accessibility",
+    status: "",
+    source: "Specialist_Neurodivergence.txt",
+    content: `
+Specialist — Neurodivergence & Cognitive Accessibility
+========================================================
+
+**ADHD**
+- **Manifestation:** Difficulty initiating broad exploratory work paired with hyperfocus on narrow technical problems.
+- **Behaviour impact:** Long periods of procrastination or analysis paralysis, followed by exhaustive deep dives; integration and synthesis suffer.
+- **Distortion of typical pattern:** The Specialist’s depth becomes uneven—brilliant modules but poor system integration or context.
+- **Real‑life snapshot:** Delivers an exhaustive 60‑page compendium overnight after weeks of stalling.
+- **Work/bandwidth impact:** Handoffs and cross‑functional integration suffer; knowledge remains siloed.
+- **Risk if ignored:** Missed deadlines, duplicated work, loss of credibility.
+- **Best way to approach:** Break research into micro‑questions with acceptance criteria, schedule frequent check‑ins and pair on the first step.
+
+*Micro‑accommodations:* Provide micro‑question prompts; use small, time‑boxed sprints (e.g., 30 minutes) to start work; maintain weekly 30‑minute syncs.
+
+*Peer scripts:* 
+- “Can we break this into three micro‑questions and check in weekly?”  
+- “Want to pair for the first 30 minutes to get started?”
+
+*Trial metrics:* Time to first deliverable; percentage of experiments documented.
+
+*Tools/supports:* Experiment templates, time trackers, shared note templates.
+
+*Privacy phrasing:* “I’m breaking this into small questions and will share the first draft next week.”
+
+---
+
+**Executive Function Differences**
+- **Manifestation:** Trouble sequencing experiments and documenting results.
+- **Behaviour impact:** Deep experiments are conducted, but write‑ups lag; methods remain implicit.
+- **Distortion:** Findings stay siloed; knowledge isn’t transferred.
+- **Snapshot:** Runs a deep experiment but delays or forgets to write up the methods and results.
+- **Work/bandwidth impact:** Lost knowledge, duplication of effort.
+- **Risk if ignored:** Wasted time and resources.
+- **Best way to approach:** Use experiment templates with mandatory short write‑ups at milestones and assign an accountability partner.
+
+*Micro‑accommodations:* Require a 1‑page methods note at each milestone; include prompts for assumptions, procedure and results.
+
+*Peer scripts:* 
+- “Can you add a one‑page methods note at milestone X?”  
+- “I’ll help capture the methods while you run the test.”
+
+*Trial metrics:* Percentage of experiments with milestone write‑ups; time to publish results after experiment completion.
+
+*Tools/supports:* Shared lab notebook, templates with prompts, co‑authoring features.
+
+*Privacy phrasing:* “I’ll add a short methods note at each milestone so we don’t lose the findings.”
+
+---
+
+**Time Blindness**
+- **Manifestation:** Optimistic estimates for exploratory work and prototypes.
+- **Behaviour impact:** Overpromises on research timelines and underestimates unforeseen complexities.
+- **Distortion:** Reliability is perceived as low even when quality is high.
+- **Snapshot:** Promises a prototype in a week that actually requires a month.
+- **Work/bandwidth impact:** Team planning suffers; deadlines slip.
+- **Risk if ignored:** Reputational damage and misaligned expectations.
+- **Best way to approach:** Anchor estimates to past projects; break tasks into phases with micro‑deadlines and buffers.
+
+*Micro‑accommodations:* Use historical benchmarks, phase estimates and a default buffer rule; schedule regular progress check‑ins to adjust timelines.
+
+*Peer scripts:* 
+- “Let’s use project X as a benchmark and add a buffer.”  
+- “Can we set micro‑deadlines for each phase?”
+
+*Trial metrics:* Percentage of deadlines met; average buffer used; variance between estimated and actual duration.
+
+*Tools/supports:* Timeline templates, milestone trackers, Gantt charts.
+
+*Privacy phrasing:* “I’m using a conservative timeline based on past projects to avoid overcommitment.”
+
+---
+
+**Task Initiation Difficulty**
+- **Manifestation:** Paralysis without a clear first experiment or data point; perfectionistic threshold for starting work.
+- **Behaviour impact:** Delays the beginning of exploratory research.
+- **Distortion:** Intellectual curiosity stalls and momentum is lost.
+- **Snapshot:** Asks for a sample dataset or working example before starting any coding.
+- **Work/bandwidth impact:** Slow starts result in compressing later phases.
+- **Risk if ignored:** Missed innovation windows; stress on downstream teams.
+- **Best way to approach:** Provide a one‑sentence first action and pair for kickoff to overcome inertia.
+
+*Micro‑accommodations:* Schedule a 30‑minute kickoff pairing session; include a “first action” note; provide sample data or a stub script.
+
+*Peer scripts:* 
+- “What’s one tiny test we can run in a day?”  
+- “I’ll pair for the first session to get you started.”
+
+*Trial metrics:* Time from assignment to first experiment; number of ideas reaching a prototype.
+
+*Tools/supports:* Kickoff slots, checklists, sample data repositories.
+
+*Privacy phrasing:* “Can we pair for the first 30 minutes so I can get started?”
+
+---
+
+**Context‑Switching Difficulty**
+- **Manifestation:** High cognitive cost moving between deep work and meetings; reorienting disrupts flow.
+- **Behaviour impact:** Declines ad‑hoc collaboration and requests written briefs or asynchronous updates.
+- **Distortion:** Single‑threading reduces cross‑team input and slows coordination.
+- **Snapshot:** Skips a quick sync and asks for a short written summary instead.
+- **Work/bandwidth impact:** Misalignment, duplication of work, missed dependencies.
+- **Risk if ignored:** Project delays and frustrated partners.
+- **Best way to approach:** Batch meetings to minimise context switching; provide concise written briefs; schedule predictable catch‑ups.
+
+*Micro‑accommodations:* Group meetings together; share briefs ahead of time; allocate 15‑minute recap windows.
+
+*Peer scripts:* 
+- “I’ll send a short brief instead of interrupting your flow.”  
+- “Can we schedule a 20‑minute sync after your deep work?”
+
+*Trial metrics:* Number of missed syncs; percentage of items resolved via briefs; time spent context switching.
+
+*Tools/supports:* Async update channels, pre‑read templates, shared calendars.
+
+*Privacy phrasing:* “I prefer a short brief and a scheduled 20‑minute sync after my deep work.”
+
+---
+
+**Hyperfocus Patterns**
+- **Manifestation:** Intense immersion in one technical area; loses track of time and neglects integration.
+- **Behaviour impact:** Produces exceptional depth but uneven delivery on the overall project.
+- **Distortion:** Tunnel vision reduces product fit and delays the broader system release.
+- **Snapshot:** Builds a brilliant algorithm but misses the integration deadline or necessary documentation.
+- **Work/bandwidth impact:** Imbalanced delivery; colleagues must scramble to fill gaps.
+- **Risk if ignored:** Team friction and potential burnout.
+- **Best way to approach:** Set visible stop signals and scheduled handoffs; include mid‑cycle check‑ins for integration.
+
+*Micro‑accommodations:* Mid‑pilot check‑ins; shared priority list; mandatory integration checkpoints.
+
+*Peer scripts:* 
+- “Set a mid‑pilot check‑in so we don’t lose other priorities.”  
+- “Ping me when you hit X so we can re‑prioritise.”
+
+*Trial metrics:* Missed commitments while hyperfocused; percentage of pilots with mid‑cycle check‑ins.
+
+*Tools/supports:* Progress board, reminders, integration review meetings.
+
+*Privacy phrasing:* “I’m in a focused sprint — I’ll set a mid‑sprint check‑in.”
+
+---
+
+**Rejection Sensitivity**
+- **Manifestation:** Avoids sharing early drafts; over‑polishes before letting others see work.
+- **Behaviour impact:** Slower iteration cycles and hidden perfectionism.
+- **Distortion:** Learning is delayed; feedback arrives late.
+- **Snapshot:** Circulates near‑final drafts privately rather than inviting feedback early.
+- **Work/bandwidth impact:** Slower improvement; less iterative alignment.
+- **Risk if ignored:** Isolation and misaligned output.
+- **Best way to approach:** Provide private, specific feedback and create safe preview sessions.
+
+*Micro‑accommodations:* Offer private preview sessions; use a feedback sandwich (highlight strengths plus one tweak); emphasise incremental feedback.
+
+*Peer scripts:* 
+- “Can I preview this privately and give one focused suggestion?”  
+- “This is strong; one tweak that could help is X.”
+
+*Trial metrics:* Number of private previews; change in frequency of early sharing.
+
+*Tools/supports:* Private feedback channels, short feedback templates.
+
+*Privacy phrasing:* “I prefer private previews on early drafts — can we do that?”
+
+---
+
+**Masking Fatigue**
+- **Manifestation:** Exhaustion from continually translating technical concepts for non‑technical audiences or suppressing personal interests.
+- **Behaviour impact:** Reduces spontaneity and creativity; avoids casual brainstorms.
+- **Distortion:** Curiosity and creative contributions are suppressed.
+- **Snapshot:** Stops contributing to informal team brainstorms and only speaks when directly asked.
+- **Work/bandwidth impact:** Lowered team creativity and missed ideas.
+- **Risk if ignored:** Burnout and disengagement.
+- **Best way to approach:** Provide low‑visibility contribution channels and permit recovery time after intense interpretive work.
+
+*Micro‑accommodations:* Offer an idea document for asynchronous contributions; schedule recovery half‑days after high‑communication periods.
+
+*Peer scripts:* 
+- “Drop your idea in this doc and I’ll surface it.”  
+- “Take a recovery half‑day after the sprint; we’ve got your back.”
+
+*Trial metrics:* Number of asynchronous contributions; self‑reported energy after recovery.
+
+*Tools/supports:* Shared idea document, opt‑out mechanisms for live brainstorms.
+
+*Privacy phrasing:* “I’ll drop my idea in the doc this round while I recharge.”
+
+---
+
+**Social Communication Load**
+- **Manifestation:** Extra effort is required to translate technical work for broader audiences.
+- **Behaviour impact:** Prefers detailed memos over live summaries; may avoid social selling.
+- **Distortion:** Influence outside the technical team weakens.
+- **Snapshot:** Sends a long technical memo rather than a short executive summary.
+- **Work/bandwidth impact:** Slower stakeholder alignment and buy‑in.
+- **Risk if ignored:** Technical input is sidelined; duplication of work.
+- **Best way to approach:** Provide executive summary templates and co‑presenting support.
+
+*Micro‑accommodations:* Supply a three‑bullet executive summary template; pair with a non‑technical co‑presenter for stakeholder meetings.
+
+*Peer scripts:* 
+- “I’ll draft a three‑bullet summary you can use for the execs.”  
+- “Would you like me to co‑present the non‑technical part?”
+
+*Trial metrics:* Percentage of stakeholders reached; follow‑through after presentations.
+
+*Tools/supports:* Summary templates, co‑presenter pairing.
+
+*Privacy phrasing:* “Can I send a short summary for the execs and have you present it?”
+
+---
+
+**Need for Written Instructions**
+- **Manifestation:** Performs best with documented protocols, examples and standard operating procedures.
+- **Behaviour impact:** Frequently requests templates; resists ambiguous or verbal instructions.
+- **Distortion:** Agility is reduced by over‑reliance on written rules, but errors are fewer.
+- **Snapshot:** Asks for a step‑by‑step protocol before running an experiment.
+- **Work/bandwidth impact:** Higher accuracy; slower responsiveness.
+- **Risk if ignored:** Errors due to misremembered verbal instructions.
+- **Best way to approach:** Supply concise protocols and examples; normalise template use.
+
+*Micro‑accommodations:* Provide protocol templates and example files; maintain an easily searchable template library.
+
+*Peer scripts:* 
+- “Here’s a short protocol — want me to fill the first section?”  
+- “If you give me an example, I’ll adapt it.”
+
+*Trial metrics:* Percentage of tasks with templates; number of clarifying follow‑ups.
+
+*Tools/supports:* Template library, example code base.
+
+*Privacy phrasing:* “I prefer a short protocol and an example before I start.”
+
+---
+
+**Need for Reduced Interruption**
+- **Manifestation:** Deep work is easily derailed by interruptions; high cognitive load to regain context.
+- **Behaviour impact:** Uses long focus blocks and declines ad‑hoc asks to preserve cognitive bandwidth.
+- **Distortion:** Collaboration is limited to scheduled windows; team members may misinterpret this as uncooperativeness.
+- **Snapshot:** Marks calendar busy and does not respond to pings during deep work.
+- **Work/bandwidth impact:** Coordination gaps versus higher quality outputs.
+- **Risk if ignored:** Chronic inefficiency and tension in the team.
+- **Best way to approach:** Respect focus blocks and provide asynchronous updates.
+
+*Micro‑accommodations:* Schedule focus blocks; use asynchronous three‑bullet updates; set clear escalation protocols for urgent issues.
+
+*Peer scripts:* 
+- “I’ll send a three‑bullet update after your block.”  
+- “If it’s urgent, text ‘URGENT’ and I’ll respond.”
+
+*Trial metrics:* Interruptions during blocks; percentage of items resolved asynchronously; time saved from reduced context switching.
+
+*Tools/supports:* Calendar focus blocks, asynchronous update templates, Slack status conventions.
+
+*Privacy phrasing:* “I’m in a focus block — please send a three‑bullet update if it’s not urgent.”
+
+---
+
+**Need for Structure Without Shame**
+- **Manifestation:** Prefers templates and structure but may feel embarrassed to ask for them.
+- **Behaviour impact:** Builds private systems or works in isolation; misalignment and duplicated effort occur.
+- **Distortion:** Rigour becomes hidden inefficiency and lack of transparency.
+- **Snapshot:** Keeps private code snippets or analysis pipelines rather than adding them to shared libraries.
+- **Work/bandwidth impact:** Duplicated effort, friction in collaboration.
+- **Risk if ignored:** Reduced trust and inefficiency.
+- **Best way to approach:** Normalise shared templates and co‑creation of structure; frame structure as professional rather than remedial.
+
+*Micro‑accommodations:* Shared template repository, coding standards workshops, optional “structure sessions.”
+
+*Peer scripts:* 
+- “Can I share a short template that might help?”  
+- “Would you like to co‑create a standard we can all use?”
+
+*Trial metrics:* Percentage of the team using standard templates; time saved through reuse.
+
+*Tools/supports:* Shared repository, version control with templates.
+
+*Privacy phrasing:* “I have a short template that helps me — can I share it?”
+
+---
+
+**Dyslexia / Dyscalculia / Dysgraphia / Dyspraxia**
+- **Manifestation:** Extra time for reading, writing or numeric tasks; may prefer spoken explanations or visual aids.
+- **Behaviour impact:** Slower document turnaround; relies on assistive tools or colleagues for writing and calculations.
+- **Distortion:** Output quality remains high but throughput drops.
+- **Snapshot:** Spends extra hours polishing a short methods section or debugging numeric calculations.
+- **Work/bandwidth impact:** Slower publication cadence and possible bottlenecks.
+- **Risk if ignored:** Missed deadlines and misinterpretation of data.
+- **Best way to approach:** Provide assistive technology, co‑author support and be flexible with deadlines when quality matters.
+
+*Micro‑accommodations:* Use speech‑to‑text for documentation; provide calculators and formula checkers; pair on write‑ups.
+
+*Peer scripts:* 
+- “I can help draft the write‑up from your notes.”  
+- “Record a voice note and I’ll transcribe it.”
+
+*Trial metrics:* Time to publish; percentage of documents co‑authored or assisted by tools; error rate.
+
+*Tools/supports:* Speech‑to‑text software, calculators, templates, co‑authoring tools.
+
+*Privacy phrasing:* “I prefer to record a voice note for the write‑up — can I send that?”
+
+---
+
+**Auditory Processing / Sensory Processing / Tourette Syndrome**
+- **Manifestation:** Difficulty processing fast speech or multi‑speaker discussions; sensory overload triggers stress or tics.
+- **Behaviour impact:** Prefers captions, slides and written summaries; limits participation in noisy or chaotic sessions.
+- **Distortion:** Live participation decreases; colleagues may mistake quietness for disengagement.
+- **Snapshot:** Asks for meeting notes after a rapid Q&A session.
+- **Work/bandwidth impact:** Risk of miscommunication and repeated explanations.
+- **Risk if ignored:** Errors and exclusion.
+- **Best way to approach:** Use captions, share slides or notes in advance, allow written contributions and provide quiet rooms for deep discussions.
+
+*Micro‑accommodations:* Captions on calls; slides/notes in advance; quiet rooms; asynchronous Q&A documents.
+
+*Peer scripts:* 
+- “I’ll share the slides and notes before the meeting.”  
+- “Drop your questions in the doc and I’ll read them aloud.”
+
+*Trial metrics:* Number of written contributions; meeting comfort rating; reduction in repeated explanations.
+
+*Tools/supports:* Live captions, shared decks, quiet workspaces.
+
+*Privacy phrasing:* “I’ll drop my questions in the doc and follow up after the meeting.”
+
+---
+
+**Working Memory / Processing Speed Differences**
+- **Manifestation:** Needs external aids to manage multiple threads and extra time to synthesise complex information.
+- **Behaviour impact:** Prefers pre‑reads and reflection time; slower during fast exchanges but delivers higher quality after reflection.
+- **Distortion:** Rapid ideation may not translate into timely integrated plans.
+- **Snapshot:** Offers strong verbal direction in a meeting but needs extra time to produce a coherent plan.
+- **Work/bandwidth impact:** Slower documentation and handoffs; higher quality after reflection.
+- **Risk if ignored:** Hasty decisions and missed nuance.
+- **Best way to approach:** Provide concise pre‑reads, use short recap pauses, and allow reflection windows before finalising decisions.
+
+*Micro‑accommodations:* Send pre‑reads 24‑48 hours before meetings; include five‑minute recap breaks; allow post‑meeting reflection before decisions are final.
+
+*Peer scripts:* 
+- “I’ll send a two‑slide summary before the meeting so you can reflect.”  
+- “Let’s pause for five minutes after the presentation to gather thoughts.”
+
+*Trial metrics:* Percentage of decisions postponed for reflection; quality of final plans after reflection; measured decision errors.
+
+*Tools/supports:* Pre‑read templates, meeting recap prompts, shared decision trackers.
+
+*Privacy phrasing:* “I prefer a short pre‑read and a five‑minute pause after the meeting to finalise my input.”
+
+`,
+  },
+  {
+    id: "spiral-dynamics-graves-values-lens",
+    lens: "Spiral Dynamics (Graves Values) Lens",
+    status: "",
+    source: "Spiral_Dynamics_Lens.txt",
+    content: `
+Spiral Dynamics (Graves Values) Lens
+===================================
+
+**Overview**
+
+Spiral Dynamics is a value‑system model derived from the work of psychologist Clare W. Graves.  It describes human development as a series of evolving value systems or “vMEMEs”, each representing a worldview shaped by life conditions.  The stages are not inherently better or worse—rather, they reflect increasingly complex ways of navigating reality.  The principal stages are:
+
+* **Beige – Survival Instinctive:** Focus on basic survival and biological needshttps://scottjeffrey.com/spiral-dynamics/#:~:text=Beige%3A%20The%20Instinctive%20Self.
+* **Purple – Tribal/Magical:** Emphasis on safety, belonging and tradition; loyalty to the tribehttps://scottjeffrey.com/spiral-dynamics/#:~:text=Beige%3A%20The%20Instinctive%20Self.
+* **Red – Power/Impulsive:** Pursuit of power, glory and immediate gratification; heroic, dominant, egocentrichttps://scottjeffrey.com/spiral-dynamics/#:~:text=Beige%3A%20The%20Instinctive%20Self.
+* **Blue – Rule/Role:** Seek order, stability and absolute truth; adhere to rules and moral codeshttps://scottjeffrey.com/spiral-dynamics/#:~:text=Beige%3A%20The%20Instinctive%20Self.
+* **Orange – Achiever:** Driven by rationality, achievement and autonomy; values science, progress and successhttps://scottjeffrey.com/spiral-dynamics/#:~:text=Beige%3A%20The%20Instinctive%20Self.
+* **Green – Communitarian:** Prioritises equality, consensus and connection; values sensitivity and communityhttps://scottjeffrey.com/spiral-dynamics/#:~:text=Beige%3A%20The%20Instinctive%20Self.
+* **Yellow – Integrative:** Integrates previous stages, embraces complexity and systems thinking; seeks flexible, self‑expressive solutionshttps://scottjeffrey.com/spiral-dynamics/#:~:text=Beige%3A%20The%20Instinctive%20Self.
+* **Turquoise – Holistic:** Views the world as an interconnected whole; focuses on global consciousness and the wellbeing of the entire systemhttps://scottjeffrey.com/spiral-dynamics/#:~:text=Beige%3A%20The%20Instinctive%20Self.
+
+Most individuals and organisations express a dominant stage along with elements of adjacent stages.  Under stress, people may regress to an earlier stage.  Understanding these stages helps leaders anticipate motivations and communication styles.
+
+**Spiral Dynamics Crosswalk by PI Profile**
+
+The table below assigns each PI profile to a predominant Spiral Dynamics stage.  These assignments are interpretive and not prescriptive; individuals often demonstrate characteristics of multiple stages.
+
+| PI Profile | Dominant value stage | Secondary tendencies | Stress pattern | Strengths & vulnerabilities |
+|---|---|---|---|---|
+| **Analyzer** | **Blue / Orange** | Green | Under pressure may retreat into rigid rules (Blue) | Strength: disciplined, data‑driven decision‑maker; vulnerability: may be dogmatic or bureaucratic. |
+| **Controller** | **Blue / Red** | Orange | When stressed, shifts to Red dominance and exerts control | Strength: provides structure and authority; vulnerability: can become authoritarian or suppressive. |
+| **Specialist** | **Green / Blue** | Yellow | Retreats into safe routines when pressured (Blue) | Strength: relational and community‑oriented expert; vulnerability: may resist change and over‑identify with group norms. |
+| **Strategist** | **Yellow / Orange** | Blue | Under stress may assert power (Red/Blue) | Strength: systems thinker who integrates multiple perspectives; vulnerability: can become aloof or overly theoretical. |
+| **Venturer** | **Red / Orange** | Yellow | When stressed may revert to impulsive Red behaviour | Strength: bold achiever and risk‑taker; vulnerability: may ignore consequences and over‑compete. |
+| **Altruist** | **Green** | Blue / Yellow | Under stress may become self‑sacrificing (Purple–Blue) | Strength: empathetic and inclusive; vulnerability: may avoid conflict and struggle with boundaries. |
+| **Captain** | **Red / Orange** | Blue | Stress amplifies dominance and control (Red) | Strength: charismatic leader who drives results; vulnerability: may overwhelm or polarise others. |
+| **Collaborator** | **Green** | Yellow | Under stress may accommodate excessively (Purple) | Strength: facilitates consensus and harmony; vulnerability: may avoid decisive action. |
+| **Maverick** | **Red / Orange** | Green | Under stress may reject rules entirely (Red) | Strength: creative disruptor and challenger; vulnerability: can be chaotic or rebellious. |
+| **Persuader** | **Orange / Red** | Green | May become manipulative under pressure (Red) | Strength: persuasive, achievement‑oriented influencer; vulnerability: risk of superficiality or excessive self‑promotion. |
+| **Promoter** | **Orange** | Red / Yellow | Over‑promises and exaggerates under stress | Strength: energetic promoter and networker; vulnerability: may sacrifice integrity for attention. |
+| **Adapter** | **Green / Blue** | Yellow | Withdraws to safe routines (Purple‑Blue) | Strength: flexible, supportive and adaptable; vulnerability: may lack conviction and direction. |
+| **Craftsman** | **Blue / Orange** | Green | Becomes rigid and perfectionistic under stress | Strength: delivers high‑quality work through discipline; vulnerability: may resist innovation or big picture thinking. |
+| **Guardian** | **Blue / Purple** | Green | Retracts to tradition and caution under stress | Strength: provides stability and continuity; vulnerability: may fear change and stifle creativity. |
+| **Operator** | **Blue / Orange** | Green | Under pressure may follow rules blindly | Strength: efficient executor and organiser; vulnerability: may not challenge flawed processes. |
+| **Individualist** | **Yellow / Red** | Orange | Can withdraw or compete aggressively under stress | Strength: independent, integrative thinker; vulnerability: may seem detached or contrarian. |
+| **Scholar** | **Yellow / Green** | Blue | Under stress may over‑analyse and withdraw | Strength: deep thinker with holistic perspective; vulnerability: may delay decisions or lose practical focus. |
+
+**Using this lens**
+
+* Recognise that each stage reflects how people interpret the world.  Communicate and motivate by appealing to the value system someone is operating from—e.g., emphasise goals and progress for Orange achievers, or community and fairness for Green communitarians.
+* Avoid judging any stage as superior; each has strengths and limitations.  Teams benefit from diversity across the spiral—Orange achievers drive results, Green collaborators ensure inclusion and Yellow strategists integrate complexity.
+* Under stress, individuals often regress to earlier stages.  For example, a Yellow strategist may become controlling (Red/Blue) when threatened.  Anticipating stress regressions helps leaders support colleagues effectively.`,
+  },
+  {
+    id: "strength-deployment-inventory-sdi-lens",
+    lens: "Strength Deployment Inventory (SDI) Lens",
+    status: "",
+    source: "Strength_Deployment_Inventory.txt",
+    content: `
+Strength Deployment Inventory (SDI) Lens
+========================================
+
+**Overview**
+
+The Strength Deployment Inventory (SDI) is a motivational model created by psychologist Elias Porter.  It holds that people are driven by a combination of three core value orientations:
+
+* **Altruistic‑Nurturing (Blue):** Individuals with high blue motivation derive self‑worth from helping and caring for others.  They value cooperation, harmony and personal connection.  Typical behaviours include being trusting, optimistic and supportivehttps://www.teambuildingsolutions.co.uk/sdi#:~:text=A%20basic%20premise%20,about%20themselves%20as%20a%20person.
+* **Assertive‑Directing (Red):** Red‑driven people find worth in achieving results and taking decisive action.  They value task accomplishment, efficiency and assertiveness.  They tend to be decisive, competitive and comfortable taking chargehttps://www.teambuildingsolutions.co.uk/sdi#:~:text=A%20basic%20premise%20,about%20themselves%20as%20a%20person.
+* **Analytical‑Autonomizing (Green):** Green‑motivated individuals derive worth from understanding and order.  They value accuracy, rationality and independence.  They tend to be methodical, objective and self‑relianthttps://www.teambuildingsolutions.co.uk/sdi#:~:text=A%20basic%20premise%20,about%20themselves%20as%20a%20person.
+* **Flexible‑Cohering (Hub):** Some individuals draw from all three motivations and flex to align with others.  They value cohesion, versatility and maintaining group harmony.
+
+Most people have a primary motivation and a blend of secondary motivations.  Under stress, they may shift into a different style (e.g., a blue person may over‑accommodate or withdraw).  The SDI helps teams understand motivational differences, appreciate each other’s strengths and reduce conflict.
+
+**SDI Crosswalk by PI Profile**
+
+The table below maps the 17 Predictive Index (PI) behavioural profiles to their likely motivational value systems.  Because individuals are complex, these mappings are approximate.  The primary column shows the dominant motivational colour; the secondary column reflects blended motivations; the stress pattern summarises how the profile may react under pressure.
+
+| PI Profile | Primary motivational value system | Secondary blend | Stress response | Strengths & vulnerabilities |
+|---|---|---|---|---|
+| **Analyzer** | **Green** (Analytical‑Autonomizing) | Red (task achievement) | Withdraws and becomes overly perfectionistic | Strength: rigorous analysis and logical rigour.  Vulnerability: may become rigid or detached when stressed. |
+| **Controller** | **Red** (Assertive‑Directing) | Blue (nurturing rules) | Becomes controlling and micromanages | Strength: decisive, moves initiatives forward.  Vulnerability: can be authoritarian and inflexible. |
+| **Specialist** | **Blue** (Altruistic‑Nurturing) | Green (analytical) | Withdraws and internalises stress | Strength: deep expertise and supportive collaboration.  Vulnerability: may avoid confrontation and delay decisions. |
+| **Strategist** | **Green** (Analytical‑Autonomizing) | Red (assertive) | Pushes for control when under pressure | Strength: systems thinking and strategic planning.  Vulnerability: can become dismissive or controlling when goals are threatened. |
+| **Venturer** | **Red** (Assertive‑Directing) | Yellow (creative enthusiasm) | Impulsive or domineering | Strength: bold risk‑taking and rapid decision‑making.  Vulnerability: may ignore details or others’ needs. |
+| **Altruist** | **Blue** (Altruistic‑Nurturing) | Green (order) | Over‑accommodates and self‑sacrifices | Strength: caring, empathetic team‑building.  Vulnerability: difficulty saying no and may neglect own needs. |
+| **Captain** | **Red** (Assertive‑Directing) | Yellow (social) | Becomes aggressive and dominating | Strength: motivates others and drives toward results.  Vulnerability: may steamroll colleagues and ignore input. |
+| **Collaborator** | **Blue** (Altruistic‑Nurturing) | Yellow (expressive) | Avoids conflict, seeks consensus | Strength: inclusive, harmonising facilitator.  Vulnerability: may struggle with decisiveness and prioritisation. |
+| **Maverick** | **Red** (Assertive‑Directing) | Blue (nurturing) | Pushes boundaries and resists control | Strength: challenges the status quo and sparks innovation.  Vulnerability: may disregard rules and create chaos. |
+| **Persuader** | **Red‑Blue** (Assertive‑Nurturing) | Yellow (expressive) | Dramatises and pressures for agreement | Strength: charismatic influencer and motivator.  Vulnerability: can overpromise and manipulate. |
+| **Promoter** | **Red‑Blue** (Assertive‑Nurturing) | Yellow (expressive) | Over‑commits and seeks attention | Strength: enthusiastic champion and networker.  Vulnerability: may neglect follow‑through and detail. |
+| **Adapter** | **Blue‑Green** (Cautious‑Supporting) | Hub (flexible) | Withdraws quietly and avoids decisions | Strength: flexible, supportive and patient.  Vulnerability: may be indecisive and overly accommodating. |
+| **Craftsman** | **Green** (Analytical‑Autonomizing) | Blue (support) | Becomes perfectionistic and critical | Strength: meticulous craftsmanship and reliability.  Vulnerability: may get bogged down in details and resist change. |
+| **Guardian** | **Blue‑Green** (Cautious‑Supporting) | Hub | Becomes defensive and conservative | Strength: stabilising, protective and dependable.  Vulnerability: may resist innovation and over‑protect. |
+| **Operator** | **Green** (Analytical‑Autonomizing) | Blue (support) | Becomes rigid and dogmatic | Strength: reliable implementer and process expert.  Vulnerability: may over‑enforce rules and overlook relationships. |
+| **Individualist** | **Green‑Red** (Judicious‑Competing) | Yellow (creative) | Disengages or competes | Strength: independent thinker who combines analysis with drive.  Vulnerability: may appear aloof or combative. |
+| **Scholar** | **Green** (Analytical‑Autonomizing) | Blue (support) | Over‑analyses and withdraws | Strength: deep knowledge and research capability.  Vulnerability: may delay action and avoid conflict. |
+
+**Using this lens**
+
+* Recognise that each person’s primary motivation colours how they view work, feedback and conflict.  Blue‑oriented profiles respond best to empathy and collaboration; red‑oriented profiles appreciate decisiveness and clear goals; green‑oriented profiles need logic, autonomy and time to think.
+* Under stress, people often overuse their strengths.  For example, a red captain under pressure may become domineering, while a blue altruist may self‑sacrifice.  Use the stress column above to anticipate and mitigate these reactions.
+* Encourage teams to identify and appreciate each other’s motivational blends.  Balanced teams that include blue, red, green and hub energies can draw on a wider range of strengths and reduce blind spots.`,
+  },
 ];
 
 // Index by id for O(1) lookup
