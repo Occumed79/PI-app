@@ -4,6 +4,7 @@ import { LENSES, LENS_META } from '../data/lensData';
 import { PI_PROFILES } from '../data/profiles';
 import { signalGlassStaticLenses, signalGlassLensIndex } from '../data/signalGlassStaticLenses';
 import { LensRadar, DimensionBars, StressHeatmap, DevelopmentArc, InsightCards, SpectrumSlider } from './lens/index.js';
+import LensContentRenderer from './lens/LensContentRenderer.jsx';
 
 // ── helpers ──────────────────────────────────────────────────────────────────
 
@@ -222,7 +223,7 @@ export default function LensWindow({ lensId, profileId }) {
       {/* ── Source Content (always shown if we have it — the real data) ── */}
       {hasStaticContent && (
         <div className="mb-6">
-          <SourceContentPanel content={staticLens.content} lensTitle={lensName} />
+          <LensContentRenderer content={staticLens.content} lensTitle={lensName} />
         </div>
       )}
 
