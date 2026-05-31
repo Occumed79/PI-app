@@ -5,13 +5,13 @@ import {
   CheckCircle2,
   ClipboardList,
   Compass,
-  Eye,
+  Download,
   FileText,
   Gauge,
   Layers3,
-  Lock,
+  Save,
   ShieldCheck,
-  Target,
+  Trash2,
   UserRound,
 } from 'lucide-react';
 import {
@@ -27,8 +27,14 @@ import {
   XAxis,
   YAxis,
 } from 'recharts';
-import { allLenses } from '../data/lenses.js';
+import { signalGlassStaticLenses } from '../data/signalGlassStaticLenses.js';
 import { groups, profiles } from '../data/appProfiles.js';
+import {
+  loadSavedProfiles,
+  makeProfileId,
+  normalizeSavedProfile,
+  saveProfilesToStorage,
+} from '../data/savedProfiles.js';
 
 const lensStateOptions = [
   { id: 'include', label: 'Include', short: 'Used', tone: 'border-emerald-300/30 bg-emerald-500/10 text-emerald-100' },
@@ -78,10 +84,10 @@ function subTone(status) {
 }
 
 function makeInitialLensStates() {
-  return allLenses.reduce((acc, lens, index) => {
-    if (['big-five', 'disc', 'communication', 'management', 'stress', 'role-fit', 'team-fit'].includes(lens.id)) acc[lens.id] = 'include';
-    else if (['cognitive-processing', 'executive-function', 'motivation', 'learning-style', 'neurodiversity'].includes(lens.id)) acc[lens.id] = 'estimated';
-    else if (index < 14) acc[lens.id] = 'unknown';
+  return signalGlassStaticLenses.reduce((acc, lens, index) => {
+    if (index < 12) acc[lens.id] = 'include';
+    else if (index < 32) acc[lens.id] = 'estimated';
+    else if (index < 72) acc[lens.id] = 'unknown';
     else acc[lens.id] = 'exclude';
     return acc;
   }, {});
@@ -89,8 +95,9 @@ function makeInitialLensStates() {
 
 function makeInitialSubFactors() {
   const state = {};
-  allLenses.forEach((lens) => {
-    (lens.outputs || []).forEach((output, index) => {
+  const defaultOutputs = ['Profile mapping', 'Stress signal', 'Manager guidance', 'Development note'];
+  signalGlassStaticLenses.forEach((lens) => {
+    defaultOutputs.forEach((output, index) => {
       state[`${lens.id}::${output}`] = index < 2 ? 'estimated' : 'unknown';
     });
   });
@@ -145,16 +152,34 @@ function TextInput({ label, value, onChange, placeholder }) {
   );
 }
 
+function TextArea({ label, value, onChange, placeholder }) {
+  return (
+    <label className="block">
+      <span className="mb-2 block text-sm text-white/60">{label}</span>
+      <textarea value={value} onChange={(event) => onChange(event.target.value)} placeholder={placeholder} rows={4} className="w-full rounded-2xl border border-white/10 bg-black/25 px-4 py-3 text-sm leading-6 text-white outline-none placeholder:text-white/35 focus:border-sky-300/40" />
+    </label>
+  );
+}
+
+function lensSummary(lens) {
+  const source = lens.source ? `Source: ${lens.source}` : 'Uploaded source lens';
+  const status = lens.status ? `Status: ${lens.status}` : 'Status not specified';
+  return `${source} · ${status}`;
+}
+
 export default function EmployeeBuilder() {
   const [employee, setEmployee] = useState({ name: 'Working Profile A', role: 'Operations / leadership role', department: 'Team or department', notes: '' });
   const [baseProfileName, setBaseProfileName] = useState('Analyzer');
   const [lensStates, setLensStates] = useState(makeInitialLensStates);
   const [factorStates, setFactorStates] = useState(makeInitialSubFactors);
-  const [activeLensId, setActiveLensId] = useState('big-five');
+  const [activeLensId, setActiveLensId] = useState(signalGlassStaticLenses[0]?.id || '');
+  const [savedProfiles, setSavedProfiles] = useState(loadSavedProfiles);
+  const [activeSavedId, setActiveSavedId] = useState(null);
+  const [saveNotice, setSaveNotice] = useState('');
 
   const baseProfile = profiles.find((profile) => profile.name === baseProfileName) || profiles[0];
-  const activeLens = allLenses.find((lens) => lens.id === activeLensId) || allLenses[0];
-  const group = groups[baseProfile.group];
+  const activeLens = signalGlassStaticLenses.find((lens) => lens.id === activeLensId) || signalGlassStaticLenses[0];
+  const group = groups[baseProfile.group] || groups.Analytical;
 
   const stats = useMemo(() => {
     const lensValues = Object.values(lensStates);
@@ -162,18 +187,20 @@ export default function EmployeeBuilder() {
     const included = lensValues.filter((value) => value === 'include').length;
     const estimated = lensValues.filter((value) => value === 'estimated').length;
     const unknown = lensValues.filter((value) => value === 'unknown').length;
+    const excluded = lensValues.filter((value) => value === 'exclude').length;
     const knownFactors = factorValues.filter((value) => value === 'known').length;
     const estimatedFactors = factorValues.filter((value) => value === 'estimated').length;
     const unknownFactors = factorValues.filter((value) => value === 'unknown').length;
     const usableSignals = included + estimated * 0.65 + knownFactors * 0.15 + estimatedFactors * 0.08;
     const uncertaintyLoad = unknown + unknownFactors * 0.08;
-    const confidence = Math.max(12, Math.min(92, Math.round(35 + usableSignals * 2.5 - uncertaintyLoad * 1.2)));
-    return { included, estimated, unknown, knownFactors, estimatedFactors, unknownFactors, confidence };
+    const confidence = Math.max(12, Math.min(92, Math.round(35 + usableSignals * 1.2 - uncertaintyLoad * 0.35)));
+    return { included, estimated, unknown, excluded, knownFactors, estimatedFactors, unknownFactors, confidence };
   }, [lensStates, factorStates]);
 
-  const selectedLenses = allLenses.filter((lens) => ['include', 'estimated'].includes(lensStates[lens.id]));
-  const unknownLenses = allLenses.filter((lens) => lensStates[lens.id] === 'unknown');
-  const excludedLenses = allLenses.filter((lens) => lensStates[lens.id] === 'exclude');
+  const selectedLenses = signalGlassStaticLenses.filter((lens) => ['include', 'estimated'].includes(lensStates[lens.id]));
+  const unknownLenses = signalGlassStaticLenses.filter((lens) => lensStates[lens.id] === 'unknown');
+  const excludedLenses = signalGlassStaticLenses.filter((lens) => lensStates[lens.id] === 'exclude');
+  const activeLensSubFactors = ['Profile mapping', 'Stress signal', 'Manager guidance', 'Development note'];
 
   function updateEmployee(field, value) {
     setEmployee((current) => ({ ...current, [field]: value }));
@@ -187,6 +214,49 @@ export default function EmployeeBuilder() {
     setFactorStates((current) => ({ ...current, [`${activeLens.id}::${output}`]: value }));
   }
 
+  function saveCurrentProfile() {
+    const normalized = normalizeSavedProfile({
+      id: activeSavedId || makeProfileId(),
+      employee,
+      baseProfileName,
+      lensStates,
+      factorStates,
+    });
+    const next = [normalized, ...savedProfiles.filter((profile) => profile.id !== normalized.id)];
+    setSavedProfiles(next);
+    saveProfilesToStorage(next);
+    setActiveSavedId(normalized.id);
+    setSaveNotice(`Saved ${normalized.employee.name}`);
+  }
+
+  function loadProfile(profile) {
+    setEmployee(profile.employee);
+    setBaseProfileName(profile.baseProfileName);
+    setLensStates({ ...makeInitialLensStates(), ...(profile.lensStates || {}) });
+    setFactorStates({ ...makeInitialSubFactors(), ...(profile.factorStates || {}) });
+    setActiveSavedId(profile.id);
+    setSaveNotice(`Loaded ${profile.employee.name}`);
+  }
+
+  function deleteProfile(profileId) {
+    const next = savedProfiles.filter((profile) => profile.id !== profileId);
+    setSavedProfiles(next);
+    saveProfilesToStorage(next);
+    if (activeSavedId === profileId) setActiveSavedId(null);
+    setSaveNotice('Deleted saved profile');
+  }
+
+  function exportCurrentProfile() {
+    const payload = normalizeSavedProfile({ employee, baseProfileName, lensStates, factorStates });
+    const blob = new Blob([JSON.stringify(payload, null, 2)], { type: 'application/json' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = `${employee.name || 'employee-profile'}.json`.replace(/[^a-z0-9._-]+/gi, '_');
+    a.click();
+    URL.revokeObjectURL(url);
+  }
+
   return (
     <div className="grid gap-5 lg:grid-cols-12">
       <Card className="lg:col-span-12 overflow-hidden">
@@ -196,20 +266,20 @@ export default function EmployeeBuilder() {
           <div className="relative grid gap-6 lg:grid-cols-12">
             <div className="lg:col-span-8">
               <div className="mb-3 flex flex-wrap gap-2">
-                <Pill>Custom Employee Profile</Pill>
+                <Pill>Saved Employee Profiles</Pill>
+                <Pill>{signalGlassStaticLenses.length} uploaded lenses</Pill>
                 <Pill>Known / Estimated / Unknown</Pill>
-                <Pill>Support-first</Pill>
               </div>
               <h2 className="text-4xl font-bold tracking-tight text-white md:text-5xl">Employee Profile Builder</h2>
               <p className="mt-4 max-w-4xl text-sm leading-6 text-white/65">
-                Build a working employee profile by selecting which inference lenses apply, which sub-factors are known or estimated, and which information should remain unknown or excluded.
+                Build, save, reload, and export a working employee profile using the uploaded SignalGlass lens library. This no longer uses the old placeholder lens catalog.
               </p>
             </div>
             <div className="lg:col-span-4 rounded-3xl border border-white/10 bg-black/25 p-5">
               <div className="text-sm text-white/50">Profile confidence</div>
               <div className="mt-2 text-5xl font-bold text-white">{stats.confidence}%</div>
               <div className="mt-3 h-2 rounded-full bg-white/10"><div className="h-2 rounded-full bg-white/70" style={{ width: `${stats.confidence}%` }} /></div>
-              <p className="mt-3 text-xs leading-5 text-white/50">Confidence rises with known and included inputs. Unknowns stay visible instead of being silently guessed.</p>
+              <p className="mt-3 text-xs leading-5 text-white/50">Confidence rises with included and estimated inputs. Unknowns remain visible instead of being silently guessed.</p>
             </div>
           </div>
         </div>
@@ -228,6 +298,16 @@ export default function EmployeeBuilder() {
                 {profiles.map((profile) => <option key={profile.name} value={profile.name}>{profile.name}</option>)}
               </select>
             </label>
+            <TextArea label="Notes" value={employee.notes} onChange={(value) => updateEmployee('notes', value)} placeholder="Optional notes, observations, role context, or manager concerns." />
+            <div className="grid gap-3 sm:grid-cols-2">
+              <button type="button" onClick={saveCurrentProfile} className="inline-flex items-center justify-center gap-2 rounded-2xl border border-emerald-300/30 bg-emerald-500/15 px-4 py-3 text-sm font-semibold text-white hover:bg-emerald-500/25">
+                <Save className="h-4 w-4" /> Save profile
+              </button>
+              <button type="button" onClick={exportCurrentProfile} className="inline-flex items-center justify-center gap-2 rounded-2xl border border-sky-300/30 bg-sky-500/15 px-4 py-3 text-sm font-semibold text-white hover:bg-sky-500/25">
+                <Download className="h-4 w-4" /> Export JSON
+              </button>
+            </div>
+            {saveNotice && <div className="rounded-2xl border border-white/10 bg-white/[0.05] px-4 py-3 text-sm text-white/65">{saveNotice}</div>}
           </div>
         </div>
       </Card>
@@ -240,13 +320,8 @@ export default function EmployeeBuilder() {
               <Pill className={cx(group.bg, group.border)}>{baseProfile.group}</Pill>
               <h3 className="mt-3 text-3xl font-bold text-white">{baseProfile.name}</h3>
               <p className="mt-3 text-sm leading-6 text-white/60">{baseProfile.short}</p>
-              <div className="mt-4 grid grid-cols-2 gap-2">
-                {Object.entries(baseProfile.scores).map(([factor, score]) => (
-                  <div key={factor} className="rounded-2xl border border-white/10 bg-black/20 p-3">
-                    <div className="text-xs text-white/45">{factor}</div>
-                    <div className="mt-1 text-lg font-semibold text-white">{score}</div>
-                  </div>
-                ))}
+              <div className="mt-4 grid gap-2">
+                {baseProfile.needs.map((need) => <div key={need} className="rounded-2xl border border-white/10 bg-black/20 p-3 text-sm text-white/65">{need}</div>)}
               </div>
             </div>
             <ProfileRadar profile={baseProfile} />
@@ -254,102 +329,175 @@ export default function EmployeeBuilder() {
         </div>
       </Card>
 
-      <Card className="lg:col-span-12">
+      <Card className="lg:col-span-4">
         <div className="p-6">
-          <SectionTitle icon={Layers3} title="2. Lens Inclusion Matrix" subtitle="Every lens is visible. Choose whether it is included, estimated, unknown, or excluded for this specific employee profile." />
-          <div className="grid gap-3 md:grid-cols-2 xl:grid-cols-3">
-            {allLenses.map((lens) => {
-              const state = lensStates[lens.id] || 'unknown';
-              const active = activeLens.id === lens.id;
-              return (
-                <div key={lens.id} className={cx('rounded-3xl border p-4 transition', active ? 'border-sky-300/40 bg-sky-500/10' : 'border-white/10 bg-black/20')}>
-                  <button type="button" onClick={() => setActiveLensId(lens.id)} className="block w-full text-left">
-                    <div className="flex items-start justify-between gap-3">
-                      <div>
-                        <div className="text-sm font-semibold text-white">{lens.label}</div>
-                        <div className="mt-1 text-xs text-white/45">{lens.category}</div>
-                      </div>
-                      <Pill className={statusTone(state)}>{lensStateOptions.find((option) => option.id === state)?.short || state}</Pill>
-                    </div>
-                    <p className="mt-3 line-clamp-2 text-xs leading-5 text-white/55">{lens.summary}</p>
-                  </button>
-                  <div className="mt-3 grid grid-cols-4 gap-1">
-                    {lensStateOptions.map((option) => (
-                      <button key={option.id} type="button" onClick={() => updateLensState(lens.id, option.id)} className={cx('rounded-xl border px-2 py-1.5 text-[11px] transition', state === option.id ? option.tone : 'border-white/10 bg-white/[0.03] text-white/35 hover:bg-white/10')}>
-                        {option.short}
-                      </button>
-                    ))}
-                  </div>
-                </div>
-              );
-            })}
-          </div>
-        </div>
-      </Card>
-
-      <Card className="lg:col-span-7">
-        <div className="p-6">
-          <SectionTitle icon={ClipboardList} title={`3. Sub-Factors: ${activeLens.label}`} subtitle="Mark each output as known, estimated, unknown, not applicable, or excluded. Unknown remains a valid answer." />
+          <SectionTitle icon={FileText} title="Saved Profiles" subtitle="Profiles are saved in this browser using local storage." />
           <div className="grid gap-3">
-            {(activeLens.outputs || []).map((output) => {
-              const state = factorStates[`${activeLens.id}::${output}`] || 'unknown';
-              return (
-                <div key={output} className="rounded-2xl border border-white/10 bg-black/20 p-4">
-                  <div className="flex flex-col gap-3 md:flex-row md:items-center md:justify-between">
-                    <div>
-                      <div className="font-semibold text-white">{output}</div>
-                      <div className="mt-1 text-xs text-white/45">Current state: {state}</div>
-                    </div>
-                    <div className="flex flex-wrap gap-1.5">
-                      {subFactorStates.map((option) => (
-                        <button key={option.id} type="button" onClick={() => updateFactorState(output, option.id)} className={cx('rounded-xl border px-2.5 py-1.5 text-xs transition', state === option.id ? option.tone : 'border-white/10 bg-white/[0.03] text-white/35 hover:bg-white/10')}>
-                          {option.label}
-                        </button>
-                      ))}
-                    </div>
+            {savedProfiles.length === 0 && <div className="rounded-2xl border border-white/10 bg-black/20 p-4 text-sm text-white/45">No saved profiles yet. Fill out the builder and click Save profile.</div>}
+            {savedProfiles.map((profile) => (
+              <div key={profile.id} className={cx('rounded-2xl border bg-black/20 p-4', activeSavedId === profile.id ? 'border-emerald-300/30' : 'border-white/10')}>
+                <div className="flex items-start justify-between gap-3">
+                  <div>
+                    <div className="font-semibold text-white">{profile.employee.name}</div>
+                    <div className="mt-1 text-xs text-white/45">{profile.baseProfileName} · {profile.employee.role || 'No role'}</div>
+                    <div className="mt-1 text-[10px] uppercase tracking-[0.16em] text-white/30">Updated {new Date(profile.updatedAt).toLocaleString()}</div>
                   </div>
+                  <button type="button" onClick={() => deleteProfile(profile.id)} className="rounded-xl border border-red-300/20 bg-red-500/10 p-2 text-red-100 hover:bg-red-500/20" title="Delete saved profile">
+                    <Trash2 className="h-4 w-4" />
+                  </button>
                 </div>
-              );
-            })}
+                <button type="button" onClick={() => loadProfile(profile)} className="mt-3 w-full rounded-xl border border-white/10 bg-white/[0.06] px-3 py-2 text-xs font-semibold text-white/75 hover:bg-white/10">Load this profile</button>
+              </div>
+            ))}
           </div>
         </div>
       </Card>
 
-      <Card className="lg:col-span-5">
+      <Card className="lg:col-span-8">
         <div className="p-6">
-          <SectionTitle icon={Gauge} title="Known / Estimated / Unknown Breakdown" subtitle="A visual audit trail of how complete this working profile is." />
-          <StatusBars lensStates={lensStates} factorStates={factorStates} />
+          <SectionTitle icon={Gauge} title="Profile Signal Dashboard" subtitle="A visual snapshot of what is known, estimated, unknown, and excluded." />
+          <div className="grid gap-4 md:grid-cols-4">
+            <Metric label="Included lenses" value={stats.included} tone="border-emerald-300/20 bg-emerald-500/10" />
+            <Metric label="Estimated lenses" value={stats.estimated} tone="border-sky-300/20 bg-sky-500/10" />
+            <Metric label="Unknown lenses" value={stats.unknown} tone="border-amber-300/20 bg-amber-500/10" />
+            <Metric label="Excluded lenses" value={stats.excluded} tone="border-white/10 bg-white/[0.04]" />
+          </div>
+          <div className="mt-5">
+            <StatusBars lensStates={lensStates} factorStates={factorStates} />
+          </div>
         </div>
       </Card>
 
       <Card className="lg:col-span-12">
         <div className="p-6">
-          <SectionTitle icon={FileText} title="4. Generated Working Profile" subtitle="The output separates included, estimated, unknown, and excluded information so the user can see exactly what the app is using." />
-          <div className="grid gap-4 lg:grid-cols-4">
-            <div className="rounded-3xl border border-white/10 bg-white/[0.055] p-5"><div className="mb-2 flex items-center gap-2 text-xs uppercase tracking-[0.16em] text-white/35"><CheckCircle2 size={14} /> Included</div><div className="text-3xl font-bold text-white">{selectedLenses.length}</div><p className="mt-2 text-sm leading-6 text-white/60">Lenses directly used in the working profile.</p></div>
-            <div className="rounded-3xl border border-sky-300/20 bg-sky-500/10 p-5"><div className="mb-2 flex items-center gap-2 text-xs uppercase tracking-[0.16em] text-white/45"><Eye size={14} /> Estimated</div><div className="text-3xl font-bold text-white">{stats.estimated}</div><p className="mt-2 text-sm leading-6 text-white/60">Lenses used cautiously as estimates.</p></div>
-            <div className="rounded-3xl border border-amber-300/20 bg-amber-500/10 p-5"><div className="mb-2 flex items-center gap-2 text-xs uppercase tracking-[0.16em] text-white/45"><AlertTriangle size={14} /> Unknown</div><div className="text-3xl font-bold text-white">{unknownLenses.length}</div><p className="mt-2 text-sm leading-6 text-white/60">Unknowns stay visible instead of being invented.</p></div>
-            <div className="rounded-3xl border border-white/10 bg-black/20 p-5"><div className="mb-2 flex items-center gap-2 text-xs uppercase tracking-[0.16em] text-white/35"><Lock size={14} /> Excluded</div><div className="text-3xl font-bold text-white">{excludedLenses.length}</div><p className="mt-2 text-sm leading-6 text-white/60">Excluded lenses are not factored in.</p></div>
-          </div>
+          <SectionTitle icon={Layers3} title="2. Lens Controls" subtitle="These are your uploaded lenses. Choose how each lens should be treated for this saved employee profile." />
+          <div className="grid gap-5 lg:grid-cols-12">
+            <div className="lg:col-span-5 rounded-3xl border border-white/10 bg-black/20 p-4">
+              <div className="mb-3 text-sm font-semibold text-white/80">All uploaded lenses</div>
+              <div className="max-h-[34rem] overflow-y-auto pr-1 grid gap-2">
+                {signalGlassStaticLenses.map((lens) => {
+                  const state = lensStates[lens.id] || 'unknown';
+                  const isActive = activeLens.id === lens.id;
+                  return (
+                    <button key={lens.id} type="button" onClick={() => setActiveLensId(lens.id)} className={cx('rounded-2xl border p-3 text-left transition', isActive ? 'border-sky-300/35 bg-sky-500/10' : 'border-white/10 bg-white/[0.03] hover:bg-white/[0.06]')}>
+                      <div className="flex items-start justify-between gap-3">
+                        <div>
+                          <div className="text-sm font-semibold text-white/85">{lens.lens}</div>
+                          <div className="mt-1 text-xs leading-5 text-white/40">{lensSummary(lens)}</div>
+                        </div>
+                        <Pill className={statusTone(state)}>{state}</Pill>
+                      </div>
+                    </button>
+                  );
+                })}
+              </div>
+            </div>
 
-          <div className="mt-5 grid gap-5 lg:grid-cols-3">
-            <div className="rounded-3xl border border-white/10 bg-black/20 p-5"><h3 className="font-semibold text-white">Profile narrative</h3><p className="mt-2 text-sm leading-6 text-white/62">{employee.name || 'This employee'} is modeled as a {baseProfile.name} base profile in {employee.role || 'the selected role'}. The working profile includes {selectedLenses.length} lenses, estimates {stats.estimated} lenses, and preserves {unknownLenses.length} unknown lens areas.</p></div>
-            <div className="rounded-3xl border border-white/10 bg-black/20 p-5"><h3 className="font-semibold text-white">Manager guidance</h3><p className="mt-2 text-sm leading-6 text-white/62">Start with the base profile needs: {baseProfile.needs.join(', ').toLowerCase()}. Use included lenses for stronger guidance. Treat estimated lenses as conversation starters only.</p></div>
-            <div className="rounded-3xl border border-white/10 bg-black/20 p-5"><h3 className="font-semibold text-white">Ethical limitation</h3><p className="mt-2 text-sm leading-6 text-white/62">This is a support-first working profile. It is not a formal assessment, diagnosis, or automated decision rule.</p></div>
+            <div className="lg:col-span-7 rounded-3xl border border-white/10 bg-black/20 p-5">
+              <div className="flex flex-wrap items-start justify-between gap-4">
+                <div>
+                  <Pill>{activeLens.status || 'Uploaded lens'}</Pill>
+                  <h3 className="mt-3 text-2xl font-bold text-white">{activeLens.lens}</h3>
+                  <p className="mt-2 text-sm leading-6 text-white/50">{lensSummary(activeLens)}</p>
+                </div>
+                <Pill className={statusTone(lensStates[activeLens.id] || 'unknown')}>{lensStates[activeLens.id] || 'unknown'}</Pill>
+              </div>
+
+              <div className="mt-5 grid grid-cols-2 gap-2 md:grid-cols-4">
+                {lensStateOptions.map((option) => (
+                  <button key={option.id} type="button" onClick={() => updateLensState(activeLens.id, option.id)} className={cx('rounded-2xl border px-3 py-3 text-sm font-semibold transition', (lensStates[activeLens.id] || 'unknown') === option.id ? option.tone : 'border-white/10 bg-white/[0.03] text-white/45 hover:bg-white/[0.07]')}>
+                    {option.label}
+                  </button>
+                ))}
+              </div>
+
+              <div className="mt-6">
+                <div className="mb-3 flex items-center gap-2 text-sm font-semibold text-white/80"><ClipboardList className="h-4 w-4" /> Sub-factor status for this lens</div>
+                <div className="grid gap-3 md:grid-cols-2">
+                  {activeLensSubFactors.map((output) => {
+                    const key = `${activeLens.id}::${output}`;
+                    const value = factorStates[key] || 'unknown';
+                    return (
+                      <div key={output} className="rounded-2xl border border-white/10 bg-white/[0.04] p-3">
+                        <div className="mb-2 flex items-center justify-between gap-2">
+                          <div className="text-sm font-semibold text-white/75">{output}</div>
+                          <Pill className={subTone(value)}>{value}</Pill>
+                        </div>
+                        <div className="grid grid-cols-5 gap-1">
+                          {subFactorStates.map((option) => (
+                            <button key={option.id} type="button" onClick={() => updateFactorState(output, option.id)} className={cx('rounded-lg border px-1.5 py-1 text-[10px]', value === option.id ? option.tone : 'border-white/10 bg-black/20 text-white/35 hover:bg-white/[0.06]')}>
+                              {option.label.split(' ')[0]}
+                            </button>
+                          ))}
+                        </div>
+                      </div>
+                    );
+                  })}
+                </div>
+              </div>
+
+              <div className="mt-6 rounded-2xl border border-white/10 bg-black/25 p-4">
+                <div className="mb-2 flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.16em] text-white/40"><FileText className="h-3.5 w-3.5" /> Source preview</div>
+                <p className="max-h-36 overflow-y-auto whitespace-pre-wrap text-xs leading-5 text-white/45">{activeLens.content?.slice(0, 1200)}{activeLens.content?.length > 1200 ? '…' : ''}</p>
+              </div>
+            </div>
           </div>
         </div>
       </Card>
 
-      <Card className="lg:col-span-12 border-amber-300/20 bg-amber-500/5">
+      <SummaryCard title="Included / estimated lenses" icon={CheckCircle2} lenses={selectedLenses} lensStates={lensStates} tone="border-emerald-300/20 bg-emerald-500/5" />
+      <SummaryCard title="Unknown lenses" icon={AlertTriangle} lenses={unknownLenses} lensStates={lensStates} tone="border-amber-300/20 bg-amber-500/5" />
+      <SummaryCard title="Excluded lenses" icon={ShieldCheck} lenses={excludedLenses} lensStates={lensStates} tone="border-white/10 bg-white/[0.03]" />
+
+      <Card className="lg:col-span-12">
         <div className="p-6">
-          <SectionTitle icon={ShieldCheck} title="Guardrail: Estimates Must Stay Visible" subtitle="The builder is designed so unknowns and estimates remain explicit. This prevents the profile from pretending to know things it does not know." />
+          <SectionTitle icon={Compass} title="Manager Translation" subtitle="What this saved profile means operationally." />
           <div className="grid gap-3 md:grid-cols-3">
-            <div className="rounded-2xl border border-white/10 bg-white/[0.055] p-4 text-sm leading-6 text-white/65"><Target className="mb-2 h-5 w-5 text-white/70" />Use this to organize support, communication, role fit, and manager guidance.</div>
-            <div className="rounded-2xl border border-white/10 bg-white/[0.055] p-4 text-sm leading-6 text-white/65"><AlertTriangle className="mb-2 h-5 w-5 text-white/70" />Do not force sensitive personal context into the profile. Unknown is a legitimate state.</div>
-            <div className="rounded-2xl border border-white/10 bg-white/[0.055] p-4 text-sm leading-6 text-white/65"><Compass className="mb-2 h-5 w-5 text-white/70" />Use the profile as a conversation and support tool, not as a final judgment.</div>
+            <InsightBox title="Strengths to design around" items={baseProfile.strengths} />
+            <InsightBox title="Watch-outs" items={baseProfile.traps} />
+            <InsightBox title="How to work with them" items={baseProfile.workWith} />
           </div>
         </div>
       </Card>
+    </div>
+  );
+}
+
+function Metric({ label, value, tone }) {
+  return (
+    <div className={cx('rounded-3xl border p-4', tone)}>
+      <div className="text-xs uppercase tracking-[0.16em] text-white/40">{label}</div>
+      <div className="mt-2 text-3xl font-bold text-white">{value}</div>
+    </div>
+  );
+}
+
+function SummaryCard({ title, icon: Icon, lenses, lensStates, tone }) {
+  return (
+    <Card className={cx('lg:col-span-4', tone)}>
+      <div className="p-6">
+        <SectionTitle icon={Icon} title={title} subtitle={`${lenses.length} lenses`} />
+        <div className="max-h-96 overflow-y-auto pr-1 grid gap-2">
+          {lenses.slice(0, 40).map((lens) => (
+            <div key={lens.id} className="rounded-2xl border border-white/10 bg-black/20 p-3">
+              <div className="text-sm font-semibold text-white/80">{lens.lens}</div>
+              <div className="mt-1 text-xs text-white/40">{lens.source || 'Uploaded source'} · {lensStates[lens.id] || 'unknown'}</div>
+            </div>
+          ))}
+          {lenses.length > 40 && <div className="text-xs text-white/35">+ {lenses.length - 40} more</div>}
+        </div>
+      </div>
+    </Card>
+  );
+}
+
+function InsightBox({ title, items }) {
+  return (
+    <div className="rounded-3xl border border-white/10 bg-black/20 p-4">
+      <div className="mb-3 text-sm font-semibold text-white/80">{title}</div>
+      <div className="grid gap-2">
+        {items.map((item) => <div key={item} className="rounded-2xl border border-white/10 bg-white/[0.05] p-3 text-sm leading-5 text-white/60">{item}</div>)}
+      </div>
     </div>
   );
 }
