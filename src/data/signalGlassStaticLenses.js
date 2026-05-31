@@ -5684,6 +5684,3300 @@ Working Memory / Processing Speed Differences
 If this matches what you want, I’ll (1) retroactively replace the Neurodivergence sections for Controller, Specialist, and Strategist in your master toolkit with these expanded blocks, and (2) continue the sequence and upgrade the remaining profiles the same way.
 `,
   },
+  {
+    id: "lived-experience-context-lens",
+    lens: "Lived Experience Context Lens",
+    status: "PARTIAL / EXTRACTED CONTENT ONLY",
+    source: "Untitled 5.txt",
+    content: `LENS: Lived Experience Context Lens
+STATUS: PARTIAL / EXTRACTED CONTENT ONLY
+SOURCE: Untitled 5.txt
+DEDUPLICATION / CLEANUP NOTE: Merged the lived-experience profile sections found in the document and removed surrounding conversation text. The document contains profile-level work for Venturer, Promoter, Adapter, Craftsman, Guardian, Operator, Individualist, Collaborator, Connector, Catalyst, and Integrator, plus a reference-source section. It does not contain all 17 original PI profiles.
+================================================================================
+
+Venturer — Lived Experience Context across 15 Domains
+Below is the profile‑by‑profile matrix for Venturer across all 15 lived‑experience domains. Each subcategory uses the locked schema: Manifestation · Behavior impact · Distortion of typical Venturer pattern · Real‑life snapshot (1–2 lines) · Work / bandwidth impact · Risk if ignored · Best way to approach (peer, non‑managerial).
+I kept entries tight so we move fast while staying actionable. Neurodivergence subcategories are expanded with micro‑accommodations, peer scripts, trial metrics, tools, and privacy phrasing.
+
+1 Economic & Material Security
+Low socioeconomic background / Financial insecurity / Debt stress / No emergency savings
+  - Manifestation: Constant urgency to secure wins; pressure to monetize ideas.
+  - Behavior impact: Chases quick wins, takes high‑risk bets, may overpromise.
+  - Distortion: Venturer’s healthy risk appetite becomes desperate, short‑termism.
+  - Snapshot: Pushes a rapid monetization pivot mid‑project to cover bills.
+  - Work impact: Fragmented focus; unfinished initiatives.
+  - Risk if ignored: Reputation damage, financial collapse.
+  - Best approach: Validate urgency; co‑design 2–4 week capped experiments with clear stop rules.
+Housing/transport/childcare/limited tech/working multiple jobs
+  - Manifestation: Erratic availability; bursts of high energy outside normal hours.
+  - Behavior impact: Starts initiatives at odd times; misses synchronous commitments.
+  - Distortion: Opportunism becomes unreliable delivery.
+  - Snapshot: Launches a prototype at 2am, misses daytime stakeholder calls.
+  - Work impact: Coordination friction; late handoffs.
+  - Best approach: Offer async channels, accept time‑boxed deliverables, confirm availability windows.
+Medical debt / Limited healthcare / Food insecurity
+  - Manifestation: Background stress reduces cognitive bandwidth.
+  - Behavior impact: Impulsive decisions to solve immediate needs.
+  - Distortion: Boldness becomes risky shortcuts.
+  - Best approach: Offer private, practical resource suggestions and low‑visibility pilots.
+
+2 Family System & Caregiving Context
+Parentification / Childcare / Elder caregiving / Single‑parent responsibilities
+  - Manifestation: Tight scheduling, guilt about time away.
+  - Behavior impact: Jumps between tasks; accepts short, visible wins.
+  - Distortion: Venturer’s exploratory energy becomes fragmented and reactive.
+  - Snapshot: Starts a side project between school runs; misses syncs.
+  - Work impact: Unpredictable bursts of output; missed meetings.
+  - Best approach: Propose micro‑experiments, async updates, and swap tasks when possible.
+Domestic violence / Substance exposure / Multigenerational strain
+  - Manifestation: Hypervigilance, secrecy, emotional exhaustion.
+  - Behavior impact: Erratic availability; guarded sharing.
+  - Distortion: Risk‑taking may mask survival strategies.
+  - Best approach: Prioritize safety, confidentiality, and offer low‑visibility support.
+
+3 Immigration, Displacement & Cultural Transition
+Immigration history / Visa uncertainty / Credential barriers
+  - Manifestation: Drive to prove worth; anxiety about status.
+  - Behavior impact: Over‑documentation, seeks visible wins to validate status.
+  - Distortion: Venturer’s experimentation becomes over‑justified pitching.
+  - Best approach: Validate competence, offer small public showcases and credential‑bridging help.
+Language transition / Accent bias / Code‑switching fatigue
+  - Manifestation: Extra cognitive load in persuasion; prefers rehearsed pitches.
+  - Behavior impact: Uses prepared demos rather than impromptu selling.
+  - Best approach: Provide slides/notes in advance and co‑present opportunities.
+
+4 Education & Access Background
+First‑generation / Under‑resourced schooling / Interrupted education
+  - Manifestation: High self‑reliance; skepticism of formal mentorship.
+  - Behavior impact: Prefers DIY learning; may avoid formal sponsorship.
+  - Distortion: Venturer’s curiosity becomes lone‑wolf hustling.
+  - Best approach: Offer peer learning swaps, low‑cost resources, and framed mentorship as efficiency.
+Undiagnosed learning differences / Late diagnosis
+  - Manifestation: Compensatory strategies; variable stamina for high‑tempo outreach.
+  - Best approach: Provide templates, extra time for written follow‑ups, and rehearsal opportunities.
+
+5 Neurodivergence & Cognitive Accessibility — Expanded
+Each subcategory below includes: Manifestation · Behavior impact · Distortion · Snapshot · Work impact · Risk · Best approach, then Micro‑accommodations · Peer scripts · Trial metrics · Tools/supports · Privacy phrasing.
+ADHD
+  - Manifestation: Rapid idea generation; difficulty sustaining multi‑step follow‑through.
+  - Behavior impact: Starts many pilots, abandons some; seeks novelty.
+  - Distortion: Opportunism → scattered impulsivity.
+  - Snapshot: Pitches multiple products, moves on before pilots finish.
+  - Work impact: Resource churn, unfinished work.
+  - Risk: Credibility loss.
+  - Best approach: Convert ideas into 2–4 week pilots with explicit stop rules.
+    * Micro‑accommodations: WIP limits; public Kanban; weekly 15‑minute check‑ins.
+    * Peer scripts: “Love this — pick one pilot and cap it at two weeks?” / “Can I help scope success criteria?”
+    * Trial metrics: Active pilots ≤2; pilot completion rate.
+    * Tools: Trello/Jira with WIP limits; timers; calendar blocks.
+    * Privacy phrasing: “I’m running a short pilot and will share results after the test.”
+Executive Function Differences
+  - Manifestation: Trouble sequencing launches and handoffs.
+  - Best approach: Phase checklists and mandatory handoff notes.
+    * Micro‑accommodations: One‑page handoff template.
+    * Peer scripts: “Let’s map handoffs and owners — I’ll draft the checklist.”
+    * Trial metrics: % launches with handoff note; post‑launch incidents.
+    * Tools: RACI, milestone calendar.
+    * Privacy phrasing: “Can we capture a short handoff note before launch?”
+Time Blindness
+  - Manifestation: Underestimates alignment time.
+  - Best approach: Historical benchmarks and buffers.
+    * Micro‑accommodations: +30% buffer rule; pre‑commitment resource check.
+    * Peer scripts: “Add a two‑week buffer so ops can staff it.”
+    * Trial metrics: % commitments met; average buffer added.
+    * Tools: Timeline dashboard.
+    * Privacy phrasing: “I’m using a conservative timeline this time.”
+Task Initiation Difficulty
+  - Manifestation: Needs a clear first action.
+  - Best approach: Provide a one‑sentence first step and pair for kickoff.
+    * Micro‑accommodations: 15–30 minute co‑start.
+    * Peer scripts: “Let’s do the first 30 minutes together.”
+    * Trial metrics: Time to first action; # ideas reaching pilot.
+    * Tools: Kickoff slots; checklists.
+    * Privacy phrasing: “Can you pair for the first 30 minutes so I can get started?”
+Context‑Switching Difficulty
+  - Manifestation: High cost to switch; needs recovery.
+  - Best approach: Protected creative blocks and async updates.
+    * Micro‑accommodations: Focus blocks; 3‑bullet async updates.
+    * Peer scripts: “I’ll send a 3‑bullet update after your block.”
+    * Trial metrics: Interruptions during blocks; % items resolved async.
+    * Tools: Calendar focus blocks; Slack status conventions.
+    * Privacy phrasing: “I’m protecting a 2‑hour creative block — please send a 3‑bullet update.”
+Hyperfocus Patterns
+  - Manifestation: Deep immersion; neglects other priorities.
+  - Best approach: Mid‑pilot check‑ins and visible stop signals.
+    * Micro‑accommodations: Mid‑pilot check; shared priority list.
+    * Peer scripts: “Set a mid‑pilot check‑in so we don’t lose other priorities.”
+    * Trial metrics: Missed commitments while hyperfocused; % pilots with check‑ins.
+    * Tools: Progress board; automated reminders.
+    * Privacy phrasing: “I’m in a focused sprint — I’ll set a mid‑sprint check‑in.”
+Rejection Sensitivity
+  - Manifestation: Avoids early feedback; may withdraw.
+  - Best approach: Private, strengths‑based feedback and safe previews.
+    * Micro‑accommodations: Private preview sessions.
+    * Peer scripts: “Can I preview this privately and give one focused suggestion?”
+    * Trial metrics: Frequency of private previews; early sharing rate.
+    * Tools: Private feedback channel.
+    * Privacy phrasing: “I prefer private feedback on early drafts.”
+Masking Fatigue
+  - Manifestation: Exhaustion from persona maintenance.
+  - Best approach: Low‑visibility contribution channels and recovery time.
+    * Micro‑accommodations: Idea doc; recovery half‑days.
+    * Peer scripts: “Drop your idea in this doc and I’ll surface it.”
+    * Trial metrics: Async contributions; energy after recovery.
+    * Tools: Shared idea doc; opt‑out mechanism.
+    * Privacy phrasing: “I’ll contribute in writing this round while I recharge.”
+Social Communication Load
+  - Manifestation: Fatigue from repeated persuasion.
+  - Best approach: 3‑slide summaries and co‑presenting support.
+    * Micro‑accommodations: Executive summary template; co‑presenter.
+    * Peer scripts: “I’ll co‑present the Q&A so you can focus on the pitch.”
+    * Trial metrics: Stakeholder reach; follow‑through rate.
+    * Tools: Slide templates; co‑presenter pairing.
+    * Privacy phrasing: “I’d like to co‑present the Q&A.”
+Need for Written Instructions
+  - Manifestation: Prefers concise checklists for launches.
+  - Best approach: One‑page launch checklist and sample first action.
+    * Micro‑accommodations: Checklist template.
+    * Peer scripts: “Give me 3 bullets of success criteria and I’ll draft the checklist.”
+    * Trial metrics: % launches with checklist.
+    * Tools: Shared doc templates.
+    * Privacy phrasing: “Can we capture the launch steps in one short doc?”
+Need for Reduced Interruption
+  - Manifestation: Flow is fragile; interruptions derail momentum.
+  - Best approach: Clear escalation rules and async updates.
+    * Micro‑accommodations: Escalation contact; focus windows.
+    * Peer scripts: “If urgent, text URGENT; otherwise send a 3‑bullet update.”
+    * Trial metrics: Escalations during focus blocks; % items resolved async.
+    * Tools: Slack status conventions.
+    * Privacy phrasing: “I’m in a focus block — text URGENT if it can’t wait.”
+Need for Structure Without Shame
+  - Manifestation: Wants scaffolding but may not ask.
+  - Best approach: Normalize lightweight templates and shared idea queues.
+    * Micro‑accommodations: Shared idea queue with WIP limits.
+    * Peer scripts: “Can I add this to our shared queue and help prioritize it?”
+    * Trial metrics: % ideas in shared queue; time to prioritized pilot.
+    * Tools: Shared doc; WIP limits.
+    * Privacy phrasing: “Can we add this to the shared list so it’s visible?”
+Dyslexia / Dyscalculia / Dysgraphia / Dyspraxia
+  - Manifestation: Extra time for written/numeric tasks; prefers spoken or visual follow‑ups.
+  - Best approach: Scribe support, speech‑to‑text, co‑authoring.
+    * Micro‑accommodations: Co‑author follow‑ups; voice notes transcribed.
+    * Peer scripts: “I’ll draft the follow‑up from your notes — want me to?”
+    * Trial metrics: Time from pitch to published follow‑up.
+    * Tools: Otter/voice transcription; templates.
+    * Privacy phrasing: “I prefer to record a voice note for follow‑up.”
+Auditory/Sensory Processing / Tourette
+  - Manifestation: Overload in noisy sessions; may opt out.
+  - Best approach: Captions, slides in advance, opt‑out channels.
+    * Micro‑accommodations: Captions; quiet rooms.
+    * Peer scripts: “I’ll share slides and notes before the session.”
+    * Trial metrics: Written contributions; meeting comfort rating.
+    * Tools: Live captions; shared decks.
+    * Privacy phrasing: “I’ll drop my idea in the doc and follow up after the session.”
+Working Memory / Processing Speed
+  - Manifestation: Needs pre‑reads and reflection time.
+  - Best approach: Pre‑reads 24–48 hours ahead; short recap pauses.
+    * Micro‑accommodations: 5‑minute recap pauses.
+    * Peer scripts: “I’ll send a 2‑slide summary before the meeting.”
+    * Trial metrics: % decisions postponed for reflection; quality of final plans.
+    * Tools: Pre‑read templates; recap prompts.
+    * Privacy phrasing: “I prefer a short pre‑read and a five‑minute pause after the meeting.”
+
+6 Disability, Health & Body‑Based Factors
+Chronic illness / Chronic pain / Fatigue / Fluctuating capacity
+  - Manifestation: Variable bursts of high energy and low capacity.
+  - Behavior impact: Front‑loads creative work; needs recovery windows.
+  - Distortion: Venturer’s steady momentum becomes unpredictable.
+  - Best approach: Private signals for low‑capacity days, flexible timelines, written handoffs.
+Sleep disorders / Medication side effects / Appointment burden
+  - Manifestation: Cognitive fog; irritability.
+  - Best approach: Recorded demos, written summaries, flexible scheduling.
+Mobility / Sensory impairment / Appointment burden
+  - Best approach: Accessible formats, opt‑out options, asynchronous contribution channels.
+
+7 Trauma, Adversity & Nervous‑System Load
+Childhood adversity / Abuse / Workplace trauma / Institutional betrayal
+  - Manifestation: Hypervigilance; distrust of ambiguous feedback.
+  - Behavior impact: May overcompensate with visible wins or withdraw.
+  - Distortion: Risk‑taking used as survival strategy.
+  - Best approach: Calm, private validation; avoid surprise evaluations; offer small, safe experiments.
+Hypervigilance / People‑pleasing / Overachievement as survival
+  - Best approach: Encourage boundary scripts, private check‑ins, and normalize saying no.
+
+8 Identity, Marginalization & Belonging
+Racial/ethnic bias / LGBTQ+ stress / Tokenism / Microaggression fatigue
+  - Manifestation: Extra labor to manage impressions; reluctance to be visible.
+  - Behavior impact: May avoid representing identity publicly; seeks visible wins to counter bias.
+  - Distortion: Venturer’s public persona becomes guarded or performative.
+  - Best approach: Acknowledge pressures privately, avoid tokenizing, invite structured voluntary participation.
+Code‑switching / Pressure to represent
+  - Best approach: Provide multiple channels for input and explicitly invite informal contributions.
+
+9 Work History & Occupational Socialization
+Toxic workplace / Micromanagement / Retaliation history / Layoff trauma
+  - Manifestation: Distrust of systems; seeks quick visible wins to secure position.
+  - Behavior impact: Short‑termism; reluctance to escalate systemic issues.
+  - Best approach: Offer confidential peer validation and safe, small experiments to rebuild trust.
+Job instability / High responsibility without support
+  - Best approach: Validate short‑term wins and co‑design protected time for exploration.
+
+10 Social Support & Community Context
+Limited support network / Social isolation / Mentorship availability
+  - Manifestation: Heavy reliance on work for social capital; seeks rapid recognition.
+  - Behavior impact: Overinvests in visibility; may burn out.
+  - Best approach: Offer peer recognition, reciprocal support, and mentorship pairings.
+Community safety / Relocation loneliness
+  - Best approach: Encourage balanced social outlets and small boundary practices.
+
+11 Life Stage & Transition Factors
+New parenthood / Pregnancy/postpartum / Menopause / Mid‑career reinvention / Retirement anxiety / Moving / Divorce / Death / Major health diagnosis
+  - Manifestation: Variable capacity; need for predictability.
+  - Behavior impact: Either hyper‑compensation or withdrawal.
+  - Best approach: Offer written priorities, temporary role adjustments, and respect privacy.
+Legal proceedings / Sudden financial event / Natural disaster
+  - Best approach: Async options, private check‑ins, and short trial adjustments.
+
+12 Environmental & Sensory Context
+Loud environment / Open office / Lighting sensitivity / Constant interruptions / High meeting density / Notification overload / Remote/hybrid ambiguity / Commute stress
+  - Manifestation: Creative flow fragile; sensory fatigue.
+  - Behavior impact: Prefers quiet, scheduled creative blocks; avoids ad‑hoc collaboration.
+  - Best approach: Quiet hours, written agendas, opt‑out options, and respect for focus windows.
+Workspace crowding / Physical safety concerns
+  - Best approach: Provide opt‑outs and written summaries of events.
+
+13 Cultural Values & Communication Norms
+High‑context vs low‑context / Direct vs indirect / Deference to authority / Collectivist vs individualist norms
+  - Manifestation: Extra effort to translate urgency and respect signals.
+  - Behavior impact: May misread cues or overcompensate in public pitches.
+  - Best approach: Clarify norms in writing, invite cultural context, and ask privately about preferred styles.
+Modesty/self‑promotion discomfort / Different meanings of urgency
+  - Best approach: Frame recognition as team outcomes and clarify urgency signals.
+
+14 Legal, Administrative & Bureaucratic Stress
+Immigration paperwork / Court proceedings / Benefits / Insurance / Disability accommodations / Background checks / Housing applications
+  - Manifestation: Heavy cognitive load; fear of errors.
+  - Behavior impact: Time spent on admin; avoidance of extra complexity.
+  - Best approach: Share step‑by‑step checklists, private resource referrals, and offer time to manage paperwork.
+Past criminalization / Background check anxiety
+  - Best approach: Confidential guidance and resources for disclosure decisions.
+
+15 Protective Factors & Resilience Resources
+Mentor support / Stable housing / Financial cushion / Psychological safety / Clear expectations / Flexible scheduling / Peer relationships / Healthcare access / Effective accommodations / Recovery time / Purpose / Therapy / Skill mastery / Self‑advocacy
+  - Manifestation: Greater capacity to take measured risks, iterate publicly, and sustain momentum.
+  - Behavior impact: Balanced experimentation, better follow‑through, and healthier pacing.
+  - Best approach: Encourage use of supports, suggest peer accountability partners, and co‑design recovery rituals.
+
+If this pace and level of compression work for you, I’ll continue the same faster cadence for the next profile (Promoter) and keep the Neurodivergence section fully expanded. Say continue and I’ll run Promoter through all 15 domains next.
+
+yes
+
+Promoter — Lived Experience Context across 15 Domains
+Below is a fast, scan‑friendly matrix for Promoter across all 15 lived‑experience domains. Each subcategory uses the locked schema: Manifestation · Behavior impact · Distortion of typical Promoter pattern · Real‑life snapshot (1–2 lines) · Work / bandwidth impact · Risk if ignored · Best way to approach (peer, non‑managerial).
+The Neurodivergence domain is expanded with micro‑accommodations, peer scripts, trial metrics, tools/supports, and privacy phrasing.
+
+1 Economic & Material Security
+  - Low socioeconomic background / Financial insecurity / Debt stress
+    * Manifestation: Strong need to be visible and secure; seeks quick recognition tied to income.
+    * Behavior impact: Pushes for high‑visibility wins, may oversell outcomes.
+    * Distortion: Promoter’s natural self‑promotion becomes anxious performance and short‑term deal‑chasing.
+    * Snapshot: Volunteers for every showcase to increase perceived value while juggling bills.
+    * Work impact: Overcommitment, inconsistent follow‑through.
+    * Risk if ignored: Reputation damage, burnout, sudden exit.
+    * Best approach: Offer low‑risk visibility opportunities with clear boundaries and short timelines.
+  - Housing/transport/childcare/limited tech
+    * Manifestation: Erratic availability; uses public energy to mask logistical strain.
+    * Best approach: Confirm availability windows; accept async updates and small, visible deliverables.
+
+2 Family System & Caregiving Context
+  - Child/elder caregiving / Single‑parent responsibilities / Bereavement
+    * Manifestation: Guilt about missing social moments; overcompensates with public contributions.
+    * Behavior impact: High visibility when present; sudden absences.
+    * Distortion: Promoter’s sociability becomes performative to cover private strain.
+    * Snapshot: Leads a lively demo then disappears for caregiving duties.
+    * Work impact: Unpredictable presence; reliance on others for continuity.
+    * Best approach: Offer flexible, visible roles they can step into/out of; asynchronous ways to shine.
+  - Domestic violence / Multigenerational strain
+    * Manifestation: Secrecy and hypervigilance; may use public persona to deflect.
+    * Best approach: Prioritize confidentiality and offer low‑visibility support.
+
+3 Immigration, Displacement & Cultural Transition
+  - Immigration history / Visa uncertainty / Credential barriers
+    * Manifestation: Desire to be seen as successful; sensitivity to recognition tied to status.
+    * Behavior impact: Seeks public validation; may overexplain credentials.
+    * Distortion: Promoter’s charm becomes anxious self‑presentation.
+    * Snapshot: Repeats credentials in meetings to preempt bias.
+    * Best approach: Offer explicit, private validation and small public platforms that feel safe.
+  - Language transition / Accent bias / Code‑switching fatigue
+    * Manifestation: Extra effort to perform socially; prefers rehearsed remarks.
+    * Best approach: Provide slides/notes in advance and co‑present options.
+
+4 Education & Access Background
+  - First‑generation / Under‑resourced schooling / Interrupted education
+    * Manifestation: Uses charisma to bridge gaps; avoids asking for formal help.
+    * Behavior impact: Relies on networking over formal mentorship.
+    * Distortion: Promoter’s networking becomes a substitute for skill development.
+    * Best approach: Offer framed mentorship as mutual benefit and low‑stakes learning pods.
+  - Undiagnosed learning differences / Late diagnosis
+    * Manifestation: Extra effort to keep up with written tasks; prefers speaking.
+    * Best approach: Provide templates and scribe support for written follow‑ups.
+
+5 Neurodivergence & Cognitive Accessibility — Expanded
+ADHD
+  - Manifestation: Rapid idea pitching, difficulty sustaining follow‑through on promotion cycles.
+  - Behavior impact: Starts many outreach efforts, drops some before completion.
+  - Distortion: Promoter’s enthusiasm becomes scattered hype without delivery.
+  - Snapshot: Runs multiple campaigns simultaneously, only some reach completion.
+  - Work impact: Reputation risk; inconsistent campaign outcomes.
+  - Risk: Credibility erosion.
+  - Best approach: Convert outreach into time‑boxed campaigns with clear end dates.
+    * Micro‑accommodations: Limit active campaigns to 1–2; short campaign playbooks.
+    * Peer scripts: “Love this energy — can we cap it to one campaign this month and set a finish date?” / “Want help turning this into a 2‑week pilot?”
+    * Trial metrics: Active campaigns ≤2; campaign completion rate.
+    * Tools/supports: Campaign checklist; calendar blocks; Kanban.
+    * Privacy phrasing: “I’m testing a short, time‑boxed outreach — I’ll share results after the run.”
+Executive Function Differences
+  - Manifestation: Trouble sequencing multi‑stage outreach and follow‑ups.
+  - Best approach: Use simple follow‑up templates and mandatory next‑step notes.
+    * Micro‑accommodations: One‑page follow‑up template.
+    * Peer scripts: “I’ll draft the follow‑up email from your notes.”
+    * Trial metrics: % follow‑ups sent within 48 hours.
+    * Tools: Email templates; CRM reminders.
+    * Privacy phrasing: “Can I draft the follow‑up and send it from you?”
+Time Blindness
+  - Manifestation: Overoptimistic event timelines and last‑minute pushes.
+  - Best approach: Add buffers and require minimal lead times for cross‑team asks.
+    * Micro‑accommodations: +30% buffer; pre‑commitment checks.
+    * Peer scripts: “Can we add a two‑week buffer so ops can staff it?”
+    * Trial metrics: % deadlines met; average buffer used.
+    * Tools: Timeline templates.
+    * Privacy phrasing: “I’m using a conservative timeline this time.”
+Task Initiation Difficulty
+  - Manifestation: Hesitates to start complex campaigns without a clear first step.
+  - Best approach: Provide a one‑sentence first action and pair for kickoff.
+    * Micro‑accommodations: 15–30 minute co‑start.
+    * Peer scripts: “Let’s do the first 30 minutes together.”
+    * Trial metrics: Time to first action.
+    * Tools: Kickoff slots.
+    * Privacy phrasing: “Can you pair for the first 30 minutes so I can get started?”
+Context‑Switching Difficulty
+  - Manifestation: Needs recovery after social marathons; avoids back‑to‑back events.
+  - Best approach: Schedule spaced events and async updates.
+    * Micro‑accommodations: Recovery windows; 3‑bullet async updates.
+    * Peer scripts: “I’ll send a 3‑bullet update after your event.”
+    * Trial metrics: Interruptions during recovery; % items resolved async.
+    * Tools: Calendar focus blocks.
+    * Privacy phrasing: “I’m taking a short recovery window after the event.”
+Hyperfocus Patterns
+  - Manifestation: Deeply invests in one campaign, neglects others.
+  - Best approach: Mid‑campaign check‑ins and visible stop signals.
+    * Micro‑accommodations: Mid‑campaign review; shared priority list.
+    * Peer scripts: “Set a mid‑campaign check‑in so we don’t lose other priorities.”
+    * Trial metrics: Missed commitments; % campaigns with check‑ins.
+    * Tools: Progress board.
+    * Privacy phrasing: “I’m in a focused sprint — I’ll set a mid‑sprint check‑in.”
+Rejection Sensitivity
+  - Manifestation: Avoids early feedback; may withdraw after public critique.
+  - Best approach: Private, strengths‑based feedback and safe previews.
+    * Micro‑accommodations: Private preview sessions.
+    * Peer scripts: “Can I preview this privately and give one focused suggestion?”
+    * Trial metrics: Frequency of private previews.
+    * Tools: Private feedback channel.
+    * Privacy phrasing: “I prefer private feedback on early drafts.”
+Masking Fatigue
+  - Manifestation: Exhaustion from constant social performance.
+  - Best approach: Low‑visibility contribution channels and recovery time.
+    * Micro‑accommodations: Idea doc; recovery half‑days.
+    * Peer scripts: “Drop your idea in this doc and I’ll surface it.”
+    * Trial metrics: Async contributions; energy after recovery.
+    * Tools: Shared idea doc.
+    * Privacy phrasing: “I’ll contribute in writing this round while I recharge.”
+Social Communication Load
+  - Manifestation: Fatigue from repeated persuasion and networking.
+  - Best approach: 3‑slide summaries, co‑presenting, and scheduled touchpoints.
+    * Micro‑accommodations: Summary template; co‑presenter.
+    * Peer scripts: “I’ll co‑present the Q&A so you can focus on the pitch.”
+    * Trial metrics: Stakeholder reach; follow‑through rate.
+    * Tools: Slide templates; co‑presenter pairing.
+    * Privacy phrasing: “I’d like to co‑present the Q&A.”
+Need for Written Instructions
+  - Manifestation: Prefers short checklists for events and outreach.
+  - Best approach: One‑page event checklist and sample scripts.
+    * Micro‑accommodations: Checklist template.
+    * Peer scripts: “Give me 3 bullets of success criteria and I’ll draft the checklist.”
+    * Trial metrics: % events with checklist.
+    * Tools: Shared doc templates.
+    * Privacy phrasing: “Can we capture the event steps in one short doc?”
+Need for Reduced Interruption
+  - Manifestation: Social energy drains quickly; interruptions break momentum.
+  - Best approach: Defined escalation rules and async updates.
+    * Micro‑accommodations: Focus windows; escalation contact.
+    * Peer scripts: “If urgent, text URGENT; otherwise send a 3‑bullet update.”
+    * Trial metrics: Escalations during focus blocks.
+    * Tools: Slack status conventions.
+    * Privacy phrasing: “I’m in a focus block — text URGENT if it can’t wait.”
+Need for Structure Without Shame
+  - Manifestation: Likes scaffolding but may avoid asking publicly.
+  - Best approach: Normalize templates and shared idea queues.
+    * Micro‑accommodations: Shared idea queue.
+    * Peer scripts: “Can I add this to our shared queue and help prioritize it?”
+    * Trial metrics: % ideas in shared queue.
+    * Tools: Shared doc; WIP limits.
+    * Privacy phrasing: “Can we add this to the shared list so it’s visible?”
+Dyslexia / Dyscalculia / Dysgraphia / Dyspraxia
+  - Manifestation: Prefers spoken pitches; written follow‑ups take extra time.
+  - Best approach: Scribe support and speech‑to‑text for follow‑ups.
+    * Micro‑accommodations: Co‑author follow‑ups; voice notes transcribed.
+    * Peer scripts: “I’ll draft the follow‑up from your notes.”
+    * Trial metrics: Time from pitch to published follow‑up.
+    * Tools: Otter, speech‑to‑text.
+    * Privacy phrasing: “I prefer to record a voice note for follow‑up.”
+Auditory/Sensory Processing / Tourette
+  - Manifestation: Noisy events drain energy; may opt out.
+  - Best approach: Captions, slides in advance, opt‑out channels.
+    * Micro‑accommodations: Captions; quiet rooms.
+    * Peer scripts: “I’ll share slides and notes before the session.”
+    * Trial metrics: Written contributions; meeting comfort rating.
+    * Tools: Live captions; shared decks.
+    * Privacy phrasing: “I’ll drop my idea in the doc and follow up after the session.”
+Working Memory / Processing Speed
+  - Manifestation: Needs pre‑reads and reflection time to synthesize messaging.
+  - Best approach: Pre‑reads 24–48 hours ahead and short recap pauses.
+    * Micro‑accommodations: 5‑minute recap pauses.
+    * Peer scripts: “I’ll send a 2‑slide summary before the meeting.”
+    * Trial metrics: % decisions postponed for reflection.
+    * Tools: Pre‑read templates.
+    * Privacy phrasing: “I prefer a short pre‑read and a five‑minute pause after the meeting.”
+
+6 Disability, Health & Body‑Based Factors
+  - Chronic illness / Fatigue / Fluctuating capacity
+    * Manifestation: Variable social energy; front‑loads public work on good days.
+    * Best approach: Private signals for low‑capacity days, flexible scheduling, and asynchronous ways to contribute.
+  - Sleep disorders / Medication side effects / Appointment burden
+    * Best approach: Recorded demos, written summaries, and flexible timelines.
+  - Mobility / Sensory impairment
+    * Best approach: Accessible formats, captions, and opt‑out options.
+
+7 Trauma, Adversity & Nervous‑System Load
+  - Childhood adversity / Workplace trauma / Institutional betrayal
+    * Manifestation: Uses public persona to mask vulnerability; may avoid deep trust.
+    * Best approach: Private validation, avoid surprise public calls, and offer small, safe visibility opportunities.
+  - Hypervigilance / People‑pleasing as safety
+    * Best approach: Encourage boundary scripts and private check‑ins.
+
+8 Identity, Marginalization & Belonging
+  - Racial/ethnic bias / LGBTQ+ stress / Tokenism / Microaggression fatigue
+    * Manifestation: Extra labor to manage impressions; may overperform publicly.
+    * Best approach: Avoid tokenizing requests, offer voluntary, structured platforms for representation, and validate privately.
+  - Code‑switching / Pressure to represent
+    * Best approach: Multiple channels for input and explicit invitations to participate.
+
+9 Work History & Occupational Socialization
+  - Toxic workplace / Micromanagement / Layoff trauma
+    * Manifestation: Seeks visible wins to secure position; distrusts systems.
+    * Best approach: Confidential peer validation and safe, small experiments to rebuild trust.
+  - Job instability / High responsibility without support
+    * Best approach: Validate short‑term wins and co‑design protected time for exploration.
+
+10 Social Support & Community Context
+  - Limited support network / Social isolation / Mentorship availability
+    * Manifestation: Heavy reliance on workplace recognition for belonging.
+    * Best approach: Offer peer recognition, mentorship pairings, and reciprocal support.
+  - Community safety / Relocation loneliness
+    * Best approach: Encourage balanced social outlets and small boundary practices.
+
+11 Life Stage & Transition Factors
+  - New parenthood / Pregnancy/postpartum / Menopause / Mid‑career reinvention / Retirement anxiety / Moving / Divorce / Death / Major health diagnosis
+    * Manifestation: Variable capacity; need for predictable, low‑risk visibility options.
+    * Best approach: Offer written priorities, temporary role adjustments, and respect privacy.
+  - Legal proceedings / Sudden financial event / Natural disaster
+    * Best approach: Async options and private check‑ins.
+
+12 Environmental & Sensory Context
+  - Loud environment / Open office / Lighting sensitivity / High meeting density / Notification overload / Remote/hybrid ambiguity
+    * Manifestation: Social energy drains quickly; prefers smaller, curated events.
+    * Best approach: Quiet hours, opt‑out options, and written summaries of large events.
+  - Workspace crowding / Physical safety concerns
+    * Best approach: Provide opt‑outs and accessible alternatives.
+
+13 Cultural Values & Communication Norms
+  - High‑context vs low‑context / Direct vs indirect / Deference to authority / Humility norms
+    * Manifestation: Extra effort to calibrate self‑presentation across cultures.
+    * Best approach: Clarify norms in writing and invite cultural context privately before public actions.
+  - Modesty/self‑promotion discomfort / Different meanings of urgency
+    * Best approach: Frame recognition as team outcomes and clarify urgency signals.
+
+14 Legal, Administrative & Bureaucratic Stress
+  - Immigration paperwork / Court proceedings / Benefits / Insurance / Disability accommodations / Background checks
+    * Manifestation: Heavy cognitive load; fear of errors; may avoid formal processes.
+    * Best approach: Provide step‑by‑step checklists, private resource referrals, and time to manage paperwork.
+  - Past criminalization / Background check anxiety
+    * Best approach: Confidential guidance and resources for disclosure decisions.
+
+15 Protective Factors & Resilience Resources
+  - Mentor support / Stable housing / Financial cushion / Psychological safety / Clear expectations / Flexible scheduling / Peer relationships / Healthcare access / Effective accommodations / Recovery time / Purpose / Therapy / Skill mastery / Self‑advocacy
+    * Manifestation: Greater capacity to take visible risks, sustain public presence, and recover from setbacks.
+    * Behavior impact: Balanced visibility with reliable follow‑through and healthier pacing.
+    * Best approach: Encourage use of supports, suggest peer accountability partners, and co‑design recovery rituals.
+
+If this pace and format work, I’ll continue the same faster cadence for the next profile (Adapter) and keep the Neurodivergence section fully expanded. Say continue and I’ll run Adapter through all 15 domains next.
+
+go
+
+Adapter — Lived Experience Context across 15 Domains
+Below is a fast, scan‑friendly matrix for Adapter across all 15 lived‑experience domains. Each subcategory follows the locked schema: Manifestation · Behavior impact · Distortion of typical Adapter pattern · Real‑life snapshot (1–2 lines) · Work / bandwidth impact · Risk if ignored · Best way to approach (peer, non‑managerial).
+The Neurodivergence domain is expanded with micro‑accommodations, peer scripts, trial metrics, tools/supports, and privacy phrasing.
+
+1 Economic & Material Security
+  - Low socioeconomic background / Financial insecurity / Debt stress
+    * Manifestation: Quietly absorbs extra tasks to avoid risk; avoids asking for paid development.
+    * Behavior impact: Over‑flexes schedule, accepts low‑visibility work, avoids negotiation.
+    * Distortion: Adapter’s flexibility becomes self‑erasure and chronic overwork.
+    * Snapshot: Takes on extra shifts or tasks to cover bills, then declines training.
+    * Work impact: Hidden overload; reduced growth.
+    * Risk if ignored: Burnout and stalled career mobility.
+    * Best approach: Offer low‑cost learning options, private resource suggestions, and explicit permission to decline extra tasks.
+  - Housing/transport/childcare/unreliable tech/working multiple jobs
+    * Manifestation: Erratic availability; schedules around constraints.
+    * Best approach: Confirm availability windows, accept async deliverables, and offer micro‑handoffs.
+
+2 Family System & Caregiving Context
+  - Parentification / Childcare / Elder caregiving / Single‑parent responsibilities
+    * Manifestation: Constant context switching; guilt about missed social work rituals.
+    * Behavior impact: Highly accommodating but may miss synchronous commitments.
+    * Distortion: Adapter’s natural accommodation becomes chronic self‑sacrifice.
+    * Snapshot: Juggles school pickup and a late deliverable; replies after hours.
+    * Work impact: Fragmented attention and slower deep work.
+    * Best approach: Offer asynchronous ways to contribute and small task swaps.
+  - Domestic violence / Multigenerational strain
+    * Manifestation: Secrecy, hypervigilance, emotional exhaustion.
+    * Best approach: Prioritize confidentiality and low‑visibility support.
+
+3 Immigration, Displacement & Cultural Transition
+  - Immigration history / Visa uncertainty / Credential barriers
+    * Manifestation: Extra effort to fit norms; hesitance to ask for exceptions.
+    * Behavior impact: Code‑switches frequently; avoids visible risk.
+    * Distortion: Adapter’s chameleon strengths become identity dilution and self‑silencing.
+    * Snapshot: Adopts local idioms to fit in but avoids raising systemic issues.
+    * Work impact: Reduced authenticity and missed advocacy.
+    * Best approach: Validate contributions privately and invite low‑risk visibility opportunities.
+  - Language transition / Accent bias / Code‑switching fatigue
+    * Manifestation: Extra cognitive load; prefers written channels.
+    * Best approach: Provide agendas and allow written follow‑ups.
+
+4 Education & Access Background
+  - First‑generation / Under‑resourced schooling / Interrupted education
+    * Manifestation: High self‑reliance; reluctance to ask for mentorship.
+    * Behavior impact: Learns by doing; avoids formal sponsorship.
+    * Distortion: Adapter’s flexibility becomes hidden skill gaps.
+    * Best approach: Offer peer learning pods and framed mentorship as mutual exchange.
+  - Undiagnosed learning differences / Late diagnosis
+    * Manifestation: Compensatory strategies; fatigue in high‑tempo settings.
+    * Best approach: Provide templates, extra time for written tasks, and rehearsal opportunities.
+
+5 Neurodivergence & Cognitive Accessibility — Expanded
+Each subcategory below includes: Manifestation · Behavior impact · Distortion · Snapshot · Work impact · Risk · Best approach, then Micro‑accommodations · Peer scripts · Trial metrics · Tools/supports · Privacy phrasing.
+ADHD
+  - Manifestation: Adapts quickly to new demands but struggles to sustain long, detailed follow‑through.
+  - Behavior impact: Jumps between tasks to meet changing needs; may leave projects half‑finished.
+  - Distortion: Adapter’s nimbleness becomes scattered reactivity.
+  - Snapshot: Rapidly reorganizes priorities mid‑week, then misses a promised deliverable.
+  - Work impact: Inconsistent delivery; teammates pick up slack.
+  - Risk: Credibility erosion and hidden stress.
+  - Best approach: Convert tasks into short, clear micro‑steps and limit concurrent commitments.
+    * Micro‑accommodations: 15–30 minute micro‑tasks; WIP limits; visible task queue.
+    * Peer scripts: “Can we break this into three 30‑minute steps and check in after each?” / “Want me to own the next small step so you can focus?”
+    * Trial metrics: Time to first micro‑step; % micro‑steps completed on schedule.
+    * Tools/supports: Kanban with WIP limits; timers; calendar micro‑blocks.
+    * Privacy phrasing: “I’m breaking this into short steps and will share progress after each one.”
+Executive Function Differences
+  - Manifestation: Difficulty sequencing multi‑part tasks and remembering handoffs.
+  - Best approach: Use simple checklists and visible handoff notes.
+    * Micro‑accommodations: One‑line next‑step notes; mandatory handoff field in shared doc.
+    * Peer scripts: “I’ll add the next step to the doc so it’s clear.”
+    * Trial metrics: % tasks with next‑step noted; handoff completion rate.
+    * Tools/supports: Shared checklist templates.
+    * Privacy phrasing: “Can we add a one‑line next step to the doc so I don’t lose it?”
+Time Blindness
+  - Manifestation: Underestimates time for context switching and follow‑through.
+  - Best approach: Visible timers, buffer rules, and agreed micro‑deadlines.
+    * Micro‑accommodations: +25–30% buffer; calendar reminders.
+    * Peer scripts: “Let’s add a small buffer so you can finish without rush.”
+    * Trial metrics: % deadlines met; average buffer used.
+    * Tools/supports: Shared calendar with reminders.
+    * Privacy phrasing: “I’m adding a small buffer to make sure I deliver.”
+Task Initiation Difficulty
+  - Manifestation: Needs a clear first action to get started.
+  - Best approach: Provide a single, tiny first step and offer to co‑start.
+    * Micro‑accommodations: 15‑minute co‑start; first‑action note.
+    * Peer scripts: “What’s one tiny thing we can do in 15 minutes to start?”
+    * Trial metrics: Time to first action; # tasks started with co‑start.
+    * Tools/supports: Kickoff slots; checklists.
+    * Privacy phrasing: “Can we pair for the first 15 minutes so I can get going?”
+Context‑Switching Difficulty
+  - Manifestation: High cost to switch between tasks; needs recovery time.
+  - Best approach: Batch similar tasks and use async updates.
+    * Micro‑accommodations: Focus blocks; 3‑bullet async updates.
+    * Peer scripts: “I’ll send a 3‑bullet update after your block.”
+    * Trial metrics: Interruptions during blocks; % items resolved async.
+    * Tools/supports: Calendar focus blocks; async templates.
+    * Privacy phrasing: “I’m protecting a focus block — please send a short update if it’s not urgent.”
+Hyperfocus Patterns
+  - Manifestation: Deep immersion on one problem; misses other obligations.
+  - Best approach: Mid‑task check‑ins and shared priority lists.
+    * Micro‑accommodations: Mid‑task check; visible priority list.
+    * Peer scripts: “Set a mid‑task check‑in so we don’t lose other priorities.”
+    * Trial metrics: Missed commitments while hyperfocused; % tasks with mid‑check.
+    * Tools/supports: Progress board; reminders.
+    * Privacy phrasing: “I’m in a focused sprint — I’ll set a mid‑sprint check‑in.”
+Rejection Sensitivity
+  - Manifestation: Avoids early feedback; may withdraw after critique.
+  - Best approach: Private, strengths‑based feedback and safe previews.
+    * Micro‑accommodations: Private preview sessions.
+    * Peer scripts: “Can I preview this privately and give one focused suggestion?”
+    * Trial metrics: Frequency of private previews; early sharing rate.
+    * Tools/supports: Private feedback channels.
+    * Privacy phrasing: “I prefer private feedback on early drafts.”
+Masking Fatigue
+  - Manifestation: Exhaustion from constant adaptation; fewer spontaneous contributions.
+  - Best approach: Low‑visibility contribution channels and recovery time.
+    * Micro‑accommodations: Idea doc; recovery half‑days.
+    * Peer scripts: “Drop your idea in this doc and I’ll surface it.”
+    * Trial metrics: Async contributions; energy after recovery.
+    * Tools/supports: Shared idea doc.
+    * Privacy phrasing: “I’ll contribute in writing this round while I recharge.”
+Social Communication Load
+  - Manifestation: Extra effort to manage tone and fit in; prefers written channels.
+  - Best approach: Provide templates for short summaries and allow written input.
+    * Micro‑accommodations: 3‑bullet summary template.
+    * Peer scripts: “Can you send a short summary and I’ll share it?”
+    * Trial metrics: % written inputs; stakeholder clarity rating.
+    * Tools/supports: Summary templates.
+    * Privacy phrasing: “I’ll send a short written summary instead of speaking up.”
+Need for Written Instructions
+  - Manifestation: Performs best with concise written steps.
+  - Best approach: Provide one‑page checklists and examples.
+    * Micro‑accommodations: Checklist templates.
+    * Peer scripts: “Here’s a short checklist — want me to fill the first item?”
+    * Trial metrics: % tasks with checklist; # clarifying follow‑ups.
+    * Tools/supports: Shared templates.
+    * Privacy phrasing: “Can we capture the steps in a short doc so I can follow them?”
+Need for Reduced Interruption
+  - Manifestation: Flow is fragile; interruptions are costly.
+  - Best approach: Respect focus windows and use async updates.
+    * Micro‑accommodations: Focus blocks; escalation contact.
+    * Peer scripts: “If urgent, text URGENT; otherwise send a 3‑bullet update.”
+    * Trial metrics: Interruptions during blocks; % items resolved async.
+    * Tools/supports: Slack status conventions.
+    * Privacy phrasing: “I’m in a focus block — text URGENT if it can’t wait.”
+Need for Structure Without Shame
+  - Manifestation: Prefers scaffolding but may not ask publicly.
+  - Best approach: Normalize shared templates and optional structure.
+    * Micro‑accommodations: Shared template library.
+    * Peer scripts: “Can I share a short template that might help?”
+    * Trial metrics: % team using template.
+    * Tools/supports: Template library.
+    * Privacy phrasing: “I have a short template that helps me — can I share it?”
+Dyslexia / Dyscalculia / Dysgraphia / Dyspraxia
+  - Manifestation: Extra time for written/numeric/manual tasks; prefers typed or visual outputs.
+  - Best approach: Scribe support, speech‑to‑text, and co‑authoring.
+    * Micro‑accommodations: Co‑author follow‑ups; voice notes transcribed.
+    * Peer scripts: “I’ll draft the follow‑up from your notes.”
+    * Trial metrics: Time from idea to published follow‑up.
+    * Tools/supports: Speech‑to‑text; templates.
+    * Privacy phrasing: “I prefer to record a voice note for follow‑up.”
+Auditory/Sensory Processing / Tourette
+  - Manifestation: Noisy or crowded settings drain capacity; may opt out.
+  - Best approach: Captions, slides in advance, opt‑out channels.
+    * Micro‑accommodations: Captions; quiet rooms.
+    * Peer scripts: “I’ll share slides and notes before the session.”
+    * Trial metrics: Written contributions; meeting comfort rating.
+    * Tools/supports: Live captions; shared decks.
+    * Privacy phrasing: “I’ll drop my idea in the doc and follow up after the session.”
+Working Memory / Processing Speed
+  - Manifestation: Needs pre‑reads and reflection time to synthesize.
+  - Best approach: Pre‑reads 24–48 hours ahead and short recap pauses.
+    * Micro‑accommodations: 5‑minute recap pauses.
+    * Peer scripts: “I’ll send a 2‑slide summary before the meeting.”
+    * Trial metrics: % decisions postponed for reflection; quality of final plans.
+    * Tools/supports: Pre‑read templates; recap prompts.
+    * Privacy phrasing: “I prefer a short pre‑read and a five‑minute pause after the meeting.”
+
+6 Disability, Health & Body‑Based Factors
+  - Chronic illness / Chronic pain / Fatigue / Fluctuating capacity
+    * Manifestation: Variable availability; front‑loads work on good days.
+    * Best approach: Private signals for low‑capacity days, flexible timelines, and written handoffs.
+  - Sleep disorders / Medication side effects / Appointment burden
+    * Best approach: Recorded meetings, written summaries, and flexible scheduling.
+  - Mobility / Sensory impairment
+    * Best approach: Accessible formats, captions, and opt‑out options.
+
+7 Trauma, Adversity & Nervous‑System Load
+  - Childhood adversity / Abuse / Workplace trauma / Institutional betrayal
+    * Manifestation: Tendency to adapt to others’ needs to stay safe; avoids conflict.
+    * Best approach: Calm, private validation; avoid surprise evaluations; offer small, safe experiments.
+  - Hypervigilance / People‑pleasing / Overachievement as survival
+    * Best approach: Encourage boundary scripts and private check‑ins.
+
+8 Identity, Marginalization & Belonging
+  - Racial/ethnic bias / LGBTQ+ stress / Tokenism / Microaggression fatigue
+    * Manifestation: Extra labor to fit in; reluctance to be visible in identity‑charged contexts.
+    * Best approach: Avoid tokenizing requests, invite voluntary participation, and validate privately.
+  - Code‑switching / Pressure to represent
+    * Best approach: Provide multiple channels for input and explicit invitations to participate.
+
+9 Work History & Occupational Socialization
+  - Toxic workplace / Micromanagement / Retaliation history / Learned silence
+    * Manifestation: Avoids escalation; adapts to survive.
+    * Best approach: Offer confidential peer validation and safe, small experiments to rebuild trust.
+  - Job instability / Layoff trauma / High responsibility without support
+    * Best approach: Validate short‑term wins and co‑design protected time for exploration.
+
+10 Social Support & Community Context
+  - Limited support network / Social isolation / Mentorship availability
+    * Manifestation: Relies on adaptability to fit into available groups; may lack deep support.
+    * Best approach: Offer peer support swaps, mentorship pairings, and small reciprocal arrangements.
+  - Community safety / Relocation loneliness
+    * Best approach: Encourage balanced social outlets and boundary practices.
+
+11 Life Stage & Transition Factors
+  - New parenthood / Pregnancy/postpartum / Menopause / Mid‑career reinvention / Retirement anxiety / Moving / Divorce / Death / Major health diagnosis
+    * Manifestation: Variable capacity and need for predictability.
+    * Best approach: Offer written priorities, temporary role adjustments, and respect privacy.
+  - Legal proceedings / Sudden financial event / Natural disaster
+    * Best approach: Async options and private check‑ins.
+
+12 Environmental & Sensory Context
+  - Loud environment / Open office / Lighting sensitivity / Constant interruptions / High meeting density / Notification overload / Remote/hybrid ambiguity
+    * Manifestation: Sensory fatigue; prefers predictable, low‑stimulus conditions.
+    * Best approach: Quiet hours, written agendas, opt‑out options, and respect for focus windows.
+  - Workspace crowding / Physical safety concerns
+    * Best approach: Provide opt‑outs and written summaries.
+
+13 Cultural Values & Communication Norms
+  - High‑context vs low‑context / Direct vs indirect / Deference to authority / Collectivist vs individualist norms
+    * Manifestation: Extra effort to translate norms; may adapt communication style to fit.
+    * Best approach: Clarify norms in writing and invite cultural context privately.
+  - Modesty/self‑promotion discomfort / Different meanings of urgency
+    * Best approach: Frame recognition as team outcomes and clarify urgency signals.
+
+14 Legal, Administrative & Bureaucratic Stress
+  - Immigration paperwork / Court proceedings / Benefits / Insurance / Disability accommodations / Background checks / Housing applications
+    * Manifestation: Heavy cognitive load; fear of errors.
+    * Best approach: Share step‑by‑step checklists, private resource referrals, and time to manage paperwork.
+  - Past criminalization / Background check anxiety
+    * Best approach: Confidential guidance and resources for disclosure decisions.
+
+15 Protective Factors & Resilience Resources
+  - Mentor support / Stable housing / Financial cushion / Psychological safety / Clear expectations / Flexible scheduling / Peer relationships / Healthcare access / Effective accommodations / Recovery time / Purpose / Therapy / Skill mastery / Self‑advocacy
+    * Manifestation: Greater capacity to adapt healthily, ask for help, and balance competing demands.
+    * Behavior impact: Sustainable flexibility, better boundary setting, and improved contribution.
+    * Best approach: Encourage use of supports, suggest peer accountability partners, and co‑design recovery rituals.
+
+If this pace and format work, I’ll continue to the next profile (Craftsman) with the same fast cadence and the Neurodivergence domain fully expanded. Say continue and I’ll proceed.
+
+go
+
+Craftsman — Lived Experience Context across 15 Domains
+Each subcategory follows the locked schema: Manifestation · Behavior impact · Distortion of typical Craftsman pattern · Real‑life snapshot (1–2 lines) · Work / bandwidth impact · Risk if ignored · Best way to approach (peer, non‑managerial).
+The Neurodivergence domain is expanded with micro‑accommodations, peer scripts, trial metrics, tools/supports, and privacy phrasing.
+
+1 Economic & Material Security
+Low socioeconomic background / Financial insecurity / Debt stress
+  - Manifestation: Reluctance to ask for paid tools or training; prioritizes practical, low‑cost fixes.
+  - Behavior impact: Hoards tasks they can do cheaply; resists suggesting investments.
+  - Distortion: Craftsman’s quality focus becomes underinvestment in tools that would scale quality.
+  - Snapshot: Keeps using a manual workaround rather than requesting a paid automation.
+  - Work impact: Slower throughput; technical debt accumulates.
+  - Risk if ignored: Burnout and declining workmanship.
+  - Best approach: Offer low‑cost or trial tool options and private framing that links investment to time saved.
+Housing/transport/childcare/unreliable tech/working multiple jobs
+  - Manifestation: Irregular hours; does hands‑on work in off hours.
+  - Behavior impact: High craftsmanship in bursts; inconsistent availability.
+  - Distortion: Consistent craftsmanship becomes episodic.
+  - Best approach: Agree on asynchronous handoffs and small, time‑boxed tasks.
+
+2 Family System & Caregiving Context
+Parentification / Childcare / Elder caregiving / Single‑parent responsibilities
+  - Manifestation: Schedules tightly around caregiving; accepts tasks that fit windows.
+  - Behavior impact: Prefers predictable, bounded work; avoids open‑ended requests.
+  - Distortion: Craftsman’s steady, meticulous pace becomes compressed and rushed.
+  - Snapshot: Delivers polished components late at night after caregiving duties.
+  - Work impact: Handoffs and reviews misalign with team cadence.
+  - Best approach: Offer clear acceptance criteria and asynchronous review options.
+Domestic violence / Multigenerational strain
+  - Manifestation: Secrecy and hypervigilance; may avoid social exposure.
+  - Best approach: Prioritize confidentiality and offer low‑visibility support.
+
+3 Immigration, Displacement & Cultural Transition
+Immigration history / Visa uncertainty / Credential barriers
+  - Manifestation: Extra effort to prove technical legitimacy; sensitivity to credential questions.
+  - Behavior impact: Over‑documents work; avoids informal recognition that feels risky.
+  - Distortion: Craftsman’s pride in craft becomes defensive over‑proofing.
+  - Best approach: Validate technical competence explicitly and offer small public showcases.
+Language transition / Accent bias / Code‑switching fatigue
+  - Manifestation: Prefers written technical notes and examples.
+  - Best approach: Provide written specs and allow time for written clarifications.
+
+4 Education & Access Background
+First‑generation / Under‑resourced schooling / Interrupted education
+  - Manifestation: Self‑taught practices; skepticism of formal training.
+  - Behavior impact: Relies on apprenticeship‑style learning; avoids formal mentorship.
+  - Distortion: Craftsman’s mastery becomes isolated craft knowledge rather than shared practice.
+  - Best approach: Offer peer apprenticeship pairings and practical, low‑cost training.
+Undiagnosed learning differences / Late diagnosis
+  - Manifestation: Extra time to process instructions; reliance on templates.
+  - Best approach: Provide templates, examples, and extra time for written tasks.
+
+5 Neurodivergence & Cognitive Accessibility — Expanded
+ADHD
+  - Manifestation: Deep focus on a single craft detail, difficulty finishing peripheral tasks.
+  - Behavior impact: Produces exceptional artifacts but may miss integration or deadlines.
+  - Distortion: Craftsman’s attention to detail becomes tunnel vision that delays delivery.
+  - Snapshot: Perfects a component for days and misses the integration deadline.
+  - Work impact: High‑quality output in one area; other dependencies stall.
+  - Risk if ignored: Missed releases and team frustration.
+  - Best approach: Break work into short, deliverable micro‑tasks with visible stop rules.
+    * Micro‑accommodations: 1–3 hour micro‑tasks; WIP limits; mandatory mid‑task check‑ins.
+    * Peer scripts: “This looks great — can we set a mid‑task check‑in so we keep the release on track?” / “Can I take the next small handoff so you can finish this piece?”
+    * Trial metrics: % micro‑tasks completed on time; number of mid‑task check‑ins used.
+    * Tools/supports: Kanban with WIP limits; timers; shared progress board.
+    * Privacy phrasing: “I’m working in short focused chunks and will share a mid‑point update.”
+Executive Function Differences
+  - Manifestation: Difficulty sequencing multi‑step builds and remembering handoffs.
+  - Best approach: Use explicit step lists and a one‑line next‑action field in shared docs.
+    * Micro‑accommodations: Handoff checklist; one‑line next action.
+    * Peer scripts: “I’ll add the next action to the doc so it’s clear.”
+    * Trial metrics: % tasks with next action; handoff completion rate.
+    * Tools/supports: Shared checklists; simple templates.
+    * Privacy phrasing: “Can we add a one‑line next step to the doc so I don’t lose it?”
+Time Blindness
+  - Manifestation: Underestimates time for finishing polish and QA.
+  - Best approach: Add conservative buffers and micro‑deadlines for QA.
+    * Micro‑accommodations: Buffer rules (+25–30%); QA micro‑deadlines.
+    * Peer scripts: “Let’s add a small buffer so you can finish the QA.”
+    * Trial metrics: % deadlines met; average buffer used.
+    * Tools/supports: Timeline templates; milestone reminders.
+    * Privacy phrasing: “I’m adding a small buffer to ensure quality.”
+Task Initiation Difficulty
+  - Manifestation: Hesitates to start ambiguous build tasks without a sample or template.
+  - Best approach: Provide a one‑step starter and pair for the first 15–30 minutes.
+    * Micro‑accommodations: Starter snippet; 15‑minute co‑start.
+    * Peer scripts: “Here’s a starter snippet — want to pair for 15 minutes to get going?”
+    * Trial metrics: Time to first commit; # tasks started with pairing.
+    * Tools/supports: Starter templates; pairing slots.
+    * Privacy phrasing: “Can we pair for the first 15 minutes so I can get started?”
+Context‑Switching Difficulty
+  - Manifestation: Deep craft work is disrupted by frequent meetings; recovery time needed.
+  - Best approach: Batch reviews and provide written summaries for quick catch‑up.
+    * Micro‑accommodations: Focus blocks; written review notes.
+    * Peer scripts: “I’ll send a short review note after your focus block.”
+    * Trial metrics: Interruptions during focus blocks; % items resolved via notes.
+    * Tools/supports: Calendar focus blocks; review templates.
+    * Privacy phrasing: “I’m protecting a focus block — please send a short note if it’s not urgent.”
+Hyperfocus Patterns
+  - Manifestation: Immerses in craft detail and misses broader integration tasks.
+  - Best approach: Mid‑task check‑ins and shared integration checklists.
+    * Micro‑accommodations: Mid‑task integration check; shared priority list.
+    * Peer scripts: “Ping me at the mid‑point so we can align on integration.”
+    * Trial metrics: Missed integration items; % tasks with mid‑checks.
+    * Tools/supports: Progress board; automated reminders.
+    * Privacy phrasing: “I’m deep in a sprint — I’ll set a mid‑sprint check‑in.”
+Rejection Sensitivity
+  - Manifestation: Sensitive to critique of workmanship; may withdraw from peer review.
+  - Best approach: Private, specific, strengths‑based feedback and safe preview sessions.
+    * Micro‑accommodations: Private preview; feedback sandwich.
+    * Peer scripts: “This is solid — one tweak that could help is X; want to iterate together?”
+    * Trial metrics: Frequency of private previews; change in early sharing.
+    * Tools/supports: Private feedback channels.
+    * Privacy phrasing: “I prefer private feedback on early drafts.”
+Masking Fatigue
+  - Manifestation: Exhaustion from adapting presentation or tone; fewer informal contributions.
+  - Best approach: Low‑visibility contribution channels and recovery time.
+    * Micro‑accommodations: Idea doc; recovery half‑days.
+    * Peer scripts: “Drop your idea in this doc and I’ll surface it.”
+    * Trial metrics: Async contributions; energy after recovery.
+    * Tools/supports: Shared idea doc.
+    * Privacy phrasing: “I’ll contribute in writing this round while I recharge.”
+Social Communication Load
+  - Manifestation: Extra effort to explain technical choices to non‑technical stakeholders.
+  - Best approach: Provide short executive summaries and co‑present technical rationale.
+    * Micro‑accommodations: 3‑bullet summary template; co‑presenter for demos.
+    * Peer scripts: “I’ll draft a short summary you can use for the demo.”
+    * Trial metrics: % stakeholder clarifications resolved; follow‑through after demos.
+    * Tools/supports: Summary templates; co‑presenter pairing.
+    * Privacy phrasing: “Can I send a short summary for the demo and have you present it?”
+Need for Written Instructions
+  - Manifestation: Works best with clear acceptance criteria and examples.
+  - Best approach: Provide concise acceptance checklists and sample outputs.
+    * Micro‑accommodations: Acceptance checklist; example artifacts.
+    * Peer scripts: “Here’s an example — want me to add acceptance criteria?”
+    * Trial metrics: % tasks with acceptance criteria; QA pass rate.
+    * Tools/supports: Template library.
+    * Privacy phrasing: “Can we capture acceptance criteria in a short checklist?”
+Need for Reduced Interruption
+  - Manifestation: Frequent interruptions degrade fine‑grained craft quality.
+  - Best approach: Respect focus windows and use async QA channels.
+    * Micro‑accommodations: Focus blocks; async QA doc.
+    * Peer scripts: “I’ll add QA notes to the doc instead of interrupting your flow.”
+    * Trial metrics: Interruptions during blocks; QA turnaround time.
+    * Tools/supports: Async QA doc; calendar focus blocks.
+    * Privacy phrasing: “I’m in a focus block — please add QA notes to the doc.”
+Need for Structure Without Shame
+  - Manifestation: Prefers templates but may not ask publicly.
+  - Best approach: Normalize shared templates and invite co‑creation.
+    * Micro‑accommodations: Shared template library.
+    * Peer scripts: “Can I share a short template that helps me?”
+    * Trial metrics: % team using template; time saved.
+    * Tools/supports: Template library.
+    * Privacy phrasing: “I have a short template that helps me — can I share it?”
+Dyslexia / Dyscalculia / Dysgraphia / Dyspraxia
+  - Manifestation: Extra time for documentation, numeric checks, or manual tasks.
+  - Best approach: Scribe support, calculators, and co‑authoring.
+    * Micro‑accommodations: Co‑author docs; speech‑to‑text; calculators.
+    * Peer scripts: “I’ll draft the doc from your notes.”
+    * Trial metrics: Time to publish; % co‑authored docs.
+    * Tools/supports: Speech‑to‑text; calculators; templates.
+    * Privacy phrasing: “I prefer to record a voice note for the write‑up.”
+Auditory/Sensory Processing / Tourette
+  - Manifestation: Noisy environments reduce fine motor precision and concentration.
+  - Best approach: Quiet rooms, captions, and opt‑out options for noisy sessions.
+    * Micro‑accommodations: Quiet rooms; captions; slides in advance.
+    * Peer scripts: “I’ll share slides and notes before the session.”
+    * Trial metrics: Meeting comfort rating; written contributions.
+    * Tools/supports: Live captions; shared decks.
+    * Privacy phrasing: “I’ll drop my notes in the doc and follow up after the session.”
+Working Memory / Processing Speed
+  - Manifestation: Needs checklists and short pauses to integrate multi‑step procedures.
+  - Best approach: Pre‑reads, step recaps, and short reflection pauses.
+    * Micro‑accommodations: Pre‑reads 24–48 hours ahead; 5‑minute recap pauses.
+    * Peer scripts: “I’ll send a short checklist before the review.”
+    * Trial metrics: % decisions postponed for reflection; QA pass rate.
+    * Tools/supports: Pre‑read templates; recap prompts.
+    * Privacy phrasing: “I prefer a short pre‑read and a five‑minute pause after the review.”
+
+6 Disability, Health & Body‑Based Factors
+Chronic illness / Chronic pain / Fatigue / Fluctuating capacity
+  - Manifestation: Variable fine‑motor stamina and cognitive focus.
+  - Behavior impact: Peaks of high craftsmanship followed by low capacity.
+  - Distortion: Reliability becomes unpredictable.
+  - Best approach: Private signals for low‑capacity days, flexible timelines, and written handoffs.
+Sleep disorders / Medication side effects / Appointment burden
+  - Best approach: Recorded demos, written summaries, and flexible scheduling.
+Mobility / Sensory impairment
+  - Best approach: Accessible tools, alternative input methods, and quiet workspaces.
+
+7 Trauma, Adversity & Nervous‑System Load
+Childhood adversity / Abuse / Workplace trauma / Institutional betrayal
+  - Manifestation: Hypervigilance about critique; avoids public exposure.
+  - Behavior impact: Over‑polishes work privately; avoids peer review.
+  - Distortion: Craft pride becomes guarded secrecy.
+  - Best approach: Use calm, private validation; offer safe, small peer review rituals.
+Hypervigilance / People‑pleasing / Overachievement as survival
+  - Best approach: Encourage boundary scripts and private check‑ins.
+
+8 Identity, Marginalization & Belonging
+Racial/ethnic bias / LGBTQ+ stress / Tokenism / Microaggression fatigue
+  - Manifestation: Extra labor to fit norms; reluctance to be visible in identity‑charged contexts.
+  - Behavior impact: May avoid representing identity publicly; overcompensates in craft to be judged on merit.
+  - Best approach: Avoid tokenizing requests, invite voluntary participation, and validate privately.
+Code‑switching / Pressure to represent
+  - Best approach: Provide multiple channels for input and explicit invitations to participate.
+
+9 Work History & Occupational Socialization
+Toxic workplace / Micromanagement / Retaliation history / Learned silence
+  - Manifestation: Reluctance to escalate quality issues; hoards knowledge to avoid exposure.
+  - Best approach: Offer confidential peer validation and safe, small knowledge‑sharing rituals.
+Job instability / Layoff trauma / High responsibility without support
+  - Best approach: Validate short‑term wins and co‑design protected time for craft work.
+
+10 Social Support & Community Context
+Limited support network / Social isolation / Mentorship availability
+  - Manifestation: Works alone; limited peer feedback.
+  - Best approach: Offer apprenticeship pairings, peer review swaps, and mentorship.
+Community safety / Relocation loneliness
+  - Best approach: Encourage balanced social outlets and small boundary practices.
+
+11 Life Stage & Transition Factors
+New parenthood / Pregnancy/postpartum / Menopause / Mid‑career reinvention / Retirement anxiety / Moving / Divorce / Death / Major health diagnosis
+  - Manifestation: Variable capacity and need for predictable, bounded tasks.
+  - Best approach: Offer written priorities, temporary role adjustments, and respect privacy.
+Legal proceedings / Sudden financial event / Natural disaster
+  - Best approach: Async options and private check‑ins.
+
+12 Environmental & Sensory Context
+Loud environment / Open office / Lighting sensitivity / Constant interruptions / High meeting density / Notification overload
+  - Manifestation: Fine‑motor precision and concentration degrade in noisy or poorly lit spaces.
+  - Behavior impact: Avoids open‑plan areas; prefers quiet, well‑lit workspaces.
+  - Best approach: Provide quiet rooms, good lighting, and opt‑out options for noisy events.
+Workspace crowding / Physical safety concerns
+  - Best approach: Offer alternative workspaces and written summaries of group sessions.
+
+13 Cultural Values & Communication Norms
+High‑context vs low‑context / Direct vs indirect communication / Deference to authority / Humility norms
+  - Manifestation: Extra effort to translate norms into craft standards; may adapt style to fit.
+  - Best approach: Clarify expectations in writing and invite cultural context privately.
+Modesty/self‑promotion discomfort / Different meanings of urgency
+  - Best approach: Frame recognition as craftsmanship outcomes and clarify urgency signals.
+
+14 Legal, Administrative & Bureaucratic Stress
+Immigration paperwork / Court proceedings / Benefits / Insurance / Disability accommodations / Background checks
+  - Manifestation: Heavy cognitive load; fear of errors.
+  - Best approach: Provide step‑by‑step checklists, private resource referrals, and time to manage paperwork.
+Past criminalization / Background check anxiety
+  - Best approach: Confidential guidance and resources for disclosure decisions.
+
+15 Protective Factors & Resilience Resources
+Mentor support / Stable housing / Financial cushion / Psychological safety / Clear expectations / Flexible scheduling / Peer relationships / Healthcare access / Effective accommodations / Recovery time / Purpose / Therapy / Skill mastery / Self‑advocacy
+  - Manifestation: Greater capacity to maintain high craftsmanship sustainably and share knowledge.
+  - Behavior impact: Balanced, teachable, and consistent output.
+  - Best approach: Encourage use of supports, suggest apprenticeship pairings, and co‑design recovery rituals.
+
+If this level and pace work, I’ll continue to Guardian next and keep the Neurodivergence section fully expanded for each profile. Say continue and I’ll run Guardian through all 15 domains next.
+
+go
+
+Guardian — Lived Experience Context across 15 Domains
+Below is a fast, scan‑friendly matrix for Guardian across all 15 lived‑experience domains. Each subcategory follows the locked schema: Manifestation · Behavior impact · Distortion of typical Guardian pattern · Real‑life snapshot (1–2 lines) · Work / bandwidth impact · Risk if ignored · Best way to approach (peer, non‑managerial).
+The Neurodivergence & Cognitive Accessibility domain is expanded with micro‑accommodations, peer scripts, trial metrics, tools/supports, and privacy phrasing.
+
+1 Economic & Material Security
+Low socioeconomic background / Financial insecurity / Debt stress
+  - Manifestation: Deep worry about stability; reluctance to ask for help that feels like charity.
+  - Behavior impact: Over‑cautious resource use; avoids visible requests for support.
+  - Distortion: Guardian’s protective steadiness becomes silent scarcity management and refusal to escalate needs.
+  - Snapshot: Keeps using outdated tools to avoid asking for budget.
+  - Work impact: Underinvestment in efficiency; hidden stress reduces focus.
+  - Risk if ignored: Burnout and sudden inability to meet obligations.
+  - Best approach: Offer discreet, practical options framed as efficiency improvements; normalize small resource requests.
+Housing/transport/childcare/unreliable tech/working multiple jobs
+  - Manifestation: Tight scheduling; frequent contingency planning.
+  - Best approach: Confirm availability windows, provide asynchronous options, and offer small task swaps.
+
+2 Family System & Caregiving Context
+Parentification / Childcare / Elder caregiving / Single‑parent responsibilities / Bereavement
+  - Manifestation: Heavy emotional load; prioritizes family safety over work visibility.
+  - Behavior impact: Withdraws from optional social tasks; keeps commitments but avoids extra roles.
+  - Distortion: Guardian’s reliability becomes rigidly limited to core duties; avoids new responsibilities.
+  - Snapshot: Covers core shifts reliably but declines mentoring or extra projects.
+  - Work impact: Narrowed contribution; team may not see full capability.
+  - Best approach: Offer clearly bounded tasks, asynchronous ways to contribute, and private check‑ins.
+Domestic violence / Substance exposure / Multigenerational strain
+  - Manifestation: Hypervigilance and secrecy; safety concerns dominate.
+  - Best approach: Prioritize confidentiality, safety planning, and low‑visibility support.
+
+3 Immigration, Displacement & Cultural Transition
+Immigration history / Visa uncertainty / Credential barriers / Family separation
+  - Manifestation: Extra effort to prove reliability; anxiety about paperwork and status.
+  - Behavior impact: Over‑documentation, reluctance to take informal risks.
+  - Distortion: Guardian’s dependable steadiness becomes defensive over‑proofing and avoidance of informal trust.
+  - Snapshot: Submits exhaustive documentation for routine approvals.
+  - Work impact: Time diverted to validation; slower collaboration.
+  - Best approach: Validate contributions explicitly, offer clear process guides, and invite small trust‑building tasks.
+Language transition / Accent bias / Code‑switching fatigue
+  - Manifestation: Extra cognitive load in social contexts; prefers written communication.
+  - Best approach: Provide agendas and notes in advance; allow written follow‑ups.
+
+4 Education & Access Background
+First‑generation / Under‑resourced schooling / Interrupted education / Limited mentorship
+  - Manifestation: Self‑reliance and reluctance to ask for sponsorship.
+  - Behavior impact: Learns by doing; may avoid formal career development.
+  - Distortion: Guardian’s steady competence becomes under‑leveraged due to lack of advocacy.
+  - Snapshot: Quietly masters tasks but doesn’t seek promotion.
+  - Work impact: Stalled progression and underused institutional knowledge.
+  - Best approach: Offer framed mentorship, peer sponsorship, and low‑stakes visibility opportunities.
+Undiagnosed learning differences / Late diagnosis
+  - Manifestation: Compensatory routines; extra time for some tasks.
+  - Best approach: Provide templates, written summaries, and extra processing time.
+
+5 Neurodivergence & Cognitive Accessibility — Expanded
+ADHD
+  - Manifestation: Difficulty with sustained attention on long administrative tasks; bursts of focused care.
+  - Behavior impact: Starts many safety or maintenance tasks but may leave some incomplete.
+  - Distortion: Guardian’s steady caretaking becomes uneven—excellent attention to immediate needs, neglect of longer admin.
+  - Snapshot: Fixes an urgent compliance issue quickly, then delays the follow‑up documentation.
+  - Work impact: Gaps in continuity and documentation.
+  - Risk if ignored: Compliance lapses and reputational risk.
+  - Best approach: Break admin into short, scheduled micro‑tasks and use visible trackers.
+    * Micro‑accommodations: 15–30 minute admin blocks; checklist with small, discrete steps.
+    * Peer scripts: “Can we split this into three 20‑minute tasks and check in after each?” / “I’ll take the second step if you start the first.”
+    * Trial metrics: % micro‑tasks completed; time from start to completion.
+    * Tools/supports: Shared checklist; calendar micro‑blocks; timers.
+    * Privacy phrasing: “I’m doing this in short blocks today — I’ll share progress after each step.”
+Executive Function Differences
+  - Manifestation: Trouble sequencing multi‑step compliance or care processes.
+  - Best approach: Use simple phase checklists and visible next‑action fields.
+    * Micro‑accommodations: One‑line next action; mandatory handoff note.
+    * Peer scripts: “I’ll add the next action to the doc so it’s clear.”
+    * Trial metrics: % tasks with next action; handoff completion rate.
+    * Tools/supports: Shared templates; milestone reminders.
+    * Privacy phrasing: “Can we add a one‑line next step so I don’t lose it?”
+Time Blindness
+  - Manifestation: Underestimates time for routine safety checks and follow‑ups.
+  - Best approach: Add conservative buffers and visible reminders.
+    * Micro‑accommodations: Buffer rules (+25–30%); calendar reminders.
+    * Peer scripts: “Let’s add a small buffer so the follow‑up isn’t rushed.”
+    * Trial metrics: % deadlines met; average buffer used.
+    * Tools/supports: Timeline dashboard; reminder tools.
+    * Privacy phrasing: “I’m adding a small buffer to ensure the follow‑up is thorough.”
+Task Initiation Difficulty
+  - Manifestation: Hesitates to start ambiguous policy or paperwork tasks.
+  - Best approach: Provide a single first action and offer to co‑start.
+    * Micro‑accommodations: 15‑minute co‑start; starter template.
+    * Peer scripts: “Let’s do the first 15 minutes together to get it moving.”
+    * Trial metrics: Time to first action; # tasks started with pairing.
+    * Tools/supports: Starter templates; pairing slots.
+    * Privacy phrasing: “Can we pair for the first 15 minutes so I can get started?”
+Context‑Switching Difficulty
+  - Manifestation: High cost switching between caregiving coordination and other duties.
+  - Best approach: Batch coordination tasks and use async updates.
+    * Micro‑accommodations: Focus blocks; 3‑bullet async updates.
+    * Peer scripts: “I’ll send a 3‑bullet update after your block.”
+    * Trial metrics: Interruptions during blocks; % items resolved async.
+    * Tools/supports: Calendar focus blocks; async templates.
+    * Privacy phrasing: “I’m protecting a focus block — please send a short update if it’s not urgent.”
+Hyperfocus Patterns
+  - Manifestation: Intense focus on a single safety or support issue, neglecting other responsibilities.
+  - Best approach: Mid‑task check‑ins and shared priority lists.
+    * Micro‑accommodations: Mid‑task check; visible priority list.
+    * Peer scripts: “Ping me at the mid‑point so we can align on other needs.”
+    * Trial metrics: Missed commitments while hyperfocused; % tasks with mid‑checks.
+    * Tools/supports: Progress board; reminders.
+    * Privacy phrasing: “I’m deep in this task — I’ll set a mid‑point check‑in.”
+Rejection Sensitivity
+  - Manifestation: Strong reaction to perceived criticism about care or standards.
+  - Best approach: Private, strengths‑based feedback and safe preview sessions.
+    * Micro‑accommodations: Private preview; feedback sandwich.
+    * Peer scripts: “This is solid — one tweak that could help is X; want to iterate together?”
+    * Trial metrics: Frequency of private previews; early sharing rate.
+    * Tools/supports: Private feedback channels.
+    * Privacy phrasing: “I prefer private feedback on early drafts.”
+Masking Fatigue
+  - Manifestation: Exhaustion from constantly presenting calm and dependable persona.
+  - Best approach: Low‑visibility contribution channels and recovery time.
+    * Micro‑accommodations: Option for low‑visibility updates; recovery half‑days.
+    * Peer scripts: “Drop a short note in this doc and I’ll surface it.”
+    * Trial metrics: Async contributions; self‑reported recovery effectiveness.
+    * Tools/supports: Shared doc; opt‑out mechanism.
+    * Privacy phrasing: “I’m taking a short recovery window and will update asynchronously.”
+Social Communication Load
+  - Manifestation: Extra effort to manage tone and reassure others; prefers clear, calm language.
+  - Best approach: Provide templates for empathetic, concise messages and allow written input.
+    * Micro‑accommodations: Message templates; short scripts for difficult conversations.
+    * Peer scripts: “Here’s a short script you can use — want me to send it?”
+    * Trial metrics: Time to send messages; recipient clarity rating.
+    * Tools/supports: Template library.
+    * Privacy phrasing: “Can I use a short script for this message and share it with you first?”
+Need for Written Instructions
+  - Manifestation: Performs best with clear, step‑by‑step procedures for safety and care tasks.
+  - Best approach: Provide concise SOPs and checklists.
+    * Micro‑accommodations: One‑page SOPs; quick reference cards.
+    * Peer scripts: “I’ll draft a one‑page SOP — want to review it together?”
+    * Trial metrics: % tasks with SOP; compliance rate.
+    * Tools/supports: SOP templates; quick reference cards.
+    * Privacy phrasing: “Can we capture this in a short SOP so I can follow it reliably?”
+Need for Reduced Interruption
+  - Manifestation: Interruptions increase stress and reduce ability to manage care tasks.
+  - Best approach: Define escalation rules and respect focus windows.
+    * Micro‑accommodations: Focus windows; single escalation contact.
+    * Peer scripts: “If it’s urgent, text URGENT; otherwise send a 3‑bullet update.”
+    * Trial metrics: # escalations during focus windows; % items resolved async.
+    * Tools/supports: Slack status conventions; escalation contact.
+    * Privacy phrasing: “I’m in a focus block — text URGENT if it can’t wait.”
+Need for Structure Without Shame
+  - Manifestation: Prefers predictable routines but may hesitate to ask for them.
+  - Best approach: Normalize shared templates and invite co‑creation of routines.
+    * Micro‑accommodations: Shared routine templates.
+    * Peer scripts: “Can I share a short routine that helps me?”
+    * Trial metrics: % team using routine templates.
+    * Tools/supports: Template library.
+    * Privacy phrasing: “I have a short routine that helps me — can I share it?”
+Dyslexia / Dyscalculia / Dysgraphia / Dyspraxia
+  - Manifestation: Extra time for paperwork, numeric forms, or manual tasks.
+  - Best approach: Scribe support, calculators, and co‑authoring.
+    * Micro‑accommodations: Co‑author forms; speech‑to‑text; calculators.
+    * Peer scripts: “I’ll draft the form from your notes.”
+    * Trial metrics: Time to complete forms; % co‑authored docs.
+    * Tools/supports: Speech‑to‑text; calculators; templates.
+    * Privacy phrasing: “Can I record a quick voice note for the form and have you transcribe it?”
+Auditory/Sensory Processing / Tourette
+  - Manifestation: Noisy or chaotic settings increase stress and reduce capacity to manage care tasks.
+  - Best approach: Quiet spaces, captions, and opt‑out options for noisy meetings.
+    * Micro‑accommodations: Captions; slides/notes in advance; quiet rooms.
+    * Peer scripts: “I’ll share notes in advance so you can pick what to comment on.”
+    * Trial metrics: Meeting comfort rating; written contributions.
+    * Tools/supports: Live captions; shared decks.
+    * Privacy phrasing: “I’ll skip the noisy session and drop my input in the doc.”
+Working Memory / Processing Speed
+  - Manifestation: Needs checklists and short pauses to integrate multiple care tasks.
+  - Best approach: Pre‑reads, step recaps, and short reflection pauses.
+    * Micro‑accommodations: Pre‑reads 24–48 hours ahead; 5‑minute recap pauses.
+    * Peer scripts: “I’ll send a short checklist before the meeting.”
+    * Trial metrics: % decisions postponed for reflection; quality of follow‑through.
+    * Tools/supports: Pre‑read templates; recap prompts.
+    * Privacy phrasing: “I prefer a short pre‑read and a five‑minute pause after the meeting.”
+
+6 Disability, Health & Body‑Based Factors
+Chronic illness / Chronic pain / Fatigue / Fluctuating capacity
+  - Manifestation: Variable energy and cognitive capacity; needs pacing and recovery.
+  - Behavior impact: Reliable on good days; needs rest on low days.
+  - Distortion: Guardian’s steady presence becomes intermittent, causing coordination strain.
+  - Best approach: Private signals for low‑capacity days, flexible timelines, and written handoffs.
+Sleep disorders / Medication side effects / Appointment burden
+  - Manifestation: Cognitive fog and reduced patience.
+  - Best approach: Recorded meetings, written summaries, and flexible scheduling.
+Mobility / Sensory impairment / Appointment burden
+  - Best approach: Accessible formats, alternative ways to contribute, and quiet workspaces.
+
+7 Trauma, Adversity & Nervous‑System Load
+Childhood adversity / Abuse / Workplace trauma / Institutional betrayal
+  - Manifestation: High vigilance, distrust of ambiguous feedback, need for predictability.
+  - Behavior impact: Over‑prepares, avoids vulnerability, may freeze in conflict.
+  - Distortion: Guardian’s protective instincts become rigid control and withdrawal.
+  - Best approach: Use calm, factual language; offer private, predictable interactions; avoid surprise evaluations.
+Hypervigilance / Trust difficulty / People‑pleasing as safety
+  - Best approach: Encourage boundary scripts, private check‑ins, and validate limits.
+
+8 Identity, Marginalization & Belonging
+Racial/ethnic bias / LGBTQ+ stress / Gender identity stress / Tokenism / Microaggression fatigue
+  - Manifestation: Extra labor to monitor safety and belonging; reluctance to be visible.
+  - Behavior impact: Keeps low profile; avoids representing identity publicly.
+  - Distortion: Guardian’s protective role becomes self‑silencing and isolation.
+  - Best approach: Avoid tokenizing requests, offer private validation, and invite low‑risk participation.
+Code‑switching / Pressure to represent
+  - Best approach: Provide multiple channels for input and explicitly invite informal contributions.
+
+9 Work History & Occupational Socialization
+Toxic workplace / Micromanagement / Retaliation history / Learned silence
+  - Manifestation: Deep distrust of systems; reluctance to escalate issues.
+  - Behavior impact: Over‑documentation for self‑protection; avoids raising systemic concerns.
+  - Distortion: Guardian’s caution becomes silence that hides early warnings.
+  - Best approach: Offer confidential peer validation and safe, small experiments to rebuild trust.
+Job instability / Layoff trauma / High responsibility without support
+  - Best approach: Validate short‑term wins and co‑design protected support structures.
+
+10 Social Support & Community Context
+Limited support network / Social isolation / Mentorship availability
+  - Manifestation: Heavy reliance on role for belonging; limited safe people.
+  - Behavior impact: Over‑invests in dependable tasks; avoids vulnerability.
+  - Best approach: Offer peer support swaps, mentorship pairings, and small reciprocal arrangements.
+Community safety / Relocation loneliness
+  - Best approach: Encourage balanced social outlets and boundary practices.
+
+11 Life Stage & Transition Factors
+New parenthood / Pregnancy/postpartum / Menopause / Mid‑career reinvention / Retirement anxiety / Moving / Divorce / Death / Major health diagnosis
+  - Manifestation: Variable capacity and heightened need for predictability.
+  - Behavior impact: Either hyper‑compensation or temporary withdrawal.
+  - Best approach: Offer written priorities, temporary role adjustments, and respect privacy.
+Legal proceedings / Sudden financial event / Natural disaster
+  - Best approach: Async options and private check‑ins.
+
+12 Environmental & Sensory Context
+Loud environment / Open office / Lighting sensitivity / Constant interruptions / High meeting density / Notification overload / Remote/hybrid ambiguity
+  - Manifestation: Sensory stress undermines ability to maintain calm oversight.
+  - Behavior impact: Prefers quiet, predictable environments and scheduled check‑ins.
+  - Best approach: Quiet hours, written agendas, opt‑out options, and respect for focus windows.
+Workspace crowding / Physical safety concerns
+  - Best approach: Provide alternative workspaces and written summaries.
+
+13 Cultural Values & Communication Norms
+High‑context vs low‑context / Direct vs indirect communication / Deference to authority / Collectivist vs individualist norms
+  - Manifestation: Extra effort to interpret norms and maintain harmony.
+  - Behavior impact: Avoids direct conflict; uses careful, respectful language.
+  - Best approach: Clarify norms in writing and invite cultural context privately.
+Modesty/self‑promotion discomfort / Different meanings of urgency
+  - Best approach: Frame recognition as team safety outcomes and clarify urgency signals.
+
+14 Legal, Administrative & Bureaucratic Stress
+Immigration paperwork / Court proceedings / Benefits / Insurance / Disability accommodations / Background checks / Housing applications
+  - Manifestation: Heavy cognitive load and fear of documentation errors.
+  - Behavior impact: Time spent on admin during work hours; avoidance of extra complexity.
+  - Best approach: Share step‑by‑step checklists, private resource referrals, and offer time to manage paperwork.
+Past criminalization / Background check anxiety
+  - Best approach: Confidential guidance and resources for disclosure decisions.
+
+15 Protective Factors & Resilience Resources
+Mentor support / Stable housing / Financial cushion / Psychological safety / Clear expectations / Flexible scheduling / Peer relationships / Healthcare access / Effective accommodations / Recovery time / Purpose / Therapy / Skill mastery / Self‑advocacy
+  - Manifestation: Greater capacity to protect others, delegate, and sustain steady contribution.
+  - Behavior impact: Balanced stewardship, willingness to ask for help, and consistent reliability.
+  - Best approach: Encourage use of supports, suggest peer accountability partners, and co‑design recovery rituals.
+
+If this level and pace work, I’ll continue to the next profile (Operator) with the same fast cadence and the Neurodivergence domain fully expanded. Say continue and I’ll proceed.
+
+go
+
+Operator — Lived Experience Context across 15 Domains
+Below is a fast, scan‑friendly matrix for Operator across all 15 lived‑experience domains. Each subcategory follows the locked schema: Manifestation · Behavior impact · Distortion of typical Operator pattern · Real‑life snapshot (1–2 lines) · Work / bandwidth impact · Risk if ignored · Best way to approach (peer, non‑managerial).
+The Neurodivergence & Cognitive Accessibility domain is expanded with micro‑accommodations, peer scripts, trial metrics, tools/supports, and privacy phrasing.
+Use these as quick reference cards when you need to support an Operator on the team.
+
+
+1 Economic and Material Security
+Low socioeconomic background / Financial insecurity / Debt stress
+  - Manifestation: Constant pressure to keep systems running; avoids asking for paid resources.
+  - Behavior impact: Prioritizes operational continuity over improvement; hoards low‑cost fixes.
+  - Distortion: Operator’s reliability becomes risk‑averse maintenance that resists necessary upgrades.
+  - Snapshot: Keeps patching an old server rather than requesting budget for replacement.
+  - Work impact: Technical debt, brittle systems, hidden overtime.
+  - Risk if ignored: System failures and burnout.
+  - Best approach: Offer framed ROI for tool requests and private, practical resource options.
+Housing/transport/childcare/unreliable tech/working multiple jobs
+  - Manifestation: Irregular shift coverage; late‑night catch‑ups.
+  - Best approach: Confirm coverage windows, accept async handoffs, and offer small task swaps.
+
+2 Family System and Caregiving Context
+Childcare / Elder caregiving / Single‑parent responsibilities / Bereavement
+  - Manifestation: Tight scheduling; needs predictable shift patterns.
+  - Behavior impact: Prefers fixed, bounded tasks; avoids on‑call surprises.
+  - Distortion: Operator’s dependability becomes rigid scheduling that resists flexible coverage.
+  - Snapshot: Always takes the same shift to guarantee childcare pickup.
+  - Work impact: Coverage gaps if unexpected events occur.
+  - Best approach: Offer predictable backups, documented runbooks, and asynchronous handover templates.
+Domestic violence / Multigenerational strain
+  - Manifestation: Secrecy and hypervigilance; safety concerns.
+  - Best approach: Prioritize confidentiality and low‑visibility support.
+
+3 Immigration Displacement and Cultural Transition
+Immigration history / Visa uncertainty / Credential barriers
+  - Manifestation: Extra effort to prove reliability; anxiety about status checks.
+  - Behavior impact: Over‑documents processes; avoids informal trust.
+  - Distortion: Operator’s procedural rigor becomes defensive over‑documentation.
+  - Snapshot: Submits exhaustive logs for routine audits.
+  - Work impact: Time diverted from core ops work.
+  - Best approach: Validate competence explicitly; provide clear process guides and private help with paperwork.
+Language transition / Accent bias / Code‑switching fatigue
+  - Manifestation: Prefers written runbooks and checklists.
+  - Best approach: Share docs in advance and allow written confirmations.
+
+4 Education and Access Background
+First‑generation / Under‑resourced schooling / Interrupted education
+  - Manifestation: Self‑taught, practical problem solver; reluctant to ask for formal training.
+  - Behavior impact: Fixes things by trial; avoids formal certification paths.
+  - Distortion: Operator’s practical skillset becomes siloed tribal knowledge.
+  - Snapshot: Knows a system inside out but hasn’t documented it.
+  - Work impact: Single‑person dependencies.
+  - Best approach: Offer apprenticeship‑style mentoring and low‑cost certification options.
+Undiagnosed learning differences / Late diagnosis
+  - Manifestation: Extra time to process complex documentation.
+  - Best approach: Provide templates, examples, and extra processing time.
+
+5 Neurodivergence and Cognitive Accessibility — Expanded
+Each subcategory below includes Manifestation · Behavior impact · Distortion · Snapshot · Work impact · Risk · Best approach, then Micro‑accommodations · Peer scripts · Trial metrics · Tools/supports · Privacy phrasing.
+
+
+ADHD
+  - Manifestation: Strong crisis responsiveness; difficulty sustaining long, repetitive maintenance tasks.
+  - Behavior impact: Excellent in firefights; may deprioritize routine preventative work.
+  - Distortion: Operator’s rapid triage becomes reactive firefighting and missed scheduled maintenance.
+  - Snapshot: Fixes a production outage brilliantly, then delays scheduled patching.
+  - Work impact: Higher incident frequency; unpredictable availability.
+  - Risk if ignored: Repeated outages and burnout.
+  - Best approach: Convert maintenance into short, scheduled micro‑tasks and visible trackers.
+    * Micro‑accommodations: 20–40 minute maintenance blocks; rotating checklist ownership.
+    * Peer scripts: “Can we split the maintenance into 30‑minute chunks and I’ll take the second one?” / “Let’s add this to the weekly checklist so it’s visible.”
+    * Trial metrics: % scheduled maintenance completed; incident rate.
+    * Tools/supports: Shared runbook checklists; calendar blocks; automated reminders.
+    * Privacy phrasing: “I’m doing maintenance in short blocks today — I’ll update the checklist after each block.”
+Executive Function Differences
+  - Manifestation: Trouble sequencing multi‑step deployments and remembering handoffs.
+  - Best approach: Use explicit phase checklists and mandatory handoff notes.
+    * Micro‑accommodations: One‑page deployment checklist; required handoff field.
+    * Peer scripts: “I’ll draft the handoff note and post it to the runbook.”
+    * Trial metrics: % deployments with handoff note; post‑deploy incidents.
+    * Tools/supports: Runbook templates; deployment checklist.
+    * Privacy phrasing: “Can we add a one‑line next step to the runbook so I don’t lose it?”
+Time Blindness
+  - Manifestation: Underestimates time for cross‑team coordination and testing.
+  - Best approach: Add conservative buffers and require pre‑commitment checks.
+    * Micro‑accommodations: +25–40% buffer on estimates; pre‑commitment resource check.
+    * Peer scripts: “Let’s add a two‑week buffer so QA can staff it.”
+    * Trial metrics: % deadlines met; average buffer used.
+    * Tools/supports: Historical timeline dashboard; estimation checklist.
+    * Privacy phrasing: “I’m adding a small buffer to make sure testing is thorough.”
+Task Initiation Difficulty
+  - Manifestation: Hesitates to start ambiguous ops projects without a clear first step.
+  - Best approach: Provide a single first action and pair for kickoff.
+    * Micro‑accommodations: 15‑minute co‑start; starter script.
+    * Peer scripts: “Let’s do the first 15 minutes together to get it started.”
+    * Trial metrics: Time to first action; # tasks started with pairing.
+    * Tools/supports: Kickoff slots; starter templates.
+    * Privacy phrasing: “Can we pair for the first 15 minutes so I can get started?”
+Context‑Switching Difficulty
+  - Manifestation: High cost switching between monitoring and project work; needs recovery after interruptions.
+  - Best approach: Protect monitoring windows and use concise async updates.
+    * Micro‑accommodations: Protected monitoring blocks; 3‑bullet async updates.
+    * Peer scripts: “I’ll send a 3‑bullet update after your monitoring window.”
+    * Trial metrics: Interruptions during blocks; % items resolved async.
+    * Tools/supports: Pager rotation schedule; async update templates.
+    * Privacy phrasing: “I’m in a monitoring window — please send a short update if it’s not urgent.”
+Hyperfocus Patterns
+  - Manifestation: Deep immersion in a single system; misses broader ops needs.
+  - Best approach: Mid‑task check‑ins and shared priority lists.
+    * Micro‑accommodations: Mid‑task check; visible priority board.
+    * Peer scripts: “Ping me at the mid‑point so we can align on other priorities.”
+    * Trial metrics: Missed cross‑team items; % tasks with mid‑checks.
+    * Tools/supports: Progress board; automated reminders.
+    * Privacy phrasing: “I’m deep in this fix — I’ll set a mid‑point check‑in.”
+Rejection Sensitivity
+  - Manifestation: Sensitive to critique about incidents or postmortems; may withdraw from reviews.
+  - Best approach: Private, strengths‑based feedback and safe preview sessions.
+    * Micro‑accommodations: Private preview of postmortem notes.
+    * Peer scripts: “This was solid — one tweak that could help is X; want to iterate together?”
+    * Trial metrics: Frequency of private previews; early sharing rate.
+    * Tools/supports: Private feedback channels.
+    * Privacy phrasing: “I prefer private feedback on early postmortems.”
+Masking Fatigue
+  - Manifestation: Exhaustion from maintaining calm under pressure; fewer informal check‑ins.
+  - Best approach: Low‑visibility contribution channels and recovery time.
+    * Micro‑accommodations: Opt‑out for noncritical on‑call shifts after major incidents; recovery half‑days.
+    * Peer scripts: “Take a recovery half‑day after the incident — we’ll cover the rotation.”
+    * Trial metrics: Opt‑outs used; self‑reported recovery.
+    * Tools/supports: On‑call rotation tools; backup coverage.
+    * Privacy phrasing: “I’m taking a short recovery window after the incident and will update asynchronously.”
+Social Communication Load
+  - Manifestation: Extra effort to translate technical incident details for non‑technical stakeholders.
+  - Best approach: Provide short executive summaries and offer to co‑present.
+    * Micro‑accommodations: 3‑bullet incident summary template; co‑presenter for stakeholder calls.
+    * Peer scripts: “I’ll draft a 3‑bullet summary you can use for the execs.”
+    * Trial metrics: Stakeholder clarity rating; follow‑through after incident.
+    * Tools/supports: Summary templates; co‑presenter pairing.
+    * Privacy phrasing: “Can I send a short summary for the execs and have you present it?”
+Need for Written Instructions
+  - Manifestation: Performs best with clear runbooks and checklists.
+  - Best approach: Provide concise runbooks and one‑page SOPs.
+    * Micro‑accommodations: Runbook templates; quick reference cards.
+    * Peer scripts: “I’ll add a one‑page SOP — want to review it together?”
+    * Trial metrics: % incidents with runbook used; mean time to resolution.
+    * Tools/supports: Runbook library; playbook templates.
+    * Privacy phrasing: “Can we capture this in a short runbook so I can follow it reliably?”
+Need for Reduced Interruption
+  - Manifestation: Frequent interruptions degrade monitoring effectiveness.
+  - Best approach: Define escalation rules and respect focus windows.
+    * Micro‑accommodations: Escalation contact; protected monitoring windows.
+    * Peer scripts: “If it’s urgent, text URGENT; otherwise send a 3‑bullet update.”
+    * Trial metrics: # escalations during windows; % items resolved async.
+    * Tools/supports: Pager duty rules; Slack status conventions.
+    * Privacy phrasing: “I’m in a monitoring window — text URGENT if it can’t wait.”
+Need for Structure Without Shame
+  - Manifestation: Prefers predictable procedures but may hesitate to ask for them.
+  - Best approach: Normalize shared runbooks and invite co‑creation.
+    * Micro‑accommodations: Shared runbook templates.
+    * Peer scripts: “Can I share a short runbook that helps me?”
+    * Trial metrics: % team using runbooks; time saved.
+    * Tools/supports: Runbook library.
+    * Privacy phrasing: “I have a short runbook that helps me — can I share it?”
+Dyslexia / Dyscalculia / Dysgraphia / Dyspraxia
+  - Manifestation: Extra time for documentation, numeric checks, or manual tasks.
+  - Best approach: Scribe support, calculators, and co‑authoring.
+    * Micro‑accommodations: Co‑author postmortems; speech‑to‑text for notes.
+    * Peer scripts: “I’ll draft the postmortem from your notes.”
+    * Trial metrics: Time to publish postmortem; % co‑authored docs.
+    * Tools/supports: Speech‑to‑text; calculators; templates.
+    * Privacy phrasing: “I prefer to record a voice note for the postmortem — can I send that?”
+Auditory/Sensory Processing / Tourette
+  - Manifestation: Noisy on‑call rooms or crowded war rooms increase stress.
+  - Best approach: Quiet war rooms, captions for calls, and opt‑out options.
+    * Micro‑accommodations: Quiet rooms; captions; slides in advance.
+    * Peer scripts: “I’ll share notes in advance so you can pick what to comment on.”
+    * Trial metrics: Meeting comfort rating; written contributions.
+    * Tools/supports: Live captions; shared decks.
+    * Privacy phrasing: “I’ll drop my input in the doc and follow up after the session.”
+Working Memory / Processing Speed
+  - Manifestation: Needs checklists and short pauses to integrate multiple alerts.
+  - Best approach: Pre‑reads, step recaps, and short reflection pauses.
+    * Micro‑accommodations: Pre‑reads 24–48 hours ahead; 5‑minute recap pauses.
+    * Peer scripts: “I’ll send a short checklist before the review.”
+    * Trial metrics: % decisions postponed for reflection; mean time to resolution.
+    * Tools/supports: Pre‑read templates; recap prompts.
+    * Privacy phrasing: “I prefer a short pre‑read and a five‑minute pause after the review.”
+
+6 Disability Health and Body Based Factors
+Chronic illness / Chronic pain / Fatigue / Fluctuating capacity
+  - Manifestation: Variable on‑call stamina and cognitive focus.
+  - Behavior impact: Peaks of high responsiveness followed by low capacity.
+  - Distortion: Operator’s steady availability becomes intermittent.
+  - Best approach: Private signals for low‑capacity days, flexible on‑call swaps, and written handoffs.
+Sleep disorders / Medication side effects / Appointment burden
+  - Best approach: Recorded incident reviews, written summaries, and flexible scheduling.
+Mobility / Sensory impairment
+  - Best approach: Accessible consoles, alternative input methods, and quiet monitoring stations.
+
+7 Trauma Adversity and Nervous System Load
+Childhood adversity / Abuse / Workplace trauma / Institutional betrayal
+  - Manifestation: High vigilance and distrust of ambiguous feedback.
+  - Behavior impact: Over‑prepares, avoids vulnerability, may freeze in conflict.
+  - Distortion: Operator’s caution becomes withdrawal and hoarding of knowledge.
+  - Best approach: Use calm, factual language; offer private, predictable interactions; avoid surprise evaluations.
+Hypervigilance / Authority sensitivity / Overachievement as survival
+  - Best approach: Encourage boundary scripts and private check‑ins.
+
+8 Identity Marginalization and Belonging
+Racial/ethnic bias / LGBTQ+ stress / Tokenism / Microaggression fatigue
+  - Manifestation: Extra labor to monitor fairness and safety; reluctance to be visible.
+  - Behavior impact: Keeps low profile; avoids representing identity publicly.
+  - Distortion: Operator’s stewardship becomes self‑silencing.
+  - Best approach: Avoid tokenizing requests, offer private validation, and invite low‑risk participation.
+Code‑switching / Pressure to represent
+  - Best approach: Provide multiple channels for input and explicitly invite informal contributions.
+
+9 Work History and Occupational Socialization
+Toxic workplace / Micromanagement / Retaliation history / Learned silence
+  - Manifestation: Reluctance to escalate issues; over‑documentation for self‑protection.
+  - Behavior impact: Problems persist unraised; single‑person dependencies remain.
+  - Best approach: Offer confidential peer validation and safe, small experiments to rebuild trust.
+Job instability / Layoff trauma / High responsibility without support
+  - Best approach: Validate short‑term wins and co‑design protected support structures.
+
+10 Social Support and Community Context
+Limited support network / Social isolation / Mentorship availability
+  - Manifestation: Heavy reliance on role for belonging; limited safe people.
+  - Best approach: Offer peer support swaps, mentorship pairings, and small reciprocal arrangements.
+Community safety / Relocation loneliness
+  - Best approach: Encourage balanced social outlets and boundary practices.
+
+11 Life Stage and Transition Factors
+New parenthood / Pregnancy/postpartum / Menopause / Mid‑career reinvention / Retirement anxiety / Moving / Divorce / Death / Major health diagnosis
+  - Manifestation: Variable capacity and need for predictable, documented processes.
+  - Best approach: Offer written priorities, temporary role adjustments, and respect privacy.
+Legal proceedings / Sudden financial event / Natural disaster
+  - Best approach: Async options and private check‑ins.
+
+12 Environmental and Sensory Context
+Loud environment / Open office / Lighting sensitivity / Constant interruptions / High meeting density / Notification overload / Remote/hybrid ambiguity
+  - Manifestation: Monitoring and concentration degrade in noisy or chaotic spaces.
+  - Best approach: Quiet monitoring stations, notification triage rules, and opt‑out options for noncritical meetings.
+Workspace crowding / Physical safety concerns
+  - Best approach: Provide alternative workspaces and written summaries.
+
+13 Cultural Values and Communication Norms
+High‑context vs low‑context / Direct vs indirect communication / Deference to authority / Collectivist vs individualist norms
+  - Manifestation: Extra effort to translate norms into operational expectations.
+  - Best approach: Clarify norms in writing and invite cultural context privately.
+Modesty/self‑promotion discomfort / Different meanings of urgency
+  - Best approach: Frame recognition as team reliability outcomes and clarify urgency signals.
+
+14 Legal Administrative and Bureaucratic Stress
+Immigration paperwork / Court proceedings / Benefits / Insurance / Disability accommodations / Background checks / Housing applications
+  - Manifestation: Heavy cognitive load and fear of documentation errors.
+  - Best approach: Share step‑by‑step checklists, private resource referrals, and time to manage paperwork.
+Past criminalization / Background check anxiety
+  - Best approach: Confidential guidance and resources for disclosure decisions.
+
+15 Protective Factors and Resilience Resources
+Mentor support / Stable housing / Financial cushion / Psychological safety / Clear expectations / Flexible scheduling / Peer relationships / Healthcare access / Effective accommodations / Recovery time / Purpose / Therapy / Skill mastery / Self‑advocacy
+  - Manifestation: Greater capacity to sustain on‑call duties, delegate, and share knowledge.
+  - Behavior impact: Reliable, teachable, and resilient operations performance.
+  - Best approach: Encourage use of supports, suggest peer on‑call buddies, and co‑design recovery rituals.
+
+If this format and pace work, I’ll continue through the remaining profiles at the same speed and with the same neurodivergence depth. Say continue and I’ll run the next profile (Operator was done; next is Individualist) and keep moving quickly.
+
+go
+
+Individualist — Lived Experience Context across 15 Domains
+Below is a compact, scan‑friendly matrix for Individualist across all 15 lived‑experience domains. Each subcategory follows the schema: Manifestation · Behavior impact · Distortion of typical Individualist pattern · Real‑life snapshot · Work / bandwidth impact · Risk if ignored · Best way to approach (peer, non‑managerial). The Neurodivergence domain is expanded with micro‑accommodations, peer scripts, trial metrics, tools/supports, and privacy phrasing.
+
+1 Economic and Material Security
+  - Manifestation: Prefers autonomy in income decisions; may freelance or hold side projects.
+  - Behavior impact: Chooses independent work; resists tightly controlled team processes.
+  - Distortion: Autonomy becomes isolation and reluctance to accept shared constraints.
+  - Snapshot: Launches a side product without syncing roadmaps.
+  - Work impact: Misaligned priorities and surprise availability gaps.
+  - Risk if ignored: Friction with team planning and missed dependencies.
+  - Best approach: Offer clear boundaries for independent work and scheduled syncs for alignment.
+
+2 Family System and Caregiving Context
+  - Manifestation: Values personal choice in caregiving arrangements; may decline standard supports.
+  - Behavior impact: Keeps private schedules; resists mandated group caregiving plans.
+  - Distortion: Independence becomes hidden stress when juggling responsibilities alone.
+  - Snapshot: Handles childcare privately and misses ad‑hoc team events.
+  - Work impact: Unpredictable attendance for spontaneous tasks.
+  - Best approach: Provide async options and respect stated availability windows.
+
+3 Immigration, Displacement and Cultural Transition
+  - Manifestation: Maintains distinct cultural identity; may avoid assimilation pressure.
+  - Behavior impact: Selective participation in cultural rituals; prefers to contribute on own terms.
+  - Distortion: Individualist’s authenticity becomes perceived aloofness.
+  - Snapshot: Declines team lunches that require code‑switching.
+  - Work impact: Missed informal influence and networking.
+  - Best approach: Invite low‑stakes, optional cultural exchanges and private validation.
+
+4 Education and Access Background
+  - Manifestation: Self‑directed learning path; may lack formal credentials but has deep domain knowledge.
+  - Behavior impact: Prefers independent study and self‑paced upskilling.
+  - Distortion: Expertise becomes siloed when not shared.
+  - Snapshot: Builds a strong personal toolkit but rarely documents it for others.
+  - Work impact: Knowledge hoarding and onboarding friction.
+  - Best approach: Offer lightweight knowledge‑sharing rituals and optional mentorship pairings.
+
+5 Neurodivergence and Cognitive Accessibility — Expanded
+
+
+ADHD
+  - Manifestation: High creative autonomy, rapid idea shifts, difficulty with sustained collaborative follow‑through.
+  - Behavior impact: Generates novel approaches but may abandon group commitments.
+  - Distortion: Individualist’s creative independence becomes unreliable pivoting.
+  - Snapshot: Proposes a new approach mid‑sprint and moves on before integration.
+  - Work impact: Fragmented initiatives and team confusion.
+  - Risk if ignored: Credibility loss and repeated rework.
+  - Best approach: Convert ideas into time‑boxed solo pilots with explicit handoff points.
+    * Micro‑accommodations: Limit active solo pilots to 1–2; require a 1‑page handoff when pausing.
+    * Peer scripts: “Love this idea — can you time‑box it for two weeks and leave a one‑page handoff?” / “If you pause, can you drop the current state in the shared doc so we can pick it up?”
+    * Trial metrics: # active solo pilots; % handoffs completed.
+    * Tools/supports: Personal Kanban; short video updates; timers.
+    * Privacy phrasing: “I’m running a short solo pilot and will post a one‑page handoff when I pause.”
+Executive Function Differences
+  - Manifestation: Prefers to own sequencing but may miss collaborative coordination steps.
+  - Best approach: Co‑create minimal sequencing templates and visible owners for each step.
+    * Micro‑accommodations: 3‑step sequencing template; owner tags.
+    * Peer scripts: “Can we map three steps and owners so nothing slips?”
+    * Trial metrics: % tasks with owners; handoff clarity score.
+    * Tools/supports: Lightweight RACI; shared trackers.
+    * Privacy phrasing: “I’ll map three steps and owners so it’s easy to pick up.”
+Time Blindness
+  - Manifestation: Optimistic timelines for independent work; underestimates coordination time.
+  - Best approach: Use historical benchmarks and add explicit alignment buffers.
+    * Micro‑accommodations: +25% buffer for cross‑team asks.
+    * Peer scripts: “Let’s add a buffer so others can align.”
+    * Trial metrics: % deadlines met; average buffer used.
+    * Tools/supports: Timeline templates.
+    * Privacy phrasing: “I’m adding a small buffer to ensure alignment.”
+Task Initiation Difficulty
+  - Manifestation: Needs a clear, personally meaningful first step to start collaborative tasks.
+  - Best approach: Offer a one‑sentence first action tied to autonomy and impact.
+    * Micro‑accommodations: 15‑minute co‑start focused on the first meaningful action.
+    * Peer scripts: “What’s one 15‑minute action that would make this feel worth starting?”
+    * Trial metrics: Time to first action; # tasks started with co‑start.
+    * Tools/supports: Starter templates.
+    * Privacy phrasing: “Can we do a 15‑minute co‑start so I can get traction?”
+Context‑Switching Difficulty
+  - Manifestation: Prefers long uninterrupted creative stretches; switching to meetings is costly.
+  - Best approach: Schedule deep‑work windows and provide concise async summaries.
+    * Micro‑accommodations: Protected creative blocks; 3‑bullet async briefs.
+    * Peer scripts: “I’ll send a 3‑bullet brief after your block.”
+    * Trial metrics: Interruptions during blocks; % items resolved async.
+    * Tools/supports: Calendar focus blocks; async templates.
+    * Privacy phrasing: “I’m protecting a creative block — please send a short brief if it’s not urgent.”
+Hyperfocus Patterns
+  - Manifestation: Deep immersion in personally chosen problems; misses team signals.
+  - Best approach: Agree on visible stop signals and scheduled check‑ins.
+    * Micro‑accommodations: Mid‑pilot check‑ins; shared priority list.
+    * Peer scripts: “Set a mid‑pilot check‑in so we don’t lose other priorities.”
+    * Trial metrics: Missed commitments while hyperfocused; % pilots with check‑ins.
+    * Tools/supports: Progress board; automated reminders.
+    * Privacy phrasing: “I’m deep in this sprint — I’ll set a mid‑sprint check‑in.”
+Rejection Sensitivity
+  - Manifestation: Sensitive to critique of personal ideas; may withdraw from group critique.
+  - Best approach: Offer private, strengths‑based feedback and safe preview sessions.
+    * Micro‑accommodations: Private previews; feedback sandwich.
+    * Peer scripts: “This is strong — one tweak that could help is X; want to iterate together?”
+    * Trial metrics: Frequency of private previews; early sharing rate.
+    * Tools/supports: Private feedback channels.
+    * Privacy phrasing: “I prefer private feedback on early drafts.”
+Masking Fatigue
+  - Manifestation: Tiring to perform a public persona; prefers authenticity in small groups.
+  - Best approach: Provide low‑visibility contribution channels and recovery time.
+    * Micro‑accommodations: Idea doc; opt‑out for public demos occasionally.
+    * Peer scripts: “Drop your idea in this doc and I’ll surface it.”
+    * Trial metrics: Async contributions; self‑reported energy.
+    * Tools/supports: Shared idea doc; opt‑out mechanism.
+    * Privacy phrasing: “I’ll contribute in writing this round while I recharge.”
+Social Communication Load
+  - Manifestation: Prefers one‑on‑one persuasion over broad public campaigning.
+  - Best approach: Offer co‑presenting and short executive summaries for broader audiences.
+    * Micro‑accommodations: 3‑slide summary template; co‑presenter for town halls.
+    * Peer scripts: “I’ll co‑present the Q&A so you can focus on the narrative.”
+    * Trial metrics: % stakeholders reached; follow‑through rate.
+    * Tools/supports: Summary templates; co‑presenter pairing.
+    * Privacy phrasing: “I’d like to co‑present the Q&A.”
+Need for Written Instructions
+  - Manifestation: Works best when autonomy is paired with clear acceptance criteria.
+  - Best approach: Provide concise checklists that preserve freedom within constraints.
+    * Micro‑accommodations: One‑page acceptance checklist.
+    * Peer scripts: “Give me three success bullets and I’ll draft the checklist.”
+    * Trial metrics: % tasks with checklist; QA pass rate.
+    * Tools/supports: Shared templates.
+    * Privacy phrasing: “Can we capture success criteria in one short doc so I can run with it?”
+Need for Reduced Interruption
+  - Manifestation: Interruptions break creative momentum and reduce willingness to collaborate.
+  - Best approach: Define escalation rules and respect focus windows.
+    * Micro‑accommodations: Focus windows; single escalation contact.
+    * Peer scripts: “If urgent, text URGENT; otherwise send a 3‑bullet update.”
+    * Trial metrics: # escalations during focus windows; % items resolved async.
+    * Tools/supports: Slack status conventions; calendar focus blocks.
+    * Privacy phrasing: “I’m in a focus block — text URGENT if it can’t wait.”
+Dyslexia / Dyscalculia / Dysgraphia / Dyspraxia
+  - Manifestation: Prefers spoken or visual outputs; written follow‑ups take extra time.
+  - Best approach: Offer scribe support and speech‑to‑text for documentation.
+    * Micro‑accommodations: Co‑author follow‑ups; voice notes transcribed.
+    * Peer scripts: “I’ll draft the follow‑up from your notes.”
+    * Trial metrics: Time from idea to published follow‑up; % co‑authored docs.
+    * Tools/supports: Speech‑to‑text; templates.
+    * Privacy phrasing: “I prefer to record a voice note for follow‑up.”
+Auditory/Sensory Processing / Tourette
+  - Manifestation: Large, noisy gatherings drain energy; prefers small, curated interactions.
+  - Best approach: Share slides in advance, use captions, and allow opt‑outs.
+    * Micro‑accommodations: Captions; slides/notes in advance.
+    * Peer scripts: “I’ll share slides before the session so you can pick what to comment on.”
+    * Trial metrics: Written contributions; meeting comfort rating.
+    * Tools/supports: Live captions; shared decks.
+    * Privacy phrasing: “I’ll drop my input in the doc and follow up after the session.”
+Working Memory / Processing Speed
+  - Manifestation: Needs short pre‑reads and reflection time to synthesize strategic ideas.
+  - Best approach: Provide concise pre‑reads and short recap pauses.
+    * Micro‑accommodations: Pre‑reads 24–48 hours ahead; 5‑minute recap pauses.
+    * Peer scripts: “I’ll send a 2‑slide summary before the meeting.”
+    * Trial metrics: % decisions postponed for reflection; quality of final plans.
+    * Tools/supports: Pre‑read templates; recap prompts.
+    * Privacy phrasing: “I prefer a short pre‑read and a five‑minute pause after the meeting.”
+
+6 Disability, Health and Body‑Based Factors
+  - Manifestation: May prioritize personal routines and accessibility needs over group norms.
+  - Behavior impact: Requests accommodations quietly and values predictable environments.
+  - Distortion: Independence becomes avoidance of shared rituals that lack accessibility.
+  - Best approach: Offer accessible formats, quiet options, and private accommodation channels.
+
+7 Trauma, Adversity and Nervous‑System Load
+  - Manifestation: Protects personal boundaries; may avoid emotionally risky group interactions.
+  - Behavior impact: Keeps distance in charged conversations; prefers written channels.
+  - Distortion: Self‑protection becomes perceived disengagement.
+  - Best approach: Use calm, factual language, offer private validation, and avoid surprise confrontations.
+
+8 Identity, Marginalization and Belonging
+  - Manifestation: Values authenticity; resists token roles that force representation.
+  - Behavior impact: Selective visibility and guarded sharing about identity.
+  - Distortion: Authenticity becomes perceived aloofness.
+  - Best approach: Invite voluntary, structured representation and provide private support.
+
+9 Work History and Occupational Socialization
+  - Manifestation: May have nontraditional career paths and value autonomy over hierarchy.
+  - Behavior impact: Prefers project‑based evaluation and flexible contribution models.
+  - Distortion: Independence becomes misalignment with standard promotion paths.
+  - Best approach: Offer alternative recognition paths and project‑based visibility.
+
+10 Social Support and Community Context
+  - Manifestation: Chooses selective, deep relationships rather than broad networks.
+  - Behavior impact: Strong one‑on‑one bonds; limited large‑group engagement.
+  - Distortion: Selectivity becomes isolation if supports are absent.
+  - Best approach: Facilitate small peer pods and mentorship pairings.
+
+11 Life Stage and Transition Factors
+  - Manifestation: Makes life choices that prioritize personal freedom and flexibility.
+  - Behavior impact: May accept nonstandard schedules or sabbaticals.
+  - Distortion: Flexibility becomes unpredictability for team planning.
+  - Best approach: Co‑design flexible commitments with clear handoff plans.
+
+12 Environmental and Sensory Context
+  - Manifestation: Prefers curated, low‑stimulus environments for deep work.
+  - Behavior impact: Avoids open‑plan noise and large social rituals.
+  - Distortion: Preference becomes perceived unavailability.
+  - Best approach: Provide quiet spaces, opt‑out options, and written summaries of large events.
+
+13 Cultural Values and Communication Norms
+  - Manifestation: Values direct authenticity and personal expression.
+  - Behavior impact: Communicates plainly; may clash with high‑context norms.
+  - Distortion: Directness becomes perceived bluntness.
+  - Best approach: Clarify norms in writing and invite cultural context before public actions.
+
+14 Legal, Administrative and Bureaucratic Stress
+  - Manifestation: May avoid bureaucratic processes that feel constraining to autonomy.
+  - Behavior impact: Delays paperwork or seeks informal workarounds.
+  - Distortion: Independence becomes compliance risk.
+  - Best approach: Provide concise checklists, private guidance, and low‑friction support.
+
+15 Protective Factors and Resilience Resources
+  - Manifestation: When supported, Individualists contribute original, high‑value work and mentor selectively.
+  - Behavior impact: Balanced autonomy with reliable handoffs and occasional high‑impact contributions.
+  - Best approach: Encourage use of supports, create optional visibility channels, and co‑design recovery rituals.
+
+If this matches your needs I’ll continue to the next profile (Individualist was done; next: Collaborator) at the same pace and with the same neurodivergence depth. Say continue and I’ll run Collaborator through all 15 domains next.
+
+go
+
+Collaborator — Lived Experience Context across 15 Domains
+Below each subcategory follows the locked schema: Manifestation · Behavior impact · Distortion of typical Collaborator pattern · Real‑life snapshot · Work / bandwidth impact · Risk if ignored · Best way to approach (peer, non‑managerial). The Neurodivergence & Cognitive Accessibility domain is expanded with micro‑accommodations, peer scripts, trial metrics, suggested tools/supports, and privacy‑first phrasing.
+
+1 Economic and Material Security
+Low socioeconomic background / Financial insecurity
+  - Manifestation: Reluctance to ask for shared resources; over‑reliance on favors.
+  - Behavior impact: Offers help readily but avoids requesting help for themselves.
+  - Distortion: Collaborator’s team orientation becomes one‑way giving that hides need.
+  - Snapshot: Volunteers to cover others’ tasks but never asks for training budget.
+  - Work impact: Hidden burnout; uneven skill distribution.
+  - Risk if ignored: Loss of contributor capacity and resentment.
+  - Best approach: Offer reciprocal, low‑status help and frame resource requests as team efficiency.
+Housing/transport/childcare/limited tech
+  - Manifestation: Variable availability; prefers asynchronous collaboration.
+  - Best approach: Confirm windows for synchronous work and provide async handoffs.
+
+2 Family System and Caregiving Context
+Caregiving responsibilities / Bereavement / Parentification
+  - Manifestation: Tight scheduling; emotional load.
+  - Behavior impact: Highly reliable within known windows; avoids open‑ended commitments.
+  - Distortion: Collaborator’s dependability becomes constrained availability.
+  - Best approach: Offer bounded tasks, asynchronous ways to contribute, and private check‑ins.
+
+3 Immigration, Displacement and Cultural Transition
+Visa uncertainty / Credential barriers / Language transition
+  - Manifestation: Extra effort to fit norms; prefers clear agendas and written follow‑ups.
+  - Behavior impact: Strong team player but cautious about visibility.
+  - Distortion: Teamwork becomes guarded participation.
+  - Best approach: Provide pre‑reads, invite written input, and validate contributions privately.
+
+4 Education and Access Background
+First‑generation / Under‑resourced schooling / Interrupted education
+  - Manifestation: Learns by doing; may avoid formal sponsorship.
+  - Behavior impact: Shares practical knowledge generously but may not self‑promote.
+  - Distortion: Collaboration becomes undervalued expertise.
+  - Best approach: Offer peer mentoring, framed sponsorship, and low‑stakes visibility.
+
+5 Neurodivergence and Cognitive Accessibility — Expanded
+ADHD
+  - Manifestation: Energetic participation, quick idea sharing, difficulty sustaining long coordination threads.
+  - Behavior impact: Sparks momentum in group work but may drop follow‑through.
+  - Distortion: Collaborative spark becomes fragmented momentum and unfinished handoffs.
+  - Snapshot: Leads a lively working session, then misses the follow‑up doc.
+  - Work impact: Team loses continuity; tasks stall.
+  - Risk if ignored: Repeated rework and credibility erosion.
+  - Best approach: Convert group ideas into time‑boxed micro‑tasks with clear owners and visible trackers.
+    * Micro‑accommodations: WIP limits for active collaborative threads; 1–2 week micro‑tasks with explicit owners.
+    * Peer scripts: “This is great energy — can we pick one micro‑task and assign an owner for the week?” / “Can you own the first deliverable and I’ll take the next?”
+    * Trial metrics: % micro‑tasks completed on time; number of handoffs with owner assigned.
+    * Tools/supports: Shared Kanban; short weekly 15‑minute syncs; checklist templates.
+    * Privacy phrasing: “I’m trying a short, time‑boxed task this week — I’ll post progress in the board.”
+Executive Function Differences
+  - Manifestation: Strong at contributing ideas but may struggle to sequence multi‑step group work.
+  - Best approach: Use simple sequencing templates and visible owners.
+    * Micro‑accommodations: 3‑step sequence template; mandatory next‑action field.
+    * Peer scripts: “Let’s map three steps and owners so nothing slips.”
+    * Trial metrics: % tasks with next action; handoff clarity score.
+    * Tools/supports: Lightweight RACI; shared trackers.
+    * Privacy phrasing: “I’ll map three steps and owners so it’s easy to pick up.”
+Time Blindness
+  - Manifestation: Underestimates coordination time for group deliverables.
+  - Best approach: Add explicit buffers and require minimal lead times for cross‑team asks.
+    * Micro‑accommodations: +25–30% buffer; pre‑commitment checks.
+    * Peer scripts: “Can we add a two‑week buffer so everyone can align?”
+    * Trial metrics: % commitments met; average buffer used.
+    * Tools/supports: Timeline templates; historical benchmarks.
+    * Privacy phrasing: “I’m adding a small buffer to make sure we align.”
+Task Initiation Difficulty
+  - Manifestation: Needs a clear first step to join collaborative work.
+  - Best approach: Provide a one‑sentence first action and offer to co‑start.
+    * Micro‑accommodations: 15‑minute co‑start pairing; first‑action note.
+    * Peer scripts: “What’s one 15‑minute action we can do to get this moving?”
+    * Trial metrics: Time to first action; # tasks started with pairing.
+    * Tools/supports: Kickoff slots; starter templates.
+    * Privacy phrasing: “Can we pair for the first 15 minutes so I can get traction?”
+Context‑Switching Difficulty
+  - Manifestation: Costly to move between deep work and frequent meetings; needs recovery.
+  - Best approach: Batch meetings, provide concise async briefs, and schedule short decision windows.
+    * Micro‑accommodations: Protected focus blocks; 3‑bullet async updates.
+    * Peer scripts: “I’ll send a 3‑bullet update after your block.”
+    * Trial metrics: Interruptions during blocks; % items resolved async.
+    * Tools/supports: Calendar focus blocks; async templates.
+    * Privacy phrasing: “I’m protecting a focus block — please send a short brief if it’s not urgent.”
+Hyperfocus Patterns
+  - Manifestation: Deep immersion in one collaborative thread; misses other team needs.
+  - Best approach: Mid‑task check‑ins and visible stop signals.
+    * Micro‑accommodations: Mid‑sprint check‑ins; shared priority list.
+    * Peer scripts: “Set a mid‑sprint check‑in so we don’t lose other priorities.”
+    * Trial metrics: Missed commitments while hyperfocused; % tasks with mid‑checks.
+    * Tools/supports: Progress board; automated reminders.
+    * Privacy phrasing: “I’m deep in this sprint — I’ll set a mid‑sprint check‑in.”
+Rejection Sensitivity
+  - Manifestation: Strong reaction to critique; may withdraw from group feedback.
+  - Best approach: Offer private, strengths‑based feedback and safe preview sessions.
+    * Micro‑accommodations: Private preview sessions; feedback sandwich.
+    * Peer scripts: “This is strong — one tweak that could help is X; want to iterate together?”
+    * Trial metrics: Frequency of private previews; early sharing rate.
+    * Tools/supports: Private feedback channels.
+    * Privacy phrasing: “I prefer private feedback on early drafts.”
+Masking Fatigue
+  - Manifestation: Exhaustion from maintaining a socially expected persona in group settings.
+  - Best approach: Provide low‑visibility contribution channels and recovery time.
+    * Micro‑accommodations: Idea doc for async contributions; opt‑out for public demos occasionally.
+    * Peer scripts: “Drop your idea in this doc and I’ll surface it.”
+    * Trial metrics: Async contributions; self‑reported energy after recovery.
+    * Tools/supports: Shared idea doc; opt‑out mechanism.
+    * Privacy phrasing: “I’ll contribute in writing this round while I recharge.”
+Social Communication Load
+  - Manifestation: Extra effort to manage tone and influence across diverse groups.
+  - Best approach: Provide concise templates for stakeholder updates and offer co‑presenting support.
+    * Micro‑accommodations: 3‑slide summary template; co‑presenter for Q&A.
+    * Peer scripts: “I’ll co‑present the Q&A so you can focus on the narrative.”
+    * Trial metrics: % stakeholders reached; follow‑through rate after launch.
+    * Tools/supports: Slide templates; co‑presenter pairing.
+    * Privacy phrasing: “I’d like to co‑present the Q&A so I can focus on the message.”
+Need for Written Instructions
+  - Manifestation: Performs best with clear decision rules and short checklists.
+  - Best approach: Provide one‑page decision rubrics and short templates.
+    * Micro‑accommodations: One‑page rubrics; fast‑lane exception process.
+    * Peer scripts: “Give me three success bullets and I’ll draft the checklist.”
+    * Trial metrics: % decisions using rubric; time to decision in fast lane.
+    * Tools/supports: Shared templates.
+    * Privacy phrasing: “Can we capture the decision criteria in one short doc?”
+Need for Reduced Interruption
+  - Manifestation: Frequent interruptions reduce willingness to collaborate live.
+  - Best approach: Define escalation rules and respect focus windows.
+    * Micro‑accommodations: Focus windows; single escalation contact.
+    * Peer scripts: “If urgent, text URGENT; otherwise send a 3‑bullet update.”
+    * Trial metrics: # escalations during focus windows; % items resolved async.
+    * Tools/supports: Slack status conventions; calendar focus blocks.
+    * Privacy phrasing: “I’m in a focus block — text URGENT if it can’t wait.”
+Need for Structure Without Shame
+  - Manifestation: Prefers predictable scaffolding but may hesitate to ask publicly.
+  - Best approach: Normalize shared templates and invite co‑creation.
+    * Micro‑accommodations: Shared template library; optional structure workshops.
+    * Peer scripts: “Can I share a short template that might help?”
+    * Trial metrics: % team using template; time saved.
+    * Tools/supports: Template library.
+    * Privacy phrasing: “I have a short template that helps me — can I share it?”
+Dyslexia Dyscalculia Dysgraphia Dyspraxia
+  - Manifestation: Extra time for reading/writing/number tasks; prefers spoken or visual formats.
+  - Best approach: Offer scribe support, speech‑to‑text, and co‑authoring.
+    * Micro‑accommodations: Co‑author follow‑ups; voice notes transcribed.
+    * Peer scripts: “I’ll draft the follow‑up from your notes.”
+    * Trial metrics: Time from meeting to published follow‑up; % co‑authored docs.
+    * Tools/supports: Otter, speech‑to‑text, templates.
+    * Privacy phrasing: “I prefer to record a voice note for follow‑up.”
+Auditory Processing Sensory Processing Tourette
+  - Manifestation: Noisy group settings increase cognitive load; may opt out of live sessions.
+  - Best approach: Share slides/notes in advance, use captions, and normalize opt‑outs.
+    * Micro‑accommodations: Captions; slides in advance; quiet breakout options.
+    * Peer scripts: “I’ll share slides before the session so you can pick what to comment on.”
+    * Trial metrics: Written contributions; meeting comfort rating.
+    * Tools/supports: Live captions; shared decks.
+    * Privacy phrasing: “I’ll drop my input in the doc and follow up after the session.”
+Working Memory Processing Speed Differences
+  - Manifestation: Needs pre‑reads and short reflection pauses to synthesize group inputs.
+  - Best approach: Provide concise pre‑reads 24–48 hours ahead and 5‑minute recap pauses in meetings.
+    * Micro‑accommodations: Pre‑read templates; recap prompts.
+    * Peer scripts: “I’ll send a 2‑slide summary before the meeting.”
+    * Trial metrics: % decisions postponed for reflection; quality of final plans.
+    * Tools/supports: Pre‑read templates; meeting recap prompts.
+    * Privacy phrasing: “I prefer a short pre‑read and a five‑minute pause after the meeting.”
+
+6 Disability Health and Body Based Factors
+Chronic illness / Fatigue / Fluctuating capacity
+  - Manifestation: Variable participation; may front‑load contributions on good days.
+  - Best approach: Private signals for low‑capacity days, flexible timelines, and asynchronous contribution channels.
+Sleep disorders / Medication side effects / Appointment burden
+  - Best approach: Recorded meetings, written summaries, and flexible scheduling.
+Mobility / Sensory impairment
+  - Best approach: Accessible formats, captions, and alternative participation options.
+
+7 Trauma Adversity and Nervous System Load
+Childhood adversity / Workplace trauma / Institutional betrayal
+  - Manifestation: High vigilance; reluctance to show vulnerability in groups.
+  - Best approach: Use calm, factual language, offer private validation, and avoid surprise public calls.
+Hypervigilance / People‑pleasing as survival
+  - Best approach: Encourage boundary scripts and private check‑ins.
+
+8 Identity Marginalization and Belonging
+Racial ethnic bias / LGBTQ+ stress / Tokenism / Microaggression fatigue
+  - Manifestation: Extra labor to manage impressions; selective visibility.
+  - Best approach: Avoid tokenizing, invite structured voluntary participation, and validate privately.
+
+9 Work History and Occupational Socialization
+Toxic workplace / Micromanagement / Retaliation history
+  - Manifestation: Learned caution; may avoid raising systemic issues.
+  - Best approach: Offer confidential peer validation and safe, small experiments to rebuild trust.
+
+10 Social Support and Community Context
+Limited support network / Social isolation / Mentorship availability
+  - Manifestation: Relies on team for belonging; may overinvest in a few relationships.
+  - Best approach: Facilitate small peer pods and mentorship pairings.
+
+11 Life Stage and Transition Factors
+New parenthood / Mid‑career reinvention / Retirement anxiety / Major life events
+  - Manifestation: Variable capacity and need for predictable commitments.
+  - Best approach: Offer written priorities, temporary role adjustments, and respect privacy.
+
+12 Environmental and Sensory Context
+Open office overload / High meeting density / Notification overload / Remote/hybrid ambiguity
+  - Manifestation: Prefers predictable, low‑stimulus collaboration patterns.
+  - Best approach: Quiet hours, clear agendas, and opt‑out options for large social events.
+
+13 Cultural Values and Communication Norms
+High‑context vs low‑context / Direct vs indirect communication / Deference to authority
+  - Manifestation: Extra effort to translate norms; may adapt style to fit.
+  - Best approach: Clarify norms in writing and invite cultural context privately.
+
+14 Legal Administrative and Bureaucratic Stress
+Immigration paperwork / Benefits / Insurance / Disability accommodations
+  - Manifestation: Heavy cognitive load; fear of errors.
+  - Best approach: Share step‑by‑step checklists, private resource referrals, and time to manage paperwork.
+
+15 Protective Factors and Resilience Resources
+Mentor support / Stable housing / Financial cushion / Psychological safety / Clear expectations / Flexible scheduling / Peer relationships / Healthcare access / Effective accommodations / Recovery time / Purpose / Therapy / Skill mastery / Self‑advocacy
+  - Manifestation: When present, Collaborators sustain generous, reliable teamwork and share knowledge freely.
+  - Best approach: Encourage use of supports, suggest peer accountability partners, and co‑design recovery rituals.
+
+If this matches your expectations I’ll continue to the next profile and keep the Neurodivergence section at this expanded level. Say go and I’ll run the next profile through all 15 domains quickly.
+
+
+go
+
+Connector — Lived Experience Context across 15 Domains
+Below is a compact, actionable matrix for Connector across 15 lived‑experience domains. Each subcategory follows the schema: Manifestation · Behavior impact · Distortion of typical Connector pattern · Real‑life snapshot · Work / bandwidth impact · Risk if ignored · Best way to approach (peer, non‑managerial).
+The Neurodivergence & Cognitive Accessibility domain is expanded with micro‑accommodations, peer scripts, trial metrics, tools/supports, and privacy‑first phrasing.
+
+1 Economic and Material Security
+  - Manifestation: Invests time building networks that can convert to opportunities; may trade unpaid labor for visibility.
+  - Behavior impact: Prioritizes relationship building over billable or measurable work.
+  - Distortion: Connector’s network value becomes unpaid labor and overcommitment.
+  - Snapshot: Runs many intro calls that don’t convert while overdue deliverables pile up.
+  - Work impact: Shallow follow‑through; missed deadlines.
+  - Risk if ignored: Burnout and loss of credibility.
+  - Best approach: Offer bounded networking slots and help prioritize high‑ROI connections.
+
+
+2 Family System and Caregiving Context
+  - Manifestation: Uses networks to find caregiving solutions; emotional labor at home drains social energy.
+  - Behavior impact: High relational bandwidth at work but limited capacity for follow‑through.
+  - Distortion: Connector’s sociability becomes brittle when personal demands spike.
+  - Snapshot: Hosts a team intro event then cancels follow‑ups due to caregiving emergency.
+  - Work impact: Unreliable event continuity.
+  - Best approach: Offer co‑hosts for events and async ways to sustain introductions.
+
+3 Immigration Displacement and Cultural Transition
+  - Manifestation: Leverages networks to bridge credential gaps; code‑switches heavily.
+  - Behavior impact: Invests extra energy in social proof and introductions.
+  - Distortion: Connector’s bridging role becomes exhausting identity labor.
+  - Snapshot: Repeats credentials in every intro to preempt bias.
+  - Work impact: Extra cognitive load and slower recovery.
+  - Best approach: Provide safe, low‑visibility ways to showcase expertise and co‑present introductions.
+
+4 Education and Access Background
+  - Manifestation: Builds networks to access learning and mentors; may lack formal sponsorship.
+  - Behavior impact: Relies on relationships to open doors rather than formal channels.
+  - Distortion: Connector’s network advantage becomes dependency on informal favors.
+  - Snapshot: Secures a mentor through introductions but lacks institutional recognition.
+  - Work impact: Uneven career progression.
+  - Best approach: Help translate network wins into documented sponsorship and visible credit.
+
+5 Neurodivergence and Cognitive Accessibility — Expanded
+Overview
+Connectors excel at relationships, introductions, and social orchestration. Neurodivergence can amplify strengths and create specific accessibility needs. Below each subcategory: Manifestation · Behavior impact · Distortion · Snapshot · Work impact · Risk · Best approach, then Micro‑accommodations · Peer scripts · Trial metrics · Tools/supports · Privacy phrasing.
+
+ADHD
+  - Manifestation: Rapidly forms new connections and ideas; struggles to maintain follow‑ups and multi‑step introductions.
+  - Behavior impact: Starts many introductions; follow‑through drops off.
+  - Distortion: Connector’s breadth becomes unreliable handoffs.
+  - Snapshot: Makes 10 intros in a week but only 2 get follow‑ups.
+  - Work impact: Missed opportunities and frustrated contacts.
+  - Risk: Reputation damage for overpromising.
+  - Best approach: Time‑box outreach and require a short handoff note for each intro.
+    * Micro‑accommodations: Limit active intro threads to ≤4; use a 1‑line handoff template.
+    * Peer scripts: “Love this intro — can you drop a one‑line context and I’ll follow up?” / “Can we cap active intros to four so we can close them?”
+    * Trial metrics: % intros with handoff note; intro closure rate.
+    * Tools/supports: CRM or shared spreadsheet with WIP limits; calendar follow‑up reminders.
+    * Privacy phrasing: “I’m testing a short, time‑boxed intro run and will post a one‑line handoff for each.”
+
+
+Executive Function Differences
+  - Manifestation: Strong at connecting people but may miss sequencing multi‑party introductions.
+  - Best approach: Use a simple sequencing template and name a single next owner.
+    * Micro‑accommodations: 3‑step intro template with owner tag.
+    * Peer scripts: “Let’s map three steps and who owns each so it’s clear.”
+    * Trial metrics: % intros with owner; time to first follow‑up.
+    * Tools/supports: Lightweight RACI in shared doc.
+    * Privacy phrasing: “I’ll map three steps and owners so it’s easy to pick up.”
+
+Time Blindness
+  - Manifestation: Underestimates time needed to nurture relationships and coordinate calendars.
+  - Best approach: Add explicit buffers and schedule follow‑ups at the time of intro.
+    * Micro‑accommodations: Default +25% buffer for scheduling; set follow‑up at intro time.
+    * Peer scripts: “Can we schedule a 15‑minute follow‑up now so it doesn’t slip?”
+    * Trial metrics: % scheduled follow‑ups; average buffer used.
+    * Tools/supports: Shared calendar invites with reminders.
+    * Privacy phrasing: “I’m adding a small buffer to make sure the intro lands.”
+
+Task Initiation Difficulty
+  - Manifestation: Needs a clear first micro‑task to start a multi‑party connection.
+  - Best approach: Provide a one‑sentence first action and offer to co‑start the outreach.
+    * Micro‑accommodations: 15‑minute co‑start; first‑action script.
+    * Peer scripts: “What’s one 15‑minute action to kick this off?” / “I’ll co‑start the first message with you.”
+    * Trial metrics: Time to first outreach; # co‑starts used.
+    * Tools/supports: Starter message templates.
+    * Privacy phrasing: “Can we co‑start the first message so I can get traction?”
+
+Context‑Switching Difficulty
+  - Manifestation: High cost switching between social orchestration and focused tasks.
+  - Best approach: Batch networking activities and use concise async updates.
+    * Micro‑accommodations: Networking blocks; 3‑bullet async updates.
+    * Peer scripts: “I’ll send a 3‑bullet update after your networking block.”
+    * Trial metrics: Interruptions during blocks; % items resolved async.
+    * Tools/supports: Calendar focus blocks; shared update templates.
+    * Privacy phrasing: “I’m protecting a networking block — please send a short update if it’s not urgent.”
+
+Hyperfocus Patterns
+  - Manifestation: Deeply invests in a single relationship or community, neglecting others.
+  - Best approach: Mid‑campaign check‑ins and visible priority lists.
+    * Micro‑accommodations: Mid‑campaign review; shared priority board.
+    * Peer scripts: “Set a mid‑point check‑in so we don’t lose other relationships.”
+    * Trial metrics: Balance of active relationships; % mid‑checks completed.
+    * Tools/supports: Progress board; reminders.
+    * Privacy phrasing: “I’m deep in this relationship build — I’ll set a mid‑point check‑in.”
+
+Rejection Sensitivity
+  - Manifestation: Strong reaction to perceived social rebuffs; may withdraw from outreach.
+  - Best approach: Private, strengths‑based feedback and safe preview sessions for messages.
+    * Micro‑accommodations: Private preview of outreach messages.
+    * Peer scripts: “This intro lands well — one tweak is X; want to iterate privately?”
+    * Trial metrics: Frequency of private previews; change in outreach frequency.
+    * Tools/supports: Private feedback channel.
+    * Privacy phrasing: “I prefer private feedback on early outreach drafts.”
+
+Masking Fatigue
+  - Manifestation: Exhaustion from constant social performance; fewer spontaneous check‑ins.
+  - Best approach: Low‑visibility contribution channels and scheduled recovery time.
+    * Micro‑accommodations: Idea doc for async introductions; recovery half‑days after big events.
+    * Peer scripts: “Drop your intro in this doc and I’ll surface it.”
+    * Trial metrics: Async contributions; self‑reported recovery.
+    * Tools/supports: Shared idea doc; opt‑out mechanism.
+    * Privacy phrasing: “I’ll contribute in writing this round while I recharge.”
+
+Social Communication Load
+  - Manifestation: Heavy effort to tailor messages across cultures and contexts.
+  - Best approach: Provide short templates and offer co‑presenting or co‑messaging support.
+    * Micro‑accommodations: 3‑bullet intro template; co‑message option.
+    * Peer scripts: “I’ll co‑send the intro so you can focus on the relationship.”
+    * Trial metrics: % intros co‑sent; recipient response rate.
+    * Tools/supports: Template library; co‑messaging workflows.
+    * Privacy phrasing: “Can I co‑send this intro so I can support the tone?”
+
+Need for Written Instructions
+  - Manifestation: Prefers concise handoff notes and templates for introductions.
+  - Best approach: One‑line handoff templates and example messages.
+    * Micro‑accommodations: One‑line handoff; sample scripts.
+    * Peer scripts: “Drop a one‑line context and I’ll take it from there.”
+    * Trial metrics: % intros with handoff; time to reply.
+    * Tools/supports: Shared templates; CRM snippets.
+    * Privacy phrasing: “Can you leave a one‑line context so I can follow up?”
+
+Need for Reduced Interruption
+  - Manifestation: Frequent pings during outreach break momentum.
+  - Best approach: Define escalation rules and use async updates for non‑urgent items.
+    * Micro‑accommodations: Focus windows; single escalation contact.
+    * Peer scripts: “If urgent, text URGENT; otherwise send a 3‑bullet update.”
+    * Trial metrics: # escalations during focus windows; % items resolved async.
+    * Tools/supports: Slack status conventions; calendar focus blocks.
+    * Privacy phrasing: “I’m in a networking block — text URGENT if it can’t wait.”
+
+Need for Structure Without Shame
+  - Manifestation: Likes scaffolding for large events but may hesitate to ask publicly.
+  - Best approach: Normalize shared templates and co‑host roles.
+    * Micro‑accommodations: Shared event checklist; optional co‑host signups.
+    * Peer scripts: “Can I co‑host this so we share the load?”
+    * Trial metrics: % events with co‑hosts; event follow‑through rate.
+    * Tools/supports: Event checklist; shared calendar.
+    * Privacy phrasing: “Can we co‑host this so I can manage follow‑ups?”
+
+Dyslexia Dyscalculia Dysgraphia Dyspraxia
+  - Manifestation: Prefers spoken introductions and visual summaries; written follow‑ups take extra time.
+  - Best approach: Offer scribe support and voice‑to‑text for follow‑ups.
+    * Micro‑accommodations: Co‑author follow‑ups; voice notes transcribed.
+    * Peer scripts: “I’ll draft the follow‑up from your notes.”
+    * Trial metrics: Time from intro to published follow‑up; % co‑authored messages.
+    * Tools/supports: Otter, speech‑to‑text, CRM templates.
+    * Privacy phrasing: “I prefer to record a quick voice note for the follow‑up.”
+
+Auditory Processing Sensory Processing Tourette
+  - Manifestation: Large, noisy networking events can be overwhelming; prefers small curated meetups.
+  - Best approach: Offer small group options, captions for calls, and advance agendas.
+    * Micro‑accommodations: Captions; small breakout options; slides in advance.
+    * Peer scripts: “I’ll share the agenda and small breakout list before the event.”
+    * Trial metrics: Attendance comfort rating; number of small meetups held.
+    * Tools/supports: Live captions; shared decks.
+    * Privacy phrasing: “I’ll skip the big event and join a small breakout — please share notes.”
+
+Working Memory Processing Speed
+  - Manifestation: Needs concise pre‑reads and short pauses to synthesize multi‑party contexts.
+  - Best approach: Provide 2‑slide pre‑reads and 5‑minute recap pauses in group handoffs.
+    * Micro‑accommodations: Pre‑reads 24–48 hours ahead; recap pauses.
+    * Peer scripts: “I’ll send a 2‑slide summary before the intro.”
+    * Trial metrics: % intros with pre‑reads; clarity rating from recipients.
+    * Tools/supports: Pre‑read templates; recap prompts.
+    * Privacy phrasing: “I prefer a short pre‑read and a five‑minute recap after the intro.”
+
+6 Disability Health and Body Based Factors
+  - Manifestation: Variable social stamina and sensory needs; may need quiet recovery after events.
+  - Best approach: Offer opt‑outs, asynchronous ways to contribute, and private accommodation channels.
+
+7 Trauma Adversity and Nervous System Load
+  - Manifestation: Past trauma can make public introductions risky; prefers controlled, predictable interactions.
+  - Best approach: Use calm, predictable processes, private validation, and avoid surprise public exposure.
+
+8 Identity Marginalization and Belonging
+  - Manifestation: Extra labor to represent communities in networks; risk of tokenization.
+  - Best approach: Avoid token requests, invite voluntary representation, and provide private support.
+
+9 Work History and Occupational Socialization
+  - Manifestation: May have built networks to compensate for lack of institutional power.
+  - Best approach: Translate network value into documented sponsorship and visible credit.
+
+10 Social Support and Community Context
+  - Manifestation: Relies on broad networks for resilience; may lack deep local supports.
+  - Best approach: Encourage small peer pods and reciprocal support arrangements.
+
+11 Life Stage and Transition Factors
+  - Manifestation: Life transitions change networking capacity and priorities.
+  - Best approach: Offer temporary co‑hosts, flexible event roles, and written handoffs.
+
+12 Environmental and Sensory Context
+  - Manifestation: Networking thrives in curated, low‑stimulus settings for many Connectors.
+  - Best approach: Provide small meetups, quiet breakout rooms, and written summaries.
+
+13 Cultural Values and Communication Norms
+  - Manifestation: Must translate norms across cultures when making introductions.
+  - Best approach: Clarify cultural context in advance and offer short scripts for cross‑cultural intros.
+
+14 Legal Administrative and Bureaucratic Stress
+  - Manifestation: Paperwork and bureaucracy reduce time for relationship work.
+  - Best approach: Share step‑by‑step checklists and offer to co‑complete forms or referrals.
+
+15 Protective Factors and Resilience Resources
+  - Manifestation: With mentors, stable resources, and psychological safety, Connectors scale influence sustainably.
+  - Best approach: Encourage peer accountability partners, co‑hosting, and recovery rituals to protect social energy.
+
+If this Connector block looks right I’ll continue through the remaining profiles at the same pace and with the same expanded Neurodivergence depth. I can also batch‑insert these upgraded blocks into your master toolkit when you’re ready. Say continue and I’ll run the next profile now.
+
+go
+
+Catalyst — Lived Experience Context across 15 Domains
+Each subcategory follows the locked schema: Manifestation · Behavior impact · Distortion of typical Catalyst pattern · Real‑life snapshot · Work / bandwidth impact · Risk if ignored · Best way to approach (peer, non‑managerial).
+The Neurodivergence & Cognitive Accessibility domain is expanded with micro‑accommodations, peer scripts, trial metrics, tools/supports, and privacy‑first phrasing.
+
+1 Economic & Material Security
+  - Low socioeconomic background / Financial insecurity
+    * Manifestation: Urgency to create visible change; pressure to show immediate impact.
+    * Behavior impact: Pushes ambitious pilots that promise quick wins; may overcommit resources.
+    * Distortion: Catalyst’s catalytic momentum becomes risky short‑termism.
+    * Snapshot: Launches a cross‑team pilot to prove value this quarter, stretching team capacity.
+    * Work impact: Resource strain and uneven follow‑through.
+    * Risk if ignored: Burnout and credibility loss.
+    * Best approach: Frame experiments as small, time‑boxed catalysts with clear stop rules and private resource options.
+  - Housing/transport/childcare/unreliable tech
+    * Manifestation: Erratic availability; bursts of high energy outside core hours.
+    * Best approach: Use async channels, confirm availability windows, and accept micro‑deliverables.
+
+2 Family System & Caregiving Context
+  - Caregiving / Single‑parent responsibilities / Bereavement
+    * Manifestation: Emotional load and tight scheduling; needs predictable windows.
+    * Behavior impact: Prioritizes high‑impact, short interventions; avoids long commitments.
+    * Distortion: Catalytic urgency becomes inconsistent presence.
+    * Snapshot: Runs a high‑energy workshop then disappears for caregiving duties.
+    * Work impact: Momentum gaps and handoff friction.
+    * Best approach: Offer micro‑experiments, async follow‑ups, and swap facilitation duties.
+  - Domestic violence / Multigenerational strain
+    * Best approach: Prioritize confidentiality and low‑visibility support.
+
+3 Immigration, Displacement & Cultural Transition
+  - Immigration history / Visa uncertainty / Credential barriers
+    * Manifestation: Extra effort to demonstrate impact and legitimacy.
+    * Behavior impact: Overdocuments outcomes; seeks visible wins to validate status.
+    * Distortion: Catalyst’s public advocacy becomes defensive over‑proofing.
+    * Snapshot: Publishes an exhaustive impact brief to preempt critique.
+    * Work impact: Time diverted from iteration to validation.
+    * Best approach: Offer explicit recognition, small public showcases, and credential‑bridging resources.
+  - Language transition / Accent bias / Code‑switching fatigue
+    * Best approach: Provide agendas and slides in advance; allow recorded or written contributions.
+
+4 Education & Access Background
+  - First‑generation / Under‑resourced schooling / Interrupted education
+    * Manifestation: Self‑taught problem solving; skepticism of formal processes.
+    * Behavior impact: Prefers rapid prototyping over formal frameworks.
+    * Distortion: Catalytic experimentation becomes ad‑hoc and hard to scale.
+    * Best approach: Offer curated frameworks presented as optional accelerators and peer coaching.
+  - Undiagnosed learning differences / Late diagnosis
+    * Best approach: Provide templates, rehearsal opportunities, and extra processing time.
+
+5 Neurodivergence & Cognitive Accessibility — Expanded
+Overview
+Catalysts drive change fast; neurodivergence often amplifies creative speed and risk tolerance while creating specific accessibility needs. Each subcategory below includes practical micro‑accommodations, short peer scripts, trial metrics, suggested tools, and a privacy‑first phrasing the person can use.
+
+ADHD
+  - Manifestation: Rapid ideation and urgency to launch; difficulty sustaining long scaling phases.
+  - Behavior impact: Starts many catalytic pilots; some stall before integration.
+  - Distortion: Momentum becomes scattered experimentation without durable outcomes.
+  - Snapshot: Kicks off three pilots in a month; only one reaches handoff.
+  - Work impact: Resource churn and stakeholder fatigue.
+  - Risk if ignored: Credibility erosion.
+  - Best approach: Convert ideas into 2–4 week pilots with explicit success/fail criteria and WIP limits.
+    * Micro‑accommodations: Cap active pilots at 1–2; require a one‑page handoff when pausing.
+    * Peer scripts: “Love this — can we time‑box it for three weeks and define clear stop rules?” / “If you pause, drop a one‑page state note so we can pick it up.”
+    * Trial metrics: Active pilots ≤2; pilot completion rate; stakeholder satisfaction (1–5).
+    * Tools/supports: Kanban with WIP limits; short weekly syncs; timers.
+    * Privacy phrasing: “I’m running a short pilot and will share a one‑page update when it’s paused.”
+
+Executive Function Differences
+  - Manifestation: Struggles to sequence multi‑stakeholder scaling steps.
+  - Best approach: Use simple phase templates and mandatory handoff notes.
+    * Micro‑accommodations: Phase checklist (3–5 items); one‑page handoff.
+    * Peer scripts: “Let’s map the three phases and owners — I’ll draft the checklist.”
+    * Trial metrics: % pilots with handoff note; post‑pilot incidents.
+    * Tools/supports: Lightweight RACI; milestone calendar.
+    * Privacy phrasing: “Can we add a short handoff note before scaling?”
+
+Time Blindness
+  - Manifestation: Underestimates alignment and operationalization time.
+  - Best approach: Use historical benchmarks and explicit buffers.
+    * Micro‑accommodations: +25–40% buffer; visible countdowns.
+    * Peer scripts: “Can we add a two‑week buffer so ops can staff it?”
+    * Trial metrics: % commitments met; average buffer used.
+    * Tools/supports: Timeline dashboard; estimation checklist.
+    * Privacy phrasing: “I’m adding a conservative buffer to ensure we land this.”
+
+Task Initiation Difficulty
+  - Manifestation: Needs a clear, meaningful first step to start scaling work.
+  - Best approach: Provide a one‑sentence first action and a 30‑minute co‑start.
+    * Micro‑accommodations: 30‑minute kickoff pairing; minimal experiment template.
+    * Peer scripts: “What’s one tiny test we can run in a day?” / “I’ll pair for the first 30 minutes to get this moving.”
+    * Trial metrics: Time from idea to first action; # ideas reaching pilot.
+    * Tools/supports: Kickoff slots; starter templates.
+    * Privacy phrasing: “Can we co‑start for 30 minutes so I can get traction?”
+
+Context‑Switching Difficulty
+  - Manifestation: Deep catalytic thinking is disrupted by frequent operational asks.
+  - Best approach: Protect deep‑work windows, use concise async briefs, and define escalation rules.
+    * Micro‑accommodations: Protected core hours; 3‑bullet async updates; single escalation contact.
+    * Peer scripts: “I’ll send a 3‑bullet update after your block — no need to interrupt.” / “If it’s urgent, text URGENT.”
+    * Trial metrics: Interruptions during deep work; % items resolved async.
+    * Tools/supports: Calendar focus blocks; async templates.
+    * Privacy phrasing: “I’m protecting a 3‑hour strategy block — text URGENT if it can’t wait.”
+
+Hyperfocus Patterns
+  - Manifestation: Intense immersion in one catalytic angle; misses counter signals.
+  - Best approach: Require a short “devil’s advocate” counter scenario and scheduled cross‑checks.
+    * Micro‑accommodations: 10‑minute counter scenario; time‑boxed deep dives with post‑dive cross‑checks.
+    * Peer scripts: “Can you give a 10‑minute counter scenario so we surface blind spots?” / “Let’s time‑box this deep dive and schedule a cross‑check.”
+    * Trial metrics: # counter scenarios produced; % deep dives with cross‑checks.
+    * Tools/supports: Scenario templates; scheduled cross‑checks.
+    * Privacy phrasing: “I’m doing a time‑boxed deep dive and will share counter scenarios at mid‑point.”
+
+Rejection Sensitivity
+  - Manifestation: Strong reaction to critique; may withdraw or double down defensively.
+  - Best approach: Start with private, strengths‑based feedback and encourage small public trials.
+    * Micro‑accommodations: Private preview sessions; feedback sandwich.
+    * Peer scripts: “This landed well — one tweak is X; want to iterate privately?” / “Can I preview this before the demo?”
+    * Trial metrics: Frequency of private previews; change in early sharing.
+    * Tools/supports: Private feedback channels.
+    * Privacy phrasing: “I prefer private feedback on early drafts.”
+
+Masking Fatigue
+  - Manifestation: Exhaustion from sustaining a catalytic persona; fewer spontaneous contributions.
+  - Best approach: Low‑visibility contribution channels and scheduled recovery.
+    * Micro‑accommodations: Idea doc for async input; recovery half‑days after major events.
+    * Peer scripts: “Drop your idea in this doc and I’ll surface it.” / “Take a recovery half‑day after the pitch — we’ll cover.”
+    * Trial metrics: Async contributions; self‑reported recovery.
+    * Tools/supports: Shared idea doc; opt‑out mechanism.
+    * Privacy phrasing: “I’ll contribute in writing this round while I recharge.”
+
+Social Communication Load
+  - Manifestation: Repeated persuasion across stakeholders is draining.
+  - Best approach: Provide 3‑slide summaries, co‑presenting support, and scheduled touchpoints.
+    * Micro‑accommodations: Executive summary template; co‑presenter for Q&A.
+    * Peer scripts: “I’ll co‑present the Q&A so you can focus on the narrative.” / “Can I draft a 3‑slide summary for you?”
+    * Trial metrics: % stakeholders reached; follow‑through rate after launch.
+    * Tools/supports: Slide templates; co‑presenter pairing.
+    * Privacy phrasing: “I’d like to co‑present the Q&A so I can focus on the narrative.”
+
+Need for Written Instructions
+  - Manifestation: Performs best when catalytic experiments have concise decision rules.
+  - Best approach: One‑page decision rubrics and a “fast lane” for urgent pivots.
+    * Micro‑accommodations: One‑page rubric; fast‑lane exception process.
+    * Peer scripts: “Give me three success bullets and I’ll draft the rubric.”
+    * Trial metrics: % decisions using rubric; time to decision in fast lane.
+    * Tools/supports: Shared templates.
+    * Privacy phrasing: “Can we capture the decision criteria in one short doc?”
+
+Need for Reduced Interruption
+  - Manifestation: Interruptions derail catalytic momentum.
+  - Best approach: Define escalation rules and use async updates for non‑urgent items.
+    * Micro‑accommodations: Protected deep‑work windows; single escalation contact.
+    * Peer scripts: “If urgent, text URGENT; otherwise send a 3‑bullet update.”
+    * Trial metrics: # escalations during deep work; % items resolved async.
+    * Tools/supports: Slack status conventions; escalation contact.
+    * Privacy phrasing: “I’m in a deep‑work block — text URGENT if it can’t wait.”
+
+Need for Structure Without Shame
+  - Manifestation: Prefers lightweight scaffolding but may hesitate to ask.
+  - Best approach: Normalize shared templates and co‑create structure as a team improvement.
+    * Micro‑accommodations: Shared experiment template; optional structure workshops.
+    * Peer scripts: “Can I share a short template that might help?”
+    * Trial metrics: % team using template; time saved.
+    * Tools/supports: Template library.
+    * Privacy phrasing: “I have a short template that helps me — can I share it?”
+
+Dyslexia / Dyscalculia / Dysgraphia / Dyspraxia
+  - Manifestation: Extra time for written reports, numeric models, or manual tasks.
+  - Best approach: Scribe support, speech‑to‑text, and co‑authoring.
+    * Micro‑accommodations: Co‑author write‑ups; voice notes transcribed.
+    * Peer scripts: “I’ll draft the follow‑up from your notes.”
+    * Trial metrics: Time from demo to published follow‑up; % co‑authored docs.
+    * Tools/supports: Speech‑to‑text; templates.
+    * Privacy phrasing: “I prefer to record a voice note for the follow‑up.”
+
+Auditory Processing / Sensory Processing / Tourette
+  - Manifestation: Large, noisy workshops are draining; prefers small, curated sessions.
+  - Best approach: Share slides/notes in advance, use captions, and offer small breakout options.
+    * Micro‑accommodations: Captions; slides in advance; quiet breakout rooms.
+    * Peer scripts: “I’ll share slides before the session so you can pick what to comment on.”
+    * Trial metrics: Meeting comfort rating; written contributions.
+    * Tools/supports: Live captions; shared decks.
+    * Privacy phrasing: “I’ll drop my input in the doc and follow up after the session.”
+
+Working Memory / Processing Speed
+  - Manifestation: Needs concise pre‑reads and short reflection pauses to synthesize complex change plans.
+  - Best approach: Provide 2‑slide pre‑reads 24–48 hours ahead and 5‑minute recap pauses in meetings.
+    * Micro‑accommodations: Pre‑reads; recap pauses.
+    * Peer scripts: “I’ll send a 2‑slide summary before the meeting.”
+    * Trial metrics: % decisions postponed for reflection; quality of final plans.
+    * Tools/supports: Pre‑read templates; recap prompts.
+    * Privacy phrasing: “I prefer a short pre‑read and a five‑minute pause after the meeting.”
+
+6 Disability, Health & Body‑Based Factors
+  - Chronic illness / Fatigue / Fluctuating capacity
+    * Manifestation: Variable bursts of catalytic energy; needs recovery windows.
+    * Best approach: Private signals for low capacity, flexible timelines, and written handoffs.
+  - Sleep disorders / Medication side effects / Appointment burden
+    * Best approach: Recorded sessions, written summaries, and flexible scheduling.
+  - Mobility / Sensory impairment
+    * Best approach: Accessible formats, captions, and opt‑out options.
+
+7 Trauma, Adversity & Nervous‑System Load
+  - Childhood adversity / Abuse / Workplace trauma / Institutional betrayal
+    * Manifestation: Hypervigilance and distrust of ambiguous feedback; avoids surprise public exposure.
+    * Best approach: Use calm, factual language; offer private validation and predictable interactions.
+  - Hypervigilance / People‑pleasing as safety
+    * Best approach: Encourage boundary scripts and private check‑ins.
+
+8 Identity, Marginalization & Belonging
+  - Racial/ethnic bias / LGBTQ+ stress / Tokenism / Microaggression fatigue
+    * Manifestation: Extra labor to manage impressions; may avoid being the public face of change.
+    * Best approach: Avoid tokenizing requests, invite voluntary representation, and validate privately.
+  - Code‑switching / Pressure to represent
+    * Best approach: Provide multiple channels for input and explicit invitations to participate.
+
+9 Work History & Occupational Socialization
+  - Toxic workplace / Micromanagement / Retaliation history
+    * Manifestation: Reluctance to propose bold change publicly; over‑prepares to avoid critique.
+    * Best approach: Offer confidential peer validation and small, safe pilots to rebuild trust.
+  - Job instability / Layoff trauma / High responsibility without support
+    * Best approach: Validate short‑term wins and co‑design protected time for exploration.
+
+10 Social Support & Community Context
+  - Limited support network / Social isolation / Mentorship availability
+    * Manifestation: Needs trusted allies to amplify catalytic work.
+    * Best approach: Suggest peer accountability partners, mentorship pairings, and reciprocal support.
+  - Community safety / Relocation loneliness
+    * Best approach: Encourage balanced social outlets and small boundary practices.
+
+11 Life Stage & Transition Factors
+  - New parenthood / Pregnancy/postpartum / Menopause / Mid‑career reinvention / Retirement anxiety / Moving / Divorce / Death / Major health diagnosis
+    * Manifestation: Variable capacity and need for predictable, bounded experiments.
+    * Best approach: Offer written priorities, temporary role adjustments, and respect privacy.
+  - Legal proceedings / Sudden financial event / Natural disaster
+    * Best approach: Async options and private check‑ins.
+
+12 Environmental & Sensory Context
+  - Loud environment / Open office / Lighting sensitivity / High meeting density / Notification overload
+    * Manifestation: Catalytic creativity needs low‑stimulus windows.
+    * Best approach: Quiet hours, written agendas, and respect for focus windows.
+  - Workspace crowding / Physical safety concerns
+    * Best approach: Provide opt‑outs and written summaries.
+
+13 Cultural Values & Communication Norms
+  - High‑context vs low‑context / Direct vs indirect communication / Deference to authority
+    * Manifestation: Extra effort to translate change narratives across cultures.
+    * Best approach: Clarify norms in writing and invite cultural context privately.
+  - Modesty/self‑promotion discomfort / Different meanings of urgency
+    * Best approach: Frame recognition as team outcomes and clarify urgency signals.
+
+14 Legal, Administrative & Bureaucratic Stress
+  - Immigration paperwork / Court proceedings / Benefits / Insurance / Disability accommodations / Background checks
+    * Manifestation: Heavy cognitive load; fear of errors.
+    * Best approach: Share step‑by‑step checklists, private resource referrals, and time to manage paperwork.
+  - Past criminalization / Background check anxiety
+    * Best approach: Confidential guidance and resources for disclosure decisions.
+
+15 Protective Factors & Resilience Resources
+  - Mentor support / Stable housing / Financial cushion / Psychological safety / Clear expectations / Flexible scheduling / Peer relationships / Healthcare access / Effective accommodations / Recovery time / Purpose / Therapy / Skill mastery / Self‑advocacy
+    * Manifestation: With supports, Catalysts sustain high‑impact change, iterate publicly, and scale durable outcomes.
+    * Best approach: Encourage use of supports, suggest peer accountability partners, and co‑design recovery rituals.
+
+If this format and pace work, I’ll continue to the next profile (Integrator) with the same speed and the Neurodivergence section fully expanded. Say continue and I’ll run Integrator through all 15 domains next.
+
+go
+
+Integrator — Lived Experience Context across 15 Domains
+Below is a compact, scan‑friendly matrix for Integrator across 15 lived‑experience domains. Each subcategory follows the schema: Manifestation · Behavior impact · Distortion of typical Integrator pattern · Real‑life snapshot · Work / bandwidth impact · Risk if ignored · Best way to approach (peer, non‑managerial).
+The Neurodivergence & Cognitive Accessibility domain is expanded with micro‑accommodations, peer scripts, trial metrics, tools/supports, and privacy‑first phrasing.
+
+1 Economic and Material Security
+Low socioeconomic background / Financial insecurity
+  - Manifestation: Prioritizes predictable, low‑risk integrations that protect resources.
+  - Behavior impact: Favors conservative consolidation over experimental merges.
+  - Distortion: Integrator’s balancing role becomes risk‑averse gatekeeping.
+  - Snapshot: Delays a cross‑team integration until budget certainty is confirmed.
+  - Work impact: Slower unification of systems; missed innovation windows.
+  - Risk if ignored: Fragmented platforms and missed efficiencies.
+  - Best approach: Offer phased, low‑cost pilots and explicit contingency plans.
+
+
+2 Family System and Caregiving Context
+Caregiving responsibilities / Single‑parenting / Bereavement
+  - Manifestation: Needs predictable schedules and clear handoffs.
+  - Behavior impact: Prefers bounded integration tasks and documented processes.
+  - Distortion: Integrator’s coordination becomes overly rigid to avoid surprises.
+  - Snapshot: Requests written runbooks before agreeing to lead a cross‑team merge.
+  - Work impact: Fewer last‑minute commitments; stronger documentation.
+  - Best approach: Provide asynchronous review options and short, scheduled syncs.
+
+
+3 Immigration Displacement and Cultural Transition
+Visa uncertainty / Credential barriers / Language transition
+  - Manifestation: Extra effort to demonstrate reliability across cultures and systems.
+  - Behavior impact: Over‑documents integration decisions; prefers formal sign‑offs.
+  - Distortion: Integrator’s inclusive framing becomes defensive proofing.
+  - Snapshot: Circulates exhaustive integration specs to preempt critique.
+  - Work impact: Slower approvals but clearer audit trails.
+  - Best approach: Validate expertise privately, provide templates, and allow recorded presentations.
+
+
+4 Education and Access Background
+First‑generation / Under‑resourced schooling / Interrupted education
+  - Manifestation: High self‑reliance; learns integration patterns by doing.
+  - Behavior impact: Prefers apprenticeship and hands‑on pairing over formal training.
+  - Distortion: Integrator’s systems knowledge becomes tacit and hard to transfer.
+  - Snapshot: Knows integration quirks but hasn’t documented them for the team.
+  - Work impact: Single‑person dependencies.
+  - Best approach: Offer peer pairing, short documentation sprints, and mentorship.
+
+
+5 Neurodivergence and Cognitive Accessibility — Expanded
+Overview
+Integrators synthesize people, processes, and tech. Neurodivergence can amplify pattern recognition and systems insight while creating specific accessibility needs. Each subcategory below includes Manifestation · Behavior impact · Distortion · Snapshot · Work impact · Risk · Best approach, then Micro‑accommodations · Peer scripts · Trial metrics · Tools/supports · Privacy phrasing.
+
+ADHD
+  - Manifestation: Rapid systems insight and impatience for slow alignment.
+  - Behavior impact: Proposes many integration shortcuts; may skip documentation.
+  - Distortion: Integrator’s efficiency becomes risky shortcuts and missing handoffs.
+  - Snapshot: Delivers a clever integration patch but omits rollback steps.
+  - Work impact: Faster fixes but fragile deployments.
+  - Risk: Outages and unclear ownership.
+  - Best approach: Convert work into short, documented micro‑deployments with mandatory rollback notes.
+    * Micro‑accommodations: 1–2 week micro‑deployments; required one‑page rollback and owner field.
+    * Peer scripts: “This is great — can you add a one‑page rollback and owner before we deploy?” / “Let’s time‑box this to two weeks and include a handoff note.”
+    * Trial metrics: % micro‑deploys with rollback; post‑deploy incidents.
+    * Tools/supports: Lightweight runbook templates; Kanban with WIP limits; automated pre‑deploy checklist.
+    * Privacy phrasing: “I’ll run this as a short micro‑deploy and post the rollback note when it’s ready.”
+
+
+Executive Function Differences
+  - Manifestation: Strong systems thinking but difficulty sequencing many dependent steps.
+  - Best approach: Use simple phase checklists and explicit owner tags.
+    * Micro‑accommodations: Phase checklist (3–5 steps); mandatory handoff note.
+    * Peer scripts: “Can we map the three phases and owners so nothing slips?”
+    * Trial metrics: % integrations with phase checklist; handoff completion rate.
+    * Tools/supports: Shared milestone calendar; one‑page phase templates.
+    * Privacy phrasing: “I’ll add a short phase checklist so it’s easy to pick up.”
+
+
+Time Blindness
+  - Manifestation: Underestimates time for stakeholder alignment and testing.
+  - Best approach: Use historical benchmarks and add explicit buffers.
+    * Micro‑accommodations: +25–40% buffer; visible countdowns for approvals.
+    * Peer scripts: “Let’s add a two‑week buffer for alignment so ops can staff it.”
+    * Trial metrics: % deadlines met; average buffer used.
+    * Tools/supports: Timeline dashboard; estimation checklist.
+    * Privacy phrasing: “I’m adding a conservative buffer to ensure alignment.”
+
+
+Task Initiation Difficulty
+  - Manifestation: Needs a clear first integration step to start cross‑team work.
+  - Best approach: Provide a one‑sentence first action and a 30‑minute co‑start.
+    * Micro‑accommodations: 30‑minute kickoff pairing; starter template with first action.
+    * Peer scripts: “What’s one 30‑minute action that gets this moving?” / “I’ll pair for the first half‑hour to help start.”
+    * Trial metrics: Time to first action; # tasks started with pairing.
+    * Tools/supports: Starter templates; pairing slots.
+    * Privacy phrasing: “Can we co‑start for 30 minutes so I can get traction?”
+
+
+Context‑Switching Difficulty
+  - Manifestation: Deep synthesis requires long uninterrupted blocks; meetings are costly.
+  - Best approach: Protect deep‑work windows, use concise async briefs, and define escalation rules.
+    * Micro‑accommodations: Protected core hours; 3‑bullet async updates; single escalation contact.
+    * Peer scripts: “I’ll send a 3‑bullet update after your block — no need to interrupt.” / “If it’s urgent, text URGENT.”
+    * Trial metrics: Interruptions during deep work; % items resolved async.
+    * Tools/supports: Calendar focus blocks; async templates; escalation rules.
+    * Privacy phrasing: “I’m protecting a 3‑hour synthesis block — text URGENT if it can’t wait.”
+
+
+Hyperfocus Patterns
+  - Manifestation: Immerses in a single integration path and may miss alternative constraints.
+  - Best approach: Require a short counter‑scenario and scheduled cross‑checks.
+    * Micro‑accommodations: 10‑minute devil’s‑advocate summary; mid‑dive cross‑check.
+    * Peer scripts: “Can you give a 10‑minute counter scenario so we surface blind spots?” / “Let’s schedule a mid‑dive cross‑check.”
+    * Trial metrics: # counter scenarios produced; % deep dives with cross‑checks.
+    * Tools/supports: Scenario templates; scheduled cross‑checks.
+    * Privacy phrasing: “I’m doing a time‑boxed deep dive and will share counter scenarios at mid‑point.”
+
+
+Rejection Sensitivity
+  - Manifestation: Strong reaction to critique about integration choices; may withdraw from review cycles.
+  - Best approach: Private, strengths‑based feedback and safe preview sessions.
+    * Micro‑accommodations: Private preview of integration docs; feedback sandwich.
+    * Peer scripts: “This is solid — one tweak that could help is X; want to iterate privately?”
+    * Trial metrics: Frequency of private previews; early sharing rate.
+    * Tools/supports: Private feedback channels; short feedback templates.
+    * Privacy phrasing: “I prefer private feedback on early integration drafts.”
+
+
+Masking Fatigue
+  - Manifestation: Exhaustion from maintaining a composed integrator persona; fewer informal check‑ins.
+  - Best approach: Low‑visibility contribution channels and scheduled recovery.
+    * Micro‑accommodations: Written input channels; recovery half‑days after major launches.
+    * Peer scripts: “Drop your notes in this doc and I’ll surface them.” / “Take a recovery half‑day after the rollout — we’ll cover.”
+    * Trial metrics: Async contributions; self‑reported recovery.
+    * Tools/supports: Shared idea doc; opt‑out mechanism.
+    * Privacy phrasing: “I’ll contribute in writing this round while I recharge.”
+
+
+Social Communication Load
+  - Manifestation: Extra effort to translate technical tradeoffs into stakeholder narratives.
+  - Best approach: Provide 3‑slide summaries, co‑presenting support, and scheduled stakeholder touchpoints.
+    * Micro‑accommodations: Executive summary template; co‑presenter for Q&A.
+    * Peer scripts: “I’ll draft a 3‑slide summary and co‑present the Q&A.”
+    * Trial metrics: % stakeholders reached; clarity rating.
+    * Tools/supports: Slide templates; co‑presenter pairing.
+    * Privacy phrasing: “Can I co‑present the Q&A so I can focus on the narrative?”
+
+
+Need for Written Instructions
+  - Manifestation: Prefers concise decision rubrics and documented escalation paths.
+  - Best approach: One‑page decision rubrics and a fast‑lane exception process.
+    * Micro‑accommodations: One‑page rubric; fast‑lane process.
+    * Peer scripts: “Give me three success bullets and I’ll draft the rubric.”
+    * Trial metrics: % decisions using rubric; time to decision in fast lane.
+    * Tools/supports: Shared templates; decision log.
+    * Privacy phrasing: “Can we capture the decision criteria in one short doc?”
+
+
+Need for Reduced Interruption
+  - Manifestation: Interruptions fragment synthesis and increase error risk.
+  - Best approach: Define escalation rules and use async updates for non‑urgent items.
+    * Micro‑accommodations: Protected synthesis windows; single escalation contact.
+    * Peer scripts: “If urgent, text URGENT; otherwise send a 3‑bullet update.”
+    * Trial metrics: # escalations during windows; % items resolved async.
+    * Tools/supports: Slack status conventions; escalation contact.
+    * Privacy phrasing: “I’m in a synthesis block — text URGENT if it can’t wait.”
+
+
+Need for Structure Without Shame
+  - Manifestation: Prefers predictable scaffolding but may hesitate to ask publicly.
+  - Best approach: Normalize shared templates and co‑create structure as a team productivity tool.
+    * Micro‑accommodations: Shared integration templates; optional structure workshops.
+    * Peer scripts: “Can I share a short template that helps me?”
+    * Trial metrics: % team using templates; time saved.
+    * Tools/supports: Template library; short workshops.
+    * Privacy phrasing: “I have a short template that helps me — can I share it?”
+
+
+Dyslexia Dyscalculia Dysgraphia Dyspraxia
+  - Manifestation: Extra time for documentation, numeric modeling, or manual configuration.
+  - Best approach: Scribe support, speech‑to‑text, and co‑authoring for runbooks.
+    * Micro‑accommodations: Co‑author runbooks; voice notes transcribed.
+    * Peer scripts: “I’ll draft the runbook from your notes.”
+    * Trial metrics: Time from decision to published runbook; % co‑authored docs.
+    * Tools/supports: Speech‑to‑text; templates; calculators.
+    * Privacy phrasing: “I prefer to record a voice note for the runbook — can I send that?”
+
+
+Auditory Processing Sensory Processing Tourette
+  - Manifestation: Noisy workshops and long war rooms are draining; prefers structured, captioned sessions.
+  - Best approach: Share slides/notes in advance, use captions, and offer quiet breakout options.
+    * Micro‑accommodations: Captions; slides in advance; quiet rooms.
+    * Peer scripts: “I’ll share slides before the session so you can pick what to comment on.”
+    * Trial metrics: Meeting comfort rating; written contributions.
+    * Tools/supports: Live captions; shared decks.
+    * Privacy phrasing: “I’ll drop my input in the doc and follow up after the session.”
+
+
+Working Memory Processing Speed
+  - Manifestation: Needs pre‑reads and short pauses to synthesize multi‑thread inputs.
+  - Best approach: Provide concise pre‑reads 24–48 hours ahead and 5‑minute recap pauses in meetings.
+    * Micro‑accommodations: Pre‑read templates; recap prompts.
+    * Peer scripts: “I’ll send a 2‑slide summary before the meeting.”
+    * Trial metrics: % decisions postponed for reflection; quality of final plans.
+    * Tools/supports: Pre‑read templates; meeting recap prompts.
+    * Privacy phrasing: “I prefer a short pre‑read and a five‑minute pause after the meeting.”
+
+
+6 Disability Health and Body Based Factors
+Chronic illness / Chronic pain / Fatigue / Fluctuating capacity
+  - Manifestation: Variable synthesis stamina; bursts of high insight followed by low capacity.
+  - Behavior impact: Front‑loads integration work on good days; needs recovery windows.
+  - Distortion: Reliability becomes intermittent without accommodations.
+  - Best approach: Private signals for low capacity, flexible timelines, and written handoffs.
+
+
+7 Trauma Adversity and Nervous System Load
+Childhood adversity / Abuse / Workplace trauma / Institutional betrayal
+  - Manifestation: High vigilance and need for predictable, non‑surprising processes.
+  - Behavior impact: Avoids public risk; over‑prepares for reviews.
+  - Distortion: Integrator’s caution becomes avoidance of necessary change.
+  - Best approach: Use calm, factual language, private validation, and small, safe experiments.
+
+
+8 Identity Marginalization and Belonging
+Racial/ethnic bias / LGBTQ+ stress / Tokenism / Microaggression fatigue
+  - Manifestation: Extra labor to ensure inclusive integrations; reluctance to be token spokesperson.
+  - Behavior impact: Over‑checks for fairness; may avoid visible leadership roles.
+  - Distortion: Inclusion efforts become over‑cautious and slow.
+  - Best approach: Avoid token requests, invite voluntary participation, and validate contributions privately.
+
+
+9 Work History and Occupational Socialization
+Toxic workplace / Micromanagement / Retaliation history / Learned silence
+  - Manifestation: Distrust of ambiguous authority; prefers documented agreements.
+  - Behavior impact: Over‑documents and avoids informal escalation.
+  - Distortion: Integrator’s governance becomes bureaucratic unless trust is rebuilt.
+  - Best approach: Offer confidential peer validation and small trust‑building experiments.
+
+
+10 Social Support and Community Context
+Limited support network / Social isolation / Mentorship availability
+  - Manifestation: Relies on a few trusted peers for cross‑team coordination.
+  - Behavior impact: Strong bilateral relationships; limited broad coalition building.
+  - Best approach: Facilitate small cross‑functional pods and mentorship pairings.
+
+
+11 Life Stage and Transition Factors
+New parenthood / Pregnancy/postpartum / Menopause / Mid‑career reinvention / Retirement anxiety / Moving / Divorce / Death / Major health diagnosis
+  - Manifestation: Variable capacity and need for predictable, bounded responsibilities.
+  - Behavior impact: Either hyper‑compensation or temporary withdrawal.
+  - Best approach: Offer written priorities, temporary role adjustments, and respect privacy.
+
+
+12 Environmental and Sensory Context
+Loud environment / Open office / Lighting sensitivity / High meeting density / Notification overload
+  - Manifestation: Synthesis quality drops in noisy or chaotic settings.
+  - Behavior impact: Prefers quiet, scheduled synthesis blocks and written agendas.
+  - Best approach: Quiet hours, written agendas, opt‑out options, and respect for focus windows.
+
+
+13 Cultural Values and Communication Norms
+High‑context vs low‑context / Direct vs indirect communication / Deference to authority
+  - Manifestation: Extra effort to translate norms across teams and regions.
+  - Behavior impact: Prefers explicit norms and written clarifications.
+  - Best approach: Clarify norms in writing, invite cultural context, and use structured feedback channels.
+
+
+14 Legal Administrative and Bureaucratic Stress
+Immigration paperwork / Court proceedings / Benefits / Insurance / Disability accommodations / Background checks
+  - Manifestation: Heavy cognitive load; fear of errors in compliance work.
+  - Behavior impact: Time spent on admin reduces synthesis bandwidth.
+  - Best approach: Share step‑by‑step checklists, private resource referrals, and allow time to manage paperwork.
+
+
+15 Protective Factors and Resilience Resources
+Mentor support / Stable housing / Financial cushion / Psychological safety / Clear expectations / Flexible scheduling / Peer relationships / Healthcare access / Effective accommodations / Recovery time / Purpose / Therapy / Skill mastery / Self‑advocacy
+  - Manifestation: With supports, Integrators sustain high‑quality synthesis, scale durable integrations, and mentor others.
+  - Behavior impact: Balanced, reliable orchestration and improved cross‑team outcomes.
+  - Best approach: Encourage use of supports, suggest peer accountability partners, and co‑design recovery rituals.
+`,
+  },
+  {
+    id: "referenced-but-not-detailed-in-the-uploaded-document",
+    lens: "REFERENCED BUT NOT DETAILED IN THE UPLOADED DOCUMENT",
+    status: "Not exported as standalone detailed lens files",
+    source: "Untitled 5.txt",
+    content: `REFERENCED BUT NOT DETAILED IN THE UPLOADED DOCUMENT
+STATUS: Not exported as standalone detailed lens files
+SOURCE: Untitled 5.txt
+
+The uploaded document names the following lenses as completed, already done, or remaining, but it does not include the detailed profile-by-profile mapping content needed to create accurate standalone lens files.
+
+I did not fabricate content for these. They are listed here so the gap is visible.
+
+- Big Five / OCEAN
+- HEXACO
+- DISC
+- MBTI
+- Keirsey
+- 16PF
+- Hogan HPI
+- CliftonStrengths (34)
+- VIA Character Strengths (24)
+- Enneagram (core + wings + subtypes)
+- Cognitive Ability / GMA / Wonderlic
+- EQ-i 2.0
+- MSCEIT
+- Social Styles
+- Reiss Motivation Profile
+- Motivational Maps
+- Communication Style
+- Management Style
+- Growth & Development Style
+- Environmental Fit
+- Collaboration Style Lens
+- Role Fit Lens
+- Team Fit / Complementarity Lens
+- Lominger Leadership Architect
+- Leadership Versatility Index
+- Situational Leadership
+- Maslach Burnout Inventory (MBI)
+- Copenhagen Burnout Inventory (CBI)
+- WHO-5 Wellbeing Index
+- Perceived Stress Scale (PSS)
+- Connor-Davidson Resilience Scale (CD-RISC)
+- Workplace Stress Lens
+`,
+  },
+  {
+    id: "belbin-team-roles-lens",
+    lens: "Belbin Team Roles Lens",
+    status: "",
+    source: "Belbin_Team_Roles_Lens.txt",
+    content: `
+Belbin Team Roles Lens
+======================
+
+**Overview**
+
+Meredith Belbin’s Team Roles model describes nine roles that successful teams need.  The roles are grouped into three categories: social, thinking and task roles.  Each role has strengths and “allowable weaknesses” that are acceptable trade‑offs for its contributionhttps://www.belbin.com/about/belbin-team-roles#:~:text=%2A%20The%20Social%20Roles%20,Shaper%2C%20Implementer%2C%20Completer%20Finisher.
+
+* **Resource Investigator (Social):** Outgoing, enthusiastic networker who explores opportunities but can lose interest once the initial excitement passeshttps://www.belbin.com/about/belbin-team-roles#:~:text=%2A%20The%20Social%20Roles%20,Shaper%2C%20Implementer%2C%20Completer%20Finisher.
+* **Teamworker (Social):** Co‑operative, diplomatic and perceptive; listens to others and helps the team stay cohesive but may avoid confrontationhttps://www.belbin.com/about/belbin-team-roles#:~:text=%2A%20The%20Social%20Roles%20,Shaper%2C%20Implementer%2C%20Completer%20Finisher.
+* **Coordinator (Social):** Mature, confident and clarifies goals; delegates well but can be seen as manipulative or offloading workhttps://www.belbin.com/about/belbin-team-roles#:~:text=%2A%20The%20Social%20Roles%20,Shaper%2C%20Implementer%2C%20Completer%20Finisher.
+* **Plant (Thinking):** Creative, imaginative problem‑solver; generates ideas but may ignore details or practicalitieshttps://www.belbin.com/about/belbin-team-roles#:~:text=%2A%20The%20Social%20Roles%20,Shaper%2C%20Implementer%2C%20Completer%20Finisher.
+* **Monitor Evaluator (Thinking):** Logical, discerning and impartial; judges ideas critically but can lack drive or charismahttps://www.belbin.com/about/belbin-team-roles#:~:text=%2A%20The%20Social%20Roles%20,Shaper%2C%20Implementer%2C%20Completer%20Finisher.
+* **Specialist (Thinking):** Brings rare knowledge and skills; highly focused but may contribute only narrowlyhttps://www.belbin.com/about/belbin-team-roles#:~:text=%2A%20The%20Social%20Roles%20,Shaper%2C%20Implementer%2C%20Completer%20Finisher.
+* **Shaper (Task):** Challenging, dynamic and thrives on pressure; drives the team forward but may provoke othershttps://www.belbin.com/about/belbin-team-roles#:~:text=%2A%20The%20Social%20Roles%20,Shaper%2C%20Implementer%2C%20Completer%20Finisher.
+* **Implementer (Task):** Practical, reliable and efficient organiser; turns ideas into action but may be inflexiblehttps://www.belbin.com/about/belbin-team-roles#:~:text=%2A%20The%20Social%20Roles%20,Shaper%2C%20Implementer%2C%20Completer%20Finisher.
+* **Completer Finisher (Task):** Conscientious, detail‑oriented perfectionist; ensures thoroughness but can worry excessivelyhttps://www.belbin.com/about/belbin-team-roles#:~:text=%2A%20The%20Social%20Roles%20,Shaper%2C%20Implementer%2C%20Completer%20Finisher.
+
+Teams benefit from a balance of roles.  Individuals often have two preferred roles and one manageable role.  Identifying primary and secondary roles helps teams assign responsibilities effectively and recognise potential blind spots.
+
+**Belbin Role Crosswalk by PI Profile**
+
+The table below suggests which Belbin roles each PI profile is likely to default to.  The primary column indicates the most natural role; the secondary column captures an alternate role the profile can comfortably adopt.  These assignments are interpretive.
+
+| PI Profile | Primary Belbin role | Secondary role | Allowable weaknesses |
+|---|---|---|---|
+| **Analyzer** | Monitor Evaluator | Specialist | May over‑analyse and delay decisions; needs clear deadlines. |
+| **Controller** | Implementer / Shaper | Coordinator | Can be rigid or overly controlling. |
+| **Specialist** | Specialist | Monitor Evaluator | May focus too narrowly; needs help integrating findings. |
+| **Strategist** | Plant / Monitor Evaluator | Coordinator | May be abstract and detached; needs grounding in practicalities. |
+| **Venturer** | Shaper | Resource Investigator | May over‑drive the team and ignore others’ concerns. |
+| **Altruist** | Teamworker | Coordinator | May avoid conflict; needs to assert opinions when necessary. |
+| **Captain** | Coordinator / Shaper | Resource Investigator | May delegate too much or domineer. |
+| **Collaborator** | Teamworker | Resource Investigator | May struggle with decisiveness; needs direction. |
+| **Maverick** | Plant | Shaper | May generate wild ideas and resist structure. |
+| **Persuader** | Resource Investigator | Coordinator | May be overly optimistic and neglect details. |
+| **Promoter** | Resource Investigator | Shaper | May lose interest quickly and need follow‑through support. |
+| **Adapter** | Teamworker | Implementer | May be indecisive or avoid taking the lead. |
+| **Craftsman** | Completer Finisher / Implementer | Monitor Evaluator | May be perfectionistic and resistant to change. |
+| **Guardian** | Implementer / Completer Finisher | Teamworker | May be conservative and slow to adapt. |
+| **Operator** | Implementer | Completer Finisher | May be inflexible; benefits from creative partners. |
+| **Individualist** | Plant / Specialist | Monitor Evaluator | May be idiosyncratic and resist coordination. |
+| **Scholar** | Specialist / Monitor Evaluator | Teamworker | May over‑focus on analysis and avoid action. |
+
+**Using this lens**
+
+* Build teams with a mix of social, thinking and task roles.  For example, pair an Analyzer (Monitor Evaluator) with a Venturer (Shaper) and an Altruist (Teamworker) to balance analysis, drive and cohesion.
+* Recognise that allowable weaknesses come with each role.  A Plant may overlook details; a Completer Finisher may worry too much.  Managing these weaknesses—rather than eliminating them—allows strengths to flourish.
+* Encourage individuals to operate in their secondary roles as developmental stretch assignments.  This builds versatility and reduces over‑reliance on one role.`,
+  },
+  {
+    id: "big-five-ocean-lens",
+    lens: "Big Five (OCEAN) Lens",
+    status: "",
+    source: "Big_Five_Lens.txt",
+    content: `
+Big Five (OCEAN) Lens
+======================
+
+**Overview and theoretical background**
+
+The Big Five (also called the OCEAN model) is one of the most widely used and
+researched frameworks for describing human personality.  It organizes
+personality into five broad dimensions: **Openness to experience**,
+**Conscientiousness**, **Extraversion**, **Agreeableness**, and **Neuroticism**
+(emotional stability).  Each dimension represents a continuum, and individuals
+vary in their relative standing on each trait.  High **Openness** reflects
+curiosity, creativity and a preference for variety, while low Openness
+indicates a focus on familiarity and practicality.  High **Conscientiousness**
+means being organized, disciplined and dependable, whereas low
+Conscientiousness is associated with spontaneity and flexibility.  **Extraversion**
+describes sociability and energetic engagement with the outer world; low
+Extraversion (introversion) reflects a reserved, quiet style.  **Agreeableness**
+captures compassion and cooperativeness versus suspicion and
+competitiveness.  **Neuroticism** (often presented as Emotional Stability)
+measures the tendency toward negative emotional states; high neuroticism is
+associated with anxiety and moodiness whereas low neuroticism reflects calm
+and resiliencehttps://www.simplypsychology.org/big-five-personality.html#:~:text=The%20Big%20Five%20Personality%20Traits,OCEAN.
+
+The Big Five arose from lexical analyses of trait descriptors and has been
+replicated across cultures and languages.  It provides a neutral vocabulary
+for describing behavioral tendencies without assigning value judgments.
+
+**Key dimensions**
+
+- **Openness (Imagination vs. Practicality)** – preference for novelty,
+  abstract ideas and variety versus adherence to routine and concrete
+  informationhttps://www.simplypsychology.org/big-five-personality.html#:~:text=The%20Big%20Five%20Personality%20Traits,OCEAN.
+- **Conscientiousness (Organization vs. Flexibility)** – degree of
+  self‑discipline, reliability and goal orientationhttps://www.simplypsychology.org/big-five-personality.html#:~:text=The%20Big%20Five%20Personality%20Traits,OCEAN.
+- **Extraversion (Sociability vs. Reserve)** – energy drawn from social
+  interaction, talkativeness and assertivenesshttps://www.simplypsychology.org/big-five-personality.html#:~:text=The%20Big%20Five%20Personality%20Traits,OCEAN.
+- **Agreeableness (Cooperation vs. Competition)** – tendency to be
+  compassionate, trusting and cooperative rather than critical or antagonistichttps://www.simplypsychology.org/big-five-personality.html#:~:text=The%20Big%20Five%20Personality%20Traits,OCEAN.
+- **Neuroticism / Emotional Stability** – sensitivity to stress, mood
+  fluctuations and negative emotionshttps://www.simplypsychology.org/big-five-personality.html#:~:text=The%20Big%20Five%20Personality%20Traits,OCEAN.
+
+**Cross‑framework translation with PI profiles**
+
+The table below maps the 17 Predictive Index (PI) reference profiles to
+approximate Big Five patterns.  These translations are **estimates** based
+on common behavioral descriptions for each PI profile; they are not formal
+diagnostics.  “Dominant traits” capture the profile’s most visible Big Five
+tendencies; “Secondary” traits are present but less intense; “Stress
+responses” indicate how the profile may react under pressure, and
+“Development pointers” suggest areas for growth or balance.
+
+| PI reference profile | Dominant Big Five traits | Secondary traits | Stress responses | Development pointers |
+|---|---|---|---|---|
+| **Analyzer** | High Conscientiousness; low Extraversion. Disciplined, detail‑focused, prefers structure. | Moderate Openness; moderate Agreeableness. | Under stress, may become overly cautious or perfectionistic; risk of rigidity. | Practice openness to new ideas and relationships; delegate to avoid overwork. |
+| **Controller** | High Conscientiousness; moderate Extraversion. Decisive, goal‑oriented, prefers order. | Low Agreeableness; moderate Openness. | Can become impatient or domineering when pressured. | Cultivate empathy and patience; allow others’ input to improve collaboration. |
+| **Specialist** | High Conscientiousness; low Extraversion. Accurate, systematic, follows rules. | High Agreeableness; low Openness. | May become risk‑averse and resistant to change. | Encourage exploration and flexible thinking; voice ideas confidently. |
+| **Strategist** | High Openness and Conscientiousness. Big‑picture thinker, plans for the long term. | Moderate Extraversion; low Agreeableness. | When stressed, may overanalyze or become critical. | Balance analysis with action; build rapport to leverage team support. |
+| **Venturer** | High Openness and Extraversion. Self‑starting risk taker, imaginative. | Low Agreeableness; low Conscientiousness. | Under pressure, may act impulsively or overlook details. | Develop routines for follow‑through; consider others’ perspectives. |
+| **Individualist** | High Openness; moderate Conscientiousness. Independent and persistent. | Low Agreeableness; low Extraversion. | May appear aloof or stubborn under stress. | Practice collaboration and sharing ideas; accept feedback. |
+| **Scholar** | High Openness and Conscientiousness. Accurate, imaginative, reserved. | Low Extraversion; high Agreeableness. | Can retreat and overanalyze when stressed. | Seek balance between reflection and action; engage socially. |
+| **Altruist** | High Agreeableness; high Extraversion. Congenial and cooperative. | Moderate Conscientiousness; moderate Openness. | May neglect own needs, becoming overwhelmed. | Set boundaries and prioritize tasks; embrace constructive conflict. |
+| **Captain** | High Extraversion and Openness. Confident change agent and problem solver. | Moderate Conscientiousness; low Agreeableness. | May become overbearing or impatient. | Listen actively and share credit; balance boldness with humility. |
+| **Collaborator** | High Agreeableness; high Extraversion. Friendly, patient team player. | Moderate Openness; low Conscientiousness. | Can avoid difficult tasks or decisions. | Build assertiveness; maintain focus and follow‑through. |
+| **Maverick** | High Openness; high Extraversion. Innovative and undaunted by failure. | Low Conscientiousness; low Agreeableness. | May disregard rules or disrupt processes. | Adopt structure and accountability; temper boldness with realism. |
+| **Persuader** | High Extraversion; high Openness. Poised risk‑taker and team builder. | Moderate Conscientiousness; low Agreeableness. | Can overlook details and become overly optimistic. | Develop persistence on tasks; consider others’ concerns. |
+| **Promoter** | High Extraversion; high Agreeableness. Informal, persuasive networker. | Low Conscientiousness; high Openness. | May lack follow‑through and become scattered. | Create systems for execution; set clear priorities and deadlines. |
+| **Adapter** | Balanced across traits. Bridge‑builder who flexes to the situation. | Moderate Agreeableness and Openness. | Under stress, may feel torn between extremes. | Clarify personal boundaries and preferences; avoid over‑accommodating. |
+| **Artisan** | High Conscientiousness; high Openness. Precise, analytical, artistic. | Low Extraversion; moderate Agreeableness. | Might become perfectionistic or isolated under pressure. | Share progress early; invite feedback; trust collaboration. |
+| **Guardian** | High Conscientiousness; high Agreeableness. Detail‑oriented, supportive. | Low Openness; low Extraversion. | Can resist change and become withdrawn. | Embrace innovation gradually; communicate needs; expand networks. |
+| **Operator** | Moderate Conscientiousness; high Agreeableness. Patient, relaxed, steady. | Moderate Extraversion; low Openness. | May avoid taking initiative or shy from conflict. | Build confidence through skill development; voice ideas; take calculated risks. |
+
+**Practical implications**
+
+The Big Five lens helps managers and colleagues understand how a PI profile
+might show up across the five fundamental personality dimensions.  For
+instance, someone with a high Conscientiousness profile (Analyzer,
+Specialist, Guardian) will likely appreciate clear expectations and time to
+deliver quality work, whereas someone high in Openness and Extraversion
+(Venturer, Maverick, Captain) will thrive in environments that allow
+experimentation and social engagement.  Knowing where a team member falls
+along these dimensions can guide communication, collaboration and development
+strategies—for example, offering step‑by‑step plans to those low in
+Conscientiousness or creating brainstorming sessions to engage those high in
+Openness.  It also highlights potential stress triggers: high
+Neuroticism–like tendencies may need reassurance and emotional support, while
+low Agreeableness profiles may benefit from training in empathy and
+collaborative problem solving.
+`,
+  },
+  {
+    id: "connordavidson-resilience-scale-cdrisc-lens",
+    lens: "Connor\u2011Davidson Resilience Scale (CD\u2011RISC) Lens",
+    status: "",
+    source: "CD_RISC_Lens.txt",
+    content: `
+Connor‑Davidson Resilience Scale (CD‑RISC) Lens
+==============================================
+
+**Overview**
+
+The Connor‑Davidson Resilience Scale (CD‑RISC) is a widely used measure of resilience, assessing a person’s ability to “bounce back” after stressful events, tragedy or trauma.  Resilience encompasses the ability to adapt to change, deal with what comes along, cope with stress, stay focused, not get discouraged by failure and handle unpleasant feelingshttps://positivepsychology.com/connor-davidson-brief-resilience-scale/#:~:text=The%20Connor,stressful%20events%2C%20tragedy%2C%20or%20trauma.  The CD‑RISC has three authorised versions:
+
+* **CD‑RISC‑25:** The original 25‑item scale, with each item rated from 0 (not true at all) to 4 (true nearly all the time).  Total scores range from 0–100.
+* **CD‑RISC‑10:** A 10‑item version selected from the original.  Respondents rate their ability to adapt, deal with whatever comes, find humour in adversity and stay focusedhttps://positivepsychology.com/connor-davidson-brief-resilience-scale/#:~:text=The%20Connor,stressful%20events%2C%20tragedy%2C%20or%20trauma.
+* **CD‑RISC‑2:** A very brief two‑item scale measuring adaptability and “bouncing back” after illness or hardshiphttps://positivepsychology.com/connor-davidson-brief-resilience-scale/#:~:text=What%20Versions%20are%20There%3F%20,10%20%26%2025%20Item.
+
+Higher scores reflect greater resilience.  The scale is used in clinical, organisational and research settings to assess resilience and evaluate interventions.
+
+**Resilience Tendencies Crosswalk by PI Profile**
+
+The table below summarises likely resilience strengths and growth areas for each PI profile.  Use this to anticipate how different profiles might respond to adversity and what support they may need to build resilience.
+
+| PI Profile | Resilience strengths | Development areas | Strategies |
+|---|---|---|---|
+| **Analyzer** | Persistence, problem‑solving, ability to learn from setbacks | Flexibility when plans change, emotional adaptation | Practise cognitive reframing, embrace experimentation and build emotional agility. |
+| **Controller** | Decisiveness, taking charge in crises | Delegating under pressure, coping when control is lost | Develop trust in others, practise mindfulness and accept uncertainty. |
+| **Specialist** | Depth of knowledge, steady perseverance | Adapting to new domains and unpredictable changes | Expand comfort zone through small experiments and seek support networks. |
+| **Strategist** | Big‑picture perspective, systems thinking | Letting go of long‑term plans when circumstances shift | Practise short‑term flexibility, iterate strategies and stay grounded in purpose. |
+| **Venturer** | Risk tolerance, willingness to start anew | Patience and sustained focus after setbacks | Build routines for recovery, reflect on lessons and celebrate incremental wins. |
+| **Altruist** | Empathy and social support networks | Personal boundaries and self‑care | Practise saying no, seek reciprocal support and schedule restorative activities. |
+| **Captain** | Confidence and leadership in adversity | Acceptance of vulnerability and need for help | Share struggles, build peer support and practise self‑compassion. |
+| **Collaborator** | Relationship‑building and mutual support | Standing firm in the face of conflict | Develop assertiveness, set clear goals and practise resilience in disagreement. |
+| **Maverick** | Creativity and pivoting under pressure | Finishing and following through post‑setback | Pair with detail‑oriented partners, set milestones and practise perseverance. |
+| **Persuader** | Optimism and social influence | Coping with rejection and scepticism | Build resilience to criticism, cultivate patience and seek feedback. |
+| **Promoter** | Enthusiasm and ability to restart momentum | Managing disappointment and sustaining effort | Establish realistic expectations, track progress and practise delayed gratification. |
+| **Adapter** | Flexibility and willingness to support change | Assertiveness and proactive problem‑solving | Practise taking initiative, develop personal goals and build self‑confidence. |
+| **Craftsman** | Patience and persistence | Embracing imperfection and rapid iteration | Experiment with iterative approaches, seek feedback and celebrate progress. |
+| **Guardian** | Reliability and loyalty | Adapting to change and uncertainty | Practise incremental change, develop contingency plans and engage in resilience training. |
+| **Operator** | Discipline and endurance | Creative problem‑solving and adaptability | Foster innovation skills, reflect on outcomes and experiment with new approaches. |
+| **Individualist** | Independence and self‑reliance | Collaboration and support seeking | Build networks, practise vulnerability and leverage others’ perspectives. |
+| **Scholar** | Reflection and learning | Action orientation and maintaining momentum | Set practical goals, take calculated risks and engage in peer accountability. |
+
+**Using this lens**
+
+* Use the CD‑RISC to assess baseline resilience and monitor changes after development programs.  Encourage individuals to reflect on items where they score lower and design targeted exercises (e.g., practicing adaptability or humour in adversity).
+* Resilience is multifaceted and can be developed through practices such as mindfulness, cognitive reframing, supportive relationships and purposeful work.  Use cross‑profile strategies to tailor interventions.
+* Recognise that resilience is not just individual grit but also depends on supportive contexts.  Leaders should create environments where mistakes are learning opportunities and recovery is valued.`,
+  },
+  {
+    id: "cliftonstrengths-strengthsfinder-lens",
+    lens: "CliftonStrengths (StrengthsFinder) Lens",
+    status: "",
+    source: "CliftonStrengths_Lens.txt",
+    content: `
+CliftonStrengths (StrengthsFinder) Lens
+======================================
+
+**Overview and theoretical background**
+
+The **CliftonStrengths** assessment (formerly called StrengthsFinder) was
+developed by Don Clifton and Gallup to identify an individual’s top
+talent themes and encourage a strengths‑based approach to development.
+Participants respond to 177 paired statements; the tool then reveals a
+ranked list of 34 talent themes grouped into four domains: **Strategic
+Thinking**, **Relationship Building**, **Influencing**, and **Executing**https://www.uschamber.com/co/grow/thrive/cliftonstrengths-assessment#:~:text=What%20is%20the%20CliftonStrengths%20assessment%3F.  The
+assessment aims to help people focus on and apply what they naturally do
+best, rather than fixating on weaknesses.  Gallup research notes that
+CliftonStrengths is used by many Fortune 500 companies and correlates
+with higher engagement and performance when strengths are leveraged at workhttps://www.uschamber.com/co/grow/thrive/cliftonstrengths-assessment#:~:text=What%20is%20the%20CliftonStrengths%20assessment%3F.
+
+**Domains and representative themes**
+
+1. **Strategic Thinking** – Analytical, Futuristic, Ideation, Learner,
+   Intellection; these themes help absorb and process information and
+   create innovative plans.
+2. **Relationship Building** – Empathy, Harmony, Adaptability,
+   Developer, Positivity, Connectedness; themes that build strong
+   relationships and team cohesion.
+3. **Influencing** – Command, Communication, Woo (Winning Others Over),
+   Activator, Maximizer; themes that help sell ideas, take charge and
+   inspire others.
+4. **Executing** – Achiever, Discipline, Focus, Responsibility,
+   Consistency, Arranger, Restorative; themes that help make things
+   happen efficiently.
+
+**Cross‑framework translation with PI profiles**
+
+The table below suggests likely CliftonStrengths themes for each PI
+profile.  “Core themes” are plausible top strengths based on the
+profile’s typical behaviors; “Domain” indicates the primary domain;
+“Development angle” highlights how to apply strengths productively.
+
+| PI profile | Core themes (examples) | Domain(s) | Development angle |
+|---|---|---|---|
+| **Analyzer** | Analytical, Discipline, Learner | Strategic Thinking, Executing | Use analytical skills to solve complex problems; combine with Arranger or Communication partners to share insights widely. |
+| **Controller** | Command, Achiever, Focus | Influencing, Executing | Drive results decisively; remember to engage Relationship builders and listen to diverse perspectives. |
+| **Specialist** | Responsibility, Deliberative, Analytical | Executing, Strategic Thinking | Provide quality and reliability; schedule time to explore new ideas and collaborate beyond expertise. |
+| **Strategist** | Strategic, Futuristic, Learner | Strategic Thinking | Craft long‑term plans; integrate Relationship‑building themes like Empathy to gain buy‑in. |
+| **Venturer** | Activator, Command, Futuristic | Influencing, Strategic Thinking | Start initiatives and inspire others; pair with Executing partners for follow‑through; temper impatience. |
+| **Individualist** | Intellection, Ideation, Input | Strategic Thinking | Generate novel concepts; work with Influencers to communicate and execute ideas; practice summarizing insights for varied audiences. |
+| **Scholar** | Learner, Intellection, Discipline | Strategic Thinking, Executing | Immerse in knowledge and bring structure; partner with Influencing themes to share expertise; avoid analysis paralysis. |
+| **Altruist** | Empathy, Developer, Consistency | Relationship Building, Executing | Nurture colleagues and maintain fairness; set boundaries to prevent burnout; use Achiever partners to drive tasks. |
+| **Captain** | Command, Communication, Maximizer | Influencing | Motivate teams toward excellence; incorporate Executing themes like Focus to sustain progress; cultivate humility. |
+| **Collaborator** | Harmony, Adaptability, Positivity | Relationship Building | Foster a supportive environment; develop discipline to maintain momentum; assert opinions when necessary. |
+| **Maverick** | Ideation, Futuristic, Command | Strategic Thinking, Influencing | Innovate and influence change; collaborate with Executers to realize visions; attend to interpersonal impact. |
+| **Persuader** | Woo, Communication, Positivity | Influencing, Relationship Building | Energize and persuade diverse audiences; combine with Executing themes like Discipline to deliver on promises. |
+| **Promoter** | Woo, Communication, Maximizer | Influencing | Connect people and ideas; use Focus or Arranger to organize follow‑up; ensure depth accompanies breadth. |
+| **Adapter** | Harmony, Adaptability, Learner | Relationship Building, Strategic Thinking | Bridge different viewpoints; cultivate Ambition and Command to champion initiatives; avoid over‑accommodating. |
+| **Artisan** | Analytical, Arranger, Restorative | Strategic Thinking, Executing | Design precise solutions; pair with Woo or Communication to showcase work; accept iterative progress. |
+| **Guardian** | Consistency, Responsibility, Harmony | Executing, Relationship Building | Maintain reliable systems and supportive culture; integrate Strategic Thinking themes like Learner to embrace change. |
+| **Operator** | Consistency, Empathy, Restorative | Executing, Relationship Building | Provide patient, steady support; build confidence to take on leadership tasks; pursue development opportunities. |
+
+**Practical implications**
+
+Applying the CliftonStrengths lens encourages a focus on what individuals
+do naturally well.  For example, pairing a Controller’s Command and
+Achiever themes with a Scholar’s Learner and Discipline ensures both
+vision and execution.  Recognizing that a Collaborator may excel at
+Harmony and Adaptability but need support from Focus helps allocate
+responsibilities wisely.  Teams can intentionally combine complementary
+themes across domains—Strategic thinkers generate ideas, Influencers gain
+commitment, Relationship builders sustain cohesion and Executors deliver
+results.  This lens reinforces a strengths‑based culture that builds
+confidence and engagement.
+`,
+  },
+  {
+    id: "general-mental-ability-cognitive-ability-lens",
+    lens: "General Mental Ability (Cognitive Ability) Lens",
+    status: "",
+    source: "Cognitive_Ability_Lens.txt",
+    content: `
+General Mental Ability (Cognitive Ability) Lens
+==============================================
+
+**Overview and theoretical background**
+
+General mental ability (GMA), often referred to as cognitive ability, is
+the single best predictor of job performance across occupations.  It
+reflects a person’s capacity to learn, adapt, solve problems and think
+abstractly.  Cognitive ability tests, such as the **Wonderlic Personnel
+Test**, assess reasoning, comprehension and problem‑solving skills.  The
+Wonderlic is a 12‑minute, 50‑question multiple‑choice test used by
+employers (including NFL teams) to evaluate learning ability and
+problem‑solving aptitude; a score of around 20 is considered averagehttps://wonderlic.com/select-hiring-assessment/cognitive/#:~:text=Cognitive%20ability%20tests%20reveal%20if,can%20actually%20do%20the%20jobhttps://en.wikipedia.org/wiki/Wonderlic_test#:~:text=Wonderlic%20Personnel%20Test%20%28WPT,agencies%20of%20the%20%2058.  High
+GMA scores indicate that individuals can quickly grasp new concepts,
+understand complex instructions and adapt to changing demandshttps://wonderlic.com/select-hiring-assessment/cognitive/#:~:text=Cognitive%20ability%20tests%20reveal%20if,can%20actually%20do%20the%20job.
+
+Unlike personality frameworks, cognitive ability measures potential rather
+than style.  When used ethically and in combination with behavioral
+assessments, it helps predict success in roles requiring rapid learning
+and analytical thinking.
+
+**Cross‑framework translation with PI profiles**
+
+The Predictive Index Cognitive Assessment is separate from the PI
+Behavioral Assessment, but we can approximate cognitive tendencies based
+on profile descriptors.  The table below provides broad estimates of
+cognitive strengths and developmental needs.  “Learning style” refers to
+how individuals prefer to absorb information; “Cognitive pace” indicates
+how quickly they process complex tasks; “Development guidance” offers
+tips for thriving in cognitively demanding roles.
+
+| PI profile | Learning style & cognitive strengths | Cognitive pace | Development guidance |
+|---|---|---|---|
+| **Analyzer** | Analytical and methodical learner who excels at problem solving; comfortable with abstract concepts. | High | Challenge with ambiguous puzzles and strategic projects; encourage adaptability and quick iterations. |
+| **Controller** | Practical learner who grasps systems quickly and focuses on actionable decisions. | High | Balance speed with thoroughness; verify assumptions; remain open to novel approaches. |
+| **Specialist** | Detail‑oriented learner who prefers clear instructions and step‑by‑step processes. | Moderate | Provide structured training and time to master new concepts; gradually introduce complexity. |
+| **Strategist** | Conceptual learner who enjoys pattern recognition and long‑range thinking. | High | Offer opportunities to experiment with models; avoid overloading with routine details; encourage summarizing ideas. |
+| **Venturer** | Intuitive learner who connects disparate information and learns by doing. | High | Encourage focus and persistence on complex tasks; pair with structured colleagues for detailed follow‑through. |
+| **Individualist** | Independent learner who self‑directs study and explores topics deeply. | High | Promote sharing knowledge; collaborate on challenging problems; practice time management to meet deadlines. |
+| **Scholar** | Reflective learner who loves research and absorbing knowledge. | High | Provide access to resources and challenging assignments; encourage decisiveness and application. |
+| **Altruist** | Social learner who benefits from collaborative learning and experiential practice. | Moderate | Use mentoring and peer discussions; supplement with visual and practical examples; build confidence in complex problem solving. |
+| **Captain** | Quick learner who grasps concepts through discussion and application. | High | Provide leadership challenges and problem‑solving exercises; temper impatience with thorough analysis. |
+| **Collaborator** | Interactive learner who processes information through dialogue and support. | Moderate | Use group learning, real‑life examples and incremental complexity; encourage independent analysis. |
+| **Maverick** | Holistic learner who intuitively connects ideas but may overlook detail. | High | Pair with analytical teammates; develop disciplined study habits; practice detailed problem breakdown. |
+| **Persuader** | Conversational learner who picks up information through stories and persuasion. | Moderate | Use case studies, debates and interactive simulations; reinforce with structured reviews. |
+| **Promoter** | Experiential learner who absorbs through doing and sharing. | Moderate | Incorporate hands‑on exercises; use reminders and checklists to retain complex information; encourage reflective learning. |
+| **Adapter** | Versatile learner comfortable with both self‑study and group learning. | Moderate | Provide variety in training methods; challenge to adopt deeper analytical skills; support with feedback. |
+| **Artisan** | Kinesthetic and conceptual learner who enjoys tinkering and understanding “why.” | High | Offer projects requiring creativity and logic; provide time to experiment; encourage knowledge sharing. |
+| **Guardian** | Careful learner who prefers thorough preparation and clear expectations. | Moderate | Deliver structured training; allow repetition; gradually introduce innovation to build confidence. |
+| **Operator** | Steady learner who learns best through observation and repetition. | Moderate | Use clear demonstrations; reinforce with practice; encourage problem‑solving exercises. |
+
+**Practical implications**
+
+This lens helps match individuals to roles aligned with their cognitive
+capacity and learning preferences.  High‑GMA profiles (Analyzers,
+Strategists, Venturers) may thrive in complex, analytical roles but can
+be impatient with routine tasks; support them with variety and autonomy.
+Moderate‑GMA profiles (Specialists, Collaborators, Guardians) excel in
+roles requiring consistency and attention to detail; provide clear
+training and avoid sudden, unstructured changes.  Integrating
+cognitive ability insights with PI behavioral data enables more
+holistic talent decisions and targeted development plans.
+`,
+  },
+  {
+    id: "cognitive-load--working-style-lens",
+    lens: "Cognitive Load & Working Style Lens",
+    status: "",
+    source: "Cognitive_Load_Working_Style_Lens.txt",
+    content: `
+Cognitive Load & Working Style Lens
+
+**Overview**
+
+Cognitive load refers to the mental effort required to perform tasks.  Combined with an individual’s working style, it influences productivity, stress and error rates.  This lens summarises typical working styles (e.g., deep focus vs. bursts), load tolerance (how much cognitive load they can sustain) and stress responses when load becomes excessive.
+
+**Crosswalk by PI Profile**
+
+| PI Profile | Working style | Load tolerance | Stress response |
+|---|---|---|---|
+| **Analyzer** | Deep, single‑task focus | High for focused tasks | Overloaded by multitasking |
+| **Controller** | Structured, scheduled blocks | High with clear rules | Overwhelmed by ambiguity |
+| **Specialist** | Intensive domain focus | Very high in niche tasks | Cognitive bottleneck outside domain |
+| **Strategist** | Parallel scenario juggling | Moderate‑High | Fatigues on execution detail |
+| **Venturer** | Rapid bursts and short cycles | Low for sustained load | Burns out on long tasks |
+| **Altruist** | Socially distributed work | Moderate | Drains when isolated |
+| **Captain** | High‑intensity bursts | Moderate‑High | Frustrated by slow pace |
+| **Collaborator** | Shared workload, iterative | Moderate | Overloaded by conflict |
+| **Maverick** | Idea‑heavy, low follow‑through | Low for routine load | Distracted by detail work |
+| **Persuader** | Social multitasking | Moderate | Cognitive noise reduces clarity |
+| **Promoter** | High energy, short focus | Low | Rapid fatigue on deep work |
+| **Adapter** | Flexible, context‑sensitive | Moderate | Overloaded by competing demands |
+| **Craftsman** | Stepwise, quality‑driven | High for repetitive precision | Slows when interrupted |
+| **Guardian** | Predictable, low variance | High for routine | Stress when novelty increases |
+| **Operator** | Process‑oriented throughput | High for steady tasks | Disrupted by chaos |
+| **Individualist** | Deep conceptual focus | Moderate | Loses momentum under micromanagement |
+| **Scholar** | Intensive analytic processing | Very high for research | Paralysis when forced to act fast |
+
+**Guidance for workload management**
+
+* Assign high load tasks requiring deep focus to profiles like Analyzer, Specialist and Scholar, ensuring they have protected time and minimal interruptions.  Avoid overloading them with parallel tasks.
+* Use short, varied projects to energise Venturers, Mavericks and Promoters; they struggle with long, routine tasks.
+* Provide clear schedules and rules for Controllers and Guardians to maintain high load tolerance; ambiguity and rapid change trigger overload.
+* Recognise that social work energises Altruists and Collaborators but drains them when they work in isolation.  Encourage collaborative sessions and check‑ins.
+`,
+  },
+  {
+    id: "cognitive-processing-style-lens",
+    lens: "Cognitive Processing Style Lens",
+    status: "",
+    source: "Cognitive_Processing_Style.txt",
+    content: `
+Cognitive Processing Style Lens
+
+**Overview**
+
+This lens describes how a person naturally processes information—distinct from intelligence or personality.  Six processing styles are commonly recognised in organisational psychology and cognitive ergonomics:
+
+1. **Analytical** – linear, structured, rule‑based and detail‑driven thinking.
+2. **Intuitive** – pattern‑spotting, associative and fast‑thinking.
+3. **Conceptual** – abstract, systems‑level and integrative thinking.
+4. **Experiential** – hands‑on, trial‑and‑error and sensory‑driven cognition.
+5. **Social‑Cognitive** – people‑reading, relational inference and emotional patterning.
+6. **Adaptive / Contextual** – flexible switching and situational reasoning.
+
+Most individuals exhibit a dominant style and a secondary style that influence their approach to problem solving.  Under stress, people may exaggerate their dominant style or revert to maladaptive patterns.
+
+**Crosswalk by PI Profile**
+
+| PI Profile | Dominant style | Secondary style | Stress‑mode expression | Rationale |
+|---|---|---|---|---|
+| **Analyzer** | Analytical | Conceptual | Hyper‑analysis and over‑checking | Precision and structure with low social drive |
+| **Controller** | Analytical | Adaptive (rule‑based switching) | Rigid rule enforcement | Focus on order and compliance |
+| **Specialist** | Analytical | Experiential (technical depth) | Narrow focus and withdrawal | Deep technical reasoning |
+| **Strategist** | Conceptual | Analytical | Over‑theorising and dismissing detail | Systems thinking combined with logic |
+| **Venturer** | Intuitive | Conceptual | Impulsive heuristics | Fast pattern spotting with risk appetite |
+| **Altruist** | Social‑Cognitive | Adaptive | Over‑accommodation | People‑first reasoning |
+| **Captain** | Intuitive | Analytical | Decisive oversimplification | Fast action balanced by outcome logic |
+| **Collaborator** | Social‑Cognitive | Adaptive | Avoidance and deferring | Relational integration and harmony |
+| **Maverick** | Conceptual | Intuitive | Chaotic ideation | Creative and disruptive cognition |
+| **Persuader** | Social‑Cognitive | Intuitive | Emotion‑driven reasoning | Influence and audience reading |
+| **Promoter** | Intuitive | Social‑Cognitive | Impulsive, reactive decisions | Fast, expressive, improvisational thinking |
+| **Adapter** | Adaptive | Social‑Cognitive | Quiet withdrawal | Flexible situational reasoning |
+| **Craftsman** | Experiential | Analytical | Perfectionistic detail | Hands‑on, quality‑driven cognition |
+| **Guardian** | Analytical | Experiential | Over‑caution | Stability and rule‑based reasoning |
+| **Operator** | Experiential | Analytical | Rigid routine | Process and execution focus |
+| **Individualist** | Conceptual | Intuitive | Detached ideation | Creative and independent reasoning |
+| **Scholar** | Analytical | Conceptual | Over‑analysis | Rigorous, structured cognition |
+
+**Practical tips**
+
+* Engage analytical processors with structured data, clear rules and step‑by‑step logic; allow time for deep analysis before asking for decisions.
+* Intuitive thinkers benefit from rapid brainstorming and freedom to explore; they excel in environments where fast pattern recognition is valued.
+* Conceptual processors thrive on big‑picture questions and integrative challenges; involve them in strategy, architecture and scenario planning.
+* Experiential learners need hands‑on involvement and tangible prototypes; avoid abstract theorising without practical application.
+* Social‑cognitive processors read interpersonal cues and anticipate responses; use collaborative workshops and give them access to stakeholders.
+* Adaptive processors excel at switching contexts; provide varied tasks and encourage them to help bridge across functional boundaries.
+`,
+  },
 ];
 
 // Index by id for O(1) lookup
