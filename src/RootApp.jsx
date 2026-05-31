@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
-import { BrainCircuit, ClipboardList, Layers3 } from 'lucide-react';
+import { BrainCircuit, ClipboardList, Layers3, Brain } from 'lucide-react';
 import FullApp from './FullApp.jsx';
 import EmployeeBuilder from './components/EmployeeBuilder.jsx';
 import AIScenarioCoach from './components/AIScenarioCoach.jsx';
+import HumanSystemsIntelligence from './components/HumanSystemsIntelligence.jsx';
 
 function cx(...classes) {
   return classes.filter(Boolean).join(' ');
@@ -24,69 +25,102 @@ export default function RootApp() {
       </div>
 
       <div className="relative mx-auto max-w-[96rem] px-4 py-5 sm:px-6 lg:px-8">
-        <div className="mb-5 overflow-hidden rounded-[2rem] border border-white/10 bg-white/[0.07] p-4 shadow-2xl shadow-black/20 backdrop-blur-xl">
-          <div className="flex flex-col gap-4 lg:flex-row lg:items-center lg:justify-between">
-            <div>
-              <div className="flex flex-wrap items-center gap-2">
-                <Pill>Human Systems Intelligence</Pill>
-                <Pill>Transparent Inference</Pill>
-                <Pill>Custom Profiles</Pill>
-                <Pill>AI Scenario Coach</Pill>
+        {/* Only show the top nav bar when NOT in HSI mode (HSI has its own header) */}
+        {mode !== 'hsi' && (
+          <div className="mb-5 overflow-hidden rounded-[2rem] border border-white/10 bg-white/[0.07] p-4 shadow-2xl shadow-black/20 backdrop-blur-xl">
+            <div className="flex flex-col gap-4 lg:flex-row lg:items-center lg:justify-between">
+              <div>
+                <div className="flex flex-wrap items-center gap-2">
+                  <Pill>Human Systems Intelligence</Pill>
+                  <Pill>Transparent Inference</Pill>
+                  <Pill>Custom Profiles</Pill>
+                  <Pill>AI Scenario Coach</Pill>
+                </div>
+                <h1 className="mt-3 text-2xl font-bold tracking-tight text-white sm:text-4xl">PI-App Control Center</h1>
+                <p className="mt-2 max-w-4xl text-sm leading-6 text-white/60">
+                  Explore every lens, build a person-specific working profile, or ask the AI Scenario Coach for cautious, nonjudgmental manager guidance using the selected profile context.
+                </p>
               </div>
-              <h1 className="mt-3 text-2xl font-bold tracking-tight text-white sm:text-4xl">PI-App Control Center</h1>
-              <p className="mt-2 max-w-4xl text-sm leading-6 text-white/60">
-                Explore every lens, build a person-specific working profile, or ask the AI Scenario Coach for cautious, nonjudgmental manager guidance using the selected profile context.
-              </p>
-            </div>
 
-            <div className="grid gap-2 rounded-3xl border border-white/10 bg-black/20 p-2 sm:grid-cols-3">
-              <button
-                type="button"
-                onClick={() => setMode('system')}
-                className={cx(
-                  'flex items-center gap-3 rounded-2xl border px-4 py-3 text-left transition',
-                  mode === 'system' ? 'border-sky-300/40 bg-sky-500/15 text-white' : 'border-white/10 bg-white/[0.04] text-white/55 hover:bg-white/10'
-                )}
-              >
-                <Layers3 className="h-5 w-5" />
-                <div>
-                  <div className="text-sm font-semibold">Full System</div>
-                  <div className="text-xs opacity-70">All visible tabs</div>
-                </div>
-              </button>
+              <div className="grid gap-2 rounded-3xl border border-white/10 bg-black/20 p-2 sm:grid-cols-2 lg:grid-cols-4">
+                <button
+                  type="button"
+                  onClick={() => setMode('system')}
+                  className={cx(
+                    'flex items-center gap-3 rounded-2xl border px-4 py-3 text-left transition',
+                    mode === 'system' ? 'border-sky-300/40 bg-sky-500/15 text-white' : 'border-white/10 bg-white/[0.04] text-white/55 hover:bg-white/10'
+                  )}
+                >
+                  <Layers3 className="h-5 w-5" />
+                  <div>
+                    <div className="text-sm font-semibold">Full System</div>
+                    <div className="text-xs opacity-70">All visible tabs</div>
+                  </div>
+                </button>
 
-              <button
-                type="button"
-                onClick={() => setMode('builder')}
-                className={cx(
-                  'flex items-center gap-3 rounded-2xl border px-4 py-3 text-left transition',
-                  mode === 'builder' ? 'border-fuchsia-300/40 bg-fuchsia-500/15 text-white' : 'border-white/10 bg-white/[0.04] text-white/55 hover:bg-white/10'
-                )}
-              >
-                <ClipboardList className="h-5 w-5" />
-                <div>
-                  <div className="text-sm font-semibold">Employee Builder</div>
-                  <div className="text-xs opacity-70">Create working profile</div>
-                </div>
-              </button>
+                <button
+                  type="button"
+                  onClick={() => setMode('builder')}
+                  className={cx(
+                    'flex items-center gap-3 rounded-2xl border px-4 py-3 text-left transition',
+                    mode === 'builder' ? 'border-fuchsia-300/40 bg-fuchsia-500/15 text-white' : 'border-white/10 bg-white/[0.04] text-white/55 hover:bg-white/10'
+                  )}
+                >
+                  <ClipboardList className="h-5 w-5" />
+                  <div>
+                    <div className="text-sm font-semibold">Employee Builder</div>
+                    <div className="text-xs opacity-70">Create working profile</div>
+                  </div>
+                </button>
 
-              <button
-                type="button"
-                onClick={() => setMode('ai')}
-                className={cx(
-                  'flex items-center gap-3 rounded-2xl border px-4 py-3 text-left transition',
-                  mode === 'ai' ? 'border-emerald-300/40 bg-emerald-500/15 text-white' : 'border-white/10 bg-white/[0.04] text-white/55 hover:bg-white/10'
-                )}
-              >
-                <BrainCircuit className="h-5 w-5" />
-                <div>
-                  <div className="text-sm font-semibold">AI Scenario Coach</div>
-                  <div className="text-xs opacity-70">Ask what happened</div>
-                </div>
-              </button>
+                <button
+                  type="button"
+                  onClick={() => setMode('ai')}
+                  className={cx(
+                    'flex items-center gap-3 rounded-2xl border px-4 py-3 text-left transition',
+                    mode === 'ai' ? 'border-emerald-300/40 bg-emerald-500/15 text-white' : 'border-white/10 bg-white/[0.04] text-white/55 hover:bg-white/10'
+                  )}
+                >
+                  <BrainCircuit className="h-5 w-5" />
+                  <div>
+                    <div className="text-sm font-semibold">AI Scenario Coach</div>
+                    <div className="text-xs opacity-70">Ask what happened</div>
+                  </div>
+                </button>
+
+                <button
+                  type="button"
+                  onClick={() => setMode('hsi')}
+                  className={cx(
+                    'flex items-center gap-3 rounded-2xl border px-4 py-3 text-left transition',
+                    mode === 'hsi' ? 'border-amber-300/40 bg-amber-500/15 text-white' : 'border-white/10 bg-white/[0.04] text-white/55 hover:bg-white/10'
+                  )}
+                >
+                  <Brain className="h-5 w-5" />
+                  <div>
+                    <div className="text-sm font-semibold">HSI Dashboard</div>
+                    <div className="text-xs opacity-70">104 × 17 system</div>
+                  </div>
+                </button>
+              </div>
             </div>
           </div>
-        </div>
+        )}
+
+        {/* HSI mode has its own full-page header, no wrapper needed */}
+        {mode === 'hsi' && (
+          <div>
+            <div className="mb-4 flex">
+              <button
+                onClick={() => setMode('system')}
+                className="flex items-center gap-2 rounded-xl border border-white/10 bg-white/[0.05] px-4 py-2 text-sm text-white/60 hover:text-white hover:bg-white/10 transition"
+              >
+                ← Back to Control Center
+              </button>
+            </div>
+            <HumanSystemsIntelligence />
+          </div>
+        )}
 
         {mode === 'system' && <FullApp />}
         {mode === 'builder' && (
