@@ -4,6 +4,7 @@ import EmployeeBuilderMode from "./components/modes/EmployeeBuilder.jsx";
 import AIScenarioCoachMode from "./components/modes/AIScenarioCoach.jsx";
 import { LENSES, LENS_META, LENS_CATEGORIES } from "./data/lensData.js";
 import { PI_PROFILES } from "./data/profiles.js";
+import { signalGlassStaticLenses, signalGlassLensIndex } from "./data/signalGlassStaticLenses.js";
 import { motion, AnimatePresence } from "framer-motion";
 import {
   BarChart,

@@ -1,15 +1,35 @@
-import React, { useState } from 'react';
-import { Search, X } from 'lucide-react';
+import React, { useState, useMemo } from 'react';
+import { Search, X, CheckCircle, Circle } from 'lucide-react';
 import { PI_PROFILES } from '../../data/profiles';
 import { LENSES, LENS_META, LENS_CATEGORIES } from '../../data/lensData';
+import { signalGlassStaticLenses } from '../../data/signalGlassStaticLenses';
 import LensWindow from '../LensWindow';
 import ProfileDetail from '../ProfileDetail';
+
+// Build verified name set once
+const verifiedNames = new Set(signalGlassStaticLenses.map(l => l.lens.toLowerCase()));
+function isVerified(name) {
+  if (!name) return false;
+  const n = name.toLowerCase();
+  return verifiedNames.has(n) || [...verifiedNames].some(v => v.includes(n) || n.includes(v));
+}
 
 export default function FullSystem({ profile, activeLens, onSelectLens, onSelectProfile }) {
   const [search, setSearch] = useState('');
 
+  // Merge LENS_META entries + any signalGlass lenses not in meta
+  const allLensEntries = useMemo(() => {
+    const metaEntries = Object.entries(LENS_META);
+    const metaNameSet = new Set(Object.values(LENS_META).map(m => m.name.toLowerCase()));
+    const extraStatic = signalGlassStaticLenses.filter(l =>
+      !metaNameSet.has(l.lens.toLowerCase()) &&
+      ![...metaNameSet].some(m => m.includes(l.lens.toLowerCase()) || l.lens.toLowerCase().includes(m))
+    ).map(l => [l.id, { name: l.lens, category: 'additional' }]);
+    return [...metaEntries, ...extraStatic];
+  }, []);
+
   const filteredLenses = search
-    ? Object.entries(LENS_META).filter(([id, m]) => m.name.toLowerCase().includes(search.toLowerCase()))
+    ? allLensEntries.filter(([, m]) => m.name.toLowerCase().includes(search.toLowerCase()))
     : null;
 
   const selectedProfile = PI_PROFILES.find(p => p.id === profile);
@@ -35,7 +55,7 @@ export default function FullSystem({ profile, activeLens, onSelectLens, onSelect
                 {k:'Extraversion', v:selectedProfile.extraversion},
                 {k:'Patience',     v:selectedProfile.patience},
                 {k:'Formality',    v:selectedProfile.formality},
-              ].map(s => (
+              ].filter(s => s.v !== undefined).map(s => (
                 <div key={s.k}>
                   <div className="flex justify-between text-xs mb-0.5">
                     <span className="text-slate-500">{s.k}</span>
@@ -68,12 +88,22 @@ export default function FullSystem({ profile, activeLens, onSelectLens, onSelect
           {search && <button onClick={() => setSearch('')} className="absolute right-2 top-1/2 -translate-y-1/2"><X size={12} className="text-slate-500" /></button>}
         </div>
 
+        {/* Verified count badge */}
+        <div className="flex items-center gap-1.5 px-1">
+          <CheckCircle size={11} className="text-emerald-400" />
+          <span className="text-[11px] text-emerald-400/70">{signalGlassStaticLenses.length} lenses with verified source content</span>
+        </div>
+
         {/* Lens List */}
         {filteredLenses ? (
           <div className="space-y-0.5">
             {filteredLenses.map(([id, m]) => (
               <button key={id} onClick={() => onSelectLens(id)}
-                className={`w-full text-left px-3 py-2 rounded-lg text-xs transition-all sidebar-lens-btn ${activeLens===id ? 'active text-indigo-300' : 'text-slate-400 hover:text-slate-200'}`}>
+                className={`w-full text-left px-3 py-2 rounded-lg text-xs transition-all sidebar-lens-btn flex items-center gap-1.5 ${activeLens===id ? 'active text-indigo-300' : 'text-slate-400 hover:text-slate-200'}`}>
+                {isVerified(m.name)
+                  ? <CheckCircle size={9} className="text-emerald-400/70 flex-shrink-0" />
+                  : <Circle size={9} className="text-slate-700 flex-shrink-0" />
+                }
                 {m.name}
               </button>
             ))}
@@ -90,7 +120,11 @@ export default function FullSystem({ profile, activeLens, onSelectLens, onSelect
                   <div className="space-y-0.5">
                     {catLenses.map(([id, m]) => (
                       <button key={id} onClick={() => onSelectLens(id)}
-                        className={`w-full text-left px-3 py-1.5 rounded-lg text-xs transition-all sidebar-lens-btn ${activeLens===id ? 'active text-indigo-300' : 'text-slate-400 hover:text-slate-200'}`}>
+                        className={`w-full text-left px-3 py-1.5 rounded-lg text-xs transition-all sidebar-lens-btn flex items-center gap-1.5 ${activeLens===id ? 'active text-indigo-300' : 'text-slate-400 hover:text-slate-200'}`}>
+                        {isVerified(m.name)
+                          ? <CheckCircle size={9} className="text-emerald-400/70 flex-shrink-0" />
+                          : <Circle size={9} className="text-slate-700 flex-shrink-0" />
+                        }
                         {m.name}
                       </button>
                     ))}

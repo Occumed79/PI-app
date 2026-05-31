@@ -1,17 +1,33 @@
-import React, { useState } from 'react';
-import { Brain, Users, Sparkles, ChevronLeft, ChevronRight, LayoutDashboard, ChevronDown, ChevronUp } from 'lucide-react';
+import React, { useState, useMemo } from 'react';
+import { Brain, Users, Sparkles, ChevronLeft, ChevronRight, LayoutDashboard, ChevronDown, ChevronUp, CheckCircle, Circle } from 'lucide-react';
 import { PI_PROFILES, PROFILE_GROUPS } from '../data/profiles';
 import { LENS_CATEGORIES, LENS_META } from '../data/lensData';
+import { signalGlassStaticLenses } from '../data/signalGlassStaticLenses';
 
 const MODES = [
-  { id:'home',    label:'Dashboard',       icon: LayoutDashboard },
-  { id:'full',    label:'Full System',     icon: Brain },
-  { id:'builder', label:'Employee Builder',icon: Users },
+  { id:'home',    label:'Dashboard',        icon: LayoutDashboard },
+  { id:'full',    label:'Full System',      icon: Brain },
+  { id:'builder', label:'Employee Builder', icon: Users },
   { id:'coach',   label:'AI Scenario Coach',icon: Sparkles },
 ];
 
+// Build a set of lens IDs that have source-verified content
+const verifiedLensNames = new Set(signalGlassStaticLenses.map(l => l.lens.toLowerCase()));
+
+function isVerified(metaName) {
+  if (!metaName) return false;
+  const n = metaName.toLowerCase();
+  return verifiedLensNames.has(n) ||
+    [...verifiedLensNames].some(v => v.includes(n) || n.includes(v));
+}
+
 export default function Sidebar({ open, onToggle, mode, onSelectMode, selectedProfile, onSelectProfile, activeLens, onSelectLens }) {
   const [expandedCat, setExpandedCat] = useState(null);
+
+  const verifiedCount = useMemo(() =>
+    Object.values(LENS_META).filter(m => isVerified(m.name)).length,
+    []
+  );
 
   if (!open) return (
     <div className="fixed left-0 top-0 h-full z-50 flex flex-col items-center py-4 gap-3"
@@ -75,7 +91,6 @@ export default function Sidebar({ open, onToggle, mode, onSelectMode, selectedPr
           <p className="text-xs font-semibold text-slate-500 uppercase tracking-widest px-2 mb-2">Select Profile</p>
           <div className="grid grid-cols-2 gap-1">
             {PI_PROFILES.map(p => {
-              const grp = PROFILE_GROUPS[p.group];
               const active = selectedProfile === p.id;
               return (
                 <button key={p.id} onClick={() => onSelectProfile(p.id)}
@@ -93,39 +108,94 @@ export default function Sidebar({ open, onToggle, mode, onSelectMode, selectedPr
 
         {/* Lens Navigator */}
         <div className="px-1">
-          <p className="text-xs font-semibold text-slate-500 uppercase tracking-widest px-2 mb-2">63 Lenses</p>
+          <div className="flex items-center justify-between px-2 mb-2">
+            <p className="text-xs font-semibold text-slate-500 uppercase tracking-widest">Lenses</p>
+            <span className="text-[10px] text-emerald-400/70">
+              {signalGlassStaticLenses.length} verified
+            </span>
+          </div>
+
           {LENS_CATEGORIES.map(cat => {
             const catLenses = Object.entries(LENS_META).filter(([,v]) => v.category === cat.id);
             const isExp = expandedCat === cat.id;
+            const catVerified = catLenses.filter(([,v]) => isVerified(v.name)).length;
+
             return (
               <div key={cat.id} className="mb-0.5">
                 <button onClick={() => setExpandedCat(isExp ? null : cat.id)}
                   className="w-full flex items-center justify-between px-3 py-2 rounded-lg text-xs text-slate-400 hover:text-slate-200 hover:bg-white/5 transition-all">
                   <span className="font-medium">{cat.label}</span>
-                  <span className="flex items-center gap-1">
+                  <span className="flex items-center gap-2">
+                    {catVerified > 0 && (
+                      <span className="text-emerald-400/60 text-[10px]">{catVerified}✓</span>
+                    )}
                     <span className="text-slate-600">{catLenses.length}</span>
                     {isExp ? <ChevronUp size={12}/> : <ChevronDown size={12}/>}
                   </span>
                 </button>
                 {isExp && (
                   <div className="ml-2 space-y-0.5">
-                    {catLenses.map(([id, meta]) => (
-                      <button key={id} onClick={() => onSelectLens(id)}
-                        className={`w-full text-left px-3 py-1.5 rounded text-xs transition-all sidebar-lens-btn ${activeLens===id ? 'active text-indigo-300' : 'text-slate-500 hover:text-slate-300'}`}>
-                        {meta.name}
+                    {catLenses.map(([id, meta]) => {
+                      const verified = isVerified(meta.name);
+                      return (
+                        <button key={id} onClick={() => onSelectLens(id)}
+                          className={`w-full text-left px-3 py-1.5 rounded text-xs transition-all sidebar-lens-btn flex items-center gap-1.5 ${activeLens===id ? 'active text-indigo-300' : 'text-slate-500 hover:text-slate-300'}`}>
+                          {verified
+                            ? <CheckCircle size={9} className="text-emerald-400/70 flex-shrink-0" />
+                            : <Circle size={9} className="text-slate-700 flex-shrink-0" />
+                          }
+                          <span>{meta.name}</span>
+                        </button>
+                      );
+                    })}
+                  </div>
+                )}
+              </div>
+            );
+          })}
+
+          {/* Also list static lenses not in LENS_META */}
+          {(() => {
+            const metaNames = new Set(Object.values(LENS_META).map(m => m.name.toLowerCase()));
+            const orphans = signalGlassStaticLenses.filter(l =>
+              !metaNames.has(l.lens.toLowerCase()) &&
+              ![...metaNames].some(m => m.includes(l.lens.toLowerCase()) || l.lens.toLowerCase().includes(m))
+            );
+            if (!orphans.length) return null;
+            const isExp = expandedCat === '__static__';
+            return (
+              <div className="mb-0.5">
+                <button onClick={() => setExpandedCat(isExp ? null : '__static__')}
+                  className="w-full flex items-center justify-between px-3 py-2 rounded-lg text-xs text-slate-400 hover:text-slate-200 hover:bg-white/5 transition-all">
+                  <span className="font-medium">Additional Lenses</span>
+                  <span className="flex items-center gap-2">
+                    <span className="text-emerald-400/60 text-[10px]">{orphans.length}✓</span>
+                    {isExp ? <ChevronUp size={12}/> : <ChevronDown size={12}/>}
+                  </span>
+                </button>
+                {isExp && (
+                  <div className="ml-2 space-y-0.5">
+                    {orphans.map(l => (
+                      <button key={l.id} onClick={() => onSelectLens(l.id)}
+                        className={`w-full text-left px-3 py-1.5 rounded text-xs transition-all sidebar-lens-btn flex items-center gap-1.5 ${activeLens===l.id ? 'active text-indigo-300' : 'text-slate-500 hover:text-slate-300'}`}>
+                        <CheckCircle size={9} className="text-emerald-400/70 flex-shrink-0" />
+                        <span>{l.lens}</span>
                       </button>
                     ))}
                   </div>
                 )}
               </div>
             );
-          })}
+          })()}
         </div>
       </div>
 
       {/* Footer */}
       <div className="px-4 py-3 border-t border-white/5">
-        <p className="text-xs text-slate-600">PI Looking Glass • Andy's Intelligence Suite</p>
+        <div className="flex items-center justify-between">
+          <p className="text-xs text-slate-600">PI Looking Glass</p>
+          <p className="text-[10px] text-emerald-400/50">{signalGlassStaticLenses.length} lenses loaded</p>
+        </div>
       </div>
     </div>
   );
