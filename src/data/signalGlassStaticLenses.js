@@ -9811,6 +9811,615 @@ Individuals have primary, secondary and tertiary quadrants indicating their comf
 * Watch stress shifts: Under pressure, primary quadrants may intensify (e.g., analyzers over‑analyse, controllers become rigid); anticipate these reactions and offer support such as clarifying expectations or introducing alternative perspectives.
 `,
   },
+  {
+    id: "hexaco-personality-model-lens",
+    lens: "HEXACO Personality Model Lens",
+    status: "",
+    source: "HEXACO_Lens(1).txt",
+    content: `
+HEXACO Personality Model Lens
+============================
+
+**Overview and theoretical background**
+
+The **HEXACO** model is a six‑dimensional extension of the Big Five that adds
+an **Honesty–Humility** factor and reorganizes Agreeableness and Emotional
+Stability.  Researchers Lee and Ashton developed the model after lexical
+studies across multiple languages suggested that traits relating to
+sincerity, fairness, and modesty form a distinct dimension beyond the
+traditional Big Fivehttps://en.wikipedia.org/wiki/HEXACO_model_of_personality_structure#:~:text=conscientiousness%20%20,humility%20dimension.%5B%205.  The HEXACO factors are:
+
+1. **Honesty–Humility** – sincerity, fairness, greed avoidance and
+   modesty; low scorers are manipulative, entitled and status‑seekinghttps://en.wikipedia.org/wiki/HEXACO_model_of_personality_structure#:~:text=conscientiousness%20%20,humility%20dimension.%5B%205.
+2. **Emotionality** – fearfulness, anxiety, dependence and sentimentality;
+   conceptually similar to Neuroticism but with greater emphasis on
+   vulnerability and attachmenthttps://en.wikipedia.org/wiki/HEXACO_model_of_personality_structure#:~:text=%2A%20Honesty,shallow%2C%20unimaginative%2C%20conventional.
+3. **Extraversion** – sociability, liveliness, social self‑esteem and
+   assertivenesshttps://en.wikipedia.org/wiki/HEXACO_model_of_personality_structure#:~:text=%2A%20Honesty,shallow%2C%20unimaginative%2C%20conventional.
+4. **Agreeableness** (versus anger) – patience, gentleness, tolerance and
+   forgiveness; low scorers are critical and argumentativehttps://en.wikipedia.org/wiki/HEXACO_model_of_personality_structure#:~:text=%2A%20Honesty,shallow%2C%20unimaginative%2C%20conventional.
+5. **Conscientiousness** – organization, diligence, perfectionism and
+   prudencehttps://en.wikipedia.org/wiki/HEXACO_model_of_personality_structure#:~:text=%2A%20Honesty,shallow%2C%20unimaginative%2C%20conventional.
+6. **Openness to Experience** – curiosity, creativity, aesthetic
+   appreciation and unconventionalityhttps://en.wikipedia.org/wiki/HEXACO_model_of_personality_structure#:~:text=%2A%20Honesty,shallow%2C%20unimaginative%2C%20conventional.
+
+The addition of Honesty–Humility allows the model to account for
+interpersonal ethics and tendencies toward exploitation.  Higher scores on
+Honesty–Humility correlate with pro‑social behavior, while lower scores
+predict Machiavellianism and narcissism.
+
+**Cross‑framework translation with PI profiles**
+
+The table below offers approximate HEXACO patterns for each PI reference
+profile.  “Dominant traits” capture the strongest dimensions; “Secondary”
+traits are notable but less pronounced; “Cautions” highlight potential
+dark‑side tendencies when strengths are overused; “Growth suggestions” offer
+development tips.
+
+| PI profile | Dominant HEXACO traits | Secondary traits | Cautions | Growth suggestions |
+|---|---|---|---|---|
+| **Analyzer** | High Conscientiousness; moderate Honesty–Humility. Values accuracy and fairness. | Low Extraversion; moderate Openness. | May become overly perfectionistic or inflexible. | Embrace creative thinking and share work early to build trust. |
+| **Controller** | High Conscientiousness; moderate Extraversion. Direct and pragmatic. | Low Agreeableness; moderate Honesty–Humility. | Can appear domineering or dismissive. | Practice humility and active listening; foster patience with different paces. |
+| **Specialist** | High Conscientiousness; high Honesty–Humility. Precise and dependable. | Low Extraversion; moderate Agreeableness. | Risk of rigidity and resistance to change. | Allow room for curiosity; communicate ideas openly. |
+| **Strategist** | High Openness; high Conscientiousness. Visionary and disciplined. | Moderate Honesty–Humility; low Agreeableness. | May overanalyze or dismiss alternative viewpoints. | Balance analytical rigor with empathy and collaboration. |
+| **Venturer** | High Openness; high Extraversion. Bold and innovative. | Low Honesty–Humility; low Agreeableness. | May overestimate capabilities or pursue risky ventures. | Cultivate humility, consistency and respect for process. |
+| **Individualist** | High Openness; moderate Honesty–Humility. Independent and creative. | Low Agreeableness; low Extraversion. | Can become aloof or appear indifferent. | Engage in team discussions; practice patience with differing perspectives. |
+| **Scholar** | High Openness; high Conscientiousness. Imaginative and meticulous. | High Honesty–Humility; low Extraversion. | Tendency to retreat into analysis, delaying decisions. | Share insights proactively; seek feedback to refine ideas. |
+| **Altruist** | High Honesty–Humility; high Agreeableness. Sincere and supportive. | Moderate Conscientiousness; moderate Emotionality. | May neglect own needs or avoid confrontation. | Set boundaries and voice concerns; balance care with directness. |
+| **Captain** | High Extraversion; high Openness. Confident, charismatic leader. | Moderate Honesty–Humility; low Agreeableness. | Could become self‑focused or dismiss detail. | Embrace humility; solicit diverse opinions; follow through on plans. |
+| **Collaborator** | High Agreeableness; high Honesty–Humility. Cooperative and patient. | Moderate Emotionality; moderate Conscientiousness. | May accommodate too much or avoid tough decisions. | Develop assertiveness and structured follow‑through. |
+| **Maverick** | High Openness; high Extraversion. Adventurous and unconventional. | Low Honesty–Humility; low Conscientiousness. | Risk of impulsiveness and rule‑breaking. | Introduce structure and accountability; appreciate others’ needs. |
+| **Persuader** | High Extraversion; high Openness. Poised persuader. | Moderate Conscientiousness; low Agreeableness. | May overpromise or gloss over details. | Increase diligence; balance persuasion with transparency. |
+| **Promoter** | High Extraversion; high Honesty–Humility. Friendly and persuasive. | High Agreeableness; low Conscientiousness. | Could become scattered or avoid detail work. | Use checklists and clear goals; maintain consistency. |
+| **Adapter** | Balanced across traits. Flexible and diplomatic. | Moderate Honesty–Humility; moderate Agreeableness. | May lack strong preferences; risk of over‑accommodating. | Clarify personal boundaries; prioritize tasks to avoid diffusion. |
+| **Artisan** | High Conscientiousness; high Openness. Analytical and artistic. | High Honesty–Humility; low Extraversion. | May become overly perfectionistic or reclusive. | Engage with team early; accept iterative progress. |
+| **Guardian** | High Honesty–Humility; high Conscientiousness. Loyal and detail‑oriented. | Low Openness; moderate Agreeableness. | Might resist change and suppress dissent. | Explore new ideas gradually; encourage constructive debate. |
+| **Operator** | Moderate Conscientiousness; high Honesty–Humility. Reliable and easy‑going. | High Agreeableness; low Openness. | May avoid initiative or innovation. | Build confidence to voice ideas; pursue skill development and variety. |
+
+**Practical implications**
+
+The HEXACO lens highlights ethical and interpersonal tendencies alongside the
+traditional Big Five traits.  For example, profiles with low Honesty–Humility
+(Venturer, Maverick) may need support in avoiding competitive or
+status‑seeking behaviors, while those high in Emotionality (Collaborator,
+Altruist) may benefit from resilience and stress‑management strategies.  By
+mapping PI profiles to HEXACO, managers can tailor feedback and development
+efforts: encouraging low Agreeableness profiles to practice patience and
+forgiveness, or challenging low Openness profiles to experiment with new
+ideas.  Recognizing where each person sits on these six dimensions makes
+team composition, conflict management and leadership development more
+intentional and transparent.
+`,
+  },
+  {
+    id: "hogan-development-survey-hds-lens",
+    lens: "Hogan Development Survey (HDS) Lens",
+    status: "",
+    source: "Hogan_Development_Survey_Lens(1).txt",
+    content: `
+Hogan Development Survey (HDS) Lens
+===================================
+
+**Overview and theoretical background**
+
+The **Hogan Development Survey (HDS)** identifies personality tendencies
+that may derail careers when strengths are overused or when individuals
+are under stress.  Developed by Robert and Joyce Hogan, the HDS measures
+11 “dark side” traits grouped into three clustershttps://www.mindtools.com/asi16g0/the-hogan-development-survey/#:~:text=:
+
+*Cluster A – Moving Away (avoidance under stress)*
+
+1. **Excitable** – enthusiastic initially but moody and easily
+   disappointed; can become hard to please and unpredictablehttps://www.mindtools.com/asi16g0/the-hogan-development-survey/#:~:text=,often%20very%20difficult%20to%20please.
+2. **Skeptical** – perceptive and critical, but may become distrustful and
+   argumentative under stresshttps://www.mindtools.com/asi16g0/the-hogan-development-survey/#:~:text=,if%20they%20do%20or%20say.
+3. **Cautious** – careful and risk‑averse; may avoid taking initiative for
+   fear of mistakeshttps://www.mindtools.com/asi16g0/the-hogan-development-survey/#:~:text=,as%20unassertive%2C%20slow%20and%20pessimistic.
+4. **Reserved** – independent and private; may withdraw socially and seem
+   uncaringhttps://www.mindtools.com/asi16g0/the-hogan-development-survey/#:~:text=,centered.
+5. **Leisurely** – superficially agreeable but stubborn; may resist
+   direction and work on their own termshttps://www.mindtools.com/asi16g0/the-hogan-development-survey/#:~:text=,do%20things%20their%20own%20way.
+
+*Cluster B – Moving Against (aggression under stress)*
+
+6. **Bold** – confident and charismatic but can become overconfident,
+   arrogant and unwilling to admit mistakeshttps://www.mindtools.com/asi16g0/the-hogan-development-survey/#:~:text=,centered%2C%20and%20demanding.
+7. **Mischievous** – charming risk‑taker; may test rules, seek excitement
+   and ignore consequenceshttps://www.mindtools.com/asi16g0/the-hogan-development-survey/#:~:text=,commit%20to%20any%20one%20thing.
+8. **Colorful** – attention‑seeking and dramatic; may be distracting and
+   unfocusedhttps://www.mindtools.com/asi16g0/the-hogan-development-survey/#:~:text=,they%27re%20unfocused%2C%20and%20they%20don%27t.
+9. **Imaginative** – creative and visionary but may be eccentric and
+   impracticalhttps://www.mindtools.com/asi16g0/the-hogan-development-survey/#:~:text=,odd%2C%20eccentric%2C%20and%20lacking%20in.
+
+*Cluster C – Moving Toward (dependency under stress)*
+
+10. **Diligent** – conscientious and perfectionistic; may overwork and
+    micromanagehttps://www.mindtools.com/asi16g0/the-hogan-development-survey/#:~:text=,beside%20them%20feel%20inadequate%20and.
+11. **Dutiful** – polite and compliant; may be overly eager to please and
+    avoid independent judgmenthttps://www.mindtools.com/asi16g0/the-hogan-development-survey/#:~:text=,may%20just%20accept%20bad%20ideas.
+
+These derailers are not inherently negative; at moderate levels they
+reflect strengths.  However, high scores indicate that the behavior may
+emerge under pressure, hurting relationships and performance.  The HDS
+promotes awareness so leaders can manage their dark‑side tendencies.
+
+**Cross‑framework translation with PI profiles**
+
+The table below identifies potential derailers for each PI profile.
+“Likely derailers” are traits that may surface when the profile’s
+strengths are overused.  “Trigger situations” describe stressors that
+activate these behaviors; “Development strategies” offer coaching ideas.
+
+| PI profile | Likely derailers | Trigger situations | Development strategies |
+|---|---|---|---|
+| **Analyzer** | Cautious, Diligent | High uncertainty, ambiguous requirements, pressure for rapid decisions. | Build tolerance for risk; practice prioritizing key details over perfection; take calculated action. |
+| **Controller** | Bold, Skeptical, Diligent | Criticism, slow progress, lack of control. | Encourage humility and openness to feedback; delegate without micromanaging; foster trust through transparency. |
+| **Specialist** | Reserved, Cautious, Diligent | Sudden change, social pressure, high workload. | Engage in open communication; seek feedback early; allow imperfection to foster agility. |
+| **Strategist** | Bold, Imaginative, Skeptical | Constraints on vision, micromanagement, resistance to change. | Balance ambition with reality; listen actively; develop trust and patience with process. |
+| **Venturer** | Mischievous, Bold, Colorful | Routine tasks, bureaucratic barriers, limited autonomy. | Respect rules and stakeholders; cultivate prudence; ensure plans are viable before acting. |
+| **Individualist** | Reserved, Leisurely, Skeptical | Forced collaboration, repetitive work, close supervision. | Communicate intent; build alliances; adopt accountability partners to maintain momentum. |
+| **Scholar** | Cautious, Reserved, Diligent | Time pressure, conflict, unclear expectations. | Practice decision making under constraint; share progress; manage perfectionism by embracing iterative learning. |
+| **Altruist** | Dutiful, Cautious, Reserved | Conflict, lack of appreciation, overcommitment. | Set boundaries; voice dissent constructively; avoid overextending to please others. |
+| **Captain** | Bold, Colorful, Imaginative | Lack of recognition, slow results, rigid structures. | Encourage feedback; reflect on impact; temper charisma with listening and detail orientation. |
+| **Collaborator** | Dutiful, Leisurely | Decision impasses, unresolved conflict, competing demands. | Develop assertiveness; prioritize tasks; handle tough conversations directly. |
+| **Maverick** | Mischievous, Imaginative, Bold | Confining procedures, prolonged routine, skepticism from others. | Pair with structured colleagues; reflect on consequences; channel creativity into viable strategies. |
+| **Persuader** | Colorful, Mischievous | Monotony, lack of audience, critical feedback. | Practice active listening; verify facts before committing; manage attention to detail. |
+| **Promoter** | Colorful, Dutiful | Tedious detail work, negative feedback, lack of social interaction. | Build personal organization systems; accept constructive critique; focus on substance along with style. |
+| **Adapter** | Dutiful, Leisurely, Reserved | Competing priorities, conflicting directives, chaotic teams. | Clarify goals and roles; assert own opinions; avoid passive resistance. |
+| **Artisan** | Diligent, Reserved | Tight deadlines, vague expectations, heavy social demands. | Share early drafts; accept “good enough”; cultivate collaboration and communication skills. |
+| **Guardian** | Cautious, Dutiful | Rapid change, unpredictability, conflicting values. | Engage in change management training; practice flexibility; voice concerns proactively. |
+| **Operator** | Dutiful, Leisurely | High pressure, complex instructions, lack of support. | Seek clarity; ask for help; take initiative gradually; avoid disengaging. |
+
+**Practical implications**
+
+The HDS lens helps leaders anticipate how their strengths may morph into
+liabilities under stress.  For example, Controllers and Strategists may
+become overly Bold or Skeptical, pushing people away; Venturers and
+Mavericks might veer into Mischievous rule‑breaking; Specialists and
+Scholars could retreat into caution and perfectionism.  By identifying
+likely derailers, individuals can monitor triggers, seek feedback and
+develop coping strategies—such as mindfulness, perspective‑taking or
+delegating.  Organizations can use the HDS lens in coaching and
+succession planning to ensure that high‑potential talent does not
+derail under pressure.
+`,
+  },
+  {
+    id: "hogan-personality-inventory-hpi-lens",
+    lens: "Hogan Personality Inventory (HPI) Lens",
+    status: "",
+    source: "Hogan_Personality_Inventory_Lens(1).txt",
+    content: `
+Hogan Personality Inventory (HPI) Lens
+=====================================
+
+**Overview and theoretical background**
+
+The **Hogan Personality Inventory (HPI)** measures day‑to‑day personality
+traits relevant to occupational performance.  Based on the Five Factor
+Model, the HPI was designed to predict how individuals relate to others,
+approach tasks, and manage stressmetaberatung.com/wp-content/uploads/2024/07/mB-Insight-Package-with-occup.-Scales-incl.-Flash-EN.pdf#:~:text=The%20HPI%20is%20based%20upon,averse.  The
+assessment contains seven primary scales:
+
+1. **Adjustment** – emotional stability and self‑confidence.  High scores
+   indicate calm and resilient individuals; low scores suggest
+   sensitivity and reactivitymetaberatung.com/wp-content/uploads/2024/07/mB-Insight-Package-with-occup.-Scales-incl.-Flash-EN.pdf#:~:text=The%20HPI%20is%20based%20upon,averse.
+2. **Ambition** – competitiveness, initiative and drive for leadership.
+   High scorers are energetic and goal‑oriented; low scorers are
+   content to support othersmetaberatung.com/wp-content/uploads/2024/07/mB-Insight-Package-with-occup.-Scales-incl.-Flash-EN.pdf#:~:text=The%20HPI%20is%20based%20upon,averse.
+3. **Sociability** – extraversion and gregariousness.  High scores denote
+   outgoing, expressive people; low scores reflect reserved, private
+   individualsmetaberatung.com/wp-content/uploads/2024/07/mB-Insight-Package-with-occup.-Scales-incl.-Flash-EN.pdf#:~:text=The%20HPI%20is%20based%20upon,averse.
+4. **Interpersonal Sensitivity** – tact, friendliness and empathy.
+   High scorers are warm and perceptive; low scorers may be blunt and
+   frankmetaberatung.com/wp-content/uploads/2024/07/mB-Insight-Package-with-occup.-Scales-incl.-Flash-EN.pdf#:~:text=The%20HPI%20is%20based%20upon,averse.
+5. **Prudence** – self‑discipline, reliability and attention to detail.
+   High scores indicate organized, conscientious people; low scores
+   reflect spontaneity and flexibilitymetaberatung.com/wp-content/uploads/2024/07/mB-Insight-Package-with-occup.-Scales-incl.-Flash-EN.pdf#:~:text=The%20HPI%20is%20based%20upon,averse.
+6. **Inquisitive** – imagination, curiosity and strategic thinking.
+   High scorers enjoy solving complex problems; low scorers prefer
+   practical, hands‑on workmetaberatung.com/wp-content/uploads/2024/07/mB-Insight-Package-with-occup.-Scales-incl.-Flash-EN.pdf#:~:text=The%20HPI%20is%20based%20upon,averse.
+7. **Learning Approach** – enjoyment of reading and continuous learning.
+   High scorers seek knowledge and development; low scorers prefer
+   experiential learningmetaberatung.com/wp-content/uploads/2024/07/mB-Insight-Package-with-occup.-Scales-incl.-Flash-EN.pdf#:~:text=The%20HPI%20is%20based%20upon,averse.
+
+The HPI is descriptive rather than clinical and helps organizations match
+individuals to roles, develop talent and build effective teams.
+
+**Cross‑framework translation with PI profiles**
+
+The table below approximates how PI profiles align with HPI scales.
+“High” and “Low” denote relative tendencies; “Strengths” highlight how
+these traits manifest; “Development focus” suggests coaching points.
+
+| PI profile | Adjustment | Ambition | Sociability | Interpersonal Sensitivity | Prudence | Inquisitive | Learning Approach | Strengths | Development focus |
+|---|---|---|---|---|---|---|---|---|---|
+| **Analyzer** | High | Moderate | Low | Moderate | High | High | High | Calm, methodical problem solver with strategic insight. | Build visibility and assertiveness; encourage collaboration and adaptability. |
+| **Controller** | Moderate | High | Moderate | Low | High | Moderate | Moderate | Driven executor with operational discipline. | Practice empathy and relationship management; balance pace with reflection. |
+| **Specialist** | High | Low | Low | Moderate | High | Moderate | Moderate | Reliable expert with strong attention to detail. | Increase willingness to influence; embrace strategic thinking and learning outside comfort zone. |
+| **Strategist** | High | High | Moderate | Low | High | High | High | Visionary planner who balances precision and innovation. | Improve interpersonal sensitivity; communicate vision inclusively. |
+| **Venturer** | High | High | High | Low | Low | High | Moderate | Entrepreneurial leader who inspires change and pursues opportunities. | Develop prudence and follow‑through; practice active listening and humility. |
+| **Individualist** | High | Moderate | Low | Low | Moderate | High | High | Independent thinker with strategic depth. | Engage in teamwork; develop social rapport and patience. |
+| **Scholar** | High | Low | Low | High | High | High | High | Thoughtful, supportive specialist who values learning. | Become comfortable advocating ideas; balance study with decisive action. |
+| **Altruist** | High | Low | High | High | Moderate | Moderate | Moderate | Empathetic team member who nurtures relationships. | Build self‑assertion and ambition; manage workload boundaries. |
+| **Captain** | High | High | High | Moderate | Moderate | High | Moderate | Charismatic leader who connects vision to action. | Focus on details and prudence; temper ambition with inclusiveness. |
+| **Collaborator** | High | Low | High | High | Low | Moderate | Moderate | Harmonizing team player who fosters consensus. | Strengthen structure and assertiveness; prioritize tasks to avoid drift. |
+| **Maverick** | High | High | High | Low | Low | High | Low | Bold innovator unafraid of risk. | Cultivate prudence and reliability; respect interpersonal boundaries. |
+| **Persuader** | High | High | High | Moderate | Low | Moderate | Moderate | Influential motivator with social energy. | Provide structure for execution; manage commitments carefully. |
+| **Promoter** | High | Low | High | High | Low | Moderate | Low | Energetic connector who spreads enthusiasm. | Develop discipline and strategic focus; avoid superficiality. |
+| **Adapter** | High | Moderate | Moderate | High | Moderate | Moderate | Moderate | Versatile collaborator able to bridge gaps. | Define clear goals; avoid over‑accommodating; invest in personal ambition. |
+| **Artisan** | High | Low | Low | Moderate | High | High | Moderate | Creative craftsman with precision and imagination. | Practice self‑promotion; develop social boldness; balance perfectionism with timeliness. |
+| **Guardian** | High | Low | Low | High | High | Low | Moderate | Supportive, detail‑oriented stabilizer who values harmony. | Embrace change and strategic thinking; voice ideas proactively. |
+| **Operator** | High | Low | Moderate | High | Moderate | Low | Low | Patient, easy‑going contributor who values teamwork. | Build initiative and ambition; pursue continued learning and skills development. |
+
+**Practical implications**
+
+Mapping PI profiles onto HPI scales highlights which behaviours are likely
+to be strengths and which areas may require development.  For example,
+Controllers and Persuaders share high Ambition but differ in Prudence
+levels; Controllers may be more structured, whereas Persuaders need
+support building follow‑through systems.  High Learning Approach profiles
+like Analyzers and Scholars may thrive in knowledge‑rich roles, while
+low Learning Approach profiles such as Operators and Promoters may prefer
+hands‑on learning.  Using the HPI lens helps align individuals with
+roles that match their motivational drives and informs coaching plans to
+address blind spots.
+`,
+  },
+  {
+    id: "insights-discovery-color-model-lens",
+    lens: "Insights Discovery (Color Model) Lens",
+    status: "",
+    source: "Insights_Discovery_Color_Model(1).txt",
+    content: `
+Insights Discovery (Color Model) Lens
+
+**Overview**
+
+The Insights Discovery framework maps individual preferences to four colours—red, yellow, green and blue—that represent different behavioural energies.  Each colour reflects a unique combination of decisiveness, sociability, analytical rigour and relational focus:
+
+* **Red energy** – direct, decisive and action‑driven.  People with strong red energy prioritise results and move quickly toward goals.
+* **Yellow energy** – energetic, expressive and social.  Yellow types are enthusiastic, persuasive and thrive on interaction.
+* **Green energy** – supportive, steady and relational.  High‑green individuals value harmony, collaboration and stability.
+* **Blue energy** – analytical, precise and structured.  People with high blue energy are detail‑oriented, logical and methodical.
+
+In practice individuals rarely express one colour exclusively.  Most display a dominant colour, a secondary colour that moderates the dominant energy, and a “stress shift” indicating where they tend to go under pressure.  The crosswalk below summarises the dominant and secondary colours, stress behaviours and communication tips for each of the 17 Predictive Index (PI) behavioural profiles described in the source document.  The rationale column offers a one‑line explanation linking the profile’s core drives to its colour pattern.
+
+**Colour Crosswalk by PI Profile**
+
+| PI Profile | Dominant colour | Secondary colour | Stress shift | Do (communication) | Don’t (communication) | Rationale |
+|---|---|---|---|---|---|---|
+| **Analyzer** | Blue | Red | Hyper‑Blue (over‑analysis and rigidity) | Be precise, structured and factual | Avoid vagueness or emotional appeals | High detail orientation and low social drive |
+| **Controller** | Blue | Red | Blue → controlling Red | Provide rules, clarity and compliance paths | Don’t surprise them or break process | Seeks order and authority with low sociability |
+| **Specialist** | Blue | Green | Withdrawn Blue | Give detail, time and accuracy | Don’t push for fast decisions | Values depth, precision and stability |
+| **Strategist** | Red | Blue | Red → dismissive Blue | Be concise, strategic and outcome‑focused | Don’t over‑explain or get emotional | Combines vision with logic and drive |
+| **Venturer** | Red | Yellow | Impulsive Red | Move fast, give autonomy | Don’t slow them down with detail | Bold, opportunistic and high‑energy |
+| **Altruist** | Green | Blue | Over‑accommodating Green | Be warm, supportive and predictable | Don’t be abrupt or confrontational | People‑first focus with need for stability |
+| **Captain** | Red | Yellow | Aggressive Red | Be direct, decisive and confident | Don’t waffle or hesitate | Commanding, assertive and mobilising |
+| **Collaborator** | Green | Yellow | Passive Green | Be inclusive, patient and relational | Don’t rush decisions or create conflict | Harmony and facilitation are core drivers |
+| **Maverick** | Yellow | Red | Chaotic Yellow | Encourage creativity and big ideas | Don’t over‑structure or constrain | Bold, expressive and disruptive |
+| **Persuader** | Yellow | Red | Dramatic Yellow | Be energetic, engaging and people‑focused | Don’t be cold or overly technical | Influence and charisma define their style |
+| **Promoter** | Yellow | Red | Over‑promising Yellow | Be upbeat, fast and collaborative | Don’t bury them in detail | High energy focused on activation and visibility |
+| **Adapter** | Green | Blue | Quiet withdrawal | Be steady, clear and respectful | Don’t force fast decisions | Flexible and relational with balance |
+| **Craftsman** | Blue | Green | Perfectionistic Blue | Provide detail, standards and clarity | Don’t change things last‑minute | Quality and precision are paramount |
+| **Guardian** | Green | Blue | Defensive Green | Be predictable, respectful and structured | Don’t push sudden change | Stability and stewardship are priorities |
+| **Operator** | Blue | Green | Rigid Blue | Give process, clarity and expectations | Don’t be chaotic or inconsistent | Execution and reliability define them |
+| **Individualist** | Yellow | Blue | Detached Yellow | Respect autonomy and creativity | Don’t micromanage | Expressive, analytical and independent |
+| **Scholar** | Blue | Green | Over‑thinking Blue | Provide data, time and structure | Don’t pressure for fast decisions | Analytical and methodical by nature |
+
+**Using this lens**
+
+* When communicating with someone, lead with their dominant colour: provide structure and data for blue‑dominant profiles; set clear expectations and give autonomy for red‑dominant types; make time for connection and harmony for green‑dominant people; and focus on enthusiasm and ideation for yellow‑dominant profiles.
+* Recognise the stress shift: under pressure, blue types become overly analytical, red types may become controlling, yellow types can become chaotic and green types may withdraw or over‑accommodate.  Adjust your interactions accordingly.
+* Acknowledge that secondary colours moderate the dominant energy—e.g., a red‑blue strategist is more analytical and systems‑oriented than a purely red captain.  Use secondary colours to refine your approach.
+`,
+  },
+  {
+    id: "interpersonal-dynamics-inventory-lens",
+    lens: "Interpersonal Dynamics Inventory Lens",
+    status: "",
+    source: "Interpersonal_Dynamics_Inventory(1).txt",
+    content: `
+Interpersonal Dynamics Inventory Lens
+
+**Overview**
+
+The Interpersonal Dynamics Inventory assesses the way individuals express dominance, warmth, expressiveness and control in relationships.  It highlights how people show up in interactions and how they respond under pressure.  Each PI profile exhibits a primary interpersonal pattern (dominance, warmth, expressiveness and control mix), a secondary dynamic that influences behaviour and a stress pattern that emerges when under strain.
+
+**Crosswalk by PI Profile**
+
+| PI Profile | Primary interpersonal pattern | Secondary dynamic | Stress behaviour |
+|---|---|---|---|
+| **Analyzer** | Low warmth; high control | Withdrawn and critical | Withdraws into critique |
+| **Controller** | High dominance; high control | Direct and rule‑oriented | Becomes punitive |
+| **Specialist** | Low expressiveness; high control | Reserved, detailed | Silent withdrawal |
+| **Strategist** | High dominance; low warmth | Strategic, directive | Overly directive |
+| **Venturer** | High dominance; high expressiveness | Bold and provocative | Provokes conflict |
+| **Altruist** | High warmth; low dominance | Supportive and accommodating | Over‑accommodates |
+| **Captain** | High dominance; moderate expressiveness | Commanding | Intimidates others |
+| **Collaborator** | High warmth; moderate expressiveness | Inclusive and relational | Avoids hard talk |
+| **Maverick** | High expressiveness; low control | Spontaneous and disruptive | Chaotic provocation |
+| **Persuader** | High expressiveness; moderate warmth | Energetic and engaging | Over‑personalises |
+| **Promoter** | High expressiveness; low control | Charismatic and enthusiastic | Dramatic escalation |
+| **Adapter** | Moderate warmth; moderate control | Balanced and flexible | Over‑adjusts |
+| **Craftsman** | Low expressiveness; high control | Methodical and reserved | Retreats into work |
+| **Guardian** | Moderate warmth; high control | Protective and structured | Defensive caution |
+| **Operator** | Low expressiveness; high control | Direct and practical | Rigid, blunt responses |
+| **Individualist** | Low warmth; moderate expressiveness | Independent and expressive | Detaches emotionally |
+| **Scholar** | Low expressiveness; high control | Analytical and reserved | Over‑analysis and silence |
+
+**Using this lens**
+
+* High dominance and control (e.g., Controller, Captain) signal a directive interpersonal style.  Be concise, respect boundaries and provide clear rationales to avoid triggering punitive reactions under stress.
+* High warmth profiles (e.g., Altruist, Collaborator) emphasise relationships.  Build trust through inclusion and empathy; stress may cause them to over‑accommodate or avoid confrontation.
+* High expressiveness with low control (e.g., Maverick, Promoter) yields spontaneous, dramatic interactions.  Channel their energy with structured agendas and set ground rules for discussions.
+* Low warmth and high control profiles (e.g., Analyzer, Specialist, Operator) may appear distant but value clarity and competence.  Provide structured communication and avoid forcing social intimacy.
+`,
+  },
+  {
+    id: "kirton-adaptioninnovation-inventory-kai-lens",
+    lens: "Kirton Adaption\u2013Innovation Inventory (KAI) Lens",
+    status: "",
+    source: "KAI_Lens(1).txt",
+    content: `
+Kirton Adaption–Innovation Inventory (KAI) Lens
+
+**Overview**
+
+The KAI assesses an individual’s preferred problem‑solving style along a continuum from adaptor to innovator:
+
+* **Adaptors** prefer structure, improve existing systems, work within rules, minimise risk and value precision and stability.
+* **Innovators** challenge assumptions, bend or break rules, pursue radical change, tolerate high risk and value novelty and disruption.
+
+Most people fall somewhere between these poles.  The KAI helps predict conflict in teams, change management challenges and suitability for innovation roles.
+
+**Crosswalk by PI Profile**
+
+| PI Profile | Position on adaptor–innovator continuum | Problem‑solving style | Rule orientation | Change tolerance | Preferred environment | Stress behaviour | Rationale |
+|---|---|---|---|---|---|---|---|
+| **Analyzer** | Strong Adaptor | Methodical, structured | High | Low | Stable, predictable | Over‑analysis | Precision and structure |
+| **Controller** | Very Strong Adaptor | Rule‑driven, procedural | Very High | Very Low | High control | Rigidity | Governance and order |
+| **Specialist** | Strong Adaptor | Technical, detail‑driven | High | Low | Deep expertise | Withdrawal | Domain mastery |
+| **Strategist** | Moderate Innovator | Conceptual, systems‑level | Low‑Moderate | High | Ambiguous, strategic | Over‑complexity | Vision and logic |
+| **Venturer** | Strong Innovator | Fast, disruptive | Very Low | Very High | High risk, high autonomy | Impulsive action | Bold, opportunistic |
+| **Altruist** | Moderate Adaptor | People‑first, relational | Moderate | Moderate | Cooperative | Over‑accommodation | Harmony oriented |
+| **Captain** | Moderate Innovator | Decisive, outcome‑driven | Low | High | Fast‑moving | Over‑assertive shortcuts | Command and action |
+| **Collaborator** | Moderate Adaptor | Consensus‑oriented | Moderate | Low‑Moderate | Harmonious | Avoidance | Relational stability |
+| **Maverick** | Very Strong Innovator | Non‑linear, disruptive | Very Low | Very High | Creative chaos | Disorder and provocation | Radical creativity |
+| **Persuader** | Moderate Innovator | Social‑creative | Low | High | Dynamic, people‑driven | Emotional reasoning | Influence and improvisation |
+| **Promoter** | Strong Innovator | Energetic, improvisational | Very Low | Very High | High energy, high novelty | Impulsive shifts | Expressive disruptor |
+| **Adapter** | Balanced Adaptor | Flexible, situational | Moderate | Moderate | Cooperative, stable | Over‑adjustment | Flexible but not disruptive |
+| **Craftsman** | Strong Adaptor | Structured, quality‑driven | Very High | Low | Predictable, precise | Perfectionistic delay | Methodical execution |
+| **Guardian** | Very Strong Adaptor | Conservative, risk‑averse | Very High | Very Low | Stable, structured | Over‑caution | Stewardship and continuity |
+| **Operator** | Strong Adaptor | Practical, process‑driven | High | Low | Routine, clear | Rigid routine | Execution and reliability |
+| **Individualist** | Moderate Innovator | Independent, creative | Low | High | Autonomous, flexible | Detached ideation | Creative autonomy |
+| **Scholar** | Moderate Adaptor | Analytical, structured | High | Low‑Moderate | Predictable, intellectual | Over‑analysis | Academic structure |
+
+**Implications for teams**
+
+* Adaptor‑dominant teams excel at refinement, quality assurance and process control but may resist radical change.  Introduce innovators to drive transformation while managing conflict through clear boundaries.
+* Innovator‑dominant teams generate breakthrough ideas but can create chaos without adaptors to implement and stabilise.  Pair innovators with adaptors to balance novelty and execution.
+* Moderate positions (e.g., Adaptors with some innovative tendencies) are useful as bridges.  They can translate between rule‑oriented and disruptive colleagues.
+`,
+  },
+  {
+    id: "keirsey-temperament-theory-lens",
+    lens: "Keirsey Temperament Theory Lens",
+    status: "",
+    source: "Keirsey_Temperament_Lens(1).txt",
+    content: `
+Keirsey Temperament Theory Lens
+==============================
+
+**Overview and theoretical background**
+
+David Keirsey’s Temperament Theory builds on the Myers‑Briggs framework but
+clusters the 16 types into four broader **temperaments**: **Guardian (SJ)**,
+**Artisan (SP)**, **Idealist (NF)** and **Rational (NT)**.  Each
+temperament describes core needs, values and preferred interactions:
+
+- **Guardian (SJ)** – grounded organizers who value security, responsibility
+  and tradition.  They focus on stability, duty and maintaining order and
+  are often practical, dependable and detail‑orientedhttps://www.lifemaphq.com/articles/keirsey-temperament-theory-guide-tips#:~:text=The%20Four%20Keirsey%20Temperaments%20at,a%20Glance.
+- **Artisan (SP)** – energetic creators who thrive on hands‑on results,
+  improvisation and excitement.  They are spontaneous, playful and enjoy
+  working with tangible outcomeshttps://www.lifemaphq.com/articles/keirsey-temperament-theory-guide-tips#:~:text=The%20Four%20Keirsey%20Temperaments%20at,a%20Glance.
+- **Idealist (NF)** – empathic visionaries who seek meaning, harmony and
+  authentic relationships.  They excel at understanding people’s
+  motivations and are driven by personal growth and purposehttps://www.lifemaphq.com/articles/keirsey-temperament-theory-guide-tips#:~:text=The%20Four%20Keirsey%20Temperaments%20at,a%20Glance.
+- **Rational (NT)** – analytical strategists who pursue competence,
+  independence and innovation.  They are intellectually curious and
+  systems‑oriented, with a long‑term focushttps://www.lifemaphq.com/articles/keirsey-temperament-theory-guide-tips#:~:text=The%20Four%20Keirsey%20Temperaments%20at,a%20Glance.
+
+Keirsey’s model translates MBTI preferences into motivational styles and
+communication patterns.
+
+**Cross‑framework translation with PI profiles**
+
+The table below aligns PI profiles to Keirsey temperaments based on their
+dominant drives and behaviors.  “Primary temperament” reflects the likely
+fit; “Motivations” summarize what energizes the profile; “Stress
+triggers” describe situations that undermine them; and “Development
+actions” suggest ways to grow and collaborate across temperaments.
+
+| PI profile | Primary temperament | Motivations | Stress triggers | Development actions |
+|---|---|---|---|---|
+| **Analyzer** | Rational (NT) | Mastery of complex problems; logical clarity and systems. | Ambiguity, disorganization, emotional appeals. | Engage in brainstorming and storytelling to complement data; practice empathy in communication. |
+| **Controller** | Guardian (SJ) / Rational (NT) | Order, efficiency and achieving results. | Lack of structure, indecision, inefficiency. | Balance rule adherence with adaptability; nurture relationships and patience. |
+| **Specialist** | Guardian (SJ) | Accuracy, predictability and respect for expertise. | Rapid change, unclear expectations, disregard for quality. | Embrace flexibility; share knowledge proactively; build trust with openness. |
+| **Strategist** | Rational (NT) | Long‑range planning, innovation and influence. | Micromanagement, tactical minutiae, short‑term focus. | Collaborate with guardians for implementation; cultivate patience and listening. |
+| **Venturer** | Rational (NT) / Artisan (SP) | Autonomy, risk taking, opportunity creation. | Bureaucracy, routine, slow decision making. | Pair with guardians to ensure sustainability; channel energy into structured initiatives. |
+| **Individualist** | Rational (NT) | Independence, intellectual challenge and mastery. | Forced collaboration, superficiality, micromanagement. | Seek common goals; practice diplomacy; appreciate others’ contributions. |
+| **Scholar** | Idealist (NF) / Rational (NT) | Learning, imagination and accuracy. | Conflict, rigid hierarchy, rushed decisions. | Advocate for values; find mentors; share vision in tangible ways. |
+| **Altruist** | Idealist (NF) / Guardian (SJ) | Helping others, community and harmony. | Selfishness, conflict, neglect of relationships. | Develop assertiveness; set boundaries; align service with strategic goals. |
+| **Captain** | Rational (NT) / Idealist (NF) | Leading change, big‑picture influence, recognition. | Being micromanaged, stagnation, lack of recognition. | Cultivate humility; empower team members; maintain follow‑through. |
+| **Collaborator** | Idealist (NF) | Team unity, consensus and positive relationships. | Conflict, competition, abrupt decisions. | Strengthen decision‑making skills; be comfortable with disagreement; advocate for needs. |
+| **Maverick** | Artisan (SP) / Rational (NT) | Freedom, experimentation and bold innovation. | Restrictive processes, conformity, mundane tasks. | Adopt structure for sustainability; listen to stakeholder feedback; nurture patience. |
+| **Persuader** | Artisan (SP) / Idealist (NF) | Social impact, influence and inspiring others. | Isolation, routine, lack of audience. | Ground enthusiasm with realistic planning; build resilience to rejection. |
+| **Promoter** | Artisan (SP) / Idealist (NF) | Networking, excitement and creative improvisation. | Administrative detail, criticism, prolonged routine. | Use tools to stay organized; listen to others’ perspectives; commit to follow‑through. |
+| **Adapter** | Guardian (SJ) / Idealist (NF) | Balance, cooperation and practical harmony. | Polarized positions, unclear roles, forced competition. | Voice personal opinions; develop expertise; avoid over‑accommodating. |
+| **Artisan** | Artisan (SP) / Rational (NT) | Craftsmanship, precision and creativity. | Rigid rules, lack of autonomy, rushed timelines. | Share process updates; invite collaboration; embrace time constraints as creative prompts. |
+| **Guardian** | Guardian (SJ) | Stability, duty and preserving traditions. | Rapid change, ambiguous rules, unpredictability. | Embrace incremental innovation; encourage diverse perspectives; recognize when to loosen control. |
+| **Operator** | Guardian (SJ) | Steady contribution, tangible results and support. | High uncertainty, conflict, pressure to lead. | Advocate for own needs; explore new challenges; build confidence in decision making. |
+
+**Practical implications**
+
+Understanding Keirsey temperaments helps teams appreciate underlying
+motivations.  Guardians (SJ) like Specialists and Operators value
+reliability and clear expectations, while Artisans (SP) like Mavericks
+crave spontaneity and hands‑on engagement.  Rationals (NT) such as
+Analyzers and Strategists prefer strategic thinking and autonomy,
+whereas Idealists (NF) like Collaborators and Altruists prioritize
+relationships and meaning.  When forming teams or coaching employees,
+balance temperaments to ensure both innovation and stability, and tailor
+communication to the core needs of each temperament.
+`,
+  },
+  {
+    id: "kolbe-a-index-conation-lens",
+    lens: "Kolbe A Index (Conation) Lens",
+    status: "",
+    source: "Kolbe_A_Index(1).txt",
+    content: `
+Kolbe A Index (Conation) Lens
+
+**Overview**
+
+The Kolbe A Index measures conative strengths—how people naturally take action.  It evaluates four Action Modes on a 1–10 scale, which we translate qualitatively here:
+
+1. **Fact Finder** – gathers and shares information; ranges from simplifying to explaining.
+2. **Follow Thru** – organises, structures and systematises; ranges from adapting to systematising.
+3. **Quick Start** – deals with risk, uncertainty and change; ranges from stabilising to innovating.
+4. **Implementor** – handles space, tangibility and physical solutions; ranges from envisioning to building.
+
+Individuals typically have a dominant mode that drives their behaviour, along with patterns that emerge under stress.  The table below summarises each PI profile’s conative pattern.
+
+**Crosswalk by PI Profile**
+
+| PI Profile | Fact Finder | Follow Thru | Quick Start | Implementor | Primary conative mode | Stress pattern | Rationale |
+|---|---|---|---|---|---|---|---|
+| **Analyzer** | High | High | Low | Low | Systematise | Over‑structuring | Precision and structure |
+| **Controller** | High | Very High | Very Low | Low | Enforce systems | Rigidity | Rules and order |
+| **Specialist** | High | High | Low | Low‑Moderate | Deep dive + structure | Over‑focus | Domain mastery |
+| **Strategist** | High | Moderate | High | Low | Vision + logic | Over‑complexity | Systems and innovation |
+| **Venturer** | Low | Low | Very High | Low | Innovate | Impulsive risk | Bold, fast action |
+| **Altruist** | Moderate | Moderate | Low‑Moderate | Low | Adapt | Over‑accommodation | People‑first execution |
+| **Captain** | Moderate | Moderate | High | Low | Drive + innovate | Over‑assertive shortcuts | Command and action |
+| **Collaborator** | Moderate | Moderate | Low‑Moderate | Low | Adapt + harmonise | Avoidance | Relational execution |
+| **Maverick** | Low | Low | Very High | Low | Disruptive innovation | Chaos | Creative, non‑linear action |
+| **Persuader** | Low‑Moderate | Low | High | Low | Social innovation | Over‑promising | Influence and improvisation |
+| **Promoter** | Low | Low | Very High | Low | Activate + innovate | Impulsive shifts | Energetic improvisation |
+| **Adapter** | Moderate | Moderate | Moderate | Low | Flexible adaptation | Over‑adjustment | Situational execution |
+| **Craftsman** | High | Very High | Very Low | Moderate | Systematise + perfect | Perfectionistic delay | Quality and structure |
+| **Guardian** | High | Very High | Very Low | Low‑Moderate | Preserve systems | Over‑caution | Stewardship and stability |
+| **Operator** | Moderate | High | Low | Moderate | Execute reliably | Rigid routine | Process and consistency |
+| **Individualist** | Moderate | Low | High | Low | Innovate independently | Detached improvisation | Creative autonomy |
+| **Scholar** | Very High | High | Low | Low | Analyse + structure | Over‑analysis | Academic rigour |
+
+**Practical implications**
+
+* High Fact Finder and Follow Thru (e.g., Analyzer, Controller, Scholar) thrive in roles requiring research, compliance and planning.  They may struggle with rapid innovation or ambiguous tasks.
+* High Quick Start (e.g., Venturer, Maverick, Promoter) energises people who embrace change and uncertainty.  Provide them with opportunities for innovation but pair them with colleagues who ensure follow‑through.
+* Moderate, balanced patterns (e.g., Adapter) indicate versatility.  These individuals can fill gaps and coordinate across teams but need clarity on priorities to avoid over‑stretching.
+* Stress patterns reveal risk: Over‑structuring can lead to bureaucracy; impulsive risk may result in chaos; over‑adjustment can dilute effectiveness.  Awareness helps teams plan complementary collaborations.
+`,
+  },
+  {
+    id: "leadership-circle-profile-lcp-lens",
+    lens: "Leadership Circle Profile (LCP) Lens",
+    status: "",
+    source: "Leadership_Circle_Profile_Lens(1).txt",
+    content: `
+Leadership Circle Profile (LCP) Lens
+===================================
+
+**Overview**
+
+The Leadership Circle Profile (LCP) integrates leadership competencies with underlying reactive tendencies.  It measures two primary domains: **Creative Competencies** and **Reactive Tendencies**https://fredriklyhagen.com/leadership-circle-profile/#:~:text=Your%20impact%20as%20a%20leader,your%20impact%20as%20a%20leader.  
+
+* **Creative Competencies:** These include relating, self‑awareness, authenticity, systems thinking and achieving.  Creative leaders are purpose‑driven, courageous and engage others through vision and collaborationhttps://fredriklyhagen.com/leadership-circle-profile/#:~:text=Your%20impact%20as%20a%20leader,your%20impact%20as%20a%20leader.
+* **Reactive Tendencies:** These are patterns driven by fear or a need for approval, control or protection.  Reactive leaders may become compliant (seeking approval), controlling (imposing their will) or protective (withdrawn)https://fredriklyhagen.com/leadership-circle-profile/#:~:text=Your%20impact%20as%20a%20leader,your%20impact%20as%20a%20leader.  
+* High creative scores correlate strongly with leadership effectiveness, whereas reactive styles often limit potentialhttps://fredriklyhagen.com/leadership-circle-profile/#:~:text=The%20top%20half%20of%20the,contribute%20to%20a%20leader%E2%80%99s%20effectiveness.
+
+The LCP helps leaders understand the balance between creative and reactive patterns and provides a roadmap for development.
+
+**Creative vs. Reactive Crosswalk by PI Profile**
+
+This table estimates where each PI profile naturally sits on the creative–reactive continuum and highlights predominant reactive tendencies.  Individuals may shift along the spectrum depending on context and development.
+
+| PI Profile | Likely creative orientation | Common reactive tendencies | Notes |
+|---|---|---|---|
+| **Analyzer** | Creative – Systems thinking and analytical rigour | Compliant (seeking approval by perfecting analysis) | Focus on integrating analysis with courageous decision‑making. |
+| **Controller** | Reactive – Controlling | Controlling (overly directive, fear of losing control) | Development involves fostering trust and empowering others. |
+| **Specialist** | Reactive – Protective | Protective (withdraws, plays safe) | Growth comes from stepping into relational and visionary leadership. |
+| **Strategist** | Creative – Systems & Purpose | Controlling when stressed | Leverage strategic thinking while practising openness and shared leadership. |
+| **Venturer** | Creative – Achieving | Controlling or impulsive (overdrive) | Channel drive into purpose and collaboration; temper impulsivity. |
+| **Altruist** | Creative – Relating | Compliant (over‑accommodating) | Strengthen boundaries while maintaining empathy. |
+| **Captain** | Creative – Achieving | Controlling (directive) | Balance charisma with listening and delegation. |
+| **Collaborator** | Creative – Relating | Compliant (conflict avoidance) | Practice courageous conversations and assertiveness. |
+| **Maverick** | Creative – Authenticity | Controlling or protective when resisted | Harness creativity while building trust and systems thinking. |
+| **Persuader** | Creative – Relating/Achieving | Compliant (approval seeking) | Develop authentic influence and clear boundaries. |
+| **Promoter** | Creative – Achieving/Relating | Compliant or controlling under pressure | Focus on substance over style and empower others. |
+| **Adapter** | Reactive – Protective/Compliant | Withdraws or over‑accommodates | Build confidence to contribute ideas and challenge the status quo. |
+| **Craftsman** | Reactive – Protective | Perfectionistic and risk‑averse | Step into more visionary, relational leadership. |
+| **Guardian** | Reactive – Protective | Overly cautious and compliant | Encourage risk‑taking and authenticity while maintaining stewardship. |
+| **Operator** | Reactive – Controlling/Protective | Micromanages and resists change | Shift towards trusting others and embracing systems thinking. |
+| **Individualist** | Creative – Authenticity & Vision | Controlling when challenged | Integrate independence with collaboration and courage. |
+| **Scholar** | Creative – Systems & Relating | Protective (withdrawn) | Engage more visibly and share insights with courage. |
+
+**Using this lens**
+
+* Encourage leaders to cultivate creative competencies—authenticity, systems thinking, relational skills and purpose—rather than relying on reactive patterns.  Creative leadership correlates with effectiveness and sustainable resultshttps://fredriklyhagen.com/leadership-circle-profile/#:~:text=The%20top%20half%20of%20the,contribute%20to%20a%20leader%E2%80%99s%20effectiveness.
+* Identify reactive tendencies and practice shifting them.  For example, a controlling Controller can practise delegating and empowering; a compliant Collaborator can practise asserting a viewpoint.
+* Use 360° feedback and coaching to raise awareness of how others perceive one’s creative and reactive behaviours.  Small shifts (e.g., listening more, sharing vision) can significantly increase leadership impact.`,
+  },
+  {
+    id: "leadership-versatility-index-lvi-lens",
+    lens: "Leadership Versatility Index (LVI) Lens",
+    status: "",
+    source: "Leadership_Versatility_Index_Lens(1).txt",
+    content: `
+Leadership Versatility Index (LVI) Lens
+======================================
+
+**Overview**
+
+The Leadership Versatility Index (LVI) assesses a leader’s capacity to balance opposing behaviours.  It measures two complementary pairs of dimensions: **Forceful vs. Enabling** and **Strategic vs. Operational**www.metaskills.com/wp-content/uploads/PDF/LVI2.1_PSample.pdf.  The goal is versatility—adapting behaviour according to the situation rather than overdoing or underdoing one sidewww.metaskills.com/wp-content/uploads/PDF/LVI2.1_PSample.pdf.
+
+* **Forceful vs. Enabling:** Forceful leaders influence by taking charge, making decisions and driving performance.  Enabling leaders influence by empowering, developing and supporting otherswww.metaskills.com/wp-content/uploads/PDF/LVI2.1_PSample.pdf.
+* **Strategic vs. Operational:** Strategic leaders focus on long‑term direction, vision and external alignment.  Operational leaders emphasise execution, processes and day‑to‑day detailswww.metaskills.com/wp-content/uploads/PDF/LVI2.1_PSample.pdf.
+* Overdoing any dimension leads to lopsided leadership (e.g., overly forceful can become authoritarian; overly enabling may lack direction).  Versatility involves balancing each pair and adapting as context changeswww.metaskills.com/wp-content/uploads/PDF/LVI2.1_PSample.pdf.
+
+**LVI Crosswalk by PI Profile**
+
+The table below suggests how each PI profile tends to distribute their influence across the four quadrants.  The primary column indicates the dominant quadrant; the secondary column captures a balancing dimension.  Development suggestions are included.
+
+| PI Profile | Dominant quadrant | Secondary quadrant | Development focus |
+|---|---|---|---|
+| **Analyzer** | Enabling–Strategic | Enabling–Operational | Balance analysis with decisive action and clarity of direction. |
+| **Controller** | Forceful–Operational | Forceful–Strategic | Develop enabling behaviours and strategic vision to avoid micromanagement. |
+| **Specialist** | Enabling–Strategic | Enabling–Operational | Step into forceful behaviours when needed and communicate vision more assertively. |
+| **Strategist** | Forceful–Strategic | Enabling–Strategic | Incorporate enabling practices such as coaching and develop operational discipline. |
+| **Venturer** | Forceful–Strategic | Forceful–Operational | Enhance enabling skills (delegation, development) and attend to operational consistency. |
+| **Altruist** | Enabling–Operational | Enabling–Strategic | Build forceful behaviours (clear direction) and strategic perspective. |
+| **Captain** | Forceful–Strategic | Forceful–Operational | Cultivate enabling practices (listening, empowerment) and emphasise operational discipline. |
+| **Collaborator** | Enabling–Operational | Enabling–Strategic | Develop forceful behaviours to drive decisions and strengthen strategic thinking. |
+| **Maverick** | Forceful–Strategic | Forceful–Operational | Balance with enabling (supporting others) and operational follow‑through. |
+| **Persuader** | Forceful–Strategic | Enabling–Strategic | Strengthen operational follow‑through and avoid over‑reliance on charisma. |
+| **Promoter** | Forceful–Operational | Enabling–Operational | Build strategic thinking and avoid over‑controlling or over‑influencing. |
+| **Adapter** | Enabling–Operational | Enabling–Strategic | Step into forceful behaviours and contribute to strategic discussions. |
+| **Craftsman** | Enabling–Operational | Enabling–Strategic | Develop forceful behaviours and strategic perspective to complement technical mastery. |
+| **Guardian** | Enabling–Operational | Enabling–Strategic | Increase forcefulness in decision‑making and embrace strategic thinking. |
+| **Operator** | Forceful–Operational | Enabling–Operational | Build strategic vision and enabling practices such as coaching. |
+| **Individualist** | Forceful–Strategic | Enabling–Strategic | Balance independence with enabling and operational discipline. |
+| **Scholar** | Enabling–Strategic | Enabling–Operational | Cultivate forceful leadership when needed and connect strategy to operations. |
+
+**Using this lens**
+
+* Use feedback to identify where you overdo or underdo behaviours.  A Controller may overdo forceful behaviours, while an Altruist may underdo them.  Practise flexing into the opposite behaviour when appropriate.
+* Consider the strategic–operational balance.  Strategists and Venturers may overlook operational details; Operators may neglect long‑term direction.  Pair people or schedule dedicated time to address the less‑preferred side.
+* Encourage leaders to adopt a situational approach, moving along the forceful/enabling and strategic/operational axes according to team maturity, task complexity and time pressure.`,
+  },
 ];
 
 // Index by id for O(1) lookup
