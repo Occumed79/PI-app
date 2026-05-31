@@ -27,6 +27,7 @@ import {
   YAxis,
 } from 'recharts';
 import { signalGlassStaticLenses } from '../data/signalGlassStaticLenses.js';
+import { getCanonicalSignalGlassLenses } from '../data/lensVisualRegistry.js';
 import { groups, profiles } from '../data/appProfiles.js';
 import {
   loadSavedProfiles,
@@ -35,6 +36,8 @@ import {
   saveProfilesToStorage,
   touchSavedProfile,
 } from '../data/savedProfiles.js';
+
+const canonicalLenses = getCanonicalSignalGlassLenses(signalGlassStaticLenses);
 
 const LEVEL_MAP = {
   'Very Low': 8,
@@ -119,7 +122,7 @@ function parseMarkdownTables(content = '') {
     buffer = [];
   }
 
-  for (const line of lines) {
+  lines.forEach((line) => {
     const trimmed = line.trim();
     if (trimmed.startsWith('##')) {
       flush();
@@ -129,7 +132,8 @@ function parseMarkdownTables(content = '') {
     } else {
       flush();
     }
-  }
+  });
+
   flush();
   return tables;
 }
@@ -247,8 +251,9 @@ function LensResultCard({ result, onOpen }) {
       <div className="flex items-start justify-between gap-3">
         <div>
           <Pill className={matched ? 'border-emerald-300/20 bg-emerald-500/10 text-emerald-100' : 'border-amber-300/20 bg-amber-500/10 text-amber-100'}>{matched ? 'Profile row found' : 'General lens'}</Pill>
+          {lens.duplicateCount > 1 && <Pill className="ml-2 border-sky-300/20 bg-sky-500/10 text-sky-100">Merged {lens.duplicateCount}</Pill>}
           <h3 className="mt-3 text-lg font-bold text-white group-hover:text-sky-100">{lens.lens}</h3>
-          <p className="mt-2 text-xs leading-5 text-white/45">{lens.source || 'Uploaded source'} · {lens.status || 'Lens'}</p>
+          <p className="mt-2 text-xs leading-5 text-white/45">{lens.visualLabel} · {lens.category}</p>
         </div>
         <Layers3 className="h-5 w-5 text-white/35 group-hover:text-sky-200" />
       </div>
@@ -290,6 +295,19 @@ function EmployeeCard({ item, isActive, onSelect, onDelete }) {
   );
 }
 
+function InsightBox({ title, icon: Icon, items }) {
+  return (
+    <Card>
+      <div className="p-6">
+        <SectionTitle icon={Icon} title={title} />
+        <div className="grid gap-2">
+          {items.map((item) => <div key={item} className="rounded-2xl border border-white/10 bg-white/[0.05] p-3 text-sm leading-5 text-white/60">{item}</div>)}
+        </div>
+      </div>
+    </Card>
+  );
+}
+
 export default function EmployeeBuilder() {
   const [employee, setEmployee] = useState({ name: '', role: '', department: '', notes: '' });
   const [baseProfileName, setBaseProfileName] = useState('Analyzer');
@@ -305,17 +323,18 @@ export default function EmployeeBuilder() {
 
   const results = useMemo(() => {
     const profileName = activeSavedProfile?.baseProfileName || activeBaseProfile.name;
-    return signalGlassStaticLenses.map((lens) => buildLensResult(lens, profileName));
+    return canonicalLenses.map((lens) => buildLensResult(lens, profileName));
   }, [activeSavedProfile, activeBaseProfile.name]);
 
   const filteredResults = useMemo(() => {
     const term = query.trim().toLowerCase();
     if (!term) return results;
-    return results.filter((result) => `${result.lens.lens} ${result.lens.source} ${result.summary}`.toLowerCase().includes(term));
+    return results.filter((result) => `${result.lens.lens} ${result.lens.visualLabel} ${result.lens.category} ${result.summary}`.toLowerCase().includes(term));
   }, [results, query]);
 
   const selectedResult = results.find((result) => result.lens.id === selectedLensId) || results[0];
   const matchedCount = results.filter((result) => result.matched).length;
+  const mergedCount = canonicalLenses.filter((lens) => lens.duplicateCount > 1).length;
 
   function updateEmployee(field, value) {
     setEmployee((current) => ({ ...current, [field]: value }));
@@ -336,7 +355,7 @@ export default function EmployeeBuilder() {
     setSavedProfiles(next);
     saveProfilesToStorage(next);
     setActiveProfileId(normalized.id);
-    setNotice(`Saved ${normalized.employee.name}. All ${signalGlassStaticLenses.length} lenses now apply automatically through ${normalized.baseProfileName}.`);
+    setNotice(`Saved ${normalized.employee.name}. ${canonicalLenses.length} cleaned lenses now apply automatically through ${normalized.baseProfileName}.`);
     setEmployee({ name: '', role: '', department: '', notes: '' });
   }
 
@@ -352,10 +371,13 @@ export default function EmployeeBuilder() {
     if (!profile) return;
     const payload = {
       ...profile,
-      appliedLensCount: signalGlassStaticLenses.length,
+      appliedLensCount: canonicalLenses.length,
+      rawLensSourceCount: signalGlassStaticLenses.length,
+      mergedDuplicateLensGroups: mergedCount,
       lensResults: results.map((result) => ({
         lens: result.lens.lens,
-        source: result.lens.source,
+        visualType: result.lens.visualType,
+        visualLabel: result.lens.visualLabel,
         matched: result.matched,
         fields: result.fields,
         summary: result.summary,
@@ -380,18 +402,18 @@ export default function EmployeeBuilder() {
             <div className="lg:col-span-8">
               <div className="mb-3 flex flex-wrap gap-2">
                 <Pill>Employee Profiles</Pill>
-                <Pill>No lens exclusion controls</Pill>
-                <Pill>{signalGlassStaticLenses.length} lenses auto-applied</Pill>
+                <Pill>{canonicalLenses.length} cleaned lenses</Pill>
+                <Pill>{mergedCount} merged duplicate groups</Pill>
               </div>
               <h2 className="text-4xl font-bold tracking-tight text-white md:text-5xl">Employee Profile Builder</h2>
               <p className="mt-4 max-w-4xl text-sm leading-6 text-white/65">
-                Create an employee card with basic info and a connected PI profile. When you open the card, every uploaded lens is automatically applied to that PI profile and displayed visually.
+                Create an employee card with basic info and a connected PI profile. The app now uses the cleaned canonical lens list so duplicate framework entries do not produce mismatched visuals.
               </p>
             </div>
             <div className="lg:col-span-4 rounded-3xl border border-white/10 bg-black/25 p-5">
               <div className="text-sm text-white/50">Active lens coverage</div>
               <div className="mt-2 text-5xl font-bold text-white">{matchedCount}</div>
-              <p className="mt-3 text-xs leading-5 text-white/50">Profile-specific rows found across the uploaded lens library for the selected employee card.</p>
+              <p className="mt-3 text-xs leading-5 text-white/50">Profile-specific rows found across the cleaned lens library for the selected employee card.</p>
             </div>
           </div>
         </div>
@@ -452,7 +474,7 @@ export default function EmployeeBuilder() {
                     <button type="button" onClick={() => exportProfile(activeSavedProfile)} className="inline-flex items-center justify-center gap-2 rounded-2xl border border-sky-300/30 bg-sky-500/15 px-4 py-3 text-sm font-semibold text-white hover:bg-sky-500/25">
                       <Download className="h-4 w-4" /> Export results
                     </button>
-                    <div className="rounded-2xl border border-white/10 bg-black/20 px-4 py-3 text-sm text-white/55">{signalGlassStaticLenses.length} lenses applied automatically</div>
+                    <div className="rounded-2xl border border-white/10 bg-black/20 px-4 py-3 text-sm text-white/55">{canonicalLenses.length} cleaned lenses applied automatically</div>
                   </div>
                 </div>
                 <div className="lg:col-span-7">
@@ -465,7 +487,7 @@ export default function EmployeeBuilder() {
           <Card className="lg:col-span-12">
             <div className="p-6">
               <div className="mb-5 flex flex-col gap-4 lg:flex-row lg:items-end lg:justify-between">
-                <SectionTitle icon={Layers3} title="Automatic Lens Results" subtitle="Every lens is applied to the selected PI profile. Click any lens result card for a larger detail view." />
+                <SectionTitle icon={Layers3} title="Automatic Lens Results" subtitle="Every cleaned lens is applied to the selected PI profile. Duplicate framework variants are merged into one canonical output." />
                 <label className="relative block lg:w-80">
                   <Search className="pointer-events-none absolute left-4 top-1/2 h-4 w-4 -translate-y-1/2 text-white/35" />
                   <input value={query} onChange={(event) => setQuery(event.target.value)} placeholder="Search lens results..." className="w-full rounded-2xl border border-white/10 bg-black/25 py-3 pl-11 pr-4 text-sm text-white outline-none placeholder:text-white/35" />
@@ -482,12 +504,14 @@ export default function EmployeeBuilder() {
           {selectedResult && (
             <Card className="lg:col-span-12 border-sky-300/20 bg-sky-500/5">
               <div className="p-6">
-                <SectionTitle icon={Sparkles} title={selectedResult.lens.lens} subtitle={`Detailed visual result for ${activeSavedProfile.employee.name} as ${activeBaseProfile.name}`} />
+                <SectionTitle icon={Sparkles} title={selectedResult.lens.lens} subtitle={`${selectedResult.lens.visualLabel} · ${selectedResult.lens.visualReason}`} />
                 <div className="grid gap-5 lg:grid-cols-12">
                   <div className="lg:col-span-5 rounded-3xl border border-white/10 bg-black/20 p-5">
                     <Pill>{selectedResult.matched ? 'Profile-specific match' : 'General lens preview'}</Pill>
+                    <Pill className="ml-2">{selectedResult.lens.visualType}</Pill>
+                    {selectedResult.lens.duplicateCount > 1 && <Pill className="ml-2 border-sky-300/20 bg-sky-500/10 text-sky-100">Merged {selectedResult.lens.duplicateCount}</Pill>}
                     <p className="mt-4 text-sm leading-6 text-white/62">{selectedResult.summary}</p>
-                    <div className="mt-4 text-xs leading-5 text-white/35">Source: {selectedResult.lens.source || 'Uploaded source'} · Status: {selectedResult.lens.status || 'Lens'}</div>
+                    <div className="mt-4 text-xs leading-5 text-white/35">Source: {selectedResult.lens.source || 'Uploaded source'} · Category: {selectedResult.lens.category}</div>
                   </div>
                   <div className="lg:col-span-7 rounded-3xl border border-white/10 bg-black/20 p-5">
                     {selectedResult.numericFields.length > 0 ? (
@@ -527,18 +551,5 @@ export default function EmployeeBuilder() {
         </>
       )}
     </div>
-  );
-}
-
-function InsightBox({ title, icon: Icon, items }) {
-  return (
-    <Card>
-      <div className="p-6">
-        <SectionTitle icon={Icon} title={title} />
-        <div className="grid gap-2">
-          {items.map((item) => <div key={item} className="rounded-2xl border border-white/10 bg-white/[0.05] p-3 text-sm leading-5 text-white/60">{item}</div>)}
-        </div>
-      </div>
-    </Card>
   );
 }
