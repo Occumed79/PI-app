@@ -28,7 +28,7 @@ import {
   YAxis,
 } from 'recharts';
 import { allLenses } from '../data/lenses.js';
-import { groups, profiles } from '../data/profiles.js';
+import { groups, profiles } from '../data/appProfiles.js';
 
 const lensStateOptions = [
   { id: 'include', label: 'Include', short: 'Used', tone: 'border-emerald-300/30 bg-emerald-500/10 text-emerald-100' },

@@ -1,8 +1,8 @@
 import LensesView from "./components/LensesViewNew.jsx";
 import React, { useMemo, useState, useCallback } from "react";
 import LensWindow from "./components/LensWindow.jsx";
-import EmployeeBuilderMode from "./components/modes/EmployeeBuilder.jsx";
-import AIScenarioCoachMode from "./components/modes/AIScenarioCoach.jsx";
+import EmployeeBuilderMode from "./components/EmployeeBuilder.jsx";
+import AIScenarioCoachMode from "./components/AIScenarioCoach.jsx";
 import { LENSES, LENS_META, LENS_CATEGORIES } from "./data/lensData.js";
 import { PI_PROFILES } from "./data/profiles.js";
 import { signalGlassStaticLenses, signalGlassLensIndex } from "./data/signalGlassStaticLenses.js";

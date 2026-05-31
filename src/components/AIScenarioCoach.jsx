@@ -13,7 +13,7 @@ import {
   Target,
 } from 'lucide-react';
 import { allLenses } from '../data/lenses.js';
-import { profiles } from '../data/profiles.js';
+import { profiles } from '../data/appProfiles.js';
 
 function cx(...classes) {
   return classes.filter(Boolean).join(' ');
