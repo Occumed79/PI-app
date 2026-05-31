@@ -166,6 +166,24 @@ function inferCanonicalId(lensOrName) {
   return normalized.replace(/\s+/g, '-');
 }
 
+function cleanCanonicalContent(content = '', visual) {
+  const cleaned = String(content)
+    .split('\n')
+    .map((line) => line.trim())
+    .filter(Boolean)
+    .filter((line) => !line.match(/^(={3,}|-{3,}|lens:|status:|source:|source status|source document|deduplication|cleanup note|duplicate handling|translation methodology|implementation notes|primary output)/i))
+    .filter((line) => !line.match(/^(complete source|partial|extracted content only|not exported as standalone)/i))
+    .join('\n')
+    .replace(/\bLENS:\s*/gi, '')
+    .replace(/\bSTATUS:\s*[^\n]+/gi, '')
+    .replace(/\bSOURCE:\s*[^\n]+/gi, '')
+    .replace(/\bDEDUPLICATION\s*\/\s*CLEANUP NOTE:\s*[^\n]+/gi, '')
+    .trim();
+
+  if (cleaned.length > 40) return cleaned;
+  return `${visual.lens}\n${visual.why}`;
+}
+
 export function getCanonicalLensKey(lensOrName) {
   return inferCanonicalId(lensOrName);
 }
@@ -201,6 +219,8 @@ export function getCanonicalSignalGlassLenses(rawLenses = []) {
     const existing = byCanonicalId.get(visual.id);
     const candidate = {
       ...rawLens,
+      content: cleanCanonicalContent(rawLens.content, visual),
+      rawContent: rawLens.content,
       id: visual.id,
       rawId: rawLens.id,
       lens: visual.lens,
