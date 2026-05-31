@@ -227,3 +227,82 @@ const distPath = path.resolve(__dirname, '../dist');
 app.use(express.static(distPath));
 app.get('*', (_req, res) => res.sendFile(path.join(distPath, 'index.html')));
 app.listen(port, () => console.log(`Human Systems Intelligence server running on port ${port}`));
+
+// ─── HSI Mappings API ───────────────────────────────────────────────────────
+
+// GET all mappings
+app.get('/api/hsi/mappings', async (_req, res) => {
+  if (!pool) return res.status(503).json({ ok: false, message: 'DATABASE_URL not configured.' });
+  try {
+    const result = await pool.query(
+      `select lens_id, profile_id, output_text, fields_raw, fields, notes, status, updated_at from hsi_mappings`
+    );
+    // Convert to { "lensId__profileId": {...} } format
+    const mappings = {};
+    for (const row of result.rows) {
+      const key = `${row.lens_id}__${row.profile_id}`;
+      mappings[key] = {
+        outputText: row.output_text || '',
+        fieldsRaw: row.fields_raw || '',
+        fields: row.fields || {},
+        notes: row.notes || '',
+        status: row.status || 'unmapped',
+        updatedAt: row.updated_at,
+      };
+    }
+    return res.json({ ok: true, mappings });
+  } catch (error) {
+    return res.status(500).json({ ok: false, message: error.message });
+  }
+});
+
+// PUT upsert a single mapping
+app.put('/api/hsi/mappings/:lensId/:profileId', async (req, res) => {
+  if (!pool) return res.status(503).json({ ok: false, message: 'DATABASE_URL not configured.' });
+  const { lensId, profileId } = req.params;
+  const { outputText, fieldsRaw, fields, notes, status } = req.body || {};
+  try {
+    await pool.query(
+      `insert into hsi_mappings (lens_id, profile_id, output_text, fields_raw, fields, notes, status)
+       values ($1, $2, $3, $4, $5, $6, $7)
+       on conflict (lens_id, profile_id) do update set
+         output_text = excluded.output_text,
+         fields_raw = excluded.fields_raw,
+         fields = excluded.fields,
+         notes = excluded.notes,
+         status = excluded.status,
+         updated_at = now()`,
+      [lensId, profileId, outputText || null, fieldsRaw || null, JSON.stringify(fields || {}), notes || null, status || 'unmapped']
+    );
+    return res.json({ ok: true });
+  } catch (error) {
+    return res.status(500).json({ ok: false, message: error.message });
+  }
+});
+
+// POST bulk upsert (for seeding)
+app.post('/api/hsi/mappings/bulk', async (req, res) => {
+  if (!pool) return res.status(503).json({ ok: false, message: 'DATABASE_URL not configured.' });
+  const { mappings } = req.body || {};
+  if (!mappings || typeof mappings !== 'object') return res.status(400).json({ ok: false, message: 'mappings object required.' });
+  
+  let inserted = 0;
+  const entries = Object.entries(mappings);
+  
+  try {
+    for (const [key, val] of entries) {
+      const [lensId, profileId] = key.split('__');
+      if (!lensId || !profileId) continue;
+      await pool.query(
+        `insert into hsi_mappings (lens_id, profile_id, output_text, fields_raw, fields, notes, status)
+         values ($1, $2, $3, $4, $5, $6, $7)
+         on conflict (lens_id, profile_id) do nothing`,
+        [lensId, profileId, val.outputText || null, val.fieldsRaw || null, JSON.stringify(val.fields || {}), val.notes || null, val.status || 'draft']
+      );
+      inserted++;
+    }
+    return res.json({ ok: true, inserted });
+  } catch (error) {
+    return res.status(500).json({ ok: false, message: error.message });
+  }
+});

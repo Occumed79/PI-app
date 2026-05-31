@@ -75,3 +75,23 @@ on conflict (name) do update set
   patience = excluded.patience,
   formality = excluded.formality,
   summary = excluded.summary;
+
+-- HSI lens-profile mapping table
+create table if not exists hsi_mappings (
+  id uuid primary key default gen_random_uuid(),
+  lens_id text not null,
+  profile_id text not null,
+  output_text text,
+  fields_raw text,
+  fields jsonb not null default '{}'::jsonb,
+  notes text,
+  status text not null default 'unmapped',
+  created_at timestamptz not null default now(),
+  updated_at timestamptz not null default now(),
+  unique (lens_id, profile_id)
+);
+
+drop trigger if exists hsi_mappings_set_updated_at on hsi_mappings;
+create trigger hsi_mappings_set_updated_at
+before update on hsi_mappings
+for each row execute function set_updated_at();
