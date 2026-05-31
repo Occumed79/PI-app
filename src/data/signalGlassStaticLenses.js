@@ -8978,6 +8978,839 @@ Most individuals exhibit a dominant style and a secondary style that influence t
 * Adaptive processors excel at switching contexts; provide varied tasks and encourage them to help bridge across functional boundaries.
 `,
   },
+  {
+    id: "cognitive-reflection-test-crt-lens",
+    lens: "Cognitive Reflection Test (CRT) Lens",
+    status: "",
+    source: "Cognitive_Reflection_Test.txt",
+    content: `
+Cognitive Reflection Test (CRT) Lens
+
+**Overview**
+
+The Cognitive Reflection Test measures a person’s ability to override an intuitive but incorrect answer and engage in reflective, analytical reasoning.  It predicts susceptibility to common cognitive biases and provides insight into decision quality under uncertainty.  The following dimensions are used in this lens:
+
+1. **CRT Score Likelihood** – how likely the individual is to score high on the CRT (reflective vs impulsive).
+2. **Impulsivity vs Reflection** – balance between fast, intuitive thinking and slow, deliberative reasoning.
+3. **Heuristic Reliance** – tendency to rely on mental shortcuts or heuristics when making decisions.
+4. **Bias Susceptibility** – propensity to fall prey to biases such as anchoring, availability, confirmation, affect heuristic and framing effects.
+5. **Reflection‑Override Capability** – ability to override initial intuitive responses and engage analytical thinking.
+
+The table below summarises each PI profile’s CRT signature along with stress‑mode decision distortions and a rationale.
+
+**Crosswalk by PI Profile**
+
+| PI Profile | CRT score | Impulsivity | Heuristic reliance | Bias susceptibility | Reflection‑override capability | Stress‑mode distortion | Rationale |
+|---|---|---|---|---|---|---|---|
+| **Analyzer** | High | Very Low | Low | Low | Very High | Over‑analysis | Slow, methodical and data‑driven |
+| **Controller** | Moderate‑High | Low | Low | Low‑Moderate | High | Rule rigidity | Rule‑based reasoning |
+| **Specialist** | High | Low | Low | Low | Very High | Narrow focus | Deep technical reasoning |
+| **Strategist** | High | Low‑Moderate | Moderate | Moderate | High | Over‑confidence in models | Conceptual + analytical |
+| **Venturer** | Low | Very High | Very High | High | Low | Impulsive risk | Fast, intuitive and action‑driven |
+| **Altruist** | Moderate | Low‑Moderate | Moderate | High (affect heuristic) | Moderate | Emotional reasoning | People‑first cognition |
+| **Captain** | Moderate | High | High | High (dominance bias) | Low‑Moderate | Over‑assertive shortcuts | Fast, decisive |
+| **Collaborator** | Moderate | Low | Moderate | High (social desirability bias) | Moderate | Avoidance | Relational reasoning |
+| **Maverick** | Low | High | Very High | Very High | Low | Chaotic decisions | Creative, non‑linear and impulsive |
+| **Persuader** | Low‑Moderate | High | High | High (affect + framing) | Low | Emotional reasoning | Social‑intuitive cognition |
+| **Promoter** | Low | Very High | Very High | Very High | Very Low | Impulsive shifts | Improvisational, reactive |
+| **Adapter** | Moderate | Low‑Moderate | Moderate | Moderate | Moderate | Over‑adjustment | Flexible and situational |
+| **Craftsman** | High | Low | Low | Low | High | Perfectionistic delay | Methodical and detail‑driven |
+| **Guardian** | Moderate‑High | Low | Low‑Moderate | Moderate (risk aversion) | High | Over‑caution | Stability and rule orientation |
+| **Operator** | Moderate | Low‑Moderate | Moderate | Moderate | Moderate | Rigid routine | Practical and steady |
+| **Individualist** | Moderate | Moderate | Moderate | Moderate (identity bias) | Moderate | Detached reasoning | Independent and conceptual |
+| **Scholar** | Very High | Very Low | Very Low | Very Low | Very High | Over‑analysis | Deep, rigorous reasoning |
+
+**Interpretation & applications**
+
+* High CRT scores (e.g., Analyzer, Scholar) indicate strong reflective reasoning and low bias susceptibility.  These individuals are well suited to roles requiring deep analysis and risk assessment but may need support to avoid analysis paralysis.
+* Low CRT profiles (e.g., Venturer, Promoter, Maverick) rely on intuitive judgments and are more susceptible to biases.  Provide structured frameworks and involve them in risk‑filtered decision processes.  Partner them with analytical colleagues to balance speed and accuracy.
+* Stress may exacerbate bias: Under pressure, Controllers become rule rigid, Persuaders respond emotionally and Venturers increase risk‑taking.  Anticipate these tendencies when assigning high‑stakes decisions.
+`,
+  },
+  {
+    id: "controller--neurodivergence--cognitive-accessibility",
+    lens: "Controller \u2014 Neurodivergence & Cognitive Accessibility",
+    status: "",
+    source: "Controller_Neurodivergence.txt",
+    content: `
+Controller — Neurodivergence & Cognitive Accessibility
+=========================================================
+
+**ADHD**
+- **Manifestation:** A constant drive to act and fix problems leads to quick pivots and difficulty sustaining multi‑step follow‑through.
+- **Behaviour impact:** The Controller initiates many fixes, shifts priorities abruptly, and pressures teams for immediate results.
+- **Distortion of typical pattern:** Decisive leadership becomes impulsive directives and brittle micromanagement.
+- **Real‑life snapshot:** Announces a new initiative mid‑meeting and expects same‑day deliverables.
+- **Work/bandwidth impact:** Fragmented priorities leave teams chasing shifting goals.
+- **Risk if ignored:** Credibility loss and repeated failed launches.
+- **Best way to approach:** Validate the Controller’s energy, but convert impulses into time‑boxed experiments with explicit stop rules.
+
+*Micro‑accommodations:* Limit active initiatives to 2 – 3 and frame new ideas as 2– 4‑week pilots with clear success/failure criteria. Maintain a visible kanban board with work‑in‑progress (WIP) limits.
+
+*Peer scripts:* 
+- “Love this idea — can we cap it to a two‑week pilot and agree exit criteria?”  
+- “Let’s pick one small experiment and I’ll help scope it.”
+
+*Trial metrics:* Number of active pilots ≤ 2; pilot completion rate per quarter.
+
+*Tools/supports:* Kanban board with WIP limits, timers, short daily check‑ins.
+
+*Privacy phrasing:* “I’m running a short, low‑visibility pilot and will share results after the test.”
+
+---
+
+**Executive Function Differences**
+- **Manifestation:** Difficulty sequencing delegation and multi‑phase rollouts.
+- **Behaviour impact:** The Controller hoards decisions and becomes a bottleneck for handoffs.
+- **Distortion:** Delegation turns into decision hoarding.
+- **Snapshot:** Keeps final approvals, creating a single‑point failure.
+- **Work/bandwidth impact:** Slower throughput; missed scaling opportunities.
+- **Risk if ignored:** Burnout and missed deadlines.
+- **Best way to approach:** Co‑create simple phase checklists and visible handoff notes so tasks move without constant approval.
+
+*Micro‑accommodations:* Provide a one‑page phase template and require a short handoff note for each initiative.
+
+*Peer scripts:* 
+- “Can I draft the handoff checklist with you?”  
+- “Let’s name owners for each phase so nothing slips.”
+
+*Trial metrics:* Percentage of launches with a completed handoff note; number of post‑launch incidents.
+
+*Tools/supports:* Lightweight RACI charts, shared milestone calendar.
+
+*Privacy phrasing:* “I prefer a short handoff note before launch — can we do that?”
+
+---
+
+**Time Blindness**
+- **Manifestation:** Optimistic timelines and underestimation of alignment work.
+- **Behaviour impact:** Sets compressed deadlines and pressures colleagues to deliver quickly.
+- **Distortion:** Timeline setting becomes erratic and stressful.
+- **Snapshot:** Announces a next‑week rollout that requires cross‑team work not yet scoped.
+- **Work/bandwidth impact:** Rushed quality and missed dependencies.
+- **Risk if ignored:** Burned‑out collaborators and failed commitments.
+- **Best way to approach:** Use historical benchmarks and default time buffers; require cross‑team resource checks before committing dates.
+
+*Micro‑accommodations:* Apply default +30 % buffer to estimates; pre‑commitment resource check.
+
+*Peer scripts:* 
+- “Can we add a two‑week buffer so ops can staff it?”  
+- “If we treat this as a three‑week pilot instead of three days, we’ll get cleaner results.”
+
+*Trial metrics:* Percentage of commitments met on first deadline; average buffer added to estimates.
+
+*Tools/supports:* Timeline dashboard, estimation checklist.
+
+*Privacy phrasing:* “I’m trying a more conservative timeline this time to ensure delivery.”
+
+---
+
+**Task Initiation Difficulty**
+- **Manifestation:** Hesitation to start ambiguous initiatives; waits for perfect conditions before acting.
+- **Behaviour impact:** Delays strategic moves and misses windows of opportunity.
+- **Distortion:** Caution turns into paralysis.
+- **Snapshot:** Waits for perfect data before running a small test.
+- **Work/bandwidth impact:** Missed opportunities.
+- **Risk if ignored:** Competitive disadvantage.
+- **Best way to approach:** Provide a single, tiny first action and offer to co‑start tasks.
+
+*Micro‑accommodations:* Attach a “first 15‑minute task” note to each new idea; schedule pairing sessions for kickoff.
+
+*Peer scripts:* 
+- “Let’s do the first 30 minutes together — I’ll set the timer.”  
+- “What’s one tiny test we can run in a day?”
+
+*Trial metrics:* Time from idea to first action; number of ideas that reach pilot.
+
+*Tools/supports:* 15‑minute kickoff slots, checklists with first actions.
+
+*Privacy phrasing:* “I work best if someone helps me start the first 30 minutes — can you pair with me?”
+
+---
+
+**Context‑Switching Difficulty**
+- **Manifestation:** High cost to move between strategic planning and operations; interruptions degrade performance.
+- **Behaviour impact:** Protects long planning blocks and declines ad‑hoc collaboration.
+- **Distortion:** Responsiveness is reduced; can appear uncooperative.
+- **Snapshot:** Skips quick syncs to protect planning time.
+- **Work/bandwidth impact:** Coordination gaps and missed signals.
+- **Risk if ignored:** Misalignment and lost opportunities.
+- **Best way to approach:** Use short asynchronous updates and scheduled, focused syncs.
+
+*Micro‑accommodations:* Protected planning blocks and a daily 15‑minute alignment window; asynchronous 3‑bullet updates.
+
+*Peer scripts:* 
+- “I’ll send a 3‑bullet update after your focus block.”  
+- “Can we reserve 15 minutes at 4 pm for quick alignment?”
+
+*Trial metrics:* Number of interruptions during focus blocks; percentage of items resolved asynchronously.
+
+*Tools/supports:* Async update template, calendar focus blocks.
+
+*Privacy phrasing:* “I’m protecting a two‑hour planning block — please send a 3‑bullet update if it’s not urgent.”
+
+---
+
+**Hyperfocus Patterns**
+- **Manifestation:** Deep immersion in one problem leads to over‑engineering and neglect of other responsibilities.
+- **Behaviour impact:** Thoroughness turns into perfectionism; misses handoffs.
+- **Distortion:** Quality focus becomes counterproductive.
+- **Snapshot:** Spends days refining a process while other tasks pile up.
+- **Work/bandwidth impact:** Opportunity cost and delayed outcomes.
+- **Risk if ignored:** Resource waste and team frustration.
+- **Best way to approach:** Agree on visible stop signals and time‑boxed refinement sessions.
+
+*Micro‑accommodations:* Mid‑pilot check‑ins; shared priority checklist; mandatory stop rules.
+
+*Peer scripts:* 
+- “This is great — set a mid‑pilot check‑in so we don’t lose other priorities.”  
+- “If you hit X, pause and ping me so we can re‑prioritize.”
+
+*Trial metrics:* Number of missed commitments while hyperfocused; percentage of pilots with mid‑pilot check‑ins.
+
+*Tools/supports:* Shared progress board, automated reminders.
+
+*Privacy phrasing:* “I’m in a focused sprint — I’ll set a mid‑sprint check‑in so we stay aligned.”
+
+---
+
+**Rejection Sensitivity**
+- **Manifestation:** Strong emotional reaction to critique; may withdraw or retaliate.
+- **Behaviour impact:** Defensive decisions and avoidance of feedback.
+- **Distortion:** Confidence becomes brittle defensiveness.
+- **Snapshot:** Cuts off discussion after a perceived slight.
+- **Work/bandwidth impact:** Reduced psychological safety.
+- **Risk if ignored:** Escalation and fractured relationships.
+- **Best way to approach:** Deliver feedback privately, with strengths first, and pair critique with appreciation.
+
+*Micro‑accommodations:* Private preview sessions; public recognition paired with one improvement suggestion.
+
+*Peer scripts:* 
+- “This part landed well; one tweak that could help is X — want to iterate together?”  
+- “Can I give you private feedback before the next demo?”
+
+*Trial metrics:* Frequency of private previews; willingness to share early drafts.
+
+*Tools/supports:* Private feedback channel, short feedback templates.
+
+*Privacy phrasing:* “I prefer private feedback on early drafts — can we do that for the next two demos?”
+
+---
+
+**Masking Fatigue**
+- **Manifestation:** Exhaustion from maintaining a composed persona; reduced spontaneity; occasional emotional outbursts.
+- **Behaviour impact:** Short temper, withdrawal, unpredictable reactions.
+- **Distortion:** Steady exterior becomes volatile.
+- **Snapshot:** Snaps at a peer after holding stress in.
+- **Work/bandwidth impact:** Volatile interactions and trust erosion.
+- **Risk if ignored:** Burnout and exits.
+- **Best way to approach:** Offer low‑visibility contribution options and normalize recovery breaks after high‑visibility events.
+
+*Micro‑accommodations:* Option for low‑visibility contributions; short recovery days after intense tasks.
+
+*Peer scripts:* 
+- “Take a recovery half‑day after the pitch — we’ve got your back.”  
+- “If you want, drop the idea in this doc and I’ll surface it.”
+
+*Trial metrics:* Number of low‑visibility contributions; self‑reported energy after recovery days.
+
+*Tools/supports:* Shared idea document, opt‑out mechanism for public events.
+
+*Privacy phrasing:* “I’m opting for a low‑visibility contribution this round while I recharge.”
+
+---
+
+**Social Communication Load**
+- **Manifestation:** Extra effort to manage tone and influence; persuasion becomes tiring.
+- **Behaviour impact:** Communication may become overly formal or transactional.
+- **Distortion:** Influence is less relational and more authoritarian.
+- **Snapshot:** Sends memos instead of informal check‑ins.
+- **Work/bandwidth impact:** Reduced buy‑in and cohesion.
+- **Risk if ignored:** Polarized conversations and diminished influence.
+- **Best way to approach:** Provide concise templates and offer co‑presenting support for public communication.
+
+*Micro‑accommodations:* Three‑slide executive summary templates; co‑presenter for Q&A sessions.
+
+*Peer scripts:* 
+- “I’ll co‑present the Q&A so you can focus on the pitch.”  
+- “Can I draft a 3‑slide summary you can use for the execs?”
+
+*Trial metrics:* Percentage of stakeholders reached; follow‑through rate after launches.
+
+*Tools/supports:* Slide templates, co‑presenter pairing.
+
+*Privacy phrasing:* “I’d like to co‑present the Q&A so I can focus on the demo.”
+
+---
+
+**Need for Written Instructions**
+- **Manifestation:** Prefers documented decision rules and templates.
+- **Behaviour impact:** Insists on written approvals and slows agility.
+- **Distortion:** Governance becomes bureaucratic friction.
+- **Snapshot:** Requires written sign‑off for routine changes.
+- **Work/bandwidth impact:** Slower responsiveness, but higher clarity.
+- **Risk if ignored:** Misalignment and frustration.
+- **Best way to approach:** Co‑create concise templates that balance clarity and speed.
+
+*Micro‑accommodations:* One‑page decision rubrics; “fast lane” exceptions for urgent decisions.
+
+*Peer scripts:* 
+- “Here’s a one‑page rubric — want me to draft the first version?”  
+- “We can use a fast lane for urgent items and document after.”
+
+*Trial metrics:* Percentage of decisions using the rubric; time to decision in the fast lane.
+
+*Tools/supports:* One‑page templates, shared decision documents.
+
+*Privacy phrasing:* “Can we capture the decision criteria in one short doc so I can approve quickly?”
+
+---
+
+**Need for Reduced Interruption**
+- **Manifestation:** Performance drops with frequent interruptions; enforces quiet blocks.
+- **Behaviour impact:** Declines ad‑hoc collaboration and enforces focus windows.
+- **Distortion:** Control becomes exclusionary.
+- **Snapshot:** Marks calendar as unavailable and ignores pings.
+- **Work/bandwidth impact:** Coordination friction versus better deep work.
+- **Risk if ignored:** Missed urgent issues.
+- **Best way to approach:** Define clear escalation rules and respect focus windows.
+
+*Micro‑accommodations:* Focus windows with a single escalation contact; asynchronous updates for non‑urgent items.
+
+*Peer scripts:* 
+- “If it’s urgent, text URGENT and I’ll respond; otherwise send a 3‑bullet update.”  
+- “I’ll respect your focus block — who should I contact if it’s urgent?”
+
+*Trial metrics:* Number of escalations during focus blocks; percentage of items resolved asynchronously.
+
+*Tools/supports:* Slack status conventions, escalation contact list.
+
+*Privacy phrasing:* “I’m in a focus block — text URGENT if it can’t wait.”
+
+---
+
+**Need for Structure Without Shame**
+- **Manifestation:** Wants predictable scaffolding but may feel embarrassed to ask.
+- **Behaviour impact:** Creates private systems, leading to misalignment and duplicated effort.
+- **Distortion:** Spontaneity becomes hidden inefficiency.
+- **Snapshot:** Keeps a private idea queue rather than sharing it for prioritization.
+- **Work/bandwidth impact:** Duplicated work and friction.
+- **Risk if ignored:** Missed coordination and decreased trust.
+- **Best way to approach:** Normalize the use of lightweight templates and invite co‑creation of structure so it doesn’t feel burdensome.
+
+*Micro‑accommodations:* Shared idea queue with WIP limits; optional pilot template; structure workshops.
+
+*Peer scripts:* 
+- “Can I add this to our shared queue and help prioritize it?”  
+- “We use a short template for pilots — want me to fill it with you?”
+
+*Trial metrics:* Percentage of ideas in the shared queue; time from idea to prioritized pilot.
+
+*Tools/supports:* Shared idea document, WIP limits.
+
+*Privacy phrasing:* “Can we add this to the shared list so it’s visible without making it public yet?”
+
+---
+
+**Dyslexia / Dyscalculia / Dysgraphia / Dyspraxia**
+- **Manifestation:** Extra time is needed for reading, numeric modeling and handwriting. Prefers typed or visual outputs.
+- **Behaviour impact:** Documentation is slower; numeric tasks may be delegated or require assistive tools.
+- **Distortion:** Verbal decisiveness may not translate into timely written follow‑ups.
+- **Snapshot:** Gives a compelling directive but the follow‑up document arrives late.
+- **Work/bandwidth impact:** Delays in documentation and handoffs.
+- **Risk if ignored:** Miscommunication and missed opportunities.
+- **Best way to approach:** Offer scribe support, templates, calculators and assistive technology.
+
+*Micro‑accommodations:* Co‑author follow‑ups; speech‑to‑text for notes; provide calculators for numeric tasks.
+
+*Peer scripts:* 
+- “I can draft the follow‑up doc from your notes — want me to?”  
+- “If you prefer, record a quick voice note and I’ll transcribe it.”
+
+*Trial metrics:* Time from decision to published follow‑up; percentage of follow‑ups co‑authored.
+
+*Tools/supports:* Speech‑to‑text software, shared templates, co‑authoring documents.
+
+*Privacy phrasing:* “I prefer to record a quick voice note for follow‑up — can I send that instead of drafting?”
+
+---
+
+**Auditory Processing / Sensory Processing / Tourette Syndrome**
+- **Manifestation:** Difficulty following rapid, multi‑speaker discussions; sensory overload can increase stress and tics.
+- **Behaviour impact:** Prefers structured turn‑taking, captions and written summaries; may limit verbal participation in chaotic settings.
+- **Distortion:** Command presence may be reduced in noisy environments.
+- **Snapshot:** Leaves a loud meeting early and sends a formal follow‑up.
+- **Work/bandwidth impact:** Reduced live presence and slower consensus building.
+- **Risk if ignored:** Exclusion and missed input.
+- **Best way to approach:** Share slides and notes in advance, use captions and provide opt‑out options for noisy sessions.
+
+*Micro‑accommodations:* Captions on calls; slides and notes shared beforehand; quiet rooms for brainstorming.
+
+*Peer scripts:* 
+- “I’ll share slides and notes in advance so you can pick what to comment on.”  
+- “Drop your idea in this doc and I’ll read it aloud if needed.”
+
+*Trial metrics:* Number of contributions via written channels; comfort rating in meetings.
+
+*Tools/supports:* Live captions, shared slide decks, quiet rooms.
+
+*Privacy phrasing:* “I’ll skip the noisy session and drop my idea in the doc — please read it aloud if needed.”
+
+---
+
+**Working Memory / Processing Speed Differences**
+- **Manifestation:** Needs external aids to hold multiple threads and extra time to synthesise information.
+- **Behaviour impact:** Prefers pre‑reads and reflection pauses; slower during rapid exchanges.
+- **Distortion:** Quick decisions are delayed but often of higher quality after reflection.
+- **Snapshot:** Asks to postpone a decision to integrate inputs.
+- **Work/bandwidth impact:** Slower cadence but better outcomes after reflection.
+- **Risk if ignored:** Hasty decisions and missed nuance.
+- **Best way to approach:** Provide concise pre‑reads and short reflection windows in meetings.
+
+*Micro‑accommodations:* Send pre‑reads 24‑48 hours ahead; include five-minute recap pauses during meetings; allow post‑meeting reflection time before finalising decisions.
+
+*Peer scripts:* 
+- “I’ll send a two‑slide summary before the meeting so you can reflect.”  
+- “Let’s pause for five minutes after the presentation so you can gather your thoughts.”
+
+*Trial metrics:* Percentage of decisions postponed for reflection; quality of final plans after reflection.
+
+*Tools/supports:* Pre‑read templates, meeting recap prompts, shared decision trackers.
+
+*Privacy phrasing:* “I prefer a short pre‑read and a five‑minute pause after the meeting to finalise my input.”
+
+`,
+  },
+  {
+    id: "copenhagen-burnout-inventory-cbi-lens",
+    lens: "Copenhagen Burnout Inventory (CBI) Lens",
+    status: "",
+    source: "Copenhagen_Burnout_Inventory_Lens.txt",
+    content: `
+Copenhagen Burnout Inventory (CBI) Lens
+======================================
+
+**Overview**
+
+The Copenhagen Burnout Inventory (CBI) is a free, validated self‑report measure of burnout consisting of 19 items.  It comprises three subscales: **personal burnout**, **work‑related burnout** and **client‑related burnout**https://embrace-autism.com/copenhagen-burnout-inventory/#:~:text=The%20Copenhagen%20Burnout%20Inventory%20,good%20measure%20of%20autistic%20burnout.  
+
+* **Personal burnout:** General physical and psychological exhaustion, irrespective of work.  Assesses fatigue, sleep problems and inability to relax.
+* **Work‑related burnout:** Exhaustion attributed specifically to work.  Items ask about feeling worn out, frustrated and drained after work.
+* **Client‑related burnout:** Exhaustion stemming from interactions with clients or patients (e.g., customer service, healthcare).  It measures emotional exhaustion, frustration and difficulty working with clients.
+
+Each item is scored on a 5‑point scale; scores are averaged within each subscale to determine burnout levels (low, moderate or high).  The CBI separates personal stress from work stress and highlights the contribution of direct client interactions.https://embrace-autism.com/copenhagen-burnout-inventory/#:~:text=The%20Copenhagen%20Burnout%20Inventory%20,good%20measure%20of%20autistic%20burnout.
+
+**Burnout Profile Crosswalk by PI Profile**
+
+This table suggests which CBI subscale each PI profile is most susceptible to and how to mitigate the risk.
+
+| PI Profile | Vulnerable subscale | Contributing factors | Protective strategies |
+|---|---|---|---|
+| **Analyzer** | Personal burnout | Excessive cognitive load and perfectionism | Set boundaries on working hours, schedule mental breaks, practise mindfulness. |
+| **Controller** | Work‑related burnout | Pressure to deliver and constant oversight | Delegate tasks, build trust and adjust workloads. |
+| **Specialist** | Client‑related burnout | Repeatedly educating stakeholders and translating technical work | Rotate responsibilities, use written resources and manage client expectations. |
+| **Strategist** | Work‑related burnout | Long‑term strategic pressures and ambiguity | Prioritise projects, clarify goals and schedule recovery time. |
+| **Venturer** | Personal burnout | Constant adrenaline and risk‑taking | Incorporate rest cycles, exercise and reflective practices. |
+| **Altruist** | Client‑related burnout | Emotional labour from supporting colleagues and clients | Set boundaries, share responsibilities and practise self‑care. |
+| **Captain** | Work‑related burnout | High stakes and responsibility for others | Share leadership, empower team and schedule breaks. |
+| **Collaborator** | Personal burnout | Balancing diverse needs and relationships | Practise self‑compassion, prioritise tasks and protect downtime. |
+| **Maverick** | Work‑related burnout | Frustration with organisational resistance | Focus on incremental change, build alliances and manage expectations. |
+| **Persuader** | Client‑related burnout | Continuous influencing and client engagement | Set limits, alternate client‑facing and solo work, practice active recovery. |
+| **Promoter** | Client‑related burnout | High visibility and public interactions | Schedule quiet time, alternate tasks and seek supportive feedback. |
+| **Adapter** | Personal burnout | Juggling support roles and changing demands | Clarify priorities, take breaks and advocate for realistic workloads. |
+| **Craftsman** | Work‑related burnout | Perfectionism and production pressure | Embrace “good enough,” plan recovery periods and delegate tasks. |
+| **Guardian** | Client‑related burnout | Emotional labour in stewardship roles | Set boundaries, rotate tasks and seek support networks. |
+| **Operator** | Work‑related burnout | Repetitive, high‑pressure operations | Vary tasks, seek input on improvements and schedule regular breaks. |
+| **Individualist** | Personal burnout | Isolation and self‑imposed pressure | Build supportive relationships, share challenges and integrate leisure. |
+| **Scholar** | Personal burnout | Intellectual labour and academic deadlines | Manage workload, collaborate and take mental health breaks. |
+
+**Using this lens**
+
+* Use the CBI periodically to differentiate between general exhaustion and work or client‑specific burnout.  This helps target interventions—e.g., a high client‑related score suggests the need to reduce client load or provide better support.
+* Implement organisational practices such as regular debriefs for client‑facing roles, workload reviews and personal wellbeing days.  Encourage individuals to cultivate stress‑management routines.
+* Recognise that burnout can manifest differently across profiles; tailor preventative strategies to individual needs and work contexts.`,
+  },
+  {
+    id: "decisionmaking-style-lens",
+    lens: "Decision\u2011Making Style Lens",
+    status: "",
+    source: "Decision_Making_Style.txt",
+    content: `
+Decision‑Making Style Lens
+
+**Overview**
+
+Decision‑making style describes how individuals prefer to make choices.  It is distinct from cognitive processing; a person may think conceptually yet decide intuitively.  Six broad styles are recognised in behavioural economics and organisational psychology:
+
+1. **Analytical** – data‑driven, structured and slow.  Seeks comprehensive information before committing.
+2. **Intuitive** – fast, pattern‑based and heuristic.  Relies on gut feelings and experience.
+3. **Conceptual** – big‑picture, integrative and scenario‑driven.  Considers multiple options and how they fit into overarching goals.
+4. **Directive** – decisive, action‑oriented and intolerant of ambiguity.  Prefers clear instructions and makes quick calls.
+5. **Social / Relational** – consensus‑seeking and people‑impact aware.  Balances stakeholder needs and relationships.
+6. **Adaptive** – flexible and context‑dependent.  Switches style based on the situation.
+
+The table below maps each PI profile to its dominant and secondary decision styles, typical stress‑mode behaviours, speed versus accuracy orientation, risk posture and a rationale.
+
+**Crosswalk by PI Profile**
+
+| PI Profile | Dominant style | Secondary style | Stress‑mode pattern | Speed vs accuracy | Risk posture | Rationale |
+|---|---|---|---|---|---|---|
+| **Analyzer** | Analytical | Directive when confident in data | Analysis paralysis | Slow, accuracy‑maximising | Low | Precision and structure underpin decisions |
+| **Controller** | Directive | Analytical | Rule rigidity | Fast, rule‑based | Low | Authority and process drive decisions |
+| **Specialist** | Analytical | Conceptual within domain | Over‑checking details | Slow, accuracy‑maximising | Low | Deep technical reasoning |
+| **Strategist** | Conceptual | Directive | Over‑confidence in vision | Fast‑moderate | Moderate | Combines systems thinking with drive |
+| **Venturer** | Intuitive | Directive | Impulsive risk | Very fast | High | Bold and opportunistic decision maker |
+| **Altruist** | Social / Relational | Adaptive | Over‑accommodation | Moderate | Low | People‑first reasoning |
+| **Captain** | Directive | Intuitive | Over‑assertive decisions | Very fast | High‑moderate | Command and action orientation |
+| **Collaborator** | Social / Relational | Adaptive | Avoidance and deferring | Slow‑moderate | Low | Consensus and harmony focused |
+| **Maverick** | Conceptual | Intuitive | Chaotic, disruptive decisions | Fast | High | Creative, non‑linear decision maker |
+| **Persuader** | Social / Relational | Intuitive | Emotion‑driven decisions | Fast | Moderate | Influence and audience reading |
+| **Promoter** | Intuitive | Social / Relational | Impulsive, reactive | Very fast | High | Improvisational and energetic |
+| **Adapter** | Adaptive | Social / Relational | Quiet withdrawal | Moderate | Low‑moderate | Flexible and situational |
+| **Craftsman** | Analytical | Experiential | Perfectionistic delay | Slow | Low | Quality and precision focused |
+| **Guardian** | Analytical | Social / Relational | Over‑caution | Slow | Very low | Stability and stewardship |
+| **Operator** | Experiential | Analytical | Rigid routine | Moderate | Low | Process and execution orientation |
+| **Individualist** | Conceptual | Intuitive | Detached, idiosyncratic decisions | Moderate | Moderate | Creative and independent |
+| **Scholar** | Analytical | Conceptual | Over‑analysis | Slow | Low | Rigorous, structured decision maker |
+
+**Guidance for collaboration**
+
+* When working with analytical decision makers, provide thorough data and allow them time to deliberate.  Avoid pressuring them for immediate answers.
+* Intuitive and directive profiles respond to crisp summaries and clear action points.  Present options with a recommendation rather than exhaustive detail.
+* Conceptual thinkers appreciate scenario comparisons and long‑term implications; encourage them to share their vision and logic.
+* Social/relational decision makers need to understand the human impact; involve stakeholders early and emphasise team benefits.
+* Adaptive decision makers may shift style based on context.  Offer them flexibility and ask which approach best suits the current decision.
+`,
+  },
+  {
+    id: "disc-behavioral-styles-lens",
+    lens: "DISC Behavioral Styles Lens",
+    status: "",
+    source: "DISC_Lens.txt",
+    content: `
+DISC Behavioral Styles Lens
+==========================
+
+**Overview and theoretical background**
+
+The **DISC** model categorizes workplace behavior into four primary styles:
+**Dominance (D)**, **Influence (I)**, **Steadiness (S)**, and
+**Conscientiousness (C)**.  Originating from psychologist William Marston
+and later adapted for business, DISC focuses on how people approach
+problems, pace, people and procedures.  It is widely used for team
+development and communication training.  Key traits include:
+
+- **Dominance (D)** – results‑oriented, direct and decisive.  Dominant
+  individuals prioritize speed, efficiency and control; they enjoy taking
+  charge and facing challengeshttps://situational.com/blog/what-are-the-four-disc-personality-types/#:~:text=The%20%E2%80%9Cdominance%E2%80%9D%20DiSC%C2%AE%20personality%C2%A0style%20is,necessary%20risks%20to%20achieve%20them.
+- **Influence (I)** – sociable, enthusiastic and persuasive.  Influencers
+  focus on relationships, enjoy collaboration and motivate others with
+  optimismhttps://situational.com/blog/what-are-the-four-disc-personality-types/#:~:text=Influence.
+- **Steadiness (S)** – patient, cooperative and reliable.  Steady types
+  value consistency, support and harmonyhttps://situational.com/blog/what-are-the-four-disc-personality-types/#:~:text=The%20%E2%80%9Csteadiness%E2%80%9D%C2%A0DiSC%C2%AE%20personality%20style%C2%A0is%20accepting,their%20trust%20in%20your%20leadership.
+- **Conscientiousness (C)** – analytical, precise and methodical.
+  Conscientious individuals prioritize accuracy, quality and thoughtful
+  problem solvinghttps://situational.com/blog/what-are-the-four-disc-personality-types/#:~:text=Conscientiousness.
+
+Everyone exhibits all four dimensions to some degree; the DISC profile
+identifies primary and secondary styles that influence communication and
+work preferences.
+
+**Cross‑framework translation with PI profiles**
+
+Below is an estimated mapping of PI reference profiles to DISC styles.
+“Primary style(s)” reflects the dominant DISC dimension(s); “Secondary”
+captures supporting tendencies; “Stress behaviors” highlight how the
+profile might respond under pressure; “Communication tips” offer advice
+for interacting effectively.
+
+| PI profile | Primary DISC style(s) | Secondary style(s) | Stress behaviors | Communication tips |
+|---|---|---|---|---|
+| **Analyzer** | C–S | Steadiness | May become overly meticulous, skeptical or resistant to change. | Provide clear data and expectations; allow time for analysis; avoid abrupt changes. |
+| **Controller** | D–C | Influence | Can appear impatient or controlling; may push for quick decisions. | Be direct but respectful; present options succinctly; clarify decision criteria. |
+| **Specialist** | C–S | None | May withdraw and focus on details, resisting untested ideas. | Explain rationale; give opportunity for questions; recognize expertise. |
+| **Strategist** | D–C | S | Can overanalyze and criticize; may overlook emotional impact. | Connect big‑picture goals with facts; invite collaborative planning. |
+| **Venturer** | D–I | None | Might take on too much risk or act impulsively. | Highlight potential impacts; set milestones; encourage reflection. |
+| **Individualist** | C–D | None | Can be critical or aloof; may resist teamwork. | Respect independence; frame collaboration as mutual benefit; request input. |
+| **Scholar** | C–S | I | May overthink and delay action. | Encourage sharing insights; provide deadlines and structure; offer support. |
+| **Altruist** | S–I | C | Might avoid conflict or overcommit to helping others. | Express appreciation; set boundaries; invite honest feedback. |
+| **Captain** | D–I | C | May dominate discussions or overlook details. | Acknowledge vision; provide concise data; encourage listening. |
+| **Collaborator** | I–S | None | Could become indecisive or conflict‑avoidant. | Include them in discussions; use positive reinforcement; provide clear priorities. |
+| **Maverick** | D–I | None | Can disregard rules or upset stability. | Set expectations; emphasize consequences; allow creative freedom with guardrails. |
+| **Persuader** | I–D | None | May promise more than can be delivered; prone to impulsive commitments. | Clarify responsibilities; document agreements; follow up regularly. |
+| **Promoter** | I | S | May lack focus or underestimate complexity. | Provide a roadmap; ensure accountability; give constructive feedback gently. |
+| **Adapter** | S–I | C | Could bend to others’ views too easily. | Encourage expression of opinions; offer structure; help prioritize tasks. |
+| **Artisan** | C–S | I | May get lost in precision; resist quick decisions. | Share deadlines; break tasks into stages; appreciate craftsmanship. |
+| **Guardian** | S–C | I | Can resist change and prefer established methods. | Explain reasons for change; provide support; acknowledge concerns. |
+| **Operator** | S–C | I | May avoid taking initiative; need guidance to start. | Offer step‑by‑step direction; build confidence; celebrate small wins. |
+
+**Practical implications**
+
+The DISC lens translates PI behaviors into communication preferences.  For
+example, a Controller (D–C) responds best to concise, results‑oriented
+messages with clear logic, while a Collaborator (I–S) values rapport and
+team consensus.  Understanding these dynamics helps managers tailor
+feedback, delegate tasks effectively and anticipate stress reactions.
+Dominance‑heavy profiles may need reminders to slow down and consider
+others, whereas Steadiness‑heavy profiles benefit from reassurance when
+changes occur.  Using DISC alongside PI insights can create a shared
+language for navigating pace, detail and relational needs in the
+workplace.
+`,
+  },
+  {
+    id: "enneagram-lens",
+    lens: "Enneagram Lens",
+    status: "",
+    source: "Enneagram_Lens(1).txt",
+    content: `
+Enneagram Lens
+==============
+
+**Overview and theoretical background**
+
+The **Enneagram** is an emotionally focused personality system that
+describes nine core types, each defined by a dominant motivation and
+basic fearhttps://www.truity.com/blog/enneagram/9-types-enneagram#:~:text=What%20Are%20the%20Nine%20Enneagram,Types.  The nine types are grouped into three
+centers of intelligence: the **Body/Gut center** (Types 8, 9, 1) is
+concerned with control, autonomy and instinct; the **Heart center**
+(Types 2, 3, 4) focuses on image and relationships; the **Head center**
+(Types 5, 6, 7) centers on security and mental strategieshttps://www.truity.com/blog/enneagram/9-types-enneagram#:~:text=What%20Are%20the%20Nine%20Enneagram,Types.
+
+Brief summaries of each type:
+
+1. **Type 1 – Perfectionist/Reformer** – strives for integrity and
+   improvement; fears being wrong or corrupt.
+2. **Type 2 – Helper/Giver** – seeks love and appreciation through
+   helping others; fears being unwanted.
+3. **Type 3 – Achiever** – pursues success and recognition; fears
+   failure or being worthless.
+4. **Type 4 – Individualist/Individualist** – desires authenticity and
+   identity; fears being ordinary or without significance.
+5. **Type 5 – Investigator** – seeks knowledge and self‑sufficiency;
+   fears incompetence and intrusion.
+6. **Type 6 – Skeptic/Loyalist** – longs for security and support;
+   fears uncertainty and abandonment.
+7. **Type 7 – Enthusiast** – craves stimulation, freedom and variety;
+   fears pain and restriction.
+8. **Type 8 – Challenger** – values autonomy and control; fears
+   vulnerability and being controlled.
+9. **Type 9 – Peacemaker** – wants inner and outer peace; fears
+   conflict and disconnection.
+
+The Enneagram emphasizes growth by recognizing underlying motivations and
+developing healthy expression of each type.
+
+**Cross‑framework translation with PI profiles**
+
+The table below suggests likely Enneagram type affinities for each PI
+profile.  Individuals may resonate with multiple types; this mapping
+illustrates possible core drives.  “Potential type(s)” lists likely
+types; “Motivational fit” summarizes why; “Growth focus” offers
+development suggestions.
+
+| PI profile | Potential Enneagram type(s) | Motivational fit | Growth focus |
+|---|---|---|---|
+| **Analyzer** | Type 1 (Perfectionist), Type 5 (Investigator) | Seeks correctness, order and knowledge; values accuracy and competence. | Embrace flexibility and vulnerability; cultivate relationships and spontaneity. |
+| **Controller** | Type 8 (Challenger), Type 3 (Achiever) | Desires control, results and impact; driven to lead and succeed. | Practice empathy and humility; listen to others; allow shared power. |
+| **Specialist** | Type 1 (Perfectionist), Type 6 (Loyalist) | Values precision and duty; seeks stability and clear guidelines. | Allow imperfection; develop independence and openness to change. |
+| **Strategist** | Type 5 (Investigator), Type 3 (Achiever) | Driven by understanding systems and achieving big goals. | Balance vision with feelings; engage others in the process; manage work–life balance. |
+| **Venturer** | Type 7 (Enthusiast), Type 8 (Challenger) | Pursues new opportunities and autonomy; dislikes constraints. | Introduce structure and patience; consider long‑term consequences; practice vulnerability. |
+| **Individualist** | Type 4 (Individualist), Type 5 (Investigator) | Desires authenticity and independence; seeks depth and originality. | Build resilience to feedback; engage in collaboration; channel creativity into shared goals. |
+| **Scholar** | Type 5 (Investigator), Type 9 (Peacemaker) | Enjoys knowledge and quiet reflection; avoids conflict. | Express opinions confidently; balance analysis with action; address tensions directly. |
+| **Altruist** | Type 2 (Helper), Type 9 (Peacemaker) | Motivated by helping and harmony; values relationships. | Set personal boundaries; prioritize self‑care; voice personal needs. |
+| **Captain** | Type 3 (Achiever), Type 8 (Challenger) | Ambitious leader who commands change and seeks recognition. | Temper competitiveness with compassion; acknowledge vulnerabilities; share credit. |
+| **Collaborator** | Type 2 (Helper), Type 9 (Peacemaker) | Seeks connection and consensus; avoids conflict. | Develop assertiveness; address issues openly; balance own goals with others’. |
+| **Maverick** | Type 7 (Enthusiast), Type 8 (Challenger) | Thrives on novelty and autonomy; challenges the status quo. | Integrate focus and follow‑through; respect boundaries; consider impact on relationships. |
+| **Persuader** | Type 3 (Achiever), Type 7 (Enthusiast) | Desires success, influence and excitement. | Cultivate authenticity; manage impulses; listen deeply to others’ perspectives. |
+| **Promoter** | Type 7 (Enthusiast), Type 3 (Achiever) | Enjoys socializing, variety and acclaim. | Ground ideas in reality; honor commitments; develop discipline and empathy. |
+| **Adapter** | Type 9 (Peacemaker), Type 3 (Achiever) | Balances harmony with productivity; adapts to diverse contexts. | Clarify personal identity and values; assert opinions; avoid over‑accommodating. |
+| **Artisan** | Type 4 (Individualist), Type 1 (Perfectionist) | Values creativity, aesthetics and precision. | Accept imperfection and iteration; share work early; integrate practical considerations. |
+| **Guardian** | Type 1 (Perfectionist), Type 2 (Helper) | Emphasizes duty, reliability and care for others. | Welcome innovation; express needs; practice flexibility and self‑acceptance. |
+| **Operator** | Type 9 (Peacemaker), Type 2 (Helper) | Provides steady support and seeks peace; fosters cooperation. | Build confidence to lead; voice dissent constructively; pursue personal growth opportunities. |
+
+**Practical implications**
+
+The Enneagram lens highlights the emotional drivers behind behavioral
+patterns.  Recognizing that an Analyzer may fear making mistakes helps
+coaches provide reassurance and encourage calculated risk taking.  Knowing
+that a Venturer may fear restriction and chase new experiences informs
+structuring projects with variety and autonomy.  When using this lens,
+avoid stereotyping or assuming a definitive type; instead, use it to
+explore motivations, blind spots and growth paths tailored to each
+individual.
+`,
+  },
+  {
+    id: "emotional-intelligence-eqi20-lens",
+    lens: "Emotional Intelligence (EQ\u2011i\u00a02.0) Lens",
+    status: "",
+    source: "EQi_2.0_Lens(1).txt",
+    content: `
+Emotional Intelligence (EQ‑i 2.0) Lens
+=====================================
+
+**Overview and theoretical background**
+
+The **EQ‑i 2.0** is a widely used self‑report assessment that measures
+emotional and social intelligence based on the Bar‑On model.  It
+provides an overall emotional intelligence (EI) score, five composite
+scales and fifteen subscaleshttps://www.eiconsortium.org/measures/eqi.html#:~:text=The%20Emotional%20Quotient%20Inventory%202,level%20results%20are%20also%20presented.  The composite
+scales are:
+
+1. **Self‑Perception** – self‑regard, self‑actualization and emotional
+   self‑awarenesshttps://www.eiconsortium.org/measures/eqi.html#:~:text=The%20Emotional%20Quotient%20Inventory%202,level%20results%20are%20also%20presented.
+2. **Self‑Expression** – emotional expression, assertiveness and
+   independencehttps://www.eiconsortium.org/measures/eqi.html#:~:text=The%20Emotional%20Quotient%20Inventory%202,level%20results%20are%20also%20presented.
+3. **Interpersonal** – interpersonal relationships, empathy and social
+   responsibilityhttps://www.eiconsortium.org/measures/eqi.html#:~:text=The%20Emotional%20Quotient%20Inventory%202,level%20results%20are%20also%20presented.
+4. **Decision Making** – problem solving, reality testing and impulse
+   controlhttps://www.eiconsortium.org/measures/eqi.html#:~:text=The%20Emotional%20Quotient%20Inventory%202,level%20results%20are%20also%20presented.
+5. **Stress Management** – stress tolerance and optimismhttps://www.eiconsortium.org/measures/eqi.html#:~:text=The%20Emotional%20Quotient%20Inventory%202,level%20results%20are%20also%20presented.
+
+The EQ 360 adds observer ratings for a 360° perspective.  Unlike ability
+tests, EQ‑i assesses typical emotional functioning and provides
+developmental feedback.
+
+**Cross‑framework translation with PI profiles**
+
+The table below suggests likely emotional intelligence patterns for each
+PI profile.  “Relative strengths” highlight composite scales that may
+come naturally; “Development opportunities” point to areas where
+deliberate practice could enhance performance.  These are
+generalizations, not diagnostic scores.
+
+| PI profile | Relative strengths | Development opportunities | Guidance |
+|---|---|---|---|
+| **Analyzer** | Decision Making (reality testing), Stress Management (calm under pressure). | Self‑Expression and Interpersonal composites (emotional expression, empathy). | Practice expressing feelings; engage in active listening; build supportive networks. |
+| **Controller** | Decision Making (problem solving), Self‑Perception (self‑confidence). | Interpersonal (empathy, social responsibility), Stress Management (optimism). | Acknowledge others’ perspectives; develop patience; cultivate optimism during setbacks. |
+| **Specialist** | Self‑Perception (self‑awareness), Decision Making (impulse control). | Self‑Expression (assertiveness), Stress Management (stress tolerance). | Speak up about needs; learn coping strategies; develop optimism through positive framing. |
+| **Strategist** | Decision Making (problem solving and reality testing), Self‑Perception (self‑actualization). | Interpersonal (empathy) and Self‑Expression (emotional expression). | Connect with team emotionally; articulate visions with warmth; practice empathy training. |
+| **Venturer** | Self‑Expression (assertiveness, independence), Self‑Perception (self‑confidence). | Decision Making (impulse control) and Interpersonal (empathy). | Slow down to validate decisions; seek feedback; practice active listening and empathy. |
+| **Individualist** | Self‑Perception (self‑awareness), Decision Making (reality testing). | Self‑Expression (emotional expression) and Interpersonal (social responsibility). | Share emotions openly; build collaborative relationships; work on teamwork skills. |
+| **Scholar** | Self‑Perception (self‑actualization), Decision Making (problem solving). | Self‑Expression (assertiveness) and Stress Management (optimism). | Increase visibility by sharing insights; cultivate optimism and resilience through small wins. |
+| **Altruist** | Interpersonal (empathy, social responsibility), Self‑Expression (emotional expression). | Self‑Perception (self‑regard) and Decision Making (impulse control). | Practice self‑care; set boundaries; consider data alongside feelings when making decisions. |
+| **Captain** | Self‑Expression (assertiveness), Self‑Perception (self‑confidence), Interpersonal (leadership empathy). | Decision Making (impulse control) and Stress Management (stress tolerance). | Reflect before reacting; practice resilience techniques; manage overconfidence. |
+| **Collaborator** | Interpersonal (empathy, social responsibility), Self‑Expression (emotional expression). | Decision Making (reality testing) and Self‑Perception (self‑regard). | Use structured problem‑solving tools; assert own needs; develop self‑confidence through achievements. |
+| **Maverick** | Self‑Expression (assertiveness), Self‑Perception (self‑confidence). | Decision Making (impulse control) and Interpersonal (empathy). | Pause before acting; consider impact on others; develop patience and empathy. |
+| **Persuader** | Self‑Expression (communication), Interpersonal (empathy). | Stress Management (stress tolerance) and Decision Making (impulse control). | Plan downtime; regulate pace; gather facts before committing; practice mindful breathing. |
+| **Promoter** | Self‑Expression (emotional expression, independence), Interpersonal (social responsibility). | Decision Making (reality testing) and Self‑Perception (self‑regard). | Use data to inform decisions; practice self‑validation; set realistic goals and follow through. |
+| **Adapter** | Interpersonal (empathy), Self‑Expression (adaptability), Self‑Perception (self‑awareness). | Decision Making (assertiveness) and Stress Management (optimism). | Make timely decisions; build optimism through reframing; avoid people‑pleasing at own expense. |
+| **Artisan** | Self‑Perception (self‑actualization), Decision Making (problem solving). | Self‑Expression (emotional expression) and Interpersonal (empathy). | Communicate emotions; engage with colleagues; cultivate optimism and stress tolerance. |
+| **Guardian** | Self‑Perception (self‑awareness), Interpersonal (empathy). | Self‑Expression (assertiveness) and Stress Management (stress tolerance). | Speak up about preferences; learn relaxation techniques; adopt an optimistic mindset. |
+| **Operator** | Interpersonal (social responsibility), Self‑Perception (self‑awareness). | Self‑Expression (assertiveness) and Decision Making (problem solving). | Build confidence in voicing ideas; practice structured problem‑solving; develop optimism. |
+
+**Practical implications**
+
+Using the EQ‑i lens with PI profiles helps leaders tailor coaching to
+emotional strengths and gaps.  For instance, a Controller may excel at
+decisions but struggle with empathy; targeted training in perspective‑taking
+can enhance effectiveness.  An Altruist may need to strengthen
+self‑regard to avoid burnout.  Combining emotional intelligence insights
+with behavioral preferences enables more compassionate management and
+supports high‑performance teams.
+`,
+  },
+  {
+    id: "executive-function-model-lens",
+    lens: "Executive Function Model Lens",
+    status: "",
+    source: "Executive_Function_Model(1).txt",
+    content: `
+Executive Function Model Lens
+
+**Overview**
+
+Executive functions (EF) are cognitive processes that enable planning, organisation, sustained focus and adaptive behaviour.  Six core EF domains are typically assessed in workplace contexts:
+
+1. **Working Memory** – holding and manipulating information in mind.
+2. **Inhibitory Control** – resisting impulses, distractions and emotional reactions.
+3. **Cognitive Flexibility** – switching tasks, adapting to change and perspective shifting.
+4. **Planning & Prioritisation** – sequencing, structuring and organising activities.
+5. **Task Initiation** – starting tasks without procrastination.
+6. **Sustained Attention** – maintaining focus over time.
+
+Each PI profile shows characteristic strengths and vulnerabilities across these functions.  The table below summarises typical patterns, the primary EF strength and primary vulnerability, along with a rationale.
+
+**Crosswalk by PI Profile**
+
+| PI Profile | Working memory | Inhibitory control | Cognitive flexibility | Planning & prioritisation | Task initiation | Sustained attention | Primary EF strength | Primary EF vulnerability | Rationale |
+|---|---|---|---|---|---|---|---|---|---|
+| **Analyzer** | High | High | Low‑Moderate | Very High | Moderate | Very High | Precision and sustained focus | Over‑analysis | Methodical, detail‑driven |
+| **Controller** | High | Very High | Low | Very High | High | High | Rule‑based consistency | Rigidity | Order and control |
+| **Specialist** | High | High | Low | High | Moderate | Very High | Deep technical focus | Narrow bandwidth | Domain mastery |
+| **Strategist** | High | Moderate | High | High | High | Moderate | Systems‑level planning | Over‑complexity | Vision and structure |
+| **Venturer** | Moderate | Low | High | Low | Very High | Low | Rapid action | Impulsivity | Fast, opportunistic |
+| **Altruist** | Moderate | Moderate | High | Moderate | Moderate | Moderate | Social flexibility | Over‑accommodation | People‑first EF |
+| **Captain** | High | Moderate | Moderate | High | Very High | Moderate | Decisive execution | Over‑assertive shortcuts | Command EF |
+| **Collaborator** | Moderate | High | High | Moderate | Moderate | Moderate | Social‑cognitive flexibility | Avoidance | Harmony‑oriented |
+| **Maverick** | Moderate | Low | Very High | Low | High | Low | Creative flexibility | Chaos | Disruptive EF |
+| **Persuader** | Moderate | Low‑Moderate | High | Low | High | Low‑Moderate | Social adaptability | Over‑promising | Influence EF |
+| **Promoter** | Moderate | Low | High | Low | Very High | Low | Energetic activation | Impulsive shifts | Improvisational EF |
+| **Adapter** | Moderate | High | Very High | Moderate | Moderate | Moderate | Situational flexibility | Over‑adjustment | Flexible EF |
+| **Craftsman** | High | High | Low | Very High | Moderate | Very High | Quality and precision | Perfectionistic delay | Methodical EF |
+| **Guardian** | High | High | Low | Very High | Moderate | High | Stability and consistency | Over‑caution | Stewardship EF |
+| **Operator** | Moderate | High | Low | High | High | High | Process execution | Rigidity | Operational EF |
+| **Individualist** | High | Low‑Moderate | High | Moderate | High | Moderate | Creative flexibility | Inconsistent follow‑through | Independent EF |
+| **Scholar** | Very High | High | Moderate | Very High | Moderate | Very High | Deep, rigorous focus | Over‑analysis | Academic EF |
+
+**Using this lens**
+
+* For individuals with high working memory and sustained attention (e.g., Analyzer, Scholar), design complex tasks that require deep concentration.  Monitor for over‑analysis and provide deadlines to encourage completion.
+* Profiles with low inhibitory control (e.g., Venturer, Maverick) benefit from external cues and structured checklists to resist impulsive actions.  Implement stage gates before launching big initiatives.
+* High cognitive flexibility (e.g., Strategist, Adapter) enables pivoting across tasks; use them in dynamic environments but watch for over‑complexity or over‑adjustment.
+* Low planning & prioritisation (e.g., Venturer) requires support in sequencing steps.  Provide simple frameworks and assign a partner to co‑plan key projects.
+* Task initiation difficulty can delay progress (e.g., Analyzer).  Break tasks into small, clearly defined first steps and use accountability check‑ins to spur action.
+`,
+  },
+  {
+    id: "herrmann-brain-dominance-instrument-hbdi-lens",
+    lens: "Herrmann Brain Dominance Instrument (HBDI) Lens",
+    status: "",
+    source: "HBDI_Lens(1).txt",
+    content: `
+Herrmann Brain Dominance Instrument (HBDI) Lens
+
+**Overview**
+
+The Herrmann Brain Dominance Instrument (HBDI) maps thinking preferences across four quadrants:
+
+* **A – Analytical (Blue)** – logic, data, analysis and numbers.
+* **B – Organized (Green)** – structure, process, planning and detail.
+* **C – Interpersonal (Red)** – empathy, communication and relationships.
+* **D – Imaginative (Yellow)** – vision, creativity, big picture and innovation.
+
+Individuals have primary, secondary and tertiary quadrants indicating their comfort zones, along with a lowest quadrant where they may struggle.  Under stress, people tend to over‑use their primary quadrant or neglect their lowest.
+
+**Crosswalk by PI Profile**
+
+| PI Profile | Primary quadrant | Secondary | Tertiary | Lowest | Thinking strength | Blind spot | Stress‑mode shift | Rationale |
+|---|---|---|---|---|---|---|---|---|
+| **Analyzer** | A (Analytical) | B | D | C | Precision and logic | Emotional nuance | Hyper‑A (over‑analysis) | Data‑driven, structured |
+| **Controller** | B (Organized) | A | C | D | Structure and control | Creativity | Rigid B | Rule‑based, process‑driven |
+| **Specialist** | A | B | C | D | Technical depth | Innovation | Withdrawn A/B | Deep, precise reasoning |
+| **Strategist** | D (Imaginative) | A | B | C | Vision and logic | Emotional tone | Over‑theorising | Systems and innovation |
+| **Venturer** | D | A | C | B | Bold innovation | Structure | Impulsive D | Fast, creative risk‑taking |
+| **Altruist** | C (Interpersonal) | B | A | D | Empathy and harmony | Innovation | Over‑accommodation | People‑first cognition |
+| **Captain** | D | A | B | C | Vision and drive | Emotional nuance | Dominant D/A | Command and innovation |
+| **Collaborator** | C | B | D | A | Harmony and facilitation | Hard logic | Avoidance | Relational integration |
+| **Maverick** | D | A | C | B | Creative disruption | Structure | Chaotic D | Non‑linear, inventive |
+| **Persuader** | C | D | A | B | Influence and creativity | Process discipline | Emotional C | Social‑creative cognition |
+| **Promoter** | C | D | A | B | Energy and connection | Structure | Reactive C/D | Expressive, improvisational |
+| **Adapter** | C | B | D | A | Flexibility and empathy | Hard analysis | Over‑adjustment | Situational, relational |
+| **Craftsman** | B | A | C | D | Structure and precision | Innovation | Perfectionistic B | Quality and order |
+| **Guardian** | B | A | C | D | Stability and stewardship | Creativity | Over‑caution | Preservation and process |
+| **Operator** | B | A | C | D | Reliable execution | Innovation | Rigid B | Process and consistency |
+| **Individualist** | D | A | C | B | Creative independence | Structure | Detached D | Identity‑driven creativity |
+| **Scholar** | A | B | D | C | Deep analysis | Emotional nuance | Over‑analysis | Academic, structured |
+
+**Application guidance**
+
+* Align work with strengths: Analytical‑dominant profiles excel at data analysis and problem solving; Organized types thrive in planning and process control; Interpersonal profiles lead culture and relationships; Imaginative thinkers drive innovation and vision.
+* Address blind spots through team composition: Pair creative strategists with process‑oriented guardians to balance vision and execution; match relational collaborators with analytical operators to bridge people and processes.
+* Watch stress shifts: Under pressure, primary quadrants may intensify (e.g., analyzers over‑analyse, controllers become rigid); anticipate these reactions and offer support such as clarifying expectations or introducing alternative perspectives.
+`,
+  },
 ];
 
 // Index by id for O(1) lookup
