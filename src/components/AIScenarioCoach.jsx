@@ -10,10 +10,10 @@ import {
   MessageSquareText,
   ShieldCheck,
   Sparkles,
-  Target,
 } from 'lucide-react';
-import { allLenses } from '../data/lenses.js';
+import { signalGlassStaticLenses } from '../data/signalGlassStaticLenses.js';
 import { profiles } from '../data/appProfiles.js';
+import { loadSavedProfiles } from '../data/savedProfiles.js';
 
 function cx(...classes) {
   return classes.filter(Boolean).join(' ');
@@ -57,18 +57,28 @@ function InsightList({ title, icon: Icon, items, tone = '' }) {
 }
 
 function makeDefaultLensState() {
-  return allLenses.reduce((acc, lens) => {
-    if (['big-five', 'disc', 'communication', 'management', 'stress', 'role-fit', 'team-fit'].includes(lens.id)) acc[lens.id] = 'include';
-    else if (['cognitive-processing', 'executive-function', 'motivation', 'learning-style', 'neurodiversity'].includes(lens.id)) acc[lens.id] = 'estimated';
+  return signalGlassStaticLenses.reduce((acc, lens, index) => {
+    if (index < 12) acc[lens.id] = 'include';
+    else if (index < 32) acc[lens.id] = 'estimated';
     else acc[lens.id] = 'unknown';
     return acc;
   }, {});
 }
 
-export default function AIScenarioCoach() {
+function statusTone(state) {
+  if (state === 'include') return 'border-emerald-300/30 bg-emerald-500/10';
+  if (state === 'estimated') return 'border-sky-300/30 bg-sky-500/10';
+  if (state === 'unknown') return 'border-amber-300/30 bg-amber-500/10';
+  return 'border-white/10 bg-white/[0.04] text-white/35';
+}
+
+export default function AIScenarioCoach({ profile }) {
+  const [savedProfiles, setSavedProfiles] = useState(loadSavedProfiles);
+  const [selectedSavedId, setSelectedSavedId] = useState('manual');
   const [employeeName, setEmployeeName] = useState('Working Profile A');
   const [role, setRole] = useState('Operations / leadership role');
-  const [baseProfileName, setBaseProfileName] = useState('Analyzer');
+  const incomingProfileName = profile ? profiles.find((item) => item.name.toLowerCase() === profile)?.name : null;
+  const [baseProfileName, setBaseProfileName] = useState(incomingProfileName || 'Analyzer');
   const [managerGoal, setManagerGoal] = useState('Understand the behavior without judging the employee and identify a supportive next step.');
   const [scenario, setScenario] = useState('The employee seems frustrated when a process changes suddenly and asks for written clarification before moving forward. What might be happening, and how should a manager respond?');
   const [lensStates, setLensStates] = useState(makeDefaultLensState);
@@ -76,13 +86,13 @@ export default function AIScenarioCoach() {
   const [error, setError] = useState('');
   const [result, setResult] = useState(null);
 
-  const baseProfile = profiles.find((profile) => profile.name === baseProfileName) || profiles[0];
+  const baseProfile = profiles.find((item) => item.name === baseProfileName) || profiles[0];
 
   const profilePayload = useMemo(() => {
-    const includedLenses = allLenses.filter((lens) => lensStates[lens.id] === 'include').map((lens) => lens.label);
-    const estimatedLenses = allLenses.filter((lens) => lensStates[lens.id] === 'estimated').map((lens) => lens.label);
-    const unknownLenses = allLenses.filter((lens) => lensStates[lens.id] === 'unknown').map((lens) => lens.label);
-    const excludedLenses = allLenses.filter((lens) => lensStates[lens.id] === 'exclude').map((lens) => lens.label);
+    const includedLenses = signalGlassStaticLenses.filter((lens) => lensStates[lens.id] === 'include').map((lens) => lens.lens);
+    const estimatedLenses = signalGlassStaticLenses.filter((lens) => lensStates[lens.id] === 'estimated').map((lens) => lens.lens);
+    const unknownLenses = signalGlassStaticLenses.filter((lens) => lensStates[lens.id] === 'unknown').map((lens) => lens.lens);
+    const excludedLenses = signalGlassStaticLenses.filter((lens) => lensStates[lens.id] === 'exclude').map((lens) => lens.lens);
 
     return {
       employeeName,
@@ -92,9 +102,27 @@ export default function AIScenarioCoach() {
       estimatedLenses,
       unknownLenses,
       excludedLenses,
+      source: 'signalGlassStaticLenses.js uploaded lens library plus saved Employee Builder profile when selected',
       guardrail: 'Use as a support-first working profile. Do not diagnose, judge, or infer sensitive private context.',
     };
   }, [employeeName, role, baseProfile, lensStates]);
+
+  function refreshSavedProfiles() {
+    setSavedProfiles(loadSavedProfiles());
+  }
+
+  function loadSavedProfile(profileId) {
+    setSelectedSavedId(profileId);
+    if (profileId === 'manual') return;
+    const saved = savedProfiles.find((item) => item.id === profileId);
+    if (!saved) return;
+    setEmployeeName(saved.employee?.name || 'Working Profile A');
+    setRole(saved.employee?.role || 'Operations / leadership role');
+    setBaseProfileName(saved.baseProfileName || 'Analyzer');
+    setLensStates({ ...makeDefaultLensState(), ...(saved.lensStates || {}) });
+    setResult(null);
+    setError('');
+  }
 
   async function analyzeScenario() {
     setLoading(true);
@@ -131,12 +159,12 @@ export default function AIScenarioCoach() {
             <div className="lg:col-span-8">
               <div className="mb-3 flex flex-wrap gap-2">
                 <Pill>AI Scenario Coach</Pill>
-                <Pill>Nonjudgmental explanations</Pill>
-                <Pill>Known / estimated / unknown aware</Pill>
+                <Pill>Can load saved profiles</Pill>
+                <Pill>{signalGlassStaticLenses.length} uploaded lenses</Pill>
               </div>
               <h2 className="text-4xl font-bold tracking-tight text-white md:text-5xl">Ask About a Workplace Scenario</h2>
               <p className="mt-4 max-w-4xl text-sm leading-6 text-white/65">
-                Ask a question about a situation the app could not manually predict. The coach uses the selected working profile, included lenses, estimated lenses, and unknowns to provide cautious, supportive manager guidance.
+                Ask a question about a situation the app could not manually predict. The coach uses the saved working profile, included lenses, estimated lenses, and unknowns to provide cautious, supportive manager guidance.
               </p>
             </div>
             <div className="lg:col-span-4 rounded-3xl border border-white/10 bg-black/25 p-5">
@@ -150,8 +178,18 @@ export default function AIScenarioCoach() {
 
       <Card className="lg:col-span-4">
         <div className="p-6">
-          <SectionTitle icon={ClipboardList} title="Working Profile Context" subtitle="This context is sent to the backend with the scenario question." />
-          <div className="grid gap-4">
+          <SectionTitle icon={ClipboardList} title="Working Profile Context" subtitle="Load a saved profile from Employee Builder, or edit manually." />
+          <label className="block">
+            <span className="mb-2 block text-sm text-white/60">Saved employee profile</span>
+            <div className="grid gap-2 sm:grid-cols-[1fr_auto]">
+              <select value={selectedSavedId} onChange={(event) => loadSavedProfile(event.target.value)} className="w-full rounded-2xl border border-white/10 bg-black/30 px-4 py-3 text-sm text-white outline-none">
+                <option value="manual">Manual / current profile</option>
+                {savedProfiles.map((item) => <option key={item.id} value={item.id}>{item.employee?.name || 'Untitled'} — {item.baseProfileName}</option>)}
+              </select>
+              <button type="button" onClick={refreshSavedProfiles} className="rounded-2xl border border-white/10 bg-white/[0.06] px-4 py-3 text-sm font-semibold text-white/70 hover:bg-white/10">Refresh</button>
+            </div>
+          </label>
+          <div className="mt-4 grid gap-4">
             <label className="block">
               <span className="mb-2 block text-sm text-white/60">Employee name or alias</span>
               <input value={employeeName} onChange={(event) => setEmployeeName(event.target.value)} className="w-full rounded-2xl border border-white/10 bg-black/25 px-4 py-3 text-sm text-white outline-none" />
@@ -163,7 +201,7 @@ export default function AIScenarioCoach() {
             <label className="block">
               <span className="mb-2 block text-sm text-white/60">Base PI-style profile</span>
               <select value={baseProfileName} onChange={(event) => setBaseProfileName(event.target.value)} className="w-full rounded-2xl border border-white/10 bg-black/30 px-4 py-3 text-sm text-white outline-none">
-                {profiles.map((profile) => <option key={profile.name} value={profile.name}>{profile.name}</option>)}
+                {profiles.map((item) => <option key={item.name} value={item.name}>{item.name}</option>)}
               </select>
             </label>
           </div>
@@ -191,18 +229,18 @@ export default function AIScenarioCoach() {
 
       <Card className="lg:col-span-12">
         <div className="p-6">
-          <SectionTitle icon={Sparkles} title="Lens Signal Controls" subtitle="Choose what the AI should treat as included, estimated, unknown, or excluded for this scenario." />
+          <SectionTitle icon={Sparkles} title="Lens Signal Controls" subtitle="These controls now use your uploaded SignalGlass static lens library, not the old placeholder catalog." />
           <div className="grid gap-3 md:grid-cols-2 xl:grid-cols-4">
-            {allLenses.map((lens) => {
+            {signalGlassStaticLenses.map((lens) => {
               const state = lensStates[lens.id] || 'unknown';
               return (
                 <div key={lens.id} className="rounded-2xl border border-white/10 bg-black/20 p-3">
                   <div className="flex items-start justify-between gap-3">
                     <div>
-                      <div className="text-sm font-semibold text-white">{lens.label}</div>
-                      <div className="mt-1 text-xs text-white/40">{lens.category}</div>
+                      <div className="text-sm font-semibold text-white">{lens.lens}</div>
+                      <div className="mt-1 text-xs text-white/40">{lens.source || 'Uploaded source'}</div>
                     </div>
-                    <Pill className={state === 'include' ? 'border-emerald-300/30 bg-emerald-500/10' : state === 'estimated' ? 'border-sky-300/30 bg-sky-500/10' : state === 'unknown' ? 'border-amber-300/30 bg-amber-500/10' : 'text-white/35'}>{state}</Pill>
+                    <Pill className={statusTone(state)}>{state}</Pill>
                   </div>
                   <div className="mt-3 grid grid-cols-4 gap-1">
                     {['include', 'estimated', 'unknown', 'exclude'].map((option) => (
@@ -242,16 +280,13 @@ export default function AIScenarioCoach() {
         </>
       )}
 
-      <Card className="lg:col-span-12 border-amber-300/20 bg-amber-500/5">
-        <div className="p-6">
-          <SectionTitle icon={ShieldCheck} title="AI Guardrail" subtitle="The coach is designed to explain possibilities without judging the employee or pretending to know private facts." />
-          <div className="grid gap-3 md:grid-cols-3">
-            <div className="rounded-2xl border border-white/10 bg-white/[0.055] p-4 text-sm leading-6 text-white/65"><Target className="mb-2 h-5 w-5 text-white/70" />Use the response as a manager thinking aid, not as a final truth.</div>
-            <div className="rounded-2xl border border-white/10 bg-white/[0.055] p-4 text-sm leading-6 text-white/65"><AlertTriangle className="mb-2 h-5 w-5 text-white/70" />Do not use it to diagnose, label, punish, or infer private life context.</div>
-            <div className="rounded-2xl border border-white/10 bg-white/[0.055] p-4 text-sm leading-6 text-white/65"><ShieldCheck className="mb-2 h-5 w-5 text-white/70" />Use it to ask better questions, clarify expectations, and offer support.</div>
-          </div>
+      {!result && (
+        <div className="lg:col-span-12 grid gap-5 md:grid-cols-3">
+          <InsightList title="What the coach receives" icon={ShieldCheck} items={[`${employeeName} / ${role}`, `Base profile: ${baseProfile.name}`, `${profilePayload.includedLenses.length} included lenses`, `${profilePayload.estimatedLenses.length} estimated lenses`]} />
+          <InsightList title="Guardrails" icon={AlertTriangle} items={['Do not diagnose.', 'Do not treat lens inferences as facts.', 'Name unknowns instead of filling gaps.', 'Focus on manager support and work design.']} tone="border-amber-300/20 bg-amber-500/5" />
+          <InsightList title="Best questions" icon={MessageSquareText} items={['What might explain this behavior without blaming the employee?', 'What support would reduce friction?', 'What should the manager not assume?', 'What follow-up questions should be asked?']} />
         </div>
-      </Card>
+      )}
     </div>
   );
 }
