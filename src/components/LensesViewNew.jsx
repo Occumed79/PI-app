@@ -7,6 +7,8 @@ import React, { useMemo, useState } from 'react';
 import { Search, Layers3, SlidersHorizontal, X, ChevronDown, ChevronUp, FileText, Table2 } from 'lucide-react';
 import { signalGlassStaticLenses } from '../data/signalGlassStaticLenses.js';
 import { getCanonicalSignalGlassLenses, getLensVisualTableRows } from '../data/lensVisualRegistry.js';
+import NativeLensVisual from './lens/NativeLensVisual.jsx';
+import { buildLensPreviewResult } from './lens/LensPreviewData.js';
 
 function cx(...classes) { return classes.filter(Boolean).join(' '); }
 
@@ -255,6 +257,7 @@ export default function LensesView({ profiles, selectedProfile, setSelectedProfi
   const profColor = selectedProfile ? (PROFILE_COLORS[selectedProfile.name.toLowerCase()] || '#818cf8') : '#818cf8';
   const profGroup = selectedProfile?.group || '';
   const mergedGroups = canonicalLenses.filter((lens) => lens.duplicateCount > 1).length;
+  const previewResult = activeLens ? buildLensPreviewResult(activeLens) : null;
 
   return (
     <div style={{ display: 'flex', gap: '16px', minHeight: '80vh', alignItems: 'flex-start' }}>
@@ -320,6 +323,7 @@ export default function LensesView({ profiles, selectedProfile, setSelectedProfi
                 {selectedProfile && <button onClick={() => setShowProfilePicker((value) => !value)} className="flex flex-shrink-0 items-center gap-2 rounded-xl border border-white/10 px-3 py-2 transition-colors hover:bg-white/[0.06]" style={{ background: `${profColor}12`, borderColor: `${profColor}30` }} title="Switch profile"><div className="h-2.5 w-2.5 rounded-full" style={{ background: profColor }} /><span className="text-xs font-medium text-white/75">{selectedProfile.name.replace(' / Artisan','')}</span><SlidersHorizontal size={10} className="ml-1 text-white/30" /></button>}
               </div>
             </div>
+            {previewResult && <NativeLensVisual lens={activeLens} result={previewResult} />}
             <LensContent content={activeLens.content} />
           </div>
         ) : (
