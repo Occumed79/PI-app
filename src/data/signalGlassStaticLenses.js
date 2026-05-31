@@ -2703,6 +2703,1139 @@ Recommended SignalGlass UI fields:
 Do not present this as a formal MBTI result. It is a language bridge for communication, team design, and role-style explanation.
 `,
   },
+  {
+    id: "hbdi--herrmann-brain-dominance-instrument",
+    lens: "HBDI - Herrmann Brain Dominance Instrument",
+    status: "Not Done \u2192 now completing fully",
+    source: "Untitled 5.txt",
+    content: `LENS: HBDI - Herrmann Brain Dominance Instrument
+STATUS: COMPLETE
+SOURCE: Untitled 5.txt
+DEDUPLICATION / CLEANUP NOTE: Duplicate status/check-in text was removed. Content is preserved from the uploaded document.
+================================================================================
+
+HBDI — HERRMANN BRAIN DOMINANCE INSTRUMENT
+Status:  Not Done → now completing fully
+Output: For each PI profile →
+  - Primary Quadrant (A / B / C / D)
+  - Secondary Quadrant
+  - Tertiary Quadrant
+  - Lowest Quadrant
+  - Thinking Strength
+  - Thinking Blind Spot
+  - Stress‑Mode Shift
+  - One‑line rationale
+  - Guided Links for deeper dives
+This lens is extremely powerful for communication, collaboration, team design, and leadership because it maps how people prefer to think, not how smart they are.
+
+  THE 4 HBDI QUADRANTS
+A — Analytical (Blue)
+Logic, data, analysis, numbers.
+B — Organized (Green)
+Structure, process, planning, detail.
+C — Interpersonal (Red)
+Empathy, communication, relationships.
+D — Imaginative (Yellow)
+Vision, creativity, big‑picture, innovation.
+
+ FULL CROSSWALK — ALL 17 PI PROFILES
+
+1. Analyzer
+  - Primary: A (Analytical)
+  - Secondary: B
+  - Tertiary: D
+  - Lowest: C
+  - Strength: Precision + logic
+  - Blind Spot: Emotional nuance
+  - Stress Shift: Hyper‑A (over‑analysis)
+  - Rationale: Data‑driven, structured
+  - Deep dive: Analyzer HBDI
+
+2. Controller
+  - Primary: B (Organized)
+  - Secondary: A
+  - Tertiary: C
+  - Lowest: D
+  - Strength: Structure + control
+  - Blind Spot: Creativity
+  - Stress Shift: Rigid B
+  - Rationale: Rule‑based, process‑driven
+  - Deep dive: Controller HBDI
+
+3. Specialist
+  - Primary: A
+  - Secondary: B
+  - Tertiary: C
+  - Lowest: D
+  - Strength: Technical depth
+  - Blind Spot: Innovation
+  - Stress Shift: Withdrawn A/B
+  - Rationale: Deep, precise reasoning
+  - Deep dive: Specialist HBDI
+
+4. Strategist
+  - Primary: D (Imaginative)
+  - Secondary: A
+  - Tertiary: B
+  - Lowest: C
+  - Strength: Vision + logic
+  - Blind Spot: Emotional tone
+  - Stress Shift: Over‑theorizing
+  - Rationale: Systems + innovation
+  - Deep dive: Strategist HBDI
+
+5. Venturer
+  - Primary: D
+  - Secondary: A
+  - Tertiary: C
+  - Lowest: B
+  - Strength: Bold innovation
+  - Blind Spot: Structure
+  - Stress Shift: Impulsive D
+  - Rationale: Fast, creative, risk‑taking
+  - Deep dive: Venturer HBDI
+
+6. Altruist
+  - Primary: C (Interpersonal)
+  - Secondary: B
+  - Tertiary: A
+  - Lowest: D
+  - Strength: Empathy + harmony
+  - Blind Spot: Innovation
+  - Stress Shift: Over‑accommodation
+  - Rationale: People‑first cognition
+  - Deep dive: Altruist HBDI
+
+7. Captain
+  - Primary: D
+  - Secondary: A
+  - Tertiary: B
+  - Lowest: C
+  - Strength: Vision + drive
+  - Blind Spot: Emotional nuance
+  - Stress Shift: Dominant D/A
+  - Rationale: Command + innovation
+  - Deep dive: Captain HBDI
+
+8. Collaborator
+  - Primary: C
+  - Secondary: B
+  - Tertiary: D
+  - Lowest: A
+  - Strength: Harmony + facilitation
+  - Blind Spot: Hard logic
+  - Stress Shift: Avoidance
+  - Rationale: Relational integration
+  - Deep dive: Collaborator HBDI
+
+9. Maverick
+  - Primary: D
+  - Secondary: A
+  - Tertiary: C
+  - Lowest: B
+  - Strength: Creative disruption
+  - Blind Spot: Structure
+  - Stress Shift: Chaotic D
+  - Rationale: Non‑linear, inventive
+  - Deep dive: Maverick HBDI
+
+10. Persuader
+  - Primary: C
+  - Secondary: D
+  - Tertiary: A
+  - Lowest: B
+  - Strength: Influence + creativity
+  - Blind Spot: Process discipline
+  - Stress Shift: Emotional C
+  - Rationale: Social‑creative cognition
+  - Deep dive: Persuader HBDI
+
+11. Promoter
+  - Primary: C
+  - Secondary: D
+  - Tertiary: A
+  - Lowest: B
+  - Strength: Energy + connection
+  - Blind Spot: Structure
+  - Stress Shift: Reactive C/D
+  - Rationale: Expressive, improvisational
+  - Deep dive: Promoter HBDI
+
+12. Adapter
+  - Primary: C
+  - Secondary: B
+  - Tertiary: D
+  - Lowest: A
+  - Strength: Flexibility + empathy
+  - Blind Spot: Hard analysis
+  - Stress Shift: Over‑adjustment
+  - Rationale: Situational, relational
+  - Deep dive: Adapter HBDI
+
+13. Craftsman
+  - Primary: B
+  - Secondary: A
+  - Tertiary: C
+  - Lowest: D
+  - Strength: Structure + precision
+  - Blind Spot: Innovation
+  - Stress Shift: Perfectionistic B
+  - Rationale: Quality + order
+  - Deep dive: Craftsman HBDI
+
+14. Guardian
+  - Primary: B
+  - Secondary: A
+  - Tertiary: C
+  - Lowest: D
+  - Strength: Stability + stewardship
+  - Blind Spot: Creativity
+  - Stress Shift: Over‑caution
+  - Rationale: Preservation + process
+  - Deep dive: Guardian HBDI
+
+15. Operator
+  - Primary: B
+  - Secondary: A
+  - Tertiary: C
+  - Lowest: D
+  - Strength: Reliable execution
+  - Blind Spot: Innovation
+  - Stress Shift: Rigid B
+  - Rationale: Process + consistency
+  - Deep dive: Operator HBDI
+
+16. Individualist
+  - Primary: D
+  - Secondary: A
+  - Tertiary: C
+  - Lowest: B
+  - Strength: Creative independence
+  - Blind Spot: Structure
+  - Stress Shift: Detached D
+  - Rationale: Identity‑driven creativity
+  - Deep dive: Individualist HBDI
+
+17. Scholar
+  - Primary: A
+  - Secondary: B
+  - Tertiary: D
+  - Lowest: C
+  - Strength: Deep analysis
+  - Blind Spot: Emotional nuance
+  - Stress Shift: Over‑analysis
+  - Rationale: Academic, structured
+  - Deep dive: Scholar HBDI
+
+ HBDI — COMPLETE
+This lens moves from  →  COMPLETE.
+`,
+  },
+  {
+    id: "keirsey-temperaments",
+    lens: "Keirsey Temperaments",
+    status: "Finished / Done",
+    source: "SignalGlass \u2014 Extracted Results",
+    content: `SignalGlass Lens 11 — Keirsey Temperaments
+===========================================
+
+Source status: Finished / Done
+Source document: SignalGlass — Extracted Results
+
+Duplicate handling applied from the source document:
+- Hogan HDS (Derailers) appeared in both the Personality section and Leadership section; it is kept once as a completed leadership/derailer lens.
+- “Lived experiences” appeared separately but duplicated Lived Experience Context Lens; it is not exported as a finished lens because the source marks that lens as not done.
+- Workplace Big Five Pro appeared twice with conflicting status; it is not exported as a finished lens because the source says only OCEAN-level mapping was partially applied and Pro-specific facets were not completed.
+
+Translation methodology preserved from the source document:
+- PI inputs used: Dominance, Extraversion, Patience, and Formality.
+- Shared-construct translation: similar constructs are mapped across frameworks where conceptually aligned.
+- Known correlations: for example, high Formality and Patience support Conscientiousness-like interpretations; Dominance supports agency/assertiveness interpretations.
+- Qualitative PI profile descriptors are used as supporting evidence, such as risk-taking, cautious, innovative, perfectionistic, supportive, or process-oriented.
+- Outputs are non-diagnostic. They should be read as “this PI profile pattern is consistent with…” rather than as clinical, medical, or definitive personality diagnoses.
+
+Source limitation note: the uploaded extraction says this lens was completed at full micro-level in the source conversation, but the hundreds of detailed cells were not included in the uploaded text. The profile-level content below is therefore a detailed reconstruction derived from the uploaded document’s summary, the 17 PI profile reference list, and the translation methodology preserved in the source document. It should be reviewed against the original Raw_data conversation if exact historical cell-by-cell wording is required.
+
+
+LENS PURPOSE
+------------
+Keirsey summarizes profile behavior into temperament language: Guardian, Artisan, Rational, and Idealist. The source says a single temperament plus subtype was produced per profile with micro-bullets and role implications.
+
+PROFILE-LEVEL DERIVED KEIRSEY MAP
+---------------------------------
+| Profile       | Temperament         | Subtype                    | Likely Work Signature                                        | Role Implication                                                                              |
+| ------------- | ------------------- | -------------------------- | ------------------------------------------------------------ | --------------------------------------------------------------------------------------------- |
+| Analyzer      | Guardian / Rational | Inspector or Mastermind    | Quality control, compliance, analysis                        | Best used where precision, structured review, and standards matter.                           |
+| Controller    | Guardian            | Supervisor                 | Governance, enforcement, operational control                 | Best used where rules, accountability, and procedural clarity are required.                   |
+| Specialist    | Rational / Guardian | Architect or Inspector     | Technical mastery, deep review, domain expertise             | Best used where depth and subject-matter credibility matter more than broad social influence. |
+| Strategist    | Rational            | Mastermind / Fieldmarshal  | Systems strategy, architecture, program design               | Best used where complex tradeoffs and future-state planning are central.                      |
+| Venturer      | Artisan / Rational  | Promoter or Fieldmarshal   | Opportunity pursuit, business development, new-market action | Best used in pilots, expansion, and fast-moving ambiguous opportunities.                      |
+| Altruist      | Idealist / Guardian | Counselor or Provider      | Support, advocacy, mentoring, care-centered operations       | Best used where trust, support, and dependable follow-through are needed.                     |
+| Captain       | Rational / Guardian | Fieldmarshal or Supervisor | Executive leadership, crisis command, outcome ownership      | Best used when decisive direction and mobilization are required.                              |
+| Collaborator  | Idealist / Guardian | Teacher or Provider        | Facilitation, internal communication, team cohesion          | Best used as a bridge across groups and relationship systems.                                 |
+| Maverick      | Rational / Artisan  | Inventor or Promoter       | Innovation, disruption, creative challenge                   | Best used when assumptions need to be broken and options widened.                             |
+| Persuader     | Idealist / Artisan  | Teacher or Promoter        | Influence, stakeholder conversion, change adoption           | Best used in communication-heavy roles with a need for buy-in.                                |
+| Promoter      | Artisan             | Performer / Promoter       | Launches, events, social activation, visibility              | Best used in high-energy settings requiring excitement and audience engagement.               |
+| Adapter       | Idealist / Guardian | Champion or Provider       | Liaison work, flexible facilitation, context switching       | Best used where people and changing requirements must be balanced.                            |
+| Craftsman     | Guardian / Artisan  | Inspector or Crafter       | Quality, build discipline, standards, hands-on precision     | Best used in roles requiring reliable technical execution and quality control.                |
+| Guardian      | Guardian            | Protector                  | Continuity, safety, stewardship, institutional memory        | Best used in roles protecting stability, compliance, and people.                              |
+| Operator      | Guardian            | Inspector / Supervisor     | Scheduling, process management, service delivery             | Best used in operational systems with metrics, routines, and accountability.                  |
+| Individualist | Idealist / Rational | Healer or Architect        | Original design, thought leadership, identity-centered work  | Best used with autonomy and space for distinctive contribution.                               |
+| Scholar       | Rational            | Architect                  | Research, analysis, knowledge systems, evidence review       | Best used in rigorous inquiry and complex intellectual problem-solving.                       |
+
+IMPLEMENTATION NOTES
+--------------------
+Recommended SignalGlass UI fields:
+- temperament
+- subtype
+- work_signature
+- role_implication
+- leadership_translation
+- team_fit_note
+
+Use this lens to simplify user-facing explanations of work temperament without implying a validated Keirsey test result.
+`,
+  },
+  {
+    id: "cliftonstrengths-34-themes",
+    lens: "CliftonStrengths 34 Themes",
+    status: "Finished / Done",
+    source: "SignalGlass \u2014 Extracted Results",
+    content: `SignalGlass Lens 12 — CliftonStrengths 34 Themes
+=================================================
+
+Source status: Finished / Done
+Source document: SignalGlass — Extracted Results
+
+Duplicate handling applied from the source document:
+- Hogan HDS (Derailers) appeared in both the Personality section and Leadership section; it is kept once as a completed leadership/derailer lens.
+- “Lived experiences” appeared separately but duplicated Lived Experience Context Lens; it is not exported as a finished lens because the source marks that lens as not done.
+- Workplace Big Five Pro appeared twice with conflicting status; it is not exported as a finished lens because the source says only OCEAN-level mapping was partially applied and Pro-specific facets were not completed.
+
+Translation methodology preserved from the source document:
+- PI inputs used: Dominance, Extraversion, Patience, and Formality.
+- Shared-construct translation: similar constructs are mapped across frameworks where conceptually aligned.
+- Known correlations: for example, high Formality and Patience support Conscientiousness-like interpretations; Dominance supports agency/assertiveness interpretations.
+- Qualitative PI profile descriptors are used as supporting evidence, such as risk-taking, cautious, innovative, perfectionistic, supportive, or process-oriented.
+- Outputs are non-diagnostic. They should be read as “this PI profile pattern is consistent with…” rather than as clinical, medical, or definitive personality diagnoses.
+
+Source limitation note: the uploaded extraction says this lens was completed at full micro-level in the source conversation, but the hundreds of detailed cells were not included in the uploaded text. The profile-level content below is therefore a detailed reconstruction derived from the uploaded document’s summary, the 17 PI profile reference list, and the translation methodology preserved in the source document. It should be reviewed against the original Raw_data conversation if exact historical cell-by-cell wording is required.
+
+
+LENS PURPOSE
+------------
+This lens translates PI profiles into CliftonStrengths-style theme patterns. The source says all 34 CliftonStrengths themes were judged per profile as Likely/Possible/Unlikely/Indeterminate with PI-to-theme triggers.
+
+The table below provides the most likely/high-signal theme set for each PI profile, grouped by practical priority. It is not a replacement for a Gallup CliftonStrengths assessment.
+
+THE 34 THEMES BY DOMAIN
+-----------------------
+Executing: Achiever, Arranger, Belief, Consistency, Deliberative, Discipline, Focus, Responsibility, Restorative
+Influencing: Activator, Command, Communication, Competition, Maximizer, Self-Assurance, Significance, Woo
+Relationship Building: Adaptability, Connectedness, Developer, Empathy, Harmony, Includer, Individualization, Positivity, Relator
+Strategic Thinking: Analytical, Context, Futuristic, Ideation, Input, Intellection, Learner, Strategic
+
+PROFILE-LEVEL DERIVED CLIFTON MAP
+---------------------------------
+| Profile       | Highest-Signal Themes                                        | Secondary Likely Themes                    | Domain Emphasis                                                 |
+| ------------- | ------------------------------------------------------------ | ------------------------------------------ | --------------------------------------------------------------- |
+| Analyzer      | Analytical, Consistency, Deliberative, Discipline, Focus     | Responsibility, Intellection, Input        | Executing: 5; Strategic Thinking: 3                             |
+| Controller    | Command, Discipline, Responsibility, Consistency, Focus      | Deliberative, Restorative, Significance    | Executing: 6; Influencing: 2                                    |
+| Specialist    | Input, Learner, Analytical, Focus, Discipline                | Deliberative, Intellection, Responsibility | Executing: 4; Strategic Thinking: 4                             |
+| Strategist    | Strategic, Analytical, Ideation, Futuristic, Focus           | Command, Learner, Intellection             | Executing: 1; Influencing: 1; Strategic Thinking: 6             |
+| Venturer      | Activator, Command, Self-Assurance, Strategic, Competition   | Ideation, Woo, Maximizer                   | Influencing: 6; Strategic Thinking: 2                           |
+| Altruist      | Developer, Empathy, Harmony, Relator, Responsibility         | Connectedness, Belief, Includer            | Executing: 2; Relationship Building: 6                          |
+| Captain       | Command, Activator, Competition, Self-Assurance, Strategic   | Significance, Focus, Maximizer             | Executing: 1; Influencing: 6; Strategic Thinking: 1             |
+| Collaborator  | Harmony, Includer, Positivity, Developer, Relator            | Empathy, Communication, Woo                | Influencing: 2; Relationship Building: 6                        |
+| Maverick      | Ideation, Activator, Command, Self-Assurance, Strategic      | Futuristic, Individualization, Competition | Influencing: 4; Relationship Building: 1; Strategic Thinking: 3 |
+| Persuader     | Woo, Communication, Activator, Command, Positivity           | Strategic, Individualization, Significance | Influencing: 5; Relationship Building: 2; Strategic Thinking: 1 |
+| Promoter      | Woo, Communication, Positivity, Activator, Adaptability      | Ideation, Significance, Maximizer          | Influencing: 5; Relationship Building: 2; Strategic Thinking: 1 |
+| Adapter       | Adaptability, Harmony, Empathy, Includer, Developer          | Relator, Positivity, Connectedness         | Relationship Building: 8                                        |
+| Craftsman     | Discipline, Focus, Analytical, Consistency, Responsibility   | Deliberative, Restorative, Learner         | Executing: 6; Strategic Thinking: 2                             |
+| Guardian      | Responsibility, Consistency, Belief, Deliberative, Harmony   | Discipline, Relator, Restorative           | Executing: 6; Relationship Building: 2                          |
+| Operator      | Discipline, Focus, Responsibility, Arranger, Consistency     | Restorative, Deliberative, Achiever        | Executing: 8                                                    |
+| Individualist | Individualization, Ideation, Intellection, Futuristic, Input | Strategic, Belief, Learner                 | Executing: 1; Relationship Building: 1; Strategic Thinking: 6   |
+| Scholar       | Learner, Intellection, Input, Analytical, Strategic          | Deliberative, Context, Focus               | Executing: 2; Strategic Thinking: 6                             |
+
+PROFILE INTERPRETATION NOTES
+----------------------------
+- Analyzer: Most aligned with Analytical, Consistency, Deliberative. Secondary support from Discipline, Focus, Responsibility. Use this profile where its strongest Clifton-style themes can be expressed without forcing it into low-fit behavior.
+- Controller: Most aligned with Command, Discipline, Responsibility. Secondary support from Consistency, Focus, Deliberative. Use this profile where its strongest Clifton-style themes can be expressed without forcing it into low-fit behavior.
+- Specialist: Most aligned with Input, Learner, Analytical. Secondary support from Focus, Discipline, Deliberative. Use this profile where its strongest Clifton-style themes can be expressed without forcing it into low-fit behavior.
+- Strategist: Most aligned with Strategic, Analytical, Ideation. Secondary support from Futuristic, Focus, Command. Use this profile where its strongest Clifton-style themes can be expressed without forcing it into low-fit behavior.
+- Venturer: Most aligned with Activator, Command, Self-Assurance. Secondary support from Strategic, Competition, Ideation. Use this profile where its strongest Clifton-style themes can be expressed without forcing it into low-fit behavior.
+- Altruist: Most aligned with Developer, Empathy, Harmony. Secondary support from Relator, Responsibility, Connectedness. Use this profile where its strongest Clifton-style themes can be expressed without forcing it into low-fit behavior.
+- Captain: Most aligned with Command, Activator, Competition. Secondary support from Self-Assurance, Strategic, Significance. Use this profile where its strongest Clifton-style themes can be expressed without forcing it into low-fit behavior.
+- Collaborator: Most aligned with Harmony, Includer, Positivity. Secondary support from Developer, Relator, Empathy. Use this profile where its strongest Clifton-style themes can be expressed without forcing it into low-fit behavior.
+- Maverick: Most aligned with Ideation, Activator, Command. Secondary support from Self-Assurance, Strategic, Futuristic. Use this profile where its strongest Clifton-style themes can be expressed without forcing it into low-fit behavior.
+- Persuader: Most aligned with Woo, Communication, Activator. Secondary support from Command, Positivity, Strategic. Use this profile where its strongest Clifton-style themes can be expressed without forcing it into low-fit behavior.
+- Promoter: Most aligned with Woo, Communication, Positivity. Secondary support from Activator, Adaptability, Ideation. Use this profile where its strongest Clifton-style themes can be expressed without forcing it into low-fit behavior.
+- Adapter: Most aligned with Adaptability, Harmony, Empathy. Secondary support from Includer, Developer, Relator. Use this profile where its strongest Clifton-style themes can be expressed without forcing it into low-fit behavior.
+- Craftsman: Most aligned with Discipline, Focus, Analytical. Secondary support from Consistency, Responsibility, Deliberative. Use this profile where its strongest Clifton-style themes can be expressed without forcing it into low-fit behavior.
+- Guardian: Most aligned with Responsibility, Consistency, Belief. Secondary support from Deliberative, Harmony, Discipline. Use this profile where its strongest Clifton-style themes can be expressed without forcing it into low-fit behavior.
+- Operator: Most aligned with Discipline, Focus, Responsibility. Secondary support from Arranger, Consistency, Restorative. Use this profile where its strongest Clifton-style themes can be expressed without forcing it into low-fit behavior.
+- Individualist: Most aligned with Individualization, Ideation, Intellection. Secondary support from Futuristic, Input, Strategic. Use this profile where its strongest Clifton-style themes can be expressed without forcing it into low-fit behavior.
+- Scholar: Most aligned with Learner, Intellection, Input. Secondary support from Analytical, Strategic, Deliberative. Use this profile where its strongest Clifton-style themes can be expressed without forcing it into low-fit behavior.
+
+
+IMPLEMENTATION NOTES
+--------------------
+Recommended SignalGlass UI fields:
+- likely_top_themes
+- secondary_themes
+- dominant_clifton_domain
+- theme_trigger_from_PI
+- best_strength_use
+- overuse_risk
+
+Because the uploaded extraction does not include the omitted full 34-theme matrix, this file preserves a detailed high-signal map and should be reconciled with the original raw conversation if exact Likely/Possible/Unlikely labels are needed for every theme.
+`,
+  },
+  {
+    id: "kai--kirton-adaption-innovation-inventory",
+    lens: "KAI - Kirton Adaption-Innovation Inventory",
+    status: "Not Done \u2192 now completing fully",
+    source: "Untitled 5.txt",
+    content: `LENS: KAI - Kirton Adaption-Innovation Inventory
+STATUS: COMPLETE
+SOURCE: Untitled 5.txt
+DEDUPLICATION / CLEANUP NOTE: Duplicate status/check-in text was removed. Content is preserved from the uploaded document.
+================================================================================
+
+KAI — KIRTON ADAPTION–INNOVATION INVENTORY
+Status:  Not Done → now completing fully
+Output: For each PI profile →
+  - Adaptor ↔ Innovator Position
+  - Problem‑Solving Style
+  - Rule Orientation
+  - Change Tolerance
+  - Preferred Environment
+  - Stress‑Mode Behavior
+  - One‑line rationale
+  - Guided Links for deeper dives
+KAI is one of the most predictive lenses for:
+  - innovation roles
+  - change management
+  - conflict in teams
+  - leadership style
+  - risk posture
+  - process vs. disruption tension
+It maps how people solve problems, not how smart or creative they are.
+
+ THE KAI CONTINUUM
+Adaptors
+  - Prefer structure
+  - Improve existing systems
+  - Work within rules
+  - Minimize risk
+  - Value precision and stability
+Innovators
+  - Challenge assumptions
+  - Break or bend rules
+  - Prefer radical change
+  - High risk tolerance
+  - Value novelty and disruption
+Most people fall somewhere in between — but PI profiles map strongly to one side.
+
+ FULL CROSSWALK — ALL 17 PI PROFILES
+
+1. Analyzer
+  - Position: Strong Adaptor
+  - Problem‑Solving: Methodical, structured
+  - Rule Orientation: High
+  - Change Tolerance: Low
+  - Preferred Environment: Stable, predictable
+  - Stress Behavior: Over‑analysis
+  - Rationale: Precision + structure
+  - Deep dive: Analyzer KAI
+
+2. Controller
+  - Position: Very Strong Adaptor
+  - Problem‑Solving: Rule‑driven, procedural
+  - Rule Orientation: Very High
+  - Change Tolerance: Very Low
+  - Preferred Environment: High control
+  - Stress Behavior: Rigidity
+  - Rationale: Governance + order
+  - Deep dive: Controller KAI
+
+3. Specialist
+  - Position: Strong Adaptor
+  - Problem‑Solving: Technical, detail‑driven
+  - Rule Orientation: High
+  - Change Tolerance: Low
+  - Preferred Environment: Deep expertise
+  - Stress Behavior: Withdrawal
+  - Rationale: Domain mastery
+  - Deep dive: Specialist KAI
+
+4. Strategist
+  - Position: Moderate Innovator
+  - Problem‑Solving: Conceptual, systems‑level
+  - Rule Orientation: Low‑Moderate
+  - Change Tolerance: High
+  - Preferred Environment: Ambiguous, strategic
+  - Stress Behavior: Over‑complexity
+  - Rationale: Vision + logic
+  - Deep dive: Strategist KAI
+
+5. Venturer
+  - Position: Strong Innovator
+  - Problem‑Solving: Fast, disruptive
+  - Rule Orientation: Very Low
+  - Change Tolerance: Very High
+  - Preferred Environment: High risk, high autonomy
+  - Stress Behavior: Impulsive action
+  - Rationale: Bold, opportunistic
+  - Deep dive: Venturer KAI
+
+6. Altruist
+  - Position: Moderate Adaptor
+  - Problem‑Solving: People‑first, relational
+  - Rule Orientation: Moderate
+  - Change Tolerance: Moderate
+  - Preferred Environment: Cooperative
+  - Stress Behavior: Over‑accommodation
+  - Rationale: Harmony‑oriented
+  - Deep dive: Altruist KAI
+
+7. Captain
+  - Position: Moderate Innovator
+  - Problem‑Solving: Decisive, outcome‑driven
+  - Rule Orientation: Low
+  - Change Tolerance: High
+  - Preferred Environment: Fast‑moving
+  - Stress Behavior: Over‑assertive shortcuts
+  - Rationale: Command + action
+  - Deep dive: Captain KAI
+
+8. Collaborator
+  - Position: Moderate Adaptor
+  - Problem‑Solving: Consensus‑oriented
+  - Rule Orientation: Moderate
+  - Change Tolerance: Low‑Moderate
+  - Preferred Environment: Harmonious
+  - Stress Behavior: Avoidance
+  - Rationale: Relational stability
+  - Deep dive: Collaborator KAI
+
+9. Maverick
+  - Position: Very Strong Innovator
+  - Problem‑Solving: Non‑linear, disruptive
+  - Rule Orientation: Very Low
+  - Change Tolerance: Very High
+  - Preferred Environment: Creative chaos
+  - Stress Behavior: Disorder, provocation
+  - Rationale: Radical creativity
+  - Deep dive: Maverick KAI
+
+10. Persuader
+  - Position: Moderate Innovator
+  - Problem‑Solving: Social‑creative
+  - Rule Orientation: Low
+  - Change Tolerance: High
+  - Preferred Environment: Dynamic, people‑driven
+  - Stress Behavior: Emotional reasoning
+  - Rationale: Influence + improvisation
+  - Deep dive: Persuader KAI
+
+11. Promoter
+  - Position: Strong Innovator
+  - Problem‑Solving: Energetic, improvisational
+  - Rule Orientation: Very Low
+  - Change Tolerance: Very High
+  - Preferred Environment: High energy, high novelty
+  - Stress Behavior: Impulsive shifts
+  - Rationale: Expressive disruptor
+  - Deep dive: Promoter KAI
+
+12. Adapter
+  - Position: Balanced Adaptor
+  - Problem‑Solving: Flexible, situational
+  - Rule Orientation: Moderate
+  - Change Tolerance: Moderate
+  - Preferred Environment: Cooperative, stable
+  - Stress Behavior: Over‑adjustment
+  - Rationale: Flexible but not disruptive
+  - Deep dive: Adapter KAI
+
+13. Craftsman
+  - Position: Strong Adaptor
+  - Problem‑Solving: Structured, quality‑driven
+  - Rule Orientation: Very High
+  - Change Tolerance: Low
+  - Preferred Environment: Predictable, precise
+  - Stress Behavior: Perfectionistic delay
+  - Rationale: Methodical execution
+  - Deep dive: Craftsman KAI
+
+14. Guardian
+  - Position: Very Strong Adaptor
+  - Problem‑Solving: Conservative, risk‑averse
+  - Rule Orientation: Very High
+  - Change Tolerance: Very Low
+  - Preferred Environment: Stable, structured
+  - Stress Behavior: Over‑caution
+  - Rationale: Stewardship + continuity
+  - Deep dive: Guardian KAI
+
+15. Operator
+  - Position: Strong Adaptor
+  - Problem‑Solving: Practical, process‑driven
+  - Rule Orientation: High
+  - Change Tolerance: Low
+  - Preferred Environment: Routine, clarity
+  - Stress Behavior: Rigid routine
+  - Rationale: Execution + reliability
+  - Deep dive: Operator KAI
+
+16. Individualist
+  - Position: Moderate Innovator
+  - Problem‑Solving: Independent, creative
+  - Rule Orientation: Low
+  - Change Tolerance: High
+  - Preferred Environment: Autonomous, flexible
+  - Stress Behavior: Detached ideation
+  - Rationale: Creative autonomy
+  - Deep dive: Individualist KAI
+
+17. Scholar
+  - Position: Moderate Adaptor
+  - Problem‑Solving: Analytical, structured
+  - Rule Orientation: High
+  - Change Tolerance: Low‑Moderate
+  - Preferred Environment: Predictable, intellectual
+  - Stress Behavior: Over‑analysis
+  - Rationale: Academic structure
+  - Deep dive: Scholar KAI
+
+ KAI — COMPLETE
+This lens moves from  →  COMPLETE.
+`,
+  },
+  {
+    id: "thomas-kilmann-conflict-mode-tki",
+    lens: "Thomas-Kilmann Conflict Mode (TKI)",
+    status: "Not Done \u2192 now completing fully",
+    source: "Untitled 5.txt",
+    content: `LENS: Thomas-Kilmann Conflict Mode (TKI)
+STATUS: COMPLETE
+SOURCE: Untitled 5.txt
+DEDUPLICATION / CLEANUP NOTE: Duplicate status/check-in text was removed. Content is preserved from the uploaded document.
+================================================================================
+
+THOMAS–KILMANN CONFLICT MODE (TKI)
+Status:  Not Done → now completing fully
+Output: For each PI profile →
+  - Primary Conflict Mode
+  - Secondary Mode
+  - Low‑use Mode
+  - Stress‑Triggered Mode
+  - Conflict Strength
+  - Conflict Vulnerability
+  - One‑line rationale
+  - Guided Links for deeper dives
+TKI is one of the most behaviorally predictive lenses for:
+  - conflict patterns
+  - escalation risk
+  - negotiation style
+  - team friction
+  - leadership under pressure
+
+ THE 5 TKI MODES
+1. Competing
+Assertive, uncooperative, win‑lose.
+2. Collaborating
+Assertive + cooperative, win‑win.
+3. Compromising
+Middle ground, trade‑offs.
+4. Avoiding
+Unassertive, uncooperative, delay/withdraw.
+5. Accommodating
+Unassertive, cooperative, yield to others.
+
+ FULL CROSSWALK — ALL 17 PI PROFILES
+
+1. Analyzer
+  - Primary: Avoiding
+  - Secondary: Compromising
+  - Low‑use: Collaborating
+  - Stress Mode: Over‑analysis → delay
+  - Strength: De‑escalation
+  - Vulnerability: Avoids necessary confrontation
+  - Deep dive: Analyzer TKI
+
+2. Controller
+  - Primary: Competing
+  - Secondary: Compromising
+  - Low‑use: Accommodating
+  - Stress Mode: Domineering
+  - Strength: Clear boundaries
+  - Vulnerability: Escalation
+  - Deep dive: Controller TKI
+
+3. Specialist
+  - Primary: Avoiding
+  - Secondary: Compromising
+  - Low‑use: Competing
+  - Stress Mode: Withdrawal
+  - Strength: Reduces unnecessary conflict
+  - Vulnerability: Silence → misalignment
+  - Deep dive: Specialist TKI
+
+4. Strategist
+  - Primary: Collaborating
+  - Secondary: Competing
+  - Low‑use: Accommodating
+  - Stress Mode: Over‑assertive logic
+  - Strength: Win‑win problem solving
+  - Vulnerability: Can steamroll
+  - Deep dive: Strategist TKI
+
+5. Venturer
+  - Primary: Competing
+  - Secondary: Collaborating
+  - Low‑use: Avoiding
+  - Stress Mode: Aggressive push
+  - Strength: Fast resolution
+  - Vulnerability: High conflict intensity
+  - Deep dive: Venturer TKI
+
+6. Altruist
+  - Primary: Accommodating
+  - Secondary: Collaborating
+  - Low‑use: Competing
+  - Stress Mode: Over‑giving
+  - Strength: Relationship preservation
+  - Vulnerability: Self‑sacrifice
+  - Deep dive: Altruist TKI
+
+7. Captain
+  - Primary: Competing
+  - Secondary: Collaborating
+  - Low‑use: Avoiding
+  - Stress Mode: Domination
+  - Strength: Decisive conflict resolution
+  - Vulnerability: Intimidation
+  - Deep dive: Captain TKI
+
+8. Collaborator
+  - Primary: Collaborating
+  - Secondary: Accommodating
+  - Low‑use: Competing
+  - Stress Mode: Avoidance
+  - Strength: Harmony + integration
+  - Vulnerability: Over‑compromise
+  - Deep dive: Collaborator TKI
+
+9. Maverick
+  - Primary: Competing
+  - Secondary: Collaborating
+  - Low‑use: Accommodating
+  - Stress Mode: Provocation
+  - Strength: Breakthrough solutions
+  - Vulnerability: Conflict escalation
+  - Deep dive: Maverick TKI
+
+10. Persuader
+  - Primary: Collaborating
+  - Secondary: Compromising
+  - Low‑use: Avoiding
+  - Stress Mode: Emotional escalation
+  - Strength: Win‑win influence
+  - Vulnerability: Over‑personalization
+  - Deep dive: Persuader TKI
+
+11. Promoter
+  - Primary: Compromising
+  - Secondary: Collaborating
+  - Low‑use: Avoiding
+  - Stress Mode: Reactive emotion
+  - Strength: Quick agreements
+  - Vulnerability: Over‑promising
+  - Deep dive: Promoter TKI
+
+12. Adapter
+  - Primary: Accommodating
+  - Secondary: Compromising
+  - Low‑use: Competing
+  - Stress Mode: Withdrawal
+  - Strength: Flexibility
+  - Vulnerability: Loss of voice
+  - Deep dive: Adapter TKI
+
+13. Craftsman
+  - Primary: Avoiding
+  - Secondary: Compromising
+  - Low‑use: Collaborating
+  - Stress Mode: Perfectionistic retreat
+  - Strength: Reduces unnecessary conflict
+  - Vulnerability: Bottlenecks
+  - Deep dive: Craftsman TKI
+
+14. Guardian
+  - Primary: Avoiding
+  - Secondary: Compromising
+  - Low‑use: Competing
+  - Stress Mode: Over‑caution
+  - Strength: Stability
+  - Vulnerability: Delayed resolution
+  - Deep dive: Guardian TKI
+
+15. Operator
+  - Primary: Compromising
+  - Secondary: Avoiding
+  - Low‑use: Collaborating
+  - Stress Mode: Rigid routine
+  - Strength: Practical middle ground
+  - Vulnerability: Avoids deeper issues
+  - Deep dive: Operator TKI
+
+16. Individualist
+  - Primary: Avoiding
+  - Secondary: Collaborating
+  - Low‑use: Accommodating
+  - Stress Mode: Detached withdrawal
+  - Strength: Reduces emotional escalation
+  - Vulnerability: Misalignment
+  - Deep dive: Individualist TKI
+
+17. Scholar
+  - Primary: Avoiding
+  - Secondary: Collaborating
+  - Low‑use: Competing
+  - Stress Mode: Over‑analysis
+  - Strength: De‑escalation
+  - Vulnerability: Slow resolution
+  - Deep dive: Scholar TKI
+
+ TKI — COMPLETE
+This lens moves from  →  COMPLETE.
+`,
+  },
+  {
+    id: "via-character-strengths",
+    lens: "VIA Character Strengths",
+    status: "Finished / Done",
+    source: "SignalGlass \u2014 Extracted Results",
+    content: `SignalGlass Lens 13 — VIA Character Strengths
+===============================================
+
+Source status: Finished / Done
+Source document: SignalGlass — Extracted Results
+
+Duplicate handling applied from the source document:
+- Hogan HDS (Derailers) appeared in both the Personality section and Leadership section; it is kept once as a completed leadership/derailer lens.
+- “Lived experiences” appeared separately but duplicated Lived Experience Context Lens; it is not exported as a finished lens because the source marks that lens as not done.
+- Workplace Big Five Pro appeared twice with conflicting status; it is not exported as a finished lens because the source says only OCEAN-level mapping was partially applied and Pro-specific facets were not completed.
+
+Translation methodology preserved from the source document:
+- PI inputs used: Dominance, Extraversion, Patience, and Formality.
+- Shared-construct translation: similar constructs are mapped across frameworks where conceptually aligned.
+- Known correlations: for example, high Formality and Patience support Conscientiousness-like interpretations; Dominance supports agency/assertiveness interpretations.
+- Qualitative PI profile descriptors are used as supporting evidence, such as risk-taking, cautious, innovative, perfectionistic, supportive, or process-oriented.
+- Outputs are non-diagnostic. They should be read as “this PI profile pattern is consistent with…” rather than as clinical, medical, or definitive personality diagnoses.
+
+Source limitation note: the uploaded extraction says this lens was completed at full micro-level in the source conversation, but the hundreds of detailed cells were not included in the uploaded text. The profile-level content below is therefore a detailed reconstruction derived from the uploaded document’s summary, the 17 PI profile reference list, and the translation methodology preserved in the source document. It should be reviewed against the original Raw_data conversation if exact historical cell-by-cell wording is required.
+
+
+LENS PURPOSE
+------------
+This lens translates PI profile patterns into VIA-style character strengths. The source says all 24 VIA strengths were judged per profile with short rationales tied to PI cues.
+
+THE 24 VIA STRENGTHS BY VIRTUE CATEGORY
+---------------------------------------
+Wisdom: Creativity, Curiosity, Judgment, Love of Learning, Perspective
+Courage: Bravery, Perseverance, Honesty, Zest
+Humanity: Love, Kindness, Social Intelligence
+Justice: Teamwork, Fairness, Leadership
+Temperance: Forgiveness, Humility, Prudence, Self-Regulation
+Transcendence: Appreciation of Beauty, Gratitude, Hope, Humor, Spirituality
+
+PROFILE-LEVEL DERIVED VIA MAP
+-----------------------------
+| Profile       | Highest-Signal Strengths                                 | Secondary Likely Strengths     | Virtue Category Emphasis                                         |
+| ------------- | -------------------------------------------------------- | ------------------------------ | ---------------------------------------------------------------- |
+| Analyzer      | Prudence, Judgment, Perseverance, Self-Regulation        | Love of Learning, Perspective  | Wisdom: 3; Courage: 1; Temperance: 2                             |
+| Controller    | Leadership, Prudence, Perseverance, Fairness             | Judgment, Self-Regulation      | Wisdom: 1; Courage: 1; Justice: 2; Temperance: 2                 |
+| Specialist    | Love of Learning, Perseverance, Prudence, Judgment       | Curiosity, Perspective         | Wisdom: 4; Courage: 1; Temperance: 1                             |
+| Strategist    | Perspective, Judgment, Curiosity, Leadership             | Creativity, Perseverance       | Wisdom: 4; Courage: 1; Justice: 1                                |
+| Venturer      | Bravery, Zest, Curiosity, Leadership                     | Creativity, Perspective        | Wisdom: 3; Courage: 2; Justice: 1                                |
+| Altruist      | Kindness, Love, Fairness, Teamwork                       | Gratitude, Social Intelligence | Humanity: 3; Justice: 2; Transcendence: 1                        |
+| Captain       | Leadership, Bravery, Perseverance, Perspective           | Zest, Judgment                 | Wisdom: 2; Courage: 3; Justice: 1                                |
+| Collaborator  | Teamwork, Kindness, Social Intelligence, Fairness        | Humor, Gratitude               | Humanity: 2; Justice: 2; Transcendence: 2                        |
+| Maverick      | Creativity, Bravery, Curiosity, Zest                     | Perspective, Humor             | Wisdom: 3; Courage: 2; Transcendence: 1                          |
+| Persuader     | Social Intelligence, Leadership, Humor, Zest             | Creativity, Perspective        | Wisdom: 2; Courage: 1; Humanity: 1; Justice: 1; Transcendence: 1 |
+| Promoter      | Zest, Humor, Social Intelligence, Creativity             | Hope, Bravery                  | Wisdom: 1; Courage: 2; Humanity: 1; Transcendence: 2             |
+| Adapter       | Social Intelligence, Kindness, Teamwork, Perspective     | Humility, Forgiveness          | Wisdom: 1; Humanity: 2; Justice: 1; Temperance: 2                |
+| Craftsman     | Perseverance, Prudence, Judgment, Love of Learning       | Self-Regulation, Honesty       | Wisdom: 2; Courage: 2; Temperance: 2                             |
+| Guardian      | Prudence, Teamwork, Fairness, Humility                   | Perseverance, Kindness         | Courage: 1; Humanity: 1; Justice: 2; Temperance: 2               |
+| Operator      | Perseverance, Self-Regulation, Prudence, Teamwork        | Fairness, Judgment             | Wisdom: 1; Courage: 1; Justice: 2; Temperance: 2                 |
+| Individualist | Creativity, Authenticity/Honesty, Curiosity, Perspective | Love of Learning, Bravery      | Wisdom: 4; Courage: 2                                            |
+| Scholar       | Love of Learning, Curiosity, Judgment, Perspective       | Perseverance, Prudence         | Wisdom: 4; Courage: 1; Temperance: 1                             |
+
+PROFILE INTERPRETATION NOTES
+----------------------------
+- Analyzer: The strongest character-strength signals are Prudence, Judgment, Perseverance; development should protect these strengths from overuse and connect them to practical role demands.
+- Controller: The strongest character-strength signals are Leadership, Prudence, Perseverance; development should protect these strengths from overuse and connect them to practical role demands.
+- Specialist: The strongest character-strength signals are Love of Learning, Perseverance, Prudence; development should protect these strengths from overuse and connect them to practical role demands.
+- Strategist: The strongest character-strength signals are Perspective, Judgment, Curiosity; development should protect these strengths from overuse and connect them to practical role demands.
+- Venturer: The strongest character-strength signals are Bravery, Zest, Curiosity; development should protect these strengths from overuse and connect them to practical role demands.
+- Altruist: The strongest character-strength signals are Kindness, Love, Fairness; development should protect these strengths from overuse and connect them to practical role demands.
+- Captain: The strongest character-strength signals are Leadership, Bravery, Perseverance; development should protect these strengths from overuse and connect them to practical role demands.
+- Collaborator: The strongest character-strength signals are Teamwork, Kindness, Social Intelligence; development should protect these strengths from overuse and connect them to practical role demands.
+- Maverick: The strongest character-strength signals are Creativity, Bravery, Curiosity; development should protect these strengths from overuse and connect them to practical role demands.
+- Persuader: The strongest character-strength signals are Social Intelligence, Leadership, Humor; development should protect these strengths from overuse and connect them to practical role demands.
+- Promoter: The strongest character-strength signals are Zest, Humor, Social Intelligence; development should protect these strengths from overuse and connect them to practical role demands.
+- Adapter: The strongest character-strength signals are Social Intelligence, Kindness, Teamwork; development should protect these strengths from overuse and connect them to practical role demands.
+- Craftsman: The strongest character-strength signals are Perseverance, Prudence, Judgment; development should protect these strengths from overuse and connect them to practical role demands.
+- Guardian: The strongest character-strength signals are Prudence, Teamwork, Fairness; development should protect these strengths from overuse and connect them to practical role demands.
+- Operator: The strongest character-strength signals are Perseverance, Self-Regulation, Prudence; development should protect these strengths from overuse and connect them to practical role demands.
+- Individualist: The strongest character-strength signals are Creativity, Authenticity/Honesty, Curiosity; development should protect these strengths from overuse and connect them to practical role demands.
+- Scholar: The strongest character-strength signals are Love of Learning, Curiosity, Judgment; development should protect these strengths from overuse and connect them to practical role demands.
+
+
+IMPLEMENTATION NOTES
+--------------------
+Recommended SignalGlass UI fields:
+- likely_character_strengths
+- secondary_strengths
+- virtue_category_emphasis
+- strength_expression_at_work
+- overuse_risk
+- development_prompt
+
+Do not frame these as moral judgments. They are workstyle-aligned strength tendencies derived from PI behavior patterns.
+`,
+  },
+  {
+    id: "enneagram-core-types-and-subtypes",
+    lens: "Enneagram Core Types and Subtypes",
+    status: "Finished / Done",
+    source: "SignalGlass \u2014 Extracted Results",
+    content: `SignalGlass Lens 14 — Enneagram Core Types and Subtypes
+=======================================================
+
+Source status: Finished / Done
+Source document: SignalGlass — Extracted Results
+
+Duplicate handling applied from the source document:
+- Hogan HDS (Derailers) appeared in both the Personality section and Leadership section; it is kept once as a completed leadership/derailer lens.
+- “Lived experiences” appeared separately but duplicated Lived Experience Context Lens; it is not exported as a finished lens because the source marks that lens as not done.
+- Workplace Big Five Pro appeared twice with conflicting status; it is not exported as a finished lens because the source says only OCEAN-level mapping was partially applied and Pro-specific facets were not completed.
+
+Translation methodology preserved from the source document:
+- PI inputs used: Dominance, Extraversion, Patience, and Formality.
+- Shared-construct translation: similar constructs are mapped across frameworks where conceptually aligned.
+- Known correlations: for example, high Formality and Patience support Conscientiousness-like interpretations; Dominance supports agency/assertiveness interpretations.
+- Qualitative PI profile descriptors are used as supporting evidence, such as risk-taking, cautious, innovative, perfectionistic, supportive, or process-oriented.
+- Outputs are non-diagnostic. They should be read as “this PI profile pattern is consistent with…” rather than as clinical, medical, or definitive personality diagnoses.
+
+Source limitation note: the uploaded extraction says this lens was completed at full micro-level in the source conversation, but the hundreds of detailed cells were not included in the uploaded text. The profile-level content below is therefore a detailed reconstruction derived from the uploaded document’s summary, the 17 PI profile reference list, and the translation methodology preserved in the source document. It should be reviewed against the original Raw_data conversation if exact historical cell-by-cell wording is required.
+
+
+LENS PURPOSE
+------------
+This lens translates PI profile patterns into Enneagram-style language. The source says core type plus wing, instinctual subtype, stacking, center, trifix, levels, arrows, and full subtype narratives were completed for all 17 profiles.
+
+PROFILE-LEVEL DERIVED ENNEAGRAM MAP
+-----------------------------------
+| Profile       | Core Type + Wing | Instinct Stack | Center Emphasis | Trifix | Growth/Stress Note                                                                      | Rationale                                                |
+| ------------- | ---------------- | -------------- | --------------- | ------ | --------------------------------------------------------------------------------------- | -------------------------------------------------------- |
+| Analyzer      | 1w9 / 5w6        | sp/so          | Head + Gut      | 153    | To 7 under growth; to 4 or 6 under stress depending on subtype                          | Accuracy, self-control, standards, and analytic caution. |
+| Controller    | 1w9 / 8w9        | sp/so          | Gut             | 163    | Growth through flexibility and relational trust; stress through rigidity and blame      | Rule enforcement, duty, order, and control.              |
+| Specialist    | 5w6              | sp/so          | Head            | 513    | Growth through sharing expertise; stress through withdrawal or overprotection of domain | Technical mastery, focus, low social demand.             |
+| Strategist    | 5w6 / 8w9        | so/sp          | Head + Gut      | 583    | Growth through inclusive vision; stress through skepticism or overcontrol               | Systems vision, ambition, intellectual control.          |
+| Venturer      | 8w7 / 7w8        | so/sx          | Gut + Head      | 873    | Growth through discipline and risk calibration; stress through impulsive overreach      | Opportunity pursuit, autonomy, risk tolerance.           |
+| Altruist      | 2w1 / 9w1        | so/sp          | Heart           | 216    | Growth through boundaries; stress through overgiving and quiet resentment               | Service, support, acceptance, and care.                  |
+| Captain       | 8w7              | so/sp          | Gut             | 837    | Growth through empathy and restraint; stress through domination or force                | Power, leadership, confidence, results.                  |
+| Collaborator  | 9w1 / 2w3        | so/sp          | Gut + Heart     | 926    | Growth through directness; stress through conflict avoidance                            | Harmony, team cohesion, belonging.                       |
+| Maverick      | 7w8 / 8w7        | sx/so          | Head + Gut      | 748    | Growth through follow-through; stress through chaos and relational burn                 | Novelty, disruption, creativity, independence.           |
+| Persuader     | 3w2 / 7w8        | so/sx          | Heart           | 378    | Growth through truth-telling and grounded accountability; stress through overselling    | Influence, recognition, social adaptation.               |
+| Promoter      | 7w6 / 3w2        | so/sx          | Head + Heart    | 739    | Growth through consistency; stress through scattered energy and image management        | Visibility, excitement, social energy.                   |
+| Adapter       | 9w1 / 2w1        | so/sp          | Gut + Heart     | 927    | Growth through self-definition; stress through chronic accommodation                    | Flexibility, harmony, contextual responsiveness.         |
+| Craftsman     | 1w9 / 5w6        | sp/so          | Gut + Head      | 153    | Growth through acceptable imperfection; stress through withdrawal or overchecking       | Quality, routine, craft standards.                       |
+| Guardian      | 6w5 / 1w9        | sp/so          | Head            | 612    | Growth through confidence and calibrated change; stress through worry or overcaution    | Safety, duty, continuity, caution.                       |
+| Operator      | 6w5 / 1w9        | sp/so          | Head + Gut      | 613    | Growth through strategic flexibility; stress through process rigidity                   | Reliable execution, process control, stability.          |
+| Individualist | 4w5 / 5w4        | sx/sp          | Heart + Head    | 459    | Growth through translation and connection; stress through isolation                     | Authenticity, originality, internal meaning.             |
+| Scholar       | 5w6              | sp/sx          | Head            | 514    | Growth through timely application; stress through analysis paralysis                    | Research, depth, truth-seeking, conceptual rigor.        |
+
+NARRATIVE USE GUIDANCE
+----------------------
+- Use Enneagram outputs as motivational narratives, not as definitive typing.
+- Keep each narrative behavior-based: what motivates the profile, what it protects, how it reacts under pressure, and what growth looks like.
+- Avoid making clinical claims or implying the person has a fixed identity.
+
+IMPLEMENTATION NOTES
+--------------------
+Recommended SignalGlass UI fields:
+- likely_core_type
+- wing
+- instinct_stack
+- center
+- trifix
+- pressure_pattern
+- growth_pattern
+- subtype_narrative
+- caution_note
+`,
+  },
+  {
+    id: "interpersonal-dynamics-inventory",
+    lens: "Interpersonal Dynamics Inventory",
+    status: "COMPLETE",
+    source: "Untitled 5.txt",
+    content: `LENS: Interpersonal Dynamics Inventory
+STATUS: COMPLETE
+SOURCE: Untitled 5.txt
+DEDUPLICATION / CLEANUP NOTE: Converted the one-cell-per-line table from the transcript into a readable text table. Duplicate status/check-in text was removed.
+================================================================================
+
+Interpersonal Dynamics Inventory
+
+Primary = Dominance / Warmth / Expressiveness / Control pattern; Secondary = supporting dynamic; Stress = typical distortion under pressure.
+
+| Profile | Primary | Secondary | Stress |
+|---|---|---|---|
+| Analyzer | Low Warmth | High Control | Withdraws into critique |
+| Controller | High Dominance | High Control | Becomes punitive |
+| Specialist | Low Expressiveness | High Control | Silent withdrawal |
+| Strategist | High Dominance | Low Warmth | Overly directive |
+| Venturer | High Dominance | High Expressiveness | Provokes conflict |
+| Altruist | High Warmth | Low Dominance | Over‑accommodates |
+| Captain | High Dominance | Moderate Expressiveness | Intimidates others |
+| Collaborator | High Warmth | Moderate Expressiveness | Avoids hard talk |
+| Maverick | High Expressiveness | Low Control | Chaotic provocation |
+| Persuader | High Expressiveness | Moderate Warmth | Over‑personalizes |
+| Promoter | High Expressiveness | Low Control | Dramatic escalation |
+| Adapter | Moderate Warmth | Moderate Control | Over‑adjusts |
+| Craftsman | Low Expressiveness | High Control | Retreats into work |
+| Guardian | Moderate Warmth | High Control | Defensive caution |
+| Operator | Low Expressiveness | High Control | Rigid, blunt responses |
+| Individualist | Low Warmth | Moderate Expressiveness | Detaches emotionally |
+| Scholar | Low Expressiveness | High Control | Over‑analysis, silence |
+`,
+  },
+  {
+    id: "feedback-sensitivity-lens",
+    lens: "Feedback Sensitivity Lens",
+    status: "COMPLETE",
+    source: "Untitled 5.txt",
+    content: `LENS: Feedback Sensitivity Lens
+STATUS: COMPLETE
+SOURCE: Untitled 5.txt
+DEDUPLICATION / CLEANUP NOTE: Converted the one-cell-per-line table from the transcript into a readable text table. Duplicate status/check-in text was removed.
+================================================================================
+
+Feedback Sensitivity Lens
+
+Primary = How feedback is received (Threat / Opportunity / Neutral); Secondary = Preferred delivery; Stress = Typical negative reaction.
+
+| Profile | Primary | Preferred Delivery | Stress |
+|---|---|---|---|
+| Analyzer | Opportunity | Data‑driven, specific | Defensive detail‑checking |
+| Controller | Threat | Clear rules, direct | Punitive response |
+| Specialist | Opportunity | Technical, private | Withdraws, defends expertise |
+| Strategist | Opportunity | Big‑picture, rationale | Dismisses trivial points |
+| Venturer | Neutral/Threat | Short, outcome‑focused | Ignores or pushes back |
+| Altruist | Threat | Gentle, relational | Takes it personally |
+| Captain | Threat | Direct, status‑aware | Counters aggressively |
+| Collaborator | Opportunity | Inclusive, supportive | Over‑apologizes |
+| Maverick | Neutral | Creative framing | Rejects constraints |
+| Persuader | Opportunity | Socially framed | Over‑emotional response |
+| Promoter | Neutral | Energetic, public praise | Shrugs off criticism |
+| Adapter | Opportunity | Private, collaborative | Over‑accommodates |
+| Craftsman | Opportunity | Standards‑based | Perfectionistic defensiveness |
+| Guardian | Threat | Respectful, procedural | Resists change |
+| Operator | Opportunity | Practical, stepwise | Ignores vague feedback |
+| Individualist | Neutral | Autonomy‑preserving | Withdraws to reflect |
+| Scholar | Opportunity | Evidence‑based | Over‑questions intent |
+`,
+  },
+  {
+    id: "reiss-motivation-profile",
+    lens: "Reiss Motivation Profile",
+    status: "Finished / Done",
+    source: "SignalGlass \u2014 Extracted Results",
+    content: `SignalGlass Lens 15 — Reiss Motivation Profile
+===============================================
+
+Source status: Finished / Done
+Source document: SignalGlass — Extracted Results
+
+Duplicate handling applied from the source document:
+- Hogan HDS (Derailers) appeared in both the Personality section and Leadership section; it is kept once as a completed leadership/derailer lens.
+- “Lived experiences” appeared separately but duplicated Lived Experience Context Lens; it is not exported as a finished lens because the source marks that lens as not done.
+- Workplace Big Five Pro appeared twice with conflicting status; it is not exported as a finished lens because the source says only OCEAN-level mapping was partially applied and Pro-specific facets were not completed.
+
+Translation methodology preserved from the source document:
+- PI inputs used: Dominance, Extraversion, Patience, and Formality.
+- Shared-construct translation: similar constructs are mapped across frameworks where conceptually aligned.
+- Known correlations: for example, high Formality and Patience support Conscientiousness-like interpretations; Dominance supports agency/assertiveness interpretations.
+- Qualitative PI profile descriptors are used as supporting evidence, such as risk-taking, cautious, innovative, perfectionistic, supportive, or process-oriented.
+- Outputs are non-diagnostic. They should be read as “this PI profile pattern is consistent with…” rather than as clinical, medical, or definitive personality diagnoses.
+
+
+LENS PURPOSE
+------------
+The Reiss lens identifies the primary motive pattern most consistent with each PI profile. In the source section, Reiss Motivation Profile is combined with Motivational Maps; this file splits Reiss into its own finalized lens so each lens has a separate txt document.
+
+SOURCE-DERIVED REISS MAP
+------------------------
+| Profile       | Reiss Top Motives                       |
+| ------------- | --------------------------------------- |
+| Analyzer      | Order, Curiosity, Honor                 |
+| Controller    | Order, Power, Honor                     |
+| Specialist    | Curiosity, Order, Independence          |
+| Strategist    | Power, Curiosity, Independence          |
+| Venturer      | Power, Adventure, Independence          |
+| Altruist      | Acceptance, Idealism, Social Contact    |
+| Captain       | Power, Status, Independence             |
+| Collaborator  | Acceptance, Social Contact, Idealism    |
+| Maverick      | Independence, Adventure, Curiosity      |
+| Persuader     | Social Contact, Status, Power           |
+| Promoter      | Social Contact, Status, Adventure       |
+| Adapter       | Acceptance, Tranquility, Social Contact |
+| Craftsman     | Order, Honor, Curiosity                 |
+| Guardian      | Order, Tranquility, Honor               |
+| Operator      | Order, Tranquility, Family              |
+| Individualist | Independence, Curiosity, Idealism       |
+| Scholar       | Curiosity, Order, Independence          |
+
+PROFILE INTERPRETATION NOTES
+----------------------------
+- Analyzer: Highest motive pattern is Order, Curiosity, Honor. These motives explain what the profile is likely protecting, pursuing, or optimizing at work.
+- Controller: Highest motive pattern is Order, Power, Honor. These motives explain what the profile is likely protecting, pursuing, or optimizing at work.
+- Specialist: Highest motive pattern is Curiosity, Order, Independence. These motives explain what the profile is likely protecting, pursuing, or optimizing at work.
+- Strategist: Highest motive pattern is Power, Curiosity, Independence. These motives explain what the profile is likely protecting, pursuing, or optimizing at work.
+- Venturer: Highest motive pattern is Power, Adventure, Independence. These motives explain what the profile is likely protecting, pursuing, or optimizing at work.
+- Altruist: Highest motive pattern is Acceptance, Idealism, Social Contact. These motives explain what the profile is likely protecting, pursuing, or optimizing at work.
+- Captain: Highest motive pattern is Power, Status, Independence. These motives explain what the profile is likely protecting, pursuing, or optimizing at work.
+- Collaborator: Highest motive pattern is Acceptance, Social Contact, Idealism. These motives explain what the profile is likely protecting, pursuing, or optimizing at work.
+- Maverick: Highest motive pattern is Independence, Adventure, Curiosity. These motives explain what the profile is likely protecting, pursuing, or optimizing at work.
+- Persuader: Highest motive pattern is Social Contact, Status, Power. These motives explain what the profile is likely protecting, pursuing, or optimizing at work.
+- Promoter: Highest motive pattern is Social Contact, Status, Adventure. These motives explain what the profile is likely protecting, pursuing, or optimizing at work.
+- Adapter: Highest motive pattern is Acceptance, Tranquility, Social Contact. These motives explain what the profile is likely protecting, pursuing, or optimizing at work.
+- Craftsman: Highest motive pattern is Order, Honor, Curiosity. These motives explain what the profile is likely protecting, pursuing, or optimizing at work.
+- Guardian: Highest motive pattern is Order, Tranquility, Honor. These motives explain what the profile is likely protecting, pursuing, or optimizing at work.
+- Operator: Highest motive pattern is Order, Tranquility, Family. These motives explain what the profile is likely protecting, pursuing, or optimizing at work.
+- Individualist: Highest motive pattern is Independence, Curiosity, Idealism. These motives explain what the profile is likely protecting, pursuing, or optimizing at work.
+- Scholar: Highest motive pattern is Curiosity, Order, Independence. These motives explain what the profile is likely protecting, pursuing, or optimizing at work.
+
+
+IMPLEMENTATION NOTES
+--------------------
+Recommended SignalGlass UI fields:
+- top_motives
+- motive_category
+- motivational_reward
+- demotivator
+- coaching_prompt
+- role_fit_note
+
+Use this lens for incentive design, manager coaching, retention planning, and motivational language.
+`,
+  },
 ];
 
 // Index by id for O(1) lookup
