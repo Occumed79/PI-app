@@ -9,7 +9,7 @@ export function loadSavedProfiles() {
   try {
     const raw = window.localStorage.getItem(SAVED_PROFILES_KEY);
     const parsed = raw ? JSON.parse(raw) : [];
-    return Array.isArray(parsed) ? parsed : [];
+    return Array.isArray(parsed) ? parsed.map(normalizeSavedProfile) : [];
   } catch {
     return [];
   }
@@ -17,7 +17,7 @@ export function loadSavedProfiles() {
 
 export function saveProfilesToStorage(items) {
   if (typeof window === 'undefined') return;
-  window.localStorage.setItem(SAVED_PROFILES_KEY, JSON.stringify(items, null, 2));
+  window.localStorage.setItem(SAVED_PROFILES_KEY, JSON.stringify(items.map(normalizeSavedProfile), null, 2));
 }
 
 export function normalizeSavedProfile(profile) {
@@ -25,7 +25,7 @@ export function normalizeSavedProfile(profile) {
   return {
     id: profile.id || makeProfileId(),
     createdAt: profile.createdAt || now,
-    updatedAt: now,
+    updatedAt: profile.updatedAt || now,
     employee: {
       name: profile.employee?.name || 'Untitled profile',
       role: profile.employee?.role || '',
@@ -33,7 +33,9 @@ export function normalizeSavedProfile(profile) {
       notes: profile.employee?.notes || '',
     },
     baseProfileName: profile.baseProfileName || 'Analyzer',
-    lensStates: profile.lensStates || {},
-    factorStates: profile.factorStates || {},
   };
+}
+
+export function touchSavedProfile(profile) {
+  return normalizeSavedProfile({ ...profile, updatedAt: new Date().toISOString() });
 }
