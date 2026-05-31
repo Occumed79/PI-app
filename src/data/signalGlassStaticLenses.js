@@ -3836,6 +3836,601 @@ Recommended SignalGlass UI fields:
 Use this lens for incentive design, manager coaching, retention planning, and motivational language.
 `,
   },
+  {
+    id: "motivational-maps",
+    lens: "Motivational Maps",
+    status: "Finished / Done",
+    source: "SignalGlass \u2014 Extracted Results",
+    content: `SignalGlass Lens 16 — Motivational Maps
+========================================
+
+Source status: Finished / Done
+Source document: SignalGlass — Extracted Results
+
+Duplicate handling applied from the source document:
+- Hogan HDS (Derailers) appeared in both the Personality section and Leadership section; it is kept once as a completed leadership/derailer lens.
+- “Lived experiences” appeared separately but duplicated Lived Experience Context Lens; it is not exported as a finished lens because the source marks that lens as not done.
+- Workplace Big Five Pro appeared twice with conflicting status; it is not exported as a finished lens because the source says only OCEAN-level mapping was partially applied and Pro-specific facets were not completed.
+
+Translation methodology preserved from the source document:
+- PI inputs used: Dominance, Extraversion, Patience, and Formality.
+- Shared-construct translation: similar constructs are mapped across frameworks where conceptually aligned.
+- Known correlations: for example, high Formality and Patience support Conscientiousness-like interpretations; Dominance supports agency/assertiveness interpretations.
+- Qualitative PI profile descriptors are used as supporting evidence, such as risk-taking, cautious, innovative, perfectionistic, supportive, or process-oriented.
+- Outputs are non-diagnostic. They should be read as “this PI profile pattern is consistent with…” rather than as clinical, medical, or definitive personality diagnoses.
+
+
+LENS PURPOSE
+------------
+This lens translates each PI profile into Motivational Maps themes. In the source section, Motivational Maps is combined with Reiss Motivation Profile; this file separates the finished Motivational Maps lens into its own txt document.
+
+SOURCE-DERIVED MOTIVATIONAL MAPS PROFILE
+----------------------------------------
+| Profile       | Motivational Maps Themes                                  |
+| ------------- | --------------------------------------------------------- |
+| Analyzer      | Expert, Defender (mastery, accuracy, stability)           |
+| Controller    | Defender, Builder (control, reliability, process)         |
+| Specialist    | Expert (deep mastery, technical recognition)              |
+| Strategist    | Builder, Expert (outcome, systems, strategic mastery)     |
+| Venturer      | Builder, Creator (impact, challenge, autonomy)            |
+| Altruist      | Friend, Spirit (helping, belonging, purpose)              |
+| Captain       | Builder, Director (results, leadership, recognition)      |
+| Collaborator  | Friend, Star (team harmony, recognition, belonging)       |
+| Maverick      | Creator, Star (novelty, disruption, visibility)           |
+| Persuader     | Star, Director (influence, recognition, results)          |
+| Promoter      | Star, Creator (audience, visibility, spontaneity)         |
+| Adapter       | Friend, Searcher (harmony, purpose, flexibility)          |
+| Craftsman     | Expert, Defender (craft mastery, standards, reliability)  |
+| Guardian      | Defender, Searcher (safety, continuity, meaning)          |
+| Operator      | Defender, Builder (process, stability, consistent output) |
+| Individualist | Creator, Searcher (authenticity, meaning, originality)    |
+| Scholar       | Expert, Searcher (knowledge, truth-seeking, depth)        |
+
+PROFILE INTERPRETATION NOTES
+----------------------------
+- Analyzer: Motivational Map themes are Expert, Defender (mastery, accuracy, stability). These themes should guide recognition style, work design, and retention messaging.
+- Controller: Motivational Map themes are Defender, Builder (control, reliability, process). These themes should guide recognition style, work design, and retention messaging.
+- Specialist: Motivational Map themes are Expert (deep mastery, technical recognition). These themes should guide recognition style, work design, and retention messaging.
+- Strategist: Motivational Map themes are Builder, Expert (outcome, systems, strategic mastery). These themes should guide recognition style, work design, and retention messaging.
+- Venturer: Motivational Map themes are Builder, Creator (impact, challenge, autonomy). These themes should guide recognition style, work design, and retention messaging.
+- Altruist: Motivational Map themes are Friend, Spirit (helping, belonging, purpose). These themes should guide recognition style, work design, and retention messaging.
+- Captain: Motivational Map themes are Builder, Director (results, leadership, recognition). These themes should guide recognition style, work design, and retention messaging.
+- Collaborator: Motivational Map themes are Friend, Star (team harmony, recognition, belonging). These themes should guide recognition style, work design, and retention messaging.
+- Maverick: Motivational Map themes are Creator, Star (novelty, disruption, visibility). These themes should guide recognition style, work design, and retention messaging.
+- Persuader: Motivational Map themes are Star, Director (influence, recognition, results). These themes should guide recognition style, work design, and retention messaging.
+- Promoter: Motivational Map themes are Star, Creator (audience, visibility, spontaneity). These themes should guide recognition style, work design, and retention messaging.
+- Adapter: Motivational Map themes are Friend, Searcher (harmony, purpose, flexibility). These themes should guide recognition style, work design, and retention messaging.
+- Craftsman: Motivational Map themes are Expert, Defender (craft mastery, standards, reliability). These themes should guide recognition style, work design, and retention messaging.
+- Guardian: Motivational Map themes are Defender, Searcher (safety, continuity, meaning). These themes should guide recognition style, work design, and retention messaging.
+- Operator: Motivational Map themes are Defender, Builder (process, stability, consistent output). These themes should guide recognition style, work design, and retention messaging.
+- Individualist: Motivational Map themes are Creator, Searcher (authenticity, meaning, originality). These themes should guide recognition style, work design, and retention messaging.
+- Scholar: Motivational Map themes are Expert, Searcher (knowledge, truth-seeking, depth). These themes should guide recognition style, work design, and retention messaging.
+
+
+IMPLEMENTATION NOTES
+--------------------
+Recommended SignalGlass UI fields:
+- motivational_map_themes
+- primary_map_driver
+- secondary_map_driver
+- recognition_strategy
+- management_language
+- demotivation_risk
+
+Use this lens for manager-facing motivational guidance and employee experience design.
+`,
+  },
+  {
+    id: "trust-and-psychological-safety-lens",
+    lens: "Trust and Psychological Safety Lens",
+    status: "COMPLETE",
+    source: "Untitled 5.txt",
+    content: `LENS: Trust and Psychological Safety Lens
+STATUS: COMPLETE
+SOURCE: Untitled 5.txt
+DEDUPLICATION / CLEANUP NOTE: Converted the one-cell-per-line table from the transcript into a readable text table. Duplicate status/check-in text was removed.
+================================================================================
+
+Trust and Psychological Safety Lens
+
+Primary = Trust posture (Quick trust / Conditional / Slow); Secondary = Safety drivers; Stress = Break pattern.
+
+| Profile | Trust Posture | Safety Driver | Stress |
+|---|---|---|---|
+| Analyzer | Conditional | Competence signals | Suspicion of motives |
+| Controller | Slow | Clear rules, predictability | Withholds trust |
+| Specialist | Conditional | Expertise demonstrated | Distrust of generalists |
+| Strategist | Conditional | Vision alignment | Cynical of process |
+| Venturer | Quick | Autonomy & results | Tests boundaries |
+| Altruist | Quick | Warmth and inclusion | Feels betrayed deeply |
+| Captain | Quick | Capability & loyalty | Punishes disloyalty |
+| Collaborator | Quick | Inclusion and fairness | Withdraws if excluded |
+| Maverick | Quick | Freedom to experiment | Distrusts bureaucracy |
+| Persuader | Quick | Social proof | Personalizes breaches |
+| Promoter | Quick | Recognition | Moves on fast or performs drama |
+| Adapter | Conditional | Relational consistency | Over‑adjusts to keep peace |
+| Craftsman | Conditional | Quality assurance | Distrusts sloppy work |
+| Guardian | Slow | Stability and precedent | Resists new relationships |
+| Operator | Conditional | Reliability | Suspends trust when inconsistent |
+| Individualist | Conditional | Respect for autonomy | Withdraws when constrained |
+| Scholar | Conditional | Evidence and competence | Questions motives rigorously |
+`,
+  },
+  {
+    id: "sixteen-personality-factor-16pf-lens",
+    lens: "Sixteen Personality Factor (16PF) Lens",
+    status: "",
+    source: "16PF_Lens.txt",
+    content: `
+Sixteen Personality Factor (16PF) Lens
+======================================
+
+**Overview and theoretical background**
+
+The **16 Personality Factor Questionnaire (16PF)** was developed by
+Raymond Cattell to measure normal personality across sixteen primary
+dimensions derived from factor analysis.  The questionnaire assesses
+traits such as **Warmth**, **Reasoning**, **Emotional Stability**,
+**Dominance**, **Liveliness**, **Rule‑Consciousness**, **Social Boldness**,
+**Sensitivity**, **Vigilance**, **Abstractness**, **Privateness**,
+**Apprehension**, **Openness to Change**, **Self‑Reliance**, **Perfectionism**,
+and **Tension**https://www.workinfo.org/index.php/articles/item/1129-16-personality-factor-questionnaire#:~:text=The%2016%20Personality%20Factor%20Questionnaire,reliance%2C%20perfectionism%20and%20tension.  These factors combine into
+higher‑order global factors representing Extraversion, Anxiety,
+Tough‑Mindedness, Independence and Self‑Control.
+
+Unlike broad trait models like the Big Five, the 16PF provides granular
+profiles useful for vocational counseling, personnel selection and clinical
+settings.  Scores reflect tendencies, not abilities.
+
+**Selected factors and their interpretations**
+
+- **Dominance** – assertive, competitive individuals vs. compliant,
+  cooperative oneshttps://www.workinfo.org/index.php/articles/item/1129-16-personality-factor-questionnaire#:~:text=The%2016%20Personality%20Factor%20Questionnaire,reliance%2C%20perfectionism%20and%20tension.
+- **Rule‑Consciousness** – adherence to rules, duty and structure vs.
+  expedience and flexibilityhttps://www.workinfo.org/index.php/articles/item/1129-16-personality-factor-questionnaire#:~:text=The%2016%20Personality%20Factor%20Questionnaire,reliance%2C%20perfectionism%20and%20tension.
+- **Openness to Change** – preference for innovation and experimentation vs.
+  traditionalism and stabilityhttps://www.workinfo.org/index.php/articles/item/1129-16-personality-factor-questionnaire#:~:text=The%2016%20Personality%20Factor%20Questionnaire,reliance%2C%20perfectionism%20and%20tension.
+- **Warmth & Sensitivity** – empathy, supportive behaviour and social
+  considerationhttps://www.workinfo.org/index.php/articles/item/1129-16-personality-factor-questionnaire#:~:text=The%2016%20Personality%20Factor%20Questionnaire,reliance%2C%20perfectionism%20and%20tension.
+- **Perfectionism** – desire for order and detail vs. casualnesshttps://www.workinfo.org/index.php/articles/item/1129-16-personality-factor-questionnaire#:~:text=The%2016%20Personality%20Factor%20Questionnaire,reliance%2C%20perfectionism%20and%20tension.
+- **Social Boldness** – confidence and risk‑taking in social contexts vs.
+  shynesshttps://www.workinfo.org/index.php/articles/item/1129-16-personality-factor-questionnaire#:~:text=The%2016%20Personality%20Factor%20Questionnaire,reliance%2C%20perfectionism%20and%20tension.
+
+**Cross‑framework translation with PI profiles**
+
+Given the 16PF’s breadth, this lens focuses on five clusters relevant to
+workplace behavior: **Assertiveness** (Dominance), **Structure**
+(Rule‑Consciousness & Perfectionism), **Change Orientation** (Openness to
+Change), **Warmth** (Warmth & Sensitivity) and **Social Boldness**.
+Approximate patterns are summarized below.  “Trait profile” lists
+perceived tendencies; “Strengths” highlight contributions; “Watchouts”
+identify potential pitfalls.
+
+| PI profile | Trait profile (16PF clusters) | Strengths | Watchouts |
+|---|---|---|---|
+| **Analyzer** | High Structure (rule‑conscious, perfectionistic); Moderate Assertiveness; Low Change Orientation; Low Social Boldness; Moderate Warmth. | Delivers accuracy and reliability; upholds standards. | Risk of rigidity, reluctance to adopt new methods, or limited social outreach. |
+| **Controller** | High Assertiveness; High Structure; Moderate Change Orientation; Low Warmth; Moderate Social Boldness. | Drives execution and enforces accountability. | May appear domineering or unsympathetic; could resist unconventional ideas. |
+| **Specialist** | High Structure; Low Assertiveness; Low Change Orientation; Moderate Warmth; Low Social Boldness. | Focuses on detail and quality; supports team through consistency. | May struggle with assertiveness and adaptation; needs encouragement to share ideas. |
+| **Strategist** | High Assertiveness; High Change Orientation; High Structure; Low Warmth; Moderate Social Boldness. | Synthesizes complex information; pushes innovation. | Can be critical or impatient; might overlook relational needs. |
+| **Venturer** | High Assertiveness; High Change Orientation; Low Structure; Low Warmth; High Social Boldness. | Pursues opportunities boldly; inspires action. | May neglect details or processes; risk of overconfidence or conflict. |
+| **Individualist** | Moderate Assertiveness; High Change Orientation; Moderate Structure; Low Warmth; Low Social Boldness. | Independent, creative problem solver. | Could seem detached; may resist collaboration or procedural constraints. |
+| **Scholar** | High Structure; Low Assertiveness; High Change Orientation; High Warmth; Low Social Boldness. | Combines precision with imagination; supportive in one‑on‑one interactions. | May delay decisions; needs encouragement to express views. |
+| **Altruist** | Low Assertiveness; Moderate Structure; Low Change Orientation; High Warmth; Moderate Social Boldness. | Provides empathy and stability; builds trust. | Could avoid necessary conflict; might resist changes that disrupt harmony. |
+| **Captain** | High Assertiveness; Moderate Structure; High Change Orientation; Moderate Warmth; High Social Boldness. | Leads confidently toward new goals; motivates others. | Risk of overextension or impatience; needs to temper boldness with details. |
+| **Collaborator** | Low Assertiveness; Low Structure; Moderate Change Orientation; High Warmth; Moderate Social Boldness. | Encourages participation and consensus; adapts to others. | May lack direction or firmness; requires support to maintain focus and deadlines. |
+| **Maverick** | High Assertiveness; Low Structure; High Change Orientation; Low Warmth; High Social Boldness. | Challenges status quo; innovates fearlessly. | Can disrupt processes or alienate those seeking stability. |
+| **Persuader** | High Assertiveness; Low Structure; High Change Orientation; Moderate Warmth; High Social Boldness. | Energizes and influences others; embraces change. | May lack follow‑through and overcommit; needs to integrate structure. |
+| **Promoter** | Low Assertiveness; Low Structure; High Change Orientation; High Warmth; High Social Boldness. | Builds networks; promotes ideas enthusiastically. | Could neglect detail and consistency; may appear superficial without depth. |
+| **Adapter** | Moderate Assertiveness; Moderate Structure; Moderate Change Orientation; High Warmth; Moderate Social Boldness. | Flexible, diplomatic and supportive. | May lack a strong stance; risk of over‑accommodating; needs clear priorities. |
+| **Artisan** | Moderate Assertiveness; High Structure; High Change Orientation; Moderate Warmth; Low Social Boldness. | Crafts high‑quality solutions; adapts creatively. | May hesitate to promote ideas; should socialize innovations early. |
+| **Guardian** | Low Assertiveness; High Structure; Low Change Orientation; High Warmth; Low Social Boldness. | Creates stability and reliability; empathetic teammate. | Could resist innovation; needs to step out of comfort zone to advocate for needs. |
+| **Operator** | Low Assertiveness; Moderate Structure; Low Change Orientation; High Warmth; Low Social Boldness. | Patient, cooperative and steady. | May require guidance to take initiative; should be encouraged to share input and embrace growth. |
+
+**Practical implications**
+
+The 16PF lens provides a nuanced view of personality beyond broad trait
+models.  It helps explain why two profiles with similar levels of
+Conscientiousness (Analyzer and Specialist) may differ in Assertiveness or
+Change Orientation.  Managers can use this lens to tailor support—giving
+Venturers and Mavericks procedural partners to balance their
+low‑Structure tendencies, or encouraging Guardians and Specialists to
+experiment gradually with new methods.  Recognizing Warmth levels can
+inform feedback approaches: high‑Warmth profiles may appreciate
+affirmation, while low‑Warmth profiles might prefer concise, direct
+information.  Overall, this lens enriches the PI crosswalk by adding
+behavioral depth to development conversations.
+`,
+  },
+  {
+    id: "eq-i-20-emotional-intelligence",
+    lens: "EQ-i 2.0 Emotional Intelligence",
+    status: "Finished / Done",
+    source: "SignalGlass \u2014 Extracted Results",
+    content: `SignalGlass Lens 17 — EQ-i 2.0 Emotional Intelligence
+======================================================
+
+Source status: Finished / Done
+Source document: SignalGlass — Extracted Results
+
+Duplicate handling applied from the source document:
+- Hogan HDS (Derailers) appeared in both the Personality section and Leadership section; it is kept once as a completed leadership/derailer lens.
+- “Lived experiences” appeared separately but duplicated Lived Experience Context Lens; it is not exported as a finished lens because the source marks that lens as not done.
+- Workplace Big Five Pro appeared twice with conflicting status; it is not exported as a finished lens because the source says only OCEAN-level mapping was partially applied and Pro-specific facets were not completed.
+
+Translation methodology preserved from the source document:
+- PI inputs used: Dominance, Extraversion, Patience, and Formality.
+- Shared-construct translation: similar constructs are mapped across frameworks where conceptually aligned.
+- Known correlations: for example, high Formality and Patience support Conscientiousness-like interpretations; Dominance supports agency/assertiveness interpretations.
+- Qualitative PI profile descriptors are used as supporting evidence, such as risk-taking, cautious, innovative, perfectionistic, supportive, or process-oriented.
+- Outputs are non-diagnostic. They should be read as “this PI profile pattern is consistent with…” rather than as clinical, medical, or definitive personality diagnoses.
+
+
+LENS PURPOSE
+------------
+This lens captures EQ-i 2.0-style emotional intelligence strengths and risks per PI profile. In the source, EQ-i 2.0 is combined with MSCEIT and Social Styles; this file separates EQ-i into its own finalized lens.
+
+SOURCE-DERIVED EQ-i MAP
+-----------------------
+| Profile       | EQ-i 2.0 Strengths                   | EQ-i 2.0 Risks                      |
+| ------------- | ------------------------------------ | ----------------------------------- |
+| Analyzer      | Problem Solving, Reality Testing     | Emotional Expression, Interpersonal |
+| Controller    | Impulse Control, Reality Testing     | Flexibility, Empathy                |
+| Specialist    | Reality Testing, Problem Solving     | Social Responsibility, Empathy      |
+| Strategist    | Problem Solving, Self-Regard         | Empathy, Emotional Expression       |
+| Venturer      | Stress Tolerance, Flexibility        | Impulse Control, Empathy            |
+| Altruist      | Empathy, Interpersonal               | Self-Regard, Assertiveness          |
+| Captain       | Self-Actualization, Independence     | Empathy, Emotional Expression       |
+| Collaborator  | Empathy, Interpersonal               | Assertiveness, Self-Regard          |
+| Maverick      | Flexibility, Stress Tolerance        | Impulse Control, Empathy            |
+| Persuader     | Social Responsibility, Interpersonal | Reality Testing under pressure      |
+| Promoter      | Interpersonal, Flexibility           | Impulse Control, Reality Testing    |
+| Adapter       | Empathy, Flexibility                 | Self-Regard, Assertiveness          |
+| Craftsman     | Impulse Control, Reality Testing     | Social Responsibility, Empathy      |
+| Guardian      | Impulse Control, Self-Regard         | Flexibility, Assertiveness          |
+| Operator      | Impulse Control, Stress Tolerance    | Emotional Expression, Empathy       |
+| Individualist | Self-Actualization, Independence     | Social Responsibility, Empathy      |
+| Scholar       | Reality Testing, Problem Solving     | Social Responsibility, Empathy      |
+
+PROFILE INTERPRETATION NOTES
+----------------------------
+- Analyzer: EQ strengths are Problem Solving, Reality Testing; watchouts are Emotional Expression, Interpersonal.
+- Controller: EQ strengths are Impulse Control, Reality Testing; watchouts are Flexibility, Empathy.
+- Specialist: EQ strengths are Reality Testing, Problem Solving; watchouts are Social Responsibility, Empathy.
+- Strategist: EQ strengths are Problem Solving, Self-Regard; watchouts are Empathy, Emotional Expression.
+- Venturer: EQ strengths are Stress Tolerance, Flexibility; watchouts are Impulse Control, Empathy.
+- Altruist: EQ strengths are Empathy, Interpersonal; watchouts are Self-Regard, Assertiveness.
+- Captain: EQ strengths are Self-Actualization, Independence; watchouts are Empathy, Emotional Expression.
+- Collaborator: EQ strengths are Empathy, Interpersonal; watchouts are Assertiveness, Self-Regard.
+- Maverick: EQ strengths are Flexibility, Stress Tolerance; watchouts are Impulse Control, Empathy.
+- Persuader: EQ strengths are Social Responsibility, Interpersonal; watchouts are Reality Testing under pressure.
+- Promoter: EQ strengths are Interpersonal, Flexibility; watchouts are Impulse Control, Reality Testing.
+- Adapter: EQ strengths are Empathy, Flexibility; watchouts are Self-Regard, Assertiveness.
+- Craftsman: EQ strengths are Impulse Control, Reality Testing; watchouts are Social Responsibility, Empathy.
+- Guardian: EQ strengths are Impulse Control, Self-Regard; watchouts are Flexibility, Assertiveness.
+- Operator: EQ strengths are Impulse Control, Stress Tolerance; watchouts are Emotional Expression, Empathy.
+- Individualist: EQ strengths are Self-Actualization, Independence; watchouts are Social Responsibility, Empathy.
+- Scholar: EQ strengths are Reality Testing, Problem Solving; watchouts are Social Responsibility, Empathy.
+
+
+IMPLEMENTATION NOTES
+--------------------
+Recommended SignalGlass UI fields:
+- eq_strengths
+- eq_risks
+- emotional_self_management_note
+- interpersonal_effectiveness_note
+- coaching_focus
+- stress_response_note
+
+Use this lens for emotional-development coaching, manager guidance, and collaboration risk analysis.
+`,
+  },
+  {
+    id: "relational-needs-firo-b-lens",
+    lens: "Relational Needs FIRO-B Lens",
+    status: "COMPLETE",
+    source: "Untitled 5.txt",
+    content: `LENS: Relational Needs FIRO-B Lens
+STATUS: COMPLETE
+SOURCE: Untitled 5.txt
+DEDUPLICATION / CLEANUP NOTE: Converted the one-cell-per-line table from the transcript into a readable text table. Duplicate status/check-in text was removed.
+================================================================================
+
+Relational Needs FIRO‑B Lens
+
+Primary = Inclusion / Control / Affection emphasis; Secondary = typical expression; Stress = unmet‑need behavior.
+
+| Profile | Primary Need | Typical Expression | Stress |
+|---|---|---|---|
+| Analyzer | Control | Seeks clarity, boundaries | Withdraws or micromanages |
+| Controller | Control | Direct leadership, rules | Domineering when unmet |
+| Specialist | Inclusion (low) | Works independently | Isolation, guardedness |
+| Strategist | Control | Strategic influence | Frustration with limits |
+| Venturer | Inclusion | Seeks opportunities, visibility | Impulsive risk taking |
+| Altruist | Affection | Supportive, relational | Over‑giving, hurt feelings |
+| Captain | Control | Command presence | Aggressive when blocked |
+| Collaborator | Inclusion | Builds teams, invites input | Feels excluded, withdraws |
+| Maverick | Inclusion | Wants recognition for ideas | Provokes to be noticed |
+| Persuader | Affection | Socially engaging, warm | Takes rejection personally |
+| Promoter | Inclusion | Public energy, networking | Over‑promises to belong |
+| Adapter | Affection | Nurtures relationships | Over‑adjusts to fit in |
+| Craftsman | Control | Standards and ownership | Perfectionism when ignored |
+| Guardian | Control | Protects group norms | Resistant to change |
+| Operator | Control | Executes reliably | Frustrated by ambiguity |
+| Individualist | Affection (low) | Values autonomy | Withdraws from forced intimacy |
+| Scholar | Control | Seeks intellectual recognition | Retreats into analysis |
+`,
+  },
+  {
+    id: "metacognition",
+    lens: "Metacognition",
+    status: "COMPLETE",
+    source: "Untitled 5.txt",
+    content: `LENS: Metacognition
+STATUS: COMPLETE
+SOURCE: Untitled 5.txt
+DEDUPLICATION / CLEANUP NOTE: Converted the one-cell-per-line table from the transcript into a readable text table. Duplicate status/check-in text was removed.
+================================================================================
+
+Metacognition
+
+| Profile | Primary | Secondary | Stress | Link |
+|---|---|---|---|---|
+| Analyzer | Self‑monitoring | Strategy planning | Ruminates on errors | ca://s?q=Analyzer_Metacognition |
+| Controller | Goal‑tracking | Rule‑checking | Blames process gaps | ca://s?q=Controller_Metacognition |
+| Specialist | Domain reflection | Error detection | Tunnel‑vision on details | ca://s?q=Specialist_Metacognition |
+| Strategist | Meta‑planning | Scenario evaluation | Over‑theorizes options | ca://s?q=Strategist_Metacognition |
+| Venturer | Rapid heuristics | Quick reframe | Skips reflection, repeats mistakes | ca://s?q=Venturer_Metacognition |
+| Altruist | Relational reflection | Perspective check | Over‑focus on others’ feelings | ca://s?q=Altruist_Metacognition |
+| Captain | Outcome monitoring | Tactical adjustment | Dismisses feedback quickly | ca://s?q=Captain_Metacognition |
+| Collaborator | Shared reflection | Consensus calibration | Avoids hard self‑critique | ca://s?q=Collaborator_Metacognition |
+| Maverick | Idea scanning | Pattern spotting | Jumps without review | ca://s?q=Maverick_Metacognition |
+| Persuader | Audience tuning | Message testing | Confuses signal with applause | ca://s?q=Persuader_Metacognition |
+| Promoter | Rapid feedback loop | Social proof check | Over‑reliant on praise | ca://s?q=Promoter_Metacognition |
+| Adapter | Context scanning | Flexible replanning | Over‑adjusts to others | ca://s?q=Adapter_Metacognition |
+| Craftsman | Quality review | Stepwise correction | Paralysis over small flaws | ca://s?q=Craftsman_Metacognition |
+| Guardian | Risk appraisal | Contingency planning | Fixates on worst case | ca://s?q=Guardian_Metacognition |
+| Operator | Process audit | Checklists & routines | Ignores novel signals | ca://s?q=Operator_Metacognition |
+| Individualist | Identity reflection | Concept testing | Withdraws into private review | ca://s?q=Individualist_Metacognition |
+| Scholar | Meta‑analysis | Hypothesis testing | Endless re‑validation | ca://s?q=Scholar_Metacognition |
+`,
+  },
+  {
+    id: "msceit-ability-based-eq",
+    lens: "MSCEIT Ability-Based EQ",
+    status: "Finished / Done",
+    source: "SignalGlass \u2014 Extracted Results",
+    content: `SignalGlass Lens 18 — MSCEIT Ability-Based EQ
+==============================================
+
+Source status: Finished / Done
+Source document: SignalGlass — Extracted Results
+
+Duplicate handling applied from the source document:
+- Hogan HDS (Derailers) appeared in both the Personality section and Leadership section; it is kept once as a completed leadership/derailer lens.
+- “Lived experiences” appeared separately but duplicated Lived Experience Context Lens; it is not exported as a finished lens because the source marks that lens as not done.
+- Workplace Big Five Pro appeared twice with conflicting status; it is not exported as a finished lens because the source says only OCEAN-level mapping was partially applied and Pro-specific facets were not completed.
+
+Translation methodology preserved from the source document:
+- PI inputs used: Dominance, Extraversion, Patience, and Formality.
+- Shared-construct translation: similar constructs are mapped across frameworks where conceptually aligned.
+- Known correlations: for example, high Formality and Patience support Conscientiousness-like interpretations; Dominance supports agency/assertiveness interpretations.
+- Qualitative PI profile descriptors are used as supporting evidence, such as risk-taking, cautious, innovative, perfectionistic, supportive, or process-oriented.
+- Outputs are non-diagnostic. They should be read as “this PI profile pattern is consistent with…” rather than as clinical, medical, or definitive personality diagnoses.
+
+
+LENS PURPOSE
+------------
+MSCEIT focuses on ability-based emotional reasoning: perceiving, using, understanding, and managing emotions. The source provides a profile-level MSCEIT signal as part of the combined emotional/interpersonal section; this file separates it into its own lens.
+
+SOURCE-DERIVED MSCEIT SIGNALS
+-----------------------------
+| Profile       | MSCEIT Signal                                                          |
+| ------------- | ---------------------------------------------------------------------- |
+| Analyzer      | Understands emotional logic when explicit; weaker at subtle signals    |
+| Controller    | Applies rules to emotional situations; rigid in novel contexts         |
+| Specialist    | Reads task-relevant emotions; struggles with relational ambiguity      |
+| Strategist    | Strong at reading strategic intent; weaker at warmth cues              |
+| Venturer      | Reads opportunities and energy; may miss anxiety signals               |
+| Altruist      | Strong emotional reading of others; may absorb others' emotions        |
+| Captain       | Reads competitive dynamics well; may miss subtle distress              |
+| Collaborator  | High relational EQ; may suppress negative emotion                      |
+| Maverick      | Creative emotional association; may miss social norms                  |
+| Persuader     | Strong audience reading; may use emotion strategically                 |
+| Promoter      | Reads social energy; may amplify emotions for effect                   |
+| Adapter       | Strong contextual EQ; reads shifting needs well                        |
+| Craftsman     | Task-focused emotional processing; limited range                       |
+| Guardian      | Steady emotional management; low tolerance for ambiguity               |
+| Operator      | Consistent and calm; limited insight into others' emotional complexity |
+| Individualist | Rich internal EQ; may struggle to express or modulate socially         |
+| Scholar       | Deep analytical EQ; processes emotion through logic                    |
+
+PROFILE INTERPRETATION NOTES
+----------------------------
+- Analyzer: Understands emotional logic when explicit; weaker at subtle signals
+- Controller: Applies rules to emotional situations; rigid in novel contexts
+- Specialist: Reads task-relevant emotions; struggles with relational ambiguity
+- Strategist: Strong at reading strategic intent; weaker at warmth cues
+- Venturer: Reads opportunities and energy; may miss anxiety signals
+- Altruist: Strong emotional reading of others; may absorb others' emotions
+- Captain: Reads competitive dynamics well; may miss subtle distress
+- Collaborator: High relational EQ; may suppress negative emotion
+- Maverick: Creative emotional association; may miss social norms
+- Persuader: Strong audience reading; may use emotion strategically
+- Promoter: Reads social energy; may amplify emotions for effect
+- Adapter: Strong contextual EQ; reads shifting needs well
+- Craftsman: Task-focused emotional processing; limited range
+- Guardian: Steady emotional management; low tolerance for ambiguity
+- Operator: Consistent and calm; limited insight into others' emotional complexity
+- Individualist: Rich internal EQ; may struggle to express or modulate socially
+- Scholar: Deep analytical EQ; processes emotion through logic
+
+
+IMPLEMENTATION NOTES
+--------------------
+Recommended SignalGlass UI fields:
+- ability_eq_signal
+- emotion_perception_note
+- emotion_understanding_note
+- emotion_management_note
+- likely_blindspot
+- coaching_prompt
+
+Use this lens to explain emotional reasoning style rather than warmth or personality alone.
+`,
+  },
+  {
+    id: "cognitive-flexibility-lens",
+    lens: "Cognitive Flexibility Lens",
+    status: "COMPLETE",
+    source: "Untitled 5.txt",
+    content: `LENS: Cognitive Flexibility Lens
+STATUS: COMPLETE
+SOURCE: Untitled 5.txt
+DEDUPLICATION / CLEANUP NOTE: Converted the one-cell-per-line table from the transcript into a readable text table. Duplicate status/check-in text was removed.
+================================================================================
+
+Cognitive Flexibility Lens
+
+| Profile | Primary | Secondary | Stress | Link |
+|---|---|---|---|---|
+| Analyzer | Rule‑based switching | Scenario reframe | Slow to pivot | ca://s?q=Analyzer_Cognitive_Flexibility |
+| Controller | Structured adaptation | Contingency switching | Resists novel paths | ca://s?q=Controller_Cognitive_Flexibility |
+| Specialist | Contextual tweak | Method substitution | Sticks to known tools | ca://s?q=Specialist_Cognitive_Flexibility |
+| Strategist | High flexibility | Multi‑scenario thinking | Overcomplicates pivots | ca://s?q=Strategist_Cognitive_Flexibility |
+| Venturer | Rapid pivoting | Opportunistic shifts | Chaotic switching | ca://s?q=Venturer_Cognitive_Flexibility |
+| Altruist | Relational adaptation | Role shifting | Over‑accommodates changes | ca://s?q=Altruist_Cognitive_Flexibility |
+| Captain | Directive pivot | Fast course correction | Forces change without buy‑in | ca://s?q=Captain_Cognitive_Flexibility |
+| Collaborator | Consensus pivot | Group recalibration | Delays to preserve harmony | ca://s?q=Collaborator_Cognitive_Flexibility |
+| Maverick | Creative switching | Radical reframing | Disrupts continuity | ca://s?q=Maverick_Cognitive_Flexibility |
+| Persuader | Socially adaptive | Message reframing | Chases trends, loses depth | ca://s?q=Persuader_Cognitive_Flexibility |
+| Promoter | Energetic pivot | Rapid rebranding | Surface‑level shifts only | ca://s?q=Promoter_Cognitive_Flexibility |
+| Adapter | Situational switching | Role blending | Over‑adjusts identity | ca://s?q=Adapter_Cognitive_Flexibility |
+| Craftsman | Methodical tweak | Process refinement | Slow to accept new methods | ca://s?q=Craftsman_Cognitive_Flexibility |
+| Guardian | Cautious shift | Protocol adaptation | Blocks change until proven | ca://s?q=Guardian_Cognitive_Flexibility |
+| Operator | Operational pivot | Workflow reroute | Rigid under ambiguity | ca://s?q=Operator_Cognitive_Flexibility |
+| Individualist | Conceptual pivot | Personal reframing | Withdraws when forced | ca://s?q=Individualist_Cognitive_Flexibility |
+| Scholar | Analytic switching | Theory rework | Over‑tests alternatives | ca://s?q=Scholar_Cognitive_Flexibility |
+`,
+  },
+  {
+    id: "social-styles",
+    lens: "Social Styles",
+    status: "Finished / Done",
+    source: "SignalGlass \u2014 Extracted Results",
+    content: `SignalGlass Lens 19 — Social Styles
+===================================
+
+Source status: Finished / Done
+Source document: SignalGlass — Extracted Results
+
+Duplicate handling applied from the source document:
+- Hogan HDS (Derailers) appeared in both the Personality section and Leadership section; it is kept once as a completed leadership/derailer lens.
+- “Lived experiences” appeared separately but duplicated Lived Experience Context Lens; it is not exported as a finished lens because the source marks that lens as not done.
+- Workplace Big Five Pro appeared twice with conflicting status; it is not exported as a finished lens because the source says only OCEAN-level mapping was partially applied and Pro-specific facets were not completed.
+
+Translation methodology preserved from the source document:
+- PI inputs used: Dominance, Extraversion, Patience, and Formality.
+- Shared-construct translation: similar constructs are mapped across frameworks where conceptually aligned.
+- Known correlations: for example, high Formality and Patience support Conscientiousness-like interpretations; Dominance supports agency/assertiveness interpretations.
+- Qualitative PI profile descriptors are used as supporting evidence, such as risk-taking, cautious, innovative, perfectionistic, supportive, or process-oriented.
+- Outputs are non-diagnostic. They should be read as “this PI profile pattern is consistent with…” rather than as clinical, medical, or definitive personality diagnoses.
+
+
+LENS PURPOSE
+------------
+This lens translates PI profile patterns into Social Styles language: Driver, Analytical, Amiable, and Expressive. The source provides a social style for each profile in the combined EQ/MSCEIT/Social Styles section; this file separates Social Styles into its own finalized lens.
+
+SOURCE-DERIVED SOCIAL STYLES MAP
+--------------------------------
+| Profile       | Social Style        |
+| ------------- | ------------------- |
+| Analyzer      | Analytical          |
+| Controller    | Analytical / Driver |
+| Specialist    | Analytical          |
+| Strategist    | Driver              |
+| Venturer      | Driver              |
+| Altruist      | Amiable             |
+| Captain       | Driver              |
+| Collaborator  | Amiable             |
+| Maverick      | Expressive          |
+| Persuader     | Expressive          |
+| Promoter      | Expressive          |
+| Adapter       | Amiable             |
+| Craftsman     | Analytical          |
+| Guardian      | Amiable             |
+| Operator      | Analytical          |
+| Individualist | Expressive          |
+| Scholar       | Analytical          |
+
+PROFILE INTERPRETATION NOTES
+----------------------------
+- Analyzer: Analytical. This suggests the profile is careful, evidence-oriented, precise, and likely to prefer structured information.
+- Controller: Analytical / Driver. This suggests the profile is direct, outcome-oriented, decisive, and likely to prefer efficient action.
+- Specialist: Analytical. This suggests the profile is careful, evidence-oriented, precise, and likely to prefer structured information.
+- Strategist: Driver. This suggests the profile is direct, outcome-oriented, decisive, and likely to prefer efficient action.
+- Venturer: Driver. This suggests the profile is direct, outcome-oriented, decisive, and likely to prefer efficient action.
+- Altruist: Amiable. This suggests the profile is supportive, relationship-oriented, cooperative, and likely to protect harmony.
+- Captain: Driver. This suggests the profile is direct, outcome-oriented, decisive, and likely to prefer efficient action.
+- Collaborator: Amiable. This suggests the profile is supportive, relationship-oriented, cooperative, and likely to protect harmony.
+- Maverick: Expressive. This suggests the profile is energetic, persuasive, visible, and likely to prefer interactive communication.
+- Persuader: Expressive. This suggests the profile is energetic, persuasive, visible, and likely to prefer interactive communication.
+- Promoter: Expressive. This suggests the profile is energetic, persuasive, visible, and likely to prefer interactive communication.
+- Adapter: Amiable. This suggests the profile is supportive, relationship-oriented, cooperative, and likely to protect harmony.
+- Craftsman: Analytical. This suggests the profile is careful, evidence-oriented, precise, and likely to prefer structured information.
+- Guardian: Amiable. This suggests the profile is supportive, relationship-oriented, cooperative, and likely to protect harmony.
+- Operator: Analytical. This suggests the profile is careful, evidence-oriented, precise, and likely to prefer structured information.
+- Individualist: Expressive. This suggests the profile is energetic, persuasive, visible, and likely to prefer interactive communication.
+- Scholar: Analytical. This suggests the profile is careful, evidence-oriented, precise, and likely to prefer structured information.
+
+
+IMPLEMENTATION NOTES
+--------------------
+Recommended SignalGlass UI fields:
+- social_style
+- communication_preference
+- meeting_preference
+- likely_conflict_style
+- manager_tip
+- collaboration_tip
+
+Use this lens for quick manager-facing communication guidance and team interaction design.
+`,
+  },
+  {
+    id: "cognitive-load--working-style",
+    lens: "Cognitive Load & Working Style",
+    status: "COMPLETE",
+    source: "Untitled 5.txt",
+    content: `LENS: Cognitive Load & Working Style
+STATUS: COMPLETE
+SOURCE: Untitled 5.txt
+DEDUPLICATION / CLEANUP NOTE: Converted the one-cell-per-line table from the transcript into a readable text table. Duplicate status/check-in text was removed.
+================================================================================
+
+Cognitive Load & Working Style
+
+| Profile | Working Style | Load Tolerance | Stress | Link |
+|---|---|---|---|---|
+| Analyzer | Deep, single‑task focus | High for focused tasks | Overloaded by multitask | ca://s?q=Analyzer_Cognitive_Load |
+| Controller | Structured, scheduled blocks | High with clear rules | Overwhelmed by ambiguity | ca://s?q=Controller_Cognitive_Load |
+| Specialist | Intensive domain focus | Very high in niche tasks | Cognitive bottleneck outside domain | ca://s?q=Specialist_Cognitive_Load |
+| Strategist | Parallel scenario juggling | Moderate‑High | Fatigues on execution detail | ca://s?q=Strategist_Cognitive_Load |
+| Venturer | Rapid bursts, short cycles | Low for sustained load | Burns out on long tasks | ca://s?q=Venturer_Cognitive_Load |
+| Altruist | Socially distributed work | Moderate | Drains when isolated | ca://s?q=Altruist_Cognitive_Load |
+| Captain | High‑intensity bursts | Moderate‑High | Frustrated by slow pace | ca://s?q=Captain_Cognitive_Load |
+| Collaborator | Shared workload, iterative | Moderate | Overloaded by conflict | ca://s?q=Collaborator_Cognitive_Load |
+| Maverick | Idea‑heavy, low follow‑through | Low for routine load | Distracted by detail work | ca://s?q=Maverick_Cognitive_Load |
+| Persuader | Social multitasking | Moderate | Cognitive noise reduces clarity | ca://s?q=Persuader_Cognitive_Load |
+| Promoter | High‑energy, short focus | Low | Rapid fatigue on deep work | ca://s?q=Promoter_Cognitive_Load |
+| Adapter | Flexible, context‑sensitive | Moderate | Overloaded by competing demands | ca://s?q=Adapter_Cognitive_Load |
+| Craftsman | Stepwise, quality‑driven | High for repetitive precision | Slows when interrupted | ca://s?q=Craftsman_Cognitive_Load |
+| Guardian | Predictable, low variance | High for routine | Stress when novelty increases | ca://s?q=Guardian_Cognitive_Load |
+| Operator | Process‑oriented throughput | High for steady tasks | Disrupted by chaos | ca://s?q=Operator_Cognitive_Load |
+| Individualist | Deep conceptual focus | Moderate | Loses momentum under micromanage | ca://s?q=Individualist_Cognitive_Load |
+| Scholar | Intensive analytic processing | Very High for research | Paralysis when forced to act fast | ca://s?q=Scholar_Cognitive_Load |
+`,
+  },
 ];
 
 // Index by id for O(1) lookup
