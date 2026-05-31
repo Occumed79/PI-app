@@ -6,13 +6,19 @@
 
 * { box-sizing: border-box; }
 
-body {
+html, body {
   margin: 0;
+  padding: 0;
   font-family: 'Inter', system-ui, sans-serif;
   background: #0a0a0f;
   color: #e2e8f0;
-  /* FIXED: was overflow:hidden which broke page scrolling */
   overflow-x: hidden;
+  overflow-y: auto;
+  min-height: 100vh;
+}
+
+#root {
+  min-height: 100vh;
   overflow-y: auto;
 }
 
@@ -24,34 +30,13 @@ body {
 .glass {
   background: rgba(15,23,42,0.7);
   backdrop-filter: blur(12px);
-  border: 1px solid rgba(255,255,255,0.06);
+  border: 1px solid rgba(255,255,255,0.07);
 }
 
-.lens-card {
-  transition: all 0.2s ease;
-}
+.lens-card { transition: all 0.2s ease; }
 .lens-card:hover {
   transform: translateY(-1px);
   border-color: rgba(255,255,255,0.15) !important;
-}
-
-.profile-pill {
-  transition: all 0.15s ease;
-}
-.profile-pill:hover, .profile-pill.active {
-  transform: scale(1.02);
-}
-
-.sidebar-lens-btn {
-  transition: all 0.15s ease;
-  cursor: pointer;
-}
-.sidebar-lens-btn:hover {
-  background: rgba(255,255,255,0.05);
-}
-.sidebar-lens-btn.active {
-  background: rgba(99,102,241,0.15);
-  border-left: 2px solid #6366f1;
 }
 
 .score-bar {
@@ -59,13 +44,13 @@ body {
 }
 
 @keyframes fadeIn {
-  from { opacity:0; transform: translateY(8px); }
-  to   { opacity:1; transform: translateY(0); }
+  from { opacity: 0; transform: translateY(8px); }
+  to   { opacity: 1; transform: translateY(0); }
 }
 .fade-in { animation: fadeIn 0.25s ease forwards; }
 
 @keyframes pulse-dot {
-  0%,100% { opacity:1; }
-  50%      { opacity:0.4; }
+  0%,100% { opacity: 1; }
+  50%      { opacity: 0.4; }
 }
 .pulse-dot { animation: pulse-dot 2s infinite; }

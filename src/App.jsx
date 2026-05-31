@@ -1163,7 +1163,7 @@ export default function HumanSystemsIntelligenceApp() {
             {activeTab === "meaning" && <MeaningGuide />}
             {activeTab === "matrix" && <ScoreMatrix />}
             {activeTab === "brain" && <StrengthMap />}
-            {activeTab === "lenses" && <LensesView selectedProfile={selectedProfile} setSelectedProfile={setSelectedProfile} />}
+            {activeTab === "lenses" && <LensesView profiles={profiles} selectedProfile={selectedProfile} setSelectedProfile={setSelectedProfile} />}
             {activeTab === "builder" && <EmployeeBuilderMode />}
             {activeTab === "coach" && <AIScenarioCoachMode profile={selectedProfile.name.toLowerCase()} />}
           </motion.main>
