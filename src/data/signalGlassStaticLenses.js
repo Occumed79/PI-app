@@ -10420,6 +10420,494 @@ The table below suggests how each PI profile tends to distribute their influence
 * Consider the strategic–operational balance.  Strategists and Venturers may overlook operational details; Operators may neglect long‑term direction.  Pair people or schedule dedicated time to address the less‑preferred side.
 * Encourage leaders to adopt a situational approach, moving along the forceful/enabling and strategic/operational axes according to team maturity, task complexity and time pressure.`,
   },
+  {
+    id: "learning-design-style-nonvark-lens",
+    lens: "Learning Design Style (Non\u2011VARK) Lens",
+    status: "",
+    source: "Learning_Design_Style(1).txt",
+    content: `
+Learning Design Style (Non‑VARK) Lens
+
+**Overview**
+
+This lens uses David Kolb’s Experiential Learning Cycle to map how individuals prefer to learn in a workplace context.  Kolb describes four learning styles, each combining two modes—concrete experience (CE), reflective observation (RO), abstract conceptualisation (AC) and active experimentation (AE):
+
+1. **Converger (AC + AE)** – analytical then practical: “tell me the model, then let me test it.”
+2. **Diverger (CE + RO)** – people‑focused and imaginative: “show me the human angle and possibilities.”
+3. **Assimilator (AC + RO)** – abstract and structured: “give me the theory and framework.”
+4. **Accommodator (CE + AE)** – hands‑on and trial‑and‑error: “let me try it and learn by doing.”
+
+Each PI profile tends to favour a dominant learning style and a secondary mode.  Stress behaviours reveal how learning preferences change under pressure.
+
+**Crosswalk by PI Profile**
+
+| PI Profile | Dominant style | Secondary style | Workplace learning preference | Stress‑mode behaviour | Rationale |
+|---|---|---|---|---|---|
+| **Analyzer** | Assimilator | Converger | Models → frameworks → structured practice | Over‑analysis, slow iteration | Precision and structure |
+| **Controller** | Converger | Assimilator | Clear rules → controlled practice | Rigid adherence to procedure | Rule‑based mastery |
+| **Specialist** | Assimilator | Converger | Deep technical frameworks → applied mastery | Narrow focus | Domain depth |
+| **Strategist** | Assimilator | Diverger | Conceptual models → scenario planning | Over‑theorising | Systems thinking |
+| **Venturer** | Accommodator | Diverger | Rapid experiments → real‑world tests | Impulsive action | Fast, experiential learning |
+| **Altruist** | Diverger | Assimilator | Stories → reflection → group learning | Over‑accommodation | People‑first reflection |
+| **Captain** | Converger | Accommodator | Action → results → iteration | Over‑decisiveness | Outcome‑driven learning |
+| **Collaborator** | Diverger | Accommodator | Group reflection → shared meaning | Avoidance | Relational learning |
+| **Maverick** | Diverger | Accommodator | Creative exploration → hands‑on ideation | Chaotic experimentation | Creative, non‑linear |
+| **Persuader** | Diverger | Accommodator | Social learning → role‑play → live practice | Emotional reasoning | Influence orientation |
+| **Promoter** | Accommodator | Diverger | Hands‑on → energetic → social learning | Impulsive action | Improvisational learning |
+| **Adapter** | Diverger | Assimilator | Group reflection → flexible application | Withdrawal | Flexible, relational |
+| **Craftsman** | Converger | Assimilator | Step‑by‑step → standards → practice | Perfectionistic delay | Quality and precision |
+| **Guardian** | Assimilator | Converger | Clear frameworks → predictable practice | Over‑caution | Stability and structure |
+| **Operator** | Converger | Accommodator | Hands‑on → process → repetition | Rigid routine | Execution learning |
+| **Individualist** | Diverger | Assimilator | Creative reflection → conceptual synthesis | Detached ideation | Independent, creative |
+| **Scholar** | Assimilator | Converger | Theory → structure → rigorous practice | Over‑analysis | Academic, methodical |
+
+**Using this lens**
+
+* Tailor training: Convergers need clear explanations followed by hands‑on practice; Divergers respond to stories and examples; Assimilators crave theory and structure; Accommodators require experiential, trial‑and‑error opportunities.
+* Under stress, learners may exaggerate their dominant style (e.g., a Converger may become inflexibly procedural) or retreat into avoidance.  Provide coaching to help them re‑engage productively.
+* Recognise that secondary styles moderate learning: a Diverger‑Accommodator (Promoter) learns best through social, hands‑on experiences, whereas a Diverger‑Assimilator (Adapter) benefits from reflective group discussions grounded in theory.
+`,
+  },
+  {
+    id: "lencioni-team-dynamics-five-dysfunctions-lens",
+    lens: "Lencioni Team Dynamics (Five Dysfunctions) Lens",
+    status: "",
+    source: "Lencioni_Team_Dynamics_Lens(1).txt",
+    content: `
+Lencioni Team Dynamics (Five Dysfunctions) Lens
+==============================================
+
+**Overview**
+
+Patrick Lencioni’s Five Dysfunctions of a Team model identifies common obstacles that prevent teams from achieving high performance.  The dysfunctions build on each other in a pyramid: absence of trust, fear of conflict, lack of commitment, avoidance of accountability and inattention to resultshttps://omtglobal.com/5-dysfunctions-of-a-team/#:~:text=Let%E2%80%99s%20get%20real%20about%20teamwork,lead%20to%20a%20dysfunctional%20team.  Building a healthy team requires addressing each layer:
+
+1. **Absence of Trust:** Team members are unwilling to be vulnerable, admit mistakes or ask for help.  This stems from a fear of being openhttps://omtglobal.com/5-dysfunctions-of-a-team/#:~:text=Let%E2%80%99s%20get%20real%20about%20teamwork,lead%20to%20a%20dysfunctional%20team.
+2. **Fear of Conflict:** Without trust, teams avoid passionate debate and constructive conflict.  Decisions are watered down or unresolvedhttps://omtglobal.com/5-dysfunctions-of-a-team/#:~:text=Let%E2%80%99s%20get%20real%20about%20teamwork,lead%20to%20a%20dysfunctional%20team.
+3. **Lack of Commitment:** Without airing disagreements, people rarely buy into decisions.  Ambiguity remains and meetings are ineffectivehttps://omtglobal.com/5-dysfunctions-of-a-team/#:~:text=Let%E2%80%99s%20get%20real%20about%20teamwork,lead%20to%20a%20dysfunctional%20team.
+4. **Avoidance of Accountability:** When people are not committed, they avoid holding themselves and peers accountable.  Poor behaviours go unaddressedhttps://omtglobal.com/5-dysfunctions-of-a-team/#:~:text=Let%E2%80%99s%20get%20real%20about%20teamwork,lead%20to%20a%20dysfunctional%20team.
+5. **Inattention to Results:** Individuals put their own status or departmental goals ahead of collective resultshttps://omtglobal.com/5-dysfunctions-of-a-team/#:~:text=Let%E2%80%99s%20get%20real%20about%20teamwork,lead%20to%20a%20dysfunctional%20team.
+
+High‑performing teams build trust, engage in healthy conflict, commit to decisions, hold each other accountable and focus on collective outcomeshttps://omtglobal.com/5-dysfunctions-of-a-team/#:~:text=Let%E2%80%99s%20get%20real%20about%20teamwork,lead%20to%20a%20dysfunctional%20team.
+
+**Team Dynamics Crosswalk by PI Profile**
+
+The table below highlights likely dysfunction risks and strengths for each PI profile.  Use these tendencies to anticipate challenges and design interventions.
+
+| PI Profile | Likely strengths | Potential dysfunction risks | Notes |
+|---|---|---|---|
+| **Analyzer** | Brings objective evaluation and structure | May avoid conflict and delay commitment due to over‑analysis | Encourage structured debate and time‑boxed decision making. |
+| **Controller** | Drives accountability and results | May create fear of conflict and suppress others’ input | Foster psychological safety and invite dissenting opinions. |
+| **Specialist** | Provides depth and expertise | May hesitate to speak up or commit if trust is low | Create safe spaces for sharing expertise and concerns. |
+| **Strategist** | Aligns on vision and strategy | May become disengaged if others avoid conflict | Encourage robust discussions and ensure buy‑in to decisions. |
+| **Venturer** | Encourages risk‑taking and goals | May pursue results at the expense of trust or accountability | Balance ambition with openness and follow‑through. |
+| **Altruist** | Builds trust and cohesion | May avoid conflict and accountability to preserve harmony | Normalise constructive disagreement and set clear expectations. |
+| **Captain** | Inspires commitment and accountability | May silence dissent and drive fear of conflict | Model vulnerability and invite diverse perspectives. |
+| **Collaborator** | Promotes trust and inclusion | May struggle with commitment and accountability | Help collaborators move from discussion to decision and follow‑up. |
+| **Maverick** | Challenges complacency and stimulates debate | May create conflict without building trust or commitment | Pair with trust‑builders and emphasise shared goals. |
+| **Persuader** | Generates enthusiasm and commitment | May gloss over conflict and accountability | Ensure persuasive leaders encourage candid debate and own outcomes. |
+| **Promoter** | Maintains attention on results and engagement | May neglect follow‑through and accountability | Set clear metrics and check‑ins for promoters. |
+| **Adapter** | Supports trust and mediation | May avoid conflict and commitment | Provide structured decision processes and clear accountability frameworks. |
+| **Craftsman** | Ensures quality and accountability | May delay decisions due to perfectionism | Encourage timely decisions and celebrate progress over perfection. |
+| **Guardian** | Builds trust and stability | May resist conflict and change, hindering commitment | Create safe frameworks for airing concerns and encourage incremental change. |
+| **Operator** | Provides discipline and accountability | May enforce rules without building trust or engagement | Pair with trust‑builders to foster safety before accountability. |
+| **Individualist** | Encourages candid debate and innovation | May withdraw from commitment and accountability | Clarify expectations and embed peer accountability mechanisms. |
+| **Scholar** | Promotes learning and analytical debate | May avoid conflict and delay commitment | Use structured discussion techniques and clear decision criteria. |
+
+**Using this lens**
+
+* Diagnose which dysfunction is most pronounced in your team and address it starting from the bottom.  For instance, if people don’t speak up (fear of conflict), invest in vulnerability‑based trust before focusing on accountability.
+* Tailor interventions to individual styles.  Controllers may need to intentionally invite feedback; Altruists may need support to engage in healthy conflict.  Use the crosswalk to pre‑empt common pitfalls.
+* Celebrate collective wins and align incentives to reinforce attention to team results rather than individual status or departmental silos.`,
+  },
+  {
+    id: "lominger-leadership-architect-competency-lens",
+    lens: "Lominger Leadership Architect Competency Lens",
+    status: "",
+    source: "Lominger_Competency_Lens(1).txt",
+    content: `
+Lominger Leadership Architect Competency Lens
+============================================
+
+**Overview**
+
+The Lominger Leadership Architect (now part of Korn Ferry) is a competency framework comprising 67 behaviours grouped into factors and clusters.  The factors include strategic skills, operating skills, courage, energy & drive, organisational positioning skills, and personal/interpersonal skillshttps://www.deel.com/blog/lominger-competencies/#:~:text=Factor%201%3A%20Strategic%20skills.  Each cluster consists of specific competencies; for example, the Strategic Skills factor includes business acumen, decision quality, creativity and strategic agilityhttps://www.deel.com/blog/lominger-competencies/#:~:text=Factor%201%3A%20Strategic%20skills.  By assessing individuals across these competencies, organisations can identify strengths and gaps and design targeted development.
+
+**Key Competency Clusters**
+
+* **Strategic Skills:** Business acumen, decision quality, creativity, strategic agility, managing vision & purposehttps://www.deel.com/blog/lominger-competencies/#:~:text=Factor%201%3A%20Strategic%20skills.
+* **Operating Skills:** Dealing with ambiguity, direct reports, organising, planning, time managementhttps://www.deel.com/blog/lominger-competencies/#:~:text=Factor%201%3A%20Strategic%20skills.
+* **Courage:** Conflict management, confrontation, managerial couragehttps://www.deel.com/blog/lominger-competencies/#:~:text=Factor%201%3A%20Strategic%20skills.
+* **Energy & Drive:** Action oriented, drive for results, perseverance, composurehttps://www.deel.com/blog/lominger-competencies/#:~:text=Factor%201%3A%20Strategic%20skills.
+* **Organisational Positioning:** Political savvy, negotiating, presentation skillshttps://www.deel.com/blog/lominger-competencies/#:~:text=Factor%201%3A%20Strategic%20skills.
+* **Personal & Interpersonal Skills:** Self‑knowledge, listening, approachability, integrity, customer focus, humourhttps://www.deel.com/blog/lominger-competencies/#:~:text=Factor%201%3A%20Strategic%20skills.
+
+**Competency Crosswalk by PI Profile**
+
+The table below highlights which Lominger clusters are typically strong or developmental for each PI profile.  Use this to focus coaching and development efforts.
+
+| PI Profile | Strong competency clusters | Development opportunities | Notes |
+|---|---|---|---|
+| **Analyzer** | Strategic skills (business acumen, decision quality), Operating skills (organising, planning), Personal skills (integrity, listening) | Courage (conflict management), Organisational positioning (presentation, negotiation) | Analyzers excel at analysis and planning but may shy away from conflict or visibility. |
+| **Controller** | Operating skills (organising, time management), Courage (managerial courage), Energy & drive (action oriented) | Personal skills (approachability), Organisational positioning (political savvy) | Controllers drive execution but need to build empathy and political awareness. |
+| **Specialist** | Personal skills (technical learning, integrity), Strategic skills (creativity within domain) | Organisational positioning (influence), Courage (conflict management) | Specialists have deep expertise but benefit from broader influence and assertiveness. |
+| **Strategist** | Strategic skills (vision & agility), Personal skills (self‑knowledge), Organisational positioning (political savvy) | Energy & drive (speed), Operating skills (delegation) | Strategists think long‑term and navigate politics but need to drive action and delegate effectively. |
+| **Venturer** | Energy & drive (action oriented, drive for results), Courage (managerial courage), Strategic skills (creativity) | Operating skills (planning), Personal skills (listening) | Venturers are bold and creative but may need structure and patience. |
+| **Altruist** | Personal skills (listening, approachability), Organisational positioning (customer focus) | Courage (conflict management), Strategic skills (decision quality) | Altruists excel at relationships but must make tough decisions and handle conflict directly. |
+| **Captain** | Energy & drive (drive for results), Courage (conflict management), Organisational positioning (presentation skills) | Personal skills (approachability), Strategic skills (creativity) | Captains command attention but benefit from empathy and creative strategy. |
+| **Collaborator** | Personal skills (listening, humour), Organisational positioning (political savvy) | Courage (managerial courage), Strategic skills (decision making) | Collaborators build relationships but may avoid confrontation or decisive leadership. |
+| **Maverick** | Strategic skills (creativity), Energy & drive, Courage | Operating skills (planning), Organisational positioning (consistency) | Mavericks innovate but need to follow through and work through organisational channels. |
+| **Persuader** | Organisational positioning (presentation, negotiation), Personal skills (approachability) | Strategic skills (analysis), Operating skills (detail orientation) | Persuaders influence effectively but must support arguments with data and follow‑through. |
+| **Promoter** | Organisational positioning (presentation), Energy & drive | Operating skills (organising), Strategic skills (decision quality) | Promoters rally support but need structure and discipline. |
+| **Adapter** | Personal skills (listening, approachability), Operating skills (organising) | Courage (assertiveness), Strategic skills (vision) | Adapters support others well but should develop confidence to propose strategic ideas. |
+| **Craftsman** | Strategic skills (quality orientation), Operating skills (planning), Personal skills (integrity) | Organisational positioning (networking), Energy & drive (speed) | Craftsmen deliver high‑quality work but may need to network and speed up decision cycles. |
+| **Guardian** | Personal skills (integrity, customer focus), Operating skills (organising) | Courage (risk taking), Strategic skills (agility) | Guardians provide reliability but may resist change and need to embrace agility. |
+| **Operator** | Operating skills (planning, organising), Personal skills (integrity) | Strategic skills (vision), Organisational positioning (political savvy) | Operators execute well but need to think strategically and navigate organisational politics. |
+| **Individualist** | Strategic skills (creativity, vision), Personal skills (self‑knowledge) | Organisational positioning (negotiation), Operating skills (structure) | Individualists innovate but need structure and influence. |
+| **Scholar** | Strategic skills (problem solving), Personal skills (learning, integrity) | Energy & drive (speed), Organisational positioning (influence) | Scholars excel at thought leadership but may need to act faster and build networks. |
+
+**Using this lens**
+
+* Use competency strengths to assign tasks—e.g., have Venturers lead growth initiatives (drive for results) and Altruists handle customer relationships (listening, empathy).
+* Identify development opportunities and design training or coaching accordingly.  For instance, help Controllers build relational skills or support Specialists in gaining influence.
+* Recognise that nobody excels at all 67 competencies.  Balanced teams distribute competencies across members, reducing blind spots and reliance on any one individual.`,
+  },
+  {
+    id: "maslach-burnout-inventory-mbi-lens",
+    lens: "Maslach Burnout Inventory (MBI) Lens",
+    status: "",
+    source: "Maslach_Burnout_Inventory_Lens.txt",
+    content: `
+Maslach Burnout Inventory (MBI) Lens
+===================================
+
+**Overview**
+
+The Maslach Burnout Inventory (MBI) is a widely used tool to assess burnout.  It measures three dimensions:
+
+* **Emotional Exhaustion:** Feelings of being emotionally overextended and depletedhttps://maslachburnout.com/blog/maslach-burnout-inventory-mbi-symptoms-scoring-and-how-it-works#:~:text=The%20Maslach%20Burnout%20Inventory%2C%20often,years%2C%20especially%20with%20the%20increasing.
+* **Depersonalization (also called Cynicism):** An unfeeling and impersonal response toward recipients of one’s service, care or instructionhttps://maslachburnout.com/blog/maslach-burnout-inventory-mbi-symptoms-scoring-and-how-it-works#:~:text=The%20Maslach%20Burnout%20Inventory%2C%20often,years%2C%20especially%20with%20the%20increasing.
+* **Personal Accomplishment:** A sense of competence and achievement in one’s work; low scores on this dimension indicate reduced accomplishmenthttps://maslachburnout.com/blog/maslach-burnout-inventory-mbi-symptoms-scoring-and-how-it-works#:~:text=The%20Maslach%20Burnout%20Inventory%2C%20often,years%2C%20especially%20with%20the%20increasing.
+
+The MBI consists of a series of statements rated by frequency (from “never” to “every day”).  Scores in each dimension are interpreted as high, moderate or low to diagnose burnout riskhttps://maslachburnout.com/blog/maslach-burnout-inventory-mbi-symptoms-scoring-and-how-it-works#:~:text=depersonalization%2C%20and%20personal%20accomplishment,here%20is%20a%20simple%20table.  High emotional exhaustion and depersonalization combined with low personal accomplishment indicate severe burnouthttps://maslachburnout.com/blog/maslach-burnout-inventory-mbi-symptoms-scoring-and-how-it-works#:~:text=depersonalization%2C%20and%20personal%20accomplishment,here%20is%20a%20simple%20table.
+
+**Burnout Risk Crosswalk by PI Profile**
+
+This table suggests which burnout dimensions each PI profile is most susceptible to and offers preventative strategies.
+
+| PI Profile | Likely burnout dimension | Contributing factors | Prevention strategies |
+|---|---|---|---|
+| **Analyzer** | Emotional exhaustion | Overwork, constant analysis and perfectionism | Set realistic timelines, prioritise tasks, schedule breaks and celebrate incremental progress. |
+| **Controller** | Depersonalization | Pressure to deliver and control everything can lead to cynicism toward others | Delegate, build trust and practice empathy to stay connected. |
+| **Specialist** | Personal accomplishment | Deep but narrow work may go unrecognised, leading to reduced sense of accomplishment | Ensure recognition of expertise, rotate tasks to broaden impact and connect work to wider mission. |
+| **Strategist** | Emotional exhaustion | Strategic roles may involve chronic complexity and long hours | Practice boundary setting, enlist support and take strategic pauses. |
+| **Venturer** | Emotional exhaustion | High risk from constant urgency and risk‑taking | Build rest into cycles, share responsibility and reflect on successes. |
+| **Altruist** | Depersonalization / Low personal accomplishment | Self‑sacrifice and emotional labour may result in cynicism or feeling undervalued | Practise self‑care, set boundaries and seek feedback on contributions. |
+| **Captain** | Emotional exhaustion | Constant drive to lead and deliver results | Delegate effectively, schedule downtime and celebrate team wins. |
+| **Collaborator** | Low personal accomplishment | Focus on team harmony may obscure personal contributions | Set personal goals and seek acknowledgment for facilitation work. |
+| **Maverick** | Depersonalization | Frustration with resistance to change can lead to cynicism | Cultivate patience, listen to others and celebrate small wins. |
+| **Persuader** | Emotional exhaustion | Continuous influencing and relationship management | Manage energy, take breaks from people‑intensive tasks and prioritise self‑care. |
+| **Promoter** | Depersonalization / Emotional exhaustion | Constant public presence and pressure to deliver can create cynicism | Schedule quiet recovery time and ensure authentic connections. |
+| **Adapter** | Low personal accomplishment | Support roles may lack recognition | Advocate for role impact and rotate into visible contributions. |
+| **Craftsman** | Emotional exhaustion | High quality standards can lead to overwork | Practise good enough standards, set boundaries and plan recovery periods. |
+| **Guardian** | Depersonalization | Guarding stability can become emotionally draining | Build support networks, rotate responsibilities and practice gratitude. |
+| **Operator** | Emotional exhaustion | Steady operations often entail repetitive stress | Vary tasks, implement ergonomic practices and take regular breaks. |
+| **Individualist** | Depersonalization | Isolation and independent work can lead to detachment | Engage with others intentionally, seek feedback and connect work to purpose. |
+| **Scholar** | Low personal accomplishment | Academic work may lack immediate feedback | Celebrate milestones, share knowledge widely and seek collaboration. |
+
+**Using this lens**
+
+* Use the MBI to regularly assess wellbeing in teams.  High scores in emotional exhaustion or depersonalization warrant early interventions such as workload adjustments, role clarification and recovery practices.
+* Encourage protective factors such as supportive relationships, recognition and autonomy.  Align tasks with personal strengths and values to bolster personal accomplishment.
+* Recognise that burnout is not only an individual issue but also systemic.  Leaders should address workload, role clarity and organisational culture to prevent burnout across all profiles.`,
+  },
+  {
+    id: "myersbriggs-type-indicator-mbti-lens",
+    lens: "Myers\u2011Briggs Type Indicator (MBTI) Lens",
+    status: "",
+    source: "MBTI_Lens.txt",
+    content: `
+Myers‑Briggs Type Indicator (MBTI) Lens
+======================================
+
+**Overview and theoretical background**
+
+The **Myers‑Briggs Type Indicator (MBTI)** is a popular personality
+framework that describes preferences across four dichotomies: **Extraversion
+vs. Introversion**, **Sensing vs. Intuition**, **Thinking vs. Feeling**, and
+**Judging vs. Perceiving**.  It is based on Carl Jung’s theories of
+psychological types and was developed by Katharine Briggs and Isabel Myers.
+The MBTI does not measure ability; instead it captures how individuals
+prefer to focus their attention, take in information, make decisions and
+organize their liveshttps://www.uschamber.com/co/grow/thrive/myers-briggs-type-indicator#:~:text=Extroversion%20%28E%29%20.
+
+- **Extraversion (E) vs. Introversion (I)** – Extraverts direct energy
+  outward, enjoy interaction and are recharged by socializing, whereas
+  introverts focus inward and prefer solitude and reflectionhttps://www.uschamber.com/co/grow/thrive/myers-briggs-type-indicator#:~:text=Extroversion%20%28E%29%20.
+- **Sensing (S) vs. Intuition (N)** – Sensors trust concrete data and
+  present realities; intuitives focus on patterns, possibilities and
+  abstractionshttps://www.uschamber.com/co/grow/thrive/myers-briggs-type-indicator#:~:text=Extroversion%20%28E%29%20.
+- **Thinking (T) vs. Feeling (F)** – Thinkers make decisions using logic
+  and objective criteria; feelers consider people and valueshttps://www.uschamber.com/co/grow/thrive/myers-briggs-type-indicator#:~:text=Extroversion%20%28E%29%20.
+- **Judging (J) vs. Perceiving (P)** – Judging types prefer structure,
+  planning and closure; perceiving types are spontaneous and open‑endedhttps://www.uschamber.com/co/grow/thrive/myers-briggs-type-indicator#:~:text=Extroversion%20%28E%29%20.
+
+Individuals are described by a four‑letter type (e.g., INTJ) representing
+their preference on each dichotomy.  The MBTI is widely used for self‑awareness
+and team building, though it remains controversial among researchers due
+to limited predictive validity.
+
+**Cross‑framework translation with PI profiles**
+
+The table below maps PI reference profiles to **probable MBTI patterns**.
+These translations are heuristic and intended to give a general sense of
+preference alignment, not definitive type assignments.  Profiles may span
+multiple MBTI codes depending on context.  “Likely type(s)” represent
+common fits; “Evidence” explains the reasoning; “Development note” offers
+guidance for working across type differences.
+
+| PI profile | Likely MBTI type(s) | Evidence & rationale | Development note |
+|---|---|---|---|
+| **Analyzer** | ISTJ or INTJ | Reserved and detail‑oriented (I), trusts data (S/N leaning S), logical decision maker (T), prefers structure (J). | Encourage sharing ideas and flexibility; pair with intuitive types to explore possibilities. |
+| **Controller** | ESTJ | Outgoing and directive (E), pragmatic (S), objective (T), organized and decisive (J). | Balance decisiveness with listening; be open to alternative methods. |
+| **Specialist** | ISTJ | Precise and skeptical (I), values facts (S), logical (T), follows procedures (J). | Promote open communication and adaptability; allow time to adjust to change. |
+| **Strategist** | INTJ | Visionary and analytical (N), structured (J), independent (I), strategic and logic‑driven (T). | Share reasoning with others; invite feedback to refine plans. |
+| **Venturer** | ENTP or ENTJ | Self‑starting, risk‑taking and inventive (N), assertive (E), logical (T), flexible or structured depending on context (P/J). | Provide follow‑through frameworks; temper impatience with empathy. |
+| **Individualist** | INTP | Independent and creative (N), reserved (I), theoretical thinker (T), prefers flexible exploration (P). | Seek collaborative opportunities; practice communicating ideas clearly. |
+| **Scholar** | INFP or INTP | Accurate, reflective and imaginative (I), values ideals (F) or theories (T), open to possibilities (N), adaptable (P). | Communicate preferences clearly; balance ideals with practical action. |
+| **Altruist** | ESFJ | Social and cooperative (E), focuses on harmony and service (F), organized and supportive (J). | Practice self‑care and boundary setting; be receptive to constructive feedback. |
+| **Captain** | ENFJ or ENTJ | Charismatic leader (E), inspires change (N), makes decisions based on vision and logic/values (T/F), prefers structure (J). | Listen to dissenting views; avoid overextending. |
+| **Collaborator** | ENFP or ESFP | Enthusiastic team player (E), values relationships (F), adaptable and spontaneous (P), imaginative (N) or realistic (S). | Develop focus on priorities; use structure to complete tasks. |
+| **Maverick** | ENTP | Innovative and undaunted by failure (N), outspoken (E), analytical (T), spontaneous (P). | Balance creativity with planning; appreciate operational needs. |
+| **Persuader** | ENFP | Social and persuasive (E), motivates others (F), imaginative (N), flexible (P). | Follow through on commitments; align enthusiasm with reality. |
+| **Promoter** | ESFP or ENFP | Warm, persuasive networker (E), people‑centered (F), spontaneous (P), focuses on options (N/S). | Use checklists to stay organized; ensure substance accompanies style. |
+| **Adapter** | ENTP or ESTP | Flexible, pragmatic and diplomatic (E), enjoys variety (P), analytical (T) or practical (S). | Clarify goals and values; avoid over‑accommodating others. |
+| **Artisan** | ISTP or INTP | Analytical craftsperson (T), precise and independent (I), enjoys problem solving (P), appreciates concepts (N) or facts (S). | Communicate progress; accept iterative collaboration. |
+| **Guardian** | ISFJ | Careful, supportive (F), detail‑oriented (S), reserved (I), structured (J). | Embrace change gradually; voice concerns constructively. |
+| **Operator** | ISFP or ESFP | Patient, cooperative (F), relaxed (P), practical and hands‑on (S), introverted or ambiverted (I/E). | Build self‑advocacy and initiative; set personal goals. |
+
+**Practical implications**
+
+The MBTI lens helps translate PI profiles into language familiar to many
+teams.  Recognizing that an Analyzer may operate like an ISTJ informs
+communication (prepare data, respect privacy) and delegation (provide clear
+instructions).  A Persuader who resembles an ENFP may excel at energizing
+others but need help organizing details.  Importantly, MBTI types are
+preferences, not abilities; people can flex outside their type when
+necessary.  Using this lens alongside PI insights encourages appreciation
+for diversity in how colleagues recharge, gather information and make
+decisions.
+`,
+  },
+  {
+    id: "metacognition-lens",
+    lens: "Metacognition Lens",
+    status: "",
+    source: "Metacognition_Lens.txt",
+    content: `
+Metacognition Lens
+
+**Overview**
+
+Metacognition refers to “thinking about thinking”—the ability to monitor, evaluate and adjust one’s cognitive strategies.  High metacognitive awareness supports learning, adaptability and error correction.  This lens summarises each PI profile’s typical metacognitive strengths (primary), additional areas of focus (secondary) and stress patterns when reflection falters.
+
+**Crosswalk by PI Profile**
+
+| PI Profile | Primary metacognitive focus | Secondary focus | Stress pattern |
+|---|---|---|---|
+| **Analyzer** | Self‑monitoring | Strategy planning | Ruminates on errors |
+| **Controller** | Goal tracking | Rule checking | Blames process gaps |
+| **Specialist** | Domain reflection | Error detection | Tunnel‑vision on details |
+| **Strategist** | Meta‑planning | Scenario evaluation | Over‑theorises options |
+| **Venturer** | Rapid heuristics | Quick reframe | Skips reflection and repeats mistakes |
+| **Altruist** | Relational reflection | Perspective check | Over‑focus on others’ feelings |
+| **Captain** | Outcome monitoring | Tactical adjustment | Dismisses feedback quickly |
+| **Collaborator** | Shared reflection | Consensus calibration | Avoids hard self‑critique |
+| **Maverick** | Idea scanning | Pattern spotting | Jumps without review |
+| **Persuader** | Audience tuning | Message testing | Confuses signal with applause |
+| **Promoter** | Rapid feedback loop | Social proof check | Over‑reliant on praise |
+| **Adapter** | Context scanning | Flexible replanning | Over‑adjusts to others |
+| **Craftsman** | Quality review | Stepwise correction | Paralysis over small flaws |
+| **Guardian** | Risk appraisal | Contingency planning | Fixates on worst case |
+| **Operator** | Process audit | Checklists and routines | Ignores novel signals |
+| **Individualist** | Identity reflection | Concept testing | Withdraws into private review |
+| **Scholar** | Meta‑analysis | Hypothesis testing | Endless re‑validation |
+
+**Usage considerations**
+
+* Encourage Analyzer and Craftsman types to balance self‑critique with progress by setting “good enough” thresholds.  Provide external deadlines to prevent endless rumination.
+* Controllers and Guardians may benefit from reframing blame away from process or worst‑case scenarios; involve them in adaptive planning exercises to build flexibility.
+* Innovators (Venturer, Maverick) often skip reflection.  Introduce structured retrospectives and pair them with reflective collaborators.
+* Altruists and Persuaders sometimes over‑interpret social signals.  Encourage data‑driven feedback to balance relational reflections.
+* Scholars may over‑analyse; prompt them to test hypotheses in action and accept that not all variables can be controlled.
+`,
+  },
+  {
+    id: "mayersaloveycaruso-emotional-intelligence-test-msceit-lens",
+    lens: "Mayer\u2011Salovey\u2011Caruso Emotional Intelligence Test (MSCEIT) Lens",
+    status: "",
+    source: "MSCEIT_Lens.txt",
+    content: `
+Mayer‑Salovey‑Caruso Emotional Intelligence Test (MSCEIT) Lens
+=============================================================
+
+**Overview and theoretical background**
+
+The **MSCEIT** is an ability‑based test that measures emotional
+intelligence according to Mayer and Salovey’s four‑branch model.  Rather
+than self‑report, it requires respondents to solve emotion‑related
+problems, producing scores for total EI, two area scores, four branch
+scores, eight task scores and three supplemental scoreshttps://www.eiconsortium.org/measures/msceit.html#:~:text=The%20Mayer,MSCEIT.  The
+four branches are:
+
+1. **Perceiving Emotions** – accurately identifying emotions in faces,
+   pictures and storieshttps://www.eiconsortium.org/measures/msceit.html#:~:text=The%20Mayer,MSCEIT.
+2. **Facilitating Thought (Using Emotions)** – harnessing emotions to
+   prioritize thinking and generate optionshttps://www.eiconsortium.org/measures/msceit.html#:~:text=The%20Mayer,MSCEIT.
+3. **Understanding Emotions** – comprehending emotional language,
+   transitions and combinationshttps://www.eiconsortium.org/measures/msceit.html#:~:text=The%20Mayer,MSCEIT.
+4. **Managing Emotions** – regulating emotions in oneself and others to
+   achieve goalshttps://www.eiconsortium.org/measures/msceit.html#:~:text=The%20Mayer,MSCEIT.
+
+The MSCEIT takes 30–45 minutes and is scored against expert and general
+consensus norms.  It emphasizes performance over self‑perception and is
+used in leadership development, coaching and research.
+
+**Cross‑framework translation with PI profiles**
+
+While PI profiles describe behavioral drives, we can hypothesize how
+individuals might perform across MSCEIT branches based on their natural
+preferences.  The table below identifies possible strengths and growth
+areas.  “Branch strengths” indicate where the profile may excel;
+“Learning edge” suggests branches to develop; “Application tip” offers
+guidance for applying EI abilities.
+
+| PI profile | Branch strengths | Learning edge | Application tip |
+|---|---|---|---|
+| **Analyzer** | Understanding Emotions – able to analyze patterns and causes; Managing Emotions – can regulate responses logically. | Perceiving Emotions – may overlook subtle cues; Facilitating Thought – using emotions to guide creativity. | Practice recognizing emotions in real time; leverage feelings to inspire innovative solutions and empathy. |
+| **Controller** | Managing Emotions – stays composed under pressure; Facilitating Thought – channels drive into action. | Understanding Emotions – may miss nuanced emotional dynamics; Perceiving Emotions – reads cues less sensitively. | Attend to team members’ emotional signals; use emotions to build rapport and motivation. |
+| **Specialist** | Understanding Emotions – recognizes patterns and consequences; Managing Emotions – maintains composure. | Perceiving Emotions – may not notice subtle expressions; Facilitating Thought – drawing on emotions for creativity. | Engage in active listening; practice empathy; allow emotions to inform problem solving. |
+| **Strategist** | Understanding Emotions – sees links between emotions and outcomes; Facilitating Thought – uses emotions strategically. | Perceiving Emotions – may miss facial and tone cues; Managing Emotions – balancing intensity and patience. | Observe non‑verbal signals; consider emotional impact of decisions; practice self‑soothing techniques. |
+| **Venturer** | Facilitating Thought – channels enthusiasm to spark ideas; Managing Emotions – resilient under stress. | Perceiving Emotions – may be unaware of others’ feelings; Understanding Emotions – exploring underlying causes. | Slow down to notice others’ responses; explore emotions behind reactions; use empathy to refine pitches. |
+| **Individualist** | Understanding Emotions – introspective about feelings and motives; Facilitating Thought – uses emotions to inspire creativity. | Perceiving Emotions – may misinterpret social cues; Managing Emotions – regulating frustration when misunderstood. | Seek feedback on impact; practice perspective‑taking; manage internal dialogue constructively. |
+| **Scholar** | Perceiving Emotions – observant of subtle cues; Understanding Emotions – thoughtful about emotional complexity. | Managing Emotions – may dwell on feelings; Facilitating Thought – allowing emotions to guide action. | Develop emotion regulation strategies; use feelings as a resource for decision making; engage with others’ perspectives. |
+| **Altruist** | Perceiving Emotions – attuned to others’ feelings; Managing Emotions – supportive and calm. | Facilitating Thought – may separate emotions from decision making; Understanding Emotions – linking feelings to systemic causes. | Incorporate emotions into problem solving; explore deeper roots of emotions; express own needs clearly. |
+| **Captain** | Facilitating Thought – leverages emotions to motivate; Managing Emotions – recovers quickly from setbacks. | Understanding Emotions – exploring complex dynamics; Perceiving Emotions – noticing subtle signals. | Practice reflective journaling; slow down to observe; use empathy to guide leadership actions. |
+| **Collaborator** | Perceiving Emotions – reads group atmosphere; Managing Emotions – fosters harmony. | Facilitating Thought – using emotions for innovation; Understanding Emotions – analyzing patterns. | Translate emotional insights into actions; explore root causes; encourage constructive dialogue. |
+| **Maverick** | Facilitating Thought – channels excitement into creative ideas; Managing Emotions – bounces back quickly. | Perceiving Emotions – may overlook signals; Understanding Emotions – comprehending emotional complexity. | Practice observing others’ reactions; reflect on own feelings; integrate emotions with logic. |
+| **Persuader** | Facilitating Thought – uses emotions to persuade; Perceiving Emotions – detects audience mood. | Understanding Emotions – analyzing deeper emotions; Managing Emotions – controlling impulses. | Slow down for reflection; develop patience; understand underlying drivers before influencing. |
+| **Promoter** | Perceiving Emotions – intuitive about others’ moods; Facilitating Thought – harnesses emotions to connect. | Understanding Emotions – deeper analysis of causes; Managing Emotions – sustaining focus amidst excitement. | Use emotional insight to prioritize; build self‑regulation strategies; practice empathy for quieter colleagues. |
+| **Adapter** | Perceiving Emotions – notices shifts in tone; Managing Emotions – stays calm and adaptable. | Facilitating Thought – leveraging emotions for creativity; Understanding Emotions – exploring systemic patterns. | Allow emotions to inspire problem solving; discuss feelings to deepen understanding; avoid suppressing dissent. |
+| **Artisan** | Understanding Emotions – connects emotion with aesthetics; Facilitating Thought – uses emotions to drive creativity. | Perceiving Emotions – may overlook interpersonal cues; Managing Emotions – coping with perfectionism. | Seek feedback on emotional impact; practice stress‑reduction techniques; channel feelings into collaboration. |
+| **Guardian** | Perceiving Emotions – sensitive to others’ needs; Managing Emotions – provides steady support. | Facilitating Thought – incorporating emotions into planning; Understanding Emotions – interpreting complex dynamics. | Draw on emotions to encourage new ideas; explore cause‑and‑effect relationships; express feelings openly. |
+| **Operator** | Perceiving Emotions – picks up on others’ moods; Managing Emotions – calm and cooperative. | Understanding Emotions – connecting emotions to broader patterns; Facilitating Thought – using emotions in ideation. | Reflect on feelings; consider emotional drivers in problem solving; cultivate creative experimentation. |
+
+**Practical implications**
+
+The MSCEIT lens emphasizes emotional abilities rather than traits.  For
+example, Captains and Persuaders excel at using emotions to motivate,
+but may need practice with impulse control.  Scholars and Guardians are
+good at perceiving and understanding emotions yet may struggle to
+translate feelings into action.  Applying this lens encourages targeted
+skills training: mindfulness exercises improve emotion perception,
+empathic listening deepens understanding, and cognitive reappraisal
+enhances management.  Together with PI insights, the MSCEIT lens
+supports balanced, emotionally intelligent leadership.
+`,
+  },
+  {
+    id: "neurodiversity-support-lens",
+    lens: "Neurodiversity Support Lens",
+    status: "",
+    source: "Neurodiversity_Support_Lens.txt",
+    content: `
+Neurodiversity Support Lens
+==========================
+
+**Overview**
+
+Neurodiversity refers to the natural variation in human brain functioning.  A neuroinclusive workplace consciously and actively includes all types of information processing, learning and communication styleswww.cipd.org/globalassets/media/knowledge/knowledge-hub/reports/2024-pdfs/2024-neuroinclusion-at-work-report-8545.pdf#:~:text=What%20is%20neurodiversity%20and%20what,The%20term.  Many organisations overlook neurodiversity, and typical norms may suit some but be challenging for up to 20% of people who identify as neurodivergentwww.cipd.org/globalassets/media/knowledge/knowledge-hub/reports/2024-pdfs/2024-neuroinclusion-at-work-report-8545.pdf#:~:text=be%20able%20to%20unleash%20individual,find%20themselves%20marginalised%20by%20organisation.  A neuroinclusive culture benefits everyone by unleashing diverse thinking, addressing equality of opportunity and harnessing the skills of those who think differentlywww.cipd.org/globalassets/media/knowledge/knowledge-hub/reports/2024-pdfs/2024-neuroinclusion-at-work-report-8545.pdf#:~:text=be%20able%20to%20unleash%20individual,find%20themselves%20marginalised%20by%20organisation.
+
+Neurodivergent conditions include ADHD, autism spectrum, dyslexia, dyspraxia, dyscalculia, Tourette syndrome and others.  Support strategies vary but often involve adjustments in communication, environment, processes and expectations.
+
+**Inclusive Practice Crosswalk by PI Profile**
+
+The table below identifies neurodiversity‑supportive practices tailored to each PI profile.  While these practices are broadly helpful to all, they are particularly important for neurodivergent individuals who share similar behavioural tendencies.
+
+| PI Profile | Potential neurodiversity considerations | Supportive practices |
+|---|---|---|
+| **Analyzer** | May include colleagues with autism, ADHD or dyslexia who thrive on structure and detail but may struggle with change and social nuances | Provide clear written instructions, predictable routines, noise‑reduced environments and opportunities for focused work; allow extra time for processing and note‑taking. |
+| **Controller** | May include individuals with ADHD who act quickly and need help with follow‑through | Use visual Kanban boards, set WIP limits, agree on pilots with explicit stop criteria and encourage breaks to manage impulsivity. |
+| **Specialist** | May include people with hyperfocus and executive function challenges | Break assignments into small, time‑boxed tasks; provide templates and reminders for documentation; allow alternative formats (voice notes, diagrams). |
+| **Strategist** | May include neurodivergent colleagues who are strong systems thinkers but experience social fatigue | Schedule quiet reflection periods, provide agendas and pre‑reads, use asynchronous collaboration tools and offer recovery time after intense interactions. |
+| **Venturer** | May include individuals with ADHD or dyslexia who are creative but time‑blind | Use historical benchmarks for estimating, set micro‑deadlines, provide accountability partners and celebrate incremental progress. |
+| **Altruist** | May include people with sensory sensitivities or social anxiety | Offer quiet workspaces, flexible working arrangements, written communication options and structured social interactions. |
+| **Captain** | May include colleagues with Tourette syndrome or auditory processing differences | Use captions, share slides and notes in advance, allow written participation and avoid noisy environments. |
+| **Collaborator** | May include neurodivergent people who value harmony but struggle with unstructured interactions | Provide agendas, turn‑taking facilitation, meeting summaries and opt‑out mechanisms for live brainstorming. |
+| **Maverick** | May include creative thinkers with dyslexia or ADHD | Encourage mind‑mapping and visual thinking, provide editing support, and allow flexible schedules. |
+| **Persuader** | May include people with social communication differences | Offer structured opportunities to practise presentations, provide feedback privately and use supportive co‑presenters. |
+| **Promoter** | May include individuals with dysgraphia or processing speed differences | Use speech‑to‑text tools, allow extra preparation time and provide summaries afterwards. |
+| **Adapter** | May include people with anxiety or working‑memory differences | Provide clear expectations, consistent routines, and regular check‑ins to reduce uncertainty. |
+| **Craftsman** | May include individuals with dyspraxia or dyscalculia | Offer ergonomic tools, assistive technology and collaborative support on motor or numeric tasks. |
+| **Guardian** | May include people with sensory sensitivities who value stability | Ensure lighting and noise control, provide advance notice of changes and maintain predictable processes. |
+| **Operator** | May include neurodivergent individuals in routine tasks | Use checklists, clear standard operating procedures and allow modifications to workflows that suit individual processing styles. |
+| **Individualist** | May include autistic or ADHD individuals who value autonomy | Offer flexible schedules, asynchronous communication and spaces for quiet focus. |
+| **Scholar** | May include neurodivergent researchers or analysts | Provide extended time for reading/writing, access to assistive technology (text‑to‑speech, screen readers) and opportunities for peer collaboration. |
+
+**Using this lens**
+
+* Audit workplace processes—recruitment, meetings, feedback, physical environments—to identify barriers to neurodivergent colleagues.  Modify them to accommodate different information processing, learning and communication styles.
+* Normalise conversations about adjustments and encourage disclosure on an individual’s terms.  Recognise that one person’s adjustment (e.g., written rather than verbal instructions) often benefits others.
+* Provide neurodiversity training for managers and colleagues.  A shared understanding reduces stigma and empowers teams to co‑create inclusive practices.`,
+  },
+  {
+    id: "perceived-stress-scale-pss-lens",
+    lens: "Perceived Stress Scale (PSS) Lens",
+    status: "",
+    source: "Perceived_Stress_Scale_Lens.txt",
+    content: `
+Perceived Stress Scale (PSS) Lens
+===============================
+
+**Overview**
+
+The Perceived Stress Scale (PSS) is a widely used psychological instrument for measuring the perception of stress.  It consists of 10 self‑report items that ask respondents how often they have felt or thought a certain way in the last monthhttps://kresserinstitute.com/tools/pss/#:~:text=The%20Perceived%20Stress%20Scale%20,are%20contributing%20to%20your%20condition.  Items use a 5‑point scale from 0 (never) to 4 (very often).  Examples include:
+
+* How often have you been upset because of something that happened unexpectedly?https://kresserinstitute.com/tools/pss/#:~:text=The%20Perceived%20Stress%20Scale%20,are%20contributing%20to%20your%20condition
+* How often have you felt that you were unable to control important things in your life?https://kresserinstitute.com/tools/pss/#:~:text=The%20Perceived%20Stress%20Scale%20,are%20contributing%20to%20your%20condition
+* How often have you felt confident about your ability to handle your personal problems? (reverse‑scored)https://kresserinstitute.com/tools/pss/#:~:text=The%20Perceived%20Stress%20Scale%20,are%20contributing%20to%20your%20condition
+
+Total scores range from 0 to 40.  Higher scores indicate higher perceived stress.  The PSS is a valuable tool because it measures psychological stress rather than specific stressors, making it broadly applicable.https://kresserinstitute.com/tools/pss/#:~:text=The%20Perceived%20Stress%20Scale%20,are%20contributing%20to%20your%20condition.
+
+**Stress Perception Crosswalk by PI Profile**
+
+Different profiles interpret and respond to stress differently.  The table below summarises likely stress triggers and coping strategies for each profile.
+
+| PI Profile | Likely stress triggers | Coping strategies |
+|---|---|---|
+| **Analyzer** | Uncontrolled changes, ambiguous expectations | Use structured planning, clarify priorities and practise cognitive reframing. |
+| **Controller** | Lack of control, unpredictable team behaviour | Delegate wisely, adopt flexible thinking and practise relaxation techniques. |
+| **Specialist** | Ambiguous tasks, lack of clarity or recognition | Seek clear instructions, break tasks into manageable parts and celebrate progress. |
+| **Strategist** | Conflicting priorities, long‑term uncertainty | Prioritise, negotiate scope and maintain a big‑picture view to reduce worry. |
+| **Venturer** | Bureaucracy, slow progress | Adopt patience, build alliances and focus on incremental wins. |
+| **Altruist** | Interpersonal conflict, inability to help others | Practise self‑care, set boundaries and seek support from colleagues. |
+| **Captain** | Resistance to direction, lack of follow‑through | Develop patience, coach team members and take breaks to recharge. |
+| **Collaborator** | Disharmony, unresolved conflict | Facilitate open dialogue, practise assertiveness and create consensus. |
+| **Maverick** | Constraints, micromanagement | Negotiate autonomy, practise compromise and cultivate emotional regulation. |
+| **Persuader** | Negative feedback, disengaged audiences | Reframe criticism as growth, alternate persuasion with analysis and replenish energy. |
+| **Promoter** | Dull routines, lack of attention | Add variety, set personal goals and practise mindfulness to stay grounded. |
+| **Adapter** | Unclear priorities, chaotic environments | Establish structure, communicate needs and use relaxation techniques. |
+| **Craftsman** | Last‑minute changes, lack of standards | Plan ahead, build buffers and practise flexibility. |
+| **Guardian** | Rapid change, lack of stability | Seek clarity, plan for contingencies and practise calming routines. |
+| **Operator** | Excessive workload, conflicting demands | Prioritise tasks, request help and incorporate micro‑breaks. |
+| **Individualist** | Conformity, lack of independence | Negotiate autonomy, practise stress‑management exercises and balance work with personal projects. |
+| **Scholar** | Information overload, unclear expectations | Filter inputs, set realistic goals and schedule regular breaks. |
+
+**Using this lens**
+
+* Administer the PSS periodically to gauge individual or team stress levels.  Scores above normative means suggest the need for stress‑management interventions.
+* Normalise discussion of stress and encourage individuals to identify triggers and coping mechanisms.  Provide training on relaxation techniques, time management and cognitive reframing.
+* Combine the PSS with other lenses (burnout, wellbeing) to gain a holistic view of psychological stress and tailor support to each profile’s needs.`,
+  },
 ];
 
 // Index by id for O(1) lookup
