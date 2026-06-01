@@ -50,7 +50,7 @@ function LensModal({ lens, profile, onClose }) {
         <div className="p-6 space-y-6">
           {/* THE ACTUAL CHART */}
           <div className="rounded-2xl border border-white/10 bg-slate-950/60 px-4 py-6">
-            <LensVisual visualType={lens.visualType} color={color}/>
+            <LensVisual lensId={lens.id} visualType={lens.visualType} color={color} profileId={profile.id}/>
           </div>
 
           {/* Details */}
@@ -145,7 +145,7 @@ function LensGrid({ profile, onBack, onSelectLens }) {
             {/* Chart preview — small, clipped */}
             <div className="pointer-events-none mb-3 overflow-hidden rounded-xl bg-slate-950/50" style={{height:100}}>
               <div className="scale-[0.55] origin-top-left" style={{width:'182%', height:'182%'}}>
-                <LensVisual visualType={lens.visualType} color={color}/>
+                <LensVisual lensId={lens.id} visualType={lens.visualType} color={color} profileId={profile.id}/>
               </div>
             </div>
             <p className="text-sm font-semibold leading-snug text-white">{lens.lens}</p>

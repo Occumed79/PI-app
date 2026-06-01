@@ -39,7 +39,7 @@ function LensModal({ lens, profile, onClose }) {
         </div>
         <div className="p-6 space-y-5">
           <div className="rounded-2xl border border-white/10 bg-slate-950/60 px-4 py-6">
-            <LensVisual visualType={lens.visualType} color={color}/>
+            <LensVisual lensId={lens.id} visualType={lens.visualType} color={color} profileId={profile.id}/>
           </div>
           <div className="grid gap-3 sm:grid-cols-3">
             <div className="rounded-2xl border border-white/10 bg-white/[0.04] p-4"><p className="mb-1 text-xs uppercase tracking-widest text-white/25">Category</p><CatBadge cat={lens.category}/></div>
@@ -101,7 +101,7 @@ function EmployeeDetail({ employee, onBack }) {
             <div className="mb-3"><CatBadge cat={lens.category}/></div>
             <div className="pointer-events-none mb-3 overflow-hidden rounded-xl bg-slate-950/50" style={{height:100}}>
               <div className="scale-[0.55] origin-top-left" style={{width:'182%', height:'182%'}}>
-                <LensVisual visualType={lens.visualType} color={color}/>
+                <LensVisual lensId={lens.id} visualType={lens.visualType} color={color} profileId={profile.id}/>
               </div>
             </div>
             <p className="text-sm font-semibold leading-snug text-white">{lens.lens}</p>
