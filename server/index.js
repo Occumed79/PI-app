@@ -226,6 +226,58 @@ app.post('/api/profiles', async (req, res) => {
 const distPath = path.resolve(__dirname, '../dist');
 app.use(express.static(distPath));
 app.get('*', (_req, res) => res.sendFile(path.join(distPath, 'index.html')));
+
+// ── AI Chat endpoint ──────────────────────────────────────────────────────
+app.post('/api/ai-chat', async (req, res) => {
+  const { system, messages } = req.body || {};
+  if (!messages || !Array.isArray(messages)) return res.status(400).json({ ok: false, message: 'messages array required' });
+
+  // Try Gemini first
+  const geminiKey = process.env.GEMINI_API_KEY;
+  if (geminiKey) {
+    try {
+      const model = process.env.GEMINI_MODEL || 'gemini-2.0-flash';
+      const url = `https://generativelanguage.googleapis.com/v1beta/models/${encodeURIComponent(model)}:generateContent?key=${encodeURIComponent(geminiKey)}`;
+      const contents = messages.map(m => ({ role: m.role === 'assistant' ? 'model' : 'user', parts: [{ text: m.content }] }));
+      const response = await fetch(url, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          system_instruction: system ? { parts: [{ text: system }] } : undefined,
+          contents,
+          generationConfig: { temperature: 0.4, maxOutputTokens: 1200 },
+        }),
+      });
+      if (response.ok) {
+        const data = await response.json();
+        const reply = data.candidates?.[0]?.content?.parts?.map(p => p.text || '').join('\n').trim();
+        if (reply) return res.json({ ok: true, reply });
+      }
+    } catch(e) { /* fall through */ }
+  }
+
+  // Try Groq
+  const groqKey = process.env.GROQ_API_KEY;
+  if (groqKey) {
+    try {
+      const model = process.env.GROQ_MODEL || 'llama-3.1-8b-instant';
+      const allMessages = system ? [{ role: 'system', content: system }, ...messages] : messages;
+      const response = await fetch('https://api.groq.com/openai/v1/chat/completions', {
+        method: 'POST',
+        headers: { Authorization: `Bearer ${groqKey}`, 'Content-Type': 'application/json' },
+        body: JSON.stringify({ model, temperature: 0.4, max_tokens: 1200, messages: allMessages }),
+      });
+      if (response.ok) {
+        const data = await response.json();
+        const reply = data.choices?.[0]?.message?.content?.trim();
+        if (reply) return res.json({ ok: true, reply });
+      }
+    } catch(e) { /* fall through */ }
+  }
+
+  return res.status(503).json({ ok: false, message: 'No AI provider configured. Add GEMINI_API_KEY or GROQ_API_KEY in Render environment variables.' });
+});
+
 app.listen(port, () => console.log(`Human Systems Intelligence server running on port ${port}`));
 
 // ─── HSI Mappings API ───────────────────────────────────────────────────────
