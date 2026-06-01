@@ -3,6 +3,7 @@ import { ArrowLeft, X } from 'lucide-react';
 import { PI_PROFILES } from '../data/profiles.js';
 import { HSI_LENS_REGISTRY } from '../data/hsiLensRegistry.js';
 import LensVisual from './LensVisual.jsx';
+import LensDetailModal from './LensDetailModal.jsx';
 
 function cx(...c) { return c.filter(Boolean).join(' '); }
 
@@ -21,77 +22,7 @@ function CatBadge({ cat }) {
   return <span className={cx('inline-block rounded-full border px-2.5 py-0.5 text-xs font-medium', CAT_STYLE[cat]||CAT_STYLE.Other)}>{cat||'Other'}</span>;
 }
 
-// ── Lens Detail Modal ─────────────────────────────────────────────────────
-function LensModal({ lens, profile, onClose }) {
-  if (!lens) return null;
-  const color = profile?.color || '#38bdf8';
-
-  return (
-    <div className="fixed inset-0 z-50 flex items-start justify-center overflow-y-auto p-4 py-10">
-      <div className="absolute inset-0 bg-black/85 backdrop-blur-sm" onClick={onClose}/>
-      <div className="relative z-10 w-full max-w-2xl rounded-3xl border border-white/15 bg-slate-900 shadow-2xl">
-
-        {/* Header */}
-        <div className="flex items-start justify-between gap-4 border-b border-white/10 px-6 py-5">
-          <div>
-            <div className="mb-2 flex flex-wrap gap-2">
-              <CatBadge cat={lens.category}/>
-              <span className="inline-block rounded-full border border-white/10 bg-white/8 px-2.5 py-0.5 text-xs text-white/50">{lens.visualLabel}</span>
-            </div>
-            <h2 className="text-2xl font-bold text-white">{lens.lens}</h2>
-            <p className="mt-1 text-sm text-white/50">{lens.why}</p>
-          </div>
-          <button type="button" onClick={onClose}
-            className="flex-shrink-0 rounded-xl border border-white/10 p-2 text-white/40 hover:text-white transition">
-            <X size={18}/>
-          </button>
-        </div>
-
-        <div className="p-6 space-y-6">
-          {/* THE ACTUAL CHART */}
-          <div className="rounded-2xl border border-white/10 bg-slate-950/60 px-4 py-6">
-            <LensVisual lensId={lens.id} visualType={lens.visualType} color={color} profileId={profile.id}/>
-          </div>
-
-          {/* Details */}
-          <div className="grid gap-3 sm:grid-cols-3">
-            <div className="rounded-2xl border border-white/10 bg-white/[0.04] p-4">
-              <p className="mb-1 text-xs uppercase tracking-widest text-white/25">Category</p>
-              <CatBadge cat={lens.category}/>
-            </div>
-            <div className="rounded-2xl border border-white/10 bg-white/[0.04] p-4">
-              <p className="mb-1 text-xs uppercase tracking-widest text-white/25">Visual Type</p>
-              <p className="font-mono text-sm text-white">{lens.visualType}</p>
-            </div>
-            <div className="rounded-2xl border border-white/10 bg-white/[0.04] p-4">
-              <p className="mb-1 text-xs uppercase tracking-widest text-white/25">Status</p>
-              <p className="text-sm text-white/70">{lens.status || '—'}</p>
-            </div>
-          </div>
-
-          <div className="rounded-2xl border border-white/10 bg-white/[0.04] p-4">
-            <p className="mb-2 text-xs uppercase tracking-widest text-white/25">What this lens measures</p>
-            <p className="text-sm leading-6 text-white/75">{lens.why}</p>
-          </div>
-
-          {profile && (
-            <div className="rounded-2xl border border-white/10 bg-white/[0.04] p-4">
-              <p className="mb-2 text-xs uppercase tracking-widest text-white/25">Applied to profile</p>
-              <div className="flex items-center gap-2">
-                <span className="h-2.5 w-2.5 rounded-full" style={{background:profile.color}}/>
-                <span className="font-semibold text-white">{profile.name}</span>
-                <span className="text-sm text-white/40">— {profile.tagline}</span>
-              </div>
-              <p className="mt-2 text-xs text-white/40">
-                This lens applies to all 17 PI profiles. The chart above shows the visual structure assigned to this lens type.
-              </p>
-            </div>
-          )}
-        </div>
-      </div>
-    </div>
-  );
-}
+// ── Lens Detail (uses LensDetailModal component) ──────────────────────────
 
 // ── Lens Grid ─────────────────────────────────────────────────────────────
 function LensGrid({ profile, onBack, onSelectLens }) {
@@ -167,7 +98,7 @@ export default function PIPortal() {
     return (
       <>
         <LensGrid profile={selectedProfile} onBack={() => setSelectedProfile(null)} onSelectLens={setSelectedLens}/>
-        {selectedLens && <LensModal lens={selectedLens} profile={selectedProfile} onClose={() => setSelectedLens(null)}/>}
+        {selectedLens && <LensDetailModal lens={selectedLens} profile={selectedProfile} onClose={() => setSelectedLens(null)}/>}
       </>
     );
   }
