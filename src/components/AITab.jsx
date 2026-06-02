@@ -55,21 +55,35 @@ export default function AITab({ employees = [] }) {
     setMessages(m => [...m, { role: 'user', text }]);
     setLoading(true);
 
-    try {
-      const systemCtx = buildContext(employees);
-      const history = messages.map(m => ({ role: m.role === 'assistant' ? 'assistant' : 'user', content: m.text }));
+    const systemCtx = buildContext(employees);
+    const history = messages.map(m => ({ role: m.role === 'assistant' ? 'assistant' : 'user', content: m.text }));
+    const body = JSON.stringify({ system: systemCtx, messages: [...history, { role: 'user', content: text }] });
 
-      const res = await fetch('/api/ai-chat', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ system: systemCtx, messages: [...history, { role: 'user', content: text }] }),
-      });
-
-      if (!res.ok) throw new Error('API error');
-      const data = await res.json();
-      setMessages(m => [...m, { role: 'assistant', text: data.reply }]);
-    } catch (err) {
-      setMessages(m => [...m, { role: 'assistant', text: "Sorry, I couldn't reach the AI right now. Make sure the backend is running." }]);
+    // Try up to 2 times — first attempt may fail if the server is waking from sleep
+    for (let attempt = 1; attempt <= 2; attempt++) {
+      try {
+        if (attempt === 2) {
+          setMessages(m => [...m, { role: 'assistant', text: "⏳ Server is waking up, retrying in a moment…" }]);
+          await new Promise(r => setTimeout(r, 4000));
+          // Remove the waking message
+          setMessages(m => m.filter(msg => !msg.text.startsWith('⏳')));
+        }
+        const res = await fetch('/api/ai-chat', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body,
+          signal: AbortSignal.timeout(25000),
+        });
+        if (!res.ok) throw new Error('API error');
+        const data = await res.json();
+        setMessages(m => [...m, { role: 'assistant', text: data.reply }]);
+        setLoading(false);
+        return;
+      } catch (err) {
+        if (attempt === 2) {
+          setMessages(m => [...m, { role: 'assistant', text: "I couldn't reach the AI after retrying. The server may be starting up — please try again in 30 seconds." }]);
+        }
+      }
     }
     setLoading(false);
   }
