@@ -209,7 +209,7 @@ function LensInsights({ lens, profileId, color }) {
     },
     'hogan-hpi': {
       manager: 'HPI scales show baseline style when things are going well. Compare to HDS to see stress divergence.',
-      watchFor: 'Low Sociability is not disengagement — it's a processing preference.',
+      watchFor: 'Low Sociability is not disengagement — it is a processing preference.',
       tip: 'Prudence predicts reliability. Ambition predicts leadership drive.',
     },
     'hogan-hds-derailers': {
