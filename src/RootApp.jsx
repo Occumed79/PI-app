@@ -14,6 +14,7 @@ const MODES = [
 
 export default function RootApp() {
   const [mode, setMode] = useState('hsi');
+  const [employees, setEmployees] = useState([]);
 
   return (
     <div className="min-h-screen bg-slate-950 text-white">
@@ -42,8 +43,8 @@ export default function RootApp() {
         </div>
 
         {mode === 'hsi'     && <VisualLensWorkspace />}
-        {mode === 'builder' && <div className="rounded-3xl border border-white/10 bg-white/[0.03] shadow-2xl shadow-black/20"><EmployeeTab /></div>}
-        {mode === 'ai'      && <div className="rounded-3xl border border-white/10 bg-white/[0.03] shadow-2xl shadow-black/20"><AITab /></div>}
+        {mode === 'builder' && <div className="rounded-3xl border border-white/10 bg-white/[0.03] shadow-2xl shadow-black/20"><EmployeeTab employees={employees} setEmployees={setEmployees} /></div>}
+        {mode === 'ai'      && <div className="rounded-3xl border border-white/10 bg-white/[0.03] shadow-2xl shadow-black/20"><AITab employees={employees} /></div>}
       </div>
     </div>
   );
