@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { Component, useState } from 'react';
 import { ArrowLeft, X, Plus, User } from 'lucide-react';
 import { PI_PROFILES } from '../data/profiles.js';
 import { HSI_LENS_REGISTRY } from '../data/hsiLensRegistry.js';
@@ -21,10 +21,57 @@ function CatBadge({ cat }) {
   return <span className={cx('inline-block rounded-full border px-2.5 py-0.5 text-xs font-medium', CAT_STYLE[cat]||CAT_STYLE.Other)}>{cat||'Other'}</span>;
 }
 
+class LensVisualBoundary extends Component {
+  constructor(props) {
+    super(props);
+    this.state = { hasError: false };
+  }
+
+  static getDerivedStateFromError() {
+    return { hasError: true };
+  }
+
+  componentDidCatch(error) {
+    console.error('Lens visual failed to render:', error);
+  }
+
+  render() {
+    if (this.state.hasError) {
+      return this.props.fallback || (
+        <div className="flex h-full min-h-[90px] items-center justify-center rounded-xl border border-amber-400/20 bg-amber-500/10 px-3 text-center text-xs text-amber-200/80">
+          Visual unavailable for this lens
+        </div>
+      );
+    }
+    return this.props.children;
+  }
+}
+
+function SafeLensVisual({ lens, color, profileId, compact = false }) {
+  const fallback = (
+    <div className="flex h-full min-h-[90px] items-center justify-center rounded-xl border border-white/10 bg-white/[0.04] px-3 text-center text-xs text-white/35">
+      Chart unavailable
+    </div>
+  );
+
+  return (
+    <LensVisualBoundary key={`${lens?.id || 'unknown'}-${profileId}-${compact ? 'mini' : 'full'}`} fallback={fallback}>
+      <LensVisual
+        lensId={lens?.id}
+        visualType={lens?.visualType}
+        color={color || '#60a5fa'}
+        profileId={profileId || 'analyzer'}
+      />
+    </LensVisualBoundary>
+  );
+}
+
 // ── Lens Detail Modal ─────────────────────────────────────────────────────
 function LensModal({ lens, profile, onClose }) {
   if (!lens) return null;
-  const color = profile?.color || '#38bdf8';
+  const safeProfile = profile || PI_PROFILES[0];
+  const color = safeProfile?.color || '#38bdf8';
+  const profileId = safeProfile?.id || 'analyzer';
   return (
     <div className="fixed inset-0 z-50 flex items-start justify-center overflow-y-auto p-4 py-10">
       <div className="absolute inset-0 bg-black/85 backdrop-blur-sm" onClick={onClose}/>
@@ -39,7 +86,7 @@ function LensModal({ lens, profile, onClose }) {
         </div>
         <div className="p-6 space-y-5">
           <div className="rounded-2xl border border-white/10 bg-slate-950/60 px-4 py-6">
-            <LensVisual lensId={lens.id} visualType={lens.visualType} color={color} profileId={profile.id}/>
+            <SafeLensVisual lens={lens} color={color} profileId={profileId} />
           </div>
           <div className="grid gap-3 sm:grid-cols-3">
             <div className="rounded-2xl border border-white/10 bg-white/[0.04] p-4"><p className="mb-1 text-xs uppercase tracking-widest text-white/25">Category</p><CatBadge cat={lens.category}/></div>
@@ -58,9 +105,13 @@ function LensModal({ lens, profile, onClose }) {
 
 // ── Employee Detail ───────────────────────────────────────────────────────
 function EmployeeDetail({ employee, onBack }) {
-  const profile = PI_PROFILES.find(p => p.id === employee.profileId);
+  const profile = PI_PROFILES.find(p => p.id === employee?.profileId) || PI_PROFILES[0];
   const [selectedLens, setSelectedLens] = useState(null);
   const color = profile?.color || '#60a5fa';
+  const profileId = profile?.id || 'analyzer';
+  const employeeName = employee?.name?.trim() || 'Unnamed Employee';
+  const position = employee?.position?.trim() || 'Position not entered';
+  const depot = employee?.depot?.trim() || 'Depot not entered';
 
   return (
     <div>
@@ -70,27 +121,23 @@ function EmployeeDetail({ employee, onBack }) {
       <div className="mb-6 rounded-3xl border border-white/10 bg-white/[0.05] p-6">
         <div className="flex items-start gap-4">
           <div className="flex h-14 w-14 items-center justify-center rounded-2xl text-2xl font-black text-slate-900 flex-shrink-0" style={{background:color}}>
-            {employee.name[0].toUpperCase()}
+            {employeeName[0].toUpperCase()}
           </div>
           <div>
-            <h2 className="text-2xl font-bold text-white">{employee.name}</h2>
-            <p className="text-sm text-white/45">{employee.position} · {employee.depot}</p>
-            {profile && (
-              <div className="mt-1 flex items-center gap-2">
-                <span className="h-2 w-2 rounded-full" style={{background:color}}/>
-                <span className="text-sm font-medium text-white">{profile.name}</span>
-                <span className="text-sm text-white/40">— {profile.tagline}</span>
-              </div>
-            )}
+            <h2 className="text-2xl font-bold text-white">{employeeName}</h2>
+            <p className="text-sm text-white/45">{position} · {depot}</p>
+            <div className="mt-1 flex items-center gap-2">
+              <span className="h-2 w-2 rounded-full" style={{background:color}}/>
+              <span className="text-sm font-medium text-white">{profile.name}</span>
+              <span className="text-sm text-white/40">— {profile.tagline}</span>
+            </div>
           </div>
         </div>
-        {profile && (
-          <div className="mt-5 grid gap-4 border-t border-white/8 pt-5 sm:grid-cols-3">
-            <div><p className="mb-1.5 text-xs uppercase tracking-widest text-white/25">Strengths</p>{profile.strengths.map(s=><p key={s} className="text-xs text-emerald-300">↑ {s}</p>)}</div>
-            <div><p className="mb-1.5 text-xs uppercase tracking-widest text-white/25">Watch outs</p>{profile.traps.map(t=><p key={t} className="text-xs text-amber-300">△ {t}</p>)}</div>
-            <div><p className="mb-1.5 text-xs uppercase tracking-widest text-white/25">Needs</p>{profile.needs.map(n=><p key={n} className="text-xs text-sky-300">◇ {n}</p>)}</div>
-          </div>
-        )}
+        <div className="mt-5 grid gap-4 border-t border-white/8 pt-5 sm:grid-cols-3">
+          <div><p className="mb-1.5 text-xs uppercase tracking-widest text-white/25">Strengths</p>{profile.strengths.map(s=><p key={s} className="text-xs text-emerald-300">↑ {s}</p>)}</div>
+          <div><p className="mb-1.5 text-xs uppercase tracking-widest text-white/25">Watch outs</p>{profile.traps.map(t=><p key={t} className="text-xs text-amber-300">△ {t}</p>)}</div>
+          <div><p className="mb-1.5 text-xs uppercase tracking-widest text-white/25">Needs</p>{profile.needs.map(n=><p key={n} className="text-xs text-sky-300">◇ {n}</p>)}</div>
+        </div>
       </div>
 
       <p className="mb-4 text-sm text-white/35">{HSI_LENS_REGISTRY.length} lenses — click any to expand</p>
@@ -101,7 +148,7 @@ function EmployeeDetail({ employee, onBack }) {
             <div className="mb-3"><CatBadge cat={lens.category}/></div>
             <div className="pointer-events-none mb-3 overflow-hidden rounded-xl bg-slate-950/50" style={{height:100}}>
               <div className="scale-[0.55] origin-top-left" style={{width:'182%', height:'182%'}}>
-                <LensVisual lensId={lens.id} visualType={lens.visualType} color={color} profileId={profile.id}/>
+                <SafeLensVisual lens={lens} color={color} profileId={profileId} compact />
               </div>
             </div>
             <p className="text-sm font-semibold leading-snug text-white">{lens.lens}</p>
@@ -189,29 +236,30 @@ export default function EmployeeTab({ employees = [], setEmployees }) {
       ) : (
         <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
           {employees.map((emp,i) => {
-            const profile = PI_PROFILES.find(p=>p.id===emp.profileId);
+            const profile = PI_PROFILES.find(p=>p.id===emp.profileId) || PI_PROFILES[0];
             const color = profile?.color || '#60a5fa';
+            const employeeName = emp?.name?.trim() || 'Unnamed Employee';
             return (
-              <button key={i} type="button" onClick={()=>setViewing(emp)}
+              <button key={`${employeeName}-${i}`} type="button" onClick={()=>setViewing(emp)}
                 className="group rounded-3xl border border-white/10 bg-white/[0.04] p-5 text-left transition hover:border-white/25 hover:bg-white/[0.08]">
                 <div className="mb-4 flex items-center gap-3">
                   <div className="flex h-12 w-12 items-center justify-center rounded-2xl text-xl font-black text-slate-900 flex-shrink-0" style={{background:color}}>
-                    {emp.name[0].toUpperCase()}
+                    {employeeName[0].toUpperCase()}
                   </div>
                   <div className="min-w-0">
-                    <p className="truncate font-bold text-white">{emp.name}</p>
-                    <p className="truncate text-xs text-white/40">{emp.position}</p>
+                    <p className="truncate font-bold text-white">{employeeName}</p>
+                    <p className="truncate text-xs text-white/40">{emp?.position || 'Position not entered'}</p>
                   </div>
                 </div>
-                <p className="mb-1 text-xs text-white/30">{emp.depot}</p>
-                {profile && <div className="flex items-center gap-2"><span className="h-2 w-2 rounded-full" style={{background:color}}/><span className="text-xs font-medium text-white/60">{profile.name}</span></div>}
-                <p className="mt-3 text-xs text-white/25 group-hover:text-white/45 transition">View 104 lenses →</p>
+                <p className="mb-1 text-xs text-white/30">{emp?.depot || 'Depot not entered'}</p>
+                <div className="flex items-center gap-2"><span className="h-2 w-2 rounded-full" style={{background:color}}/><span className="text-xs font-medium text-white/60">{profile.name}</span></div>
+                <p className="mt-3 text-xs text-white/25 group-hover:text-white/45 transition">View {HSI_LENS_REGISTRY.length} lenses →</p>
               </button>
             );
           })}
         </div>
       )}
-      {showForm && <CreateForm onCreate={emp=>{setEmployees(e=>[...e,emp]);setShowForm(false);}} onCancel={()=>setShowForm(false)}/>} 
+      {showForm && <CreateForm onCreate={emp=>{setEmployees?.(e=>[...e,emp]);setShowForm(false);}} onCancel={()=>setShowForm(false)}/>} 
     </div>
   );
 }
