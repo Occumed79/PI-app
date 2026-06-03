@@ -168,7 +168,7 @@ function KVContent({ data, color }) {
 }
 
 // ── Main content panel ────────────────────────────────────────────────────
-function LensContentPanel({ lens, profile, onOpenModal }) {
+function LensContentPanel({ lens, profile, setProfile, onOpenModal }) {
   const color = catColor(lens.category);
   const profileContent = getLensProfileContent(lens.id, profile.id);
   const catCls = catStyle(lens.category);
@@ -189,7 +189,7 @@ function LensContentPanel({ lens, profile, onOpenModal }) {
             <p className="mt-2 max-w-2xl text-sm leading-6 text-white/50">{lens.why}</p>
 
             <div className="mt-4 flex items-center justify-between gap-4 border-t border-white/8 pt-4">
-              <ProfileSelector profile={profile} setProfile={() => {}} />
+              <ProfileSelector profile={profile} setProfile={setProfile} />
               <button type="button" onClick={onOpenModal}
                 className="flex-shrink-0 rounded-xl border border-white/15 bg-white/8 px-4 py-2 text-xs font-semibold text-white/70 hover:bg-white/15 hover:text-white transition">
                 Full Detail →
@@ -224,7 +224,7 @@ function LensContentPanel({ lens, profile, onOpenModal }) {
       <Card className="p-5">
         <div className="mb-3 text-xs uppercase tracking-widest text-white/30">PI Factor Scores — {profile.name}</div>
         <div className="grid grid-cols-4 gap-3">
-          {[['Dominance', profile.dominance],['Extraversion', profile.extraversion],['Patience', profile.patience],['Formality', profile.formality]].map(([label, val]) => (
+          {[["Dominance", profile.dominance],["Extraversion", profile.extraversion],["Patience", profile.patience],["Formality", profile.formality]].map(([label, val]) => (
             <div key={label} className="rounded-xl border border-white/8 bg-white/[0.04] p-3 text-center">
               <div className="text-2xl font-bold text-white">{val}</div>
               <div className="mt-0.5 text-[10px] text-white/35 uppercase tracking-widest">{label[0]}</div>
@@ -281,6 +281,7 @@ export default function VisualLensWorkspace() {
             <LensContentPanel
               lens={activeLens}
               profile={profile}
+              setProfile={handleSetProfile}
               onOpenModal={() => setShowModal(true)}
             />
           )}
