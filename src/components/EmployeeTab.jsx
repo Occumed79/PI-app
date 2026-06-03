@@ -109,7 +109,7 @@ function EmployeeDetail({ employee, onBack }) {
           </button>
         ))}
       </div>
-      {selectedLens && <LensModal lens={selectedLens} profile={profile} onClose={() => setSelectedLens(null)}/>}
+      {selectedLens && <LensModal lens={selectedLens} profile={profile} onClose={() => setSelectedLens(null)}/>} 
     </div>
   );
 }
@@ -161,8 +161,7 @@ function CreateForm({ onCreate, onCancel }) {
 }
 
 // ── Main ──────────────────────────────────────────────────────────────────
-export default function EmployeeTab() {
-  const [employees, setEmployees] = useState([]);
+export default function EmployeeTab({ employees = [], setEmployees }) {
   const [showForm, setShowForm] = useState(false);
   const [viewing, setViewing] = useState(null);
 
@@ -212,7 +211,7 @@ export default function EmployeeTab() {
           })}
         </div>
       )}
-      {showForm && <CreateForm onCreate={emp=>{setEmployees(e=>[...e,emp]);setShowForm(false);}} onCancel={()=>setShowForm(false)}/>}
+      {showForm && <CreateForm onCreate={emp=>{setEmployees(e=>[...e,emp]);setShowForm(false);}} onCancel={()=>setShowForm(false)}/>} 
     </div>
   );
 }
