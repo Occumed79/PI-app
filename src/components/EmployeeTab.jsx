@@ -1,5 +1,5 @@
 import React, { Component, useState } from 'react';
-import { ArrowLeft, X, Plus, User } from 'lucide-react';
+import { ArrowLeft, X, Plus, User, AlertCircle } from 'lucide-react';
 import { PI_PROFILES } from '../data/profiles.js';
 import { HSI_LENS_REGISTRY } from '../data/hsiLensRegistry.js';
 import LensVisual from './LensVisual.jsx';
@@ -78,7 +78,7 @@ function LensModal({ lens, profile, onClose }) {
       <div className="relative z-10 w-full max-w-2xl rounded-3xl border border-white/15 bg-slate-900 shadow-2xl">
         <div className="flex items-start justify-between gap-4 border-b border-white/10 px-6 py-5">
           <div>
-            <div className="mb-2 flex flex-wrap gap-2"><CatBadge cat={lens.category}/><span className="inline-block rounded-full border border-white/10 bg-white/8 px-2.5 py-0.5 text-xs text-white/50">{lens.visualLabel}</span></div>
+            <div className="mb-2 flex flex-wrap gap-2"><CatBadge cat={lens.category}/><span className="inline-block rounded-full border border-white/10 bg-white/8 px-2.5 py-0.5 text-xs text-white/60">{lens.visualLabel}</span></div>
             <h2 className="text-2xl font-bold text-white">{lens.lens}</h2>
             <p className="mt-1 text-sm text-white/50">{lens.why}</p>
           </div>
@@ -90,8 +90,8 @@ function LensModal({ lens, profile, onClose }) {
           </div>
           <div className="grid gap-3 sm:grid-cols-3">
             <div className="rounded-2xl border border-white/10 bg-white/[0.04] p-4"><p className="mb-1 text-xs uppercase tracking-widest text-white/25">Category</p><CatBadge cat={lens.category}/></div>
-            <div className="rounded-2xl border border-white/10 bg-white/[0.04] p-4"><p className="mb-1 text-xs uppercase tracking-widest text-white/25">Visual Type</p><p className="font-mono text-sm text-white">{lens.visualType}</p></div>
-            <div className="rounded-2xl border border-white/10 bg-white/[0.04] p-4"><p className="mb-1 text-xs uppercase tracking-widest text-white/25">Status</p><p className="text-sm text-white/70">{lens.status||'—'}</p></div>
+            <div className="rounded-2xl border border-white/10 bg-white/[0.04] p-4"><p className="mb-1 text-xs uppercase tracking-widest text-white/25">Visual Type</p><p className="font-mono text-sm text-white/75">{lens.visualLabel}</p></div>
+            <div className="rounded-2xl border border-white/10 bg-white/[0.04] p-4"><p className="mb-1 text-xs uppercase tracking-widest text-white/25">Status</p><p className="text-sm text-emerald-300">Ready</p></div>
           </div>
           <div className="rounded-2xl border border-white/10 bg-white/[0.04] p-4">
             <p className="mb-2 text-xs uppercase tracking-widest text-white/25">What this lens measures</p>
@@ -105,7 +105,27 @@ function LensModal({ lens, profile, onClose }) {
 
 // ── Employee Detail ───────────────────────────────────────────────────────
 function EmployeeDetail({ employee, onBack }) {
-  const profile = PI_PROFILES.find(p => p.id === employee?.profileId) || PI_PROFILES[0];
+  if (!employee) {
+    return (
+      <div className="flex flex-col items-center justify-center rounded-3xl border border-amber-400/20 bg-amber-500/10 py-12 px-4 text-center">
+        <AlertCircle size={32} className="mb-3 text-amber-300"/>
+        <p className="text-sm text-amber-200">Employee data is missing or invalid.</p>
+        <button type="button" onClick={onBack} className="mt-4 text-sm text-sky-300 hover:text-sky-200">← Back to list</button>
+      </div>
+    );
+  }
+
+  const profile = PI_PROFILES.find(p => p.id === employee?.profileId);
+  if (!profile) {
+    return (
+      <div className="flex flex-col items-center justify-center rounded-3xl border border-amber-400/20 bg-amber-500/10 py-12 px-4 text-center">
+        <AlertCircle size={32} className="mb-3 text-amber-300"/>
+        <p className="text-sm text-amber-200">Profile "{employee?.profileId}" not found.</p>
+        <button type="button" onClick={onBack} className="mt-4 text-sm text-sky-300 hover:text-sky-200">← Back to list</button>
+      </div>
+    );
+  }
+
   const [selectedLens, setSelectedLens] = useState(null);
   const color = profile?.color || '#60a5fa';
   const profileId = profile?.id || 'analyzer';
@@ -134,9 +154,27 @@ function EmployeeDetail({ employee, onBack }) {
           </div>
         </div>
         <div className="mt-5 grid gap-4 border-t border-white/8 pt-5 sm:grid-cols-3">
-          <div><p className="mb-1.5 text-xs uppercase tracking-widest text-white/25">Strengths</p>{profile.strengths.map(s=><p key={s} className="text-xs text-emerald-300">↑ {s}</p>)}</div>
-          <div><p className="mb-1.5 text-xs uppercase tracking-widest text-white/25">Watch outs</p>{profile.traps.map(t=><p key={t} className="text-xs text-amber-300">△ {t}</p>)}</div>
-          <div><p className="mb-1.5 text-xs uppercase tracking-widest text-white/25">Needs</p>{profile.needs.map(n=><p key={n} className="text-xs text-sky-300">◇ {n}</p>)}</div>
+          <div>
+            <p className="mb-1.5 text-xs uppercase tracking-widest text-white/25">Strengths</p>
+            {profile.strengths && profile.strengths.length > 0
+              ? profile.strengths.map(s=><p key={s} className="text-xs text-emerald-300">↑ {s}</p>)
+              : <p className="text-xs text-white/40">No strengths defined</p>
+            }
+          </div>
+          <div>
+            <p className="mb-1.5 text-xs uppercase tracking-widest text-white/25">Watch outs</p>
+            {profile.traps && profile.traps.length > 0
+              ? profile.traps.map(t=><p key={t} className="text-xs text-amber-300">△ {t}</p>)
+              : <p className="text-xs text-white/40">No watch-outs defined</p>
+            }
+          </div>
+          <div>
+            <p className="mb-1.5 text-xs uppercase tracking-widest text-white/25">Needs</p>
+            {profile.needs && profile.needs.length > 0
+              ? profile.needs.map(n=><p key={n} className="text-xs text-sky-300">◇ {n}</p>)
+              : <p className="text-xs text-white/40">No needs defined</p>
+            }
+          </div>
         </div>
       </div>
 
@@ -161,7 +199,7 @@ function EmployeeDetail({ employee, onBack }) {
   );
 }
 
-// ── Create Form ───────────────────────────────────────────────────────────
+// ── Create Form ─────────────────────────────────────────────────────────
 function CreateForm({ onCreate, onCancel }) {
   const [form, setForm] = useState({ name:'', position:'', depot:'', profileId:'' });
   const valid = form.name.trim() && form.position.trim() && form.depot.trim() && form.profileId;
@@ -176,7 +214,7 @@ function CreateForm({ onCreate, onCancel }) {
           <button type="button" onClick={onCancel} className="rounded-xl border border-white/10 p-2 text-white/40 hover:text-white transition"><X size={18}/></button>
         </div>
         <div className="space-y-4">
-          {[{k:'name',label:'Full Name',placeholder:'e.g. Sarah Mitchell'},{k:'position',label:'Position',placeholder:'e.g. Shift Supervisor'},{k:'depot',label:'Depot',placeholder:'e.g. Depot 4 — East'}].map(({k,label,placeholder})=>(
+          {[{k:'name',label:'Full Name',placeholder:'e.g. Sarah Mitchell'},{k:'position',label:'Position',placeholder:'e.g. Shift Supervisor'},{k:'depot',label:'Depot',placeholder:'e.g. Depot 4'}].map(({k,label,placeholder})=>(
             <div key={k}>
               <label className="mb-1.5 block text-xs font-semibold uppercase tracking-widest text-white/40">{label}</label>
               <input value={form[k]} onChange={e=>set(k,e.target.value)} placeholder={placeholder}
@@ -207,7 +245,7 @@ function CreateForm({ onCreate, onCancel }) {
   );
 }
 
-// ── Main ──────────────────────────────────────────────────────────────────
+// ── Main ────────────────────────────────────────────────────────────
 export default function EmployeeTab({ employees = [], setEmployees }) {
   const [showForm, setShowForm] = useState(false);
   const [viewing, setViewing] = useState(null);
@@ -236,11 +274,11 @@ export default function EmployeeTab({ employees = [], setEmployees }) {
       ) : (
         <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
           {employees.map((emp,i) => {
-            const profile = PI_PROFILES.find(p=>p.id===emp.profileId) || PI_PROFILES[0];
+            const profile = PI_PROFILES.find(p=>p.id===emp?.profileId) || PI_PROFILES[0];
             const color = profile?.color || '#60a5fa';
             const employeeName = emp?.name?.trim() || 'Unnamed Employee';
             return (
-              <button key={`${employeeName}-${i}`} type="button" onClick={()=>setViewing(emp)}
+              <button key={`${emp?.profileId || 'unknown'}-${i}-${employeeName}`} type="button" onClick={()=>setViewing(emp)}
                 className="group rounded-3xl border border-white/10 bg-white/[0.04] p-5 text-left transition hover:border-white/25 hover:bg-white/[0.08]">
                 <div className="mb-4 flex items-center gap-3">
                   <div className="flex h-12 w-12 items-center justify-center rounded-2xl text-xl font-black text-slate-900 flex-shrink-0" style={{background:color}}>
@@ -259,7 +297,7 @@ export default function EmployeeTab({ employees = [], setEmployees }) {
           })}
         </div>
       )}
-      {showForm && <CreateForm onCreate={emp=>{setEmployees?.(e=>[...e,emp]);setShowForm(false);}} onCancel={()=>setShowForm(false)}/>} 
+      {showForm && <CreateForm onCreate={emp=>{setEmployees?.(e=>[...e,{...emp,id:Date.now()}]);setShowForm(false);}} onCancel={()=>setShowForm(false)}/>} 
     </div>
   );
 }
