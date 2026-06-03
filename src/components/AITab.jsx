@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect } from 'react';
-import { Send, Bot, User } from 'lucide-react';
+import { Send, Bot, User, AlertTriangle } from 'lucide-react';
 import { PI_PROFILES } from '../data/profiles.js';
 import { HSI_LENS_REGISTRY } from '../data/hsiLensRegistry.js';
 
@@ -51,15 +51,37 @@ export default function AITab({ employees = [] }) {
   ]);
   const [input, setInput] = useState('');
   const [loading, setLoading] = useState(false);
+  const [aiConfigured, setAiConfigured] = useState(true);
+  const [checkingConfig, setCheckingConfig] = useState(true);
   const bottomRef = useRef(null);
 
   useEffect(() => {
     bottomRef.current?.scrollIntoView({ behavior: 'smooth' });
   }, [messages]);
 
+  // Check if AI is configured on mount
+  useEffect(() => {
+    async function checkAiConfig() {
+      try {
+        const res = await fetch('/api/health', { signal: AbortSignal.timeout(5000) });
+        if (res.ok) {
+          const data = await res.json();
+          setAiConfigured(!!data.aiConfigured);
+        }
+      } catch (err) {
+        console.warn('Could not check AI configuration:', err);
+        setAiConfigured(false);
+      } finally {
+        setCheckingConfig(false);
+      }
+    }
+    checkAiConfig();
+  }, []);
+
   async function send() {
     const text = input.trim();
     if (!text || loading) return;
+
     setInput('');
     setMessages(m => [...m, { role: 'user', text }]);
     setLoading(true);
@@ -90,6 +112,8 @@ export default function AITab({ employees = [] }) {
       const message = err?.name === 'TimeoutError'
         ? 'The AI request timed out after 35 seconds. The app is reachable, but the provider call is taking too long.'
         : `AI request failed: ${err?.message || 'Unknown error'}`;
+      // Restore user input if request failed
+      setInput(text);
       setMessages(m => [...m, { role: 'assistant', text: message }]);
     } finally {
       setLoading(false);
@@ -97,6 +121,19 @@ export default function AITab({ employees = [] }) {
   }
 
   function onKey(e) { if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); send(); } }
+
+  if (checkingConfig) {
+    return (
+      <div className="flex h-[calc(100vh-200px)] min-h-[500px] flex-col items-center justify-center">
+        <div className="text-center">
+          <div className="inline-flex h-10 w-10 items-center justify-center rounded-full bg-sky-500/20 mb-4">
+            <Bot size={18} className="text-sky-300 animate-pulse"/>
+          </div>
+          <p className="text-white/60">Initializing AI assistant...</p>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="flex h-[calc(100vh-200px)] min-h-[500px] flex-col">
@@ -120,7 +157,25 @@ export default function AITab({ employees = [] }) {
             {employees.length} employee{employees.length !== 1 ? 's' : ''} loaded
           </span>
         )}
+        {!aiConfigured && (
+          <span className="rounded-full border border-amber-400/20 bg-amber-500/10 px-3 py-1 text-xs text-amber-300 flex items-center gap-1">
+            <AlertTriangle size={12}/>AI not configured
+          </span>
+        )}
       </div>
+
+      {/* AI Not Configured Banner */}
+      {!aiConfigured && (
+        <div className="mb-4 rounded-2xl border border-amber-400/30 bg-amber-500/10 p-4">
+          <div className="flex gap-3">
+            <AlertTriangle size={20} className="flex-shrink-0 text-amber-300 mt-0.5"/>
+            <div>
+              <p className="font-semibold text-amber-200 text-sm">AI is not configured in this environment.</p>
+              <p className="text-xs text-amber-200/70 mt-1">To enable AI features, add GEMINI_API_KEY or GROQ_API_KEY to Render environment variables.</p>
+            </div>
+          </div>
+        </div>
+      )}
 
       {/* Messages */}
       <div className="flex-1 overflow-y-auto rounded-3xl border border-white/10 bg-white/[0.03] p-5 space-y-4">
@@ -169,13 +224,17 @@ export default function AITab({ employees = [] }) {
           value={input}
           onChange={e=>setInput(e.target.value)}
           onKeyDown={onKey}
-          placeholder="Ask about any PI profile, lens, or employee…"
+          disabled={!aiConfigured}
+          placeholder={aiConfigured ? "Ask about any PI profile, lens, or employee…" : "AI is not configured. Cannot send messages."}
           rows={1}
-          className="flex-1 resize-none rounded-2xl border border-white/10 bg-white/[0.05] px-4 py-3 text-sm text-white outline-none placeholder:text-white/25 focus:border-sky-400/40"
+          className={cx("flex-1 resize-none rounded-2xl border bg-white/[0.05] px-4 py-3 text-sm outline-none placeholder:text-white/25 focus:border-sky-400/40",
+            aiConfigured 
+              ? "border-white/10 text-white cursor-auto" 
+              : "border-white/10 text-white/40 cursor-not-allowed")}
         />
-        <button type="button" onClick={send} disabled={!input.trim() || loading}
+        <button type="button" onClick={send} disabled={!input.trim() || loading || !aiConfigured}
           className={cx('flex items-center gap-2 rounded-2xl border px-4 py-3 text-sm font-semibold transition',
-            input.trim() && !loading
+            input.trim() && !loading && aiConfigured
               ? 'border-sky-400/40 bg-sky-500/20 text-white hover:bg-sky-500/30'
               : 'border-white/10 bg-white/5 text-white/30 cursor-not-allowed')}>
           <Send size={16}/>
