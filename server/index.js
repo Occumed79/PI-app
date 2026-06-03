@@ -26,6 +26,14 @@ function getAiConfigured() {
   return Boolean(process.env.GEMINI_API_KEY || process.env.GROQ_API_KEY);
 }
 
+function sanitizeProviderError(message) {
+  let text = String(message || 'Unknown provider error');
+  for (const secret of [process.env.GEMINI_API_KEY, process.env.GROQ_API_KEY].filter(Boolean)) {
+    text = text.split(secret).join('[redacted]');
+  }
+  return text.length > 1200 ? `${text.slice(0, 1200)}...` : text;
+}
+
 function fallbackScenarioAnalysis({ employeeProfile }) {
   const profileName = employeeProfile?.baseProfile?.name || 'the selected employee profile';
   const needs = safeArray(employeeProfile?.baseProfile?.needs);
@@ -153,7 +161,7 @@ async function tryProvider(providerName, fn, payload, errors) {
     const result = await fn(payload);
     if (result) return { provider: providerName, result };
   } catch (error) {
-    errors.push(`${providerName}: ${error.message}`);
+    errors.push(`${providerName}: ${sanitizeProviderError(error.message)}`);
   }
   return null;
 }
@@ -178,6 +186,22 @@ async function callAiForScenario(payload) {
   if (groqSecond) return groqSecond;
 
   return { provider: 'fallback', result: null, errors };
+}
+
+function fallbackChatReply({ messages, providerErrors }) {
+  const lastUserMessage = [...(messages || [])].reverse().find((m) => m?.role === 'user')?.content || 'your question';
+  const errorSummary = providerErrors.length
+    ? providerErrors.map((error) => `- ${error}`).join('\n')
+    : '- No provider response was returned.';
+
+  return `I reached the PI app server, but the external AI provider call did not complete successfully.
+
+Your question was: ${lastUserMessage}
+
+Provider details:
+${errorSummary}
+
+This means the app is running, but Gemini/Groq is rejecting, timing out, or returning an unusable response. Check the provider error above, then update the Render environment variable or model name if needed.`;
 }
 
 app.get('/api/health', (_req, res) => {
@@ -228,13 +252,18 @@ app.post('/api/ai-chat', async (req, res) => {
   const { system, messages } = req.body || {};
   if (!messages || !Array.isArray(messages)) return res.status(400).json({ ok: false, message: 'messages array required' });
 
+  const providerErrors = [];
+  const compactMessages = messages
+    .filter((m) => m && typeof m.content === 'string' && ['user', 'assistant'].includes(m.role))
+    .slice(-8);
+
   // Try Gemini first
   const geminiKey = process.env.GEMINI_API_KEY;
-  if (geminiKey) {
+  if (geminiKey && aiProvider !== 'groq') {
     try {
       const model = process.env.GEMINI_MODEL || 'gemini-2.0-flash';
       const url = `https://generativelanguage.googleapis.com/v1beta/models/${encodeURIComponent(model)}:generateContent?key=${encodeURIComponent(geminiKey)}`;
-      const contents = messages.map(m => ({ role: m.role === 'assistant' ? 'model' : 'user', parts: [{ text: m.content }] }));
+      const contents = compactMessages.map(m => ({ role: m.role === 'assistant' ? 'model' : 'user', parts: [{ text: m.content }] }));
       const response = await fetch(url, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
@@ -247,17 +276,24 @@ app.post('/api/ai-chat', async (req, res) => {
       if (response.ok) {
         const data = await response.json();
         const reply = data.candidates?.[0]?.content?.parts?.map(p => p.text || '').join('\n').trim();
-        if (reply) return res.json({ ok: true, reply });
+        if (reply) return res.json({ ok: true, source: 'gemini', reply });
+        providerErrors.push('Gemini returned 200 but did not include a usable text reply.');
+      } else {
+        providerErrors.push(`Gemini ${response.status}: ${sanitizeProviderError(await response.text())}`);
       }
-    } catch(e) { /* fall through */ }
+    } catch (error) {
+      providerErrors.push(`Gemini exception: ${sanitizeProviderError(error.message)}`);
+    }
+  } else if (aiProvider !== 'groq') {
+    providerErrors.push('Gemini skipped: GEMINI_API_KEY is missing.');
   }
 
   // Try Groq
   const groqKey = process.env.GROQ_API_KEY;
-  if (groqKey) {
+  if (groqKey && aiProvider !== 'gemini') {
     try {
       const model = process.env.GROQ_MODEL || 'llama-3.1-8b-instant';
-      const allMessages = system ? [{ role: 'system', content: system }, ...messages] : messages;
+      const allMessages = system ? [{ role: 'system', content: system }, ...compactMessages] : compactMessages;
       const response = await fetch('https://api.groq.com/openai/v1/chat/completions', {
         method: 'POST',
         headers: { Authorization: `Bearer ${groqKey}`, 'Content-Type': 'application/json' },
@@ -266,12 +302,24 @@ app.post('/api/ai-chat', async (req, res) => {
       if (response.ok) {
         const data = await response.json();
         const reply = data.choices?.[0]?.message?.content?.trim();
-        if (reply) return res.json({ ok: true, reply });
+        if (reply) return res.json({ ok: true, source: 'groq', reply });
+        providerErrors.push('Groq returned 200 but did not include a usable text reply.');
+      } else {
+        providerErrors.push(`Groq ${response.status}: ${sanitizeProviderError(await response.text())}`);
       }
-    } catch(e) { /* fall through */ }
+    } catch (error) {
+      providerErrors.push(`Groq exception: ${sanitizeProviderError(error.message)}`);
+    }
+  } else if (aiProvider !== 'gemini') {
+    providerErrors.push('Groq skipped: GROQ_API_KEY is missing.');
   }
 
-  return res.status(503).json({ ok: false, message: 'No AI provider configured. Add GEMINI_API_KEY or GROQ_API_KEY in Render environment variables.' });
+  return res.json({
+    ok: true,
+    source: 'fallback',
+    providerErrors,
+    reply: fallbackChatReply({ messages: compactMessages, providerErrors }),
+  });
 });
 
 // ─── HSI Mappings API ───────────────────────────────────────────────────────
