@@ -36,6 +36,15 @@ ${employeeSummaries}
 When asked about an employee by name, use their PI profile data to answer. Be direct, insightful, and practical. Do not make up data that hasn't been provided.`;
 }
 
+async function readApiError(res) {
+  try {
+    const data = await res.json();
+    return data?.message || data?.error || JSON.stringify(data);
+  } catch {
+    return await res.text();
+  }
+}
+
 export default function AITab({ employees = [] }) {
   const [messages, setMessages] = useState([
     { role: 'assistant', text: "Ask me anything about PI profiles, lenses, or your employees. I have full access to all 17 profiles and 104 assessment lenses." }
@@ -59,33 +68,32 @@ export default function AITab({ employees = [] }) {
     const history = messages.map(m => ({ role: m.role === 'assistant' ? 'assistant' : 'user', content: m.text }));
     const body = JSON.stringify({ system: systemCtx, messages: [...history, { role: 'user', content: text }] });
 
-    // Try up to 2 times — first attempt may fail if the server is waking from sleep
-    for (let attempt = 1; attempt <= 2; attempt++) {
-      try {
-        if (attempt === 2) {
-          setMessages(m => [...m, { role: 'assistant', text: "⏳ Server is waking up, retrying in a moment…" }]);
-          await new Promise(r => setTimeout(r, 4000));
-          // Remove the waking message
-          setMessages(m => m.filter(msg => !msg.text.startsWith('⏳')));
-        }
-        const res = await fetch('/api/ai-chat', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body,
-          signal: AbortSignal.timeout(25000),
-        });
-        if (!res.ok) throw new Error('API error');
-        const data = await res.json();
-        setMessages(m => [...m, { role: 'assistant', text: data.reply }]);
-        setLoading(false);
-        return;
-      } catch (err) {
-        if (attempt === 2) {
-          setMessages(m => [...m, { role: 'assistant', text: "I couldn't reach the AI after retrying. The server may be starting up — please try again in 30 seconds." }]);
-        }
+    try {
+      const res = await fetch('/api/ai-chat', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body,
+        signal: AbortSignal.timeout(35000),
+      });
+
+      if (!res.ok) {
+        const apiError = await readApiError(res);
+        throw new Error(apiError || `API error ${res.status}`);
       }
+
+      const data = await res.json();
+      const providerNote = data.source === 'fallback' && data.providerErrors?.length
+        ? `\n\nProvider errors:\n${data.providerErrors.map(error => `- ${error}`).join('\n')}`
+        : '';
+      setMessages(m => [...m, { role: 'assistant', text: `${data.reply || 'No reply returned.'}${providerNote}` }]);
+    } catch (err) {
+      const message = err?.name === 'TimeoutError'
+        ? 'The AI request timed out after 35 seconds. The app is reachable, but the provider call is taking too long.'
+        : `AI request failed: ${err?.message || 'Unknown error'}`;
+      setMessages(m => [...m, { role: 'assistant', text: message }]);
+    } finally {
+      setLoading(false);
     }
-    setLoading(false);
   }
 
   function onKey(e) { if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); send(); } }
@@ -124,7 +132,7 @@ export default function AITab({ employees = [] }) {
               </div>
             )}
             <div className={cx(
-              'max-w-[80%] rounded-2xl px-4 py-3 text-sm leading-6',
+              'max-w-[80%] whitespace-pre-wrap rounded-2xl px-4 py-3 text-sm leading-6',
               msg.role === 'user'
                 ? 'bg-sky-500/20 text-white'
                 : 'border border-white/10 bg-white/[0.05] text-white/85'
