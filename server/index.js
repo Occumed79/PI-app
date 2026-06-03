@@ -201,11 +201,18 @@ Your question was: ${lastUserMessage}
 Provider details:
 ${errorSummary}
 
-This means the app is running, but Gemini/Groq is rejecting, timing out, or returning an unusable response. Check the provider error above, then update the Render environment variable or model name if needed.`;
+This means the app is running, but Gemini/Groq is rejecting, timing out, or returning an unusable response. Check the provider error above, then update the Render environment variable or model name.`;
 }
 
 app.get('/api/health', (_req, res) => {
-  res.json({ ok: true, service: 'human-systems-intelligence', environment: process.env.NODE_ENV || 'development', databaseConfigured: Boolean(process.env.DATABASE_URL), aiProvider, aiConfigured: getAiConfigured(), fallbackOrder: aiProvider === 'auto' ? ['gemini', 'groq', 'built-in-fallback'] : [aiProvider, 'built-in-fallback'] });
+  res.json({ 
+    ok: true, 
+    service: 'human-systems-intelligence', 
+    environment: process.env.NODE_ENV || 'development', 
+    databaseConfigured: Boolean(process.env.DATABASE_URL), 
+    aiProvider, 
+    aiConfigured: getAiConfigured()
+  });
 });
 
 app.get('/api/db/health', async (_req, res) => {
