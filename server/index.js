@@ -223,10 +223,6 @@ app.post('/api/profiles', async (req, res) => {
   }
 });
 
-const distPath = path.resolve(__dirname, '../dist');
-app.use(express.static(distPath));
-app.get('*', (_req, res) => res.sendFile(path.join(distPath, 'index.html')));
-
 // ── AI Chat endpoint ──────────────────────────────────────────────────────
 app.post('/api/ai-chat', async (req, res) => {
   const { system, messages } = req.body || {};
@@ -277,8 +273,6 @@ app.post('/api/ai-chat', async (req, res) => {
 
   return res.status(503).json({ ok: false, message: 'No AI provider configured. Add GEMINI_API_KEY or GROQ_API_KEY in Render environment variables.' });
 });
-
-app.listen(port, () => console.log(`Human Systems Intelligence server running on port ${port}`));
 
 // ─── HSI Mappings API ───────────────────────────────────────────────────────
 
@@ -358,3 +352,9 @@ app.post('/api/hsi/mappings/bulk', async (req, res) => {
     return res.status(500).json({ ok: false, message: error.message });
   }
 });
+
+const distPath = path.resolve(__dirname, '../dist');
+app.use(express.static(distPath));
+app.get('*', (_req, res) => res.sendFile(path.join(distPath, 'index.html')));
+
+app.listen(port, () => console.log(`Human Systems Intelligence server running on port ${port}`));
