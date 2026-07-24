@@ -19,7 +19,7 @@ Completed PI result
 
 A crosswalk output is not represented as a separately administered assessment unless separate assessment data is explicitly entered later.
 
-This is an internal tool for one user. Authentication, roles, tenants, invitations, and manager workflows are not part of the intended scope.
+This is an internal tool for one user. Authentication, roles, tenants, invitations, and multi-user supervisory workflows are not part of the intended scope.
 
 ## Active app areas
 
