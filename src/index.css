@@ -156,11 +156,10 @@ body {
   isolation: isolate;
 }
 
-.pi-glass-panel::before,
-.pi-shell [class*='rounded-3xl'][class*='border-white']::before {
+.pi-glass-panel::before {
   position: absolute;
-  inset: 0;
-  z-index: -1;
+  inset: 1px;
+  z-index: 0;
   pointer-events: none;
   content: '';
   border-radius: inherit;
@@ -172,6 +171,11 @@ body {
     transparent 74%,
     rgba(186, 230, 253, 0.018)
   );
+}
+
+.pi-glass-panel > * {
+  position: relative;
+  z-index: 1;
 }
 
 .pi-nav-panel {
