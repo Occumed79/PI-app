@@ -50,7 +50,6 @@ const LENS_ALIASES = {
   burnout: ['maslach-burnout-inventory-mbi-lens', 'copenhagen-burnout-inventory-cbi-lens'],
   adhd: ['neurodiversity-support-lens', 'executive-function-model'],
   neurodiversity: ['neurodiversity-support-lens'],
-  immigration: ['neurodiversity-support-lens--neurodivergence-and-cognitive-accessibility'],
 };
 
 function findRelevantLenses(question) {
