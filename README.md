@@ -30,7 +30,7 @@ This is an internal tool for one user. Authentication, roles, tenants, invitatio
 
 ## Registry-wide projection engine
 
-Every entry in the 104-lens registry now returns an exact employee projection.
+Every one of the repository’s **101 actual registry entries** now returns an exact employee projection. Earlier code metadata claimed 104, but the array itself contains 101 records; Beast Mode 2.0 validates the real source array rather than repeating the stale count.
 
 The engine contains dedicated PI translation builders for major framework families including:
 
@@ -219,7 +219,7 @@ Pull requests run GitHub Actions checks for:
 
 - Existing PI crosswalk unit tests
 - Lived-experience catalog coverage
-- All 104 registry lens projections
+- All 101 actual registry lens projections
 - Overlay baseline-preservation and apparent-shift behavior
 - Ability-lens interpretation boundaries
 - Production Vite build
