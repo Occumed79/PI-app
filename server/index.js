@@ -21,6 +21,15 @@ function safeArray(value, limit = 12) {
   return Array.isArray(value) ? value.filter(Boolean).slice(0, limit) : [];
 }
 
+function normalizeOverlayIds(value) {
+  if (!Array.isArray(value)) return [];
+  return [...new Set(
+    value
+      .map(item => String(item || '').trim())
+      .filter(item => item && item.length <= 100 && /^[a-z0-9-]+$/i.test(item))
+  )].slice(0, 50);
+}
+
 function sanitizeProviderError(message) {
   let text = String(message || 'Unknown provider error');
   for (const secret of [process.env.GEMINI_API_KEY, process.env.GROQ_API_KEY].filter(Boolean)) {
@@ -60,9 +69,11 @@ function scenarioPrompt({ scenario, employeeProfile, analysisGoal }) {
 Strict rules:
 - Treat completed Predictive Index profile and factor data as the source assessment.
 - Treat Big Five, HEXACO, Hogan, EQ-i, DISC, and other outputs as PI-derived translations unless separate assessment data is explicitly supplied.
+- Treat explicitly supplied life, health, family, immigration, neurodiversity, stress, or environmental variables as context overlays that may amplify, suppress, mask, or bend the visible PI presentation.
+- Never infer that a context overlay exists. Only use an overlay when it is explicitly included in the employee record or scenario.
 - Never claim that a translated score was independently administered or directly measured.
-- Separate source PI facts from translated interpretations.
-- Explain which PI factors drive an interpretation.
+- Separate baseline PI facts, overlay effects, and cross-framework interpretations.
+- Explain which PI factors and selected overlays drive an interpretation.
 - Do not diagnose or infer protected/private traits.
 - Use cautious, practical language.
 
@@ -83,8 +94,9 @@ ${JSON.stringify({ scenario, analysisGoal, employeeProfile }, null, 2)}`;
 function fallbackScenarioAnalysis({ employeeProfile }) {
   const profileName = employeeProfile?.baseProfile?.name || employeeProfile?.profileName || 'the selected PI profile';
   const factors = employeeProfile?.factors || {};
+  const overlays = safeArray(employeeProfile?.contextOverlays, 50);
   return {
-    summary: `Interpret this situation from the completed ${profileName} PI result first, then use other frameworks only as directional translations.`,
+    summary: `Interpret this situation from the completed ${profileName} PI result first${overlays.length ? `, then apply the ${overlays.length} explicitly selected context overlay${overlays.length === 1 ? '' : 's'}` : ''}.`,
     sourcePiSignals: [
       `Dominance: ${factors.dominance ?? 'not entered'}`,
       `Extraversion: ${factors.extraversion ?? 'not entered'}`,
@@ -93,20 +105,23 @@ function fallbackScenarioAnalysis({ employeeProfile }) {
     ],
     crosswalkInterpretations: [
       'Use the strongest PI factor highs and lows to explain likely correspondences in the selected framework.',
-      'Keep the PI result visible beside every translated framework output.',
+      overlays.length
+        ? 'Keep the baseline PI result visible beside the context-bent presentation.'
+        : 'Keep the PI result visible beside every translated framework output.',
     ],
     alternativeExplanations: [
-      'Role demands, workload, environment, and current circumstances may explain behavior that differs from the reference PI pattern.',
+      'Role demands, workload, environment, life variables, and current circumstances may explain behavior that differs from the reference PI pattern.',
     ],
     limitations: [
       'No translated framework output should be treated as a separately completed assessment unless separate results are entered.',
+      'No life, health, neurodiversity, immigration, family, or stress overlay should be inferred unless explicitly supplied.',
     ],
     practicalApplications: [
       'Compare the directional crosswalk against observed work examples before relying on it.',
     ],
     followUpQuestions: [
       'Which PI factors are most extreme?',
-      'Which translated framework is most relevant to the question?',
+      'Which selected context variable is most relevant to the current behavior?',
     ],
     confidenceNote: 'Built-in fallback used because an external AI provider was unavailable or returned an unusable response.',
   };
@@ -149,7 +164,7 @@ async function callGroqForScenario(payload) {
       max_tokens: 1600,
       response_format: { type: 'json_object' },
       messages: [
-        { role: 'system', content: 'Return only valid JSON and preserve the PI-source-versus-crosswalk distinction.' },
+        { role: 'system', content: 'Return only valid JSON and preserve the PI-baseline, context-overlay, and crosswalk distinction.' },
         { role: 'user', content: scenarioPrompt(payload) },
       ],
     }),
@@ -222,6 +237,8 @@ function validateEmployeePayload(body = {}) {
     formality: numericFactor(body.formality, 'Formality'),
     assessmentDate: body.assessmentDate ? String(body.assessmentDate).slice(0, 10) : null,
     notes: String(body.notes || '').trim(),
+    contextOverlays: normalizeOverlayIds(body.contextOverlays),
+    contextNotes: String(body.contextNotes || '').trim().slice(0, 12000),
   };
 }
 
@@ -239,10 +256,19 @@ function employeeRow(row) {
     formality: Number(row.formality),
     assessmentDate: row.assessment_date || null,
     notes: row.notes || '',
+    contextOverlays: Array.isArray(row.context_overlays) ? row.context_overlays : [],
+    contextNotes: row.context_notes || '',
     createdAt: row.created_at,
     updatedAt: row.updated_at,
   };
 }
+
+const employeeSelect = `
+  id, name, position, department, pi_profile_id,
+  dominance, extraversion, patience, formality,
+  assessment_date, notes, context_overlays, context_notes,
+  created_at, updated_at
+`;
 
 app.get('/api/health', (_req, res) => {
   res.json({
@@ -265,9 +291,7 @@ app.get('/api/employees', async (_req, res) => {
   if (!requireDatabase(res)) return;
   try {
     const result = await pool.query(`
-      select id, name, position, department, pi_profile_id,
-             dominance, extraversion, patience, formality,
-             assessment_date, notes, created_at, updated_at
+      select ${employeeSelect}
       from employee_pi_profiles
       order by lower(name), created_at
     `);
@@ -283,10 +307,23 @@ app.post('/api/employees', async (req, res) => {
     const employee = validateEmployeePayload(req.body);
     const result = await pool.query(
       `insert into employee_pi_profiles
-       (name, position, department, pi_profile_id, dominance, extraversion, patience, formality, assessment_date, notes)
-       values ($1,$2,$3,$4,$5,$6,$7,$8,$9,$10)
-       returning id, name, position, department, pi_profile_id, dominance, extraversion, patience, formality, assessment_date, notes, created_at, updated_at`,
-      [employee.name, employee.position, employee.department, employee.piProfileId, employee.dominance, employee.extraversion, employee.patience, employee.formality, employee.assessmentDate, employee.notes]
+       (name, position, department, pi_profile_id, dominance, extraversion, patience, formality, assessment_date, notes, context_overlays, context_notes)
+       values ($1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11::jsonb,$12)
+       returning ${employeeSelect}`,
+      [
+        employee.name,
+        employee.position,
+        employee.department,
+        employee.piProfileId,
+        employee.dominance,
+        employee.extraversion,
+        employee.patience,
+        employee.formality,
+        employee.assessmentDate,
+        employee.notes,
+        JSON.stringify(employee.contextOverlays),
+        employee.contextNotes,
+      ]
     );
     res.status(201).json({ ok: true, employee: employeeRow(result.rows[0]) });
   } catch (error) {
@@ -302,10 +339,24 @@ app.put('/api/employees/:id', async (req, res) => {
       `update employee_pi_profiles set
          name=$1, position=$2, department=$3, pi_profile_id=$4,
          dominance=$5, extraversion=$6, patience=$7, formality=$8,
-         assessment_date=$9, notes=$10
-       where id=$11
-       returning id, name, position, department, pi_profile_id, dominance, extraversion, patience, formality, assessment_date, notes, created_at, updated_at`,
-      [employee.name, employee.position, employee.department, employee.piProfileId, employee.dominance, employee.extraversion, employee.patience, employee.formality, employee.assessmentDate, employee.notes, req.params.id]
+         assessment_date=$9, notes=$10, context_overlays=$11::jsonb, context_notes=$12
+       where id=$13
+       returning ${employeeSelect}`,
+      [
+        employee.name,
+        employee.position,
+        employee.department,
+        employee.piProfileId,
+        employee.dominance,
+        employee.extraversion,
+        employee.patience,
+        employee.formality,
+        employee.assessmentDate,
+        employee.notes,
+        JSON.stringify(employee.contextOverlays),
+        employee.contextNotes,
+        req.params.id,
+      ]
     );
     if (!result.rowCount) return res.status(404).json({ ok: false, message: 'Employee PI profile not found.' });
     res.json({ ok: true, employee: employeeRow(result.rows[0]) });
