@@ -2,7 +2,14 @@
 @tailwind components;
 @tailwind utilities;
 
-:root { --sidebar-w: 280px; }
+:root {
+  --sidebar-w: 280px;
+  --pointer-x: 50vw;
+  --pointer-y: 35vh;
+  --glass-edge: rgba(255, 255, 255, 0.14);
+  --glass-inner-edge: rgba(255, 255, 255, 0.055);
+  --ice-light: rgba(186, 230, 253, 0.18);
+}
 
 * { box-sizing: border-box; }
 
@@ -17,6 +24,14 @@ html, body {
   min-height: 100vh;
 }
 
+body {
+  background-image:
+    radial-gradient(circle at 12% 4%, rgba(125, 211, 252, 0.045), transparent 31rem),
+    radial-gradient(circle at 88% 24%, rgba(226, 232, 240, 0.035), transparent 34rem),
+    linear-gradient(160deg, #070910 0%, #0a0c14 48%, #080a11 100%);
+  background-attachment: fixed;
+}
+
 #root {
   min-height: 100vh;
   overflow-y: auto;
@@ -24,23 +39,208 @@ html, body {
 
 ::-webkit-scrollbar { width: 6px; height: 6px; }
 ::-webkit-scrollbar-track { background: transparent; }
-::-webkit-scrollbar-thumb { background: #334155; border-radius: 3px; }
-::-webkit-scrollbar-thumb:hover { background: #475569; }
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, rgba(186, 230, 253, 0.42), rgba(71, 85, 105, 0.78));
+  border-radius: 3px;
+  box-shadow: 0 0 10px rgba(186, 230, 253, 0.13);
+}
+::-webkit-scrollbar-thumb:hover { background: #64748b; }
+
+.pi-shell {
+  position: relative;
+  isolation: isolate;
+  background:
+    radial-gradient(circle at 50% -14%, rgba(255, 255, 255, 0.035), transparent 38rem),
+    transparent;
+}
+
+.pi-shell::before {
+  position: fixed;
+  inset: 0;
+  z-index: -2;
+  pointer-events: none;
+  content: '';
+  background:
+    linear-gradient(115deg, transparent 17%, rgba(255, 255, 255, 0.018) 38%, transparent 55%),
+    radial-gradient(circle at 50% 120%, rgba(125, 211, 252, 0.04), transparent 45%);
+  animation: pi-atmosphere-breathe 13s ease-in-out infinite alternate;
+}
+
+.pi-ambient {
+  z-index: -1;
+}
+
+.pi-orb {
+  will-change: transform, opacity;
+  mix-blend-mode: screen;
+}
+
+.pi-orb-a {
+  animation: pi-orb-drift-a 19s ease-in-out infinite alternate;
+}
+
+.pi-orb-b {
+  opacity: 0.58;
+  filter: blur(92px) saturate(0.72);
+  animation: pi-orb-drift-b 24s ease-in-out infinite alternate;
+}
+
+.pi-orb-c {
+  opacity: 0.48;
+  filter: blur(96px) saturate(0.62);
+  animation: pi-orb-drift-c 22s ease-in-out infinite alternate;
+}
+
+.pi-light-wave {
+  position: absolute;
+  top: -32%;
+  left: -45%;
+  width: 72%;
+  height: 165%;
+  opacity: 0;
+  transform: rotate(13deg);
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(255, 255, 255, 0.012) 37%,
+    rgba(224, 242, 254, 0.10) 50%,
+    rgba(255, 255, 255, 0.018) 61%,
+    transparent 100%
+  );
+  filter: blur(24px);
+  animation: pi-light-wave 17s cubic-bezier(0.45, 0, 0.2, 1) infinite;
+}
+
+.pi-cursor-light {
+  position: fixed;
+  inset: 0;
+  opacity: 0.72;
+  background: radial-gradient(
+    19rem circle at var(--pointer-x) var(--pointer-y),
+    rgba(224, 242, 254, 0.075),
+    rgba(186, 230, 253, 0.025) 38%,
+    transparent 72%
+  );
+  transition: opacity 240ms ease;
+}
+
+.pi-refraction-noise {
+  position: absolute;
+  inset: 0;
+  opacity: 0.075;
+  background-image:
+    radial-gradient(circle at 18% 28%, rgba(255,255,255,0.5) 0 0.55px, transparent 0.8px),
+    radial-gradient(circle at 72% 63%, rgba(255,255,255,0.35) 0 0.55px, transparent 0.8px);
+  background-size: 42px 42px, 58px 58px;
+  mask-image: linear-gradient(to bottom, rgba(0,0,0,0.45), transparent 72%);
+}
+
+.glass,
+.pi-glass-panel,
+.pi-shell [class*='rounded-3xl'][class*='border-white'] {
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.085),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.018),
+    0 20px 55px rgba(0, 0, 0, 0.25),
+    0 0 34px rgba(148, 163, 184, 0.035);
+}
 
 .glass {
   background: rgba(15,23,42,0.7);
-  backdrop-filter: blur(12px);
+  backdrop-filter: blur(12px) saturate(1.08);
   border: 1px solid rgba(255,255,255,0.07);
+}
+
+.pi-glass-panel {
+  position: relative;
+  isolation: isolate;
+}
+
+.pi-glass-panel::before,
+.pi-shell [class*='rounded-3xl'][class*='border-white']::before {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  content: '';
+  border-radius: inherit;
+  border: 1px solid rgba(255, 255, 255, 0.025);
+  background: linear-gradient(
+    132deg,
+    rgba(255, 255, 255, 0.028),
+    transparent 24%,
+    transparent 74%,
+    rgba(186, 230, 253, 0.018)
+  );
+}
+
+.pi-nav-panel {
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.12),
+    inset 0 -1px 0 rgba(255, 255, 255, 0.026),
+    0 22px 70px rgba(0, 0, 0, 0.31),
+    0 0 42px rgba(186, 230, 253, 0.055);
+}
+
+.pi-glass-control,
+.pi-shell button {
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+}
+
+.pi-glass-control::after,
+.pi-shell button::after {
+  position: absolute;
+  top: -85%;
+  bottom: -85%;
+  left: -72%;
+  width: 42%;
+  pointer-events: none;
+  content: '';
+  transform: rotate(18deg) translateX(0);
+  opacity: 0;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.13), transparent);
+  transition: transform 700ms cubic-bezier(0.2, 0.7, 0.2, 1), opacity 220ms ease;
+}
+
+.pi-glass-control:hover::after,
+.pi-glass-control:focus-visible::after,
+.pi-shell button:hover::after,
+.pi-shell button:focus-visible::after {
+  transform: rotate(18deg) translateX(470%);
+  opacity: 0.62;
+}
+
+.pi-glass-control:hover,
+.pi-shell button:hover {
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.105),
+    0 0 24px rgba(186, 230, 253, 0.055);
+}
+
+.pi-shell input:focus,
+.pi-shell select:focus,
+.pi-shell textarea:focus {
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.075),
+    0 0 0 1px rgba(186, 230, 253, 0.12),
+    0 0 25px rgba(186, 230, 253, 0.06);
 }
 
 .lens-card { transition: all 0.2s ease; }
 .lens-card:hover {
   transform: translateY(-1px);
   border-color: rgba(255,255,255,0.15) !important;
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.10),
+    0 18px 45px rgba(0, 0, 0, 0.27),
+    0 0 28px rgba(186, 230, 253, 0.05);
 }
 
 .score-bar {
   transition: width 0.8s cubic-bezier(0.4,0,0.2,1);
+  filter: drop-shadow(0 0 5px rgba(255,255,255,0.09));
 }
 
 @keyframes fadeIn {
@@ -50,7 +250,53 @@ html, body {
 .fade-in { animation: fadeIn 0.25s ease forwards; }
 
 @keyframes pulse-dot {
-  0%,100% { opacity: 1; }
-  50%      { opacity: 0.4; }
+  0%,100% { opacity: 1; filter: drop-shadow(0 0 2px currentColor); }
+  50% { opacity: 0.46; filter: drop-shadow(0 0 7px currentColor); }
 }
 .pulse-dot { animation: pulse-dot 2s infinite; }
+
+@keyframes pi-atmosphere-breathe {
+  0% { opacity: 0.68; transform: scale(1); }
+  100% { opacity: 1; transform: scale(1.035); }
+}
+
+@keyframes pi-orb-drift-a {
+  0% { transform: translate3d(-2%, -3%, 0) scale(0.94); opacity: 0.62; }
+  100% { transform: translate3d(17%, 13%, 0) scale(1.11); opacity: 0.9; }
+}
+
+@keyframes pi-orb-drift-b {
+  0% { transform: translate3d(4%, -2%, 0) scale(1); }
+  100% { transform: translate3d(-18%, 18%, 0) scale(1.12); }
+}
+
+@keyframes pi-orb-drift-c {
+  0% { transform: translate3d(-5%, 8%, 0) scale(0.92); }
+  100% { transform: translate3d(18%, -13%, 0) scale(1.08); }
+}
+
+@keyframes pi-light-wave {
+  0%, 18% { transform: rotate(13deg) translateX(-15%); opacity: 0; }
+  30% { opacity: 0.46; }
+  57% { opacity: 0.18; }
+  72%, 100% { transform: rotate(13deg) translateX(245%); opacity: 0; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .pi-shell::before,
+  .pi-orb,
+  .pi-light-wave,
+  .pulse-dot,
+  .fade-in {
+    animation: none !important;
+  }
+
+  .pi-cursor-light {
+    display: none;
+  }
+
+  .pi-glass-control::after,
+  .pi-shell button::after {
+    display: none;
+  }
+}
