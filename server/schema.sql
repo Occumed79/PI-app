@@ -4,31 +4,45 @@ create table if not exists profiles (
   id uuid primary key default gen_random_uuid(),
   name text not null unique,
   group_name text not null,
-  dominance integer check (dominance is null or (dominance between 0 and 100)),
-  extraversion integer check (extraversion is null or (extraversion between 0 and 100)),
-  patience integer check (patience is null or (patience between 0 and 100)),
-  formality integer check (formality is null or (formality between 0 and 100)),
+  dominance numeric(5,2) check (dominance is null or dominance between 0 and 100),
+  extraversion numeric(5,2) check (extraversion is null or extraversion between 0 and 100),
+  patience numeric(5,2) check (patience is null or patience between 0 and 100),
+  formality numeric(5,2) check (formality is null or formality between 0 and 100),
   summary text,
   created_at timestamptz not null default now(),
   updated_at timestamptz not null default now()
 );
 
-create table if not exists saved_comparisons (
+create table if not exists employee_pi_profiles (
   id uuid primary key default gen_random_uuid(),
-  title text,
-  profile_a text not null,
-  profile_b text not null,
-  notes text,
+  name text not null,
+  position text not null default '',
+  department text not null default '',
+  pi_profile_id text not null,
+  dominance numeric(5,2) not null check (dominance between 0 and 100),
+  extraversion numeric(5,2) not null check (extraversion between 0 and 100),
+  patience numeric(5,2) not null check (patience between 0 and 100),
+  formality numeric(5,2) not null check (formality between 0 and 100),
+  assessment_date date,
+  notes text not null default '',
   created_at timestamptz not null default now(),
   updated_at timestamptz not null default now()
 );
 
-create table if not exists inference_runs (
-  id uuid primary key default gen_random_uuid(),
-  profile_name text not null,
-  input jsonb not null default '{}'::jsonb,
-  output jsonb not null default '{}'::jsonb,
-  created_at timestamptz not null default now()
+create index if not exists employee_pi_profiles_name_idx
+  on employee_pi_profiles (lower(name));
+
+create table if not exists hsi_mappings (
+  lens_id text not null,
+  profile_id text not null,
+  output_text text,
+  fields_raw text,
+  fields jsonb not null default '{}'::jsonb,
+  notes text,
+  status text not null default 'unmapped',
+  created_at timestamptz not null default now(),
+  updated_at timestamptz not null default now(),
+  primary key (lens_id, profile_id)
 );
 
 create or replace function set_updated_at()
@@ -44,9 +58,14 @@ create trigger profiles_set_updated_at
 before update on profiles
 for each row execute function set_updated_at();
 
-drop trigger if exists saved_comparisons_set_updated_at on saved_comparisons;
-create trigger saved_comparisons_set_updated_at
-before update on saved_comparisons
+drop trigger if exists employee_pi_profiles_set_updated_at on employee_pi_profiles;
+create trigger employee_pi_profiles_set_updated_at
+before update on employee_pi_profiles
+for each row execute function set_updated_at();
+
+drop trigger if exists hsi_mappings_set_updated_at on hsi_mappings;
+create trigger hsi_mappings_set_updated_at
+before update on hsi_mappings
 for each row execute function set_updated_at();
 
 insert into profiles (name, group_name, dominance, extraversion, patience, formality, summary)
@@ -75,23 +94,3 @@ on conflict (name) do update set
   patience = excluded.patience,
   formality = excluded.formality,
   summary = excluded.summary;
-
--- HSI lens-profile mapping table
-create table if not exists hsi_mappings (
-  id uuid primary key default gen_random_uuid(),
-  lens_id text not null,
-  profile_id text not null,
-  output_text text,
-  fields_raw text,
-  fields jsonb not null default '{}'::jsonb,
-  notes text,
-  status text not null default 'unmapped',
-  created_at timestamptz not null default now(),
-  updated_at timestamptz not null default now(),
-  unique (lens_id, profile_id)
-);
-
-drop trigger if exists hsi_mappings_set_updated_at on hsi_mappings;
-create trigger hsi_mappings_set_updated_at
-before update on hsi_mappings
-for each row execute function set_updated_at();
