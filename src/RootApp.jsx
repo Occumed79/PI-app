@@ -60,16 +60,37 @@ export default function RootApp() {
     loadEmployees();
   }, [loadEmployees]);
 
+  useEffect(() => {
+    let animationFrame = 0;
+
+    function updatePointerGlow(event) {
+      cancelAnimationFrame(animationFrame);
+      animationFrame = requestAnimationFrame(() => {
+        document.documentElement.style.setProperty('--pointer-x', `${event.clientX}px`);
+        document.documentElement.style.setProperty('--pointer-y', `${event.clientY}px`);
+      });
+    }
+
+    window.addEventListener('pointermove', updatePointerGlow, { passive: true });
+    return () => {
+      cancelAnimationFrame(animationFrame);
+      window.removeEventListener('pointermove', updatePointerGlow);
+    };
+  }, []);
+
   return (
-    <div className="min-h-screen bg-slate-950 text-white">
-      <div className="pointer-events-none fixed inset-0 overflow-hidden">
-        <div className="absolute -left-28 top-0 h-96 w-96 rounded-full bg-sky-500/10 blur-3xl"/>
-        <div className="absolute right-0 top-40 h-96 w-96 rounded-full bg-fuchsia-500/8 blur-3xl"/>
-        <div className="absolute bottom-0 left-1/3 h-96 w-96 rounded-full bg-emerald-500/6 blur-3xl"/>
+    <div className="pi-shell min-h-screen bg-slate-950 text-white">
+      <div className="pi-ambient pointer-events-none fixed inset-0 overflow-hidden" aria-hidden="true">
+        <div className="pi-orb pi-orb-a absolute -left-28 top-0 h-96 w-96 rounded-full bg-sky-500/10 blur-3xl"/>
+        <div className="pi-orb pi-orb-b absolute right-0 top-40 h-96 w-96 rounded-full bg-fuchsia-500/8 blur-3xl"/>
+        <div className="pi-orb pi-orb-c absolute bottom-0 left-1/3 h-96 w-96 rounded-full bg-emerald-500/6 blur-3xl"/>
+        <div className="pi-light-wave"/>
+        <div className="pi-cursor-light"/>
+        <div className="pi-refraction-noise"/>
       </div>
 
       <div className="relative mx-auto max-w-[1400px] px-4 pb-10 pt-5 sm:px-6 lg:px-8">
-        <div className="mb-5 rounded-3xl border border-white/10 bg-white/[0.06] p-3 shadow-2xl shadow-black/20 backdrop-blur-xl">
+        <div className="pi-glass-panel pi-nav-panel mb-5 rounded-3xl border border-white/10 bg-white/[0.06] p-3 shadow-2xl shadow-black/20 backdrop-blur-xl">
           <div className="grid grid-cols-1 gap-2 sm:grid-cols-3">
             {MODES.map(({ id, label, sub, Icon, active }) => (
               <button
@@ -77,7 +98,7 @@ export default function RootApp() {
                 type="button"
                 onClick={() => setMode(id)}
                 className={cx(
-                  'flex items-center gap-3 rounded-2xl border px-4 py-3 text-left transition',
+                  'pi-glass-control flex items-center gap-3 rounded-2xl border px-4 py-3 text-left transition',
                   mode === id
                     ? `${active} text-white`
                     : 'border-white/10 bg-white/[0.03] text-white/55 hover:bg-white/10 hover:text-white'
@@ -95,7 +116,7 @@ export default function RootApp() {
 
         {mode === 'hsi' && <VisualLensWorkspace />}
         {mode === 'builder' && (
-          <div className="rounded-3xl border border-white/10 bg-white/[0.03] shadow-2xl shadow-black/20">
+          <div className="pi-glass-panel rounded-3xl border border-white/10 bg-white/[0.03] shadow-2xl shadow-black/20">
             <EmployeeTab
               employees={employees}
               setEmployees={setEmployees}
@@ -106,7 +127,7 @@ export default function RootApp() {
           </div>
         )}
         {mode === 'ai' && (
-          <div className="rounded-3xl border border-white/10 bg-white/[0.03] shadow-2xl shadow-black/20">
+          <div className="pi-glass-panel rounded-3xl border border-white/10 bg-white/[0.03] shadow-2xl shadow-black/20">
             <AITab employees={employees} />
           </div>
         )}
