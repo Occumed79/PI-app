@@ -1,77 +1,94 @@
 # PI Crosswalk Intelligence
 
-A single-user internal Vite + React + Express + Neon Postgres application for translating completed Predictive Index behavioral profiles across related behavioral frameworks.
+A single-user internal React + Express + Neon application for translating completed Predictive Index behavioral results across related frameworks.
 
 ## Product definition
 
-Employees have already completed their Predictive Index assessments. Their PI profile and factor data are the source assessment.
-
-The application uses PI factor patterns and profile-to-trait correspondence to produce directional crosswalks into frameworks such as Big Five, HEXACO, Hogan, EQ-i, DISC, and other behavioral lenses.
+Employees have already completed their Predictive Index assessments. The stored PI reference profile and exact Dominance, Extraversion, Patience, and Formality values are the source assessment.
 
 The translation chain is:
 
 ```txt
 Completed PI result
-→ PI profile and factor pattern
-→ trait correspondence / crosswalk rules
+→ exact D / E / P / F factor pattern
+→ documented trait correspondence
 → cross-framework interpretation
 ```
 
-A crosswalk output is not represented as a separately administered assessment unless separate assessment data is explicitly entered later.
+Big Five, HEXACO, Hogan, EQ-i, DISC, and other framework outputs are PI-derived crosswalks unless separate assessment results are explicitly entered later. This is an internal tool for one user; authentication, roles, tenants, invitations, and multi-user supervisory workflows are intentionally outside scope.
 
-This is an internal tool for one user. Authentication, roles, tenants, invitations, and multi-user supervisory workflows are not part of the intended scope.
+## Active product areas
 
-## Active app areas
+- **PI Crosswalk Intelligence** — explore reference PI profiles and translation lenses.
+- **Employee PI Profiles** — create, edit, search, and delete completed PI records stored in Neon.
+- **Crosswalk Assistant** — analyze exact employee PI factors and explain cross-framework translations.
 
-- PI Crosswalk Intelligence
-- Employee PI Profiles
-- Crosswalk Assistant
+## Exact-factor crosswalk engine
+
+The employee workspace currently calculates directional snapshots from exact D/E/P/F values for:
+
+- Big Five
+- HEXACO
+- DISC
+- Hogan HPI
+- Hogan HDS
+- EQ-i
+
+Each calculation retains a text explanation of the PI factor correspondence. Reference-profile lens visuals remain available, but they are labeled separately from exact-factor calculations.
+
+## Employee data stored in Neon
+
+`employee_pi_profiles` stores:
+
+- Employee name
+- Position
+- Department or team
+- Completed PI reference profile
+- Exact Dominance, Extraversion, Patience, and Formality values
+- Assessment date
+- Notes
+- Created and updated timestamps
+
+The runtime schema and `server/schema.sql` now use the same table definitions.
 
 ## Tech stack
 
-- React
-- Vite
+- React 18 and Vite
 - Tailwind CSS
-- Framer Motion
 - Recharts
-- Lucide React icons
 - Express
 - Neon Postgres
+- Gemini and Groq provider fallback
 - Render Web Service
 
 ## Local development
 
-Install dependencies:
-
 ```bash
 npm install
-```
-
-Run the React development server:
-
-```bash
 npm run dev
 ```
 
-Run the production server after building the frontend:
+Production build and server:
 
 ```bash
 npm run build
 npm start
 ```
 
+Run tests and the production build together:
+
+```bash
+npm run check
+```
+
 ## Neon setup
 
 1. Create or open the Neon database.
-2. Copy the pooled connection string.
-3. Add it as `DATABASE_URL`.
-4. Run `server/schema.sql` when initializing a new database.
-
-The current database layer contains PI profile and HSI crosswalk mapping structures. Employee PI persistence is a separate implementation step.
+2. Add the pooled connection string as `DATABASE_URL`.
+3. The server automatically creates the required schema on first database use.
+4. `server/schema.sql` is available for explicit initialization or inspection.
 
 ## Render setup
-
-Use a Render Web Service.
 
 ```txt
 Environment: Node
@@ -89,23 +106,29 @@ CLIENT_ORIGIN=your_render_url
 AI_PROVIDER=auto
 GEMINI_API_KEY=optional
 GROQ_API_KEY=optional
+GEMINI_MODEL=optional
+GROQ_MODEL=optional
 ```
 
 ## Health checks
 
 ```txt
-/api/health
-/api/db/health
+GET /api/health
+GET /api/db/health
 ```
 
-- `/api/health` confirms that the Render service is running.
-- `/api/db/health` confirms whether Neon is connected and the runtime schema is available.
-
-## Current API endpoints
+## Employee API
 
 ```txt
-GET  /api/health
-GET  /api/db/health
+GET    /api/employees
+POST   /api/employees
+PUT    /api/employees/:id
+DELETE /api/employees/:id
+```
+
+## Other API endpoints
+
+```txt
 GET  /api/profiles
 POST /api/profiles
 POST /api/ai-chat
@@ -115,6 +138,11 @@ PUT  /api/hsi/mappings/:lensId/:profileId
 POST /api/hsi/mappings/bulk
 ```
 
-## Crosswalk interpretation rule
+## Validation
 
-The PI profile is the source. Other framework outputs are derived translations from PI unless the application explicitly identifies separately entered assessment data.
+Pull requests run GitHub Actions checks for:
+
+- Crosswalk engine unit tests
+- Production Vite build
+- Express server syntax
+- Database module syntax
