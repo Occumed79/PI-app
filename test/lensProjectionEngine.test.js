@@ -42,10 +42,10 @@ test('context overlays preserve the PI baseline and calculate an apparent shift'
   assert.equal(context.overlays[0].label, CONTEXT_OVERLAY_BY_ID['adhd-executive-load'].label);
 });
 
-test('every registry lens returns a usable bounded projection', () => {
+test('every actual registry lens returns a usable bounded projection', () => {
   const projections = deriveAllLensProjections(ANALYZER, ['acute-stress-overload']);
   assert.equal(projections.length, HSI_LENS_REGISTRY.length);
-  assert.equal(projections.length, 104);
+  assert.equal(HSI_LENS_REGISTRY.length, 101, 'Review and update projection coverage when registry entries change.');
 
   for (const projection of projections) {
     assert.ok(projection.lensId);
