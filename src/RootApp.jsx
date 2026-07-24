@@ -1,10 +1,12 @@
-import React, { useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import { BrainCircuit, ClipboardList, Layers3 } from 'lucide-react';
 import VisualLensWorkspace from './VisualLensWorkspace.jsx';
 import EmployeeTab from './components/EmployeeTab.jsx';
 import AITab from './components/AITab.jsx';
 
-function cx(...c) { return c.filter(Boolean).join(' '); }
+function cx(...classes) {
+  return classes.filter(Boolean).join(' ');
+}
 
 const MODES = [
   {
@@ -17,7 +19,7 @@ const MODES = [
   {
     id: 'builder',
     label: 'Employee PI Profiles',
-    sub: 'Enter completed Predictive Index results',
+    sub: 'Store completed Predictive Index results',
     Icon: ClipboardList,
     active: 'border-fuchsia-300/40 bg-fuchsia-500/15',
   },
@@ -33,6 +35,30 @@ const MODES = [
 export default function RootApp() {
   const [mode, setMode] = useState('hsi');
   const [employees, setEmployees] = useState([]);
+  const [employeesLoading, setEmployeesLoading] = useState(true);
+  const [employeesError, setEmployeesError] = useState('');
+
+  const loadEmployees = useCallback(async () => {
+    setEmployeesLoading(true);
+    setEmployeesError('');
+    try {
+      const response = await fetch('/api/employees', {
+        headers: { Accept: 'application/json' },
+        signal: AbortSignal.timeout(15000),
+      });
+      const data = await response.json().catch(() => ({}));
+      if (!response.ok) throw new Error(data.message || `Employee API returned ${response.status}`);
+      setEmployees(Array.isArray(data.employees) ? data.employees : []);
+    } catch (error) {
+      setEmployeesError(error?.message || 'Unable to load employee PI profiles.');
+    } finally {
+      setEmployeesLoading(false);
+    }
+  }, []);
+
+  useEffect(() => {
+    loadEmployees();
+  }, [loadEmployees]);
 
   return (
     <div className="min-h-screen bg-slate-950 text-white">
@@ -42,7 +68,7 @@ export default function RootApp() {
         <div className="absolute bottom-0 left-1/3 h-96 w-96 rounded-full bg-emerald-500/6 blur-3xl"/>
       </div>
 
-      <div className="relative mx-auto max-w-[1400px] px-4 pt-5 pb-10 sm:px-6 lg:px-8">
+      <div className="relative mx-auto max-w-[1400px] px-4 pb-10 pt-5 sm:px-6 lg:px-8">
         <div className="mb-5 rounded-3xl border border-white/10 bg-white/[0.06] p-3 shadow-2xl shadow-black/20 backdrop-blur-xl">
           <div className="grid grid-cols-1 gap-2 sm:grid-cols-3">
             {MODES.map(({ id, label, sub, Icon, active }) => (
@@ -70,7 +96,13 @@ export default function RootApp() {
         {mode === 'hsi' && <VisualLensWorkspace />}
         {mode === 'builder' && (
           <div className="rounded-3xl border border-white/10 bg-white/[0.03] shadow-2xl shadow-black/20">
-            <EmployeeTab employees={employees} setEmployees={setEmployees} />
+            <EmployeeTab
+              employees={employees}
+              setEmployees={setEmployees}
+              loading={employeesLoading}
+              loadError={employeesError}
+              reloadEmployees={loadEmployees}
+            />
           </div>
         )}
         {mode === 'ai' && (
