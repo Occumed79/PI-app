@@ -1,6 +1,7 @@
 const FACTOR_KEYS = ['dominance', 'extraversion', 'patience', 'formality'];
 
 function clamp(value) {
+  if (value === null || value === undefined || value === '') return 50;
   const numeric = Number(value);
   if (!Number.isFinite(numeric)) return 50;
   return Math.max(0, Math.min(100, Math.round(numeric)));
