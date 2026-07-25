@@ -32,12 +32,23 @@ const schemaSql = `
     formality numeric(5,2) not null check (formality between 0 and 100),
     assessment_date date,
     notes text not null default '',
+    context_overlays jsonb not null default '[]'::jsonb,
+    context_notes text not null default '',
     created_at timestamptz not null default now(),
     updated_at timestamptz not null default now()
   );
 
+  alter table employee_pi_profiles
+    add column if not exists context_overlays jsonb not null default '[]'::jsonb;
+
+  alter table employee_pi_profiles
+    add column if not exists context_notes text not null default '';
+
   create index if not exists employee_pi_profiles_name_idx
     on employee_pi_profiles (lower(name));
+
+  create index if not exists employee_pi_profiles_context_overlays_idx
+    on employee_pi_profiles using gin (context_overlays);
 
   create table if not exists hsi_mappings (
     lens_id text not null,

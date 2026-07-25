@@ -1,40 +1,94 @@
 # PI Crosswalk Intelligence
 
-A single-user internal React + Express + Neon application for translating completed Predictive Index behavioral results across related frameworks.
+A single-user internal React + Express + Neon application for translating completed Predictive Index behavioral results across related frameworks and exploring how explicitly selected life or environmental variables may bend the visible PI presentation.
 
 ## Product definition
 
-Employees have already completed their Predictive Index assessments. The stored PI reference profile and exact Dominance, Extraversion, Patience, and Formality values are the source assessment.
+Employees have already completed their Predictive Index assessments. The stored PI reference profile and exact Dominance, Extraversion, Patience, and Formality values are the baseline source assessment.
 
-The translation chain is:
+The full interpretation chain is:
 
 ```txt
 Completed PI result
-→ exact D / E / P / F factor pattern
-→ documented trait correspondence
-→ cross-framework interpretation
+→ exact D / E / P / F baseline
+→ optional explicitly selected life/environment overlay
+→ apparent PI presentation shift
+→ cross-framework lens projection
 ```
 
-Big Five, HEXACO, Hogan, EQ-i, DISC, and other framework outputs are PI-derived crosswalks unless separate assessment results are explicitly entered later. This is an internal tool for one user; authentication, roles, tenants, invitations, and multi-user supervisory workflows are intentionally outside scope.
+Big Five, HEXACO, Hogan, EQ-i, DISC, and other framework outputs are PI-derived crosswalks unless separate assessment results are explicitly entered later.
+
+Life, family, health, immigration, neurodiversity, stress, trauma, financial, cultural, legal, sensory, or environmental variables are context overlays. They may amplify, suppress, mask, or temporarily bend visible PI behavior. The application never infers that an overlay exists from PI data.
+
+This is an internal tool for one user. Authentication, roles, tenants, invitations, and multi-user supervisory workflows are intentionally outside scope.
 
 ## Active product areas
 
-- **PI Crosswalk Intelligence** — explore reference PI profiles and translation lenses.
-- **Employee PI Profiles** — create, edit, search, and delete completed PI records stored in Neon.
-- **Crosswalk Assistant** — analyze exact employee PI factors and explain cross-framework translations.
+- **PI Crosswalk Intelligence** — explore PI reference profiles and the lens library.
+- **Employee PI Profiles** — create, edit, search, and delete exact PI records and optional context variables stored in Neon.
+- **Crosswalk Assistant** — analyze exact employee PI factors, selected overlays, and relevant lens calculations.
 
-## Exact-factor crosswalk engine
+## Registry-wide projection engine
 
-The employee workspace currently calculates directional snapshots from exact D/E/P/F values for:
+Every one of the repository’s **101 actual registry entries** now returns an exact employee projection. Earlier code metadata claimed 104, but the array itself contains 101 records; Beast Mode 2.0 validates the real source array rather than repeating the stale count.
 
-- Big Five
+The engine contains dedicated PI translation builders for major framework families including:
+
+- Big Five and Workplace Big Five
 - HEXACO
 - DISC
-- Hogan HPI
-- Hogan HDS
+- Hogan HPI and HDS
 - EQ-i
+- 16PF
+- MBTI and Keirsey
+- Insights Discovery
+- Cognitive processing and decision style
+- Executive function and cognitive load
+- Learning preferences and learning agility
+- Kolbe, HBDI, KAI, TKI, FIRO-B, SDI, and Social Styles
+- Enneagram, VIA, Reiss, Schwartz Values, and work values
+- CliftonStrengths domains
+- Belbin, TMS, Lencioni, team synthesis, and role fit
+- Leadership Circle, leadership versatility, situational leadership, and Lominger-style competency views
+- Purpose, meaning, trust, psychological safety, feedback, metacognition, and social cognition
 
-Each calculation retains a text explanation of the PI factor correspondence. Reference-profile lens visuals remain available, but they are labeled separately from exact-factor calculations.
+Specialty or duplicate registry entries use a category-aware exact-factor fallback rather than silently returning a blanket reference-profile result.
+
+Reference-profile visuals remain available as the visual library. The employee lens modal places exact calculated dimensions above the reference visual and clearly labels the distinction.
+
+## Life and environmental variables
+
+The original lived-experience layer has been restored to the active app. The catalog includes these category families:
+
+- Economic and material security
+- Family systems and caregiving
+- Immigration, displacement, language load, and cultural transition
+- Education and access background
+- Neurodivergence and cognitive accessibility
+- Disability, chronic illness, pain, sleep, treatment, and body-based factors
+- Trauma, adversity, acute stress, and nervous-system load
+- Identity safety, marginalization, discrimination, and belonging
+- Work history and occupational socialization
+- Social support and community context
+- Life-stage and transition factors
+- Environmental and sensory context
+- Cultural values and communication norms
+- Legal, administrative, and bureaucratic stress
+- Protective factors, practical resources, and psychological safety
+
+Variables may be:
+
+- Saved on an employee record when known and appropriate.
+- Tested temporarily inside any lens as a hypothetical scenario without saving or labeling the employee.
+
+The employee view always keeps the completed PI baseline visible beside the context-bent apparent presentation.
+
+## Important interpretation boundaries
+
+- PI does not diagnose ADHD, autism, burnout, stress, trauma, disability, illness, immigration status, family strain, or any protected/private characteristic.
+- A context overlay is used only when explicitly selected or explicitly asked as a hypothetical.
+- Cognitive ability, CRT, Wonderlic, and MSCEIT-style lenses describe how work style or context may affect observed task/test expression. They do not fabricate ability, intelligence, accuracy, percentile, or administered-test scores.
+- Crosswalk values are directional internal interpretations, not licensed replacement reports for proprietary assessments.
 
 ## Employee data stored in Neon
 
@@ -46,10 +100,22 @@ Each calculation retains a text explanation of the PI factor correspondence. Ref
 - Completed PI reference profile
 - Exact Dominance, Extraversion, Patience, and Formality values
 - Assessment date
-- Notes
+- PI source notes
+- Selected life/environment overlay IDs
+- Context notes
 - Created and updated timestamps
 
-The runtime schema and `server/schema.sql` now use the same table definitions.
+The runtime schema and `server/schema.sql` use the same table definitions and automatically add the overlay columns to existing databases.
+
+## AI provider behavior
+
+The server uses:
+
+1. Gemini when configured.
+2. Groq as fallback when configured.
+3. A built-in non-AI fallback when neither provider completes.
+
+The Crosswalk Assistant dynamically calculates the lenses relevant to the question and sends the exact baseline, explicit overlays, apparent PI shift, and calculated lens dimensions to the provider.
 
 ## Tech stack
 
@@ -85,7 +151,7 @@ npm run check
 
 1. Create or open the Neon database.
 2. Add the pooled connection string as `DATABASE_URL`.
-3. The server automatically creates the required schema on first database use.
+3. The server automatically creates or upgrades the required schema on first database use.
 4. `server/schema.sql` is available for explicit initialization or inspection.
 
 ## Render setup
@@ -126,6 +192,15 @@ PUT    /api/employees/:id
 DELETE /api/employees/:id
 ```
 
+Employee POST and PUT payloads now include:
+
+```json
+{
+  "contextOverlays": ["adhd-executive-load", "financial-strain"],
+  "contextNotes": "Known variables or clearly labeled hypothetical context."
+}
+```
+
 ## Other API endpoints
 
 ```txt
@@ -142,7 +217,11 @@ POST /api/hsi/mappings/bulk
 
 Pull requests run GitHub Actions checks for:
 
-- Crosswalk engine unit tests
+- Existing PI crosswalk unit tests
+- Lived-experience catalog coverage
+- All 101 actual registry lens projections
+- Overlay baseline-preservation and apparent-shift behavior
+- Ability-lens interpretation boundaries
 - Production Vite build
 - Express server syntax
 - Database module syntax
