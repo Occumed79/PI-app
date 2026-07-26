@@ -32,8 +32,7 @@ const VISUAL_FAMILIES = {
   enneagram: ['enneagramWheel'],
   pyramid: ['pyramid'],
   timeline: ['timelineTagCloud'],
-  matrix: ['matrix', 'roleMatrix', 'competencyMatrix', 'itemTablePassRate'],
-  heatmap: ['networkHeatmap'],
+  matrix: ['matrix', 'roleMatrix', 'competencyMatrix', 'itemTablePassRate', 'networkHeatmap'],
   spiral: ['spiralBands'],
   checklist: ['accessibilityMatrixRadar', 'profileBarsChecklist', 'profileChecklist'],
   continuum: ['continuumBars', 'threeBars', 'threeBarsCircumplex'],
@@ -63,6 +62,28 @@ const TYPE_TO_FAMILY = Object.entries(VISUAL_FAMILIES).reduce((map, [family, typ
   for (const type of types) map.set(type, family);
   return map;
 }, new Map());
+
+export const NATIVE_RENDERER_FAMILIES = Object.freeze([
+  'radar',
+  'trend',
+  'quadrant',
+  'colorWheel',
+  'donut',
+  'gauge',
+  'enneagram',
+  'pyramid',
+  'timeline',
+  'matrix',
+  'spiral',
+  'checklist',
+  'continuum',
+  'circumplex',
+  'triangle',
+  'wheel',
+  'curve',
+  'bars',
+  'placeholder',
+]);
 
 export function getNativeVisualFamily(visualType = '') {
   return TYPE_TO_FAMILY.get(String(visualType || '')) || 'unsupported';
