@@ -5,6 +5,7 @@ import { PI_PROFILES } from '../src/data/profiles.js';
 import {
   getNativeVisualFamily,
   isNativeVisualTypeSupported,
+  NATIVE_RENDERER_FAMILIES,
 } from '../src/data/nativeVisualTypes.js';
 import {
   getLensExplainer,
@@ -20,14 +21,18 @@ test('canonical lens registry has unique ids', () => {
   assert.ok(ids.length >= 50);
 });
 
-test('every canonical lens visual type has an explicit native renderer', () => {
+test('every canonical lens visual type routes to an implemented native renderer', () => {
   for (const lens of CANONICAL_LENS_VISUALS) {
+    const family = getNativeVisualFamily(lens.visualType);
     assert.equal(
       isNativeVisualTypeSupported(lens.visualType),
       true,
       `${lens.id} uses unsupported visual type ${lens.visualType}`
     );
-    assert.notEqual(getNativeVisualFamily(lens.visualType), 'unsupported');
+    assert.ok(
+      NATIVE_RENDERER_FAMILIES.includes(family),
+      `${lens.id} routes ${lens.visualType} to unimplemented family ${family}`
+    );
   }
 });
 
