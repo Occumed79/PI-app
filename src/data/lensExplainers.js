@@ -104,9 +104,10 @@ export function getLensExplainer(lens, projection) {
   const family = getNativeVisualFamily(lens?.visualType);
   const reason = lens?.visualReason || lens?.why || 'The visual summarizes the lens dimensions.';
   const strongest = (projection?.strongest || []).slice(0, 3).map(item => item.label);
+  const summaryId = lens?.canonicalId || lens?.id;
 
   return {
-    whatItIs: FRAMEWORK_SUMMARIES[lens?.id] || `${lens?.lens || 'This lens'} is a ${String(lens?.category || 'behavioral').toLowerCase()} framework translated from the selected PI pattern.`,
+    whatItIs: FRAMEWORK_SUMMARIES[summaryId] || `${lens?.lens || 'This lens'} is a ${String(lens?.category || 'behavioral').toLowerCase()} framework translated from the selected PI pattern.`,
     whatItShows: `${reason}${strongest.length ? ` For the selected PI profile, the strongest projected dimensions are ${strongest.join(', ')}.` : ''}`,
     howToRead: VISUAL_READING[family] || VISUAL_READING.unsupported,
     bestUse: CATEGORY_USE[lens?.category] || CATEGORY_USE.Other,
