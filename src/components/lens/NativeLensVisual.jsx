@@ -119,8 +119,8 @@ function Bars({ data, limit = 10 }) {
             <span className="min-w-0 break-words leading-5 text-white/75">{item.name}</span>
             <span className="shrink-0 font-semibold text-white/70">{Math.round(item.value)}</span>
           </div>
-          <div className="h-2 overflow-hidden rounded-full bg-white/10">
-            <div className="pi-luminous-bar h-full rounded-full" style={{ width: `${Math.max(3, item.value)}%`, background: item.color, boxShadow: `0 0 14px ${item.color}99` }} />
+          <div className="h-2 overflow-visible rounded-full bg-white/10">
+            <div className="pi-luminous-bar h-full rounded-full" style={{ width: `${Math.max(3, item.value)}%`, background: item.color, boxShadow: `0 0 7px ${item.color}, 0 0 18px ${item.color}bb, 0 0 30px ${item.color}55` }} />
           </div>
           {item.basis && <p className="mt-2 text-[11px] leading-4 text-white/40">{item.basis}</p>}
         </div>
@@ -152,7 +152,25 @@ function Radar({ data, lens }) {
           <svg viewBox="-18 -18 136 136" className="mx-auto h-auto min-h-[300px] w-full max-w-[600px] overflow-visible" aria-label={`${lens.lens} trait-shape chart`}>
             {[12, 24, 36].map(radius => <circle key={radius} cx="50" cy="50" r={radius} fill="none" stroke="rgba(255,255,255,.12)" />)}
             {points.map(point => <line key={`line-${point.name}`} x1="50" y1="50" x2={point.lx} y2={point.ly} stroke="rgba(255,255,255,.11)" />)}
-            <polygon points={points.map(point => `${point.x},${point.y}`).join(' ')} fill="rgba(56,189,248,.27)" stroke="#38bdf8" strokeWidth="1.2" style={{ filter: 'drop-shadow(0 0 5px rgba(56,189,248,.75))' }} />
+            <polygon
+              points={points.map(point => `${point.x},${point.y}`).join(' ')}
+              fill="rgba(56,189,248,.34)"
+              stroke="#38bdf8"
+              strokeWidth="1.7"
+              style={{ filter: 'drop-shadow(0 0 2px rgba(56,189,248,1)) drop-shadow(0 0 7px rgba(56,189,248,.95)) drop-shadow(0 0 15px rgba(56,189,248,.62))' }}
+            />
+            {points.map(point => (
+              <circle
+                key={`vertex-${point.name}`}
+                cx={point.x}
+                cy={point.y}
+                r="1.35"
+                fill="#7dd3fc"
+                stroke="#e0f2fe"
+                strokeWidth="0.35"
+                style={{ filter: 'drop-shadow(0 0 3px rgba(56,189,248,1)) drop-shadow(0 0 7px rgba(56,189,248,.9))' }}
+              />
+            ))}
             {points.map(point => <SvgLabel key={point.name} x={point.lx} y={point.ly} label={point.name} fontSize={3.05} />)}
           </svg>
         </div>
@@ -175,7 +193,7 @@ function Quadrant({ data, lens }) {
         <div className="absolute right-4 top-4 max-w-[43%] break-words text-right text-xs leading-5 text-white/60">{labels[1] || 'Expressive'}</div>
         <div className="absolute bottom-4 left-4 max-w-[43%] break-words text-xs leading-5 text-white/60">{labels[2] || 'Steady'}</div>
         <div className="absolute bottom-4 right-4 max-w-[43%] break-words text-right text-xs leading-5 text-white/60">{labels[3] || 'Precise'}</div>
-        <div className="absolute h-8 w-8 -translate-x-1/2 -translate-y-1/2 rounded-full border-2 border-white bg-sky-400 shadow-lg shadow-sky-500/50" style={{ left: `${50 + x}%`, top: `${50 - y}%`, boxShadow: '0 0 24px rgba(56,189,248,.75)' }} />
+        <div className="absolute h-8 w-8 -translate-x-1/2 -translate-y-1/2 rounded-full border-2 border-white bg-sky-400" style={{ left: `${50 + x}%`, top: `${50 - y}%`, boxShadow: '0 0 8px rgba(56,189,248,1), 0 0 24px rgba(56,189,248,.9), 0 0 42px rgba(56,189,248,.45)' }} />
       </div>
       <div className="mt-4"><Bars data={data} limit={4} /></div>
     </Panel>
@@ -189,8 +207,8 @@ function Gauge({ data, lens }) {
       <div className="pi-chart-stage rounded-3xl p-5 text-center">
         <div className="text-5xl font-bold text-white drop-shadow-[0_0_14px_rgba(56,189,248,0.45)] sm:text-6xl">{value}</div>
         <div className="mt-1 text-xs uppercase tracking-[0.2em] text-white/45">projected index</div>
-        <div className="mx-auto mt-5 h-3 max-w-md overflow-hidden rounded-full bg-white/10">
-          <div className="pi-luminous-bar h-full rounded-full bg-sky-400" style={{ width: `${value}%`, boxShadow: '0 0 18px rgba(56,189,248,.8)' }} />
+        <div className="mx-auto mt-5 h-3 max-w-md overflow-visible rounded-full bg-white/10">
+          <div className="pi-luminous-bar h-full rounded-full bg-sky-400" style={{ width: `${value}%`, boxShadow: '0 0 8px rgba(56,189,248,1), 0 0 22px rgba(56,189,248,.9), 0 0 38px rgba(56,189,248,.45)' }} />
         </div>
       </div>
       {data.length > 1 && <div className="mt-4"><Bars data={data.slice(1)} limit={5} /></div>}
@@ -211,7 +229,7 @@ function ColorWheel({ data, lens, title = 'Color energy wheel' }) {
   return (
     <Panel title={title} subtitle={lens.visualLabel}>
       <div className="grid items-center gap-5 md:grid-cols-2">
-        <div className="relative mx-auto h-56 w-56 rounded-full sm:h-64 sm:w-64" style={{ background: `conic-gradient(${gradient})`, boxShadow: '0 0 36px rgba(56,189,248,.24), inset 0 0 22px rgba(255,255,255,.12)' }}>
+        <div className="relative mx-auto h-56 w-56 rounded-full sm:h-64 sm:w-64" style={{ background: `conic-gradient(${gradient})`, filter: 'saturate(1.18) brightness(1.06)', boxShadow: '0 0 12px rgba(56,189,248,.38), 0 0 34px rgba(129,140,248,.30), 0 0 56px rgba(244,114,182,.17), inset 0 0 24px rgba(255,255,255,.15)' }}>
           <div className="absolute inset-10 rounded-full border border-white/15 bg-slate-950/90 shadow-[inset_0_0_22px_rgba(255,255,255,0.06)]" />
           <div className="absolute inset-0 flex items-center justify-center px-10 text-center text-sm font-bold text-white">{lens.lens}</div>
         </div>
@@ -240,10 +258,10 @@ function ShapeMap({ data, lens, title, sides }) {
     <Panel title={title} subtitle={lens.visualLabel}>
       <div className="pi-chart-stage px-3 py-5">
         <svg viewBox="-18 -18 136 136" className="mx-auto min-h-[300px] w-full max-w-[600px] overflow-visible" aria-label={`${lens.lens} ${title}`}>
-          <polygon points={points.map(point => `${point.x},${point.y}`).join(' ')} fill="rgba(56,189,248,.15)" stroke="rgba(56,189,248,.92)" strokeWidth="1.2" style={{ filter: 'drop-shadow(0 0 5px rgba(56,189,248,.65))' }} />
+          <polygon points={points.map(point => `${point.x},${point.y}`).join(' ')} fill="rgba(56,189,248,.24)" stroke="rgba(56,189,248,1)" strokeWidth="1.55" style={{ filter: 'drop-shadow(0 0 3px rgba(56,189,248,1)) drop-shadow(0 0 9px rgba(56,189,248,.85)) drop-shadow(0 0 17px rgba(56,189,248,.5))' }} />
           {points.map(point => (
             <g key={point.name}>
-              <circle cx={point.x} cy={point.y} r="3.8" fill={point.color} style={{ filter: `drop-shadow(0 0 3px ${point.color})` }} />
+              <circle cx={point.x} cy={point.y} r="4" fill={point.color} stroke="rgba(255,255,255,.85)" strokeWidth="0.45" style={{ filter: `drop-shadow(0 0 4px ${point.color}) drop-shadow(0 0 10px ${point.color})` }} />
               <SvgLabel x={point.lx} y={point.ly} label={point.name} fontSize={3.05} />
             </g>
           ))}
@@ -260,7 +278,7 @@ function Pyramid({ data, lens }) {
     <Panel title="Layered pyramid" subtitle={lens.visualLabel}>
       <div className="mx-auto flex max-w-xl flex-col-reverse gap-2">
         {layers.map((item, index) => (
-          <div key={item.name} className="pi-color-tile mx-auto rounded-xl border px-3 py-3 text-center text-sm text-white/80" style={{ width: `${48 + index * 9}%`, background: `${item.color}26`, borderColor: `${item.color}70`, ...glowVars(item.color) }}>
+          <div key={item.name} className="pi-color-tile mx-auto rounded-xl border px-3 py-3 text-center text-sm text-white/80" style={{ width: `${48 + index * 9}%`, background: `${item.color}30`, borderColor: `${item.color}80`, boxShadow: `0 0 8px ${item.color}66, 0 0 22px ${item.color}3d`, ...glowVars(item.color) }}>
             {item.name} · {Math.round(item.value)}
           </div>
         ))}
@@ -277,7 +295,7 @@ function Matrix({ data, lens }) {
           <div key={item.name} className="pi-color-tile rounded-2xl border border-white/10 bg-white/[0.05] p-4" style={glowVars(item.color)}>
             <div className="text-[10px] uppercase tracking-[0.16em] text-white/45">Dimension {index + 1}</div>
             <div className="mt-2 break-words text-sm font-semibold text-white/85">{item.name}</div>
-            <div className="mt-3 h-2 rounded-full bg-white/10"><div className="pi-luminous-bar h-full rounded-full" style={{ width: `${item.value}%`, background: item.color, boxShadow: `0 0 14px ${item.color}99` }} /></div>
+            <div className="mt-3 h-2 rounded-full bg-white/10"><div className="pi-luminous-bar h-full rounded-full" style={{ width: `${item.value}%`, background: item.color, boxShadow: `0 0 7px ${item.color}, 0 0 18px ${item.color}bb, 0 0 30px ${item.color}55` }} /></div>
             <div className="mt-2 text-xs text-white/50">{Math.round(item.value)}</div>
           </div>
         ))}
@@ -296,7 +314,7 @@ function Checklist({ data, lens }) {
               <div className="break-words text-sm font-semibold text-white/85">{item.name}</div>
               <div className="rounded-full border border-white/10 px-2 py-0.5 text-xs text-white/60">{Math.round(item.value)}</div>
             </div>
-            <div className="mt-3 h-2 rounded-full bg-white/10"><div className="pi-luminous-bar h-full rounded-full" style={{ width: `${item.value}%`, background: item.color, boxShadow: `0 0 14px ${item.color}99` }} /></div>
+            <div className="mt-3 h-2 rounded-full bg-white/10"><div className="pi-luminous-bar h-full rounded-full" style={{ width: `${item.value}%`, background: item.color, boxShadow: `0 0 7px ${item.color}, 0 0 18px ${item.color}bb, 0 0 30px ${item.color}55` }} /></div>
             <div className="mt-2 text-xs leading-5 text-white/50">{item.basis || 'Review as a possible support or accessibility consideration.'}</div>
           </div>
         ))}
@@ -313,7 +331,7 @@ function Continuum({ data, lens }) {
     <Panel title="Continuum" subtitle={lens.visualLabel}>
       <div className="pi-chart-stage rounded-3xl p-4 sm:p-5">
         <div className="mb-3 flex justify-between gap-4 text-xs text-white/60"><span className="max-w-[45%] break-words">{left}</span><span className="max-w-[45%] break-words text-right">{right}</span></div>
-        <div className="relative h-4 rounded-full bg-gradient-to-r from-sky-400/80 via-white/30 to-fuchsia-400/80 shadow-[0_0_22px_rgba(56,189,248,0.25)]"><div className="absolute top-1/2 h-7 w-7 -translate-x-1/2 -translate-y-1/2 rounded-full border-2 border-white bg-slate-950" style={{ left: `${value}%`, boxShadow: '0 0 22px rgba(255,255,255,.45)' }} /></div>
+        <div className="relative h-4 rounded-full bg-gradient-to-r from-sky-400/90 via-white/35 to-fuchsia-400/90" style={{ boxShadow: '0 0 9px rgba(56,189,248,.65), 0 0 24px rgba(217,70,239,.35)' }}><div className="absolute top-1/2 h-7 w-7 -translate-x-1/2 -translate-y-1/2 rounded-full border-2 border-white bg-slate-950" style={{ left: `${value}%`, boxShadow: '0 0 8px rgba(255,255,255,.9), 0 0 24px rgba(56,189,248,.75)' }} /></div>
         <div className="mt-4 text-center text-4xl font-bold text-white">{Math.round(value)}</div>
       </div>
       <div className="mt-4"><Bars data={data} limit={6} /></div>
@@ -325,7 +343,7 @@ function Spiral({ data, lens }) {
   return (
     <Panel title="Spiral / stage bands" subtitle={lens.visualLabel}>
       <div className="pi-chart-stage relative mx-auto h-64 w-64 rounded-full sm:h-72 sm:w-72">
-        {data.slice(0, 8).map((item, index) => <div key={item.name} className="absolute rounded-full border-2" style={{ inset: `${index * 14}px`, borderColor: item.color, opacity: 0.9, boxShadow: `0 0 12px ${item.color}66` }} />)}
+        {data.slice(0, 8).map((item, index) => <div key={item.name} className="absolute rounded-full border-2" style={{ inset: `${index * 14}px`, borderColor: item.color, opacity: 0.95, boxShadow: `0 0 5px ${item.color}, 0 0 15px ${item.color}99, inset 0 0 12px ${item.color}44` }} />)}
         <div className="absolute inset-0 flex items-center justify-center px-16 text-center text-sm font-semibold text-white/80">{lens.lens}</div>
       </div>
       <div className="mt-4"><Bars data={data} limit={8} /></div>
@@ -339,9 +357,9 @@ function Curve({ data, lens }) {
     <Panel title="Directional curve" subtitle={lens.visualLabel}>
       <div className="pi-chart-stage relative h-64 rounded-3xl p-4 sm:p-5">
         <svg viewBox="0 0 100 50" className="h-full w-full overflow-visible">
-          <path d="M4 43 C18 43, 20 32, 30 29 C39 26, 39 7, 50 7 C61 7, 61 26, 70 29 C80 32, 82 43, 96 43" fill="rgba(56,189,248,.20)" stroke="rgba(56,189,248,.9)" strokeWidth="1.5" style={{ filter: 'drop-shadow(0 0 4px rgba(56,189,248,.55))' }} />
-          <line x1={value} y1="6" x2={value} y2="45" stroke="#facc15" strokeWidth="1.5" style={{ filter: 'drop-shadow(0 0 3px rgba(250,204,21,.8))' }} />
-          <circle cx={value} cy="22" r="3" fill="#facc15" style={{ filter: 'drop-shadow(0 0 4px rgba(250,204,21,.9))' }} />
+          <path d="M4 43 C18 43, 20 32, 30 29 C39 26, 39 7, 50 7 C61 7, 61 26, 70 29 C80 32, 82 43, 96 43" fill="rgba(56,189,248,.25)" stroke="rgba(56,189,248,1)" strokeWidth="1.7" style={{ filter: 'drop-shadow(0 0 3px rgba(56,189,248,1)) drop-shadow(0 0 10px rgba(56,189,248,.75))' }} />
+          <line x1={value} y1="6" x2={value} y2="45" stroke="#facc15" strokeWidth="1.8" style={{ filter: 'drop-shadow(0 0 3px rgba(250,204,21,1)) drop-shadow(0 0 9px rgba(250,204,21,.9))' }} />
+          <circle cx={value} cy="22" r="3.2" fill="#facc15" stroke="#fef9c3" strokeWidth="0.4" style={{ filter: 'drop-shadow(0 0 4px rgba(250,204,21,1)) drop-shadow(0 0 11px rgba(250,204,21,.9))' }} />
         </svg>
         <div className="absolute bottom-5 left-0 right-0 text-center text-sm text-white/65">Directional placement: <span className="font-bold text-white">{Math.round(value)}</span></div>
       </div>
@@ -358,11 +376,11 @@ function Trend({ data, lens }) {
       <div className="pi-chart-stage px-2 py-4">
         <svg viewBox="-5 0 110 118" className="min-h-[285px] w-full overflow-visible" aria-label={`${lens.lens} pattern trend`}>
           {[20, 40, 60, 80].map(y => <line key={y} x1="5" x2="95" y1={y} y2={y} stroke="rgba(255,255,255,.09)" />)}
-          <polyline points={points} fill="none" stroke="#38bdf8" strokeWidth="2" style={{ filter: 'drop-shadow(0 0 4px rgba(56,189,248,.65))' }} />
+          <polyline points={points} fill="none" stroke="#38bdf8" strokeWidth="2.25" style={{ filter: 'drop-shadow(0 0 3px rgba(56,189,248,1)) drop-shadow(0 0 9px rgba(56,189,248,.9)) drop-shadow(0 0 16px rgba(56,189,248,.48))' }} />
           {items.map((item, index) => {
             const x = 10 + index * (80 / Math.max(items.length - 1, 1));
             const y = 82 - item.value * 0.68;
-            return <g key={item.name}><circle cx={x} cy={y} r="2.5" fill={item.color} style={{ filter: `drop-shadow(0 0 3px ${item.color})` }} /><SvgLabel x={x} y="104" label={item.name} fontSize={2.75} fill="rgba(255,255,255,.66)" /></g>;
+            return <g key={item.name}><circle cx={x} cy={y} r="2.8" fill={item.color} stroke="rgba(255,255,255,.85)" strokeWidth="0.35" style={{ filter: `drop-shadow(0 0 4px ${item.color}) drop-shadow(0 0 9px ${item.color})` }} /><SvgLabel x={x} y="104" label={item.name} fontSize={2.75} fill="rgba(255,255,255,.66)" /></g>;
           })}
         </svg>
       </div>
