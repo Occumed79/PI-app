@@ -165,26 +165,6 @@ function MobileLensControl({ lenses, activeLens, onSelect, query, setQuery }) {
   );
 }
 
-function ProjectionSummary({ projection, glow }) {
-  return (
-    <GlassCard className="p-4 sm:p-5" glow={glow}>
-      <div className="mb-4 flex flex-wrap items-start justify-between gap-3">
-        <div><p className="text-xs font-semibold uppercase tracking-[0.18em] text-sky-200/75">Exact PI projection</p><p className="mt-1 text-sm leading-6 text-white/60">{projection.summary}</p></div>
-        <span className="rounded-full border border-sky-300/25 bg-sky-500/[0.12] px-3 py-1 text-xs text-sky-100">{projection.dimensions.length} dimensions</span>
-      </div>
-      <div className="grid gap-3 md:grid-cols-2">
-        {projection.dimensions.map(item => (
-          <div key={item.label} className="pi-color-tile rounded-2xl border border-white/10 bg-black/25 p-3.5" style={glowVars(glow)}>
-            <div className="flex items-start justify-between gap-3"><span className="text-sm font-medium leading-5 text-white/80">{item.label}</span><span className="text-sm font-bold text-white">{item.value}</span></div>
-            <div className="mt-2 h-2 overflow-hidden rounded-full bg-white/10"><div className="pi-luminous-bar h-full rounded-full" style={{ width: `${item.value}%`, background: glow, boxShadow: `0 0 14px ${glow}99` }}/></div>
-            <p className="mt-2 text-[11px] leading-5 text-white/45">{item.basis}</p>
-          </div>
-        ))}
-      </div>
-    </GlassCard>
-  );
-}
-
 function FactorGrid({ profile }) {
   return (
     <GlassCard className="p-4 sm:p-5" glow={profile.color}>
@@ -264,13 +244,12 @@ export default function VisualLensWorkspace() {
             </div>
             <div className="mt-5 flex flex-wrap gap-3 border-t border-white/[0.08] pt-4">
               <button type="button" onClick={() => setShowModal(true)} className="pi-luminous-control rounded-xl border border-sky-300/30 bg-sky-500/[0.14] px-4 py-2.5 text-sm font-semibold text-sky-50 hover:bg-sky-500/[0.20]" style={glowVars(meta.color)}>Open full lens detail</button>
-              <span className="self-center text-xs text-white/45">Visual, explainer, and dimensions all use the same exact PI projection.</span>
+              <span className="self-center text-xs text-white/45">Calculated from the selected profile’s exact D/E/P/F scores.</span>
             </div>
           </GlassCard>
 
           <LensExplainerCard lens={activeLens} projection={projection}/>
           <NativeLensVisual lens={activeLens} result={nativeResult}/>
-          <ProjectionSummary projection={projection} glow={meta.color}/>
           <FactorGrid profile={profile}/>
         </main>
       </div>
