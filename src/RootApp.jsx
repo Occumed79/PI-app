@@ -60,24 +60,6 @@ export default function RootApp() {
     loadEmployees();
   }, [loadEmployees]);
 
-  useEffect(() => {
-    let animationFrame = 0;
-
-    function updatePointerGlow(event) {
-      cancelAnimationFrame(animationFrame);
-      animationFrame = requestAnimationFrame(() => {
-        document.documentElement.style.setProperty('--pointer-x', `${event.clientX}px`);
-        document.documentElement.style.setProperty('--pointer-y', `${event.clientY}px`);
-      });
-    }
-
-    window.addEventListener('pointermove', updatePointerGlow, { passive: true });
-    return () => {
-      cancelAnimationFrame(animationFrame);
-      window.removeEventListener('pointermove', updatePointerGlow);
-    };
-  }, []);
-
   return (
     <div className="pi-shell min-h-screen bg-slate-950 text-white">
       <div className="pi-ambient pointer-events-none fixed inset-0 overflow-hidden" aria-hidden="true">
@@ -85,7 +67,6 @@ export default function RootApp() {
         <div className="pi-orb pi-orb-b absolute right-0 top-40 h-96 w-96 rounded-full bg-fuchsia-500/8 blur-3xl"/>
         <div className="pi-orb pi-orb-c absolute bottom-0 left-1/3 h-96 w-96 rounded-full bg-emerald-500/6 blur-3xl"/>
         <div className="pi-light-wave"/>
-        <div className="pi-cursor-light"/>
         <div className="pi-refraction-noise"/>
       </div>
 
