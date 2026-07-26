@@ -33,6 +33,7 @@ const VISUAL_FAMILIES = {
   pyramid: ['pyramid'],
   timeline: ['timelineTagCloud'],
   matrix: ['matrix', 'roleMatrix', 'competencyMatrix', 'itemTablePassRate'],
+  heatmap: ['networkHeatmap'],
   spiral: ['spiralBands'],
   checklist: ['accessibilityMatrixRadar', 'profileBarsChecklist', 'profileChecklist'],
   continuum: ['continuumBars', 'threeBars', 'threeBarsCircumplex'],
