@@ -34,26 +34,6 @@ function FactorStrip({ profile }) {
   );
 }
 
-function ProjectionDimensions({ projection }) {
-  return (
-    <section className="pi-luminous-card rounded-3xl border border-sky-300/15 bg-white/[0.055] p-4 sm:p-5" style={glowVars('#38bdf8')}>
-      <div className="mb-4 flex flex-wrap items-start justify-between gap-3">
-        <div><p className="text-xs font-semibold uppercase tracking-[0.18em] text-sky-200/75">PI-derived lens dimensions</p><p className="mt-1 text-sm leading-6 text-white/55">Each score below comes from the selected profile’s exact D/E/P/F pattern.</p></div>
-        <span className="rounded-full border border-sky-300/25 bg-sky-500/[0.12] px-3 py-1 text-xs text-sky-100">{projection.dimensions.length} dimensions</span>
-      </div>
-      <div className="grid gap-3 md:grid-cols-2">
-        {projection.dimensions.map(item => (
-          <article key={item.label} className="pi-color-tile rounded-2xl border border-white/10 bg-black/25 p-3.5" style={glowVars('#38bdf8')}>
-            <div className="flex items-start justify-between gap-3"><span className="break-words text-sm font-medium leading-5 text-white/80">{item.label}</span><span className="text-sm font-bold text-white">{item.value}</span></div>
-            <div className="mt-2 h-2 overflow-hidden rounded-full bg-white/10"><div className="pi-luminous-bar h-full rounded-full bg-sky-400" style={{ width: `${item.value}%`, boxShadow: '0 0 14px rgba(56,189,248,.72)' }}/></div>
-            <p className="mt-2 text-[11px] leading-5 text-white/45">{item.basis}</p>
-          </article>
-        ))}
-      </div>
-    </section>
-  );
-}
-
 export default function LensDetailModal({ lens, profile, onClose }) {
   const projection = useMemo(() => deriveCanonicalLensProjection(lens, profile), [lens, profile]);
   const result = useMemo(() => projectionToNativeResult(lens, projection), [lens, projection]);
@@ -94,13 +74,12 @@ export default function LensDetailModal({ lens, profile, onClose }) {
         <div className="flex-1 space-y-5 overflow-y-auto p-4 sm:p-6">
           <section className="pi-luminous-card rounded-3xl border border-sky-300/25 bg-sky-500/[0.10] p-4 sm:p-5" style={glowVars('#38bdf8')}>
             <p className="text-xs font-semibold uppercase tracking-[0.18em] text-sky-200/75">Translation chain</p>
-            <p className="mt-2 text-sm leading-6 text-white/75">{profile.name} completed PI profile → exact D/E/P/F pattern → {lens.lens} dimensions → native {lens.visualLabel?.toLowerCase() || 'visual'}.</p>
-            <p className="mt-2 text-xs leading-5 text-white/45">The explainer, visual, and dimension list all use this same projection. No separate framework score is implied.</p>
+            <p className="mt-2 text-sm leading-6 text-white/75">{profile.name} completed PI profile → exact D/E/P/F pattern → native {lens.visualLabel?.toLowerCase() || 'visual'}.</p>
+            <p className="mt-2 text-xs leading-5 text-white/45">The explainer and visual use the same exact PI projection. No separate framework score is implied.</p>
           </section>
 
           <LensExplainerCard lens={lens} projection={projection}/>
           <NativeLensVisual lens={lens} result={result}/>
-          <ProjectionDimensions projection={projection}/>
 
           <section className="pi-luminous-card rounded-3xl border border-white/10 bg-white/[0.055] p-4 sm:p-5" style={glowVars(profile.color)}>
             <div className="mb-4 flex items-center gap-2"><span className="h-3 w-3 rounded-full" style={{ background: profile.color, boxShadow: `0 0 12px ${profile.color}` }}/><div><p className="text-xs font-semibold uppercase tracking-[0.18em] text-white/45">Source PI profile</p><p className="text-sm font-semibold text-white">{profile.name} · {profile.tagline}</p></div></div>
