@@ -3,6 +3,7 @@ import assert from 'node:assert/strict';
 import { readFile } from 'node:fs/promises';
 
 const serverSource = await readFile(new URL('../server/index.js', import.meta.url), 'utf8');
+const chatSource = await readFile(new URL('../src/components/AITab.jsx', import.meta.url), 'utf8');
 const readmeSource = await readFile(new URL('../README.md', import.meta.url), 'utf8');
 
 test('auto mode keeps Gemini, Groq, and OpenRouter in that order', () => {
@@ -20,6 +21,13 @@ test('OpenRouter is a real server-side chat and scenario provider', () => {
   assert.match(serverSource, /https:\/\/openrouter\.ai\/api\/v1\/chat\/completions/);
   assert.match(serverSource, /openrouter:\s*callOpenRouterForScenario/);
   assert.match(serverSource, /openrouter:\s*callOpenRouterChat/);
+});
+
+test('the chat client accepts and identifies OpenRouter replies', () => {
+  assert.match(chatSource, /\['gemini',\s*'groq',\s*'openrouter'\]\.includes\(data\.source\)/);
+  assert.match(chatSource, /source === 'openrouter'/);
+  assert.match(chatSource, /Live AI · OpenRouter/);
+  assert.match(chatSource, /!\['error',\s*'welcome'\]\.includes\(message\.source\)/);
 });
 
 test('health and deployment docs expose the third live fallback', () => {
