@@ -228,6 +228,7 @@ function MessageContent({ text }) {
 function providerLabel(source) {
   if (source === 'gemini') return 'Live AI · Gemini';
   if (source === 'groq') return 'Live AI · Groq';
+  if (source === 'openrouter') return 'Live AI · OpenRouter';
   if (source === 'error') return 'AI unavailable';
   return '';
 }
@@ -265,12 +266,11 @@ export default function AITab({ employees = [] }) {
     if (!text || loading) return;
 
     setInput('');
-    const nextUserMessage = { role: 'user', text };
-    setMessages(current => [...current, nextUserMessage]);
+    setMessages(current => [...current, { role: 'user', text }]);
     setLoading(true);
 
     const history = messages
-      .filter(message => ['assistant', 'user'].includes(message.role) && message.source !== 'error')
+      .filter(message => ['assistant', 'user'].includes(message.role) && !['error', 'welcome'].includes(message.source))
       .map(message => ({
         role: message.role === 'assistant' ? 'assistant' : 'user',
         content: message.text,
@@ -285,7 +285,7 @@ export default function AITab({ employees = [] }) {
           system: buildContext(employees, conversationMessages),
           messages: conversationMessages,
         }),
-        signal: AbortSignal.timeout(50000),
+        signal: AbortSignal.timeout(55000),
       });
 
       if (!response.ok) throw new Error((await readApiError(response)) || `API error ${response.status}`);
@@ -297,7 +297,9 @@ export default function AITab({ employees = [] }) {
           : '';
         throw new Error(`No live AI provider completed the request.${details}`);
       }
-      if (!['gemini', 'groq'].includes(data.source)) throw new Error('The server did not identify a live AI provider.');
+      if (!['gemini', 'groq', 'openrouter'].includes(data.source)) {
+        throw new Error('The server did not identify a live AI provider.');
+      }
 
       setMessages(current => [...current, {
         role: 'assistant',
@@ -306,7 +308,7 @@ export default function AITab({ employees = [] }) {
       }]);
     } catch (error) {
       const message = error?.name === 'TimeoutError'
-        ? 'The live AI request timed out after 50 seconds. Please try again.'
+        ? 'The live AI request timed out after 55 seconds. Please try again.'
         : `Live AI request failed: ${error?.message || 'Unknown error'}`;
       setMessages(current => [...current, { role: 'assistant', source: 'error', text: message }]);
     } finally {
@@ -322,6 +324,9 @@ export default function AITab({ employees = [] }) {
   }
 
   const configured = aiHealth?.aiConfigured;
+  const configuredCount = aiHealth?.providerConfigured
+    ? Object.values(aiHealth.providerConfigured).filter(Boolean).length
+    : 0;
 
   return (
     <div className="flex h-[calc(100vh-200px)] min-h-[500px] flex-col p-5 sm:p-6">
@@ -338,7 +343,7 @@ export default function AITab({ employees = [] }) {
               : 'border-amber-300/25 bg-amber-500/10 text-amber-200'
           )}>
             {configured ? <Sparkles size={13}/> : <AlertTriangle size={13}/>} 
-            {configured ? 'Live AI configured' : 'AI provider not configured'}
+            {configured ? `${configuredCount} live AI provider${configuredCount === 1 ? '' : 's'} configured` : 'AI provider not configured'}
           </span>
         )}
       </div>
