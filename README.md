@@ -109,13 +109,16 @@ The runtime schema and `server/schema.sql` use the same table definitions and au
 
 ## AI provider behavior
 
-The server uses:
+With `AI_PROVIDER=auto`, both live AI endpoints use this ordered provider chain:
 
 1. Gemini when configured.
-2. Groq as fallback when configured.
-3. A built-in non-AI fallback when neither provider completes.
+2. Groq when Gemini is unavailable or unsuccessful.
+3. OpenRouter when Gemini and Groq are unavailable or unsuccessful.
+4. A built-in non-AI fallback only when no live provider completes.
 
-The Crosswalk Assistant dynamically calculates the lenses relevant to the question and sends the exact baseline, explicit overlays, apparent PI shift, and calculated lens dimensions to the provider.
+The default OpenRouter model is `openrouter/free`. It can be changed with `OPENROUTER_MODEL` without changing application code.
+
+The Crosswalk Assistant dynamically calculates the lenses relevant to the conversation and sends the exact baseline, explicit overlays, apparent PI shift, calculated lens dimensions, and recent conversation history to the selected live provider.
 
 ## Tech stack
 
@@ -124,7 +127,7 @@ The Crosswalk Assistant dynamically calculates the lenses relevant to the questi
 - Recharts
 - Express
 - Neon Postgres
-- Gemini and Groq provider fallback
+- Gemini, Groq, and OpenRouter provider fallback
 - Render Web Service
 
 ## Local development
@@ -168,13 +171,24 @@ Environment variables:
 ```txt
 NODE_ENV=production
 DATABASE_URL=your_neon_connection_string
-CLIENT_ORIGIN=your_render_url
+CLIENT_ORIGIN=https://pi-app-c3rr.onrender.com
 AI_PROVIDER=auto
+
 GEMINI_API_KEY=optional
-GROQ_API_KEY=optional
 GEMINI_MODEL=optional
+
+GROQ_API_KEY=optional
 GROQ_MODEL=optional
+
+OPENROUTER_API_KEY=your_complete_sk-or-v1_key
+OPENROUTER_MODEL=openrouter/free
+OPENROUTER_SITE_URL=https://pi-app-c3rr.onrender.com
+OPENROUTER_APP_NAME=PI Crosswalk Intelligence
 ```
+
+The OpenRouter key must remain server-side in Render. Do not place it in frontend code, GitHub, screenshots, or committed environment files.
+
+`OPENROUTER_SITE_URL` and `OPENROUTER_APP_NAME` are optional attribution headers. The API key and model are the required OpenRouter settings.
 
 ## Health checks
 
@@ -182,6 +196,8 @@ GROQ_MODEL=optional
 GET /api/health
 GET /api/db/health
 ```
+
+`GET /api/health` reports the configured-provider map, selected model names, and the effective fallback order.
 
 ## Employee API
 
@@ -222,6 +238,7 @@ Pull requests run GitHub Actions checks for:
 - All 101 actual registry lens projections
 - Overlay baseline-preservation and apparent-shift behavior
 - Ability-lens interpretation boundaries
+- Live AI provider-chain regression coverage
 - Production Vite build
 - Express server syntax
 - Database module syntax
