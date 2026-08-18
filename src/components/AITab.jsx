@@ -254,10 +254,24 @@ export default function AITab({ employees = [] }) {
 
   useEffect(() => {
     let active = true;
-    fetch('/api/health', { headers: { Accept: 'application/json' }, signal: AbortSignal.timeout(10000) })
+    fetch('/api/ai-chat', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        system: 'This is a provider health probe. Reply only with OK.',
+        messages: [{ role: 'user', content: 'Reply only with OK.' }],
+      }),
+      signal: AbortSignal.timeout(20000),
+    })
       .then(response => response.ok ? response.json() : null)
-      .then(data => { if (active && data) setAiHealth(data); })
-      .catch(() => {});
+      .then(data => {
+        if (!active) return;
+        const source = ['gemini', 'groq', 'openrouter'].includes(data?.source) ? data.source : null;
+        setAiHealth({ healthy: Boolean(source), source });
+      })
+      .catch(() => {
+        if (active) setAiHealth({ healthy: false, source: null });
+      });
     return () => { active = false; };
   }, []);
 
@@ -301,12 +315,14 @@ export default function AITab({ employees = [] }) {
         throw new Error('The server did not identify a live AI provider.');
       }
 
+      setAiHealth({ healthy: true, source: data.source });
       setMessages(current => [...current, {
         role: 'assistant',
         source: data.source,
         text: data.reply || 'The live AI provider returned an empty response.',
       }]);
     } catch (error) {
+      setAiHealth({ healthy: false, source: null });
       const message = error?.name === 'TimeoutError'
         ? 'The live AI request timed out after 55 seconds. Please try again.'
         : `Live AI request failed: ${error?.message || 'Unknown error'}`;
@@ -323,10 +339,7 @@ export default function AITab({ employees = [] }) {
     }
   }
 
-  const configured = aiHealth?.aiConfigured;
-  const configuredCount = aiHealth?.providerConfigured
-    ? Object.values(aiHealth.providerConfigured).filter(Boolean).length
-    : 0;
+  const healthy = aiHealth?.healthy;
 
   return (
     <div className="flex h-[calc(100vh-200px)] min-h-[500px] flex-col p-5 sm:p-6">
@@ -338,12 +351,12 @@ export default function AITab({ employees = [] }) {
         {aiHealth && (
           <span className={cx(
             'flex items-center gap-2 rounded-full border px-3 py-1.5 text-xs font-semibold',
-            configured
+            healthy
               ? 'border-emerald-300/25 bg-emerald-500/10 text-emerald-200'
               : 'border-amber-300/25 bg-amber-500/10 text-amber-200'
           )}>
-            {configured ? <Sparkles size={13}/> : <AlertTriangle size={13}/>} 
-            {configured ? `${configuredCount} live AI provider${configuredCount === 1 ? '' : 's'} configured` : 'AI provider not configured'}
+            {healthy ? <Sparkles size={13}/> : <AlertTriangle size={13}/>} 
+            {healthy ? `${providerLabel(aiHealth.source)} healthy` : 'Live AI unavailable'}
           </span>
         )}
       </div>
