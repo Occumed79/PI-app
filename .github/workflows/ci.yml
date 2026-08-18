@@ -30,4 +30,4 @@ jobs:
         run: npm run build
 
       - name: Check server syntax
-        run: node --check server/index.js && node --check server/db.js
+        run: node --check server/index.js && node --check server/db.js && node --check server/ai-provider-bootstrap.js
