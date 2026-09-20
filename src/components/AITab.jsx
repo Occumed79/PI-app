@@ -1,5 +1,6 @@
 import React, { useEffect, useMemo, useRef, useState } from 'react';
 import { AlertTriangle, ArrowUp, Sparkles } from 'lucide-react';
+import SiriOrb from './smoothui/SiriOrb.jsx';
 import { PI_PROFILES } from '../data/profiles.js';
 import { HSI_LENS_REGISTRY } from '../data/hsiLensRegistry.js';
 import { CROSSWALK_AI_RULES, CROSSWALK_MODEL } from '../data/crosswalkModel.js';
@@ -16,22 +17,6 @@ import {
 
 function cx(...classes) {
   return classes.filter(Boolean).join(' ');
-}
-
-function SmoothSiriOrb({ active = false, error = false, size = 120 }) {
-  return (
-    <div
-      className={cx('smooth-siri-orb-wrap', active && 'is-thinking', error && 'is-error')}
-      style={{ '--orb-size': `${size}px` }}
-      aria-hidden="true"
-    >
-      <div className="smooth-siri-orb-bloom" />
-      <div className="smooth-siri-orb">
-        <span className="smooth-siri-orb-layer smooth-siri-orb-sheen" />
-        <span className="smooth-siri-orb-layer smooth-siri-orb-rim" />
-      </div>
-    </div>
-  );
 }
 
 function profileFor(employee) {
@@ -359,186 +344,6 @@ export default function AITab({ employees = [] }) {
 
   return (
     <div className="flex h-[calc(100vh-200px)] min-h-[500px] flex-col p-5 sm:p-6">
-      <style>{`
-        @property --angle {
-          syntax: "<angle>";
-          inherits: false;
-          initial-value: 0deg;
-        }
-
-        .smooth-siri-orb-wrap {
-          --bg: oklch(92% 0.03 300);
-          --c1: oklch(68% 0.21 350);
-          --c2: oklch(70% 0.18 210);
-          --c3: oklch(66% 0.20 285);
-          --c4: oklch(72% 0.19 325);
-          --blur-amount: max(calc(var(--orb-size) * .015), 4px);
-          --contrast-amount: 1.5;
-          --dot-size: max(calc(var(--orb-size) * .008), .1px);
-          --rim: max(calc(var(--orb-size) * .06), 1.5px);
-          --shadow-spread: max(calc(var(--orb-size) * .008), 2px);
-          --mask-radius: 25%;
-          --animation-duration: 20s;
-          --drift-duration: 8s;
-          position: relative;
-          width: var(--orb-size);
-          height: var(--orb-size);
-          flex: 0 0 auto;
-          animation: smooth-siri-idle-breathe 5.5s cubic-bezier(.645,.045,.355,1) infinite;
-        }
-
-        .smooth-siri-orb-wrap.is-thinking {
-          --animation-duration: 9.1s;
-          animation: none;
-        }
-
-        .smooth-siri-orb-bloom {
-          position: absolute;
-          inset: -12%;
-          border-radius: 50%;
-          background: radial-gradient(circle at 50% 50%, var(--c2) 0%, transparent 64%);
-          filter: blur(calc(var(--orb-size) * .28));
-          opacity: .5;
-          pointer-events: none;
-          transition: opacity .25s ease, filter .25s ease;
-        }
-
-        .smooth-siri-orb-wrap.is-thinking .smooth-siri-orb-bloom {
-          opacity: .7;
-          filter: blur(calc(var(--orb-size) * .31));
-        }
-
-        .smooth-siri-orb {
-          position: relative;
-          isolation: isolate;
-          display: grid;
-          grid-template-areas: "stack";
-          width: 100%;
-          height: 100%;
-          overflow: hidden;
-          border-radius: 50%;
-          background: var(--bg);
-          filter: saturate(.92);
-          box-shadow: 0 14px 38px rgba(0,0,0,.28);
-          transition: filter .2s ease;
-        }
-
-        .smooth-siri-orb-wrap.is-thinking .smooth-siri-orb {
-          filter: saturate(1.12);
-        }
-
-        .smooth-siri-orb-wrap.is-error .smooth-siri-orb {
-          filter: saturate(.38) hue-rotate(22deg);
-          animation: smooth-siri-error-shake .18s cubic-bezier(.645,.045,.355,1);
-        }
-
-        .smooth-siri-orb::before,
-        .smooth-siri-orb::after,
-        .smooth-siri-orb > .smooth-siri-orb-layer {
-          content: "";
-          display: block;
-          grid-area: stack;
-          width: 100%;
-          height: 100%;
-          border-radius: 50%;
-        }
-
-        .smooth-siri-orb::before {
-          background:
-            conic-gradient(from calc(var(--angle) * 2) at 25% 70%, var(--c3), transparent 20% 80%, var(--c3)),
-            conic-gradient(from calc(var(--angle) * 2) at 45% 75%, var(--c2), transparent 30% 60%, var(--c2)),
-            conic-gradient(from calc(var(--angle) * -3) at 80% 20%, var(--c1), transparent 40% 60%, var(--c1)),
-            conic-gradient(from calc(var(--angle) * 1.5) at 60% 35%, var(--c4), transparent 25% 75%, var(--c4)),
-            conic-gradient(from calc(var(--angle) * 2) at 15% 5%, var(--c2), transparent 10% 90%, var(--c2)),
-            conic-gradient(from calc(var(--angle) * 1) at 20% 80%, var(--c1), transparent 10% 90%, var(--c1)),
-            conic-gradient(from calc(var(--angle) * -2) at 85% 10%, var(--c3), transparent 20% 80%, var(--c3));
-          box-shadow:
-            inset var(--bg) 0 0 var(--shadow-spread) calc(var(--shadow-spread) * .2);
-          filter:
-            blur(var(--blur-amount))
-            contrast(var(--contrast-amount))
-            saturate(1.4);
-          animation: smooth-siri-rotate var(--animation-duration) linear infinite;
-          transform: scale(1.08);
-        }
-
-        .smooth-siri-orb::after {
-          background-image:
-            radial-gradient(circle at center, var(--bg) var(--dot-size), transparent var(--dot-size));
-          background-size:
-            calc(var(--dot-size) * 2) calc(var(--dot-size) * 2);
-          backdrop-filter:
-            blur(calc(var(--blur-amount) * 2))
-            contrast(calc(var(--contrast-amount) * 2));
-          mix-blend-mode: overlay;
-          mask-image: radial-gradient(black var(--mask-radius), transparent 75%);
-        }
-
-        .smooth-siri-orb-sheen {
-          z-index: 2;
-          background:
-            radial-gradient(circle at 30% 24%, hsl(0 0% 100% / .32), transparent 34%),
-            radial-gradient(circle at 72% 80%, hsl(0 0% 100% / .07), transparent 48%);
-          mix-blend-mode: screen;
-          animation: smooth-siri-drift var(--drift-duration) ease-in-out infinite alternate;
-          pointer-events: none;
-        }
-
-        .smooth-siri-orb-rim {
-          z-index: 3;
-          box-shadow:
-            inset 0 0 0 1px hsl(0 0% 100% / .16),
-            inset 0 var(--rim) calc(var(--rim) * 2) hsl(0 0% 100% / .22),
-            inset 0 calc(var(--rim) * -1.2) calc(var(--rim) * 2.4) hsl(0 0% 0% / .4);
-          pointer-events: none;
-        }
-
-        .pi-chat-panel {
-          background:
-            radial-gradient(circle at 50% 0%, rgba(96,165,250,.055), transparent 22rem),
-            rgba(255,255,255,.025);
-          box-shadow:
-            inset 0 1px 0 rgba(255,255,255,.055),
-            0 20px 60px rgba(0,0,0,.22);
-        }
-
-        .pi-chat-composer {
-          box-shadow:
-            inset 0 1px 0 rgba(255,255,255,.075),
-            0 14px 36px rgba(0,0,0,.24);
-          backdrop-filter: blur(22px) saturate(1.15);
-        }
-
-        @keyframes smooth-siri-rotate {
-          to { --angle: 360deg; }
-        }
-
-        @keyframes smooth-siri-drift {
-          0% { transform: translate(-6%, -4%) scale(1.05); }
-          100% { transform: translate(7%, 6%) scale(1.12); }
-        }
-
-        @keyframes smooth-siri-idle-breathe {
-          0%, 100% { transform: scale(1); }
-          50% { transform: scale(1.035); }
-        }
-
-        @keyframes smooth-siri-error-shake {
-          0%, 100% { transform: translateX(0); }
-          33% { transform: translateX(-3px); }
-          66% { transform: translateX(3px); }
-        }
-
-        @media (prefers-reduced-motion: reduce) {
-          .smooth-siri-orb-wrap,
-          .smooth-siri-orb::before,
-          .smooth-siri-orb-sheen,
-          .smooth-siri-orb-wrap.is-error .smooth-siri-orb {
-            animation: none !important;
-          }
-        }
-      `}</style>
-
       <div className="mb-4 flex flex-wrap items-start justify-between gap-3">
         <div>
           <h1 className="text-3xl font-bold text-white">PI Crosswalk Assistant</h1>
@@ -571,10 +376,9 @@ export default function AITab({ employees = [] }) {
 
       <div className="pi-chat-panel flex-1 overflow-y-auto rounded-3xl border border-white/10 p-5">
         <div className="mb-7 flex justify-center pt-1">
-          <SmoothSiriOrb
-            size={120}
-            active={loading}
-            error={Boolean(aiHealth && !healthy)}
+          <SiriOrb
+            size="120px"
+            state={loading ? 'thinking' : aiHealth && !healthy ? 'error' : 'idle'}
           />
         </div>
 
