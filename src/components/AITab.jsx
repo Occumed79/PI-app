@@ -18,15 +18,17 @@ function cx(...classes) {
   return classes.filter(Boolean).join(' ');
 }
 
-function SiriOrb({ active = false, error = false }) {
+function SmoothSiriOrb({ active = false, error = false, size = 120 }) {
   return (
-    <div className={cx('pi-siri-orb-wrap', active && 'is-active', error && 'is-error')} aria-hidden="true">
-      <div className="pi-siri-orb-glow" />
-      <div className="pi-siri-orb">
-        <div className="pi-siri-orb-layer pi-siri-orb-layer-a" />
-        <div className="pi-siri-orb-layer pi-siri-orb-layer-b" />
-        <div className="pi-siri-orb-layer pi-siri-orb-layer-c" />
-        <div className="pi-siri-orb-core" />
+    <div
+      className={cx('smooth-siri-orb-wrap', active && 'is-thinking', error && 'is-error')}
+      style={{ '--orb-size': `${size}px` }}
+      aria-hidden="true"
+    >
+      <div className="smooth-siri-orb-bloom" />
+      <div className="smooth-siri-orb">
+        <span className="smooth-siri-orb-layer smooth-siri-orb-sheen" />
+        <span className="smooth-siri-orb-layer smooth-siri-orb-rim" />
       </div>
     </div>
   );
@@ -358,94 +360,139 @@ export default function AITab({ employees = [] }) {
   return (
     <div className="flex h-[calc(100vh-200px)] min-h-[500px] flex-col p-5 sm:p-6">
       <style>{`
-        .pi-chat-orb-wrap {
+        @property --angle {
+          syntax: "<angle>";
+          inherits: false;
+          initial-value: 0deg;
+        }
+
+        .smooth-siri-orb-wrap {
+          --bg: oklch(92% 0.03 300);
+          --c1: oklch(68% 0.21 350);
+          --c2: oklch(70% 0.18 210);
+          --c3: oklch(66% 0.20 285);
+          --c4: oklch(72% 0.19 325);
+          --blur-amount: max(calc(var(--orb-size) * .015), 4px);
+          --contrast-amount: 1.5;
+          --dot-size: max(calc(var(--orb-size) * .008), .1px);
+          --rim: max(calc(var(--orb-size) * .06), 1.5px);
+          --shadow-spread: max(calc(var(--orb-size) * .008), 2px);
+          --mask-radius: 25%;
+          --animation-duration: 20s;
+          --drift-duration: 8s;
           position: relative;
-          width: 56px;
-          height: 56px;
-          display: grid;
-          place-items: center;
+          width: var(--orb-size);
+          height: var(--orb-size);
           flex: 0 0 auto;
+          animation: smooth-siri-idle-breathe 5.5s cubic-bezier(.645,.045,.355,1) infinite;
         }
-        .pi-chat-orb-glow {
+
+        .smooth-siri-orb-wrap.is-thinking {
+          --animation-duration: 9.1s;
+          animation: none;
+        }
+
+        .smooth-siri-orb-bloom {
           position: absolute;
-          inset: -32%;
-          border-radius: 999px;
-          background: radial-gradient(circle, rgba(96,165,250,.24), rgba(192,132,252,.11) 38%, transparent 68%);
-          filter: blur(16px);
-          opacity: .8;
-          animation: pi-chat-orb-glow 4.6s ease-in-out infinite;
+          inset: -12%;
+          border-radius: 50%;
+          background: radial-gradient(circle at 50% 50%, var(--c2) 0%, transparent 64%);
+          filter: blur(calc(var(--orb-size) * .28));
+          opacity: .5;
+          pointer-events: none;
+          transition: opacity .25s ease, filter .25s ease;
         }
-        .pi-chat-orb {
+
+        .smooth-siri-orb-wrap.is-thinking .smooth-siri-orb-bloom {
+          opacity: .7;
+          filter: blur(calc(var(--orb-size) * .31));
+        }
+
+        .smooth-siri-orb {
           position: relative;
+          isolation: isolate;
+          display: grid;
+          grid-template-areas: "stack";
           width: 100%;
           height: 100%;
           overflow: hidden;
-          border-radius: 999px;
-          background: #05060a;
-          box-shadow:
-            inset 0 0 0 1px rgba(255,255,255,.14),
-            inset 0 0 18px rgba(255,255,255,.08),
-            0 10px 34px rgba(0,0,0,.42),
-            0 0 30px rgba(99,102,241,.2);
+          border-radius: 50%;
+          background: var(--bg);
+          filter: saturate(.92);
+          box-shadow: 0 14px 38px rgba(0,0,0,.28);
+          transition: filter .2s ease;
         }
-        .pi-chat-orb::after {
-          content: '';
-          position: absolute;
-          inset: 1px;
-          border-radius: inherit;
+
+        .smooth-siri-orb-wrap.is-thinking .smooth-siri-orb {
+          filter: saturate(1.12);
+        }
+
+        .smooth-siri-orb-wrap.is-error .smooth-siri-orb {
+          filter: saturate(.38) hue-rotate(22deg);
+          animation: smooth-siri-error-shake .18s cubic-bezier(.645,.045,.355,1);
+        }
+
+        .smooth-siri-orb::before,
+        .smooth-siri-orb::after,
+        .smooth-siri-orb > .smooth-siri-orb-layer {
+          content: "";
+          display: block;
+          grid-area: stack;
+          width: 100%;
+          height: 100%;
+          border-radius: 50%;
+        }
+
+        .smooth-siri-orb::before {
           background:
-            radial-gradient(circle at 31% 24%, rgba(255,255,255,.34), transparent 18%),
-            radial-gradient(circle at 70% 73%, rgba(255,255,255,.09), transparent 30%);
-          mix-blend-mode: screen;
-        }
-        .pi-chat-orb-layer {
-          position: absolute;
-          inset: -38%;
-          border-radius: 42%;
-          filter: blur(5px) saturate(1.4);
-          mix-blend-mode: screen;
-          will-change: transform;
-        }
-        .pi-chat-orb-layer-a {
-          background: conic-gradient(from 18deg, #38bdf8, #818cf8 24%, #e879f9 45%, #fb7185 61%, #22d3ee 82%, #38bdf8);
-          animation: pi-chat-orb-spin-a 7s linear infinite;
-          opacity: .92;
-        }
-        .pi-chat-orb-layer-b {
-          inset: -24%;
-          background: conic-gradient(from 130deg, transparent 0 8%, #67e8f9 20%, #a78bfa 43%, transparent 58%, #f472b6 74%, #60a5fa 90%);
-          animation: pi-chat-orb-spin-b 5.4s linear infinite reverse;
-          opacity: .76;
-        }
-        .pi-chat-orb-layer-c {
-          inset: -10%;
-          background:
-            radial-gradient(ellipse at 35% 42%, rgba(255,255,255,.7), transparent 14%),
-            radial-gradient(ellipse at 68% 61%, rgba(34,211,238,.75), transparent 18%),
-            radial-gradient(ellipse at 50% 36%, rgba(217,70,239,.75), transparent 24%);
-          filter: blur(8px) saturate(1.55);
-          animation: pi-chat-orb-breathe 4s ease-in-out infinite alternate;
-          opacity: .78;
-        }
-        .pi-chat-orb-core {
-          position: absolute;
-          inset: 21%;
-          border-radius: 999px;
-          background: radial-gradient(circle at 42% 37%, rgba(255,255,255,.28), rgba(9,10,18,.54) 46%, rgba(0,0,0,.82) 76%);
-        }
-        .pi-chat-orb-wrap.is-active .pi-chat-orb {
-          animation: pi-chat-orb-active 1.6s ease-in-out infinite;
+            conic-gradient(from calc(var(--angle) * 2) at 25% 70%, var(--c3), transparent 20% 80%, var(--c3)),
+            conic-gradient(from calc(var(--angle) * 2) at 45% 75%, var(--c2), transparent 30% 60%, var(--c2)),
+            conic-gradient(from calc(var(--angle) * -3) at 80% 20%, var(--c1), transparent 40% 60%, var(--c1)),
+            conic-gradient(from calc(var(--angle) * 1.5) at 60% 35%, var(--c4), transparent 25% 75%, var(--c4)),
+            conic-gradient(from calc(var(--angle) * 2) at 15% 5%, var(--c2), transparent 10% 90%, var(--c2)),
+            conic-gradient(from calc(var(--angle) * 1) at 20% 80%, var(--c1), transparent 10% 90%, var(--c1)),
+            conic-gradient(from calc(var(--angle) * -2) at 85% 10%, var(--c3), transparent 20% 80%, var(--c3));
           box-shadow:
-            inset 0 0 0 1px rgba(255,255,255,.18),
-            inset 0 0 22px rgba(255,255,255,.1),
-            0 10px 36px rgba(0,0,0,.46),
-            0 0 46px rgba(96,165,250,.34);
+            inset var(--bg) 0 0 var(--shadow-spread) calc(var(--shadow-spread) * .2);
+          filter:
+            blur(var(--blur-amount))
+            contrast(var(--contrast-amount))
+            saturate(1.4);
+          animation: smooth-siri-rotate var(--animation-duration) linear infinite;
+          transform: scale(1.08);
         }
-        .pi-chat-orb-wrap.is-active .pi-chat-orb-layer-a { animation-duration: 2.6s; }
-        .pi-chat-orb-wrap.is-active .pi-chat-orb-layer-b { animation-duration: 2.1s; }
-        .pi-chat-orb-wrap.is-error .pi-chat-orb-layer-a {
-          background: conic-gradient(from 10deg, #fb7185, #f59e0b, #f87171, #fb7185);
+
+        .smooth-siri-orb::after {
+          background-image:
+            radial-gradient(circle at center, var(--bg) var(--dot-size), transparent var(--dot-size));
+          background-size:
+            calc(var(--dot-size) * 2) calc(var(--dot-size) * 2);
+          backdrop-filter:
+            blur(calc(var(--blur-amount) * 2))
+            contrast(calc(var(--contrast-amount) * 2));
+          mix-blend-mode: overlay;
+          mask-image: radial-gradient(black var(--mask-radius), transparent 75%);
         }
+
+        .smooth-siri-orb-sheen {
+          z-index: 2;
+          background:
+            radial-gradient(circle at 30% 24%, hsl(0 0% 100% / .32), transparent 34%),
+            radial-gradient(circle at 72% 80%, hsl(0 0% 100% / .07), transparent 48%);
+          mix-blend-mode: screen;
+          animation: smooth-siri-drift var(--drift-duration) ease-in-out infinite alternate;
+          pointer-events: none;
+        }
+
+        .smooth-siri-orb-rim {
+          z-index: 3;
+          box-shadow:
+            inset 0 0 0 1px hsl(0 0% 100% / .16),
+            inset 0 var(--rim) calc(var(--rim) * 2) hsl(0 0% 100% / .22),
+            inset 0 calc(var(--rim) * -1.2) calc(var(--rim) * 2.4) hsl(0 0% 0% / .4);
+          pointer-events: none;
+        }
+
         .pi-chat-panel {
           background:
             radial-gradient(circle at 50% 0%, rgba(96,165,250,.055), transparent 22rem),
@@ -454,30 +501,41 @@ export default function AITab({ employees = [] }) {
             inset 0 1px 0 rgba(255,255,255,.055),
             0 20px 60px rgba(0,0,0,.22);
         }
+
         .pi-chat-composer {
           box-shadow:
             inset 0 1px 0 rgba(255,255,255,.075),
             0 14px 36px rgba(0,0,0,.24);
           backdrop-filter: blur(22px) saturate(1.15);
         }
-        @keyframes pi-chat-orb-spin-a { to { transform: rotate(360deg) scale(1.04); } }
-        @keyframes pi-chat-orb-spin-b { to { transform: rotate(360deg) scale(.96); } }
-        @keyframes pi-chat-orb-breathe {
-          0% { transform: scale(.88) translate3d(-2%,2%,0); }
-          100% { transform: scale(1.15) translate3d(3%,-2%,0); }
+
+        @keyframes smooth-siri-rotate {
+          to { --angle: 360deg; }
         }
-        @keyframes pi-chat-orb-glow {
-          0%,100% { transform: scale(.94); opacity: .58; }
-          50% { transform: scale(1.08); opacity: 1; }
+
+        @keyframes smooth-siri-drift {
+          0% { transform: translate(-6%, -4%) scale(1.05); }
+          100% { transform: translate(7%, 6%) scale(1.12); }
         }
-        @keyframes pi-chat-orb-active {
-          0%,100% { transform: scale(.98); }
-          50% { transform: scale(1.04); }
+
+        @keyframes smooth-siri-idle-breathe {
+          0%, 100% { transform: scale(1); }
+          50% { transform: scale(1.035); }
         }
+
+        @keyframes smooth-siri-error-shake {
+          0%, 100% { transform: translateX(0); }
+          33% { transform: translateX(-3px); }
+          66% { transform: translateX(3px); }
+        }
+
         @media (prefers-reduced-motion: reduce) {
-          .pi-chat-orb-glow,
-          .pi-chat-orb-layer,
-          .pi-chat-orb-wrap.is-active .pi-chat-orb { animation: none !important; }
+          .smooth-siri-orb-wrap,
+          .smooth-siri-orb::before,
+          .smooth-siri-orb-sheen,
+          .smooth-siri-orb-wrap.is-error .smooth-siri-orb {
+            animation: none !important;
+          }
         }
       `}</style>
 
@@ -512,16 +570,12 @@ export default function AITab({ employees = [] }) {
       </div>
 
       <div className="pi-chat-panel flex-1 overflow-y-auto rounded-3xl border border-white/10 p-5">
-        <div className="mb-6 flex justify-center">
-          <div className={cx('pi-chat-orb-wrap', loading && 'is-active', aiHealth && !healthy && 'is-error')} aria-hidden="true">
-            <div className="pi-chat-orb-glow" />
-            <div className="pi-chat-orb">
-              <div className="pi-chat-orb-layer pi-chat-orb-layer-a" />
-              <div className="pi-chat-orb-layer pi-chat-orb-layer-b" />
-              <div className="pi-chat-orb-layer pi-chat-orb-layer-c" />
-              <div className="pi-chat-orb-core" />
-            </div>
-          </div>
+        <div className="mb-7 flex justify-center pt-1">
+          <SmoothSiriOrb
+            size={120}
+            active={loading}
+            error={Boolean(aiHealth && !healthy)}
+          />
         </div>
 
         <div className="space-y-5">
