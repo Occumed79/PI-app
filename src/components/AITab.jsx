@@ -356,270 +356,242 @@ export default function AITab({ employees = [] }) {
   const healthy = aiHealth?.healthy;
 
   return (
-    <div className="pi-ai-shell flex h-[calc(100vh-170px)] min-h-[560px] flex-col px-4 pb-4 pt-3 sm:px-7 sm:pb-6">
+    <div className="flex h-[calc(100vh-200px)] min-h-[500px] flex-col p-5 sm:p-6">
       <style>{`
-        .pi-ai-shell {
-          --orb-size: clamp(104px, 13vw, 150px);
+        .pi-chat-orb-wrap {
           position: relative;
-          isolation: isolate;
-          overflow: hidden;
-        }
-        .pi-ai-shell::before {
-          content: '';
-          position: absolute;
-          inset: 0;
-          z-index: -2;
-          pointer-events: none;
-          background:
-            radial-gradient(circle at 50% 16%, rgba(96,165,250,.13), transparent 25rem),
-            radial-gradient(circle at 42% 20%, rgba(244,114,182,.08), transparent 20rem),
-            radial-gradient(circle at 58% 18%, rgba(45,212,191,.07), transparent 19rem);
-        }
-        .pi-siri-orb-wrap {
-          position: relative;
-          width: var(--orb-size);
-          height: var(--orb-size);
+          width: 56px;
+          height: 56px;
           display: grid;
           place-items: center;
           flex: 0 0 auto;
         }
-        .pi-siri-orb-glow {
+        .pi-chat-orb-glow {
           position: absolute;
-          inset: -24%;
+          inset: -32%;
           border-radius: 999px;
-          background:
-            radial-gradient(circle, rgba(96,165,250,.24), rgba(192,132,252,.10) 38%, transparent 69%);
-          filter: blur(22px);
-          opacity: .88;
-          animation: pi-orb-glow 4.8s ease-in-out infinite;
+          background: radial-gradient(circle, rgba(96,165,250,.24), rgba(192,132,252,.11) 38%, transparent 68%);
+          filter: blur(16px);
+          opacity: .8;
+          animation: pi-chat-orb-glow 4.6s ease-in-out infinite;
         }
-        .pi-siri-orb {
+        .pi-chat-orb {
           position: relative;
           width: 100%;
           height: 100%;
           overflow: hidden;
           border-radius: 999px;
-          background: #06070b;
+          background: #05060a;
           box-shadow:
-            inset 0 0 0 1px rgba(255,255,255,.16),
-            inset 0 0 28px rgba(255,255,255,.08),
-            0 18px 55px rgba(0,0,0,.42),
-            0 0 44px rgba(99,102,241,.18);
-          transform: translateZ(0);
+            inset 0 0 0 1px rgba(255,255,255,.14),
+            inset 0 0 18px rgba(255,255,255,.08),
+            0 10px 34px rgba(0,0,0,.42),
+            0 0 30px rgba(99,102,241,.2);
         }
-        .pi-siri-orb::after {
+        .pi-chat-orb::after {
           content: '';
           position: absolute;
           inset: 1px;
           border-radius: inherit;
           background:
-            radial-gradient(circle at 31% 24%, rgba(255,255,255,.34), transparent 17%),
-            radial-gradient(circle at 70% 73%, rgba(255,255,255,.08), transparent 30%);
+            radial-gradient(circle at 31% 24%, rgba(255,255,255,.34), transparent 18%),
+            radial-gradient(circle at 70% 73%, rgba(255,255,255,.09), transparent 30%);
           mix-blend-mode: screen;
-          pointer-events: none;
         }
-        .pi-siri-orb-layer {
+        .pi-chat-orb-layer {
           position: absolute;
-          inset: -36%;
+          inset: -38%;
           border-radius: 42%;
-          filter: blur(8px) saturate(1.35);
+          filter: blur(5px) saturate(1.4);
           mix-blend-mode: screen;
           will-change: transform;
         }
-        .pi-siri-orb-layer-a {
-          background:
-            conic-gradient(from 18deg, #38bdf8, #818cf8 24%, #e879f9 45%, #fb7185 61%, #22d3ee 82%, #38bdf8);
-          animation: pi-orb-spin-a 7.2s linear infinite;
-          opacity: .9;
+        .pi-chat-orb-layer-a {
+          background: conic-gradient(from 18deg, #38bdf8, #818cf8 24%, #e879f9 45%, #fb7185 61%, #22d3ee 82%, #38bdf8);
+          animation: pi-chat-orb-spin-a 7s linear infinite;
+          opacity: .92;
         }
-        .pi-siri-orb-layer-b {
+        .pi-chat-orb-layer-b {
           inset: -24%;
-          background:
-            conic-gradient(from 130deg, transparent 0 8%, #67e8f9 20%, #a78bfa 43%, transparent 58%, #f472b6 74%, #60a5fa 90%);
-          animation: pi-orb-spin-b 5.6s linear infinite reverse;
-          opacity: .77;
+          background: conic-gradient(from 130deg, transparent 0 8%, #67e8f9 20%, #a78bfa 43%, transparent 58%, #f472b6 74%, #60a5fa 90%);
+          animation: pi-chat-orb-spin-b 5.4s linear infinite reverse;
+          opacity: .76;
         }
-        .pi-siri-orb-layer-c {
-          inset: -12%;
+        .pi-chat-orb-layer-c {
+          inset: -10%;
           background:
-            radial-gradient(ellipse at 35% 42%, rgba(255,255,255,.72), transparent 13%),
-            radial-gradient(ellipse at 68% 61%, rgba(34,211,238,.72), transparent 17%),
-            radial-gradient(ellipse at 50% 36%, rgba(217,70,239,.75), transparent 23%);
-          filter: blur(11px) saturate(1.55);
-          animation: pi-orb-breathe 4.2s ease-in-out infinite alternate;
+            radial-gradient(ellipse at 35% 42%, rgba(255,255,255,.7), transparent 14%),
+            radial-gradient(ellipse at 68% 61%, rgba(34,211,238,.75), transparent 18%),
+            radial-gradient(ellipse at 50% 36%, rgba(217,70,239,.75), transparent 24%);
+          filter: blur(8px) saturate(1.55);
+          animation: pi-chat-orb-breathe 4s ease-in-out infinite alternate;
           opacity: .78;
         }
-        .pi-siri-orb-core {
+        .pi-chat-orb-core {
           position: absolute;
-          inset: 20%;
+          inset: 21%;
           border-radius: 999px;
-          background: radial-gradient(circle at 42% 37%, rgba(255,255,255,.28), rgba(9,10,18,.54) 46%, rgba(0,0,0,.83) 76%);
-          box-shadow: inset 0 0 25px rgba(255,255,255,.08);
-          backdrop-filter: blur(3px);
+          background: radial-gradient(circle at 42% 37%, rgba(255,255,255,.28), rgba(9,10,18,.54) 46%, rgba(0,0,0,.82) 76%);
         }
-        .pi-siri-orb-wrap.is-active .pi-siri-orb {
-          animation: pi-orb-active 1.7s ease-in-out infinite;
+        .pi-chat-orb-wrap.is-active .pi-chat-orb {
+          animation: pi-chat-orb-active 1.6s ease-in-out infinite;
           box-shadow:
-            inset 0 0 0 1px rgba(255,255,255,.2),
-            inset 0 0 30px rgba(255,255,255,.12),
-            0 18px 58px rgba(0,0,0,.45),
-            0 0 70px rgba(96,165,250,.34);
+            inset 0 0 0 1px rgba(255,255,255,.18),
+            inset 0 0 22px rgba(255,255,255,.1),
+            0 10px 36px rgba(0,0,0,.46),
+            0 0 46px rgba(96,165,250,.34);
         }
-        .pi-siri-orb-wrap.is-active .pi-siri-orb-layer-a { animation-duration: 2.7s; }
-        .pi-siri-orb-wrap.is-active .pi-siri-orb-layer-b { animation-duration: 2.1s; }
-        .pi-siri-orb-wrap.is-error .pi-siri-orb-layer-a {
+        .pi-chat-orb-wrap.is-active .pi-chat-orb-layer-a { animation-duration: 2.6s; }
+        .pi-chat-orb-wrap.is-active .pi-chat-orb-layer-b { animation-duration: 2.1s; }
+        .pi-chat-orb-wrap.is-error .pi-chat-orb-layer-a {
           background: conic-gradient(from 10deg, #fb7185, #f59e0b, #f87171, #fb7185);
         }
-        .pi-ai-messages {
-          mask-image: linear-gradient(to bottom, transparent 0, #000 20px, #000 calc(100% - 18px), transparent 100%);
-        }
-        .pi-ai-message {
-          animation: pi-ai-message-in .28s cubic-bezier(.2,.7,.2,1) both;
-        }
-        .pi-ai-input {
+        .pi-chat-panel {
+          background:
+            radial-gradient(circle at 50% 0%, rgba(96,165,250,.055), transparent 22rem),
+            rgba(255,255,255,.025);
           box-shadow:
-            inset 0 1px 0 rgba(255,255,255,.08),
-            0 18px 48px rgba(0,0,0,.28),
-            0 0 0 1px rgba(255,255,255,.025);
-          backdrop-filter: blur(24px) saturate(1.15);
+            inset 0 1px 0 rgba(255,255,255,.055),
+            0 20px 60px rgba(0,0,0,.22);
         }
-        @keyframes pi-orb-spin-a {
-          to { transform: rotate(360deg) scale(1.04); }
+        .pi-chat-composer {
+          box-shadow:
+            inset 0 1px 0 rgba(255,255,255,.075),
+            0 14px 36px rgba(0,0,0,.24);
+          backdrop-filter: blur(22px) saturate(1.15);
         }
-        @keyframes pi-orb-spin-b {
-          to { transform: rotate(360deg) scale(.96); }
+        @keyframes pi-chat-orb-spin-a { to { transform: rotate(360deg) scale(1.04); } }
+        @keyframes pi-chat-orb-spin-b { to { transform: rotate(360deg) scale(.96); } }
+        @keyframes pi-chat-orb-breathe {
+          0% { transform: scale(.88) translate3d(-2%,2%,0); }
+          100% { transform: scale(1.15) translate3d(3%,-2%,0); }
         }
-        @keyframes pi-orb-breathe {
-          0% { transform: scale(.88) translate3d(-2%, 2%, 0); }
-          100% { transform: scale(1.16) translate3d(3%, -2%, 0); }
-        }
-        @keyframes pi-orb-glow {
-          0%,100% { transform: scale(.94); opacity: .62; }
+        @keyframes pi-chat-orb-glow {
+          0%,100% { transform: scale(.94); opacity: .58; }
           50% { transform: scale(1.08); opacity: 1; }
         }
-        @keyframes pi-orb-active {
+        @keyframes pi-chat-orb-active {
           0%,100% { transform: scale(.98); }
-          50% { transform: scale(1.035); }
-        }
-        @keyframes pi-ai-message-in {
-          from { opacity: 0; transform: translateY(8px); }
-          to { opacity: 1; transform: translateY(0); }
+          50% { transform: scale(1.04); }
         }
         @media (prefers-reduced-motion: reduce) {
-          .pi-siri-orb-glow,
-          .pi-siri-orb-layer,
-          .pi-siri-orb-wrap.is-active .pi-siri-orb,
-          .pi-ai-message { animation: none !important; }
+          .pi-chat-orb-glow,
+          .pi-chat-orb-layer,
+          .pi-chat-orb-wrap.is-active .pi-chat-orb { animation: none !important; }
         }
       `}</style>
 
-      <div className="flex flex-col items-center pb-4 pt-2 text-center">
-        <SiriOrb active={loading} error={aiHealth && !healthy} />
-        <h1 className="mt-5 text-[clamp(1.45rem,2.2vw,2rem)] font-semibold tracking-[-0.03em] text-white">
-          PI Crosswalk
-        </h1>
-        <p className="mt-1 max-w-xl text-sm text-white/40">
-          Ask about an employee, compare lenses, or test a hypothetical.
-        </p>
-        <div className="mt-3 flex items-center gap-2 text-[11px] text-white/35">
-          <span className={cx('h-1.5 w-1.5 rounded-full', !aiHealth ? 'bg-white/25' : healthy ? 'bg-emerald-400' : 'bg-amber-400')} />
-          <span>
-            {!aiHealth
-              ? 'Checking live AI'
-              : healthy
-                ? providerLabel(aiHealth.source)
-                : 'Live AI unavailable'}
+      <div className="mb-4 flex flex-wrap items-start justify-between gap-3">
+        <div>
+          <h1 className="text-3xl font-bold text-white">PI Crosswalk Assistant</h1>
+          <p className="mt-1 text-sm text-white/40">Live multi-turn AI grounded in exact PI baselines, explicit overlays, and the complete lens registry.</p>
+        </div>
+        {aiHealth && (
+          <span className={cx(
+            'flex items-center gap-2 rounded-full border px-3 py-1.5 text-xs font-semibold',
+            healthy
+              ? 'border-emerald-300/25 bg-emerald-500/10 text-emerald-200'
+              : 'border-amber-300/25 bg-amber-500/10 text-amber-200'
+          )}>
+            {healthy ? <Sparkles size={13}/> : <AlertTriangle size={13}/>}
+            {healthy ? `${providerLabel(aiHealth.source)} healthy` : 'Live AI unavailable'}
           </span>
-          <span className="text-white/15">•</span>
-          <span>{employeeCountLabel}</span>
-          <span className="hidden text-white/15 sm:inline">•</span>
-          <span className="hidden sm:inline">{HSI_LENS_REGISTRY.length} lenses</span>
-          {overlayCount > 0 && (
-            <>
-              <span className="hidden text-white/15 sm:inline">•</span>
-              <span className="hidden sm:inline">{overlayCount} context variable{overlayCount === 1 ? '' : 's'}</span>
-            </>
+        )}
+      </div>
+
+      <div className="mb-4 rounded-2xl border border-sky-400/20 bg-sky-500/10 px-4 py-3">
+        <p className="text-xs font-semibold uppercase tracking-widest text-sky-200/70">Grounded conversation</p>
+        <p className="mt-1 text-sm leading-6 text-white/70">Ask naturally, follow up, challenge an interpretation, compare lenses, or test a clearly labeled hypothetical overlay.</p>
+      </div>
+
+      <div className="mb-4 flex flex-wrap gap-2">
+        <span className="rounded-full border border-white/10 bg-white/[0.08] px-3 py-1 text-xs text-white/50">{PI_PROFILES.length} PI reference profiles</span>
+        <span className="rounded-full border border-white/10 bg-white/[0.08] px-3 py-1 text-xs text-white/50">{HSI_LENS_REGISTRY.length} calculated lenses</span>
+        <span className="rounded-full border border-emerald-400/20 bg-emerald-500/10 px-3 py-1 text-xs text-emerald-300">{employeeCountLabel}</span>
+        <span className="rounded-full border border-fuchsia-300/20 bg-fuchsia-500/10 px-3 py-1 text-xs text-fuchsia-200">{overlayCount} saved context variable{overlayCount === 1 ? '' : 's'}</span>
+      </div>
+
+      <div className="pi-chat-panel flex-1 overflow-y-auto rounded-3xl border border-white/10 p-5">
+        <div className="mb-6 flex justify-center">
+          <div className={cx('pi-chat-orb-wrap', loading && 'is-active', aiHealth && !healthy && 'is-error')} aria-hidden="true">
+            <div className="pi-chat-orb-glow" />
+            <div className="pi-chat-orb">
+              <div className="pi-chat-orb-layer pi-chat-orb-layer-a" />
+              <div className="pi-chat-orb-layer pi-chat-orb-layer-b" />
+              <div className="pi-chat-orb-layer pi-chat-orb-layer-c" />
+              <div className="pi-chat-orb-core" />
+            </div>
+          </div>
+        </div>
+
+        <div className="space-y-5">
+          {messages.map((message, index) => {
+            const isUser = message.role === 'user';
+            const isError = message.source === 'error';
+            const label = providerLabel(message.source);
+            return (
+              <div key={`${message.role}-${index}`} className={cx('flex', isUser ? 'justify-end' : 'justify-start')}>
+                <div className={cx(
+                  'max-w-[88%] text-sm leading-6 sm:max-w-[78%]',
+                  isUser
+                    ? 'rounded-[22px] bg-white px-4 py-3 text-neutral-950 shadow-[0_10px_24px_rgba(0,0,0,.22)]'
+                    : isError
+                      ? 'rounded-[22px] border border-amber-300/20 bg-amber-500/[0.08] px-4 py-3 text-white/80'
+                      : 'px-1 py-1 text-white/85'
+                )}>
+                  <MessageContent text={message.text}/>
+                  {label && (
+                    <div className={cx(
+                      'mt-2 text-[10px] font-semibold uppercase tracking-[0.16em]',
+                      isError ? 'text-amber-200/55' : 'text-white/25'
+                    )}>
+                      {label}
+                    </div>
+                  )}
+                </div>
+              </div>
+            );
+          })}
+
+          {loading && (
+            <div className="flex items-center gap-3 text-sm text-white/38">
+              <div className="flex gap-1">
+                {[0,150,300].map(delay => (
+                  <span key={delay} className="h-2 w-2 animate-bounce rounded-full bg-white/35" style={{ animationDelay: `${delay}ms` }}/>
+                ))}
+              </div>
+              <span>Thinking</span>
+            </div>
           )}
+          <div ref={bottomRef}/>
         </div>
       </div>
 
-      <div className="pi-ai-messages mx-auto flex w-full max-w-4xl flex-1 flex-col gap-5 overflow-y-auto px-1 py-5 sm:px-4">
-        {messages.map((message, index) => {
-          const isUser = message.role === 'user';
-          const isError = message.source === 'error';
-          const label = providerLabel(message.source);
-          return (
-            <div
-              key={`${message.role}-${index}`}
-              className={cx('pi-ai-message flex w-full', isUser ? 'justify-end' : 'justify-start')}
-            >
-              <div className={cx(
-                'max-w-[88%] text-[15px] leading-7 sm:max-w-[78%]',
-                isUser
-                  ? 'rounded-[22px] bg-white px-4 py-2.5 text-neutral-950 shadow-[0_10px_28px_rgba(0,0,0,.24)]'
-                  : isError
-                    ? 'rounded-[22px] border border-amber-300/15 bg-amber-500/[0.07] px-4 py-3 text-white/75'
-                    : 'px-1 py-1 text-white/82'
-              )}>
-                <MessageContent text={message.text} />
-                {label && (
-                  <div className={cx(
-                    'mt-2 text-[10px] font-medium uppercase tracking-[0.14em]',
-                    isError ? 'text-amber-200/45' : 'text-white/24'
-                  )}>
-                    {label}
-                  </div>
-                )}
-              </div>
-            </div>
-          );
-        })}
-
-        {loading && (
-          <div className="pi-ai-message flex items-center gap-3 text-sm text-white/38">
-            <div className="flex gap-1.5">
-              {[0, 140, 280].map(delay => (
-                <span
-                  key={delay}
-                  className="h-1.5 w-1.5 animate-bounce rounded-full bg-white/35"
-                  style={{ animationDelay: `${delay}ms` }}
-                />
-              ))}
-            </div>
-            <span>Thinking</span>
-          </div>
-        )}
-        <div ref={bottomRef} />
-      </div>
-
-      <div className="mx-auto mt-3 w-full max-w-4xl">
-        <div className="pi-ai-input flex items-end gap-2 rounded-[26px] border border-white/[0.09] bg-white/[0.055] p-2 pl-4">
+      <div className="mt-4">
+        <div className="pi-chat-composer flex items-end gap-2 rounded-[26px] border border-white/10 bg-white/[0.05] p-2 pl-4">
           <textarea
             value={input}
             onChange={event => setInput(event.target.value)}
             onKeyDown={onKeyDown}
-            placeholder="Message PI Crosswalk…"
+            placeholder="Ask a question or continue the conversation…"
             rows={1}
-            className="max-h-36 min-h-[44px] flex-1 resize-none bg-transparent py-3 text-[15px] leading-5 text-white outline-none placeholder:text-white/25"
+            className="max-h-36 min-h-[44px] flex-1 resize-none bg-transparent py-3 text-sm text-white outline-none placeholder:text-white/25"
           />
           <button
             type="button"
             onClick={send}
             disabled={!input.trim() || loading}
             className={cx(
-              'grid h-11 w-11 flex-none place-items-center rounded-full border transition-all duration-200',
+              'grid h-11 w-11 flex-none place-items-center rounded-full border transition',
               input.trim() && !loading
-                ? 'border-white bg-white text-neutral-950 hover:scale-[1.03] hover:bg-white'
-                : 'cursor-not-allowed border-white/[0.08] bg-white/[0.06] text-white/20'
+                ? 'border-white bg-white text-neutral-950 hover:scale-[1.03]'
+                : 'cursor-not-allowed border-white/10 bg-white/5 text-white/25'
             )}
             aria-label="Send crosswalk question"
           >
-            <ArrowUp size={18} strokeWidth={2.4} />
+            <ArrowUp size={18} strokeWidth={2.4}/>
           </button>
         </div>
-        <p className="mt-2 text-center text-[10px] tracking-wide text-white/20">
-          Enter to send · Shift + Enter for a new line
-        </p>
       </div>
     </div>
   );
