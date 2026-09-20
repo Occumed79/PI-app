@@ -377,7 +377,7 @@ export default function AITab({ employees = [] }) {
       <div className="pi-chat-panel flex-1 overflow-y-auto rounded-3xl border border-white/10 p-5">
         <div className="mb-7 flex justify-center pt-1">
           <SiriOrb
-            size="120px"
+            size="192px"
             state={loading ? 'thinking' : aiHealth && !healthy ? 'error' : 'idle'}
           />
         </div>
