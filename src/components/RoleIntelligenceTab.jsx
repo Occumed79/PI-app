@@ -778,6 +778,51 @@ function Landing({ employees, loading, loadError, onSelectEmployee }) {
   );
 }
 
+function RoleQuickSwitcher({ selectedRole, onSelectRole }) {
+  const [query, setQuery] = useState('');
+  const normalized = query.trim().toLowerCase();
+  const matches = normalized
+    ? ROLE_INTELLIGENCE_ROLES.filter(role => [
+        role.title,
+        role.shortTitle,
+        role.family,
+        role.level,
+      ].filter(Boolean).join(' ').toLowerCase().includes(normalized))
+    : [];
+
+  return (
+    <Command className="mx-auto mb-5 max-w-3xl">
+      <CommandInput
+        value={query}
+        onChange={event => setQuery(event.target.value)}
+        placeholder={`Jump to another modeled role · currently ${selectedRole.shortTitle}`}
+      />
+      {normalized && (
+        <CommandList>
+          <CommandGroup heading="Company positions">
+            {matches.length === 0 && <CommandEmpty>No modeled role matches that search.</CommandEmpty>}
+            {matches.map(role => (
+              <CommandItem
+                key={role.id}
+                checked={selectedRole.id === role.id}
+                onSelect={() => {
+                  onSelectRole(role);
+                  setQuery('');
+                }}
+              >
+                <span className="min-w-0">
+                  <span className="block truncate font-medium text-white/74">{role.title}</span>
+                  <span className="block truncate text-[11px] text-white/30">{role.family} · {role.level}</span>
+                </span>
+              </CommandItem>
+            ))}
+          </CommandGroup>
+        </CommandList>
+      )}
+    </Command>
+  );
+}
+
 function Workspace({ employee, onExit }) {
   const [selectedRole, setSelectedRole] = useState(ROLE_INTELLIGENCE_ROLES[0]);
   const [activeCategory, setActiveCategory] = useState('work-history');
@@ -826,6 +871,7 @@ function Workspace({ employee, onExit }) {
       <ResizablePanelGroup className="min-h-[760px]">
         <ResizablePanel defaultSize={72} className="xl:pr-6">
           <main className="min-w-0">
+            <RoleQuickSwitcher selectedRole={selectedRole} onSelectRole={setSelectedRole}/>
             <RoleOrbit employee={employee} selectedRole={selectedRole} onSelectRole={setSelectedRole}/>
 
             <section className="mx-auto max-w-5xl px-2 py-12">

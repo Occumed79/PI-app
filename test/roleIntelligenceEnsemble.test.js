@@ -165,3 +165,11 @@ test('Role Intelligence shows concise material-disagreement and unsupported-leap
   assert.match(roleUiSource, /data\.consensus\?\.materialDisagreements/);
   assert.match(roleUiSource, /data\.consensus\?\.unsupportedLeaps/);
 });
+
+
+test('Role Intelligence includes a sourced command role switcher for the fourteen-role workspace', () => {
+  assert.match(roleUiSource, /function RoleQuickSwitcher/);
+  assert.match(roleUiSource, /Jump to another modeled role/);
+  assert.match(roleUiSource, /<CommandInput/);
+  assert.match(roleUiSource, /ROLE_INTELLIGENCE_ROLES\.filter/);
+});
