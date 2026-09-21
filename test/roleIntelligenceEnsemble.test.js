@@ -173,3 +173,10 @@ test('Role Intelligence includes a sourced command role switcher for the fourtee
   assert.match(roleUiSource, /<CommandInput/);
   assert.match(roleUiSource, /ROLE_INTELLIGENCE_ROLES\.filter/);
 });
+
+
+test('public evidence sources expose their source links in Role Intelligence', () => {
+  assert.match(roleUiSource, /source\.public && source\.url/);
+  assert.match(roleUiSource, /Open source/);
+  assert.match(roleUiSource, /target="_blank"/);
+});
