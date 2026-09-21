@@ -90,3 +90,19 @@ test('Figma Pattern Refraction is mounted in the context lens and stays visual-o
   assert.match(refractionSource, /illustrative only/);
   assert.doesNotMatch(refractionSource, /deriveRoleInteraction|internalCompatibilityIndex|evidenceConfidence|adjacentRole/i);
 });
+
+
+test('Role Intelligence AI is grounded in the deterministic role engine before model analysis', () => {
+  assert.match(serverSource, /ROLE_BY_ID/);
+  assert.match(serverSource, /deriveRoleInteraction/);
+  assert.match(serverSource, /deriveAdjacentRolePull/);
+  assert.match(serverSource, /AUTHORITATIVE ROLE-INTELLIGENCE GROUNDING/);
+  assert.match(serverSource, /Component values describe modeled interaction/);
+  assert.match(roleUiSource, /roleId: role\.id/);
+  assert.match(roleUiSource, /activeContextCategory: activeCategory/);
+});
+
+test('Role Intelligence grounding keeps adjacent-role pull descriptive rather than prescriptive', () => {
+  assert.match(serverSource, /Adjacent-role pull is descriptive exploration only, not a staffing or promotion recommendation/);
+  assert.match(serverSource, /Do not expose or invent an overall employment verdict/);
+});
