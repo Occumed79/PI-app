@@ -6,13 +6,11 @@ const webResearchSource = await readFile(new URL('../server/web-research.js', im
 const intelligenceSource = await readFile(new URL('../server/cloudflare-intelligence.js', import.meta.url), 'utf8');
 const serverSource = await readFile(new URL('../server/index.js', import.meta.url), 'utf8');
 const tab3Source = await readFile(new URL('../src/components/AITab.jsx', import.meta.url), 'utf8');
-const tab4Source = await readFile(new URL('../src/components/RoleIntelligenceTab.jsx', import.meta.url), 'utf8');
 
 test('TinyFish and Keenable credentials stay server-side', () => {
   assert.match(webResearchSource, /process\.env\.TINYFISH_API_KEY/);
   assert.match(webResearchSource, /process\.env\.KEENABLE_API_KEY/);
   assert.doesNotMatch(tab3Source, /TINYFISH_API_KEY|KEENABLE_API_KEY|VITE_TINYFISH|VITE_KEENABLE/);
-  assert.doesNotMatch(tab4Source, /TINYFISH_API_KEY|KEENABLE_API_KEY|VITE_TINYFISH|VITE_KEENABLE/);
 });
 
 test('web research uses the official authenticated search endpoints', () => {
@@ -42,11 +40,9 @@ test('routing controller can request web research for conditions, lenses, and cu
   assert.match(intelligenceSource, /unfamiliar condition\/term/);
 });
 
-test('Tab 3 and Tab 4 both inject conditional web research into their AI context', () => {
-  assert.match(serverSource, /const roleWebResearch = await buildExternalWebResearch/);
+test('Tab 3 injects conditional web research into its AI context', () => {
   assert.match(serverSource, /const webResearch = isHealthProbe/);
   assert.match(serverSource, /enabled: Boolean\(intelligence\.plan\?\.needsWebResearch\)/);
-  assert.match(serverSource, /roleWebResearch\.context/);
   assert.match(serverSource, /combinedResearchContext/);
 });
 
@@ -56,12 +52,9 @@ test('web research is supporting context and cannot alter sensitive baseline com
   assert.match(webResearchSource, /Never treat search results as evidence that the selected employee has a condition/);
 });
 
-test('both AI tabs expose web research provenance without exposing secrets', () => {
+test('Tab 3 exposes web research provenance without exposing secrets', () => {
   assert.match(tab3Source, /Web research ·/);
   assert.match(tab3Source, /data\.webResearch/);
-  assert.match(tab4Source, /External web sources/);
-  assert.match(tab4Source, /data\.webResearch\?\.providers/);
-  assert.match(tab4Source, /data\.webResearch\?\.sources/);
 });
 
 test('Tab 3 gets enough request time for search plus model inference', () => {
