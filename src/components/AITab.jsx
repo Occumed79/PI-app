@@ -174,7 +174,7 @@ ${CROSSWALK_AI_RULES.map(rule => `- ${rule}`).join('\n')}
 - Distinguish direct correspondences from weaker directional estimates.
 - Do not invent employee facts or separately administered assessment results.
 
-17 PI REFERENCE PROFILES
+${PI_PROFILES.length} PI REFERENCE PROFILES
 ${profileSummaries}
 
 ${HSI_LENS_REGISTRY.length} AVAILABLE LENSES
@@ -235,13 +235,7 @@ function providerLabel(source) {
 }
 
 export default function AITab({ employees = [] }) {
-  const [messages, setMessages] = useState([
-    {
-      role: 'assistant',
-      source: 'welcome',
-      text: 'Ask me anything about an employee’s PI pattern, compare lenses, test a hypothetical life or work variable, or keep asking follow-up questions. I’ll use the stored PI data as context rather than forcing every reply into a fixed report.',
-    },
-  ]);
+  const [messages, setMessages] = useState([]);
   const [input, setInput] = useState('');
   const [loading, setLoading] = useState(false);
   const [aiHealth, setAiHealth] = useState(null);
@@ -347,7 +341,6 @@ export default function AITab({ employees = [] }) {
       <div className="mb-4 flex flex-wrap items-start justify-between gap-3">
         <div>
           <h1 className="text-3xl font-bold text-white">PI Crosswalk Assistant</h1>
-          <p className="mt-1 text-sm text-white/40">Live multi-turn AI grounded in exact PI baselines, explicit overlays, and the complete lens registry.</p>
         </div>
         {aiHealth && (
           <span className={cx(
@@ -363,65 +356,66 @@ export default function AITab({ employees = [] }) {
       </div>
 
       <div className="mb-4 rounded-2xl border border-sky-400/20 bg-sky-500/10 px-4 py-3">
-        <p className="text-xs font-semibold uppercase tracking-widest text-sky-200/70">Grounded conversation</p>
-        <p className="mt-1 text-sm leading-6 text-white/70">Ask naturally, follow up, challenge an interpretation, compare lenses, or test a clearly labeled hypothetical overlay.</p>
+        <p className="text-sm leading-6 text-white/75">Ask me anything about an employee’s PI pattern, compare lenses, test a hypothetical life or work variable, or keep asking follow-up questions. I’ll use the stored PI data as context rather than forcing every reply into a fixed report.</p>
       </div>
 
       <div className="mb-4 flex flex-wrap gap-2">
-        <span className="rounded-full border border-white/10 bg-white/[0.08] px-3 py-1 text-xs text-white/50">{PI_PROFILES.length} PI reference profiles</span>
-        <span className="rounded-full border border-white/10 bg-white/[0.08] px-3 py-1 text-xs text-white/50">{HSI_LENS_REGISTRY.length} calculated lenses</span>
+        <span className="rounded-full border border-sky-400/25 bg-sky-500/10 px-3 py-1 text-xs font-medium text-sky-200">{PI_PROFILES.length} PI reference profiles</span>
+        <span className="rounded-full border border-violet-400/25 bg-violet-500/10 px-3 py-1 text-xs font-medium text-violet-200">{HSI_LENS_REGISTRY.length} calculated lenses</span>
         <span className="rounded-full border border-emerald-400/20 bg-emerald-500/10 px-3 py-1 text-xs text-emerald-300">{employeeCountLabel}</span>
         <span className="rounded-full border border-fuchsia-300/20 bg-fuchsia-500/10 px-3 py-1 text-xs text-fuchsia-200">{overlayCount} saved context variable{overlayCount === 1 ? '' : 's'}</span>
       </div>
 
-      <div className="pi-chat-panel flex-1 overflow-y-auto rounded-3xl border border-white/10 p-5">
-        <div className="mb-7 flex justify-center pt-1">
+      <div className="pi-chat-panel flex min-h-0 flex-1 flex-col overflow-hidden rounded-3xl border border-white/10 p-5">
+        <div className="flex flex-none justify-center pb-5 pt-1">
           <SiriOrb
             size="192px"
             state={loading ? 'thinking' : aiHealth && !healthy ? 'error' : 'idle'}
           />
         </div>
 
-        <div className="space-y-5">
-          {messages.map((message, index) => {
-            const isUser = message.role === 'user';
-            const isError = message.source === 'error';
-            const label = providerLabel(message.source);
-            return (
-              <div key={`${message.role}-${index}`} className={cx('flex', isUser ? 'justify-end' : 'justify-start')}>
-                <div className={cx(
-                  'max-w-[88%] text-sm leading-6 sm:max-w-[78%]',
-                  isUser
-                    ? 'rounded-[22px] bg-white px-4 py-3 text-neutral-950 shadow-[0_10px_24px_rgba(0,0,0,.22)]'
-                    : isError
-                      ? 'rounded-[22px] border border-amber-300/20 bg-amber-500/[0.08] px-4 py-3 text-white/80'
-                      : 'px-1 py-1 text-white/85'
-                )}>
-                  <MessageContent text={message.text}/>
-                  {label && (
-                    <div className={cx(
-                      'mt-2 text-[10px] font-semibold uppercase tracking-[0.16em]',
-                      isError ? 'text-amber-200/55' : 'text-white/25'
-                    )}>
-                      {label}
-                    </div>
-                  )}
+        <div className="min-h-0 flex-1 overflow-y-auto pr-2">
+          <div className="space-y-5 pb-2">
+            {messages.map((message, index) => {
+              const isUser = message.role === 'user';
+              const isError = message.source === 'error';
+              const label = providerLabel(message.source);
+              return (
+                <div key={`${message.role}-${index}`} className={cx('flex', isUser ? 'justify-end' : 'justify-start')}>
+                  <div className={cx(
+                    'max-w-[88%] text-sm leading-6 sm:max-w-[78%]',
+                    isUser
+                      ? 'rounded-[22px] bg-white px-4 py-3 text-neutral-950 shadow-[0_10px_24px_rgba(0,0,0,.22)]'
+                      : isError
+                        ? 'rounded-[22px] border border-amber-300/20 bg-amber-500/[0.08] px-4 py-3 text-white/80'
+                        : 'px-1 py-1 text-white/85'
+                  )}>
+                    <MessageContent text={message.text}/>
+                    {label && (
+                      <div className={cx(
+                        'mt-2 text-[10px] font-semibold uppercase tracking-[0.16em]',
+                        isError ? 'text-amber-200/55' : 'text-white/25'
+                      )}>
+                        {label}
+                      </div>
+                    )}
+                  </div>
                 </div>
-              </div>
-            );
-          })}
+              );
+            })}
 
-          {loading && (
-            <div className="flex items-center gap-3 text-sm text-white/38">
-              <div className="flex gap-1">
-                {[0,150,300].map(delay => (
-                  <span key={delay} className="h-2 w-2 animate-bounce rounded-full bg-white/35" style={{ animationDelay: `${delay}ms` }}/>
-                ))}
+            {loading && (
+              <div className="flex items-center gap-3 text-sm text-white/38">
+                <div className="flex gap-1">
+                  {[0,150,300].map(delay => (
+                    <span key={delay} className="h-2 w-2 animate-bounce rounded-full bg-white/35" style={{ animationDelay: `${delay}ms` }}/>
+                  ))}
+                </div>
+                <span>Thinking</span>
               </div>
-              <span>Thinking</span>
-            </div>
-          )}
-          <div ref={bottomRef}/>
+            )}
+            <div ref={bottomRef}/>
+          </div>
         </div>
       </div>
 
