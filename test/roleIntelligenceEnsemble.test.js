@@ -106,3 +106,12 @@ test('Role Intelligence grounding keeps adjacent-role pull descriptive rather th
   assert.match(serverSource, /Adjacent-role pull is descriptive exploration only, not a staffing or promotion recommendation/);
   assert.match(serverSource, /Do not expose or invent an overall employment verdict/);
 });
+
+
+test('Role Intelligence side rail shows the analyzer and evidence provenance returned by the server', () => {
+  assert.match(roleUiSource, /data\.analyzers/);
+  assert.match(roleUiSource, /data\.synthesizer/);
+  assert.match(roleUiSource, /data\.roleGrounding\?\.sourceCount/);
+  assert.match(roleUiSource, /data\.roleGrounding\?\.evidenceConfidence/);
+  assert.match(roleUiSource, /role sources/);
+});
