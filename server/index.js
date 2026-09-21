@@ -9,7 +9,6 @@ import {
   callCloudflareChat,
   callPrimaryPool,
   callPrimaryProvider,
-  callRoleIntelligenceEnsemble,
   configuredProviderMap,
   getProviderDiagnostics,
   refreshProviderCapabilities,
@@ -23,11 +22,6 @@ import {
   buildExternalWebResearch,
   getWebResearchDiagnostics,
 } from './web-research.js';
-import {
-  ROLE_BY_ID,
-  deriveAdjacentRolePull,
-  deriveRoleInteraction,
-} from '../src/data/roleIntelligence.js';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -53,9 +47,6 @@ function normalizeOverlayIds(value) {
   )].slice(0, 50);
 }
 
-function normalizeLifeLensMode(value) {
-  return value === 'authorized' ? 'authorized' : 'hypothetical';
-}
 
 function compactConversation(messages, limit = 16) {
   return safeArray(messages, 100)
@@ -161,189 +152,6 @@ function employeeProfileAsEmployee(employeeProfile = {}) {
     formality: factors.formality,
     contextOverlays: employeeProfile?.contextOverlays || [],
   };
-}
-
-function buildRoleGrounding(employee, roleId) {
-  const role = ROLE_BY_ID[String(roleId || '').trim()];
-  if (!role) return null;
-
-  const interaction = deriveRoleInteraction(employee, role);
-  const adjacentRoles = deriveAdjacentRolePull(employee, role, 4).map(item => ({
-    roleId: item.roleId,
-    title: item.title,
-    pull: item.pull,
-    roleSimilarity: item.roleSimilarity,
-    delta: item.delta,
-    evidenceConfidence: item.evidenceConfidence,
-  }));
-
-  return {
-    role: {
-      id: role.id,
-      title: role.title,
-      family: role.family,
-      level: role.level,
-      purpose: role.purpose,
-      behavioralBands: role.behavioralBands,
-      signature: role.signature,
-      workValues: role.workValues,
-    },
-    employeeFactors: interaction.factors,
-    directionalPreferences: interaction.preferences,
-    directionalWorkValues: interaction.workValues,
-    factorSignals: interaction.factorSignals,
-    components: interaction.components,
-    capacityTensions: interaction.capacityTensions,
-    inversionRisk: interaction.inversionRisk,
-    inversionSignals: interaction.inversionSignals.slice(0, 4),
-    evidenceConfidence: interaction.evidenceConfidence,
-    evidence: interaction.evidence.map(source => ({
-      id: source.id,
-      label: source.label,
-      kind: source.kind,
-      note: source.note,
-      authority: source.authority,
-      directness: source.directness,
-      public: source.public,
-      url: source.public ? source.url || null : null,
-    })),
-    adjacentRoles,
-  };
-}
-
-function roleGroundingSystemText(grounding, activeContextCategory = '', lifeLensMode = 'hypothetical') {
-  if (!grounding) return '';
-
-  const normalizedLifeLensMode = normalizeLifeLensMode(lifeLensMode);
-  const lifeLensInstruction = normalizedLifeLensMode === 'authorized'
-    ? `USER-DESIGNATED AUTHORIZED CONTEXT: The user has designated the ${String(activeContextCategory || 'selected')} category as authorized for contextual interpretation. The app does not independently verify employee authorization. Do not state or imply employee authorization unless separately supported by provided data, do not turn the category into a diagnosis or medical record, and do not infer facts beyond the supplied category.`
-    : `HYPOTHETICAL CONTEXT EXPLORATION: The ${String(activeContextCategory || 'selected')} category is a what-if lens only. Never infer that the selected employee has this condition or life context.`;
-
-  return `AUTHORITATIVE ROLE-INTELLIGENCE GROUNDING
-The following structured values come from the app's deterministic person × role engine and evidence catalog. Use them as the baseline. Do not silently replace them with your own score.
-
-${JSON.stringify(grounding, null, 2)}
-
-GROUNDING RULES:
-- The PI factors are completed source-assessment inputs.
-- Directional preferences and work values are model-derived projections from those PI factors, not separately administered measurements.
-- Component values describe modeled interaction with this role. They are not measured performance, productivity, competence, hireability, or promotion scores.
-- Capacity tensions distinguish directional PI-derived work-style pull that may be underused from role demands that may create operating pressure. They are descriptive hypotheses, not ability measures, failure predictions, staffing recommendations, or promotion signals.
-- Evidence sources marked as external analogues support role-demand modeling but do not mean the Occu-Med role is identical to the external occupation.
-- Adjacent-role pull is descriptive exploration only, not a staffing or promotion recommendation.
-- Do not expose or invent an overall employment verdict.
-- Sensitive life-context information must not alter the baseline role interaction.
-- Active context lens, when present, is explanatory only: ${String(activeContextCategory || 'none')}.
-- The Life Lens permission mode does not change deterministic baseline compatibility, component values, evidence confidence, adjacent-role pull, or orbit geometry.
-${lifeLensInstruction}`;
-}
-
-const ROLE_QUERY_ALIASES = Object.freeze({
-  'examqa-analyst': ['examqa analyst', 'exam qa analyst', 'examqa'],
-  'exam-review': ['subject matter expert exam review', 'subject matter expert', 'exam review', 'sme'],
-  'examqa-manager': ['examqa manager', 'exam qa manager'],
-  'examqa-director': ['examqa director', 'exam qa director'],
-  'network-management': ['network management analyst', 'network analyst', 'network management'],
-  'network-management-director': ['network management director', 'network director'],
-  'provider-relations': ['provider relations analyst', 'provider relations'],
-  'provider-relations-manager': ['provider relations manager'],
-  'scheduling': ['scheduling analyst', 'scheduling'],
-  'scheduling-manager': ['scheduling manager'],
-  'client-accounts': ['client account manager', 'client accounts'],
-  'operations-director': ['operations director'],
-  'finance-analyst': ['finance analyst', 'finance'],
-  'fitness-for-duty': ['fitness for duty analyst', 'fitness for duty'],
-});
-
-function normalizedRoleQuery(value) {
-  return String(value || '')
-    .toLowerCase()
-    .replace(/[^a-z0-9]+/g, ' ')
-    .replace(/\s+/g, ' ')
-    .trim();
-}
-
-function mentionedComparisonRoleIds(query, selectedRoleId, limit = 3) {
-  const text = normalizedRoleQuery(query);
-  if (!text) return [];
-
-  const matches = [];
-  for (const role of Object.values(ROLE_BY_ID)) {
-    if (role.id === selectedRoleId) continue;
-    const aliases = [
-      role.title,
-      role.shortTitle,
-      role.id,
-      ...(ROLE_QUERY_ALIASES[role.id] || []),
-    ]
-      .map(normalizedRoleQuery)
-      .filter(alias => alias.length >= 3);
-
-    const matchedAlias = aliases
-      .filter(alias => text.includes(alias))
-      .sort((a, b) => b.length - a.length)[0];
-
-    if (matchedAlias) matches.push({ roleId: role.id, alias: matchedAlias });
-  }
-
-  matches.sort((a, b) => b.alias.length - a.alias.length || a.roleId.localeCompare(b.roleId));
-
-  const selected = [];
-  const claimedAliases = [];
-  for (const match of matches) {
-    if (claimedAliases.some(existing => existing.includes(match.alias) && existing !== match.alias)) {
-      continue;
-    }
-    selected.push(match.roleId);
-    claimedAliases.push(match.alias);
-    if (selected.length >= Math.max(1, limit)) break;
-  }
-  return selected;
-}
-
-function buildComparisonRoleGrounding(employee, roleId) {
-  const role = ROLE_BY_ID[roleId];
-  if (!role) return null;
-  const interaction = deriveRoleInteraction(employee, role);
-  return {
-    role: {
-      id: role.id,
-      title: role.title,
-      family: role.family,
-      level: role.level,
-      purpose: role.purpose,
-      behavioralBands: role.behavioralBands,
-      signature: role.signature,
-      workValues: role.workValues,
-    },
-    factorSignals: interaction.factorSignals,
-    components: interaction.components,
-    capacityTensions: interaction.capacityTensions,
-    inversionRisk: interaction.inversionRisk,
-    inversionSignals: interaction.inversionSignals.slice(0, 3),
-    evidenceConfidence: interaction.evidenceConfidence,
-    evidence: interaction.evidence.map(source => ({
-      id: source.id,
-      label: source.label,
-      kind: source.kind,
-      note: source.note,
-      authority: source.authority,
-      directness: source.directness,
-    })),
-  };
-}
-
-function comparisonGroundingSystemText(comparisons = []) {
-  if (!comparisons.length) return '';
-  return `EXPLICITLY MENTIONED COMPARISON ROLE GROUNDING
-These roles were explicitly named in the user's question. Compare them using these deterministic employee × role calculations rather than model memory.
-
-${JSON.stringify(comparisons, null, 2)}
-
-COMPARISON RULES:
-- Compare specific dimensions and evidence; do not declare a winner, best role, promotion target, or employment decision.
-- Preserve important tradeoffs and uncertainty.
-- Evidence confidence is confidence in the modeled role evidence bundle, not confidence in employee performance.`;
 }
 
 async function cloudflareEmergencyReply({ system, messages, jsonMode = false, maxTokens = 1800 }) {
@@ -738,128 +546,6 @@ app.post('/api/ai/scenario-analysis', async (req, res) => {
   });
 });
 
-
-app.post('/api/ai/role-intelligence', async (req, res) => {
-  const { system, messages, employees, roleId, activeContextCategory, lifeLensMode } = req.body || {};
-  if (!Array.isArray(messages)) {
-    return res.status(400).json({ ok: false, message: 'messages array required' });
-  }
-
-  const conversation = compactConversation(messages, 16);
-  if (!conversation.some(message => message.role === 'user')) {
-    return res.status(400).json({ ok: false, message: 'At least one user message is required.' });
-  }
-
-  const query = latestUserText(conversation);
-  const employeeContext = safeArray(employees, 6);
-  const selectedEmployee = employeeContext[0] || null;
-
-  let roleGrounding = null;
-  let comparisonGroundings = [];
-  if (roleId) {
-    const normalizedRoleId = String(roleId).trim();
-    if (!ROLE_BY_ID[normalizedRoleId]) {
-      return res.status(400).json({ ok: false, message: 'Unknown Role Intelligence role.' });
-    }
-    if (!selectedEmployee) {
-      return res.status(400).json({ ok: false, message: 'A selected employee is required for grounded role analysis.' });
-    }
-    roleGrounding = buildRoleGrounding(selectedEmployee, normalizedRoleId);
-    comparisonGroundings = mentionedComparisonRoleIds(query, normalizedRoleId, 3)
-      .map(comparisonRoleId => buildComparisonRoleGrounding(selectedEmployee, comparisonRoleId))
-      .filter(Boolean);
-  }
-
-  let intelligence = { context: '', metadata: { used: false }, lenses: [] };
-  try {
-    intelligence = await buildCloudflareIntelligence({
-      query,
-      employees: employeeContext,
-    });
-  } catch (error) {
-    intelligence.metadata = {
-      used: false,
-      warning: sanitizeProviderError(error.message),
-    };
-  }
-
-  const roleWebResearch = await buildExternalWebResearch({
-    query,
-    employees: employeeContext,
-    hints: [
-      roleGrounding?.role?.title,
-      activeContextCategory,
-      ...comparisonGroundings.map(item => item.role.title),
-      ...(intelligence.lenses || []).map(item => item.lens),
-    ].filter(Boolean),
-    enabled: Boolean(intelligence.plan?.needsWebResearch),
-  });
-
-  const roleSystem = [
-    String(system || ''),
-    roleGroundingSystemText(roleGrounding, activeContextCategory, lifeLensMode),
-    comparisonGroundingSystemText(comparisonGroundings),
-    intelligence.context
-      ? `AUXILIARY SEMANTIC LENS CONTEXT:\n${intelligence.context}`
-      : '',
-    roleWebResearch.context,
-  ].filter(Boolean).join('\n\n');
-
-  try {
-    const result = await callRoleIntelligenceEnsemble({
-      system: roleSystem,
-      messages: conversation,
-      temperature: 0.28,
-      maxTokens: 3200,
-      jsonMode: false,
-    });
-
-    if (!result?.reply) {
-      return res.status(503).json({
-        ok: false,
-        message: 'No Role Intelligence analyzer completed successfully.',
-        providerErrors: result?.errors || [],
-      });
-    }
-
-    res.json({
-      ok: true,
-      reply: result.reply,
-      consensusMode: result.consensusMode,
-      consensus: result.consensus || null,
-      analyzers: (result.analyzers || []).map(item => ({
-        provider: item.provider,
-        model: item.model,
-        keySlot: item.keySlot,
-      })),
-      synthesizer: result.synthesizer || null,
-      providerErrors: result.errors || [],
-      evidence: intelligence.metadata || null,
-      webResearch: {
-        ...roleWebResearch.metadata,
-        sources: roleWebResearch.sources.map(source => ({
-          id: source.id,
-          provider: source.provider,
-          title: source.title,
-          url: source.url,
-          publishedAt: source.publishedAt,
-        })),
-      },
-      roleGrounding: roleGrounding ? {
-        roleId: roleGrounding.role.id,
-        evidenceConfidence: roleGrounding.evidenceConfidence,
-        sourceCount: roleGrounding.evidence.length,
-        adjacentRoleIds: roleGrounding.adjacentRoles.map(item => item.roleId),
-        comparisonRoleIds: comparisonGroundings.map(item => item.role.id),
-      } : null,
-    });
-  } catch (error) {
-    res.status(500).json({
-      ok: false,
-      message: sanitizeProviderError(error.message),
-    });
-  }
-});
 
 app.post('/api/ai-chat', async (req, res) => {
   const { system, messages, employees } = req.body || {};
