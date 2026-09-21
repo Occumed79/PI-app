@@ -237,3 +237,10 @@ test('Role Intelligence clears stale AI context when the employee or role change
   assert.match(roleUiSource, /<Badge>\{role\.shortTitle\}<\/Badge>/);
   assert.match(roleUiSource, /<Badge tone="info">\{sceneLabel\}<\/Badge>/);
 });
+
+
+test('sourced sticky-scroll reveal keeps active visuals on mobile', () => {
+  assert.match(stickySource, /activeCard === index && item\.content/);
+  assert.match(stickySource, /lg:hidden/);
+  assert.match(stickySource, /min-h-\[22rem\]/);
+});

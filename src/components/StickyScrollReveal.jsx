@@ -48,6 +48,16 @@ export default function StickyScrollReveal({ content = [], className = '', onAct
                 <p className="mt-5 max-w-xl text-sm leading-7 text-white/46 sm:text-base sm:leading-8">
                   {item.description}
                 </p>
+                {activeCard === index && item.content && (
+                  <motion.div
+                    initial={{ opacity: 0, y: 10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.35 }}
+                    className="mt-6 min-h-[22rem] overflow-hidden rounded-[24px] border border-white/10 bg-black/25 lg:hidden"
+                  >
+                    {item.content}
+                  </motion.div>
+                )}
               </motion.div>
             </div>
           ))}
