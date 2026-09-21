@@ -7,6 +7,7 @@ const OPENROUTER_AUTO_MODEL = 'openrouter/free';
 const state = {
   gemini: { model: null, discoveredAt: 0, lastError: null },
   groq: { model: null, discoveredAt: 0, lastError: null },
+  mistral: { model: null, discoveredAt: 0, lastError: null },
   cloudflare: {
     reasoning: { model: null, discoveredAt: 0, lastError: null },
     embedding: { model: null, discoveredAt: 0, lastError: null },
@@ -34,6 +35,21 @@ function groqKeys() {
   return unique([process.env.GROQ_API_KEY, process.env.GROQ_API_KEY_2]);
 }
 
+function mistralKeys() {
+  return unique([
+    process.env.MISTRAL_API_KEY,
+    process.env.MISTRAL_API_KEY_2,
+    process.env.MISTRAL_API_KEY_3,
+    process.env.MISTRIAL_STUDUIO_API_KEY,
+    process.env.MISTRIAL_STUDUIO_API_KEY_2,
+    process.env.MISTRIAL_STUDUIO_API_KEY_3,
+  ]);
+}
+
+function nvidiaKey() {
+  return String(process.env.NVIDIA_API_KEY || '').trim();
+}
+
 function cloudflareAccounts() {
   const candidates = [
     {
@@ -54,6 +70,8 @@ function allSecrets() {
   return unique([
     ...geminiKeys(),
     ...groqKeys(),
+    ...mistralKeys(),
+    process.env.NVIDIA_API_KEY,
     process.env.OPENROUTER_API_KEY,
     process.env.CLOUDFLARE_API_TOKEN,
     process.env.CLOUDFLARE_API_TOKEN_2,
@@ -447,6 +465,111 @@ async function callGroq(options) {
   throw lastError || new Error('Groq request failed.');
 }
 
+
+function scoreMistral(model) {
+  const id = String(model?.id || model?.name || '').toLowerCase();
+  if (!id) return Number.NEGATIVE_INFINITY;
+  if (/embed|ocr|moderation|classifier|voxtral|codestral-embed/.test(id)) return Number.NEGATIVE_INFINITY;
+
+  let score = 0;
+  if (/mistral-medium/.test(id)) score += 1200;
+  if (/mistral-small-4/.test(id)) score += 1150;
+  if (/mistral-large/.test(id)) score += 1050;
+  if (/mistral-small/.test(id)) score += 900;
+  if (/ministral-14b/.test(id)) score += 650;
+  if (/ministral-8b/.test(id)) score += 550;
+  if (/ministral-3b/.test(id)) score += 450;
+  if (/preview|experimental|deprecated/.test(id)) score -= 600;
+  score += parseVersionWeight(id);
+  return score;
+}
+
+async function listMistralModels(apiKey) {
+  const response = await fetchWithTimeout(
+    'https://api.mistral.ai/v1/models',
+    { headers: { Authorization: `Bearer ${apiKey}` } },
+    20000
+  );
+  if (!response.ok) throw await responseError(response, 'Mistral model discovery failed');
+  const data = await response.json();
+  return Array.isArray(data?.data) ? data.data : [];
+}
+
+async function resolveMistralModel(force = false) {
+  if (!force && !expired(state.mistral)) return state.mistral.model;
+  const keys = mistralKeys();
+  if (!keys.length) return null;
+
+  let lastError = null;
+  for (const key of keys) {
+    try {
+      const models = await listMistralModels(key);
+      const ranked = models
+        .map(model => ({ model, score: scoreMistral(model) }))
+        .filter(item => Number.isFinite(item.score))
+        .sort((a, b) => b.score - a.score);
+      if (!ranked.length) throw new Error('Mistral returned no active chat-capable model matching the Role Intelligence policy.');
+      state.mistral = {
+        model: String(ranked[0].model.id || ranked[0].model.name),
+        discoveredAt: Date.now(),
+        lastError: null,
+      };
+      return state.mistral.model;
+    } catch (error) {
+      lastError = error;
+    }
+  }
+  state.mistral.lastError = sanitizeProviderError(lastError?.message);
+  throw lastError || new Error('Mistral model discovery failed.');
+}
+
+async function callMistralOnce(apiKey, model, { system, messages, temperature, maxTokens, jsonMode }) {
+  const allMessages = system
+    ? [{ role: 'system', content: String(system).slice(0, 120000) }, ...messages]
+    : messages;
+  const response = await fetchWithTimeout('https://api.mistral.ai/v1/chat/completions', {
+    method: 'POST',
+    headers: { Authorization: `Bearer ${apiKey}`, 'Content-Type': 'application/json' },
+    body: JSON.stringify({
+      model,
+      messages: allMessages,
+      temperature,
+      max_tokens: maxTokens,
+      ...(jsonMode ? { response_format: { type: 'json_object' } } : {}),
+    }),
+  }, 65000);
+  if (!response.ok) throw await responseError(response, `Mistral ${model}`);
+  const data = await response.json();
+  const reply = extractOpenAiCompatibleText(data);
+  if (!reply) throw new Error(`Mistral ${model} returned no usable text.`);
+  return reply;
+}
+
+async function callMistral(options) {
+  const keys = mistralKeys();
+  if (!keys.length) return null;
+  let model = await resolveMistralModel(false);
+  let lastError = null;
+
+  for (let modelAttempt = 0; modelAttempt < 2; modelAttempt += 1) {
+    for (let keyIndex = 0; keyIndex < keys.length; keyIndex += 1) {
+      try {
+        const reply = await callMistralOnce(keys[keyIndex], model, options);
+        return { reply, model, keySlot: keyIndex + 1 };
+      } catch (error) {
+        lastError = error;
+        if (!isRetryableCredentialError(error) && !isModelLifecycleError(error)) break;
+      }
+    }
+    if (modelAttempt === 0 && isModelLifecycleError(lastError)) {
+      model = await resolveMistralModel(true);
+      continue;
+    }
+    break;
+  }
+  throw lastError || new Error('Mistral request failed.');
+}
+
 function openRouterHeaders() {
   const headers = {
     Authorization: `Bearer ${process.env.OPENROUTER_API_KEY}`,
@@ -482,12 +605,162 @@ async function callOpenRouter({ system, messages, temperature, maxTokens, jsonMo
   return { reply, model: data?.model || OPENROUTER_AUTO_MODEL, keySlot: 1 };
 }
 
+
+const NVIDIA_ROLE_MODEL = 'nvidia/nemotron-3-ultra-550b-a55b';
+
+async function callNvidiaRoleReasoner({
+  system = '',
+  messages = [],
+  temperature = 0.35,
+  maxTokens = 3200,
+  jsonMode = false,
+} = {}) {
+  const key = nvidiaKey();
+  if (!key) return null;
+  const allMessages = system
+    ? [{ role: 'system', content: String(system).slice(0, 120000) }, ...messages]
+    : messages;
+
+  const response = await fetchWithTimeout('https://integrate.api.nvidia.com/v1/chat/completions', {
+    method: 'POST',
+    headers: { Authorization: `Bearer ${key}`, 'Content-Type': 'application/json' },
+    body: JSON.stringify({
+      model: NVIDIA_ROLE_MODEL,
+      messages: allMessages,
+      temperature,
+      top_p: 0.95,
+      max_tokens: maxTokens,
+      stream: false,
+      chat_template_kwargs: { enable_thinking: true },
+      ...(jsonMode ? { response_format: { type: 'json_object' } } : {}),
+    }),
+  }, 75000);
+  if (!response.ok) throw await responseError(response, `NVIDIA ${NVIDIA_ROLE_MODEL}`);
+  const data = await response.json();
+  const reply = extractOpenAiCompatibleText(data);
+  if (!reply) throw new Error(`NVIDIA ${NVIDIA_ROLE_MODEL} returned no usable text.`);
+  return { reply, model: NVIDIA_ROLE_MODEL, keySlot: 1 };
+}
+
+function roleAnalyzerRecord(provider, result) {
+  return result?.reply ? {
+    provider,
+    model: result.model,
+    keySlot: result.keySlot || 1,
+    reply: result.reply,
+  } : null;
+}
+
+export async function callRoleIntelligenceEnsemble({
+  system = '',
+  messages = [],
+  temperature = 0.3,
+  maxTokens = 3200,
+  jsonMode = false,
+} = {}) {
+  const analyzerPrompt = `${system}
+
+ROLE INTELLIGENCE ANALYZER RULES:
+- Analyze independently. Do not assume another model's conclusion.
+- Separate documented inputs from interpretation.
+- Do not make hiring, firing, promotion, compensation, or other employment decisions.
+- Do not use health, disability, family, immigration, identity, neurodivergence, or other sensitive life-context data to change baseline role compatibility.
+- Preserve uncertainty and identify competing explanations when evidence supports them.`;
+
+  const [nvidiaSettled, mistralSettled] = await Promise.allSettled([
+    callNvidiaRoleReasoner({ system: analyzerPrompt, messages, temperature, maxTokens, jsonMode }),
+    callMistral({ system: analyzerPrompt, messages, temperature, maxTokens, jsonMode }),
+  ]);
+
+  const analyzers = [];
+  const errors = [];
+
+  if (nvidiaSettled.status === 'fulfilled') {
+    const record = roleAnalyzerRecord('nvidia', nvidiaSettled.value);
+    if (record) analyzers.push(record);
+  } else {
+    errors.push(`nvidia: ${sanitizeProviderError(nvidiaSettled.reason?.message)}`);
+  }
+
+  if (mistralSettled.status === 'fulfilled') {
+    const record = roleAnalyzerRecord('mistral', mistralSettled.value);
+    if (record) analyzers.push(record);
+  } else {
+    errors.push(`mistral: ${sanitizeProviderError(mistralSettled.reason?.message)}`);
+  }
+
+  // If one specialist is unavailable, add a genuinely separate model family rather than
+  // letting the surviving specialist become the sole analyst.
+  if (analyzers.length < 2) {
+    const fallback = await callPrimaryPool({
+      system: analyzerPrompt,
+      messages,
+      temperature,
+      maxTokens,
+      jsonMode,
+      preferredProvider: 'groq',
+    });
+    if (fallback?.reply) {
+      analyzers.push(roleAnalyzerRecord(fallback.provider, fallback));
+    }
+    errors.push(...(fallback?.errors || []));
+  }
+
+  if (!analyzers.length) {
+    return { reply: null, analyzers: [], synthesizer: null, errors };
+  }
+
+  if (analyzers.length === 1) {
+    return {
+      reply: analyzers[0].reply,
+      analyzers,
+      synthesizer: null,
+      consensusMode: 'single-survivor-fallback',
+      errors,
+    };
+  }
+
+  const synthesisMessages = [{
+    role: 'user',
+    content: `The independent Role Intelligence analyses below were generated from the same evidence.
+
+Do not simply choose a winner or average them. Reconcile points that are genuinely compatible, preserve material disagreements, identify unsupported leaps, and give the user one clear evidence-aware answer. Do not reveal chain-of-thought. Do not use sensitive life-context variables to alter baseline employment compatibility.
+
+ANALYSES:
+${analyzers.map((item, index) => `ANALYST ${index + 1} (${item.provider} / ${item.model}):
+${item.reply}`).join('\n\n')}`,
+  }];
+
+  const synthesis = await callPrimaryPool({
+    system: 'You are the independent synthesis layer for a multi-model Role Intelligence system.',
+    messages: synthesisMessages,
+    temperature: 0.2,
+    maxTokens,
+    jsonMode,
+    preferredProvider: 'groq',
+  });
+
+  return {
+    reply: synthesis?.reply || analyzers.map(item => item.reply).join('\n\n---\n\n'),
+    analyzers,
+    synthesizer: synthesis?.reply ? {
+      provider: synthesis.provider,
+      model: synthesis.model,
+      keySlot: synthesis.keySlot,
+    } : null,
+    consensusMode: synthesis?.reply ? 'independent-analysis-plus-third-party-synthesis' : 'parallel-analysis-no-synthesizer',
+    errors: [...errors, ...(synthesis?.errors || [])],
+  };
+}
+
 export const PRIMARY_PROVIDER_ORDER = Object.freeze(['gemini', 'groq', 'openrouter']);
 
 export function configuredProviderMap() {
   return {
     gemini: geminiKeys().length > 0,
     groq: groqKeys().length > 0,
+    mistral: mistralKeys().length > 0,
+    nvidia: Boolean(nvidiaKey()),
     openrouter: Boolean(String(process.env.OPENROUTER_API_KEY || '').trim()),
     cloudflare: cloudflareAccounts().length > 0,
   };
@@ -497,6 +770,8 @@ export function providerKeyCounts() {
   return {
     gemini: geminiKeys().length,
     groq: groqKeys().length,
+    mistral: mistralKeys().length,
+    nvidia: nvidiaKey() ? 1 : 0,
     openrouter: String(process.env.OPENROUTER_API_KEY || '').trim() ? 1 : 0,
     cloudflare: cloudflareAccounts().length,
   };
@@ -696,6 +971,7 @@ export async function refreshProviderCapabilities({ force = true } = {}) {
   const tasks = [];
   if (geminiKeys().length) tasks.push(resolveGeminiModel(force).catch(error => ({ error: sanitizeProviderError(error.message) })));
   if (groqKeys().length) tasks.push(resolveGroqModel(force).catch(error => ({ error: sanitizeProviderError(error.message) })));
+  if (mistralKeys().length) tasks.push(resolveMistralModel(force).catch(error => ({ error: sanitizeProviderError(error.message) })));
   if (cloudflareAccounts().length) {
     for (const kind of ['reasoning', 'embedding', 'rerank']) {
       tasks.push(resolveCloudflareModel(kind, force).catch(error => ({ error: sanitizeProviderError(error.message) })));
@@ -713,6 +989,8 @@ export function getProviderDiagnostics() {
     models: {
       gemini: state.gemini.model,
       groq: state.groq.model,
+      mistral: state.mistral.model,
+      nvidiaRole: NVIDIA_ROLE_MODEL,
       openrouter: OPENROUTER_AUTO_MODEL,
       cloudflare: {
         reasoning: state.cloudflare.reasoning.model,
@@ -723,6 +1001,7 @@ export function getProviderDiagnostics() {
     discoveredAt: {
       gemini: state.gemini.discoveredAt || null,
       groq: state.groq.discoveredAt || null,
+      mistral: state.mistral.discoveredAt || null,
       cloudflare: {
         reasoning: state.cloudflare.reasoning.discoveredAt || null,
         embedding: state.cloudflare.embedding.discoveredAt || null,
@@ -732,6 +1011,7 @@ export function getProviderDiagnostics() {
     discoveryErrors: {
       gemini: state.gemini.lastError,
       groq: state.groq.lastError,
+      mistral: state.mistral.lastError,
       cloudflare: {
         reasoning: state.cloudflare.reasoning.lastError,
         embedding: state.cloudflare.embedding.lastError,

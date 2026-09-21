@@ -305,7 +305,7 @@ Rules:
 - Prefer concrete explanations of volume, autonomy, depth, interruption, precision, boundaries, and role demands.`;
 
     try {
-      const response = await fetch('/api/ai-chat', {
+      const response = await fetch('/api/ai/role-intelligence', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
