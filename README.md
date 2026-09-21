@@ -113,11 +113,14 @@ The backend uses a self-healing capability router instead of permanent model IDs
 
 ### Primary answer pool
 
-1. Gemini.
-2. Groq.
-3. OpenRouter's provider-managed `openrouter/free` router.
-4. Cloudflare Workers AI only as an emergency final-response provider if the entire primary pool is unavailable.
-5. Built-in non-AI fallback only if no live provider completes.
+Gemini and Groq are capability-routed rather than treated as permanently interchangeable slots. Cloudflare classifies each substantive request and recommends the better starting provider: Groq for dense multi-step reasoning/structured cross-framework comparison, or Gemini for ordinary conversational synthesis, explanation, and broader context handling. The other provider immediately becomes the first failover.
+
+After the capability-selected Gemini/Groq pair, the remaining order is:
+
+1. The other Gemini/Groq provider.
+2. OpenRouter's provider-managed `openrouter/free` router.
+3. Cloudflare Workers AI only as an emergency final-response provider if the entire primary pool is unavailable.
+4. Built-in non-AI fallback only if no live provider completes.
 
 Gemini and Groq models are discovered from each provider's live model catalog at runtime. The server prefers production-capable text/reasoning models, caches the selection for six hours, refreshes the catalog automatically when a model is missing/deprecated/retired, selects a replacement, and retries the request. There are no `GEMINI_MODEL`, `GROQ_MODEL`, or `OPENROUTER_MODEL` environment variables.
 
