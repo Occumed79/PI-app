@@ -794,6 +794,7 @@ app.post('/api/ai/role-intelligence', async (req, res) => {
       ok: true,
       reply: result.reply,
       consensusMode: result.consensusMode,
+      consensus: result.consensus || null,
       analyzers: (result.analyzers || []).map(item => ({
         provider: item.provider,
         model: item.model,
