@@ -4,11 +4,13 @@ import { benchmarkBoost, getArtificialAnalysisDiagnostics } from './artificial-a
 const DISCOVERY_TTL_MS = 6 * 60 * 60 * 1000;
 const DEFAULT_TIMEOUT_MS = 45000;
 const OPENROUTER_AUTO_MODEL = 'openrouter/free';
+const NVIDIA_EMBED_MODEL = 'nvidia/nemotron-3-embed-1b';
 
 const state = {
   gemini: { model: null, discoveredAt: 0, lastError: null },
   groq: { model: null, discoveredAt: 0, lastError: null },
   mistral: { model: null, discoveredAt: 0, lastError: null },
+  nvidiaEmbedding: { available: null, checkedAt: 0, lastError: null },
   cloudflare: {
     reasoning: { model: null, discoveredAt: 0, lastError: null },
     embedding: { model: null, discoveredAt: 0, lastError: null },
@@ -1032,6 +1034,49 @@ export async function cloudflareEmbed(texts = []) {
   });
 }
 
+export async function nvidiaEmbed(texts = [], { inputType = 'query', force = false } = {}) {
+  const input = Array.isArray(texts) ? texts.filter(Boolean) : [texts].filter(Boolean);
+  const key = nvidiaKey();
+  if (!input.length || !key) return null;
+
+  const unavailableIsFresh = state.nvidiaEmbedding.available === false &&
+    Date.now() - state.nvidiaEmbedding.checkedAt < DISCOVERY_TTL_MS;
+  if (!force && unavailableIsFresh) return null;
+
+  try {
+    const response = await fetchWithTimeout('https://integrate.api.nvidia.com/v1/embeddings', {
+      method: 'POST',
+      headers: { Authorization: `Bearer ${key}`, 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        model: NVIDIA_EMBED_MODEL,
+        input,
+        input_type: inputType === 'passage' ? 'passage' : 'query',
+        encoding_format: 'float',
+        truncate: 'END',
+      }),
+    }, 45000);
+    if (!response.ok) throw await responseError(response, `NVIDIA embedding ${NVIDIA_EMBED_MODEL}`);
+
+    const data = await response.json();
+    const vectors = Array.isArray(data?.data)
+      ? data.data.map(item => item?.embedding).filter(Array.isArray)
+      : [];
+    if (vectors.length !== input.length) {
+      throw new Error(`NVIDIA embedding ${NVIDIA_EMBED_MODEL} returned ${vectors.length}/${input.length} vectors.`);
+    }
+
+    state.nvidiaEmbedding = { available: true, checkedAt: Date.now(), lastError: null };
+    return { vectors, model: NVIDIA_EMBED_MODEL, keySlot: 1 };
+  } catch (error) {
+    state.nvidiaEmbedding = {
+      available: false,
+      checkedAt: Date.now(),
+      lastError: sanitizeProviderError(error.message),
+    };
+    throw error;
+  }
+}
+
 export async function cloudflareRerank(query, contexts = [], topK = 8) {
   const usable = contexts
     .map((item, index) => ({
@@ -1085,6 +1130,10 @@ export async function refreshProviderCapabilities({ force = true } = {}) {
   if (geminiKeys().length) tasks.push(resolveGeminiModel(force).catch(error => ({ error: sanitizeProviderError(error.message) })));
   if (groqKeys().length) tasks.push(resolveGroqModel(force).catch(error => ({ error: sanitizeProviderError(error.message) })));
   if (mistralKeys().length) tasks.push(resolveMistralModel(force).catch(error => ({ error: sanitizeProviderError(error.message) })));
+  if (nvidiaKey()) {
+    tasks.push(nvidiaEmbed(['Role Intelligence retrieval availability probe'], { force })
+      .catch(error => ({ error: sanitizeProviderError(error.message) })));
+  }
   if (cloudflareAccounts().length) {
     for (const kind of ['reasoning', 'embedding', 'rerank']) {
       tasks.push(resolveCloudflareModel(kind, force).catch(error => ({ error: sanitizeProviderError(error.message) })));
@@ -1105,6 +1154,7 @@ export function getProviderDiagnostics() {
       groq: state.groq.model,
       mistral: state.mistral.model,
       nvidiaRole: NVIDIA_ROLE_MODEL,
+      nvidiaEmbedding: state.nvidiaEmbedding.available ? NVIDIA_EMBED_MODEL : null,
       openrouter: OPENROUTER_AUTO_MODEL,
       cloudflare: {
         reasoning: state.cloudflare.reasoning.model,
@@ -1116,6 +1166,7 @@ export function getProviderDiagnostics() {
       gemini: state.gemini.discoveredAt || null,
       groq: state.groq.discoveredAt || null,
       mistral: state.mistral.discoveredAt || null,
+      nvidiaEmbedding: state.nvidiaEmbedding.checkedAt || null,
       cloudflare: {
         reasoning: state.cloudflare.reasoning.discoveredAt || null,
         embedding: state.cloudflare.embedding.discoveredAt || null,
@@ -1126,6 +1177,7 @@ export function getProviderDiagnostics() {
       gemini: state.gemini.lastError,
       groq: state.groq.lastError,
       mistral: state.mistral.lastError,
+      nvidiaEmbedding: state.nvidiaEmbedding.lastError,
       cloudflare: {
         reasoning: state.cloudflare.reasoning.lastError,
         embedding: state.cloudflare.embedding.lastError,
