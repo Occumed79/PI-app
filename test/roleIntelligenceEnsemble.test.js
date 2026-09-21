@@ -115,3 +115,17 @@ test('Role Intelligence side rail shows the analyzer and evidence provenance ret
   assert.match(roleUiSource, /data\.roleGrounding\?\.evidenceConfidence/);
   assert.match(roleUiSource, /role sources/);
 });
+
+
+test('Role Intelligence grounds explicitly mentioned comparison roles from the same deterministic catalog', () => {
+  assert.match(serverSource, /ROLE_QUERY_ALIASES/);
+  assert.match(serverSource, /mentionedComparisonRoleIds/);
+  assert.match(serverSource, /buildComparisonRoleGrounding/);
+  assert.match(serverSource, /EXPLICITLY MENTIONED COMPARISON ROLE GROUNDING/);
+  assert.match(serverSource, /comparisonRoleIds: comparisonGroundings\.map/);
+});
+
+test('comparison grounding explicitly forbids role winners and promotion targets', () => {
+  assert.match(serverSource, /do not declare a winner, best role, promotion target, or employment decision/);
+  assert.match(serverSource, /Evidence confidence is confidence in the modeled role evidence bundle, not confidence in employee performance/);
+});

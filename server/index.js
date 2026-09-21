@@ -221,6 +221,113 @@ GROUNDING RULES:
 - Active context lens, when present, is explanatory only: ${String(activeContextCategory || 'none')}.`;
 }
 
+const ROLE_QUERY_ALIASES = Object.freeze({
+  'examqa-analyst': ['examqa analyst', 'exam qa analyst', 'examqa'],
+  'exam-review': ['subject matter expert exam review', 'subject matter expert', 'exam review', 'sme'],
+  'examqa-manager': ['examqa manager', 'exam qa manager'],
+  'examqa-director': ['examqa director', 'exam qa director'],
+  'network-management': ['network management analyst', 'network analyst', 'network management'],
+  'network-management-director': ['network management director', 'network director'],
+  'provider-relations': ['provider relations analyst', 'provider relations'],
+  'provider-relations-manager': ['provider relations manager'],
+  'scheduling': ['scheduling analyst', 'scheduling'],
+  'scheduling-manager': ['scheduling manager'],
+  'client-accounts': ['client account manager', 'client accounts'],
+  'operations-director': ['operations director'],
+  'finance-analyst': ['finance analyst', 'finance'],
+  'fitness-for-duty': ['fitness for duty analyst', 'fitness for duty'],
+});
+
+function normalizedRoleQuery(value) {
+  return String(value || '')
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, ' ')
+    .replace(/\s+/g, ' ')
+    .trim();
+}
+
+function mentionedComparisonRoleIds(query, selectedRoleId, limit = 3) {
+  const text = normalizedRoleQuery(query);
+  if (!text) return [];
+
+  const matches = [];
+  for (const role of Object.values(ROLE_BY_ID)) {
+    if (role.id === selectedRoleId) continue;
+    const aliases = [
+      role.title,
+      role.shortTitle,
+      role.id,
+      ...(ROLE_QUERY_ALIASES[role.id] || []),
+    ]
+      .map(normalizedRoleQuery)
+      .filter(alias => alias.length >= 3);
+
+    const matchedAlias = aliases
+      .filter(alias => text.includes(alias))
+      .sort((a, b) => b.length - a.length)[0];
+
+    if (matchedAlias) matches.push({ roleId: role.id, alias: matchedAlias });
+  }
+
+  matches.sort((a, b) => b.alias.length - a.alias.length || a.roleId.localeCompare(b.roleId));
+
+  const selected = [];
+  const claimedAliases = [];
+  for (const match of matches) {
+    if (claimedAliases.some(existing => existing.includes(match.alias) && existing !== match.alias)) {
+      continue;
+    }
+    selected.push(match.roleId);
+    claimedAliases.push(match.alias);
+    if (selected.length >= Math.max(1, limit)) break;
+  }
+  return selected;
+}
+
+function buildComparisonRoleGrounding(employee, roleId) {
+  const role = ROLE_BY_ID[roleId];
+  if (!role) return null;
+  const interaction = deriveRoleInteraction(employee, role);
+  return {
+    role: {
+      id: role.id,
+      title: role.title,
+      family: role.family,
+      level: role.level,
+      purpose: role.purpose,
+      behavioralBands: role.behavioralBands,
+      signature: role.signature,
+      workValues: role.workValues,
+    },
+    factorSignals: interaction.factorSignals,
+    components: interaction.components,
+    inversionRisk: interaction.inversionRisk,
+    inversionSignals: interaction.inversionSignals.slice(0, 3),
+    evidenceConfidence: interaction.evidenceConfidence,
+    evidence: interaction.evidence.map(source => ({
+      id: source.id,
+      label: source.label,
+      kind: source.kind,
+      note: source.note,
+      authority: source.authority,
+      directness: source.directness,
+    })),
+  };
+}
+
+function comparisonGroundingSystemText(comparisons = []) {
+  if (!comparisons.length) return '';
+  return `EXPLICITLY MENTIONED COMPARISON ROLE GROUNDING
+These roles were explicitly named in the user's question. Compare them using these deterministic employee × role calculations rather than model memory.
+
+${JSON.stringify(comparisons, null, 2)}
+
+COMPARISON RULES:
+- Compare specific dimensions and evidence; do not declare a winner, best role, promotion target, or employment decision.
+- Preserve important tradeoffs and uncertainty.
+- Evidence confidence is confidence in the modeled role evidence bundle, not confidence in employee performance.`;
+}
+
 async function cloudflareEmergencyReply({ system, messages, jsonMode = false, maxTokens = 1800 }) {
   try {
     const result = await callCloudflareChat({
@@ -629,14 +736,19 @@ app.post('/api/ai/role-intelligence', async (req, res) => {
   const selectedEmployee = employeeContext[0] || null;
 
   let roleGrounding = null;
+  let comparisonGroundings = [];
   if (roleId) {
-    if (!ROLE_BY_ID[String(roleId).trim()]) {
+    const normalizedRoleId = String(roleId).trim();
+    if (!ROLE_BY_ID[normalizedRoleId]) {
       return res.status(400).json({ ok: false, message: 'Unknown Role Intelligence role.' });
     }
     if (!selectedEmployee) {
       return res.status(400).json({ ok: false, message: 'A selected employee is required for grounded role analysis.' });
     }
-    roleGrounding = buildRoleGrounding(selectedEmployee, roleId);
+    roleGrounding = buildRoleGrounding(selectedEmployee, normalizedRoleId);
+    comparisonGroundings = mentionedComparisonRoleIds(query, normalizedRoleId, 3)
+      .map(comparisonRoleId => buildComparisonRoleGrounding(selectedEmployee, comparisonRoleId))
+      .filter(Boolean);
   }
 
   let intelligence = { context: '', metadata: { used: false }, lenses: [] };
@@ -655,6 +767,7 @@ app.post('/api/ai/role-intelligence', async (req, res) => {
   const roleSystem = [
     String(system || ''),
     roleGroundingSystemText(roleGrounding, activeContextCategory),
+    comparisonGroundingSystemText(comparisonGroundings),
     intelligence.context
       ? `AUXILIARY SEMANTIC LENS CONTEXT:\n${intelligence.context}`
       : '',
@@ -694,6 +807,7 @@ app.post('/api/ai/role-intelligence', async (req, res) => {
         evidenceConfidence: roleGrounding.evidenceConfidence,
         sourceCount: roleGrounding.evidence.length,
         adjacentRoleIds: roleGrounding.adjacentRoles.map(item => item.roleId),
+        comparisonRoleIds: comparisonGroundings.map(item => item.role.id),
       } : null,
     });
   } catch (error) {
