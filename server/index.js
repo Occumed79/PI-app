@@ -20,6 +20,10 @@ import {
   runCloudflareCritic,
 } from './cloudflare-intelligence.js';
 import {
+  buildExternalWebResearch,
+  getWebResearchDiagnostics,
+} from './web-research.js';
+import {
   ROLE_BY_ID,
   deriveAdjacentRolePull,
   deriveRoleInteraction,
@@ -487,6 +491,7 @@ app.get('/api/health', (_req, res) => {
     providerMode: 'self-healing-capability-routing',
     benchmarkRouting: diagnostics.artificialAnalysis,
     cloudflareMode: 'parallel-semantic-retrieval-rerank-classification-and-critic',
+    webResearch: getWebResearchDiagnostics(),
     models: diagnostics.models,
     modelDiscovery: {
       discoveredAt: diagnostics.discoveredAt,
@@ -764,6 +769,18 @@ app.post('/api/ai/role-intelligence', async (req, res) => {
     };
   }
 
+  const roleWebResearch = await buildExternalWebResearch({
+    query,
+    employees: employeeContext,
+    hints: [
+      roleGrounding?.role?.title,
+      activeContextCategory,
+      ...comparisonGroundings.map(item => item.role.title),
+      ...(intelligence.lenses || []).map(item => item.lens),
+    ].filter(Boolean),
+    enabled: Boolean(intelligence.plan?.needsWebResearch),
+  });
+
   const roleSystem = [
     String(system || ''),
     roleGroundingSystemText(roleGrounding, activeContextCategory),
@@ -771,6 +788,7 @@ app.post('/api/ai/role-intelligence', async (req, res) => {
     intelligence.context
       ? `AUXILIARY SEMANTIC LENS CONTEXT:\n${intelligence.context}`
       : '',
+    roleWebResearch.context,
   ].filter(Boolean).join('\n\n');
 
   try {
@@ -803,6 +821,16 @@ app.post('/api/ai/role-intelligence', async (req, res) => {
       synthesizer: result.synthesizer || null,
       providerErrors: result.errors || [],
       evidence: intelligence.metadata || null,
+      webResearch: {
+        ...roleWebResearch.metadata,
+        sources: roleWebResearch.sources.map(source => ({
+          id: source.id,
+          provider: source.provider,
+          title: source.title,
+          url: source.url,
+          publishedAt: source.publishedAt,
+        })),
+      },
       roleGrounding: roleGrounding ? {
         roleId: roleGrounding.role.id,
         evidenceConfidence: roleGrounding.evidenceConfidence,
@@ -831,7 +859,7 @@ app.post('/api/ai-chat', async (req, res) => {
   const query = latestUserText(compactMessages);
   const isHealthProbe = String(system || '').includes('provider health probe');
   let intelligence = {
-    plan: { complexity: 'low', needsCritic: false, needsSemanticRetrieval: false, reason: 'Health probe or Cloudflare unavailable.' },
+    plan: { complexity: 'low', needsCritic: false, needsSemanticRetrieval: false, needsWebResearch: false, reason: 'Health probe or Cloudflare unavailable.' },
     lenses: [],
     context: '',
     metadata: { used: false },
@@ -848,9 +876,27 @@ app.post('/api/ai-chat', async (req, res) => {
     }
   }
 
+  const webResearch = isHealthProbe
+    ? {
+        context: '',
+        sources: [],
+        metadata: { used: false, providers: [], sourceCount: 0, errors: [] },
+      }
+    : await buildExternalWebResearch({
+        query,
+        employees: safeArray(employees, 50),
+        hints: (intelligence.lenses || []).map(item => item.lens),
+        enabled: Boolean(intelligence.plan?.needsWebResearch),
+      });
+
+  const combinedResearchContext = [
+    intelligence.context,
+    webResearch.context,
+  ].filter(Boolean).join('\n\n');
+
   const augmentedSystem = [
     String(system || '').trim(),
-    intelligence.context,
+    combinedResearchContext,
   ].filter(Boolean).join('\n\n');
 
   let attempt = await callPrimaryPool({
@@ -883,6 +929,16 @@ app.post('/api/ai-chat', async (req, res) => {
         plan: intelligence.plan,
         criticApplied: false,
       },
+      webResearch: {
+        ...webResearch.metadata,
+        sources: webResearch.sources.map(source => ({
+          id: source.id,
+          provider: source.provider,
+          title: source.title,
+          url: source.url,
+          publishedAt: source.publishedAt,
+        })),
+      },
       reply: fallbackChatReply({ messages: compactMessages, providerErrors: attempt.errors || [] }),
     });
   }
@@ -900,7 +956,7 @@ app.post('/api/ai-chat', async (req, res) => {
       messages: compactMessages,
       query,
       draft: attempt.reply,
-      semanticContext: intelligence.context,
+      semanticContext: combinedResearchContext,
       maxTokens: 1800,
     });
     finalReply = refined.reply;
@@ -921,6 +977,16 @@ app.post('/api/ai-chat', async (req, res) => {
       plan: intelligence.plan,
       criticApplied,
       critic: criticMetadata,
+    },
+    webResearch: {
+      ...webResearch.metadata,
+      sources: webResearch.sources.map(source => ({
+        id: source.id,
+        provider: source.provider,
+        title: source.title,
+        url: source.url,
+        publishedAt: source.publishedAt,
+      })),
     },
     reply: finalReply,
   });
