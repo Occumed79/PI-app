@@ -824,8 +824,37 @@ function RoleQuickSwitcher({ selectedRole, onSelectRole }) {
   );
 }
 
+function initialRoleForEmployee(employee) {
+  const position = String(employee?.position || '')
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, ' ')
+    .replace(/\s+/g, ' ')
+    .trim();
+
+  if (!position) return ROLE_INTELLIGENCE_ROLES[0];
+
+  const exact = ROLE_INTELLIGENCE_ROLES.find(role => [
+    role.title,
+    role.shortTitle,
+  ].some(value => String(value || '').toLowerCase().replace(/[^a-z0-9]+/g, ' ').replace(/\s+/g, ' ').trim() === position));
+
+  if (exact) return exact;
+
+  const contained = ROLE_INTELLIGENCE_ROLES
+    .map(role => ({
+      role,
+      labels: [role.title, role.shortTitle]
+        .map(value => String(value || '').toLowerCase().replace(/[^a-z0-9]+/g, ' ').replace(/\s+/g, ' ').trim())
+        .filter(Boolean),
+    }))
+    .filter(item => item.labels.some(label => label.length >= 6 && (position.includes(label) || label.includes(position))))
+    .sort((a, b) => Math.max(...b.labels.map(label => label.length)) - Math.max(...a.labels.map(label => label.length)))[0];
+
+  return contained?.role || ROLE_INTELLIGENCE_ROLES[0];
+}
+
 function Workspace({ employee, onExit }) {
-  const [selectedRole, setSelectedRole] = useState(ROLE_INTELLIGENCE_ROLES[0]);
+  const [selectedRole, setSelectedRole] = useState(() => initialRoleForEmployee(employee));
   const [activeCategory, setActiveCategory] = useState('work-history');
   const interaction = useMemo(() => deriveRoleInteraction(employee, selectedRole), [employee, selectedRole]);
   const adjacentPull = useMemo(
