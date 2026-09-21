@@ -230,6 +230,7 @@ function providerLabel(source) {
   if (source === 'gemini') return 'Live AI · Gemini';
   if (source === 'groq') return 'Live AI · Groq';
   if (source === 'openrouter') return 'Live AI · OpenRouter';
+  if (source === 'cloudflare') return 'Live AI · Cloudflare';
   if (source === 'error') return 'AI unavailable';
   return '';
 }
@@ -261,7 +262,7 @@ export default function AITab({ employees = [] }) {
       .then(response => response.ok ? response.json() : null)
       .then(data => {
         if (!active) return;
-        const source = ['gemini', 'groq', 'openrouter'].includes(data?.source) ? data.source : null;
+        const source = ['gemini', 'groq', 'openrouter', 'cloudflare'].includes(data?.source) ? data.source : null;
         setAiHealth({ healthy: Boolean(source), source });
       })
       .catch(() => {
@@ -293,6 +294,7 @@ export default function AITab({ employees = [] }) {
         body: JSON.stringify({
           system: buildContext(employees, conversationMessages),
           messages: conversationMessages,
+          employees,
         }),
         signal: AbortSignal.timeout(55000),
       });
@@ -306,7 +308,7 @@ export default function AITab({ employees = [] }) {
           : '';
         throw new Error(`No live AI provider completed the request.${details}`);
       }
-      if (!['gemini', 'groq', 'openrouter'].includes(data.source)) {
+      if (!['gemini', 'groq', 'openrouter', 'cloudflare'].includes(data.source)) {
         throw new Error('The server did not identify a live AI provider.');
       }
 
