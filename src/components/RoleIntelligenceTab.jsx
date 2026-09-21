@@ -18,6 +18,7 @@ import {
 import {
   ROLE_DIMENSIONS,
   ROLE_INTELLIGENCE_ROLES,
+  deriveAdjacentRolePull,
   deriveRoleInteraction,
   employeePiProfile,
 } from '../data/roleIntelligence.js';
@@ -131,6 +132,13 @@ function EmployeeConstellation({ employees, onSelect, loading, loadError }) {
 
 function RoleOrbit({ employee, selectedRole, onSelectRole }) {
   const profile = employeePiProfile(employee);
+  const landscape = useMemo(
+    () => ROLE_INTELLIGENCE_ROLES.map(role => ({
+      role,
+      interaction: deriveRoleInteraction(employee, role),
+    })),
+    [employee]
+  );
   return (
     <div className="relative mx-auto h-[610px] max-w-[830px] overflow-hidden rounded-[44px] border border-white/8 bg-black/10">
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_47%,rgba(56,189,248,.10),transparent_29%),radial-gradient(circle_at_50%_47%,rgba(192,132,252,.06),transparent_47%)]"/>
@@ -146,10 +154,13 @@ function RoleOrbit({ employee, selectedRole, onSelectRole }) {
         </div>
       </div>
 
-      {ROLE_INTELLIGENCE_ROLES.map((role, index) => {
-        const angle = (index / ROLE_INTELLIGENCE_ROLES.length) * Math.PI * 2 - Math.PI / 2;
-        const x = 50 + Math.cos(angle) * 38;
-        const y = 47 + Math.sin(angle) * 34;
+      {landscape.map(({ role, interaction }, index) => {
+        const angle = (index / landscape.length) * Math.PI * 2 - Math.PI / 2;
+        const normalizedRadius = (interaction.orbitRadius - 112) / 135;
+        const radiusX = 25 + Math.max(0, Math.min(1, normalizedRadius)) * 13;
+        const radiusY = radiusX * 0.88;
+        const x = 50 + Math.cos(angle) * radiusX;
+        const y = 47 + Math.sin(angle) * radiusY;
         const active = selectedRole.id === role.id;
         return (
           <motion.button
@@ -275,6 +286,7 @@ function RoleAssistantRail({ employee, role, activeCategory }) {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
   const profile = employeePiProfile(employee);
+  const roleInteraction = useMemo(() => deriveRoleInteraction(employee, role), [employee, role]);
 
   async function send() {
     const text = input.trim();
@@ -294,6 +306,9 @@ Exact PI factors: D ${employee.dominance ?? profile.dominance}, E ${employee.ext
 Selected company role: ${role.title}.
 Role purpose: ${role.purpose}
 Role signature: ${JSON.stringify(role.signature)}
+Deterministic interaction components: ${JSON.stringify(roleInteraction.components)}
+Evidence confidence: ${roleInteraction.evidenceConfidence}/100.
+Strength-inversion risk signal: ${roleInteraction.inversionRisk}/100.
 Active life-experience lens: ${CONTEXT_CATEGORIES[activeCategory]}.
 
 Rules:
@@ -465,6 +480,10 @@ function Workspace({ employee, onExit }) {
   const [selectedRole, setSelectedRole] = useState(ROLE_INTELLIGENCE_ROLES[0]);
   const [activeCategory, setActiveCategory] = useState('work-history');
   const interaction = useMemo(() => deriveRoleInteraction(employee, selectedRole), [employee, selectedRole]);
+  const adjacentPull = useMemo(
+    () => deriveAdjacentRolePull(employee, selectedRole, 4),
+    [employee, selectedRole]
+  );
 
   return (
     <div className="rounded-[36px] border border-white/8 bg-white/[0.018] p-4 sm:p-6">
@@ -494,6 +513,7 @@ function Workspace({ employee, onExit }) {
                   <div className="text-right text-xs text-white/30">
                     <div>{interaction.aligned} PI factors inside role band</div>
                     <div className="mt-1">{interaction.adjacent} near band · {interaction.contrast} contrasting pull</div>
+                    <div className="mt-1">Evidence confidence {interaction.evidenceConfidence}/100</div>
                   </div>
                 </div>
                 <div className="mt-6"><FactorSignals interaction={interaction}/></div>
@@ -524,15 +544,11 @@ function Workspace({ employee, onExit }) {
           <section className="border-t border-white/8 py-16">
             <div className="mb-7 flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.2em] text-white/30"><Compass size={14}/> Adjacent role pull</div>
             <div className="flex flex-wrap gap-3">
-              {selectedRole.adjacent.map(id => {
-                const role = ROLE_INTELLIGENCE_ROLES.find(item => item.id === id);
-                if (!role) return null;
-                return (
-                  <button key={id} type="button" onClick={() => setSelectedRole(role)} className="group inline-flex items-center gap-3 rounded-full border border-white/10 bg-white/[0.025] px-4 py-3 text-sm text-white/55 transition hover:border-white/20 hover:text-white">
-                    {role.title}<ArrowRight size={14} className="transition group-hover:translate-x-1"/>
-                  </button>
-                );
-              })}
+              {adjacentPull.map(item => (
+                <button key={item.roleId} type="button" onClick={() => setSelectedRole(item.role)} className="group inline-flex items-center gap-3 rounded-full border border-white/10 bg-white/[0.025] px-4 py-3 text-sm text-white/55 transition hover:border-white/20 hover:text-white">
+                  {item.role.title}<ArrowRight size={14} className="transition group-hover:translate-x-1"/>
+                </button>
+              ))}
             </div>
           </section>
         </main>
