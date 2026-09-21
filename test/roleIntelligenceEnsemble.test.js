@@ -56,7 +56,9 @@ test('Life Lens explicitly distinguishes hypothetical exploration from authorize
   assert.match(roleUiSource, /lifeLensMode: lifeLensMode/);
   assert.match(serverSource, /normalizeLifeLensMode/);
   assert.match(serverSource, /HYPOTHETICAL CONTEXT EXPLORATION/);
-  assert.match(serverSource, /EMPLOYEE-AUTHORIZED CONTEXT/);
+  assert.match(serverSource, /USER-DESIGNATED AUTHORIZED CONTEXT/);
+  assert.match(serverSource, /does not independently verify employee authorization/);
+  assert.doesNotMatch(roleUiSource, /employee-authorized context intentionally supplied/);
   assert.match(serverSource, /does not change deterministic baseline compatibility/);
 });
 
@@ -328,4 +330,20 @@ test('role comparison explicitly avoids selecting a winner or promotion target',
   assert.match(roleUiSource, /does not select a better role, rank positions, or make a promotion or staffing recommendation/);
   assert.match(roleUiSource, /not a measured skill or ability/);
   assert.doesNotMatch(roleUiSource, /Best role|Winner|Recommended role/);
+});
+
+
+test('Life Lens category or permission mode changes clear stale assistant context', () => {
+  assert.match(
+    roleUiSource,
+    /\[employee\?\.id, employee\?\.name, role\.id, activeCategory, lifeLensMode\]/
+  );
+  assert.match(roleUiSource, /setMessages\(\[\]\)/);
+  assert.match(roleUiSource, /window\.speechSynthesis\?\.cancel\?\.\(\)/);
+});
+
+test('spoken reply toggle uses live state after an async AI request starts', () => {
+  assert.match(roleUiSource, /const speakRepliesRef = useRef\(false\)/);
+  assert.match(roleUiSource, /!speakRepliesRef\.current/);
+  assert.match(roleUiSource, /speakRepliesRef\.current = next/);
 });
