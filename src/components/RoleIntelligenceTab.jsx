@@ -82,21 +82,6 @@ function orbColors(profile) {
   };
 }
 
-function RoleMarquee() {
-  const labels = [...ROLE_INTELLIGENCE_ROLES, ...ROLE_INTELLIGENCE_ROLES];
-  return (
-    <div className="overflow-hidden border-y border-white/8 py-5">
-      <motion.div
-        className="flex w-max gap-10 whitespace-nowrap pr-10 text-sm font-medium uppercase tracking-[0.22em] text-white/38"
-        animate={{ x: ['0%', '-50%'] }}
-        transition={{ duration: 34, ease: 'linear', repeat: Infinity }}
-      >
-        {labels.map((role, index) => <span key={`${role.id}-${index}`}>{role.shortTitle}</span>)}
-      </motion.div>
-    </div>
-  );
-}
-
 function EmployeeConstellation({ employees, onSelect, loading, loadError }) {
   if (loading) {
     return <div className="py-24 text-center text-sm text-white/38">Loading employee profiles…</div>;
@@ -114,39 +99,60 @@ function EmployeeConstellation({ employees, onSelect, loading, loadError }) {
     );
   }
 
+  const inner = employees.slice(0, 8);
+  const outer = employees.slice(8);
+
+  const employeeNode = employee => {
+    const profile = employeePiProfile(employee);
+    const initials = (employee.name || '?')
+      .split(/\s+/)
+      .map(part => part[0])
+      .join('')
+      .slice(0, 2)
+      .toUpperCase();
+
+    return (
+      <button
+        key={employee.id || employee.name}
+        type="button"
+        onClick={() => onSelect(employee)}
+        className="group flex min-w-[132px] flex-col items-center text-center"
+      >
+        <div className="relative">
+          <SiriOrb size="76px" colors={orbColors(profile)} animationDuration={24}/>
+          <span className="absolute inset-0 grid place-items-center text-xs font-semibold text-white">{initials}</span>
+        </div>
+        <span className="mt-2 max-w-[132px] truncate text-xs font-semibold text-white/76 group-hover:text-white">
+          {employee.name}
+        </span>
+        <span className="mt-0.5 max-w-[132px] truncate text-[10px] text-white/30">
+          {employee.position || profile.name}
+        </span>
+      </button>
+    );
+  };
+
   return (
-    <div className="relative mx-auto min-h-[560px] max-w-5xl overflow-hidden rounded-[40px] border border-white/8 bg-black/10">
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(56,189,248,.08),transparent_36%),radial-gradient(circle_at_20%_20%,rgba(192,132,252,.08),transparent_28%),radial-gradient(circle_at_80%_76%,rgba(52,211,153,.07),transparent_30%)]"/>
-      <div className="relative grid min-h-[560px] grid-cols-2 place-items-center gap-6 p-8 sm:grid-cols-3 lg:grid-cols-4">
-        {employees.map((employee, index) => {
-          const profile = employeePiProfile(employee);
-          return (
-            <motion.button
-              key={employee.id || employee.name}
-              type="button"
-              onClick={() => onSelect(employee)}
-              className="group relative flex min-h-44 w-full max-w-48 flex-col items-center justify-center text-center"
-              initial={{ opacity: 0, scale: 0.86 }}
-              whileInView={{ opacity: 1, scale: 1 }}
-              viewport={{ once: true, amount: 0.4 }}
-              animate={{ y: [0, index % 2 ? -7 : 8, 0] }}
-              transition={{ opacity: { duration: 0.5 }, scale: { duration: 0.5 }, y: { duration: 6 + (index % 4), repeat: Infinity, ease: 'easeInOut' } }}
-              whileHover={{ scale: 1.06 }}
-            >
-              <div className="relative">
-                <SiriOrb size="116px" colors={orbColors(profile)} animationDuration={22 + index}/>
-                <div className="absolute inset-0 grid place-items-center">
-                  <span className="grid h-12 w-12 place-items-center rounded-full border border-white/20 bg-slate-950/35 text-sm font-semibold text-white shadow-xl backdrop-blur-md">
-                    {(employee.name || '?').split(/\s+/).map(part => part[0]).join('').slice(0, 2).toUpperCase()}
-                  </span>
-                </div>
-              </div>
-              <div className="mt-4 text-base font-semibold text-white/88 group-hover:text-white">{employee.name}</div>
-              <div className="mt-1 max-w-44 truncate text-xs text-white/35">{employee.position || profile.name}</div>
-            </motion.button>
-          );
-        })}
+    <div className="relative mx-auto h-[640px] max-w-5xl overflow-hidden rounded-[40px] border border-white/8 bg-black/15">
+      <div className="absolute left-1/2 top-1/2 z-10 -translate-x-1/2 -translate-y-1/2 text-center">
+        <SiriOrb size="190px" animationDuration={20}/>
+        <div className="absolute inset-0 grid place-items-center">
+          <div>
+            <div className="text-sm font-semibold text-white">Employees</div>
+            <div className="mt-1 text-[10px] uppercase tracking-[0.18em] text-white/34">Choose a profile</div>
+          </div>
+        </div>
       </div>
+
+      <OrbitingCircles radius={210} duration={44} showPath>
+        {inner.map(employeeNode)}
+      </OrbitingCircles>
+
+      {outer.length > 0 && (
+        <OrbitingCircles radius={290} duration={58} reverse showPath>
+          {outer.map(employeeNode)}
+        </OrbitingCircles>
+      )}
     </div>
   );
 }
@@ -160,51 +166,53 @@ function RoleOrbit({ employee, selectedRole, onSelectRole }) {
     })),
     [employee]
   );
+
+  const roleNodes = landscape.map(({ role, interaction }) => {
+    const normalized = Math.max(0, Math.min(1, (interaction.orbitRadius - 112) / 135));
+    const displayRadius = 165 + normalized * 120;
+    const active = selectedRole.id === role.id;
+
+    return (
+      <motion.button
+        key={role.id}
+        data-radius={displayRadius}
+        type="button"
+        onClick={() => onSelectRole(role)}
+        whileHover={{ scale: 1.06 }}
+        className={cx(
+          'max-w-[150px] rounded-full border px-3 py-2 text-xs font-medium backdrop-blur-xl transition',
+          active
+            ? 'border-white/40 bg-white text-slate-950 shadow-xl'
+            : 'border-white/12 bg-slate-950/80 text-white/58 hover:border-white/24 hover:text-white'
+        )}
+      >
+        {role.shortTitle}
+      </motion.button>
+    );
+  });
+
   return (
-    <div className="relative mx-auto h-[610px] max-w-[830px] overflow-hidden rounded-[44px] border border-white/8 bg-black/10">
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_47%,rgba(56,189,248,.10),transparent_29%),radial-gradient(circle_at_50%_47%,rgba(192,132,252,.06),transparent_47%)]"/>
-      <div className="absolute left-1/2 top-[47%] -translate-x-1/2 -translate-y-1/2 text-center">
-        <motion.div key={selectedRole.id} initial={{ scale: 0.92, opacity: 0 }} animate={{ scale: 1, opacity: 1 }} transition={{ duration: 0.45 }}>
-          <SiriOrb size="250px" colors={orbColors(profile)} animationDuration={18}/>
-        </motion.div>
+    <div className="relative mx-auto h-[650px] max-w-[880px] overflow-hidden rounded-[44px] border border-white/8 bg-black/15">
+      <div className="absolute left-1/2 top-1/2 z-10 -translate-x-1/2 -translate-y-1/2 text-center">
+        <SiriOrb size="240px" colors={orbColors(profile)} animationDuration={18}/>
         <div className="pointer-events-none absolute inset-0 grid place-items-center">
-          <div className="max-w-44 rounded-full border border-white/15 bg-slate-950/45 px-4 py-2 text-center backdrop-blur-xl">
+          <div className="max-w-44 rounded-full border border-white/15 bg-slate-950/60 px-4 py-2 backdrop-blur-xl">
             <div className="text-sm font-semibold text-white">{employee.name}</div>
             <div className="mt-0.5 text-[10px] uppercase tracking-[0.16em] text-white/35">{profile.name}</div>
           </div>
         </div>
       </div>
 
-      {landscape.map(({ role, interaction }, index) => {
-        const angle = (index / landscape.length) * Math.PI * 2 - Math.PI / 2;
-        const normalizedRadius = (interaction.orbitRadius - 112) / 135;
-        const radiusX = 25 + Math.max(0, Math.min(1, normalizedRadius)) * 13;
-        const radiusY = radiusX * 0.88;
-        const x = 50 + Math.cos(angle) * radiusX;
-        const y = 47 + Math.sin(angle) * radiusY;
-        const active = selectedRole.id === role.id;
-        return (
-          <motion.button
-            key={role.id}
-            type="button"
-            onClick={() => onSelectRole(role)}
-            className={cx(
-              'absolute z-10 -translate-x-1/2 -translate-y-1/2 rounded-full border px-3 py-2 text-xs font-medium backdrop-blur-xl transition',
-              active
-                ? 'border-white/35 bg-white text-slate-950 shadow-[0_0_38px_rgba(255,255,255,.14)]'
-                : 'border-white/12 bg-slate-950/55 text-white/58 hover:border-white/24 hover:text-white'
-            )}
-            style={{ left: `${x}%`, top: `${y}%` }}
-            whileHover={{ scale: 1.06 }}
-            animate={{ y: [0, index % 2 ? 3 : -3, 0] }}
-            transition={{ y: { duration: 4 + (index % 3), repeat: Infinity, ease: 'easeInOut' } }}
-          >
-            {role.shortTitle}
-          </motion.button>
-        );
-      })}
+      <OrbitingCircles
+        radius={220}
+        duration={82}
+        showPath={false}
+        radiusForChild={child => Number(child.props['data-radius']) || 220}
+      >
+        {roleNodes}
+      </OrbitingCircles>
 
-      <div className="absolute bottom-5 left-1/2 -translate-x-1/2 text-center">
+      <div className="absolute bottom-5 left-1/2 z-20 -translate-x-1/2 text-center">
         <div className="text-lg font-semibold text-white">{selectedRole.title}</div>
         <div className="mt-1 text-xs uppercase tracking-[0.2em] text-white/28">{selectedRole.family}</div>
       </div>
