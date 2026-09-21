@@ -100,7 +100,7 @@ function roleSceneQuestion(activeScene, employee, role, activeCategory, lifeLens
   if (activeScene === 'underused-capacity') return `Explain the underused-capacity signals for ${employee.name} in ${role.title} without treating them as measures of superior ability or as a recommendation to move roles.`;
   if (activeScene === 'strength-inversion') return `Explain the strongest strength-inversion signal for ${employee.name} in ${role.title}, including what environmental conditions could turn the strength into friction.`;
   if (activeScene === 'context-refraction') return lifeLensMode === 'authorized'
-    ? `Interpret the employee-authorized ${CONTEXT_CATEGORIES[activeCategory]} context for ${role.title} without changing baseline compatibility or treating it as a diagnosis or medical record.`
+    ? `Interpret the user-designated authorized ${CONTEXT_CATEGORIES[activeCategory]} context for ${role.title} without changing baseline compatibility or treating the designation itself as proof of employee authorization.`
     : `Explore hypothetically how the ${CONTEXT_CATEGORIES[activeCategory]} lens could change operating conditions in ${role.title} without changing baseline compatibility or implying that it applies to ${employee.name}.`;
   return `Explain the baseline interaction between ${employee.name} and ${role.title}, separating the strongest overlap from the strongest tension.`;
 }
@@ -596,7 +596,7 @@ function LifeLensStrip({ role, activeCategory, onSelect, lifeLensMode, onModeCha
                     <AccordionContent>
                       {lifeLensMode === 'authorized' ? (
                         <p>
-                          Treat this as context the employee intentionally supplied for contextual interpretation. It is not a diagnosis or medical record, and it never changes the baseline person × role calculation.
+                          Treat this as context you are designating as authorized for contextual interpretation. The app does not independently verify employee authorization; it is not a diagnosis or medical record, and it never changes the baseline person × role calculation.
                         </p>
                       ) : (
                         <p>
@@ -634,6 +634,7 @@ function RoleAssistantRail({ employee, role, activeCategory, activeScene, lifeLe
   const [speakReplies, setSpeakReplies] = useState(false);
   const [voiceSupport, setVoiceSupport] = useState({ recognition: false, synthesis: false });
   const recognitionRef = useRef(null);
+  const speakRepliesRef = useRef(false);
   const profile = employeePiProfile(employee);
   const roleInteraction = useMemo(() => deriveRoleInteraction(employee, role), [employee, role]);
   const sceneLabel = ROLE_SCENE_LABELS[activeScene] || ROLE_SCENE_LABELS.baseline;
@@ -657,7 +658,7 @@ function RoleAssistantRail({ employee, role, activeCategory, activeScene, lifeLe
     setError('');
     setAnalysisMeta(null);
     setVoiceState('idle');
-  }, [employee?.id, employee?.name, role.id]);
+  }, [employee?.id, employee?.name, role.id, activeCategory, lifeLensMode]);
 
   useEffect(() => () => {
     recognitionRef.current?.abort?.();
@@ -665,7 +666,7 @@ function RoleAssistantRail({ employee, role, activeCategory, activeScene, lifeLe
   }, []);
 
   function speakReply(reply) {
-    if (!speakReplies || !voiceSupport.synthesis || typeof window === 'undefined') {
+    if (!speakRepliesRef.current || !voiceSupport.synthesis || typeof window === 'undefined') {
       setVoiceState('idle');
       return;
     }
@@ -703,7 +704,7 @@ Deterministic interaction components: ${JSON.stringify(roleInteraction.component
 Evidence confidence: ${roleInteraction.evidenceConfidence}/100.
 Strength-inversion risk signal: ${roleInteraction.inversionRisk}/100.
 Active life-experience lens: ${CONTEXT_CATEGORIES[activeCategory]}.
-Life Lens permission mode: ${lifeLensMode === 'authorized' ? 'employee-authorized context intentionally supplied for contextual interpretation' : 'hypothetical exploration only; do not infer that it applies to the employee'}.
+Life Lens permission mode: ${lifeLensMode === 'authorized' ? 'user-designated authorized context for contextual interpretation; the app does not independently verify employee authorization' : 'hypothetical exploration only; do not infer that it applies to the employee'}.
 Current visualization scene: ${sceneLabel}.
 
 Rules:
@@ -981,6 +982,7 @@ Rules:
             type="button"
             onClick={() => {
               const next = !speakReplies;
+              speakRepliesRef.current = next;
               setSpeakReplies(next);
               if (!next && typeof window !== 'undefined') {
                 window.speechSynthesis?.cancel?.();
