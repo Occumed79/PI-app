@@ -109,16 +109,36 @@ The runtime schema and `server/schema.sql` use the same table definitions and au
 
 ## AI provider behavior
 
-With `AI_PROVIDER=auto`, both live AI endpoints use this ordered provider chain:
+The backend uses a self-healing capability router instead of permanent model IDs.
 
-1. Gemini when configured.
-2. Groq when Gemini is unavailable or unsuccessful.
-3. OpenRouter when Gemini and Groq are unavailable or unsuccessful.
-4. A built-in non-AI fallback only when no live provider completes.
+### Primary answer pool
 
-The default OpenRouter model is `openrouter/free`. It can be changed with `OPENROUTER_MODEL` without changing application code.
+1. Gemini.
+2. Groq.
+3. OpenRouter's provider-managed `openrouter/free` router.
+4. Cloudflare Workers AI only as an emergency final-response provider if the entire primary pool is unavailable.
+5. Built-in non-AI fallback only if no live provider completes.
 
-The Crosswalk Assistant dynamically calculates the lenses relevant to the conversation and sends the exact baseline, explicit overlays, apparent PI shift, calculated lens dimensions, and recent conversation history to the selected live provider.
+Gemini and Groq models are discovered from each provider's live model catalog at runtime. The server prefers production-capable text/reasoning models, caches the selection for six hours, refreshes the catalog automatically when a model is missing/deprecated/retired, selects a replacement, and retries the request. There are no `GEMINI_MODEL`, `GROQ_MODEL`, or `OPENROUTER_MODEL` environment variables.
+
+`GEMINI_API_KEY_2` and `GROQ_API_KEY_2` are credential failovers. They protect against a bad/revoked/rate-limited credential; they are not assumed to provide a separate provider quota.
+
+### Cloudflare tandem intelligence
+
+Cloudflare is not normally placed behind the primary LLMs as another interchangeable chatbot. Its two configured Workers AI accounts form a rotating capability pool and are used in tandem with the primary provider:
+
+- semantic embedding retrieval across the complete lens registry;
+- reranking of the strongest candidate lenses;
+- structured request-complexity classification;
+- exact PI projection context for Cloudflare-selected lenses;
+- an independent critic pass on complex analyses;
+- automatic refinement by the primary provider when the critic finds a material issue.
+
+The Cloudflare account selector alternates the two configured accounts and automatically tries the other account if the selected account fails or exhausts capacity. Cloudflare text-generation, embedding, and reranking models are also discovered dynamically with deprecated/experimental models excluded. Documented model IDs are only emergency discovery fallbacks.
+
+The Crosswalk Assistant sends employee records to the server so semantic retrieval can attach exact D/E/P/F-derived projections for the lenses Cloudflare identifies. Explicit context overlays remain separate from the completed PI baseline and are never inferred.
+
+The Scenario Coach uses the same server-side routing layer. No Gemini or Groq API key is exposed through a `VITE_*` frontend environment variable.
 
 ## Tech stack
 
@@ -127,7 +147,8 @@ The Crosswalk Assistant dynamically calculates the lenses relevant to the conver
 - Recharts
 - Express
 - Neon Postgres
-- Gemini, Groq, and OpenRouter provider fallback
+- Self-healing Gemini/Groq/OpenRouter provider router
+- Cloudflare Workers AI embeddings, reranking, classification, reasoning, and critic layer
 - Render Web Service
 
 ## Local development
@@ -172,32 +193,34 @@ Environment variables:
 NODE_ENV=production
 DATABASE_URL=your_neon_connection_string
 CLIENT_ORIGIN=https://pi-app-c3rr.onrender.com
-AI_PROVIDER=auto
 
-GEMINI_API_KEY=optional
-GEMINI_MODEL=optional
+GEMINI_API_KEY=
+GEMINI_API_KEY_2=
 
-GROQ_API_KEY=optional
-GROQ_MODEL=optional
+GROQ_API_KEY=
+GROQ_API_KEY_2=
 
-OPENROUTER_API_KEY=your_complete_sk-or-v1_key
-OPENROUTER_MODEL=openrouter/free
+OPENROUTER_API_KEY=
 OPENROUTER_SITE_URL=https://pi-app-c3rr.onrender.com
 OPENROUTER_APP_NAME=PI Crosswalk Intelligence
+
+CLOUDFLARE_API_TOKEN=
+CLOUDFLARE_ACCOUNT_ID=
+CLOUDFLARE_API_TOKEN_2=
+CLOUDFLARE_ACCOUNT_ID_2=
 ```
 
-The OpenRouter key must remain server-side in Render. Do not place it in frontend code, GitHub, screenshots, or committed environment files.
-
-`OPENROUTER_SITE_URL` and `OPENROUTER_APP_NAME` are optional attribution headers. The API key and model are the required OpenRouter settings.
+All provider credentials remain server-side in Render. Do not place them in frontend code, committed environment files, or `VITE_*` variables. Model environment variables are intentionally not used; the backend discovers viable models at runtime.
 
 ## Health checks
 
 ```txt
-GET /api/health
-GET /api/db/health
+GET  /api/health
+GET  /api/db/health
+POST /api/ai/provider-refresh
 ```
 
-`GET /api/health` reports the configured-provider map, selected model names, and the effective fallback order.
+`GET /api/health` reports configured providers, credential-slot counts, dynamically selected models, discovery timestamps/errors, the effective primary/fallback order, and Cloudflare tandem mode. `POST /api/ai/provider-refresh` forces immediate model/capability rediscovery.
 
 ## Employee API
 
