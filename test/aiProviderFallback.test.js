@@ -2,45 +2,71 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import { readFile } from 'node:fs/promises';
 
+const managerSource = await readFile(new URL('../server/ai-provider-manager.js', import.meta.url), 'utf8');
+const intelligenceSource = await readFile(new URL('../server/cloudflare-intelligence.js', import.meta.url), 'utf8');
 const serverSource = await readFile(new URL('../server/index.js', import.meta.url), 'utf8');
 const chatSource = await readFile(new URL('../src/components/AITab.jsx', import.meta.url), 'utf8');
-const readmeSource = await readFile(new URL('../README.md', import.meta.url), 'utf8');
+const scenarioSource = await readFile(new URL('../src/components/modes/AIScenarioCoach.jsx', import.meta.url), 'utf8');
 
-test('auto mode keeps Gemini, Groq, and OpenRouter in that order', () => {
-  assert.match(
-    serverSource,
-    /LIVE_AI_PROVIDERS\s*=\s*Object\.freeze\(\['gemini',\s*'groq',\s*'openrouter'\]\)/
-  );
-  assert.match(serverSource, /function getProviderOrder\(\)/);
-  assert.match(serverSource, /return \[\.\.\.LIVE_AI_PROVIDERS\]/);
+test('primary provider pool remains Gemini, Groq, then OpenRouter', () => {
+  assert.match(managerSource, /PRIMARY_PROVIDER_ORDER\s*=\s*Object\.freeze\(\['gemini',\s*'groq',\s*'openrouter'\]\)/);
 });
 
-test('OpenRouter is a real server-side chat and scenario provider', () => {
-  assert.match(serverSource, /process\.env\.OPENROUTER_API_KEY/);
-  assert.match(serverSource, /process\.env\.OPENROUTER_MODEL \|\| 'openrouter\/free'/);
-  assert.match(serverSource, /https:\/\/openrouter\.ai\/api\/v1\/chat\/completions/);
-  assert.match(serverSource, /openrouter:\s*callOpenRouterForScenario/);
-  assert.match(serverSource, /openrouter:\s*callOpenRouterChat/);
+test('Gemini and Groq support secondary credential failover', () => {
+  assert.match(managerSource, /process\.env\.GEMINI_API_KEY_2/);
+  assert.match(managerSource, /process\.env\.GROQ_API_KEY_2/);
+  assert.match(managerSource, /geminiKeys\(\)/);
+  assert.match(managerSource, /groqKeys\(\)/);
 });
 
-test('the chat client accepts and identifies OpenRouter replies', () => {
-  assert.match(chatSource, /\['gemini',\s*'groq',\s*'openrouter'\]\.includes\(data\.source\)/);
-  assert.match(chatSource, /source === 'openrouter'/);
-  assert.match(chatSource, /Live AI · OpenRouter/);
-  assert.match(chatSource, /!\['error',\s*'welcome'\]\.includes\(message\.source\)/);
+test('provider models are discovered dynamically instead of read from model env variables', () => {
+  assert.match(managerSource, /generativelanguage\.googleapis\.com\/v1beta\/models\?pageSize=1000/);
+  assert.match(managerSource, /api\.groq\.com\/openai\/v1\/models/);
+  assert.doesNotMatch(managerSource, /process\.env\.GEMINI_MODEL/);
+  assert.doesNotMatch(managerSource, /process\.env\.GROQ_MODEL/);
+  assert.doesNotMatch(managerSource, /process\.env\.OPENROUTER_MODEL/);
 });
 
-test('health and deployment docs expose the third live fallback', () => {
-  assert.match(serverSource, /providerConfigured:\s*configuredProviderMap\(\)/);
-  assert.match(serverSource, /fallbackOrder:\s*getFallbackOrder\(\)/);
-  assert.match(readmeSource, /Gemini[\s\S]*Groq[\s\S]*OpenRouter/);
-  assert.match(readmeSource, /OPENROUTER_API_KEY=your_complete_sk-or-v1_key/);
-  assert.match(readmeSource, /OPENROUTER_MODEL=openrouter\/free/);
+test('OpenRouter uses the provider-managed free model router', () => {
+  assert.match(managerSource, /OPENROUTER_AUTO_MODEL\s*=\s*'openrouter\/free'/);
+  assert.match(managerSource, /openrouter\.ai\/api\/v1\/chat\/completions/);
 });
 
-test('provider errors redact the OpenRouter secret', () => {
-  assert.match(
-    serverSource,
-    /process\.env\.GEMINI_API_KEY,[\s\S]*process\.env\.GROQ_API_KEY,[\s\S]*process\.env\.OPENROUTER_API_KEY/
-  );
+test('Cloudflare uses both accounts and exposes reasoning, embedding, and reranking capabilities', () => {
+  assert.match(managerSource, /process\.env\.CLOUDFLARE_API_TOKEN_2/);
+  assert.match(managerSource, /process\.env\.CLOUDFLARE_ACCOUNT_ID_2/);
+  assert.match(managerSource, /ai\/v1\/embeddings/);
+  assert.match(managerSource, /ai\/v1\/chat\/completions/);
+  assert.match(managerSource, /cloudflareRerank/);
+  assert.match(managerSource, /models\/search/);
+});
+
+test('Cloudflare intelligence performs semantic retrieval, classification, and critic review', () => {
+  assert.match(intelligenceSource, /semanticLensSelection/);
+  assert.match(intelligenceSource, /classifyRequest/);
+  assert.match(intelligenceSource, /runCloudflareCritic/);
+  assert.match(intelligenceSource, /deriveLensProjection/);
+});
+
+test('chat route supplies employee context and can accept Cloudflare emergency replies', () => {
+  assert.match(chatSource, /employees,/);
+  assert.match(chatSource, /source === 'cloudflare'/);
+  assert.match(serverSource, /cloudflareEmergencyReply/);
+  assert.match(serverSource, /buildCloudflareIntelligence/);
+  assert.match(serverSource, /refineWithCritic/);
+});
+
+test('Scenario Coach no longer exposes provider keys or hard-codes provider models in the browser', () => {
+  assert.doesNotMatch(scenarioSource, /VITE_GEMINI_API_KEY/);
+  assert.doesNotMatch(scenarioSource, /VITE_GROQ_API_KEY/);
+  assert.doesNotMatch(scenarioSource, /gemini-[0-9]/);
+  assert.doesNotMatch(scenarioSource, /llama-[0-9]/);
+  assert.match(scenarioSource, /\/api\/ai\/scenario-analysis/);
+});
+
+test('health endpoint reports self-healing provider diagnostics', () => {
+  assert.match(serverSource, /providerMode:\s*'self-healing-capability-routing'/);
+  assert.match(serverSource, /cloudflareMode:\s*'parallel-semantic-retrieval-rerank-classification-and-critic'/);
+  assert.match(serverSource, /providerKeyCounts/);
+  assert.match(serverSource, /modelDiscovery/);
 });
