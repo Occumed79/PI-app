@@ -52,6 +52,8 @@ import {
   TabsContent,
   TabsList,
   TabsTrigger,
+  ToggleGroup,
+  ToggleGroupItem,
 } from './SourcedRoleUI.jsx';
 import {
   CONTEXT_CATEGORIES,
@@ -239,6 +241,7 @@ function EmployeeConstellation({ employees, onSelect, loading, loadError }) {
 
 function RoleOrbit({ employee, selectedRole, onSelectRole }) {
   const profile = employeePiProfile(employee);
+  const [levelFilter, setLevelFilter] = useState('all');
   const landscape = useMemo(
     () => ROLE_INTELLIGENCE_ROLES.map(role => ({
       role,
@@ -246,8 +249,11 @@ function RoleOrbit({ employee, selectedRole, onSelectRole }) {
     })),
     [employee]
   );
+  const visibleLandscape = levelFilter === 'all'
+    ? landscape
+    : landscape.filter(item => item.role.level === levelFilter || item.role.id === selectedRole.id);
 
-  const roleNodes = landscape.map(({ role, interaction }) => {
+  const roleNodes = visibleLandscape.map(({ role, interaction }) => {
     const normalized = Math.max(0, Math.min(1, (interaction.orbitRadius - 112) / 135));
     const displayRadius = 165 + normalized * 120;
     const active = selectedRole.id === role.id;
@@ -286,8 +292,29 @@ function RoleOrbit({ employee, selectedRole, onSelectRole }) {
   });
 
   return (
-    <div className="relative mx-auto h-[650px] max-w-[880px] overflow-hidden rounded-[44px] border border-white/8 bg-black/15">
-      <div className="absolute left-1/2 top-1/2 z-10 -translate-x-1/2 -translate-y-1/2 text-center">
+    <div className="mx-auto max-w-[880px]">
+      <div className="mb-4 flex flex-wrap items-center justify-between gap-3">
+        <div>
+          <div className="text-[10px] font-semibold uppercase tracking-[0.18em] text-white/28">Role landscape filter</div>
+          <div className="mt-1 text-xs text-white/32">Selected role always remains visible for spatial context.</div>
+        </div>
+        <ScrollArea className="max-w-full pb-1">
+          <ToggleGroup
+            type="single"
+            value={levelFilter}
+            onValueChange={value => setLevelFilter(value || 'all')}
+            className="w-max"
+          >
+            <ToggleGroupItem value="all">All</ToggleGroupItem>
+            <ToggleGroupItem value="analyst">Analyst</ToggleGroupItem>
+            <ToggleGroupItem value="specialist">Specialist</ToggleGroupItem>
+            <ToggleGroupItem value="manager">Manager</ToggleGroupItem>
+            <ToggleGroupItem value="director">Director</ToggleGroupItem>
+          </ToggleGroup>
+        </ScrollArea>
+      </div>
+      <div className="relative h-[650px] overflow-hidden rounded-[44px] border border-white/8 bg-black/15">
+        <div className="absolute left-1/2 top-1/2 z-10 -translate-x-1/2 -translate-y-1/2 text-center">
         <SiriOrb size="240px" colors={orbColors(profile)} animationDuration={18}/>
         <div className="pointer-events-none absolute inset-0 grid place-items-center">
           <div className="max-w-44 rounded-full border border-white/15 bg-slate-950/60 px-4 py-2 backdrop-blur-xl">
@@ -306,9 +333,10 @@ function RoleOrbit({ employee, selectedRole, onSelectRole }) {
         {roleNodes}
       </OrbitingCircles>
 
-      <div className="absolute bottom-5 left-1/2 z-20 -translate-x-1/2 text-center">
-        <div className="text-lg font-semibold text-white">{selectedRole.title}</div>
-        <div className="mt-1 text-xs uppercase tracking-[0.2em] text-white/28">{selectedRole.family}</div>
+        <div className="absolute bottom-5 left-1/2 z-20 -translate-x-1/2 text-center">
+          <div className="text-lg font-semibold text-white">{selectedRole.title}</div>
+          <div className="mt-1 text-xs uppercase tracking-[0.2em] text-white/28">{selectedRole.family}</div>
+        </div>
       </div>
     </div>
   );

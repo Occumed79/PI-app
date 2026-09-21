@@ -366,7 +366,7 @@ export function CarouselNext({ className = '' }) {
 
 const HoverCardContext = React.createContext({ open: false, setOpen: () => {} });
 
-export function HoverCard({ open, defaultOpen = false, onOpenChange, children }) {
+export function HoverCard({ open, defaultOpen = false, onOpenChange, className = '', children, ...props }) {
   const [internal, setInternal] = React.useState(defaultOpen);
   const active = open ?? internal;
   const setOpen = next => {
@@ -375,7 +375,7 @@ export function HoverCard({ open, defaultOpen = false, onOpenChange, children })
   };
   return (
     <HoverCardContext.Provider value={{ open: active, setOpen }}>
-      <div className="relative inline-block">{children}</div>
+      <div className={`relative inline-block ${className}`} {...props}>{children}</div>
     </HoverCardContext.Provider>
   );
 }
@@ -432,4 +432,64 @@ export function AlertTitle({ className = '', children }) {
 
 export function AlertDescription({ className = '', children }) {
   return <div data-slot="alert-description" className={`text-sm leading-6 text-white/40 ${className}`}>{children}</div>;
+}
+
+
+const ToggleGroupContext = React.createContext({
+  value: [],
+  onValueChange: () => {},
+});
+
+export function ToggleGroup({
+  type = 'single',
+  value,
+  defaultValue,
+  onValueChange,
+  className = '',
+  children,
+}) {
+  const [internalValue, setInternalValue] = React.useState(
+    defaultValue ? (Array.isArray(defaultValue) ? defaultValue : [defaultValue]) : []
+  );
+  const controlledValue = value !== undefined
+    ? (Array.isArray(value) ? value : [value])
+    : internalValue;
+
+  const handleChange = itemValue => {
+    let next;
+    if (type === 'single') {
+      next = controlledValue.includes(itemValue) ? [] : [itemValue];
+    } else {
+      next = controlledValue.includes(itemValue)
+        ? controlledValue.filter(item => item !== itemValue)
+        : [...controlledValue, itemValue];
+    }
+    if (value === undefined) setInternalValue(next);
+    onValueChange?.(type === 'single' ? (next[0] || '') : next);
+  };
+
+  return (
+    <ToggleGroupContext.Provider value={{ value: controlledValue, onValueChange: handleChange }}>
+      <div data-slot="toggle-group" role="group" className={`flex w-fit flex-row items-center gap-0 rounded-lg ${className}`}>
+        {children}
+      </div>
+    </ToggleGroupContext.Provider>
+  );
+}
+
+export function ToggleGroupItem({ value, className = '', children }) {
+  const context = React.useContext(ToggleGroupContext);
+  const active = context.value.includes(value);
+  return (
+    <button
+      type="button"
+      data-slot="toggle-group-item"
+      aria-pressed={active}
+      data-state={active ? 'on' : 'off'}
+      onClick={() => context.onValueChange(value)}
+      className={`h-8 shrink-0 border border-white/10 px-3 text-xs font-medium transition first:rounded-l-lg last:rounded-r-lg -ml-px first:ml-0 ${active ? 'bg-white text-slate-950' : 'bg-white/[0.02] text-white/45 hover:bg-white/[0.06] hover:text-white/72'} ${className}`}
+    >
+      {children}
+    </button>
+  );
 }
