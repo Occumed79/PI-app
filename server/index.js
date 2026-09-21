@@ -19,6 +19,11 @@ import {
   buildCloudflareIntelligence,
   runCloudflareCritic,
 } from './cloudflare-intelligence.js';
+import {
+  ROLE_BY_ID,
+  deriveAdjacentRolePull,
+  deriveRoleInteraction,
+} from '../src/data/roleIntelligence.js';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -148,6 +153,72 @@ function employeeProfileAsEmployee(employeeProfile = {}) {
     formality: factors.formality,
     contextOverlays: employeeProfile?.contextOverlays || [],
   };
+}
+
+function buildRoleGrounding(employee, roleId) {
+  const role = ROLE_BY_ID[String(roleId || '').trim()];
+  if (!role) return null;
+
+  const interaction = deriveRoleInteraction(employee, role);
+  const adjacentRoles = deriveAdjacentRolePull(employee, role, 4).map(item => ({
+    roleId: item.roleId,
+    title: item.title,
+    pull: item.pull,
+    roleSimilarity: item.roleSimilarity,
+    delta: item.delta,
+    evidenceConfidence: item.evidenceConfidence,
+  }));
+
+  return {
+    role: {
+      id: role.id,
+      title: role.title,
+      family: role.family,
+      level: role.level,
+      purpose: role.purpose,
+      behavioralBands: role.behavioralBands,
+      signature: role.signature,
+      workValues: role.workValues,
+    },
+    employeeFactors: interaction.factors,
+    directionalPreferences: interaction.preferences,
+    directionalWorkValues: interaction.workValues,
+    factorSignals: interaction.factorSignals,
+    components: interaction.components,
+    inversionRisk: interaction.inversionRisk,
+    inversionSignals: interaction.inversionSignals.slice(0, 4),
+    evidenceConfidence: interaction.evidenceConfidence,
+    evidence: interaction.evidence.map(source => ({
+      id: source.id,
+      label: source.label,
+      kind: source.kind,
+      note: source.note,
+      authority: source.authority,
+      directness: source.directness,
+      public: source.public,
+      url: source.public ? source.url || null : null,
+    })),
+    adjacentRoles,
+  };
+}
+
+function roleGroundingSystemText(grounding, activeContextCategory = '') {
+  if (!grounding) return '';
+
+  return `AUTHORITATIVE ROLE-INTELLIGENCE GROUNDING
+The following structured values come from the app's deterministic person × role engine and evidence catalog. Use them as the baseline. Do not silently replace them with your own score.
+
+${JSON.stringify(grounding, null, 2)}
+
+GROUNDING RULES:
+- The PI factors are completed source-assessment inputs.
+- Directional preferences and work values are model-derived projections from those PI factors, not separately administered measurements.
+- Component values describe modeled interaction with this role. They are not measured performance, productivity, competence, hireability, or promotion scores.
+- Evidence sources marked as external analogues support role-demand modeling but do not mean the Occu-Med role is identical to the external occupation.
+- Adjacent-role pull is descriptive exploration only, not a staffing or promotion recommendation.
+- Do not expose or invent an overall employment verdict.
+- Sensitive life-context information must not alter the baseline role interaction.
+- Active context lens, when present, is explanatory only: ${String(activeContextCategory || 'none')}.`;
 }
 
 async function cloudflareEmergencyReply({ system, messages, jsonMode = false, maxTokens = 1800 }) {
@@ -543,14 +614,30 @@ app.post('/api/ai/scenario-analysis', async (req, res) => {
 
 
 app.post('/api/ai/role-intelligence', async (req, res) => {
-  const { system, messages, employees } = req.body || {};
+  const { system, messages, employees, roleId, activeContextCategory } = req.body || {};
   if (!Array.isArray(messages)) {
     return res.status(400).json({ ok: false, message: 'messages array required' });
   }
 
   const conversation = compactConversation(messages, 16);
+  if (!conversation.some(message => message.role === 'user')) {
+    return res.status(400).json({ ok: false, message: 'At least one user message is required.' });
+  }
+
   const query = latestUserText(conversation);
   const employeeContext = safeArray(employees, 6);
+  const selectedEmployee = employeeContext[0] || null;
+
+  let roleGrounding = null;
+  if (roleId) {
+    if (!ROLE_BY_ID[String(roleId).trim()]) {
+      return res.status(400).json({ ok: false, message: 'Unknown Role Intelligence role.' });
+    }
+    if (!selectedEmployee) {
+      return res.status(400).json({ ok: false, message: 'A selected employee is required for grounded role analysis.' });
+    }
+    roleGrounding = buildRoleGrounding(selectedEmployee, roleId);
+  }
 
   let intelligence = { context: '', metadata: { used: false }, lenses: [] };
   try {
@@ -567,8 +654,9 @@ app.post('/api/ai/role-intelligence', async (req, res) => {
 
   const roleSystem = [
     String(system || ''),
+    roleGroundingSystemText(roleGrounding, activeContextCategory),
     intelligence.context
-      ? `EVIDENCE RETRIEVAL CONTEXT:\n${intelligence.context}`
+      ? `AUXILIARY SEMANTIC LENS CONTEXT:\n${intelligence.context}`
       : '',
   ].filter(Boolean).join('\n\n');
 
@@ -601,6 +689,12 @@ app.post('/api/ai/role-intelligence', async (req, res) => {
       synthesizer: result.synthesizer || null,
       providerErrors: result.errors || [],
       evidence: intelligence.metadata || null,
+      roleGrounding: roleGrounding ? {
+        roleId: roleGrounding.role.id,
+        evidenceConfidence: roleGrounding.evidenceConfidence,
+        sourceCount: roleGrounding.evidence.length,
+        adjacentRoleIds: roleGrounding.adjacentRoles.map(item => item.roleId),
+      } : null,
     });
   } catch (error) {
     res.status(500).json({
