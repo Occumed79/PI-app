@@ -52,6 +52,13 @@ import {
   TabsContent,
   TabsList,
   TabsTrigger,
+  Table,
+  TableBody,
+  TableCaption,
+  TableCell,
+  TableHead,
+  TableHeader,
+  TableRow,
   ToggleGroup,
   ToggleGroupItem,
 } from './SourcedRoleUI.jsx';
@@ -1033,6 +1040,131 @@ function RoleQuickSwitcher({ selectedRole, onSelectRole }) {
   );
 }
 
+function RoleComparison({ employee, selectedRole }) {
+  const [query, setQuery] = useState('');
+  const [comparisonRoleId, setComparisonRoleId] = useState(
+    () => ROLE_INTELLIGENCE_ROLES.find(role => role.id !== selectedRole.id)?.id || selectedRole.id
+  );
+
+  useEffect(() => {
+    if (comparisonRoleId === selectedRole.id || !ROLE_INTELLIGENCE_ROLES.some(role => role.id === comparisonRoleId)) {
+      setComparisonRoleId(ROLE_INTELLIGENCE_ROLES.find(role => role.id !== selectedRole.id)?.id || selectedRole.id);
+    }
+  }, [comparisonRoleId, selectedRole.id]);
+
+  const comparisonRole = ROLE_INTELLIGENCE_ROLES.find(role => role.id === comparisonRoleId)
+    || ROLE_INTELLIGENCE_ROLES.find(role => role.id !== selectedRole.id)
+    || selectedRole;
+  const selectedInteraction = useMemo(
+    () => deriveRoleInteraction(employee, selectedRole),
+    [employee, selectedRole]
+  );
+  const comparisonInteraction = useMemo(
+    () => deriveRoleInteraction(employee, comparisonRole),
+    [employee, comparisonRole]
+  );
+
+  const normalized = query.trim().toLowerCase();
+  const matches = normalized
+    ? ROLE_INTELLIGENCE_ROLES.filter(role => role.id !== selectedRole.id && [
+        role.title,
+        role.shortTitle,
+        role.family,
+        role.level,
+      ].filter(Boolean).join(' ').toLowerCase().includes(normalized))
+    : [];
+
+  return (
+    <div>
+      <div className="grid gap-5 lg:grid-cols-[.82fr_1.18fr]">
+        <div>
+          <div className="text-xs font-semibold uppercase tracking-[0.18em] text-white/30">Choose comparison role</div>
+          <Command className="mt-3">
+            <CommandInput
+              value={query}
+              onChange={event => setQuery(event.target.value)}
+              placeholder={`Compare ${selectedRole.shortTitle} with…`}
+            />
+            {normalized && (
+              <CommandList>
+                <CommandGroup heading="Modeled company positions">
+                  {matches.length === 0 && <CommandEmpty>No other modeled role matches.</CommandEmpty>}
+                  {matches.map(role => (
+                    <CommandItem
+                      key={role.id}
+                      checked={comparisonRole.id === role.id}
+                      onSelect={() => {
+                        setComparisonRoleId(role.id);
+                        setQuery('');
+                      }}
+                    >
+                      <span className="min-w-0">
+                        <span className="block truncate font-medium text-white/74">{role.title}</span>
+                        <span className="block truncate text-[11px] text-white/30">{role.family} · {role.level}</span>
+                      </span>
+                    </CommandItem>
+                  ))}
+                </CommandGroup>
+              </CommandList>
+            )}
+          </Command>
+
+          <div className="mt-5 space-y-3 rounded-[24px] border border-white/8 bg-white/[0.02] p-5">
+            <div>
+              <div className="text-xs text-white/28">Selected role</div>
+              <div className="mt-1 font-semibold text-white/72">{selectedRole.title}</div>
+              <div className="mt-1 text-xs text-white/32">{selectedRole.family} · {selectedRole.level}</div>
+            </div>
+            <div className="border-t border-white/8 pt-3">
+              <div className="text-xs text-white/28">Comparison role</div>
+              <div className="mt-1 font-semibold text-white/72">{comparisonRole.title}</div>
+              <div className="mt-1 text-xs text-white/32">{comparisonRole.family} · {comparisonRole.level}</div>
+            </div>
+            <div className="flex flex-wrap gap-2 border-t border-white/8 pt-3">
+              <Badge>Selected evidence {selectedInteraction.evidenceConfidence}/100</Badge>
+              <Badge>Comparison evidence {comparisonInteraction.evidenceConfidence}/100</Badge>
+            </div>
+          </div>
+        </div>
+
+        <div>
+          <Alert>
+            <Info size={16}/>
+            <AlertTitle>Compare operating environments, not people.</AlertTitle>
+            <AlertDescription>
+              This table compares modeled role demands against the same employee directional work-style projection. It does not select a better role, rank positions, or make a promotion or staffing recommendation.
+            </AlertDescription>
+          </Alert>
+
+          <Table className="mt-5">
+            <TableCaption>
+              Role-demand values are model dimensions used by Role Intelligence. Employee pull is a PI-derived directional work-style projection, not a measured skill or ability.
+            </TableCaption>
+            <TableHeader>
+              <TableRow>
+                <TableHead>Dimension</TableHead>
+                <TableHead>Employee pull</TableHead>
+                <TableHead>{selectedRole.shortTitle}</TableHead>
+                <TableHead>{comparisonRole.shortTitle}</TableHead>
+              </TableRow>
+            </TableHeader>
+            <TableBody>
+              {ROLE_DIMENSIONS.map(([key, label]) => (
+                <TableRow key={key}>
+                  <TableCell className="font-medium text-white/68">{label}</TableCell>
+                  <TableCell className="tabular-nums">{Math.round(selectedInteraction.preferences[key])}</TableCell>
+                  <TableCell className="tabular-nums">{selectedRole.signature[key]}</TableCell>
+                  <TableCell className="tabular-nums">{comparisonRole.signature[key]}</TableCell>
+                </TableRow>
+              ))}
+            </TableBody>
+          </Table>
+        </div>
+      </div>
+    </div>
+  );
+}
+
 function initialRoleForEmployee(employee) {
   const position = String(employee?.position || '')
     .toLowerCase()
@@ -1160,6 +1292,7 @@ function Workspace({ employee, onExit }) {
                 <ScrollArea className="max-w-full pb-2">
                   <TabsList className="w-max flex-nowrap">
                     <TabsTrigger value="interaction">Interaction</TabsTrigger>
+                    <TabsTrigger value="compare">Compare roles</TabsTrigger>
                     <TabsTrigger value="interpretation">Interpretation</TabsTrigger>
                     <TabsTrigger value="evidence">Evidence</TabsTrigger>
                     <TabsTrigger value="context">Context lenses</TabsTrigger>
@@ -1191,6 +1324,10 @@ function Workspace({ employee, onExit }) {
                       <SignatureBand role={selectedRole}/>
                     </div>
                   </div>
+                </TabsContent>
+
+                <TabsContent value="compare">
+                  <RoleComparison employee={employee} selectedRole={selectedRole}/>
                 </TabsContent>
 
                 <TabsContent value="interpretation">
