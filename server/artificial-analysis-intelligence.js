@@ -1,5 +1,9 @@
 const ARTIFICIAL_ANALYSIS_BASE_URL = 'https://artificialanalysis.ai/api/v2';
 const CATALOG_TTL_MS = 12 * 60 * 60 * 1000;
+const RATE_LIMIT_COOLDOWN_MS = 6 * 60 * 60 * 1000;
+
+let inFlightCatalog = null;
+let retryAfterAt = 0;
 
 let cache = {
   fetchedAt: 0,
@@ -86,7 +90,15 @@ async function fetchPage(apiKey, page) {
 
   const text = await response.text();
   if (!response.ok) {
-    throw new Error(`Artificial Analysis free model catalog ${response.status}: ${text || response.statusText}`);
+    const error = new Error(`Artificial Analysis free model catalog ${response.status}: ${text || response.statusText}`);
+    error.status = response.status;
+
+    const retryAfter = Number(response.headers?.get?.('retry-after'));
+    if (Number.isFinite(retryAfter) && retryAfter > 0) {
+      error.retryAfterMs = retryAfter * 1000;
+    }
+
+    throw error;
   }
 
   return JSON.parse(text);
@@ -126,29 +138,58 @@ async function fetchCatalogWithKey(apiKey, keySlot) {
   return cache;
 }
 
-export async function getArtificialAnalysisCatalog({ force = false } = {}) {
-  if (!artificialAnalysisConfigured()) return null;
-  if (!force && cache.models.length && Date.now() - cache.fetchedAt < CATALOG_TTL_MS) {
-    return cache;
-  }
-
+async function refreshCatalog() {
   let lastError = null;
   const apiKeys = keys();
+
   for (let index = 0; index < apiKeys.length; index += 1) {
     try {
-      return await fetchCatalogWithKey(apiKeys[index], index + 1);
+      const next = await fetchCatalogWithKey(apiKeys[index], index + 1);
+      retryAfterAt = 0;
+      return next;
     } catch (error) {
       lastError = error;
-      const message = String(error?.message || '').toLowerCase();
-      // 429 is a shared-scope quota on Artificial Analysis; retrying another key
-      // from the same org may not help, but the second key can still protect against
-      // a revoked/invalid credential.
-      if (/429/.test(message)) break;
+
+      // Free-tier quota is shared at the Artificial Analysis organization level.
+      // A second key protects against a revoked credential, but retrying it after
+      // an actual 429 would only waste another request.
+      if (Number(error?.status) === 429 || /429/.test(String(error?.message || ''))) {
+        retryAfterAt = Date.now() + Math.max(
+          Number(error?.retryAfterMs) || 0,
+          RATE_LIMIT_COOLDOWN_MS
+        );
+        break;
+      }
     }
   }
 
   cache.lastError = String(lastError?.message || lastError || 'Artificial Analysis catalog refresh failed.');
   throw lastError || new Error(cache.lastError);
+}
+
+export async function getArtificialAnalysisCatalog({ force = false } = {}) {
+  if (!artificialAnalysisConfigured()) return null;
+
+  const now = Date.now();
+  if (!force && cache.models.length && now - cache.fetchedAt < CATALOG_TTL_MS) {
+    return cache;
+  }
+
+  // Never hammer a known-exhausted free quota, even when a capability refresh
+  // is explicitly requested. Local model heuristics remain available.
+  if (retryAfterAt > now) return null;
+
+  // Every Gemini/Groq/Mistral candidate can ask for benchmark data at once.
+  // Collapse those callers onto one catalog refresh so one model-discovery
+  // cycle consumes only the catalog's actual pagination requests.
+  if (inFlightCatalog) return inFlightCatalog;
+
+  inFlightCatalog = refreshCatalog()
+    .finally(() => {
+      inFlightCatalog = null;
+    });
+
+  return inFlightCatalog;
 }
 
 export async function benchmarkForModel(runtimeModelName) {
@@ -228,5 +269,8 @@ export function getArtificialAnalysisDiagnostics() {
     keySlot: cache.keySlot,
     lastError: cache.lastError,
     cacheTtlHours: CATALOG_TTL_MS / (60 * 60 * 1000),
+    rateLimitCooldownHours: RATE_LIMIT_COOLDOWN_MS / (60 * 60 * 1000),
+    retryAfterAt: retryAfterAt || null,
+    refreshInFlight: Boolean(inFlightCatalog),
   };
 }
