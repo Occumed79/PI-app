@@ -9,6 +9,7 @@ import {
   callCloudflareChat,
   callPrimaryPool,
   callPrimaryProvider,
+  callRoleIntelligenceEnsemble,
   configuredProviderMap,
   getProviderDiagnostics,
   refreshProviderCapabilities,
@@ -537,6 +538,75 @@ app.post('/api/ai/scenario-analysis', async (req, res) => {
     },
     analysis,
   });
+});
+
+
+app.post('/api/ai/role-intelligence', async (req, res) => {
+  const { system, messages, employees } = req.body || {};
+  if (!Array.isArray(messages)) {
+    return res.status(400).json({ ok: false, message: 'messages array required' });
+  }
+
+  const conversation = compactConversation(messages, 16);
+  const query = latestUserText(conversation);
+  const employeeContext = safeArray(employees, 6);
+
+  let intelligence = { context: '', metadata: { used: false }, lenses: [] };
+  try {
+    intelligence = await buildCloudflareIntelligence({
+      query,
+      employees: employeeContext,
+    });
+  } catch (error) {
+    intelligence.metadata = {
+      used: false,
+      warning: sanitizeProviderError(error.message),
+    };
+  }
+
+  const roleSystem = [
+    String(system || ''),
+    intelligence.context
+      ? `EVIDENCE RETRIEVAL CONTEXT:\n${intelligence.context}`
+      : '',
+  ].filter(Boolean).join('\n\n');
+
+  try {
+    const result = await callRoleIntelligenceEnsemble({
+      system: roleSystem,
+      messages: conversation,
+      temperature: 0.28,
+      maxTokens: 3200,
+      jsonMode: false,
+    });
+
+    if (!result?.reply) {
+      return res.status(503).json({
+        ok: false,
+        message: 'No Role Intelligence analyzer completed successfully.',
+        providerErrors: result?.errors || [],
+      });
+    }
+
+    res.json({
+      ok: true,
+      reply: result.reply,
+      consensusMode: result.consensusMode,
+      analyzers: (result.analyzers || []).map(item => ({
+        provider: item.provider,
+        model: item.model,
+        keySlot: item.keySlot,
+      })),
+      synthesizer: result.synthesizer || null,
+      providerErrors: result.errors || [],
+      evidence: intelligence.metadata || null,
+    });
+  } catch (error) {
+    res.status(500).json({
+      ok: false,
+      message: sanitizeProviderError(error.message),
+    });
+  }
 });
 
 app.post('/api/ai-chat', async (req, res) => {
