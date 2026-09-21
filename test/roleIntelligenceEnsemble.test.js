@@ -244,3 +244,23 @@ test('sourced sticky-scroll reveal keeps active visuals on mobile', () => {
   assert.match(stickySource, /lg:hidden/);
   assert.match(stickySource, /min-h-\[22rem\]/);
 });
+
+
+test('role landscape explicitly explains that orbit geometry is descriptive rather than employment ranking', () => {
+  assert.match(roleUiSource, /How to read the role landscape/);
+  assert.match(roleUiSource, /not a hireability score, employee ranking, promotion recommendation, or prediction of performance/);
+  assert.match(roleUiSource, /<Alert/);
+});
+
+test('adjacent-role carousel exposes environment similarity and evidence confidence without a hireability score', () => {
+  assert.match(roleUiSource, /Environment similarity \{item\.roleSimilarity\}\/100/);
+  assert.match(roleUiSource, /Evidence \{item\.evidenceConfidence\}\/100/);
+  assert.doesNotMatch(roleUiSource, /candidateCompatibility\}/);
+});
+
+test('sourced hover-card triggers open on keyboard focus as well as pointer hover', async () => {
+  const sourcedUi = await readFile(new URL('../src/components/SourcedRoleUI.jsx', import.meta.url), 'utf8');
+  assert.match(sourcedUi, /onFocusCapture=\{\(\) => setOpen\(true\)\}/);
+  assert.match(sourcedUi, /onBlurCapture/);
+  assert.match(sourcedUi, /event\.currentTarget\.contains\(event\.relatedTarget\)/);
+});

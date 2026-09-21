@@ -7,6 +7,7 @@ import {
   ChevronDown,
   Compass,
   ExternalLink,
+  Info,
   MessageCircleMore,
   Send,
   UserRound,
@@ -21,6 +22,9 @@ import {
   AccordionContent,
   AccordionItem,
   AccordionTrigger,
+  Alert,
+  AlertDescription,
+  AlertTitle,
   Badge,
   Carousel,
   CarouselContent,
@@ -1086,6 +1090,13 @@ function Workspace({ employee, onExit }) {
           <main className="min-w-0">
             <RoleQuickSwitcher selectedRole={selectedRole} onSelectRole={setSelectedRole}/>
             <RoleOrbit employee={employee} selectedRole={selectedRole} onSelectRole={setSelectedRole}/>
+            <Alert className="mx-auto mt-5 max-w-[880px]">
+              <Info size={16}/>
+              <AlertTitle>How to read the role landscape</AlertTitle>
+              <AlertDescription>
+                Orbit distance is internal exploration geometry derived from modeled person × role overlap. A role appearing closer or farther from the employee is not a hireability score, employee ranking, promotion recommendation, or prediction of performance.
+              </AlertDescription>
+            </Alert>
             <InteractionNarrative
               role={selectedRole}
               interaction={interaction}
@@ -1243,6 +1254,10 @@ function Workspace({ employee, onExit }) {
                               <div className="text-xs font-semibold uppercase tracking-[0.18em] text-sky-200/45">Adjacent modeled environment</div>
                               <div className="mt-4 text-3xl font-semibold tracking-tight text-white">{item.role.title}</div>
                               <div className="mt-3 text-sm leading-7 text-white/42">{item.role.purpose}</div>
+                              <div className="mt-5 flex flex-wrap justify-center gap-2">
+                                <Badge tone="info">Environment similarity {item.roleSimilarity}/100</Badge>
+                                <Badge>Evidence {item.evidenceConfidence}/100</Badge>
+                              </div>
                               <div className="mt-5 inline-flex items-center gap-2 text-sm font-medium text-white/58 transition group-hover:text-white">
                                 Explore this role <ArrowRight size={14} className="transition group-hover:translate-x-1"/>
                               </div>
