@@ -1,8 +1,8 @@
-import React, { useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { motion, useMotionValueEvent, useScroll } from 'framer-motion';
 
 // Structure adapted from Aceternity UI's Sticky Scroll Reveal pattern.
-export default function StickyScrollReveal({ content = [], className = '' }) {
+export default function StickyScrollReveal({ content = [], className = '', onActiveChange }) {
   const [activeCard, setActiveCard] = useState(0);
   const ref = useRef(null);
   const { scrollYProgress } = useScroll({ container: ref });
@@ -15,6 +15,11 @@ export default function StickyScrollReveal({ content = [], className = '' }) {
     ), 0);
     setActiveCard(closest);
   });
+
+  useEffect(() => {
+    if (!content.length) return;
+    onActiveChange?.(activeCard, content[activeCard]);
+  }, [activeCard, content, onActiveChange]);
 
   if (!content.length) return null;
   const active = content[activeCard];

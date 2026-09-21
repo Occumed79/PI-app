@@ -71,6 +71,22 @@ const FACTOR_TONE = {
   contrast: 'text-amber-200 border-amber-300/25 bg-amber-500/10',
 };
 
+const ROLE_SCENE_LABELS = {
+  baseline: 'Baseline interaction',
+  'demand-pressure': 'Demand pressure',
+  'underused-capacity': 'Underused capacity',
+  'strength-inversion': 'Strength inversion',
+  'context-refraction': 'Life-experience refraction',
+};
+
+function roleSceneQuestion(activeScene, employee, role, activeCategory) {
+  if (activeScene === 'demand-pressure') return `Explain the demand-pressure signals for ${employee.name} in ${role.title}. Which role demands are most different from the directional PI-derived work-style pull, and what could that look like operationally?`;
+  if (activeScene === 'underused-capacity') return `Explain the underused-capacity signals for ${employee.name} in ${role.title} without treating them as measures of superior ability or as a recommendation to move roles.`;
+  if (activeScene === 'strength-inversion') return `Explain the strongest strength-inversion signal for ${employee.name} in ${role.title}, including what environmental conditions could turn the strength into friction.`;
+  if (activeScene === 'context-refraction') return `Explain how the ${CONTEXT_CATEGORIES[activeCategory]} lens could change operating conditions in ${role.title} without changing baseline compatibility.`;
+  return `Explain the baseline interaction between ${employee.name} and ${role.title}, separating the strongest overlap from the strongest tension.`;
+}
+
 const LENS_COPY = {
   'economic-material-security': 'Look at how predictability, schedule volatility, and resource pressure interact with the demands of this role.',
   'family-caregiving': 'Look at schedule predictability, after-hours assumptions, interruption recovery, and coverage design rather than treating availability as motivation.',
@@ -338,7 +354,7 @@ function FactorSignals({ interaction }) {
   );
 }
 
-function InteractionNarrative({ role, interaction, activeCategory }) {
+function InteractionNarrative({ role, interaction, activeCategory, onSceneChange }) {
   const demandPressure = interaction.capacityTensions.filter(item => item.kind === 'demand-pressure');
   const underused = interaction.capacityTensions.filter(item => item.kind === 'underused');
   const contextLabel = CONTEXT_CATEGORIES[activeCategory];
@@ -375,6 +391,7 @@ function InteractionNarrative({ role, interaction, activeCategory }) {
 
   const story = [
     {
+      id: 'baseline',
       eyebrow: 'Baseline interaction',
       title: interaction.headline,
       description: 'Start with the deterministic person × role model. These component signals describe different kinds of interaction with the role environment; they are not a single employment verdict.',
@@ -396,18 +413,21 @@ function InteractionNarrative({ role, interaction, activeCategory }) {
       ),
     },
     {
+      id: 'demand-pressure',
       eyebrow: 'Demand pressure',
       title: demandPressure.length ? 'Where the role asks for more than the natural pull.' : 'No large demand-pressure signal is present.',
       description: demandPressure[0]?.rationale || 'No modeled role demand exceeds the employee’s PI-derived directional work-style projection by the threshold used for this layer.',
       content: signalPanel(demandPressure, 'No large demand-pressure signal is present for this role under the current deterministic thresholds.'),
     },
     {
+      id: 'underused-capacity',
       eyebrow: 'Underused capacity',
       title: underused.length ? 'Where the role may leave natural operating pull unused.' : 'No large underuse signal is present.',
       description: underused[0]?.rationale || 'No modeled directional work-style pull exceeds the role demand by the threshold used for this layer.',
       content: signalPanel(underused, 'No large underuse signal is present for this role under the current deterministic thresholds.'),
     },
     {
+      id: 'strength-inversion',
       eyebrow: 'Strength inversion',
       title: interaction.inversionSignals.length ? 'A strength can become friction when the environment pushes it too far.' : 'No material strength-inversion signal is present.',
       description: interaction.inversionSignals[0]?.rationale || 'The current deterministic model did not surface a material strength-inversion condition for this person × role combination.',
@@ -430,6 +450,7 @@ function InteractionNarrative({ role, interaction, activeCategory }) {
       ),
     },
     {
+      id: 'context-refraction',
       eyebrow: 'Life-experience refraction',
       title: `${contextLabel} changes the question, not the baseline.`,
       description: 'The active context lens is kept outside baseline compatibility. It can help explain support, strain, masking, or expression under different operating conditions without changing the person × role calculation.',
@@ -453,7 +474,11 @@ function InteractionNarrative({ role, interaction, activeCategory }) {
         <div className="text-xs font-semibold uppercase tracking-[0.2em] text-white/28">Person × role story</div>
         <div className="mt-2 text-sm text-white/40">Scroll the sourced reveal pattern to move from baseline interaction through pressure, underuse, inversion, and context.</div>
       </div>
-      <StickyScrollReveal content={story} className="max-h-[76vh]"/>
+      <StickyScrollReveal
+        content={story}
+        className="max-h-[76vh]"
+        onActiveChange={(_, item) => onSceneChange?.(item?.id || 'baseline')}
+      />
     </section>
   );
 }
@@ -540,7 +565,7 @@ function LifeLensStrip({ role, activeCategory, onSelect }) {
   );
 }
 
-function RoleAssistantRail({ employee, role, activeCategory }) {
+function RoleAssistantRail({ employee, role, activeCategory, activeScene }) {
   const [messages, setMessages] = useState([]);
   const [input, setInput] = useState('');
   const [loading, setLoading] = useState(false);
@@ -548,6 +573,8 @@ function RoleAssistantRail({ employee, role, activeCategory }) {
   const [analysisMeta, setAnalysisMeta] = useState(null);
   const profile = employeePiProfile(employee);
   const roleInteraction = useMemo(() => deriveRoleInteraction(employee, role), [employee, role]);
+  const sceneLabel = ROLE_SCENE_LABELS[activeScene] || ROLE_SCENE_LABELS.baseline;
+  const sceneQuestion = roleSceneQuestion(activeScene, employee, role, activeCategory);
 
   async function send() {
     const text = input.trim();
@@ -571,6 +598,7 @@ Deterministic interaction components: ${JSON.stringify(roleInteraction.component
 Evidence confidence: ${roleInteraction.evidenceConfidence}/100.
 Strength-inversion risk signal: ${roleInteraction.inversionRisk}/100.
 Active life-experience lens: ${CONTEXT_CATEGORIES[activeCategory]}.
+Current visualization scene: ${sceneLabel}.
 
 Rules:
 - Explain person × role interaction; do not make hire, fire, promotion, compensation, or other employment decisions.
@@ -731,9 +759,10 @@ Rules:
       <div className="min-h-0 flex-1 overflow-y-auto px-5 py-5">
         {messages.length === 0 ? (
           <div className="space-y-3 text-sm text-white/42">
-            <button type="button" onClick={() => setInput(`Why does ${employee.name} interact with ${role.title} this way?`)} className="block text-left hover:text-white/72">Why does this interaction look this way?</button>
+            <div className="mb-2 text-[10px] font-semibold uppercase tracking-[0.18em] text-sky-200/40">Current scene · {sceneLabel}</div>
+            <button type="button" onClick={() => setInput(sceneQuestion)} className="block text-left hover:text-white/72">Interrogate this scene.</button>
             <button type="button" onClick={() => setInput(`Compare ${role.title} with ExamQA Analyst for ${employee.name}.`)} className="block text-left hover:text-white/72">Compare this role with another role.</button>
-            <button type="button" onClick={() => setInput(`How could the ${CONTEXT_CATEGORIES[activeCategory]} lens affect performance conditions in ${role.title} without changing baseline compatibility?`)} className="block text-left hover:text-white/72">Explain the active life-experience lens.</button>
+            <button type="button" onClick={() => setInput(`What evidence supports the modeled demands of ${role.title}, and where is the evidence weakest?`)} className="block text-left hover:text-white/72">Interrogate the role evidence.</button>
           </div>
         ) : (
           <div className="space-y-5">
@@ -993,6 +1022,7 @@ function initialRoleForEmployee(employee) {
 function Workspace({ employee, onExit }) {
   const [selectedRole, setSelectedRole] = useState(() => initialRoleForEmployee(employee));
   const [activeCategory, setActiveCategory] = useState('work-history');
+  const [activeScene, setActiveScene] = useState('baseline');
   const interaction = useMemo(() => deriveRoleInteraction(employee, selectedRole), [employee, selectedRole]);
   const adjacentPull = useMemo(
     () => deriveAdjacentRolePull(employee, selectedRole, 4),
@@ -1009,7 +1039,12 @@ function Workspace({ employee, onExit }) {
   ];
 
   const assistant = (
-    <RoleAssistantRail employee={employee} role={selectedRole} activeCategory={activeCategory}/>
+    <RoleAssistantRail
+      employee={employee}
+      role={selectedRole}
+      activeCategory={activeCategory}
+      activeScene={activeScene}
+    />
   );
 
   return (
@@ -1040,7 +1075,12 @@ function Workspace({ employee, onExit }) {
           <main className="min-w-0">
             <RoleQuickSwitcher selectedRole={selectedRole} onSelectRole={setSelectedRole}/>
             <RoleOrbit employee={employee} selectedRole={selectedRole} onSelectRole={setSelectedRole}/>
-            <InteractionNarrative role={selectedRole} interaction={interaction} activeCategory={activeCategory}/>
+            <InteractionNarrative
+              role={selectedRole}
+              interaction={interaction}
+              activeCategory={activeCategory}
+              onSceneChange={setActiveScene}
+            />
 
             <section className="mx-auto max-w-5xl px-2 py-12">
               <AnimatePresence mode="wait">
