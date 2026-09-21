@@ -6,6 +6,7 @@ import {
   ArrowRight,
   ChevronDown,
   Compass,
+  ExternalLink,
   MessageCircleMore,
   Send,
   UserRound,
@@ -987,6 +988,16 @@ function Workspace({ employee, onExit }) {
                         <AccordionContent>
                           <p>{source.note}</p>
                           <p className="mt-2 text-xs text-white/28">{source.kind} · authority {source.authority} · directness {source.directness}</p>
+                          {source.public && source.url && (
+                            <a
+                              href={source.url}
+                              target="_blank"
+                              rel="noreferrer"
+                              className="mt-4 inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/[0.03] px-3 py-2 text-xs font-medium text-sky-200/70 transition hover:border-white/20 hover:text-sky-100"
+                            >
+                              Open source <ExternalLink size={13}/>
+                            </a>
+                          )}
                         </AccordionContent>
                       </AccordionItem>
                     ))}
