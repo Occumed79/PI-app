@@ -36,6 +36,10 @@ function groqKeys() {
   return unique([process.env.GROQ_API_KEY, process.env.GROQ_API_KEY_2]);
 }
 
+function openRouterKeys() {
+  return unique([process.env.OPENROUTER_API_KEY, process.env.OPENROUTER_API_KEY_2]);
+}
+
 function mistralKeys() {
   return unique([
     process.env.MISTRAL_API_KEY,
@@ -73,7 +77,7 @@ function allSecrets() {
     ...groqKeys(),
     ...mistralKeys(),
     process.env.NVIDIA_API_KEY,
-    process.env.OPENROUTER_API_KEY,
+    ...openRouterKeys(),
     process.env.CLOUDFLARE_API_TOKEN,
     process.env.CLOUDFLARE_API_TOKEN_2,
   ]);
@@ -597,39 +601,58 @@ async function callMistral(options) {
   throw lastError || new Error('Mistral request failed.');
 }
 
-function openRouterHeaders() {
+function openRouterHeaders(apiKey) {
   const headers = {
-    Authorization: `Bearer ${process.env.OPENROUTER_API_KEY}`,
+    Authorization: `Bearer ${apiKey}`,
     'Content-Type': 'application/json',
   };
   const referer = process.env.OPENROUTER_SITE_URL || process.env.CLIENT_ORIGIN || '';
   if (referer && referer !== '*') headers['HTTP-Referer'] = referer;
-  headers['X-OpenRouter-Title'] = process.env.OPENROUTER_APP_NAME || 'PI Crosswalk Intelligence';
+  headers['X-Title'] = process.env.OPENROUTER_APP_NAME || 'PI Crosswalk Intelligence';
   return headers;
 }
 
 async function callOpenRouter({ system, messages, temperature, maxTokens, jsonMode }) {
-  const apiKey = String(process.env.OPENROUTER_API_KEY || '').trim();
-  if (!apiKey) return null;
+  const keys = openRouterKeys();
+  if (!keys.length) return null;
+
   const allMessages = system
     ? [{ role: 'system', content: String(system).slice(0, 90000) }, ...messages]
     : messages;
-  const response = await fetchWithTimeout('https://openrouter.ai/api/v1/chat/completions', {
-    method: 'POST',
-    headers: openRouterHeaders(),
-    body: JSON.stringify({
-      model: OPENROUTER_AUTO_MODEL,
-      temperature,
-      max_tokens: maxTokens,
-      ...(jsonMode ? { response_format: { type: 'json_object' } } : {}),
-      messages: allMessages,
-    }),
-  }, 55000);
-  if (!response.ok) throw await responseError(response, 'OpenRouter free router');
-  const data = await response.json();
-  const reply = extractOpenAiCompatibleText(data);
-  if (!reply) throw new Error('OpenRouter free router returned no usable text.');
-  return { reply, model: data?.model || OPENROUTER_AUTO_MODEL, keySlot: 1 };
+
+  let lastError = null;
+  for (let keyIndex = 0; keyIndex < keys.length; keyIndex += 1) {
+    try {
+      const response = await fetchWithTimeout('https://openrouter.ai/api/v1/chat/completions', {
+        method: 'POST',
+        headers: openRouterHeaders(keys[keyIndex]),
+        body: JSON.stringify({
+          model: OPENROUTER_AUTO_MODEL,
+          temperature,
+          max_tokens: maxTokens,
+          ...(jsonMode ? { response_format: { type: 'json_object' } } : {}),
+          messages: allMessages,
+        }),
+      }, 55000);
+
+      if (!response.ok) throw await responseError(response, 'OpenRouter free router');
+
+      const data = await response.json();
+      const reply = extractOpenAiCompatibleText(data);
+      if (!reply) throw new Error('OpenRouter free router returned no usable text.');
+
+      return {
+        reply,
+        model: data?.model || OPENROUTER_AUTO_MODEL,
+        keySlot: keyIndex + 1,
+      };
+    } catch (error) {
+      lastError = error;
+      if (!isRetryableCredentialError(error)) break;
+    }
+  }
+
+  throw lastError || new Error('OpenRouter free router request failed.');
 }
 
 
@@ -788,7 +811,7 @@ export function configuredProviderMap() {
     groq: groqKeys().length > 0,
     mistral: mistralKeys().length > 0,
     nvidia: Boolean(nvidiaKey()),
-    openrouter: Boolean(String(process.env.OPENROUTER_API_KEY || '').trim()),
+    openrouter: openRouterKeys().length > 0,
     cloudflare: cloudflareAccounts().length > 0,
   };
 }
@@ -799,7 +822,7 @@ export function providerKeyCounts() {
     groq: groqKeys().length,
     mistral: mistralKeys().length,
     nvidia: nvidiaKey() ? 1 : 0,
-    openrouter: String(process.env.OPENROUTER_API_KEY || '').trim() ? 1 : 0,
+    openrouter: openRouterKeys().length,
     cloudflare: cloudflareAccounts().length,
   };
 }
