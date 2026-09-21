@@ -393,6 +393,8 @@ Rules:
         body: JSON.stringify({
           system,
           messages: next,
+          roleId: role.id,
+          activeContextCategory: activeCategory,
           employees: [{
             id: employee.id,
             name: employee.name,
