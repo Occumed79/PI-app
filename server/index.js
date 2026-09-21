@@ -4,6 +4,20 @@ import cors from 'cors';
 import path from 'path';
 import { fileURLToPath } from 'url';
 import { checkDatabaseConnection, pool } from './db.js';
+import {
+  PRIMARY_PROVIDER_ORDER,
+  callCloudflareChat,
+  callPrimaryPool,
+  callPrimaryProvider,
+  configuredProviderMap,
+  getProviderDiagnostics,
+  refreshProviderCapabilities,
+  sanitizeProviderError,
+} from './ai-provider-manager.js';
+import {
+  buildCloudflareIntelligence,
+  runCloudflareCritic,
+} from './cloudflare-intelligence.js';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -11,8 +25,6 @@ const __dirname = path.dirname(__filename);
 const app = express();
 const port = process.env.PORT || 10000;
 const clientOrigin = process.env.CLIENT_ORIGIN || '*';
-const aiProvider = (process.env.AI_PROVIDER || 'auto').toLowerCase();
-const LIVE_AI_PROVIDERS = Object.freeze(['gemini', 'groq', 'openrouter']);
 
 app.disable('x-powered-by');
 app.use(cors({ origin: clientOrigin }));
@@ -31,82 +43,6 @@ function normalizeOverlayIds(value) {
   )].slice(0, 50);
 }
 
-function sanitizeProviderError(message) {
-  let text = String(message || 'Unknown provider error');
-  for (const secret of [
-    process.env.GEMINI_API_KEY,
-    process.env.GROQ_API_KEY,
-    process.env.OPENROUTER_API_KEY,
-  ].filter(Boolean)) {
-    text = text.split(secret).join('[redacted]');
-  }
-  return text.length > 1200 ? `${text.slice(0, 1200)}...` : text;
-}
-
-function configuredProviderMap() {
-  return {
-    gemini: Boolean(process.env.GEMINI_API_KEY),
-    groq: Boolean(process.env.GROQ_API_KEY),
-    openrouter: Boolean(process.env.OPENROUTER_API_KEY),
-  };
-}
-
-function getProviderOrder() {
-  if (LIVE_AI_PROVIDERS.includes(aiProvider)) return [aiProvider];
-  return [...LIVE_AI_PROVIDERS];
-}
-
-function getAiConfigured() {
-  const configured = configuredProviderMap();
-  return getProviderOrder().some(provider => configured[provider]);
-}
-
-function getFallbackOrder() {
-  return [...getProviderOrder(), 'built-in-fallback'];
-}
-
-async function fetchWithTimeout(url, options = {}, timeoutMs = 30000) {
-  const controller = new AbortController();
-  const timeout = setTimeout(() => controller.abort(), timeoutMs);
-  try {
-    return await fetch(url, { ...options, signal: controller.signal });
-  } finally {
-    clearTimeout(timeout);
-  }
-}
-
-function parseJsonText(text) {
-  const cleaned = String(text || '')
-    .replace(/^```json\s*/i, '')
-    .replace(/^```\s*/i, '')
-    .replace(/```$/i, '')
-    .trim();
-  return JSON.parse(cleaned);
-}
-
-function extractOpenAiCompatibleText(data) {
-  const content = data?.choices?.[0]?.message?.content;
-  if (typeof content === 'string') return content.trim();
-  if (Array.isArray(content)) {
-    return content
-      .map(part => typeof part === 'string' ? part : part?.text || '')
-      .join('\n')
-      .trim();
-  }
-  return '';
-}
-
-function openRouterHeaders() {
-  const headers = {
-    Authorization: `Bearer ${process.env.OPENROUTER_API_KEY}`,
-    'Content-Type': 'application/json',
-  };
-  const referer = process.env.OPENROUTER_SITE_URL || (clientOrigin !== '*' ? clientOrigin : '');
-  if (referer) headers['HTTP-Referer'] = referer;
-  headers['X-OpenRouter-Title'] = process.env.OPENROUTER_APP_NAME || 'PI Crosswalk Intelligence';
-  return headers;
-}
-
 function compactConversation(messages, limit = 16) {
   return safeArray(messages, 100)
     .filter(message => message && typeof message.content === 'string' && ['user', 'assistant'].includes(message.role))
@@ -114,25 +50,16 @@ function compactConversation(messages, limit = 16) {
     .slice(-limit);
 }
 
-function toGeminiContents(messages) {
-  const firstUserIndex = messages.findIndex(message => message.role === 'user');
-  const usable = firstUserIndex >= 0 ? messages.slice(firstUserIndex) : [];
-  const contents = [];
-
-  for (const message of usable) {
-    const role = message.role === 'assistant' ? 'model' : 'user';
-    const previous = contents[contents.length - 1];
-    if (previous?.role === role) {
-      previous.parts[0].text += `\n\n${message.content}`;
-    } else {
-      contents.push({ role, parts: [{ text: message.content }] });
-    }
-  }
-
-  return contents;
+function parseJsonText(text) {
+  const cleaned = String(text || '')
+    .replace(/^\`\`\`json\s*/i, '')
+    .replace(/^\`\`\`\s*/i, '')
+    .replace(/\`\`\`$/i, '')
+    .trim();
+  return JSON.parse(cleaned);
 }
 
-function scenarioPrompt({ scenario, employeeProfile, analysisGoal }) {
+function scenarioPrompt({ scenario, employeeProfile, analysisGoal, cloudflareContext = '' }) {
   return `You are a PI crosswalk analyst for a single-user internal behavioral translation workspace.
 
 Strict rules:
@@ -146,7 +73,7 @@ Strict rules:
 - Do not diagnose or infer protected/private traits.
 - Use cautious, practical language.
 
-Return ONLY valid JSON with exactly these keys:
+${cloudflareContext ? `${cloudflareContext}\n\n` : ''}Return ONLY valid JSON with exactly these keys:
 summary: string
 sourcePiSignals: string[]
 crosswalkInterpretations: string[]
@@ -196,178 +123,112 @@ function fallbackScenarioAnalysis({ employeeProfile }) {
   };
 }
 
-async function callGeminiForScenario(payload) {
-  const apiKey = process.env.GEMINI_API_KEY;
-  if (!apiKey) return null;
-  const model = process.env.GEMINI_MODEL || 'gemini-2.0-flash';
-  const url = `https://generativelanguage.googleapis.com/v1beta/models/${encodeURIComponent(model)}:generateContent?key=${encodeURIComponent(apiKey)}`;
-  const response = await fetchWithTimeout(url, {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({
-      contents: [{ role: 'user', parts: [{ text: scenarioPrompt(payload) }] }],
-      generationConfig: {
-        temperature: 0.2,
-        maxOutputTokens: 1600,
-        responseMimeType: 'application/json',
-      },
-    }),
-  });
-  if (!response.ok) throw new Error(`Gemini request failed: ${response.status} ${await response.text()}`);
-  const data = await response.json();
-  const text = data.candidates?.[0]?.content?.parts?.map(part => part.text || '').join('\n');
-  if (!text) throw new Error('Gemini response did not include text output.');
-  return parseJsonText(text);
-}
-
-async function callGroqForScenario(payload) {
-  const apiKey = process.env.GROQ_API_KEY;
-  if (!apiKey) return null;
-  const model = process.env.GROQ_MODEL || 'llama-3.1-8b-instant';
-  const response = await fetchWithTimeout('https://api.groq.com/openai/v1/chat/completions', {
-    method: 'POST',
-    headers: { Authorization: `Bearer ${apiKey}`, 'Content-Type': 'application/json' },
-    body: JSON.stringify({
-      model,
-      temperature: 0.2,
-      max_tokens: 1600,
-      response_format: { type: 'json_object' },
-      messages: [
-        { role: 'system', content: 'Return only valid JSON and preserve the PI-baseline, context-overlay, and crosswalk distinction.' },
-        { role: 'user', content: scenarioPrompt(payload) },
-      ],
-    }),
-  });
-  if (!response.ok) throw new Error(`Groq request failed: ${response.status} ${await response.text()}`);
-  const data = await response.json();
-  const text = extractOpenAiCompatibleText(data);
-  if (!text) throw new Error('Groq response did not include text output.');
-  return parseJsonText(text);
-}
-
-async function callOpenRouterForScenario(payload) {
-  const apiKey = process.env.OPENROUTER_API_KEY;
-  if (!apiKey) return null;
-  const model = process.env.OPENROUTER_MODEL || 'openrouter/free';
-  const response = await fetchWithTimeout('https://openrouter.ai/api/v1/chat/completions', {
-    method: 'POST',
-    headers: openRouterHeaders(),
-    body: JSON.stringify({
-      model,
-      temperature: 0.2,
-      max_tokens: 1600,
-      messages: [
-        { role: 'system', content: 'Return only valid JSON and preserve the PI-baseline, context-overlay, and crosswalk distinction.' },
-        { role: 'user', content: scenarioPrompt(payload) },
-      ],
-    }),
-  }, 45000);
-  if (!response.ok) throw new Error(`OpenRouter request failed: ${response.status} ${await response.text()}`);
-  const data = await response.json();
-  const text = extractOpenAiCompatibleText(data);
-  if (!text) throw new Error('OpenRouter response did not include text output.');
-  return parseJsonText(text);
-}
-
-async function tryProvider(providerName, fn, payload, errors) {
-  try {
-    const result = await fn(payload);
-    if (result) return { provider: providerName, result };
-    errors.push(`${providerName}: API key is not configured.`);
-  } catch (error) {
-    errors.push(`${providerName}: ${sanitizeProviderError(error.message)}`);
-  }
-  return null;
-}
-
-const scenarioProviderCallers = {
-  gemini: callGeminiForScenario,
-  groq: callGroqForScenario,
-  openrouter: callOpenRouterForScenario,
-};
-
-async function callAiForScenario(payload) {
-  const errors = [];
-  for (const provider of getProviderOrder()) {
-    const result = await tryProvider(provider, scenarioProviderCallers[provider], payload, errors);
-    if (result) return result;
-  }
-  return { provider: 'fallback', result: null, errors };
-}
-
-async function callGeminiChat({ system, messages }) {
-  const apiKey = process.env.GEMINI_API_KEY;
-  if (!apiKey) return null;
-  const contents = toGeminiContents(messages);
-  if (!contents.length) throw new Error('Gemini requires at least one user message.');
-  const model = process.env.GEMINI_MODEL || 'gemini-2.0-flash';
-  const url = `https://generativelanguage.googleapis.com/v1beta/models/${encodeURIComponent(model)}:generateContent?key=${encodeURIComponent(apiKey)}`;
-  const response = await fetchWithTimeout(url, {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({
-      system_instruction: system ? { parts: [{ text: String(system).slice(0, 60000) }] } : undefined,
-      contents,
-      generationConfig: { temperature: 0.45, maxOutputTokens: 1800 },
-    }),
-  }, 40000);
-  if (!response.ok) throw new Error(`Gemini ${response.status}: ${await response.text()}`);
-  const data = await response.json();
-  const reply = data.candidates?.[0]?.content?.parts?.map(part => part.text || '').join('\n').trim();
-  if (!reply) throw new Error('Gemini returned 200 but did not include a usable text reply.');
-  return reply;
-}
-
-async function callGroqChat({ system, messages }) {
-  const apiKey = process.env.GROQ_API_KEY;
-  if (!apiKey) return null;
-  const model = process.env.GROQ_MODEL || 'llama-3.1-8b-instant';
-  const allMessages = system
-    ? [{ role: 'system', content: String(system).slice(0, 60000) }, ...messages]
-    : messages;
-  const response = await fetchWithTimeout('https://api.groq.com/openai/v1/chat/completions', {
-    method: 'POST',
-    headers: { Authorization: `Bearer ${apiKey}`, 'Content-Type': 'application/json' },
-    body: JSON.stringify({ model, temperature: 0.45, max_tokens: 1800, messages: allMessages }),
-  }, 40000);
-  if (!response.ok) throw new Error(`Groq ${response.status}: ${await response.text()}`);
-  const data = await response.json();
-  const reply = extractOpenAiCompatibleText(data);
-  if (!reply) throw new Error('Groq returned 200 but did not include a usable text reply.');
-  return reply;
-}
-
-async function callOpenRouterChat({ system, messages }) {
-  const apiKey = process.env.OPENROUTER_API_KEY;
-  if (!apiKey) return null;
-  const model = process.env.OPENROUTER_MODEL || 'openrouter/free';
-  const allMessages = system
-    ? [{ role: 'system', content: String(system).slice(0, 60000) }, ...messages]
-    : messages;
-  const response = await fetchWithTimeout('https://openrouter.ai/api/v1/chat/completions', {
-    method: 'POST',
-    headers: openRouterHeaders(),
-    body: JSON.stringify({ model, temperature: 0.45, max_tokens: 1800, messages: allMessages }),
-  }, 50000);
-  if (!response.ok) throw new Error(`OpenRouter ${response.status}: ${await response.text()}`);
-  const data = await response.json();
-  const reply = extractOpenAiCompatibleText(data);
-  if (!reply) throw new Error('OpenRouter returned 200 but did not include a usable text reply.');
-  return reply;
-}
-
-const chatProviderCallers = {
-  gemini: callGeminiChat,
-  groq: callGroqChat,
-  openrouter: callOpenRouterChat,
-};
-
 function fallbackChatReply({ messages, providerErrors }) {
   const lastUserMessage = [...(messages || [])].reverse().find(message => message?.role === 'user')?.content || 'the submitted question';
   const errorSummary = providerErrors.length
     ? providerErrors.map(error => `- ${error}`).join('\n')
     : '- No provider response was returned.';
   return `The PI app server received your question, but no configured live AI provider completed successfully.\n\nQuestion: ${lastUserMessage}\n\nProvider details:\n${errorSummary}`;
+}
+
+function latestUserText(messages = []) {
+  return [...messages].reverse().find(message => message?.role === 'user')?.content || '';
+}
+
+function employeeProfileAsEmployee(employeeProfile = {}) {
+  const factors = employeeProfile?.factors || employeeProfile || {};
+  return {
+    name: employeeProfile?.name || employeeProfile?.employeeName || 'Selected employee',
+    piProfileId: employeeProfile?.piProfileId || employeeProfile?.profileId || employeeProfile?.baseProfile?.id,
+    profileId: employeeProfile?.profileId || employeeProfile?.piProfileId || employeeProfile?.baseProfile?.id,
+    dominance: factors.dominance,
+    extraversion: factors.extraversion,
+    patience: factors.patience,
+    formality: factors.formality,
+    contextOverlays: employeeProfile?.contextOverlays || [],
+  };
+}
+
+async function cloudflareEmergencyReply({ system, messages, jsonMode = false, maxTokens = 1800 }) {
+  try {
+    const result = await callCloudflareChat({
+      system,
+      messages,
+      temperature: jsonMode ? 0.2 : 0.45,
+      maxTokens,
+      jsonMode,
+    });
+    return result?.reply
+      ? { provider: 'cloudflare', reply: result.reply, model: result.model, keySlot: result.accountSlot, errors: [] }
+      : null;
+  } catch (error) {
+    return { provider: null, reply: null, model: null, keySlot: null, errors: [`cloudflare: ${sanitizeProviderError(error.message)}`] };
+  }
+}
+
+async function refineWithCritic({
+  primaryProvider,
+  primaryModel,
+  system,
+  messages,
+  query,
+  draft,
+  semanticContext,
+  jsonMode = false,
+  maxTokens = 1800,
+}) {
+  const critic = await runCloudflareCritic({
+    query,
+    draft,
+    semanticContext,
+  });
+
+  const critique = critic?.critique;
+  const hasMaterialIssue = Boolean(
+    critique?.materialIssue ||
+    (Array.isArray(critique?.issues) && critique.issues.length) ||
+    (Array.isArray(critique?.missingAlternatives) && critique.missingAlternatives.length)
+  );
+
+  if (!hasMaterialIssue || !primaryProvider || primaryProvider === 'cloudflare') {
+    return {
+      reply: draft,
+      criticApplied: false,
+      criticMetadata: critic?.metadata || null,
+      model: primaryModel,
+    };
+  }
+
+  try {
+    const refinementMessages = [
+      ...messages,
+      { role: 'assistant', content: draft },
+      {
+        role: 'user',
+        content: `Internally refine your previous answer using this independent review. Do not mention the review, the critic, Cloudflare, routing, or internal architecture. Preserve correct material and fix only genuine issues.\n\nIndependent review:\n${JSON.stringify(critique, null, 2)}`,
+      },
+    ];
+    const refined = await callPrimaryProvider(primaryProvider, {
+      system,
+      messages: refinementMessages,
+      temperature: jsonMode ? 0.2 : 0.35,
+      maxTokens,
+      jsonMode,
+    });
+    return {
+      reply: refined?.reply || draft,
+      criticApplied: Boolean(refined?.reply),
+      criticMetadata: critic?.metadata || null,
+      model: refined?.model || primaryModel,
+    };
+  } catch {
+    return {
+      reply: draft,
+      criticApplied: false,
+      criticMetadata: critic?.metadata || null,
+      model: primaryModel,
+    };
+  }
 }
 
 function requireDatabase(res) {
