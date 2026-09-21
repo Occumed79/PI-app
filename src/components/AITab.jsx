@@ -235,6 +235,34 @@ function providerLabel(source) {
   return '';
 }
 
+function WebResearchSources({ research }) {
+  const sources = Array.isArray(research?.sources) ? research.sources : [];
+  if (!research?.used || !sources.length) return null;
+
+  const providers = Array.isArray(research?.providers) ? research.providers : [];
+  return (
+    <details className="mt-3 border-t border-white/8 pt-2 text-xs text-white/36">
+      <summary className="cursor-pointer select-none font-medium text-sky-200/60">
+        Web research · {providers.join(' + ')} · {sources.length} source{sources.length === 1 ? '' : 's'}
+      </summary>
+      <div className="mt-2 space-y-2">
+        {sources.map(source => (
+          <a
+            key={source.id + source.url}
+            href={source.url}
+            target="_blank"
+            rel="noreferrer"
+            className="block rounded-xl border border-white/8 bg-white/[0.025] px-3 py-2 transition hover:border-white/15 hover:text-white/60"
+          >
+            <span className="font-semibold text-white/52">[{source.id}] {source.title}</span>
+            <span className="ml-2 uppercase tracking-[0.12em] text-white/22">{source.provider}</span>
+          </a>
+        ))}
+      </div>
+    </details>
+  );
+}
+
 export default function AITab({ employees = [] }) {
   const [messages, setMessages] = useState([]);
   const [input, setInput] = useState('');
@@ -296,7 +324,7 @@ export default function AITab({ employees = [] }) {
           messages: conversationMessages,
           employees,
         }),
-        signal: AbortSignal.timeout(55000),
+        signal: AbortSignal.timeout(120000),
       });
 
       if (!response.ok) throw new Error((await readApiError(response)) || `API error ${response.status}`);
@@ -317,11 +345,12 @@ export default function AITab({ employees = [] }) {
         role: 'assistant',
         source: data.source,
         text: data.reply || 'The live AI provider returned an empty response.',
+        webResearch: data.webResearch || null,
       }]);
     } catch (error) {
       setAiHealth({ healthy: false, source: null });
       const message = error?.name === 'TimeoutError'
-        ? 'The live AI request timed out after 55 seconds. Please try again.'
+        ? 'The live AI request timed out after 120 seconds. Please try again.'
         : `Live AI request failed: ${error?.message || 'Unknown error'}`;
       setMessages(current => [...current, { role: 'assistant', source: 'error', text: message }]);
     } finally {
@@ -401,6 +430,7 @@ export default function AITab({ employees = [] }) {
                         {label}
                       </div>
                     )}
+                    {!isUser && !isError && <WebResearchSources research={message.webResearch}/>}
                   </div>
                 </div>
               );

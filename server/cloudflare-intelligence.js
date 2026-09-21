@@ -180,10 +180,14 @@ function localPlan(query) {
   const text = String(query || '').toLowerCase();
   const comparisonSignals = (text.match(/compare|versus| vs |difference|across|contradict|conflict|why|how|under stress|overlay|lens|framework/g) || []).length;
   const complex = text.length > 220 || comparisonSignals >= 2;
+  const explicitResearchSignal = /\b(latest|current|recent|research|evidence|study|studies|guideline|guidelines|condition|diagnosis|symptom|symptoms|adhd|autism|dyslexia|neurodivers|disability|chronic|sleep|trauma|anxiety|depression|burnout|sensory|accommodation|workplace effect|work design|medical|health|medication|law|regulation)\b/i.test(text);
+  const contextualImpactSignal = /\b(lens|overlay|life experience|context)\b/i.test(text) && /\b(impact|affect|effect|role|position|profile|work|performance|support|strain)\b/i.test(text);
+
   return {
     complexity: complex ? 'high' : text.length > 90 || comparisonSignals ? 'medium' : 'low',
     needsCritic: complex,
     needsSemanticRetrieval: true,
+    needsWebResearch: explicitResearchSignal || contextualImpactSignal,
     preferredPrimary: complex ? 'groq' : 'gemini',
     reason: 'Local routing fallback.',
   };
@@ -199,12 +203,14 @@ Return only JSON with:
   "complexity": "low" | "medium" | "high",
   "needsCritic": boolean,
   "needsSemanticRetrieval": boolean,
+  "needsWebResearch": boolean,
   "preferredPrimary": "gemini" | "groq",
   "reason": string
 }
 Use "high" when the request compares multiple behavioral frameworks, asks for contradictions or alternative explanations, involves several context layers, or needs careful multi-step interpretation.
 Choose "groq" when the request primarily benefits from deliberate multi-step reasoning, structured comparison, contradiction analysis, or dense framework synthesis.
 Choose "gemini" when the request primarily benefits from conversational synthesis, explanation, broader context handling, or ordinary follow-up dialogue.
+Set needsWebResearch=true when the answer may benefit from current or specialized public information outside the app's built-in lens/role knowledge, including questions about a medical or neurodevelopmental condition, disability/accessibility issue, workplace accommodation, life-experience lens, occupational-health evidence, current guideline, unfamiliar condition/term, law/regulation, or current research. Do not set it merely because an employee is named.
 This is only a routing preference; the backend will automatically fail over to the other provider if needed.
 Do not infer any health, disability, identity, or life circumstance that the user did not explicitly state.`,
       messages: [{
@@ -223,6 +229,7 @@ Do not infer any health, disability, identity, or life circumstance that the use
         complexity,
         needsCritic: Boolean(parsed?.needsCritic ?? complexity === 'high'),
         needsSemanticRetrieval: parsed?.needsSemanticRetrieval !== false,
+        needsWebResearch: Boolean(parsed?.needsWebResearch || localPlan(query).needsWebResearch),
         preferredPrimary: ['gemini', 'groq'].includes(parsed?.preferredPrimary)
           ? parsed.preferredPrimary
           : complexity === 'high'
