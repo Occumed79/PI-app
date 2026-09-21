@@ -1,5 +1,6 @@
 import React, { useMemo, useRef, useState } from 'react';
 import { AnimatePresence, motion, useReducedMotion } from 'framer-motion';
+import { PolarAngleAxis, PolarGrid, Radar, RadarChart, ResponsiveContainer } from 'recharts';
 import {
   ArrowLeft,
   ArrowRight,
@@ -11,6 +12,26 @@ import {
 } from 'lucide-react';
 import SiriOrb from './smoothui/SiriOrb.jsx';
 import RoleVoiceWave from './RoleVoiceWave.jsx';
+import StickyScrollReveal from './StickyScrollReveal.jsx';
+import OrbitingCircles from './OrbitingCircles.jsx';
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+  Badge,
+  ResizableHandle,
+  ResizablePanel,
+  ResizablePanelGroup,
+  ScrollArea,
+  Sheet,
+  SheetContent,
+  SheetTrigger,
+  Tabs,
+  TabsContent,
+  TabsList,
+  TabsTrigger,
+} from './SourcedRoleUI.jsx';
 import {
   CONTEXT_CATEGORIES,
   CONTEXT_CATEGORY_ORDER,
@@ -61,21 +82,6 @@ function orbColors(profile) {
   };
 }
 
-function RoleMarquee() {
-  const labels = [...ROLE_INTELLIGENCE_ROLES, ...ROLE_INTELLIGENCE_ROLES];
-  return (
-    <div className="overflow-hidden border-y border-white/8 py-5">
-      <motion.div
-        className="flex w-max gap-10 whitespace-nowrap pr-10 text-sm font-medium uppercase tracking-[0.22em] text-white/38"
-        animate={{ x: ['0%', '-50%'] }}
-        transition={{ duration: 34, ease: 'linear', repeat: Infinity }}
-      >
-        {labels.map((role, index) => <span key={`${role.id}-${index}`}>{role.shortTitle}</span>)}
-      </motion.div>
-    </div>
-  );
-}
-
 function EmployeeConstellation({ employees, onSelect, loading, loadError }) {
   if (loading) {
     return <div className="py-24 text-center text-sm text-white/38">Loading employee profiles…</div>;
@@ -93,39 +99,60 @@ function EmployeeConstellation({ employees, onSelect, loading, loadError }) {
     );
   }
 
+  const inner = employees.slice(0, 8);
+  const outer = employees.slice(8);
+
+  const employeeNode = employee => {
+    const profile = employeePiProfile(employee);
+    const initials = (employee.name || '?')
+      .split(/\s+/)
+      .map(part => part[0])
+      .join('')
+      .slice(0, 2)
+      .toUpperCase();
+
+    return (
+      <button
+        key={employee.id || employee.name}
+        type="button"
+        onClick={() => onSelect(employee)}
+        className="group flex min-w-[132px] flex-col items-center text-center"
+      >
+        <div className="relative">
+          <SiriOrb size="76px" colors={orbColors(profile)} animationDuration={24}/>
+          <span className="absolute inset-0 grid place-items-center text-xs font-semibold text-white">{initials}</span>
+        </div>
+        <span className="mt-2 max-w-[132px] truncate text-xs font-semibold text-white/76 group-hover:text-white">
+          {employee.name}
+        </span>
+        <span className="mt-0.5 max-w-[132px] truncate text-[10px] text-white/30">
+          {employee.position || profile.name}
+        </span>
+      </button>
+    );
+  };
+
   return (
-    <div className="relative mx-auto min-h-[560px] max-w-5xl overflow-hidden rounded-[40px] border border-white/8 bg-black/10">
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(56,189,248,.08),transparent_36%),radial-gradient(circle_at_20%_20%,rgba(192,132,252,.08),transparent_28%),radial-gradient(circle_at_80%_76%,rgba(52,211,153,.07),transparent_30%)]"/>
-      <div className="relative grid min-h-[560px] grid-cols-2 place-items-center gap-6 p-8 sm:grid-cols-3 lg:grid-cols-4">
-        {employees.map((employee, index) => {
-          const profile = employeePiProfile(employee);
-          return (
-            <motion.button
-              key={employee.id || employee.name}
-              type="button"
-              onClick={() => onSelect(employee)}
-              className="group relative flex min-h-44 w-full max-w-48 flex-col items-center justify-center text-center"
-              initial={{ opacity: 0, scale: 0.86 }}
-              whileInView={{ opacity: 1, scale: 1 }}
-              viewport={{ once: true, amount: 0.4 }}
-              animate={{ y: [0, index % 2 ? -7 : 8, 0] }}
-              transition={{ opacity: { duration: 0.5 }, scale: { duration: 0.5 }, y: { duration: 6 + (index % 4), repeat: Infinity, ease: 'easeInOut' } }}
-              whileHover={{ scale: 1.06 }}
-            >
-              <div className="relative">
-                <SiriOrb size="116px" colors={orbColors(profile)} animationDuration={22 + index}/>
-                <div className="absolute inset-0 grid place-items-center">
-                  <span className="grid h-12 w-12 place-items-center rounded-full border border-white/20 bg-slate-950/35 text-sm font-semibold text-white shadow-xl backdrop-blur-md">
-                    {(employee.name || '?').split(/\s+/).map(part => part[0]).join('').slice(0, 2).toUpperCase()}
-                  </span>
-                </div>
-              </div>
-              <div className="mt-4 text-base font-semibold text-white/88 group-hover:text-white">{employee.name}</div>
-              <div className="mt-1 max-w-44 truncate text-xs text-white/35">{employee.position || profile.name}</div>
-            </motion.button>
-          );
-        })}
+    <div className="relative mx-auto h-[640px] max-w-5xl overflow-hidden rounded-[40px] border border-white/8 bg-black/15">
+      <div className="absolute left-1/2 top-1/2 z-10 -translate-x-1/2 -translate-y-1/2 text-center">
+        <SiriOrb size="190px" animationDuration={20}/>
+        <div className="absolute inset-0 grid place-items-center">
+          <div>
+            <div className="text-sm font-semibold text-white">Employees</div>
+            <div className="mt-1 text-[10px] uppercase tracking-[0.18em] text-white/34">Choose a profile</div>
+          </div>
+        </div>
       </div>
+
+      <OrbitingCircles radius={210} duration={44} showPath>
+        {inner.map(employeeNode)}
+      </OrbitingCircles>
+
+      {outer.length > 0 && (
+        <OrbitingCircles radius={290} duration={58} reverse showPath>
+          {outer.map(employeeNode)}
+        </OrbitingCircles>
+      )}
     </div>
   );
 }
@@ -139,51 +166,53 @@ function RoleOrbit({ employee, selectedRole, onSelectRole }) {
     })),
     [employee]
   );
+
+  const roleNodes = landscape.map(({ role, interaction }) => {
+    const normalized = Math.max(0, Math.min(1, (interaction.orbitRadius - 112) / 135));
+    const displayRadius = 165 + normalized * 120;
+    const active = selectedRole.id === role.id;
+
+    return (
+      <motion.button
+        key={role.id}
+        data-radius={displayRadius}
+        type="button"
+        onClick={() => onSelectRole(role)}
+        whileHover={{ scale: 1.06 }}
+        className={cx(
+          'max-w-[150px] rounded-full border px-3 py-2 text-xs font-medium backdrop-blur-xl transition',
+          active
+            ? 'border-white/40 bg-white text-slate-950 shadow-xl'
+            : 'border-white/12 bg-slate-950/80 text-white/58 hover:border-white/24 hover:text-white'
+        )}
+      >
+        {role.shortTitle}
+      </motion.button>
+    );
+  });
+
   return (
-    <div className="relative mx-auto h-[610px] max-w-[830px] overflow-hidden rounded-[44px] border border-white/8 bg-black/10">
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_47%,rgba(56,189,248,.10),transparent_29%),radial-gradient(circle_at_50%_47%,rgba(192,132,252,.06),transparent_47%)]"/>
-      <div className="absolute left-1/2 top-[47%] -translate-x-1/2 -translate-y-1/2 text-center">
-        <motion.div key={selectedRole.id} initial={{ scale: 0.92, opacity: 0 }} animate={{ scale: 1, opacity: 1 }} transition={{ duration: 0.45 }}>
-          <SiriOrb size="250px" colors={orbColors(profile)} animationDuration={18}/>
-        </motion.div>
+    <div className="relative mx-auto h-[650px] max-w-[880px] overflow-hidden rounded-[44px] border border-white/8 bg-black/15">
+      <div className="absolute left-1/2 top-1/2 z-10 -translate-x-1/2 -translate-y-1/2 text-center">
+        <SiriOrb size="240px" colors={orbColors(profile)} animationDuration={18}/>
         <div className="pointer-events-none absolute inset-0 grid place-items-center">
-          <div className="max-w-44 rounded-full border border-white/15 bg-slate-950/45 px-4 py-2 text-center backdrop-blur-xl">
+          <div className="max-w-44 rounded-full border border-white/15 bg-slate-950/60 px-4 py-2 backdrop-blur-xl">
             <div className="text-sm font-semibold text-white">{employee.name}</div>
             <div className="mt-0.5 text-[10px] uppercase tracking-[0.16em] text-white/35">{profile.name}</div>
           </div>
         </div>
       </div>
 
-      {landscape.map(({ role, interaction }, index) => {
-        const angle = (index / landscape.length) * Math.PI * 2 - Math.PI / 2;
-        const normalizedRadius = (interaction.orbitRadius - 112) / 135;
-        const radiusX = 25 + Math.max(0, Math.min(1, normalizedRadius)) * 13;
-        const radiusY = radiusX * 0.88;
-        const x = 50 + Math.cos(angle) * radiusX;
-        const y = 47 + Math.sin(angle) * radiusY;
-        const active = selectedRole.id === role.id;
-        return (
-          <motion.button
-            key={role.id}
-            type="button"
-            onClick={() => onSelectRole(role)}
-            className={cx(
-              'absolute z-10 -translate-x-1/2 -translate-y-1/2 rounded-full border px-3 py-2 text-xs font-medium backdrop-blur-xl transition',
-              active
-                ? 'border-white/35 bg-white text-slate-950 shadow-[0_0_38px_rgba(255,255,255,.14)]'
-                : 'border-white/12 bg-slate-950/55 text-white/58 hover:border-white/24 hover:text-white'
-            )}
-            style={{ left: `${x}%`, top: `${y}%` }}
-            whileHover={{ scale: 1.06 }}
-            animate={{ y: [0, index % 2 ? 3 : -3, 0] }}
-            transition={{ y: { duration: 4 + (index % 3), repeat: Infinity, ease: 'easeInOut' } }}
-          >
-            {role.shortTitle}
-          </motion.button>
-        );
-      })}
+      <OrbitingCircles
+        radius={220}
+        duration={82}
+        showPath={false}
+        radiusForChild={child => Number(child.props['data-radius']) || 220}
+      >
+        {roleNodes}
+      </OrbitingCircles>
 
-      <div className="absolute bottom-5 left-1/2 -translate-x-1/2 text-center">
+      <div className="absolute bottom-5 left-1/2 z-20 -translate-x-1/2 text-center">
         <div className="text-lg font-semibold text-white">{selectedRole.title}</div>
         <div className="mt-1 text-xs uppercase tracking-[0.2em] text-white/28">{selectedRole.family}</div>
       </div>
@@ -192,35 +221,44 @@ function RoleOrbit({ employee, selectedRole, onSelectRole }) {
 }
 
 function SignatureBand({ role }) {
+  const data = ROLE_DIMENSIONS.map(([key, label]) => ({
+    dimension: label,
+    value: role.signature[key],
+  }));
+
   return (
-    <div className="overflow-x-auto pb-2">
-      <div className="flex min-w-max items-end gap-4 px-1">
-        {ROLE_DIMENSIONS.map(([key, label]) => (
-          <div key={key} className="w-24 text-center">
-            <div className="mx-auto flex h-28 w-3 items-end overflow-hidden rounded-full bg-white/8">
-              <motion.div
-                key={`${role.id}-${key}`}
-                initial={{ height: 0 }}
-                animate={{ height: `${role.signature[key]}%` }}
-                transition={{ duration: 0.65, ease: [0.22, 1, 0.36, 1] }}
-                className="w-full rounded-full bg-gradient-to-t from-sky-400 via-violet-400 to-emerald-300"
-              />
-            </div>
-            <div className="mt-3 text-[10px] uppercase tracking-[0.12em] text-white/35">{label}</div>
-          </div>
-        ))}
-      </div>
+    <div className="h-[330px] w-full">
+      <ResponsiveContainer width="100%" height="100%">
+        <RadarChart data={data} outerRadius="72%">
+          <PolarGrid stroke="rgba(255,255,255,0.10)" />
+          <PolarAngleAxis
+            dataKey="dimension"
+            tick={{ fill: 'rgba(255,255,255,0.42)', fontSize: 10 }}
+          />
+          <Radar
+            dataKey="value"
+            stroke="rgba(186,230,253,0.88)"
+            fill="rgba(139,92,246,0.20)"
+            strokeWidth={2}
+            dot={{ r: 2.5, fill: 'rgba(255,255,255,0.9)' }}
+            isAnimationActive
+          />
+        </RadarChart>
+      </ResponsiveContainer>
     </div>
   );
 }
 
 function FactorSignals({ interaction }) {
+  const toneFor = state => (
+    state === 'aligned' ? 'success' : state === 'adjacent' ? 'info' : 'warning'
+  );
   return (
     <div className="flex flex-wrap gap-2">
       {interaction.factorSignals.map(signal => (
-        <span key={signal.key} className={cx('rounded-full border px-3 py-1.5 text-xs', FACTOR_TONE[signal.state])}>
+        <Badge key={signal.key} tone={toneFor(signal.state)}>
           {signal.short} {signal.value} · {signal.state === 'aligned' ? 'inside role band' : signal.state === 'adjacent' ? 'near role band' : 'different natural pull'}
-        </span>
+        </Badge>
       ))}
     </div>
   );
@@ -228,54 +266,48 @@ function FactorSignals({ interaction }) {
 
 function LifeLensStrip({ role, activeCategory, onSelect }) {
   return (
-    <section className="border-t border-white/8 py-16">
+    <section>
       <div className="mb-8 max-w-3xl">
         <p className="text-xs font-semibold uppercase tracking-[0.22em] text-fuchsia-200/55">Life experience refraction</p>
         <h3 className="mt-3 text-3xl font-semibold tracking-tight text-white">The person stays the same. The operating conditions do not.</h3>
-        <p className="mt-4 text-sm leading-7 text-white/46">These lenses do not change the baseline role-alignment model. They show how context can amplify, suppress, mask, or distort performance inside a specific job environment.</p>
+        <p className="mt-4 text-sm leading-7 text-white/46">
+          These lenses do not change the baseline role-alignment model. They show how context can amplify, suppress, mask, or distort performance inside a specific job environment.
+        </p>
       </div>
 
-      <div className="-mx-2 overflow-x-auto px-2 pb-4">
-        <div className="flex min-w-max gap-2">
-          {CONTEXT_CATEGORY_ORDER.map(category => (
-            <button
-              key={category}
-              type="button"
-              onClick={() => onSelect(category)}
-              className={cx(
-                'rounded-full border px-4 py-2 text-xs transition',
-                activeCategory === category
-                  ? 'border-fuchsia-200/35 bg-fuchsia-400/15 text-fuchsia-100'
-                  : 'border-white/10 bg-white/[0.025] text-white/38 hover:text-white/70'
-              )}
-            >
-              {CONTEXT_CATEGORIES[category]}
-            </button>
-          ))}
-        </div>
-      </div>
+      <Tabs value={activeCategory} onValueChange={onSelect}>
+        <ScrollArea className="max-w-full pb-2">
+          <TabsList className="w-max flex-nowrap">
+            {CONTEXT_CATEGORY_ORDER.map(category => (
+              <TabsTrigger key={category} value={category}>
+                {CONTEXT_CATEGORIES[category]}
+              </TabsTrigger>
+            ))}
+          </TabsList>
+        </ScrollArea>
 
-      <AnimatePresence mode="wait">
-        <motion.div
-          key={`${role.id}-${activeCategory}`}
-          initial={{ opacity: 0, y: 18, filter: 'blur(8px)' }}
-          animate={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
-          exit={{ opacity: 0, y: -10, filter: 'blur(8px)' }}
-          transition={{ duration: 0.4 }}
-          className="mt-6 grid gap-8 border-l border-fuchsia-300/20 pl-6 lg:grid-cols-[1.2fr_.8fr]"
-        >
-          <div>
-            <div className="text-lg font-semibold text-white">{CONTEXT_CATEGORIES[activeCategory]}</div>
-            <p className="mt-3 max-w-3xl text-base leading-8 text-white/58">{LENS_COPY[activeCategory]}</p>
-            <p className="mt-4 text-sm leading-7 text-white/38">In <span className="text-white/70">{role.title}</span>, the most relevant role conditions are volume {role.signature.volume}, interruption {role.signature.interruption}, autonomy {role.signature.autonomy}, precision {role.signature.precision}, and boundary rigidity {role.signature.boundedAuthority}.</p>
-          </div>
-          <div>
-            <div className="text-xs font-semibold uppercase tracking-[0.18em] text-white/30">How to use this lens</div>
-            <p className="mt-3 text-sm leading-6 text-white/36">Treat the lens as a hypothetical operating-condition test. It does not reveal or assume that the employee has this life experience, and it never changes the baseline person × role model.</p>
-            <div className="mt-5 border-l border-white/10 pl-4 text-xs leading-6 text-white/28">Employee-specific private context stays outside this front-end explanation unless a future permissioned workflow explicitly brings it in.</div>
-          </div>
-        </motion.div>
-      </AnimatePresence>
+        {CONTEXT_CATEGORY_ORDER.map(category => (
+          <TabsContent key={category} value={category}>
+            <div className="grid gap-8 rounded-[28px] border border-white/8 bg-white/[0.02] p-6 lg:grid-cols-[1.2fr_.8fr]">
+              <div>
+                <div className="text-lg font-semibold text-white">{CONTEXT_CATEGORIES[category]}</div>
+                <p className="mt-3 max-w-3xl text-base leading-8 text-white/58">{LENS_COPY[category]}</p>
+                <p className="mt-4 text-sm leading-7 text-white/38">
+                  In <span className="text-white/70">{role.title}</span>, the most relevant operating conditions include
+                  volume {role.signature.volume}, interruption {role.signature.interruption}, autonomy {role.signature.autonomy},
+                  precision {role.signature.precision}, and boundary rigidity {role.signature.boundedAuthority}.
+                </p>
+              </div>
+              <div>
+                <div className="text-xs font-semibold uppercase tracking-[0.18em] text-white/30">How to use this lens</div>
+                <p className="mt-3 text-sm leading-6 text-white/36">
+                  Treat the lens as a hypothetical operating-condition test. It does not reveal or assume that the employee has this life experience, and it never changes the baseline person × role model.
+                </p>
+              </div>
+            </div>
+          </TabsContent>
+        ))}
+      </Tabs>
     </section>
   );
 }
@@ -416,61 +448,134 @@ function Landing({ employees, loading, loadError, onSelectEmployee }) {
   const selectionRef = useRef(null);
   const prefersReducedMotion = useReducedMotion();
 
+  const story = [
+    {
+      eyebrow: 'Role Intelligence',
+      title: 'See the person inside the job.',
+      description: 'Start with the completed PI pattern, then examine how that same person interacts with the actual operating demands of different company roles.',
+      content: (
+        <div className="grid h-full place-items-center">
+          <div className="relative text-center">
+            <SiriOrb size="230px" animationDuration={20}/>
+            <div className="absolute inset-0 grid place-items-center">
+              <div>
+                <div className="text-lg font-semibold text-white">Person × role</div>
+                <div className="mt-1 text-[10px] uppercase tracking-[0.18em] text-white/35">Interaction, not a verdict</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      ),
+    },
+    {
+      eyebrow: 'Operating environment',
+      title: 'Role demands become the lens.',
+      description: 'Volume, depth, exploration, autonomy, precision, external interaction, interruption, and authority boundaries determine where a natural strength is expressed, constrained, or overextended.',
+      content: (
+        <div className="relative h-full w-full">
+          <div className="absolute left-1/2 top-1/2 z-10 -translate-x-1/2 -translate-y-1/2 rounded-full border border-white/12 bg-slate-950/70 px-5 py-3 text-center">
+            <div className="text-sm font-semibold text-white">Role demands</div>
+            <div className="mt-1 text-[10px] uppercase tracking-[0.16em] text-white/30">Eight dimensions</div>
+          </div>
+          <OrbitingCircles radius={160} duration={48} showPath>
+            {ROLE_DIMENSIONS.map(([key, label]) => (
+              <span key={key} className="rounded-full border border-white/10 bg-slate-950/80 px-3 py-2 text-[10px] uppercase tracking-[0.12em] text-white/48">
+                {label}
+              </span>
+            ))}
+          </OrbitingCircles>
+        </div>
+      ),
+    },
+    {
+      eyebrow: 'Company positions',
+      title: 'One profile can meet fourteen very different environments.',
+      description: 'The engine models analyst, specialist, manager, director, client, finance, scheduling, provider-relations, network, and fitness-for-duty roles as distinct operating systems.',
+      content: (
+        <div className="relative h-full w-full">
+          <div className="absolute left-1/2 top-1/2 z-10 -translate-x-1/2 -translate-y-1/2 text-center">
+            <SiriOrb size="170px" animationDuration={24}/>
+            <div className="absolute inset-0 grid place-items-center">
+              <div>
+                <div className="text-2xl font-semibold text-white">14</div>
+                <div className="text-[10px] uppercase tracking-[0.16em] text-white/30">modeled roles</div>
+              </div>
+            </div>
+          </div>
+          <OrbitingCircles radius={170} duration={56} reverse showPath>
+            {ROLE_INTELLIGENCE_ROLES.slice(0, 8).map(role => (
+              <span key={role.id} className="max-w-[118px] rounded-full border border-white/10 bg-slate-950/80 px-3 py-2 text-center text-[10px] font-medium text-white/52">
+                {role.shortTitle}
+              </span>
+            ))}
+          </OrbitingCircles>
+        </div>
+      ),
+    },
+    {
+      eyebrow: 'Context stays separate',
+      title: 'Life experience can change conditions without changing baseline compatibility.',
+      description: 'Context lenses are treated as operating-condition hypotheses. They can explain strain, support, masking, or expression without silently altering the baseline person × role calculation.',
+      content: (
+        <div className="grid h-full place-items-center p-8">
+          <Tabs defaultValue="baseline" className="w-full max-w-sm">
+            <TabsList>
+              <TabsTrigger value="baseline">Baseline</TabsTrigger>
+              <TabsTrigger value="context">Context lens</TabsTrigger>
+            </TabsList>
+            <TabsContent value="baseline">
+              <div className="rounded-[24px] border border-white/10 bg-white/[0.025] p-6">
+                <div className="text-sm font-semibold text-white">Person × role model</div>
+                <p className="mt-3 text-sm leading-7 text-white/42">PI factors, role demands, work values, environment, boundaries, sustainability, and evidence confidence.</p>
+              </div>
+            </TabsContent>
+            <TabsContent value="context">
+              <div className="rounded-[24px] border border-white/10 bg-white/[0.025] p-6">
+                <div className="text-sm font-semibold text-white">Operating-condition lens</div>
+                <p className="mt-3 text-sm leading-7 text-white/42">A separate explanation layer for hypothetical context, support, strain, masking, or environmental friction.</p>
+              </div>
+            </TabsContent>
+          </Tabs>
+        </div>
+      ),
+    },
+  ];
+
   return (
     <div className="overflow-hidden rounded-[36px] border border-white/8 bg-white/[0.018]">
-      <section className="relative grid min-h-[76vh] place-items-center overflow-hidden px-6 py-20 text-center">
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_36%,rgba(56,189,248,.12),transparent_30%),radial-gradient(circle_at_30%_72%,rgba(192,132,252,.08),transparent_32%)]"/>
-        <motion.div initial={{ opacity: 0, y: 24 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8 }} className="relative z-10 max-w-4xl">
-          <div className="mx-auto mb-8 w-fit">
-            <SiriOrb size="230px" animationDuration={20}/>
-          </div>
+      <section className="px-4 py-8 sm:px-6 sm:py-10">
+        <div className="mx-auto mb-8 max-w-5xl text-center">
           <p className="text-xs font-semibold uppercase tracking-[0.28em] text-sky-200/50">Role Intelligence</p>
           <h1 className="mt-5 text-5xl font-semibold tracking-[-0.04em] text-white sm:text-6xl lg:text-7xl">See the person inside the job.</h1>
-          <p className="mx-auto mt-6 max-w-2xl text-base leading-8 text-white/46 sm:text-lg">Explore how an employee’s completed PI pattern interacts with the actual operating demands of each role, where strengths are expressed, where boundaries create friction, and how context can change performance without changing the person.</p>
-          <button type="button" onClick={() => selectionRef.current?.scrollIntoView({ behavior: prefersReducedMotion ? 'auto' : 'smooth' })} className="mt-9 inline-flex items-center gap-2 rounded-full border border-white/15 bg-white px-5 py-3 text-sm font-semibold text-slate-950 transition hover:scale-[1.02]">
-            Explore employees <ChevronDown size={16}/>
-          </button>
-        </motion.div>
-      </section>
-
-      <section className="border-t border-white/8 py-16">
-        <div className="mx-auto max-w-5xl px-6 text-center">
-          <p className="text-xs font-semibold uppercase tracking-[0.24em] text-white/28">The company role landscape</p>
-          <h2 className="mt-4 text-3xl font-semibold tracking-tight text-white sm:text-4xl">The same person can experience a completely different job depending on the operating environment.</h2>
+          <p className="mx-auto mt-6 max-w-2xl text-base leading-8 text-white/46 sm:text-lg">Scroll through the model first, then enter through a stored employee profile.</p>
         </div>
-        <div className="mt-12"><RoleMarquee/></div>
-      </section>
 
-      <section className="relative min-h-[72vh] border-t border-white/8 px-6 py-20">
-        <div className="mx-auto grid max-w-6xl items-center gap-12 lg:grid-cols-[.9fr_1.1fr]">
-          <div>
-            <p className="text-xs font-semibold uppercase tracking-[0.24em] text-violet-200/55">Not a personality score</p>
-            <h2 className="mt-4 text-4xl font-semibold tracking-tight text-white">Role demands become the lens.</h2>
-            <p className="mt-5 max-w-xl text-base leading-8 text-white/45">Volume, depth, autonomy, interruption, research allowance, precision, external interaction, and authority boundaries shape whether the same strength becomes useful, constrained, or overextended.</p>
-          </div>
-          <div className="relative mx-auto h-[420px] w-full max-w-[600px]">
-            <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2"><SiriOrb size="220px" animationDuration={24}/></div>
-            {['Volume','Depth','Autonomy','Exploration','Precision','Interruption','Boundaries','Interaction'].map((label, index) => {
-              const angle = (index / 8) * Math.PI * 2 - Math.PI / 2;
-              const x = 50 + Math.cos(angle) * 40;
-              const y = 50 + Math.sin(angle) * 38;
-              return <motion.div key={label} className="absolute -translate-x-1/2 -translate-y-1/2 text-xs uppercase tracking-[0.16em] text-white/38" style={{ left: `${x}%`, top: `${y}%` }} animate={{ opacity: [0.35,0.78,0.35] }} transition={{ duration: 4 + index * 0.25, repeat: Infinity }}>{label}</motion.div>;
-            })}
-          </div>
+        <div className="mx-auto max-w-6xl">
+          <StickyScrollReveal content={story}/>
+        </div>
+
+        <div className="mt-8 text-center">
+          <button
+            type="button"
+            onClick={() => selectionRef.current?.scrollIntoView({ behavior: prefersReducedMotion ? 'auto' : 'smooth' })}
+            className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white px-5 py-3 text-sm font-semibold text-slate-950 transition hover:scale-[1.02]"
+          >
+            Choose an employee <ChevronDown size={16}/>
+          </button>
         </div>
       </section>
 
       <section ref={selectionRef} className="border-t border-white/8 px-6 py-20">
         <div className="mx-auto mb-12 max-w-3xl text-center">
-          <p className="text-xs font-semibold uppercase tracking-[0.24em] text-emerald-200/50">Choose an employee</p>
+          <p className="text-xs font-semibold uppercase tracking-[0.24em] text-emerald-200/50">Employee selector</p>
           <h2 className="mt-4 text-4xl font-semibold tracking-tight text-white">Enter through a real profile.</h2>
-          <p className="mt-4 text-sm leading-7 text-white/42">Every sphere is linked directly to the stored employee PI record. Select one to transition from the introduction into the role-intelligence workspace.</p>
+          <p className="mt-4 text-sm leading-7 text-white/42">Each orbiting profile is linked directly to the stored employee PI record. Select one to open the person × role workspace.</p>
         </div>
         <EmployeeConstellation employees={employees} onSelect={onSelectEmployee} loading={loading} loadError={loadError}/>
       </section>
 
       <section className="border-t border-white/8 px-6 py-12 text-center text-xs leading-6 text-white/24">
-        Role intelligence combines completed PI data with role/workflow evidence and occupational research frameworks including O*NET, BLS occupational requirements, NIOSH work-design and well-being research, and organization-specific process evidence. Contextual life-experience lenses are kept separate from baseline employment-fit signals. Model-routing benchmark data is provided by Artificial Analysis.
+        Role intelligence combines completed PI data with role/workflow evidence and occupational research frameworks including O*NET, BLS occupational requirements, NIOSH work-design research, and organization-specific process evidence. Contextual life-experience lenses remain separate from baseline role-interaction signals. Model-routing benchmark data is provided by Artificial Analysis.
       </section>
     </div>
   );
@@ -485,6 +590,19 @@ function Workspace({ employee, onExit }) {
     [employee, selectedRole]
   );
 
+  const components = [
+    ['Behavioral', interaction.components.behavioralFit],
+    ['Task pattern', interaction.components.cognitiveTaskFit],
+    ['Work values', interaction.components.workValueFit],
+    ['Environment', interaction.components.environmentFit],
+    ['Boundaries', interaction.components.boundaryFit],
+    ['Sustainability', interaction.components.sustainabilityFit],
+  ];
+
+  const assistant = (
+    <RoleAssistantRail employee={employee} role={selectedRole} activeCategory={activeCategory}/>
+  );
+
   return (
     <div className="rounded-[36px] border border-white/8 bg-white/[0.018] p-4 sm:p-6">
       <div className="mb-6 flex flex-wrap items-center justify-between gap-3">
@@ -497,64 +615,173 @@ function Workspace({ employee, onExit }) {
         </div>
       </div>
 
-      <div className="grid gap-6 xl:grid-cols-[minmax(0,1fr)_370px]">
-        <main className="min-w-0">
-          <RoleOrbit employee={employee} selectedRole={selectedRole} onSelectRole={setSelectedRole}/>
-
-          <section className="mx-auto max-w-5xl px-2 py-16">
-            <AnimatePresence mode="wait">
-              <motion.div key={selectedRole.id} initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -12 }} transition={{ duration: 0.4 }}>
-                <div className="flex flex-wrap items-end justify-between gap-5">
-                  <div className="max-w-3xl">
-                    <p className="text-xs font-semibold uppercase tracking-[0.2em] text-sky-200/50">{interaction.headline}</p>
-                    <h2 className="mt-3 text-4xl font-semibold tracking-tight text-white">{selectedRole.title}</h2>
-                    <p className="mt-4 text-base leading-8 text-white/48">{selectedRole.purpose}</p>
-                  </div>
-                  <div className="text-right text-xs text-white/30">
-                    <div>{interaction.aligned} PI factors inside role band</div>
-                    <div className="mt-1">{interaction.adjacent} near band · {interaction.contrast} contrasting pull</div>
-                    <div className="mt-1">Evidence confidence {interaction.evidenceConfidence}/100</div>
-                  </div>
-                </div>
-                <div className="mt-6"><FactorSignals interaction={interaction}/></div>
-                <div className="mt-10"><SignatureBand role={selectedRole}/></div>
-              </motion.div>
-            </AnimatePresence>
-          </section>
-
-          <section className="border-t border-white/8 py-16">
-            <div className="grid gap-12 lg:grid-cols-3">
-              <div>
-                <div className="text-xs font-semibold uppercase tracking-[0.2em] text-emerald-200/50">Where the role rewards the pattern</div>
-                <div className="mt-5 space-y-5">{selectedRole.alignment.map(item => <p key={item} className="text-sm leading-7 text-white/52">{item}</p>)}</div>
-              </div>
-              <div>
-                <div className="text-xs font-semibold uppercase tracking-[0.2em] text-sky-200/50">Where friction can develop</div>
-                <div className="mt-5 space-y-5">{selectedRole.friction.map(item => <p key={item} className="text-sm leading-7 text-white/52">{item}</p>)}</div>
-              </div>
-              <div>
-                <div className="text-xs font-semibold uppercase tracking-[0.2em] text-fuchsia-200/50">Strength inversion</div>
-                <p className="mt-5 text-lg leading-8 text-white/72">{selectedRole.inversion}</p>
-              </div>
-            </div>
-          </section>
-
-          <LifeLensStrip role={selectedRole} activeCategory={activeCategory} onSelect={setActiveCategory}/>
-
-          <section className="border-t border-white/8 py-16">
-            <div className="mb-7 flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.2em] text-white/30"><Compass size={14}/> Adjacent role pull</div>
-            <div className="flex flex-wrap gap-3">
-              {adjacentPull.map(item => (
-                <button key={item.roleId} type="button" onClick={() => setSelectedRole(item.role)} className="group inline-flex items-center gap-3 rounded-full border border-white/10 bg-white/[0.025] px-4 py-3 text-sm text-white/55 transition hover:border-white/20 hover:text-white">
-                  {item.role.title}<ArrowRight size={14} className="transition group-hover:translate-x-1"/>
-                </button>
-              ))}
-            </div>
-          </section>
-        </main>
-
-        <RoleAssistantRail employee={employee} role={selectedRole} activeCategory={activeCategory}/>
+      <div className="mb-5 xl:hidden">
+        <Sheet>
+          <SheetTrigger className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/[0.035] px-4 py-2 text-sm text-white/62">
+            <MessageCircleMore size={15}/> Ask Role Intelligence
+          </SheetTrigger>
+          <SheetContent side="right" className="p-3">
+            {assistant}
+          </SheetContent>
+        </Sheet>
       </div>
+
+      <ResizablePanelGroup className="min-h-[760px]">
+        <ResizablePanel defaultSize={72} className="xl:pr-6">
+          <main className="min-w-0">
+            <RoleOrbit employee={employee} selectedRole={selectedRole} onSelectRole={setSelectedRole}/>
+
+            <section className="mx-auto max-w-5xl px-2 py-12">
+              <AnimatePresence mode="wait">
+                <motion.div
+                  key={selectedRole.id}
+                  initial={{ opacity: 0, y: 16 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: -10 }}
+                  transition={{ duration: 0.35 }}
+                >
+                  <div className="flex flex-wrap items-end justify-between gap-5">
+                    <div className="max-w-3xl">
+                      <p className="text-xs font-semibold uppercase tracking-[0.2em] text-sky-200/50">{interaction.headline}</p>
+                      <h2 className="mt-3 text-4xl font-semibold tracking-tight text-white">{selectedRole.title}</h2>
+                      <p className="mt-4 text-base leading-8 text-white/48">{selectedRole.purpose}</p>
+                    </div>
+                    <div className="text-right text-xs text-white/30">
+                      <div>{interaction.aligned} PI factors inside role band</div>
+                      <div className="mt-1">{interaction.adjacent} near band · {interaction.contrast} contrasting pull</div>
+                      <div className="mt-1">Evidence confidence {interaction.evidenceConfidence}/100</div>
+                    </div>
+                  </div>
+                </motion.div>
+              </AnimatePresence>
+
+              <Tabs defaultValue="interaction" className="mt-10">
+                <ScrollArea className="max-w-full pb-2">
+                  <TabsList className="w-max flex-nowrap">
+                    <TabsTrigger value="interaction">Interaction</TabsTrigger>
+                    <TabsTrigger value="interpretation">Interpretation</TabsTrigger>
+                    <TabsTrigger value="evidence">Evidence</TabsTrigger>
+                    <TabsTrigger value="context">Context lenses</TabsTrigger>
+                    <TabsTrigger value="adjacent">Adjacent roles</TabsTrigger>
+                  </TabsList>
+                </ScrollArea>
+
+                <TabsContent value="interaction">
+                  <div className="grid gap-8 lg:grid-cols-[.9fr_1.1fr]">
+                    <div>
+                      <div className="text-xs font-semibold uppercase tracking-[0.18em] text-white/30">PI factor signals</div>
+                      <div className="mt-4"><FactorSignals interaction={interaction}/></div>
+
+                      <div className="mt-8 text-xs font-semibold uppercase tracking-[0.18em] text-white/30">Interaction dimensions</div>
+                      <div className="mt-4 grid grid-cols-2 gap-x-6 gap-y-4">
+                        {components.map(([label, value]) => (
+                          <div key={label} className="border-b border-white/8 pb-3">
+                            <div className="text-xs text-white/34">{label}</div>
+                            <div className="mt-1 text-lg font-semibold text-white/76">{value}</div>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                    <div>
+                      <div className="text-xs font-semibold uppercase tracking-[0.18em] text-white/30">Role signature</div>
+                      <SignatureBand role={selectedRole}/>
+                    </div>
+                  </div>
+                </TabsContent>
+
+                <TabsContent value="interpretation">
+                  <Accordion type="single" defaultValue="alignment">
+                    <AccordionItem value="alignment">
+                      <AccordionTrigger>Where the role rewards the pattern</AccordionTrigger>
+                      <AccordionContent>
+                        <div className="space-y-4">
+                          {selectedRole.alignment.map(item => <p key={item}>{item}</p>)}
+                        </div>
+                      </AccordionContent>
+                    </AccordionItem>
+                    <AccordionItem value="friction">
+                      <AccordionTrigger>Where friction can develop</AccordionTrigger>
+                      <AccordionContent>
+                        <div className="space-y-4">
+                          {selectedRole.friction.map(item => <p key={item}>{item}</p>)}
+                        </div>
+                      </AccordionContent>
+                    </AccordionItem>
+                    <AccordionItem value="inversion">
+                      <AccordionTrigger>Strength inversion</AccordionTrigger>
+                      <AccordionContent>
+                        <p className="text-base leading-8 text-white/64">{selectedRole.inversion}</p>
+                        {interaction.inversionSignals.length > 0 && (
+                          <div className="mt-5 space-y-4">
+                            {interaction.inversionSignals.slice(0, 3).map(signal => (
+                              <div key={signal.id}>
+                                <div className="font-medium text-white/70">{signal.label}</div>
+                                <div className="mt-1 text-white/40">{signal.rationale}</div>
+                              </div>
+                            ))}
+                          </div>
+                        )}
+                      </AccordionContent>
+                    </AccordionItem>
+                  </Accordion>
+                </TabsContent>
+
+                <TabsContent value="evidence">
+                  <div className="mb-5 flex items-center justify-between gap-4">
+                    <div>
+                      <div className="text-xs font-semibold uppercase tracking-[0.18em] text-white/30">Evidence bundle</div>
+                      <div className="mt-2 text-sm text-white/45">External occupations are analogues, not claims that this Occu-Med role is identical to the source occupation.</div>
+                    </div>
+                    <Badge>Confidence {interaction.evidenceConfidence}/100</Badge>
+                  </div>
+                  <Accordion type="multiple">
+                    {interaction.evidence.map(source => (
+                      <AccordionItem key={source.id} value={source.id}>
+                        <AccordionTrigger>{source.label}</AccordionTrigger>
+                        <AccordionContent>
+                          <p>{source.note}</p>
+                          <p className="mt-2 text-xs text-white/28">{source.kind} · authority {source.authority} · directness {source.directness}</p>
+                        </AccordionContent>
+                      </AccordionItem>
+                    ))}
+                  </Accordion>
+                </TabsContent>
+
+                <TabsContent value="context">
+                  <LifeLensStrip role={selectedRole} activeCategory={activeCategory} onSelect={setActiveCategory}/>
+                </TabsContent>
+
+                <TabsContent value="adjacent">
+                  <div className="mb-6 flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.2em] text-white/30">
+                    <Compass size={14}/> Closest modeled role environments
+                  </div>
+                  <div className="flex flex-wrap gap-3">
+                    {adjacentPull.map(item => (
+                      <button
+                        key={item.roleId}
+                        type="button"
+                        onClick={() => setSelectedRole(item.role)}
+                        className="group inline-flex items-center gap-3 rounded-full border border-white/10 bg-white/[0.025] px-4 py-3 text-sm text-white/55 transition hover:border-white/20 hover:text-white"
+                      >
+                        {item.role.title}<ArrowRight size={14} className="transition group-hover:translate-x-1"/>
+                      </button>
+                    ))}
+                  </div>
+                  <p className="mt-5 max-w-3xl text-xs leading-6 text-white/28">
+                    Adjacent-role pull is calculated from role-environment similarity plus this person × role interaction. It is not a promotion or staffing recommendation.
+                  </p>
+                </TabsContent>
+              </Tabs>
+            </section>
+          </main>
+        </ResizablePanel>
+
+        <ResizableHandle withHandle/>
+
+        <ResizablePanel defaultSize={28} className="hidden xl:block">
+          {assistant}
+        </ResizablePanel>
+      </ResizablePanelGroup>
     </div>
   );
 }
