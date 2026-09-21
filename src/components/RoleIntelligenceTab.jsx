@@ -429,6 +429,9 @@ Rules:
           : 0,
         evidenceConfidence: data.roleGrounding?.evidenceConfidence ?? null,
         sourceCount: data.roleGrounding?.sourceCount ?? null,
+        webProviders: Array.isArray(data.webResearch?.providers) ? data.webResearch.providers : [],
+        webSourceCount: Number(data.webResearch?.sourceCount) || 0,
+        webSources: Array.isArray(data.webResearch?.sources) ? data.webResearch.sources : [],
       });
     } catch (requestError) {
       setError(requestError?.message || 'The assistant could not complete the request.');
@@ -468,36 +471,66 @@ Rules:
             {Number.isFinite(analysisMeta.evidenceConfidence) && (
               <Badge>Evidence {analysisMeta.evidenceConfidence}/100</Badge>
             )}
+            {analysisMeta.webSourceCount > 0 && (
+              <Badge tone="info">Web · {analysisMeta.webProviders.join(' + ')} · {analysisMeta.webSourceCount}</Badge>
+            )}
           </div>
         )}
 
-        {analysisMeta && (analysisMeta.materialDisagreements.length > 0 || analysisMeta.unsupportedLeaps.length > 0) && (
+        {analysisMeta && (
+          analysisMeta.materialDisagreements.length > 0 ||
+          analysisMeta.unsupportedLeaps.length > 0 ||
+          analysisMeta.webSources.length > 0
+        ) && (
           <Accordion type="single" className="mt-3">
-            <AccordionItem value="model-review">
-              <AccordionTrigger className="py-2 text-xs text-white/45">Model review details</AccordionTrigger>
-              <AccordionContent className="pb-2 text-xs leading-5">
-                {analysisMeta.materialDisagreements.length > 0 && (
-                  <div>
-                    <div className="font-medium text-white/58">Material disagreements</div>
-                    <ul className="mt-2 space-y-2">
-                      {analysisMeta.materialDisagreements.map((item, index) => (
-                        <li key={`disagreement-${index}`} className="border-l border-amber-300/20 pl-3 text-white/38">{item}</li>
-                      ))}
-                    </ul>
+            {(analysisMeta.materialDisagreements.length > 0 || analysisMeta.unsupportedLeaps.length > 0) && (
+              <AccordionItem value="model-review">
+                <AccordionTrigger className="py-2 text-xs text-white/45">Model review details</AccordionTrigger>
+                <AccordionContent className="pb-2 text-xs leading-5">
+                  {analysisMeta.materialDisagreements.length > 0 && (
+                    <div>
+                      <div className="font-medium text-white/58">Material disagreements</div>
+                      <ul className="mt-2 space-y-2">
+                        {analysisMeta.materialDisagreements.map((item, index) => (
+                          <li key={`disagreement-${index}`} className="border-l border-amber-300/20 pl-3 text-white/38">{item}</li>
+                        ))}
+                      </ul>
+                    </div>
+                  )}
+                  {analysisMeta.unsupportedLeaps.length > 0 && (
+                    <div className={analysisMeta.materialDisagreements.length > 0 ? 'mt-4' : ''}>
+                      <div className="font-medium text-white/58">Unsupported leaps removed</div>
+                      <ul className="mt-2 space-y-2">
+                        {analysisMeta.unsupportedLeaps.map((item, index) => (
+                          <li key={`unsupported-${index}`} className="border-l border-sky-300/20 pl-3 text-white/38">{item}</li>
+                        ))}
+                      </ul>
+                    </div>
+                  )}
+                </AccordionContent>
+              </AccordionItem>
+            )}
+            {analysisMeta.webSources.length > 0 && (
+              <AccordionItem value="web-sources">
+                <AccordionTrigger className="py-2 text-xs text-white/45">External web sources</AccordionTrigger>
+                <AccordionContent className="pb-2 text-xs leading-5">
+                  <div className="space-y-2">
+                    {analysisMeta.webSources.map(source => (
+                      <a
+                        key={source.id + source.url}
+                        href={source.url}
+                        target="_blank"
+                        rel="noreferrer"
+                        className="block border-l border-sky-300/20 pl-3 text-white/40 transition hover:text-white/65"
+                      >
+                        <span className="font-medium text-white/56">[{source.id}] {source.title}</span>
+                        <span className="ml-2 uppercase tracking-[0.12em] text-white/22">{source.provider}</span>
+                      </a>
+                    ))}
                   </div>
-                )}
-                {analysisMeta.unsupportedLeaps.length > 0 && (
-                  <div className={analysisMeta.materialDisagreements.length > 0 ? 'mt-4' : ''}>
-                    <div className="font-medium text-white/58">Unsupported leaps removed</div>
-                    <ul className="mt-2 space-y-2">
-                      {analysisMeta.unsupportedLeaps.map((item, index) => (
-                        <li key={`unsupported-${index}`} className="border-l border-sky-300/20 pl-3 text-white/38">{item}</li>
-                      ))}
-                    </ul>
-                  </div>
-                )}
-              </AccordionContent>
-            </AccordionItem>
+                </AccordionContent>
+              </AccordionItem>
+            )}
           </Accordion>
         )}
       </div>
