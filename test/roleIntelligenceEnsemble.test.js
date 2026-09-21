@@ -66,3 +66,15 @@ test('adjacent-role pull and orbit radius are computed from the engine', () => {
   assert.match(roleUiSource, /deriveAdjacentRolePull/);
   assert.doesNotMatch(roleUiSource, /selectedRole\.adjacent/);
 });
+
+
+test('Role Intelligence shell uses sourced component structures instead of the old custom landing/orbit layout', () => {
+  assert.match(roleUiSource, /StickyScrollReveal/);
+  assert.match(roleUiSource, /OrbitingCircles/);
+  assert.match(roleUiSource, /ResizablePanelGroup/);
+  assert.match(roleUiSource, /TabsList/);
+  assert.match(roleUiSource, /AccordionItem/);
+  assert.match(roleUiSource, /SheetContent/);
+  assert.match(roleUiSource, /RadarChart/);
+  assert.doesNotMatch(roleUiSource, /function RoleMarquee/);
+});
