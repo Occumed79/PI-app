@@ -1,9 +1,8 @@
-import React, { Suspense, useCallback, useEffect, useState } from 'react';
-import { BrainCircuit, ClipboardList, Compass, Layers3 } from 'lucide-react';
+import React, { useCallback, useEffect, useState } from 'react';
+import { BrainCircuit, ClipboardList, Layers3 } from 'lucide-react';
 import VisualLensWorkspace from './VisualLensWorkspace.jsx';
 import EmployeeTab from './components/EmployeeTab.jsx';
 import AITab from './components/AITab.jsx';
-const RoleIntelligenceTab = React.lazy(() => import('./components/RoleIntelligenceTab.jsx'));
 
 function cx(...classes) {
   return classes.filter(Boolean).join(' ');
@@ -30,13 +29,6 @@ const MODES = [
     sub: 'Analyze PI-derived framework translations',
     Icon: BrainCircuit,
     active: 'border-emerald-300/40 bg-emerald-500/15',
-  },
-  {
-    id: 'roles',
-    label: 'Role Intelligence',
-    sub: 'Person × role compatibility · context refraction',
-    Icon: Compass,
-    active: 'border-violet-300/40 bg-violet-500/15',
   },
 ];
 
@@ -80,7 +72,7 @@ export default function RootApp() {
 
       <div className="relative mx-auto max-w-[1480px] px-4 pb-10 pt-5 sm:px-6 lg:px-8">
         <div className="pi-glass-panel pi-nav-panel mb-5 rounded-3xl border border-white/10 bg-white/[0.06] p-3 shadow-2xl shadow-black/20 backdrop-blur-xl">
-          <div className="grid grid-cols-1 gap-2 sm:grid-cols-2 xl:grid-cols-4">
+          <div className="grid grid-cols-1 gap-2 sm:grid-cols-3">
             {MODES.map(({ id, label, sub, Icon, active }) => (
               <button
                 key={id}
@@ -119,21 +111,6 @@ export default function RootApp() {
           <div className="pi-glass-panel rounded-3xl border border-white/10 bg-white/[0.03] shadow-2xl shadow-black/20">
             <AITab employees={employees} />
           </div>
-        )}
-        {mode === 'roles' && (
-          <Suspense
-            fallback={(
-              <div className="grid min-h-[520px] place-items-center rounded-[36px] border border-white/8 bg-white/[0.018] text-sm text-white/35">
-                Loading Role Intelligence…
-              </div>
-            )}
-          >
-            <RoleIntelligenceTab
-              employees={employees}
-              loading={employeesLoading}
-              loadError={employeesError}
-            />
-          </Suspense>
         )}
       </div>
     </div>
