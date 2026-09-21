@@ -387,6 +387,10 @@ export function HoverCardTrigger({ className = '', children }) {
       data-slot="hover-card-trigger"
       onMouseEnter={() => setOpen(true)}
       onMouseLeave={() => setOpen(false)}
+      onFocusCapture={() => setOpen(true)}
+      onBlurCapture={event => {
+        if (!event.currentTarget.contains(event.relatedTarget)) setOpen(false);
+      }}
       className={className}
     >
       {children}
@@ -407,4 +411,25 @@ export function HoverCardContent({ className = '', children }) {
       {children}
     </div>
   );
+}
+
+
+export function Alert({ className = '', children }) {
+  return (
+    <div
+      role="alert"
+      data-slot="alert"
+      className={`relative grid w-full gap-0.5 rounded-xl border border-white/10 bg-white/[0.025] px-3 py-3 text-left text-sm text-white/62 has-[>svg]:grid-cols-[auto_1fr] has-[>svg]:gap-x-2 [&>svg]:row-span-2 [&>svg]:translate-y-0.5 [&>svg]:text-sky-200/55 ${className}`}
+    >
+      {children}
+    </div>
+  );
+}
+
+export function AlertTitle({ className = '', children }) {
+  return <div data-slot="alert-title" className={`font-medium text-white/72 ${className}`}>{children}</div>;
+}
+
+export function AlertDescription({ className = '', children }) {
+  return <div data-slot="alert-description" className={`text-sm leading-6 text-white/40 ${className}`}>{children}</div>;
 }
