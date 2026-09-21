@@ -418,6 +418,12 @@ Rules:
         analyzers: Array.isArray(data.analyzers) ? data.analyzers.map(item => item.provider).filter(Boolean) : [],
         synthesizer: data.synthesizer?.provider || null,
         agreement: data.consensus?.agreement || null,
+        materialDisagreements: Array.isArray(data.consensus?.materialDisagreements)
+          ? data.consensus.materialDisagreements
+          : [],
+        unsupportedLeaps: Array.isArray(data.consensus?.unsupportedLeaps)
+          ? data.consensus.unsupportedLeaps
+          : [],
         disagreementCount: Array.isArray(data.consensus?.materialDisagreements)
           ? data.consensus.materialDisagreements.length
           : 0,
@@ -463,6 +469,36 @@ Rules:
               <Badge>Evidence {analysisMeta.evidenceConfidence}/100</Badge>
             )}
           </div>
+        )}
+
+        {analysisMeta && (analysisMeta.materialDisagreements.length > 0 || analysisMeta.unsupportedLeaps.length > 0) && (
+          <Accordion type="single" className="mt-3">
+            <AccordionItem value="model-review">
+              <AccordionTrigger className="py-2 text-xs text-white/45">Model review details</AccordionTrigger>
+              <AccordionContent className="pb-2 text-xs leading-5">
+                {analysisMeta.materialDisagreements.length > 0 && (
+                  <div>
+                    <div className="font-medium text-white/58">Material disagreements</div>
+                    <ul className="mt-2 space-y-2">
+                      {analysisMeta.materialDisagreements.map((item, index) => (
+                        <li key={`disagreement-${index}`} className="border-l border-amber-300/20 pl-3 text-white/38">{item}</li>
+                      ))}
+                    </ul>
+                  </div>
+                )}
+                {analysisMeta.unsupportedLeaps.length > 0 && (
+                  <div className={analysisMeta.materialDisagreements.length > 0 ? 'mt-4' : ''}>
+                    <div className="font-medium text-white/58">Unsupported leaps removed</div>
+                    <ul className="mt-2 space-y-2">
+                      {analysisMeta.unsupportedLeaps.map((item, index) => (
+                        <li key={`unsupported-${index}`} className="border-l border-sky-300/20 pl-3 text-white/38">{item}</li>
+                      ))}
+                    </ul>
+                  </div>
+                )}
+              </AccordionContent>
+            </AccordionItem>
+          </Accordion>
         )}
       </div>
 
