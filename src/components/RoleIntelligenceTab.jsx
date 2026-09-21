@@ -1,5 +1,6 @@
 import React, { useMemo, useRef, useState } from 'react';
 import { AnimatePresence, motion, useReducedMotion } from 'framer-motion';
+import { PolarAngleAxis, PolarGrid, Radar, RadarChart, ResponsiveContainer } from 'recharts';
 import {
   ArrowLeft,
   ArrowRight,
@@ -11,6 +12,26 @@ import {
 } from 'lucide-react';
 import SiriOrb from './smoothui/SiriOrb.jsx';
 import RoleVoiceWave from './RoleVoiceWave.jsx';
+import StickyScrollReveal from './StickyScrollReveal.jsx';
+import OrbitingCircles from './OrbitingCircles.jsx';
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+  Badge,
+  ResizableHandle,
+  ResizablePanel,
+  ResizablePanelGroup,
+  ScrollArea,
+  Sheet,
+  SheetContent,
+  SheetTrigger,
+  Tabs,
+  TabsContent,
+  TabsList,
+  TabsTrigger,
+} from './SourcedRoleUI.jsx';
 import {
   CONTEXT_CATEGORIES,
   CONTEXT_CATEGORY_ORDER,
@@ -192,35 +213,44 @@ function RoleOrbit({ employee, selectedRole, onSelectRole }) {
 }
 
 function SignatureBand({ role }) {
+  const data = ROLE_DIMENSIONS.map(([key, label]) => ({
+    dimension: label,
+    value: role.signature[key],
+  }));
+
   return (
-    <div className="overflow-x-auto pb-2">
-      <div className="flex min-w-max items-end gap-4 px-1">
-        {ROLE_DIMENSIONS.map(([key, label]) => (
-          <div key={key} className="w-24 text-center">
-            <div className="mx-auto flex h-28 w-3 items-end overflow-hidden rounded-full bg-white/8">
-              <motion.div
-                key={`${role.id}-${key}`}
-                initial={{ height: 0 }}
-                animate={{ height: `${role.signature[key]}%` }}
-                transition={{ duration: 0.65, ease: [0.22, 1, 0.36, 1] }}
-                className="w-full rounded-full bg-gradient-to-t from-sky-400 via-violet-400 to-emerald-300"
-              />
-            </div>
-            <div className="mt-3 text-[10px] uppercase tracking-[0.12em] text-white/35">{label}</div>
-          </div>
-        ))}
-      </div>
+    <div className="h-[330px] w-full">
+      <ResponsiveContainer width="100%" height="100%">
+        <RadarChart data={data} outerRadius="72%">
+          <PolarGrid stroke="rgba(255,255,255,0.10)" />
+          <PolarAngleAxis
+            dataKey="dimension"
+            tick={{ fill: 'rgba(255,255,255,0.42)', fontSize: 10 }}
+          />
+          <Radar
+            dataKey="value"
+            stroke="rgba(186,230,253,0.88)"
+            fill="rgba(139,92,246,0.20)"
+            strokeWidth={2}
+            dot={{ r: 2.5, fill: 'rgba(255,255,255,0.9)' }}
+            isAnimationActive
+          />
+        </RadarChart>
+      </ResponsiveContainer>
     </div>
   );
 }
 
 function FactorSignals({ interaction }) {
+  const toneFor = state => (
+    state === 'aligned' ? 'success' : state === 'adjacent' ? 'info' : 'warning'
+  );
   return (
     <div className="flex flex-wrap gap-2">
       {interaction.factorSignals.map(signal => (
-        <span key={signal.key} className={cx('rounded-full border px-3 py-1.5 text-xs', FACTOR_TONE[signal.state])}>
+        <Badge key={signal.key} tone={toneFor(signal.state)}>
           {signal.short} {signal.value} · {signal.state === 'aligned' ? 'inside role band' : signal.state === 'adjacent' ? 'near role band' : 'different natural pull'}
-        </span>
+        </Badge>
       ))}
     </div>
   );
