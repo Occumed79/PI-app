@@ -448,61 +448,134 @@ function Landing({ employees, loading, loadError, onSelectEmployee }) {
   const selectionRef = useRef(null);
   const prefersReducedMotion = useReducedMotion();
 
+  const story = [
+    {
+      eyebrow: 'Role Intelligence',
+      title: 'See the person inside the job.',
+      description: 'Start with the completed PI pattern, then examine how that same person interacts with the actual operating demands of different company roles.',
+      content: (
+        <div className="grid h-full place-items-center">
+          <div className="relative text-center">
+            <SiriOrb size="230px" animationDuration={20}/>
+            <div className="absolute inset-0 grid place-items-center">
+              <div>
+                <div className="text-lg font-semibold text-white">Person × role</div>
+                <div className="mt-1 text-[10px] uppercase tracking-[0.18em] text-white/35">Interaction, not a verdict</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      ),
+    },
+    {
+      eyebrow: 'Operating environment',
+      title: 'Role demands become the lens.',
+      description: 'Volume, depth, exploration, autonomy, precision, external interaction, interruption, and authority boundaries determine where a natural strength is expressed, constrained, or overextended.',
+      content: (
+        <div className="relative h-full w-full">
+          <div className="absolute left-1/2 top-1/2 z-10 -translate-x-1/2 -translate-y-1/2 rounded-full border border-white/12 bg-slate-950/70 px-5 py-3 text-center">
+            <div className="text-sm font-semibold text-white">Role demands</div>
+            <div className="mt-1 text-[10px] uppercase tracking-[0.16em] text-white/30">Eight dimensions</div>
+          </div>
+          <OrbitingCircles radius={160} duration={48} showPath>
+            {ROLE_DIMENSIONS.map(([key, label]) => (
+              <span key={key} className="rounded-full border border-white/10 bg-slate-950/80 px-3 py-2 text-[10px] uppercase tracking-[0.12em] text-white/48">
+                {label}
+              </span>
+            ))}
+          </OrbitingCircles>
+        </div>
+      ),
+    },
+    {
+      eyebrow: 'Company positions',
+      title: 'One profile can meet fourteen very different environments.',
+      description: 'The engine models analyst, specialist, manager, director, client, finance, scheduling, provider-relations, network, and fitness-for-duty roles as distinct operating systems.',
+      content: (
+        <div className="relative h-full w-full">
+          <div className="absolute left-1/2 top-1/2 z-10 -translate-x-1/2 -translate-y-1/2 text-center">
+            <SiriOrb size="170px" animationDuration={24}/>
+            <div className="absolute inset-0 grid place-items-center">
+              <div>
+                <div className="text-2xl font-semibold text-white">14</div>
+                <div className="text-[10px] uppercase tracking-[0.16em] text-white/30">modeled roles</div>
+              </div>
+            </div>
+          </div>
+          <OrbitingCircles radius={170} duration={56} reverse showPath>
+            {ROLE_INTELLIGENCE_ROLES.slice(0, 8).map(role => (
+              <span key={role.id} className="max-w-[118px] rounded-full border border-white/10 bg-slate-950/80 px-3 py-2 text-center text-[10px] font-medium text-white/52">
+                {role.shortTitle}
+              </span>
+            ))}
+          </OrbitingCircles>
+        </div>
+      ),
+    },
+    {
+      eyebrow: 'Context stays separate',
+      title: 'Life experience can change conditions without changing baseline compatibility.',
+      description: 'Context lenses are treated as operating-condition hypotheses. They can explain strain, support, masking, or expression without silently altering the baseline person × role calculation.',
+      content: (
+        <div className="grid h-full place-items-center p-8">
+          <Tabs defaultValue="baseline" className="w-full max-w-sm">
+            <TabsList>
+              <TabsTrigger value="baseline">Baseline</TabsTrigger>
+              <TabsTrigger value="context">Context lens</TabsTrigger>
+            </TabsList>
+            <TabsContent value="baseline">
+              <div className="rounded-[24px] border border-white/10 bg-white/[0.025] p-6">
+                <div className="text-sm font-semibold text-white">Person × role model</div>
+                <p className="mt-3 text-sm leading-7 text-white/42">PI factors, role demands, work values, environment, boundaries, sustainability, and evidence confidence.</p>
+              </div>
+            </TabsContent>
+            <TabsContent value="context">
+              <div className="rounded-[24px] border border-white/10 bg-white/[0.025] p-6">
+                <div className="text-sm font-semibold text-white">Operating-condition lens</div>
+                <p className="mt-3 text-sm leading-7 text-white/42">A separate explanation layer for hypothetical context, support, strain, masking, or environmental friction.</p>
+              </div>
+            </TabsContent>
+          </Tabs>
+        </div>
+      ),
+    },
+  ];
+
   return (
     <div className="overflow-hidden rounded-[36px] border border-white/8 bg-white/[0.018]">
-      <section className="relative grid min-h-[76vh] place-items-center overflow-hidden px-6 py-20 text-center">
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_36%,rgba(56,189,248,.12),transparent_30%),radial-gradient(circle_at_30%_72%,rgba(192,132,252,.08),transparent_32%)]"/>
-        <motion.div initial={{ opacity: 0, y: 24 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8 }} className="relative z-10 max-w-4xl">
-          <div className="mx-auto mb-8 w-fit">
-            <SiriOrb size="230px" animationDuration={20}/>
-          </div>
+      <section className="px-4 py-8 sm:px-6 sm:py-10">
+        <div className="mx-auto mb-8 max-w-5xl text-center">
           <p className="text-xs font-semibold uppercase tracking-[0.28em] text-sky-200/50">Role Intelligence</p>
           <h1 className="mt-5 text-5xl font-semibold tracking-[-0.04em] text-white sm:text-6xl lg:text-7xl">See the person inside the job.</h1>
-          <p className="mx-auto mt-6 max-w-2xl text-base leading-8 text-white/46 sm:text-lg">Explore how an employee’s completed PI pattern interacts with the actual operating demands of each role, where strengths are expressed, where boundaries create friction, and how context can change performance without changing the person.</p>
-          <button type="button" onClick={() => selectionRef.current?.scrollIntoView({ behavior: prefersReducedMotion ? 'auto' : 'smooth' })} className="mt-9 inline-flex items-center gap-2 rounded-full border border-white/15 bg-white px-5 py-3 text-sm font-semibold text-slate-950 transition hover:scale-[1.02]">
-            Explore employees <ChevronDown size={16}/>
-          </button>
-        </motion.div>
-      </section>
-
-      <section className="border-t border-white/8 py-16">
-        <div className="mx-auto max-w-5xl px-6 text-center">
-          <p className="text-xs font-semibold uppercase tracking-[0.24em] text-white/28">The company role landscape</p>
-          <h2 className="mt-4 text-3xl font-semibold tracking-tight text-white sm:text-4xl">The same person can experience a completely different job depending on the operating environment.</h2>
+          <p className="mx-auto mt-6 max-w-2xl text-base leading-8 text-white/46 sm:text-lg">Scroll through the model first, then enter through a stored employee profile.</p>
         </div>
-        <div className="mt-12"><RoleMarquee/></div>
-      </section>
 
-      <section className="relative min-h-[72vh] border-t border-white/8 px-6 py-20">
-        <div className="mx-auto grid max-w-6xl items-center gap-12 lg:grid-cols-[.9fr_1.1fr]">
-          <div>
-            <p className="text-xs font-semibold uppercase tracking-[0.24em] text-violet-200/55">Not a personality score</p>
-            <h2 className="mt-4 text-4xl font-semibold tracking-tight text-white">Role demands become the lens.</h2>
-            <p className="mt-5 max-w-xl text-base leading-8 text-white/45">Volume, depth, autonomy, interruption, research allowance, precision, external interaction, and authority boundaries shape whether the same strength becomes useful, constrained, or overextended.</p>
-          </div>
-          <div className="relative mx-auto h-[420px] w-full max-w-[600px]">
-            <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2"><SiriOrb size="220px" animationDuration={24}/></div>
-            {['Volume','Depth','Autonomy','Exploration','Precision','Interruption','Boundaries','Interaction'].map((label, index) => {
-              const angle = (index / 8) * Math.PI * 2 - Math.PI / 2;
-              const x = 50 + Math.cos(angle) * 40;
-              const y = 50 + Math.sin(angle) * 38;
-              return <motion.div key={label} className="absolute -translate-x-1/2 -translate-y-1/2 text-xs uppercase tracking-[0.16em] text-white/38" style={{ left: `${x}%`, top: `${y}%` }} animate={{ opacity: [0.35,0.78,0.35] }} transition={{ duration: 4 + index * 0.25, repeat: Infinity }}>{label}</motion.div>;
-            })}
-          </div>
+        <div className="mx-auto max-w-6xl">
+          <StickyScrollReveal content={story}/>
+        </div>
+
+        <div className="mt-8 text-center">
+          <button
+            type="button"
+            onClick={() => selectionRef.current?.scrollIntoView({ behavior: prefersReducedMotion ? 'auto' : 'smooth' })}
+            className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white px-5 py-3 text-sm font-semibold text-slate-950 transition hover:scale-[1.02]"
+          >
+            Choose an employee <ChevronDown size={16}/>
+          </button>
         </div>
       </section>
 
       <section ref={selectionRef} className="border-t border-white/8 px-6 py-20">
         <div className="mx-auto mb-12 max-w-3xl text-center">
-          <p className="text-xs font-semibold uppercase tracking-[0.24em] text-emerald-200/50">Choose an employee</p>
+          <p className="text-xs font-semibold uppercase tracking-[0.24em] text-emerald-200/50">Employee selector</p>
           <h2 className="mt-4 text-4xl font-semibold tracking-tight text-white">Enter through a real profile.</h2>
-          <p className="mt-4 text-sm leading-7 text-white/42">Every sphere is linked directly to the stored employee PI record. Select one to transition from the introduction into the role-intelligence workspace.</p>
+          <p className="mt-4 text-sm leading-7 text-white/42">Each orbiting profile is linked directly to the stored employee PI record. Select one to open the person × role workspace.</p>
         </div>
         <EmployeeConstellation employees={employees} onSelect={onSelectEmployee} loading={loading} loadError={loadError}/>
       </section>
 
       <section className="border-t border-white/8 px-6 py-12 text-center text-xs leading-6 text-white/24">
-        Role intelligence combines completed PI data with role/workflow evidence and occupational research frameworks including O*NET, BLS occupational requirements, NIOSH work-design and well-being research, and organization-specific process evidence. Contextual life-experience lenses are kept separate from baseline employment-fit signals. Model-routing benchmark data is provided by Artificial Analysis.
+        Role intelligence combines completed PI data with role/workflow evidence and occupational research frameworks including O*NET, BLS occupational requirements, NIOSH work-design research, and organization-specific process evidence. Contextual life-experience lenses remain separate from baseline role-interaction signals. Model-routing benchmark data is provided by Artificial Analysis.
       </section>
     </div>
   );
