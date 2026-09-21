@@ -455,7 +455,7 @@ function Landing({ employees, loading, loadError, onSelectEmployee }) {
       </section>
 
       <section className="border-t border-white/8 px-6 py-12 text-center text-xs leading-6 text-white/24">
-        Role intelligence combines completed PI data with role/workflow evidence and occupational research frameworks including O*NET, BLS occupational requirements, NIOSH work-design and well-being research, and organization-specific process evidence. Contextual life-experience lenses are kept separate from baseline employment-fit signals.
+        Role intelligence combines completed PI data with role/workflow evidence and occupational research frameworks including O*NET, BLS occupational requirements, NIOSH work-design and well-being research, and organization-specific process evidence. Contextual life-experience lenses are kept separate from baseline employment-fit signals. Model-routing benchmark data is provided by Artificial Analysis.
       </section>
     </div>
   );
