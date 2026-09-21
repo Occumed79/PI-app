@@ -307,6 +307,7 @@ app.get('/api/health', (_req, res) => {
     providerKeyCounts: diagnostics.keyCounts,
     fallbackOrder: [...PRIMARY_PROVIDER_ORDER, 'cloudflare-emergency', 'built-in-fallback'],
     providerMode: 'self-healing-capability-routing',
+    benchmarkRouting: diagnostics.artificialAnalysis,
     cloudflareMode: 'parallel-semantic-retrieval-rerank-classification-and-critic',
     models: diagnostics.models,
     modelDiscovery: {
