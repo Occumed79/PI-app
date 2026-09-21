@@ -106,6 +106,8 @@ test('Role Intelligence AI is grounded in the deterministic role engine before m
   assert.match(serverSource, /deriveAdjacentRolePull/);
   assert.match(serverSource, /AUTHORITATIVE ROLE-INTELLIGENCE GROUNDING/);
   assert.match(serverSource, /Component values describe modeled interaction/);
+  assert.match(serverSource, /capacityTensions: interaction\.capacityTensions/);
+  assert.match(serverSource, /Capacity tensions distinguish directional PI-derived work-style pull/);
   assert.match(roleUiSource, /roleId: role\.id/);
   assert.match(roleUiSource, /activeContextCategory: activeCategory/);
 });
