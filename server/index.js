@@ -307,6 +307,7 @@ function buildComparisonRoleGrounding(employee, roleId) {
     },
     factorSignals: interaction.factorSignals,
     components: interaction.components,
+    capacityTensions: interaction.capacityTensions,
     inversionRisk: interaction.inversionRisk,
     inversionSignals: interaction.inversionSignals.slice(0, 3),
     evidenceConfidence: interaction.evidenceConfidence,
