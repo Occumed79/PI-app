@@ -189,6 +189,7 @@ function buildRoleGrounding(employee, roleId) {
     directionalWorkValues: interaction.workValues,
     factorSignals: interaction.factorSignals,
     components: interaction.components,
+    capacityTensions: interaction.capacityTensions,
     inversionRisk: interaction.inversionRisk,
     inversionSignals: interaction.inversionSignals.slice(0, 4),
     evidenceConfidence: interaction.evidenceConfidence,
@@ -218,6 +219,7 @@ GROUNDING RULES:
 - The PI factors are completed source-assessment inputs.
 - Directional preferences and work values are model-derived projections from those PI factors, not separately administered measurements.
 - Component values describe modeled interaction with this role. They are not measured performance, productivity, competence, hireability, or promotion scores.
+- Capacity tensions distinguish directional PI-derived work-style pull that may be underused from role demands that may create operating pressure. They are descriptive hypotheses, not ability measures, failure predictions, staffing recommendations, or promotion signals.
 - Evidence sources marked as external analogues support role-demand modeling but do not mean the Occu-Med role is identical to the external occupation.
 - Adjacent-role pull is descriptive exploration only, not a staffing or promotion recommendation.
 - Do not expose or invent an overall employment verdict.
@@ -305,6 +307,7 @@ function buildComparisonRoleGrounding(employee, roleId) {
     },
     factorSignals: interaction.factorSignals,
     components: interaction.components,
+    capacityTensions: interaction.capacityTensions,
     inversionRisk: interaction.inversionRisk,
     inversionSignals: interaction.inversionSignals.slice(0, 3),
     evidenceConfidence: interaction.evidenceConfidence,
