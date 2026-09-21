@@ -264,3 +264,24 @@ test('sourced hover-card triggers open on keyboard focus as well as pointer hove
   assert.match(sourcedUi, /onBlurCapture/);
   assert.match(sourcedUi, /event\.currentTarget\.contains\(event\.relatedTarget\)/);
 });
+
+
+test('role landscape uses the sourced toggle group to filter fourteen roles by level', async () => {
+  const sourcedUi = await readFile(new URL('../src/components/SourcedRoleUI.jsx', import.meta.url), 'utf8');
+  assert.match(sourcedUi, /function ToggleGroup/);
+  assert.match(sourcedUi, /function ToggleGroupItem/);
+  assert.match(roleUiSource, /Role landscape filter/);
+  assert.match(roleUiSource, /<ToggleGroupItem value="analyst">Analyst<\/ToggleGroupItem>/);
+  assert.match(roleUiSource, /<ToggleGroupItem value="specialist">Specialist<\/ToggleGroupItem>/);
+  assert.match(roleUiSource, /<ToggleGroupItem value="manager">Manager<\/ToggleGroupItem>/);
+  assert.match(roleUiSource, /<ToggleGroupItem value="director">Director<\/ToggleGroupItem>/);
+  assert.match(roleUiSource, /item\.role\.level === levelFilter \|\| item\.role\.id === selectedRole\.id/);
+});
+
+test('computed role orbit radius survives the sourced hover-card wrapper', async () => {
+  const sourcedUi = await readFile(new URL('../src/components/SourcedRoleUI.jsx', import.meta.url), 'utf8');
+  assert.match(roleUiSource, /<HoverCard key=\{role\.id\} data-radius=\{displayRadius\}>/);
+  assert.match(sourcedUi, /children, \.\.\.props/);
+  assert.match(sourcedUi, /\.\.\.props/);
+  assert.match(roleUiSource, /Number\(child\.props\['data-radius'\]\) \|\| 220/);
+});
