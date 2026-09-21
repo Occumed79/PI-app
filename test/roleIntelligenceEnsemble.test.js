@@ -285,3 +285,24 @@ test('computed role orbit radius survives the sourced hover-card wrapper', async
   assert.match(sourcedUi, /\.\.\.props/);
   assert.match(roleUiSource, /Number\(child\.props\['data-radius'\]\) \|\| 220/);
 });
+
+
+test('Role Intelligence role comparison uses the sourced Shadcn table and deterministic role demands', async () => {
+  const sourcedUi = await readFile(new URL('../src/components/SourcedRoleUI.jsx', import.meta.url), 'utf8');
+  assert.match(sourcedUi, /function Table/);
+  assert.match(sourcedUi, /function TableHeader/);
+  assert.match(sourcedUi, /function TableBody/);
+  assert.match(roleUiSource, /function RoleComparison/);
+  assert.match(roleUiSource, /<TabsTrigger value="compare">Compare roles<\/TabsTrigger>/);
+  assert.match(roleUiSource, /ROLE_DIMENSIONS\.map/);
+  assert.match(roleUiSource, /selectedRole\.signature\[key\]/);
+  assert.match(roleUiSource, /comparisonRole\.signature\[key\]/);
+  assert.match(roleUiSource, /selectedInteraction\.preferences\[key\]/);
+});
+
+test('role comparison explicitly avoids selecting a winner or promotion target', () => {
+  assert.match(roleUiSource, /Compare operating environments, not people/);
+  assert.match(roleUiSource, /does not select a better role, rank positions, or make a promotion or staffing recommendation/);
+  assert.match(roleUiSource, /not a measured skill or ability/);
+  assert.doesNotMatch(roleUiSource, /Best role|Winner|Recommended role/);
+});
