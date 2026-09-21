@@ -16,6 +16,7 @@ const clamp = (value, min = 0, max = 100) => Math.max(min, Math.min(max, Number(
 const mean = values => values.length ? values.reduce((sum, value) => sum + value, 0) / values.length : 0;
 const rounded = value => Math.round(clamp(value));
 const closeness = (left, right) => clamp(100 - Math.abs(Number(left) - Number(right)));
+const ROLE_DIMENSION_LABELS = Object.fromEntries(ROLE_DIMENSIONS.map(([key, label]) => [key, label]));
 
 function bandDistance(value, [min, max]) {
   if (value < min) return min - value;
@@ -135,6 +136,43 @@ function sustainabilityComponent(preferences, role) {
   return rounded(100 - mean(penalties) * 1.7);
 }
 
+function capacityTensions(preferences, role) {
+  const signals = [];
+  const add = (kind, key, gap, rationale) => {
+    const boundedGap = rounded(gap);
+    if (boundedGap < 14) return;
+    signals.push({
+      kind,
+      key,
+      label: ROLE_DIMENSION_LABELS[key] || key,
+      gap: boundedGap,
+      personPull: rounded(preferences[key]),
+      roleDemand: rounded(role.signature[key]),
+      rationale,
+    });
+  };
+
+  for (const key of ['depth', 'exploration', 'autonomy', 'externalInteraction']) {
+    add(
+      'underused',
+      key,
+      preferences[key] - role.signature[key],
+      `The employee's directional ${String(ROLE_DIMENSION_LABELS[key] || key).toLowerCase()} pull is materially higher than this role environment requires. That may feel underused or constrained, but it is not evidence of superior ability or a recommendation to change roles.`
+    );
+  }
+
+  for (const key of ['volume', 'interruption', 'precision', 'externalInteraction', 'boundedAuthority']) {
+    add(
+      'demand-pressure',
+      key,
+      role.signature[key] - preferences[key],
+      `This role environment asks for materially more ${String(ROLE_DIMENSION_LABELS[key] || key).toLowerCase()} than the employee's directional PI-derived work-style projection suggests. That is a potential operating-pressure point, not a prediction of failure.`
+    );
+  }
+
+  return signals.sort((left, right) => right.gap - left.gap || left.label.localeCompare(right.label));
+}
+
 function inversionSignals(factors, preferences, role) {
   const signals = [];
 
@@ -230,6 +268,7 @@ export function deriveRoleInteraction(employee, role) {
     sustainabilityFit: sustainabilityComponent(preferences, role),
   };
 
+  const capacity = capacityTensions(preferences, role);
   const inversion = inversionSignals(factors, preferences, role);
   const inversionRisk = inversion.length
     ? rounded(mean(inversion.slice(0, 3).map(item => item.score)))
@@ -254,6 +293,7 @@ export function deriveRoleInteraction(employee, role) {
     adjacent,
     contrast,
     components,
+    capacityTensions: capacity,
     inversionRisk,
     inversionSignals: inversion,
     evidenceConfidence: evidenceConfidence(role),
