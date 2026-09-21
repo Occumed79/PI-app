@@ -366,7 +366,7 @@ export function CarouselNext({ className = '' }) {
 
 const HoverCardContext = React.createContext({ open: false, setOpen: () => {} });
 
-export function HoverCard({ open, defaultOpen = false, onOpenChange, children }) {
+export function HoverCard({ open, defaultOpen = false, onOpenChange, className = '', children, ...props }) {
   const [internal, setInternal] = React.useState(defaultOpen);
   const active = open ?? internal;
   const setOpen = next => {
@@ -375,7 +375,7 @@ export function HoverCard({ open, defaultOpen = false, onOpenChange, children })
   };
   return (
     <HoverCardContext.Provider value={{ open: active, setOpen }}>
-      <div className="relative inline-block">{children}</div>
+      <div className={`relative inline-block ${className}`} {...props}>{children}</div>
     </HoverCardContext.Provider>
   );
 }
