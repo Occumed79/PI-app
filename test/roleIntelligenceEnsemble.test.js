@@ -151,3 +151,12 @@ test('Role Intelligence allows the multi-model ensemble enough browser-side time
   assert.match(roleUiSource, /AbortSignal\.timeout\(150000\)/);
   assert.doesNotMatch(roleUiSource, /AbortSignal\.timeout\(55000\)/);
 });
+
+
+test('Role Intelligence shows concise material-disagreement and unsupported-leap review details', () => {
+  assert.match(roleUiSource, /Model review details/);
+  assert.match(roleUiSource, /Material disagreements/);
+  assert.match(roleUiSource, /Unsupported leaps removed/);
+  assert.match(roleUiSource, /data\.consensus\?\.materialDisagreements/);
+  assert.match(roleUiSource, /data\.consensus\?\.unsupportedLeaps/);
+});
