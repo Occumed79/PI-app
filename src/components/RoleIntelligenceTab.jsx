@@ -33,6 +33,9 @@ import {
   CommandInput,
   CommandItem,
   CommandList,
+  HoverCard,
+  HoverCardContent,
+  HoverCardTrigger,
   Progress,
   ResizableHandle,
   ResizablePanel,
@@ -230,21 +233,35 @@ function RoleOrbit({ employee, selectedRole, onSelectRole }) {
     const active = selectedRole.id === role.id;
 
     return (
-      <motion.button
-        key={role.id}
-        data-radius={displayRadius}
-        type="button"
-        onClick={() => onSelectRole(role)}
-        whileHover={{ scale: 1.06 }}
-        className={cx(
-          'max-w-[150px] rounded-full border px-3 py-2 text-xs font-medium backdrop-blur-xl transition',
-          active
-            ? 'border-white/40 bg-white text-slate-950 shadow-xl'
-            : 'border-white/12 bg-slate-950/80 text-white/58 hover:border-white/24 hover:text-white'
-        )}
-      >
-        {role.shortTitle}
-      </motion.button>
+      <HoverCard key={role.id} data-radius={displayRadius}>
+        <HoverCardTrigger>
+          <motion.button
+            type="button"
+            onClick={() => onSelectRole(role)}
+            whileHover={{ scale: 1.06 }}
+            className={cx(
+              'max-w-[150px] rounded-full border px-3 py-2 text-xs font-medium backdrop-blur-xl transition',
+              active
+                ? 'border-white/40 bg-white text-slate-950 shadow-xl'
+                : 'border-white/12 bg-slate-950/80 text-white/58 hover:border-white/24 hover:text-white'
+            )}
+          >
+            {role.shortTitle}
+          </motion.button>
+        </HoverCardTrigger>
+        <HoverCardContent>
+          <div className="text-xs font-semibold uppercase tracking-[0.16em] text-sky-200/45">{role.family} · {role.level}</div>
+          <div className="mt-2 text-base font-semibold text-white">{role.title}</div>
+          <p className="mt-2 text-xs leading-5 text-white/42">{role.purpose}</p>
+          <div className="mt-3 flex flex-wrap gap-2">
+            <Badge tone="info">{interaction.headline}</Badge>
+            <Badge>{interaction.evidenceConfidence}/100 evidence</Badge>
+          </div>
+          <div className="mt-3 text-[11px] text-white/30">
+            {interaction.aligned} PI factors inside band · {interaction.adjacent} near · {interaction.contrast} contrasting
+          </div>
+        </HoverCardContent>
+      </HoverCard>
     );
   });
 
@@ -318,6 +335,126 @@ function FactorSignals({ interaction }) {
         </Badge>
       ))}
     </div>
+  );
+}
+
+function InteractionNarrative({ role, interaction, activeCategory }) {
+  const demandPressure = interaction.capacityTensions.filter(item => item.kind === 'demand-pressure');
+  const underused = interaction.capacityTensions.filter(item => item.kind === 'underused');
+  const contextLabel = CONTEXT_CATEGORIES[activeCategory];
+
+  const metricRows = [
+    ['Behavioral', interaction.components.behavioralFit],
+    ['Task pattern', interaction.components.cognitiveTaskFit],
+    ['Work values', interaction.components.workValueFit],
+    ['Environment', interaction.components.environmentFit],
+    ['Boundaries', interaction.components.boundaryFit],
+    ['Sustainability', interaction.components.sustainabilityFit],
+  ];
+
+  const signalPanel = (items, emptyCopy) => (
+    <div className="grid h-full content-center gap-3 p-7">
+      {items.length === 0 ? (
+        <div className="rounded-[24px] border border-white/8 bg-white/[0.025] p-6 text-sm leading-7 text-white/42">
+          {emptyCopy}
+        </div>
+      ) : items.slice(0, 4).map(item => (
+        <div key={item.kind + item.key} className="rounded-[22px] border border-white/8 bg-white/[0.025] p-4">
+          <div className="flex items-center justify-between gap-4">
+            <div className="text-sm font-semibold text-white/70">{item.label}</div>
+            <Badge tone={item.kind === 'underused' ? 'info' : 'warning'}>gap {item.gap}</Badge>
+          </div>
+          <div className="mt-2 text-xs text-white/34">
+            Person pull {item.personPull} · role demand {item.roleDemand}
+          </div>
+          <p className="mt-2 text-xs leading-5 text-white/38">{item.rationale}</p>
+        </div>
+      ))}
+    </div>
+  );
+
+  const story = [
+    {
+      eyebrow: 'Baseline interaction',
+      title: interaction.headline,
+      description: 'Start with the deterministic person × role model. These component signals describe different kinds of interaction with the role environment; they are not a single employment verdict.',
+      content: (
+        <div className="grid h-full content-center gap-4 p-7">
+          <FactorSignals interaction={interaction}/>
+          <div className="mt-2 grid grid-cols-2 gap-4">
+            {metricRows.map(([label, value]) => (
+              <div key={label}>
+                <div className="mb-2 flex items-center justify-between gap-3 text-xs">
+                  <span className="text-white/35">{label}</span>
+                  <span className="font-semibold tabular-nums text-white/68">{value}</span>
+                </div>
+                <Progress value={value}/>
+              </div>
+            ))}
+          </div>
+        </div>
+      ),
+    },
+    {
+      eyebrow: 'Demand pressure',
+      title: demandPressure.length ? 'Where the role asks for more than the natural pull.' : 'No large demand-pressure signal is present.',
+      description: demandPressure[0]?.rationale || 'No modeled role demand exceeds the employee’s PI-derived directional work-style projection by the threshold used for this layer.',
+      content: signalPanel(demandPressure, 'No large demand-pressure signal is present for this role under the current deterministic thresholds.'),
+    },
+    {
+      eyebrow: 'Underused capacity',
+      title: underused.length ? 'Where the role may leave natural operating pull unused.' : 'No large underuse signal is present.',
+      description: underused[0]?.rationale || 'No modeled directional work-style pull exceeds the role demand by the threshold used for this layer.',
+      content: signalPanel(underused, 'No large underuse signal is present for this role under the current deterministic thresholds.'),
+    },
+    {
+      eyebrow: 'Strength inversion',
+      title: interaction.inversionSignals.length ? 'A strength can become friction when the environment pushes it too far.' : 'No material strength-inversion signal is present.',
+      description: interaction.inversionSignals[0]?.rationale || 'The current deterministic model did not surface a material strength-inversion condition for this person × role combination.',
+      content: (
+        <div className="grid h-full content-center gap-3 p-7">
+          {interaction.inversionSignals.length === 0 ? (
+            <div className="rounded-[24px] border border-white/8 bg-white/[0.025] p-6 text-sm leading-7 text-white/42">
+              No material strength-inversion signal is present under the current model.
+            </div>
+          ) : interaction.inversionSignals.slice(0, 4).map(signal => (
+            <div key={signal.id} className="rounded-[22px] border border-white/8 bg-white/[0.025] p-4">
+              <div className="flex items-center justify-between gap-4">
+                <div className="text-sm font-semibold text-white/70">{signal.label}</div>
+                <Badge tone="warning">signal {signal.score}</Badge>
+              </div>
+              <p className="mt-2 text-xs leading-5 text-white/38">{signal.rationale}</p>
+            </div>
+          ))}
+        </div>
+      ),
+    },
+    {
+      eyebrow: 'Life-experience refraction',
+      title: `${contextLabel} changes the question, not the baseline.`,
+      description: 'The active context lens is kept outside baseline compatibility. It can help explain support, strain, masking, or expression under different operating conditions without changing the person × role calculation.',
+      content: (
+        <div className="grid h-full place-items-center p-7">
+          <PatternRefraction
+            source={<SignatureBand role={role}/>}
+            activeCategory={activeCategory}
+            categoryOrder={CONTEXT_CATEGORY_ORDER}
+            strength={42}
+            className="min-h-[360px] w-full"
+          />
+        </div>
+      ),
+    },
+  ];
+
+  return (
+    <section className="mt-10">
+      <div className="mb-5">
+        <div className="text-xs font-semibold uppercase tracking-[0.2em] text-white/28">Person × role story</div>
+        <div className="mt-2 text-sm text-white/40">Scroll the sourced reveal pattern to move from baseline interaction through pressure, underuse, inversion, and context.</div>
+      </div>
+      <StickyScrollReveal content={story} className="max-h-[76vh]"/>
+    </section>
   );
 }
 
@@ -903,6 +1040,7 @@ function Workspace({ employee, onExit }) {
           <main className="min-w-0">
             <RoleQuickSwitcher selectedRole={selectedRole} onSelectRole={setSelectedRole}/>
             <RoleOrbit employee={employee} selectedRole={selectedRole} onSelectRole={setSelectedRole}/>
+            <InteractionNarrative role={selectedRole} interaction={interaction} activeCategory={activeCategory}/>
 
             <section className="mx-auto max-w-5xl px-2 py-12">
               <AnimatePresence mode="wait">
