@@ -184,6 +184,7 @@ function localPlan(query) {
     complexity: complex ? 'high' : text.length > 90 || comparisonSignals ? 'medium' : 'low',
     needsCritic: complex,
     needsSemanticRetrieval: true,
+    preferredPrimary: complex ? 'groq' : 'gemini',
     reason: 'Local routing fallback.',
   };
 }
@@ -198,9 +199,14 @@ Return only JSON with:
   "complexity": "low" | "medium" | "high",
   "needsCritic": boolean,
   "needsSemanticRetrieval": boolean,
+  "preferredPrimary": "gemini" | "groq",
   "reason": string
 }
-Use "high" when the request compares multiple behavioral frameworks, asks for contradictions or alternative explanations, involves several context layers, or needs careful multi-step interpretation. Do not infer any health, disability, identity, or life circumstance that the user did not explicitly state.`,
+Use "high" when the request compares multiple behavioral frameworks, asks for contradictions or alternative explanations, involves several context layers, or needs careful multi-step interpretation.
+Choose "groq" when the request primarily benefits from deliberate multi-step reasoning, structured comparison, contradiction analysis, or dense framework synthesis.
+Choose "gemini" when the request primarily benefits from conversational synthesis, explanation, broader context handling, or ordinary follow-up dialogue.
+This is only a routing preference; the backend will automatically fail over to the other provider if needed.
+Do not infer any health, disability, identity, or life circumstance that the user did not explicitly state.`,
       messages: [{
         role: 'user',
         content: `Question: ${query}\n\nSemantically relevant lenses: ${lenses.map(item => item.lens).join(', ') || 'not yet available'}`,
@@ -217,6 +223,11 @@ Use "high" when the request compares multiple behavioral frameworks, asks for co
         complexity,
         needsCritic: Boolean(parsed?.needsCritic ?? complexity === 'high'),
         needsSemanticRetrieval: parsed?.needsSemanticRetrieval !== false,
+        preferredPrimary: ['gemini', 'groq'].includes(parsed?.preferredPrimary)
+          ? parsed.preferredPrimary
+          : complexity === 'high'
+            ? 'groq'
+            : 'gemini',
         reason: String(parsed?.reason || ''),
       },
       metadata: {
