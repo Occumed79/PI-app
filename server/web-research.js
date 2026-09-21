@@ -217,6 +217,16 @@ export function webResearchConfigured() {
   return providers.tinyfish || providers.keenable;
 }
 
+export function getWebResearchDiagnostics() {
+  const providers = configuredProviders();
+  return {
+    configured: providers.tinyfish || providers.keenable,
+    providers,
+    mode: 'conditional-parallel-search',
+    privacy: 'employee identifiers and stored assessment data are excluded from search queries',
+  };
+}
+
 export async function buildExternalWebResearch({
   query,
   employees = [],
