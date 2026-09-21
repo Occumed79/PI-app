@@ -227,3 +227,13 @@ test('scene-aware prompts keep underused capacity descriptive rather than prescr
   assert.match(roleUiSource, /underused-capacity signals/);
   assert.match(roleUiSource, /without treating them as measures of superior ability or as a recommendation to move roles/);
 });
+
+
+test('Role Intelligence clears stale AI context when the employee or role changes', () => {
+  assert.match(roleUiSource, /useEffect\(\(\) => \{/);
+  assert.match(roleUiSource, /setMessages\(\[\]\)/);
+  assert.match(roleUiSource, /setAnalysisMeta\(null\)/);
+  assert.match(roleUiSource, /employee\?\.id, employee\?\.name, role\.id/);
+  assert.match(roleUiSource, /<Badge>\{role\.shortTitle\}<\/Badge>/);
+  assert.match(roleUiSource, /<Badge tone="info">\{sceneLabel\}<\/Badge>/);
+});
