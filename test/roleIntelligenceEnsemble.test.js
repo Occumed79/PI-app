@@ -5,6 +5,8 @@ import { readFile } from 'node:fs/promises';
 const managerSource = await readFile(new URL('../server/ai-provider-manager.js', import.meta.url), 'utf8');
 const serverSource = await readFile(new URL('../server/index.js', import.meta.url), 'utf8');
 const roleUiSource = await readFile(new URL('../src/components/RoleIntelligenceTab.jsx', import.meta.url), 'utf8');
+const roleEngineSource = await readFile(new URL('../src/data/roleIntelligence.js', import.meta.url), 'utf8');
+const roleCatalogSource = await readFile(new URL('../src/data/roleIntelligenceRoles.js', import.meta.url), 'utf8');
 
 test('Role Intelligence uses two independent specialist analyzers before synthesis', () => {
   assert.match(managerSource, /Promise\.allSettled\(\[\s*callNvidiaRoleReasoner/);
@@ -35,4 +37,32 @@ test('Role Intelligence UI calls the dedicated ensemble endpoint', () => {
 
 test('sensitive life context is explicitly barred from baseline role compatibility in analyzer instructions', () => {
   assert.match(managerSource, /Do not use health, disability, family, immigration, identity, neurodivergence/);
+});
+
+
+test('v2 role catalog removes hard-coded adjacent arrays and adds leadership roles', () => {
+  assert.doesNotMatch(roleCatalogSource, /adjacent:\s*\[/);
+  assert.match(roleCatalogSource, /id: 'examqa-manager'/);
+  assert.match(roleCatalogSource, /id: 'examqa-director'/);
+  assert.match(roleCatalogSource, /id: 'provider-relations-manager'/);
+  assert.match(roleCatalogSource, /id: 'scheduling-manager'/);
+  assert.match(roleCatalogSource, /id: 'network-management-director'/);
+});
+
+test('v2 engine computes multi-layer signals instead of PI-band counts alone', () => {
+  assert.match(roleEngineSource, /behavioralFit/);
+  assert.match(roleEngineSource, /cognitiveTaskFit/);
+  assert.match(roleEngineSource, /workValueFit/);
+  assert.match(roleEngineSource, /environmentFit/);
+  assert.match(roleEngineSource, /boundaryFit/);
+  assert.match(roleEngineSource, /sustainabilityFit/);
+  assert.match(roleEngineSource, /inversionRisk/);
+  assert.match(roleEngineSource, /evidenceConfidence/);
+});
+
+test('adjacent-role pull and orbit radius are computed from the engine', () => {
+  assert.match(roleEngineSource, /export function deriveAdjacentRolePull/);
+  assert.match(roleEngineSource, /export function orbitRadiusForInteraction/);
+  assert.match(roleUiSource, /deriveAdjacentRolePull/);
+  assert.doesNotMatch(roleUiSource, /selectedRole\.adjacent/);
 });
