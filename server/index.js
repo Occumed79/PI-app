@@ -478,6 +478,7 @@ app.post('/api/ai/scenario-analysis', async (req, res) => {
     temperature: 0.2,
     maxTokens: 1800,
     jsonMode: true,
+    preferredProvider: intelligence.plan?.preferredPrimary,
   });
 
   if (!attempt.reply) {
@@ -578,6 +579,7 @@ app.post('/api/ai-chat', async (req, res) => {
     temperature: 0.45,
     maxTokens: 1800,
     jsonMode: false,
+    preferredProvider: isHealthProbe ? null : intelligence.plan?.preferredPrimary,
   });
 
   if (!attempt.reply) {
