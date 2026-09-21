@@ -229,7 +229,7 @@ Do not infer any health, disability, identity, or life circumstance that the use
         complexity,
         needsCritic: Boolean(parsed?.needsCritic ?? complexity === 'high'),
         needsSemanticRetrieval: parsed?.needsSemanticRetrieval !== false,
-        needsWebResearch: Boolean(parsed?.needsWebResearch),
+        needsWebResearch: Boolean(parsed?.needsWebResearch || localPlan(query).needsWebResearch),
         preferredPrimary: ['gemini', 'groq'].includes(parsed?.preferredPrimary)
           ? parsed.preferredPrimary
           : complexity === 'high'
