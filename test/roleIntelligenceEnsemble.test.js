@@ -145,3 +145,9 @@ test('Role Intelligence UI labels model agreement rather than employee suitabili
   assert.match(roleUiSource, /material disagreement/);
   assert.match(roleUiSource, /data\.consensus\?\.agreement/);
 });
+
+
+test('Role Intelligence allows the multi-model ensemble enough browser-side time to finish', () => {
+  assert.match(roleUiSource, /AbortSignal\.timeout\(150000\)/);
+  assert.doesNotMatch(roleUiSource, /AbortSignal\.timeout\(55000\)/);
+});
