@@ -295,21 +295,33 @@ const employeeSelect = `
 `;
 
 app.get('/api/health', (_req, res) => {
+  const diagnostics = getProviderDiagnostics();
   res.json({
     ok: true,
     service: 'pi-crosswalk-intelligence',
     environment: process.env.NODE_ENV || 'development',
     databaseConfigured: Boolean(process.env.DATABASE_URL),
-    aiProvider,
-    aiConfigured: getAiConfigured(),
-    providerConfigured: configuredProviderMap(),
-    fallbackOrder: getFallbackOrder(),
-    models: {
-      gemini: process.env.GEMINI_MODEL || 'gemini-2.0-flash',
-      groq: process.env.GROQ_MODEL || 'llama-3.1-8b-instant',
-      openrouter: process.env.OPENROUTER_MODEL || 'openrouter/free',
+    aiConfigured: PRIMARY_PROVIDER_ORDER.some(provider => diagnostics.configured[provider]) || diagnostics.configured.cloudflare,
+    providerConfigured: diagnostics.configured,
+    providerKeyCounts: diagnostics.keyCounts,
+    fallbackOrder: [...PRIMARY_PROVIDER_ORDER, 'cloudflare-emergency', 'built-in-fallback'],
+    providerMode: 'self-healing-capability-routing',
+    cloudflareMode: 'parallel-semantic-retrieval-rerank-classification-and-critic',
+    models: diagnostics.models,
+    modelDiscovery: {
+      discoveredAt: diagnostics.discoveredAt,
+      errors: diagnostics.discoveryErrors,
     },
   });
+});
+
+app.post('/api/ai/provider-refresh', async (_req, res) => {
+  try {
+    const diagnostics = await refreshProviderCapabilities({ force: true });
+    res.json({ ok: true, diagnostics });
+  } catch (error) {
+    res.status(500).json({ ok: false, message: sanitizeProviderError(error.message) });
+  }
 });
 
 app.get('/api/db/health', async (_req, res) => {
@@ -441,36 +453,194 @@ app.post('/api/ai/scenario-analysis', async (req, res) => {
   if (!scenario || typeof scenario !== 'string' || scenario.trim().length < 8) {
     return res.status(400).json({ ok: false, message: 'A scenario question of at least 8 characters is required.' });
   }
-  const aiAttempt = await callAiForScenario({ scenario: scenario.trim(), employeeProfile: employeeProfile || {}, analysisGoal: analysisGoal || '' });
-  const analysis = aiAttempt.result || fallbackScenarioAnalysis({ employeeProfile: employeeProfile || {} });
-  res.json({ ok: true, source: aiAttempt.result ? aiAttempt.provider : 'fallback', providerErrors: aiAttempt.errors || [], analysis });
+
+  const query = scenario.trim();
+  let intelligence = { plan: { complexity: 'medium', needsCritic: false }, context: '', metadata: { used: false }, lenses: [] };
+  try {
+    intelligence = await buildCloudflareIntelligence({
+      query,
+      employees: [employeeProfileAsEmployee(employeeProfile || {})],
+    });
+  } catch (error) {
+    intelligence.metadata = { used: false, warning: sanitizeProviderError(error.message) };
+  }
+
+  const prompt = scenarioPrompt({
+    scenario: query,
+    employeeProfile: employeeProfile || {},
+    analysisGoal: analysisGoal || '',
+    cloudflareContext: intelligence.context,
+  });
+
+  let attempt = await callPrimaryPool({
+    system: 'Return only valid JSON and preserve the PI-baseline, explicit-context-overlay, and crosswalk distinction.',
+    messages: [{ role: 'user', content: prompt }],
+    temperature: 0.2,
+    maxTokens: 1800,
+    jsonMode: true,
+  });
+
+  if (!attempt.reply) {
+    const emergency = await cloudflareEmergencyReply({
+      system: 'Return only valid JSON and preserve the PI-baseline, explicit-context-overlay, and crosswalk distinction.',
+      messages: [{ role: 'user', content: prompt }],
+      jsonMode: true,
+      maxTokens: 1800,
+    });
+    if (emergency?.reply) attempt = { ...emergency, errors: [...(attempt.errors || []), ...(emergency.errors || [])] };
+    else attempt.errors = [...(attempt.errors || []), ...(emergency?.errors || [])];
+  }
+
+  let finalReply = attempt.reply;
+  let criticApplied = false;
+  let criticMetadata = null;
+
+  if (finalReply && intelligence.plan?.needsCritic) {
+    const refined = await refineWithCritic({
+      primaryProvider: attempt.provider,
+      primaryModel: attempt.model,
+      system: 'Return only valid JSON and preserve the PI-baseline, explicit-context-overlay, and crosswalk distinction.',
+      messages: [{ role: 'user', content: prompt }],
+      query,
+      draft: finalReply,
+      semanticContext: intelligence.context,
+      jsonMode: true,
+      maxTokens: 1800,
+    });
+    finalReply = refined.reply;
+    criticApplied = refined.criticApplied;
+    criticMetadata = refined.criticMetadata;
+  }
+
+  let analysis = null;
+  if (finalReply) {
+    try {
+      analysis = parseJsonText(finalReply);
+    } catch {
+      analysis = null;
+    }
+  }
+  analysis ||= fallbackScenarioAnalysis({ employeeProfile: employeeProfile || {} });
+
+  res.json({
+    ok: true,
+    source: finalReply ? (attempt.provider || 'cloudflare') : 'fallback',
+    model: attempt.model || null,
+    providerErrors: attempt.errors || [],
+    cloudflare: {
+      ...intelligence.metadata,
+      lenses: intelligence.lenses,
+      plan: intelligence.plan,
+      criticApplied,
+      critic: criticMetadata,
+    },
+    analysis,
+  });
 });
 
 app.post('/api/ai-chat', async (req, res) => {
-  const { system, messages } = req.body || {};
+  const { system, messages, employees } = req.body || {};
   if (!Array.isArray(messages)) return res.status(400).json({ ok: false, message: 'messages array required' });
 
-  const providerErrors = [];
   const compactMessages = compactConversation(messages, 16);
   if (!compactMessages.some(message => message.role === 'user')) {
     return res.status(400).json({ ok: false, message: 'At least one user message is required.' });
   }
 
-  for (const provider of getProviderOrder()) {
+  const query = latestUserText(compactMessages);
+  const isHealthProbe = String(system || '').includes('provider health probe');
+  let intelligence = {
+    plan: { complexity: 'low', needsCritic: false, needsSemanticRetrieval: false, reason: 'Health probe or Cloudflare unavailable.' },
+    lenses: [],
+    context: '',
+    metadata: { used: false },
+  };
+
+  if (!isHealthProbe) {
     try {
-      const reply = await chatProviderCallers[provider]({ system, messages: compactMessages });
-      if (reply) return res.json({ ok: true, source: provider, reply });
-      providerErrors.push(`${provider}: API key is not configured.`);
+      intelligence = await buildCloudflareIntelligence({
+        query,
+        employees: safeArray(employees, 50),
+      });
     } catch (error) {
-      providerErrors.push(`${provider}: ${sanitizeProviderError(error.message)}`);
+      intelligence.metadata = { used: false, warning: sanitizeProviderError(error.message) };
     }
+  }
+
+  const augmentedSystem = [
+    String(system || '').trim(),
+    intelligence.context,
+  ].filter(Boolean).join('\n\n');
+
+  let attempt = await callPrimaryPool({
+    system: augmentedSystem,
+    messages: compactMessages,
+    temperature: 0.45,
+    maxTokens: 1800,
+    jsonMode: false,
+  });
+
+  if (!attempt.reply) {
+    const emergency = await cloudflareEmergencyReply({
+      system: augmentedSystem,
+      messages: compactMessages,
+      maxTokens: 1800,
+    });
+    if (emergency?.reply) attempt = { ...emergency, errors: [...(attempt.errors || []), ...(emergency.errors || [])] };
+    else attempt.errors = [...(attempt.errors || []), ...(emergency?.errors || [])];
+  }
+
+  if (!attempt.reply) {
+    return res.json({
+      ok: true,
+      source: 'fallback',
+      providerErrors: attempt.errors || [],
+      cloudflare: {
+        ...intelligence.metadata,
+        lenses: intelligence.lenses,
+        plan: intelligence.plan,
+        criticApplied: false,
+      },
+      reply: fallbackChatReply({ messages: compactMessages, providerErrors: attempt.errors || [] }),
+    });
+  }
+
+  let finalReply = attempt.reply;
+  let finalModel = attempt.model;
+  let criticApplied = false;
+  let criticMetadata = null;
+
+  if (!isHealthProbe && intelligence.plan?.needsCritic) {
+    const refined = await refineWithCritic({
+      primaryProvider: attempt.provider,
+      primaryModel: attempt.model,
+      system: augmentedSystem,
+      messages: compactMessages,
+      query,
+      draft: attempt.reply,
+      semanticContext: intelligence.context,
+      maxTokens: 1800,
+    });
+    finalReply = refined.reply;
+    finalModel = refined.model || finalModel;
+    criticApplied = refined.criticApplied;
+    criticMetadata = refined.criticMetadata;
   }
 
   res.json({
     ok: true,
-    source: 'fallback',
-    providerErrors,
-    reply: fallbackChatReply({ messages: compactMessages, providerErrors }),
+    source: attempt.provider,
+    model: finalModel,
+    keySlot: attempt.keySlot || null,
+    providerErrors: attempt.errors || [],
+    cloudflare: {
+      ...intelligence.metadata,
+      lenses: intelligence.lenses,
+      plan: intelligence.plan,
+      criticApplied,
+      critic: criticMetadata,
+    },
+    reply: finalReply,
   });
 });
 
@@ -551,4 +721,15 @@ app.get('*', (_req, res) => res.sendFile(path.join(distPath, 'index.html')));
 
 app.listen(port, () => {
   console.log(`PI Crosswalk Intelligence server running on port ${port}`);
+  refreshProviderCapabilities({ force: true })
+    .then(diagnostics => {
+      console.log('AI provider capabilities refreshed:', {
+        configured: diagnostics.configured,
+        keyCounts: diagnostics.keyCounts,
+        models: diagnostics.models,
+      });
+    })
+    .catch(error => {
+      console.warn('Initial AI provider capability refresh failed:', sanitizeProviderError(error.message));
+    });
 });
