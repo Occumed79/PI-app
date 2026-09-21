@@ -14,6 +14,7 @@ import SiriOrb from './smoothui/SiriOrb.jsx';
 import RoleVoiceWave from './RoleVoiceWave.jsx';
 import StickyScrollReveal from './StickyScrollReveal.jsx';
 import OrbitingCircles from './OrbitingCircles.jsx';
+import PatternRefraction from './PatternRefraction.jsx';
 import {
   Accordion,
   AccordionContent,
@@ -265,13 +266,15 @@ function FactorSignals({ interaction }) {
 }
 
 function LifeLensStrip({ role, activeCategory, onSelect }) {
+  const refractionSource = useMemo(() => <SignatureBand role={role}/>, [role]);
+
   return (
     <section>
       <div className="mb-8 max-w-3xl">
         <p className="text-xs font-semibold uppercase tracking-[0.22em] text-fuchsia-200/55">Life experience refraction</p>
         <h3 className="mt-3 text-3xl font-semibold tracking-tight text-white">The person stays the same. The operating conditions do not.</h3>
         <p className="mt-4 text-sm leading-7 text-white/46">
-          These lenses do not change the baseline role-alignment model. They show how context can amplify, suppress, mask, or distort performance inside a specific job environment.
+          These lenses do not change the baseline role-interaction model. The visual refraction is an explanatory metaphor for how operating conditions can amplify, suppress, mask, or distort the expression of the same underlying pattern.
         </p>
       </div>
 
@@ -288,21 +291,53 @@ function LifeLensStrip({ role, activeCategory, onSelect }) {
 
         {CONTEXT_CATEGORY_ORDER.map(category => (
           <TabsContent key={category} value={category}>
-            <div className="grid gap-8 rounded-[28px] border border-white/8 bg-white/[0.02] p-6 lg:grid-cols-[1.2fr_.8fr]">
-              <div>
-                <div className="text-lg font-semibold text-white">{CONTEXT_CATEGORIES[category]}</div>
-                <p className="mt-3 max-w-3xl text-base leading-8 text-white/58">{LENS_COPY[category]}</p>
-                <p className="mt-4 text-sm leading-7 text-white/38">
-                  In <span className="text-white/70">{role.title}</span>, the most relevant operating conditions include
-                  volume {role.signature.volume}, interruption {role.signature.interruption}, autonomy {role.signature.autonomy},
-                  precision {role.signature.precision}, and boundary rigidity {role.signature.boundedAuthority}.
-                </p>
-              </div>
-              <div>
-                <div className="text-xs font-semibold uppercase tracking-[0.18em] text-white/30">How to use this lens</div>
-                <p className="mt-3 text-sm leading-6 text-white/36">
-                  Treat the lens as a hypothetical operating-condition test. It does not reveal or assume that the employee has this life experience, and it never changes the baseline person × role model.
-                </p>
+            <div className="grid gap-7 lg:grid-cols-[1.08fr_.92fr]">
+              <PatternRefraction
+                source={refractionSource}
+                activeCategory={category}
+                categoryOrder={CONTEXT_CATEGORY_ORDER}
+                strength={42}
+                className="min-h-[360px]"
+              />
+
+              <div className="rounded-[28px] border border-white/8 bg-white/[0.02] p-6">
+                <div className="flex flex-wrap items-center justify-between gap-3">
+                  <div className="text-lg font-semibold text-white">{CONTEXT_CATEGORIES[category]}</div>
+                  <Badge tone="info">Baseline unchanged</Badge>
+                </div>
+
+                <p className="mt-4 max-w-3xl text-base leading-8 text-white/58">{LENS_COPY[category]}</p>
+
+                <Accordion type="single" defaultValue="conditions" className="mt-6">
+                  <AccordionItem value="conditions">
+                    <AccordionTrigger>Relevant operating conditions</AccordionTrigger>
+                    <AccordionContent>
+                      <p>
+                        In <span className="text-white/70">{role.title}</span>, the modeled conditions include
+                        volume {role.signature.volume}, interruption {role.signature.interruption}, autonomy {role.signature.autonomy},
+                        precision {role.signature.precision}, and boundary rigidity {role.signature.boundedAuthority}.
+                      </p>
+                    </AccordionContent>
+                  </AccordionItem>
+
+                  <AccordionItem value="use">
+                    <AccordionTrigger>How to use this lens</AccordionTrigger>
+                    <AccordionContent>
+                      <p>
+                        Treat this as a hypothetical operating-condition test. It does not reveal or assume that the employee has this life experience, and it never changes the baseline person × role calculation.
+                      </p>
+                    </AccordionContent>
+                  </AccordionItem>
+
+                  <AccordionItem value="visual">
+                    <AccordionTrigger>What the refraction visual means</AccordionTrigger>
+                    <AccordionContent>
+                      <p>
+                        The same role signature is rendered through Figma's Pattern Refraction effect. The deformation is illustrative only; the underlying role vector, PI factors, compatibility components, evidence confidence, and adjacent-role calculations remain unchanged.
+                      </p>
+                    </AccordionContent>
+                  </AccordionItem>
+                </Accordion>
               </div>
             </div>
           </TabsContent>
