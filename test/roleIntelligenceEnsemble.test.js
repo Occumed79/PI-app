@@ -59,6 +59,9 @@ test('v2 engine computes multi-layer signals instead of PI-band counts alone', (
   assert.match(roleEngineSource, /sustainabilityFit/);
   assert.match(roleEngineSource, /inversionRisk/);
   assert.match(roleEngineSource, /evidenceConfidence/);
+  assert.match(roleEngineSource, /capacityTensions/);
+  assert.match(roleEngineSource, /underused/);
+  assert.match(roleEngineSource, /demand-pressure/);
 });
 
 test('adjacent-role pull and orbit radius are computed from the engine', () => {
@@ -186,4 +189,22 @@ test("Role Intelligence opens on the employee's current modeled role when the st
   assert.match(roleUiSource, /function initialRoleForEmployee/);
   assert.match(roleUiSource, /employee\?\.position/);
   assert.match(roleUiSource, /useState\(\(\) => initialRoleForEmployee\(employee\)\)/);
+});
+
+
+test('workspace uses the sourced sticky reveal for the cinematic person × role story', () => {
+  assert.match(roleUiSource, /function InteractionNarrative/);
+  assert.match(roleUiSource, /Person × role story/);
+  assert.match(roleUiSource, /Underused capacity/);
+  assert.match(roleUiSource, /Demand pressure/);
+  assert.match(roleUiSource, /Strength inversion/);
+  assert.match(roleUiSource, /Life-experience refraction/);
+  assert.match(roleUiSource, /<StickyScrollReveal content={story}/);
+});
+
+test('role orbit uses sourced HoverCard previews before selection', () => {
+  assert.match(roleUiSource, /<HoverCard/);
+  assert.match(roleUiSource, /<HoverCardTrigger/);
+  assert.match(roleUiSource, /<HoverCardContent/);
+  assert.match(roleUiSource, /interaction\.evidenceConfidence/);
 });
