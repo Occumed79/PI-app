@@ -180,3 +180,10 @@ test('public evidence sources expose their source links in Role Intelligence', (
   assert.match(roleUiSource, /Open source/);
   assert.match(roleUiSource, /target="_blank"/);
 });
+
+
+test("Role Intelligence opens on the employee's current modeled role when the stored position matches", () => {
+  assert.match(roleUiSource, /function initialRoleForEmployee/);
+  assert.match(roleUiSource, /employee\?\.position/);
+  assert.match(roleUiSource, /useState\(\(\) => initialRoleForEmployee\(employee\)\)/);
+});
