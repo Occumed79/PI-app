@@ -1,342 +1,35 @@
 import { PI_PROFILES } from './profiles.js';
+import {
+  FACTOR_META,
+  ROLE_BY_ID,
+  ROLE_DIMENSIONS,
+  ROLE_INTELLIGENCE_ROLES,
+} from './roleIntelligenceRoles.js';
+import {
+  evidenceConfidence,
+  evidenceForRole,
+} from './roleIntelligenceSources.js';
 
-export const ROLE_INTELLIGENCE_ROLES = [
-  {
-    id: 'examqa-analyst',
-    title: 'ExamQA Analyst',
-    shortTitle: 'ExamQA',
-    family: 'Quality & Review',
-    purpose: 'Maintain a low defect rate across a high volume of examination records by applying established requirements consistently, identifying exceptions, and moving cases forward.',
-    behavioralBands: {
-      dominance: [30, 62],
-      extraversion: [18, 55],
-      patience: [52, 88],
-      formality: [68, 96],
-    },
-    signature: {
-      volume: 94,
-      depth: 48,
-      exploration: 24,
-      autonomy: 42,
-      precision: 95,
-      externalInteraction: 38,
-      interruption: 78,
-      boundedAuthority: 88,
-    },
-    alignment: [
-      'Consistency and accuracy across a large moving queue matter more than maximum depth on every case.',
-      'Strong pattern recognition is useful when it helps distinguish routine completion issues from true exceptions.',
-      'The role rewards people who can hand work off cleanly when the substantive judgment belongs elsewhere.',
-    ],
-    friction: [
-      'Investigative drive can become frustrating when additional research is outside the analyst’s scope.',
-      'High personal ownership can make passive or waiting cases feel unfinished even after the analyst has done what the process requires.',
-      'Frequent interruption can increase resumption cost in a role that still expects stable accuracy at volume.',
-    ],
-    inversion: 'Thoroughness is an asset until it becomes unnecessary investigation that slows throughput or crosses the boundary into Exam Review.',
-    adjacent: ['exam-review', 'provider-relations', 'fitness-for-duty'],
-  },
-  {
-    id: 'exam-review',
-    title: 'Subject Matter Expert / Exam Review',
-    shortTitle: 'Exam Review',
-    family: 'Quality & Review',
-    purpose: 'Interpret complete findings against applicable occupational, deployment, and employer standards and make the substantive fitness recommendation.',
-    behavioralBands: {
-      dominance: [42, 74],
-      extraversion: [18, 55],
-      patience: [42, 80],
-      formality: [62, 96],
-    },
-    signature: {
-      volume: 58,
-      depth: 96,
-      exploration: 82,
-      autonomy: 78,
-      precision: 94,
-      externalInteraction: 34,
-      interruption: 48,
-      boundedAuthority: 42,
-    },
-    alignment: [
-      'The role rewards synthesis, evidence evaluation, and individualized interpretation rather than simple completion checking.',
-      'Depth is useful when it resolves a substantive medical or occupational question and supports a defensible determination.',
-      'Expertise must still operate inside published standards and organizational review boundaries.',
-    ],
-    friction: [
-      'Deep analysis can become analysis paralysis when the available evidence is already sufficient for a defensible conclusion.',
-      'A strong preference for theoretical completeness can conflict with the need to make a decision under imperfect information.',
-      'Independent expertise can create inconsistency if it drifts away from the governing standard or shared review methodology.',
-    ],
-    inversion: 'Intellectual depth is an asset until the pursuit of a perfect answer delays a decision that the evidence already supports.',
-    adjacent: ['examqa-analyst', 'fitness-for-duty'],
-  },
-  {
-    id: 'network-management',
-    title: 'Network Management Analyst',
-    shortTitle: 'Network',
-    family: 'Provider Network',
-    purpose: 'Solve provider coverage gaps, evaluate capabilities, develop pricing relationships, and translate operational requirements into workable provider arrangements.',
-    behavioralBands: {
-      dominance: [58, 90],
-      extraversion: [38, 78],
-      patience: [18, 58],
-      formality: [34, 76],
-    },
-    signature: {
-      volume: 68,
-      depth: 78,
-      exploration: 96,
-      autonomy: 88,
-      precision: 72,
-      externalInteraction: 84,
-      interruption: 72,
-      boundedAuthority: 38,
-    },
-    alignment: [
-      'Open-ended research, persistence, and creative pathway finding are part of the work rather than deviations from it.',
-      'The role rewards comfort with incomplete information, external dependency, and irregular feedback cycles.',
-      'Commercial, clinical, geographic, and workflow information often need to be synthesized into one operational answer.',
-    ],
-    friction: [
-      'A high need for closure can be tested by provider nonresponse and long external dependency chains.',
-      'Fast independent problem solving can create downstream friction if pricing, protocol, or handoff details are not documented.',
-      'The work can swing between deep research and urgent interruption, making prioritization a recurring demand.',
-    ],
-    inversion: 'Initiative is an asset until independent improvisation outruns the documentation and cross-functional coordination needed downstream.',
-    adjacent: ['client-accounts', 'operations-director'],
-  },
-  {
-    id: 'provider-relations',
-    title: 'Provider Relations Analyst',
-    shortTitle: 'Provider Relations',
-    family: 'Provider Operations',
-    purpose: 'Confirm attendance, obtain records, pursue missing or amended documentation, and maintain the provider-side follow-up needed to complete cases.',
-    behavioralBands: {
-      dominance: [30, 64],
-      extraversion: [50, 84],
-      patience: [46, 82],
-      formality: [58, 90],
-    },
-    signature: {
-      volume: 90,
-      depth: 38,
-      exploration: 34,
-      autonomy: 48,
-      precision: 82,
-      externalInteraction: 92,
-      interruption: 88,
-      boundedAuthority: 78,
-    },
-    alignment: [
-      'Persistence, response tracking, and repeated external follow-up are central to the job.',
-      'Success depends on maintaining momentum without losing accuracy across many provider interactions.',
-      'The role benefits from people who can distinguish a routine follow-up from an issue that needs escalation.',
-    ],
-    friction: [
-      'Low tolerance for repetitive outreach can make nonresponse-heavy queues unusually draining.',
-      'Strong ownership can turn third-party delays into personally felt unfinished work.',
-      'High social energy helps with outreach but does not remove the need for documentation discipline.',
-    ],
-    inversion: 'Persistence is an asset until it becomes overpursuit on cases that should be escalated, paused, or handed off.',
-    adjacent: ['scheduling', 'examqa-analyst', 'client-accounts'],
-  },
-  {
-    id: 'scheduling',
-    title: 'Scheduling Analyst',
-    shortTitle: 'Scheduling',
-    family: 'Operations',
-    purpose: 'Coordinate employee and provider availability, secure appointments, communicate logistics, and recover missed appointments quickly.',
-    behavioralBands: {
-      dominance: [28, 62],
-      extraversion: [52, 86],
-      patience: [50, 84],
-      formality: [56, 90],
-    },
-    signature: {
-      volume: 94,
-      depth: 26,
-      exploration: 30,
-      autonomy: 44,
-      precision: 78,
-      externalInteraction: 96,
-      interruption: 96,
-      boundedAuthority: 82,
-    },
-    alignment: [
-      'The job rewards rapid coordination, clear communication, and reliable sequencing across two external parties.',
-      'High throughput and frequent interruption make fast resumption and visible status management important.',
-      'Consistency matters because small logistical errors can create downstream delays for every other department.',
-    ],
-    friction: [
-      'People who need long uninterrupted focus blocks may find the continuous coordination rhythm draining.',
-      'A strong desire to solve every exception personally can create delays when escalation would be faster.',
-      'High urgency without enough structure can produce appointment or communication defects.',
-    ],
-    inversion: 'Responsiveness is an asset until reacting to every incoming change prevents deliberate prioritization of the queue.',
-    adjacent: ['provider-relations', 'client-accounts', 'operations-director'],
-  },
-  {
-    id: 'client-accounts',
-    title: 'Client Account Manager',
-    shortTitle: 'Client Accounts',
-    family: 'Client Services',
-    purpose: 'Translate client needs into operational priorities, maintain trust, communicate status, and coordinate internal teams around account expectations.',
-    behavioralBands: {
-      dominance: [58, 88],
-      extraversion: [66, 96],
-      patience: [18, 58],
-      formality: [28, 68],
-    },
-    signature: {
-      volume: 74,
-      depth: 50,
-      exploration: 62,
-      autonomy: 78,
-      precision: 66,
-      externalInteraction: 98,
-      interruption: 86,
-      boundedAuthority: 46,
-    },
-    alignment: [
-      'Relationship maintenance, influence, rapid context switching, and clear expectation setting are central.',
-      'The role benefits from translating operational complexity into concise client-facing communication.',
-      'Strong ownership is useful when paired with realistic promises and good internal handoffs.',
-    ],
-    friction: [
-      'A strong desire to satisfy the client can create internal pressure if commitments outrun operational capacity.',
-      'High social speed can obscure details that downstream teams still need documented precisely.',
-      'Avoidance of difficult expectation-setting can create larger problems later.',
-    ],
-    inversion: 'Persuasion is an asset until relationship protection turns into overpromising or bypassing realistic operational constraints.',
-    adjacent: ['network-management', 'operations-director', 'provider-relations'],
-  },
-  {
-    id: 'operations-director',
-    title: 'Operations Director',
-    shortTitle: 'Operations',
-    family: 'Leadership',
-    purpose: 'Coordinate capacity, priorities, process execution, and cross-functional tradeoffs across the operating system.',
-    behavioralBands: {
-      dominance: [72, 96],
-      extraversion: [48, 86],
-      patience: [14, 52],
-      formality: [34, 74],
-    },
-    signature: {
-      volume: 86,
-      depth: 62,
-      exploration: 72,
-      autonomy: 94,
-      precision: 70,
-      externalInteraction: 72,
-      interruption: 98,
-      boundedAuthority: 24,
-    },
-    alignment: [
-      'The role requires decisive prioritization when multiple teams and deadlines compete for attention.',
-      'Cross-functional visibility matters more than deep ownership of every individual task.',
-      'The job rewards people who can make tradeoffs, communicate them, and maintain operating rhythm under interruption.',
-    ],
-    friction: [
-      'High speed can become destabilizing when teams need clearer sequencing or change management.',
-      'Strong control can suppress local judgment if decision rights are not delegated deliberately.',
-      'Operational urgency can conflict with quality functions whose value depends on deliberate gates.',
-    ],
-    inversion: 'Decisiveness is an asset until speed becomes volatility for the teams that have to execute the decision.',
-    adjacent: ['client-accounts', 'network-management', 'scheduling'],
-  },
-  {
-    id: 'finance-analyst',
-    title: 'Finance Analyst',
-    shortTitle: 'Finance',
-    family: 'Finance',
-    purpose: 'Reconcile authorized services, pricing agreements, invoices, dates, and payment information with a low tolerance for transactional error.',
-    behavioralBands: {
-      dominance: [24, 58],
-      extraversion: [18, 55],
-      patience: [56, 90],
-      formality: [74, 98],
-    },
-    signature: {
-      volume: 82,
-      depth: 48,
-      exploration: 28,
-      autonomy: 48,
-      precision: 98,
-      externalInteraction: 42,
-      interruption: 62,
-      boundedAuthority: 84,
-    },
-    alignment: [
-      'The role rewards reconciliation, consistency, and a low tolerance for mismatched transactional details.',
-      'Stable process and precise documentation are more important than open-ended exploration.',
-      'Exceptions matter because payment errors can propagate into provider relationships and downstream reporting.',
-    ],
-    friction: [
-      'Very high perfectionism can create unnecessary delay when the governing discrepancy is already clear.',
-      'People who need novelty may experience the repeated reconciliation cycle as under-stimulating.',
-      'Ambiguous pricing or incomplete upstream documentation can create disproportionate rework.',
-    ],
-    inversion: 'Precision is an asset until the pursuit of a perfectly reconciled record slows resolution of an already-understood exception.',
-    adjacent: ['examqa-analyst', 'provider-relations'],
-  },
-  {
-    id: 'fitness-for-duty',
-    title: 'Fitness for Duty Analyst',
-    shortTitle: 'Fitness for Duty',
-    family: 'Quality & Review',
-    purpose: 'Operationalize fitness-for-duty requirements, organize case information, and support consistent application of the review process around job demands.',
-    behavioralBands: {
-      dominance: [36, 70],
-      extraversion: [24, 62],
-      patience: [48, 82],
-      formality: [66, 96],
-    },
-    signature: {
-      volume: 72,
-      depth: 72,
-      exploration: 58,
-      autonomy: 58,
-      precision: 92,
-      externalInteraction: 46,
-      interruption: 66,
-      boundedAuthority: 68,
-    },
-    alignment: [
-      'The role sits between process execution and substantive occupational reasoning, so both structure and contextual judgment matter.',
-      'Job demands need to remain visible so medical information is interpreted in a work-relevant frame.',
-      'The role benefits from people who can organize complex information without overstepping final clinical authority.',
-    ],
-    friction: [
-      'People who prefer pure administrative closure may find the contextual judgment component uncomfortable.',
-      'People who prefer unrestricted analysis may become frustrated by formal boundaries around final determination authority.',
-      'Complex cases can create competing demands for speed, completeness, and escalation.',
-    ],
-    inversion: 'Contextual judgment is an asset until it becomes a substitute for the SME or medical authority responsible for the final determination.',
-    adjacent: ['examqa-analyst', 'exam-review'],
-  },
-];
+export { FACTOR_META, ROLE_BY_ID, ROLE_DIMENSIONS, ROLE_INTELLIGENCE_ROLES };
 
-export const ROLE_BY_ID = Object.fromEntries(ROLE_INTELLIGENCE_ROLES.map(role => [role.id, role]));
+const clamp = (value, min = 0, max = 100) => Math.max(min, Math.min(max, Number(value) || 0));
+const mean = values => values.length ? values.reduce((sum, value) => sum + value, 0) / values.length : 0;
+const rounded = value => Math.round(clamp(value));
+const closeness = (left, right) => clamp(100 - Math.abs(Number(left) - Number(right)));
 
-export const ROLE_DIMENSIONS = [
-  ['volume', 'Volume'],
-  ['depth', 'Depth'],
-  ['exploration', 'Exploration'],
-  ['autonomy', 'Autonomy'],
-  ['precision', 'Precision'],
-  ['externalInteraction', 'External interaction'],
-  ['interruption', 'Interruption'],
-  ['boundedAuthority', 'Boundary rigidity'],
-];
+function bandDistance(value, [min, max]) {
+  if (value < min) return min - value;
+  if (value > max) return value - max;
+  return 0;
+}
 
-export const FACTOR_META = {
-  dominance: { label: 'Dominance', short: 'D' },
-  extraversion: { label: 'Extraversion', short: 'E' },
-  patience: { label: 'Patience', short: 'P' },
-  formality: { label: 'Formality', short: 'F' },
-};
+function bandScore(value, band) {
+  return clamp(100 - bandDistance(value, band) * 3.4);
+}
+
+function center(band) {
+  return (band[0] + band[1]) / 2;
+}
 
 export function employeePiProfile(employee) {
   return PI_PROFILES.find(profile => profile.id === (employee?.piProfileId || employee?.profileId)) || PI_PROFILES[0];
@@ -345,19 +38,172 @@ export function employeePiProfile(employee) {
 export function employeeFactors(employee) {
   const profile = employeePiProfile(employee);
   return {
-    dominance: Number(employee?.dominance ?? profile.dominance),
-    extraversion: Number(employee?.extraversion ?? profile.extraversion),
-    patience: Number(employee?.patience ?? profile.patience),
-    formality: Number(employee?.formality ?? profile.formality),
+    dominance: clamp(employee?.dominance ?? profile.dominance),
+    extraversion: clamp(employee?.extraversion ?? profile.extraversion),
+    patience: clamp(employee?.patience ?? profile.patience),
+    formality: clamp(employee?.formality ?? profile.formality),
   };
+}
+
+// These are directional work-style projections from completed PI factors.
+// They are not separately administered cognitive, values, or clinical measurements.
+export function deriveDirectionalPreferences(employee) {
+  const { dominance: d, extraversion: e, patience: p, formality: f } = employeeFactors(employee);
+
+  return {
+    volume: rounded(28 + (100 - p) * 0.28 + d * 0.24 + f * 0.16),
+    depth: rounded(18 + p * 0.34 + f * 0.30 + d * 0.12),
+    exploration: rounded(10 + d * 0.40 + (100 - f) * 0.34 + (100 - p) * 0.12),
+    autonomy: rounded(12 + d * 0.62 + (100 - f) * 0.18),
+    precision: rounded(12 + f * 0.68 + p * 0.18),
+    externalInteraction: rounded(e),
+    interruption: rounded(18 + e * 0.40 + (100 - p) * 0.30 + d * 0.12),
+    boundedAuthority: rounded(12 + f * 0.54 + (100 - d) * 0.28),
+  };
+}
+
+export function deriveDirectionalWorkValues(employee) {
+  const { dominance: d, extraversion: e, patience: p, formality: f } = employeeFactors(employee);
+
+  return {
+    achievement: rounded(28 + d * 0.38 + f * 0.20),
+    independence: rounded(10 + d * 0.62 + (100 - f) * 0.18),
+    relationships: rounded(10 + e * 0.70 + p * 0.16),
+    support: rounded(16 + p * 0.34 + f * 0.30 + (100 - d) * 0.14),
+    workingConditions: rounded(14 + p * 0.38 + f * 0.38),
+    recognition: rounded(8 + d * 0.34 + e * 0.48),
+  };
+}
+
+function roleVector(role) {
+  return {
+    ...role.signature,
+    ...Object.fromEntries(
+      Object.entries(role.workValues || {}).map(([key, value]) => [`wv:${key}`, value])
+    ),
+    dominance: center(role.behavioralBands.dominance),
+    extraversion: center(role.behavioralBands.extraversion),
+    patience: center(role.behavioralBands.patience),
+    formality: center(role.behavioralBands.formality),
+  };
+}
+
+function roleSimilarity(leftRole, rightRole) {
+  const left = roleVector(leftRole);
+  const right = roleVector(rightRole);
+  const keys = Object.keys(left).filter(key => Number.isFinite(right[key]));
+  return rounded(mean(keys.map(key => closeness(left[key], right[key]))));
+}
+
+function behavioralComponent(factors, role) {
+  return rounded(mean(
+    Object.entries(role.behavioralBands).map(([key, band]) => bandScore(factors[key], band))
+  ));
+}
+
+function dimensionalFit(preferences, role, keys) {
+  return rounded(mean(keys.map(key => closeness(preferences[key], role.signature[key]))));
+}
+
+function workValueFit(workValues, role) {
+  const keys = Object.keys(role.workValues || {});
+  return rounded(mean(keys.map(key => closeness(workValues[key], role.workValues[key]))));
+}
+
+function sustainabilityComponent(preferences, role) {
+  const penalties = [];
+
+  const overload = (demandKey, weight = 1) => {
+    const demand = role.signature[demandKey];
+    const preference = preferences[demandKey];
+    const excess = Math.max(0, demand - preference);
+    penalties.push(excess * weight);
+  };
+
+  overload('volume', 1.0);
+  overload('interruption', 1.25);
+  overload('precision', 0.9);
+  overload('externalInteraction', 0.8);
+
+  // Low-demand environments can also strain people whose natural operating pull is
+  // substantially higher, but this is intentionally a smaller penalty than overload.
+  for (const key of ['depth', 'exploration', 'autonomy']) {
+    const underuse = Math.max(0, preferences[key] - role.signature[key]);
+    penalties.push(underuse * 0.55);
+  }
+
+  return rounded(100 - mean(penalties) * 1.7);
+}
+
+function inversionSignals(factors, preferences, role) {
+  const signals = [];
+
+  const add = (id, label, score, rationale) => {
+    const bounded = rounded(score);
+    if (bounded >= 18) signals.push({ id, label, score: bounded, rationale });
+  };
+
+  add(
+    'exploration-overreach',
+    'Exploration can outrun role depth',
+    Math.max(0, preferences.exploration - role.signature.exploration) * 1.3,
+    'A strong exploratory pull can become unnecessary investigation when the role intentionally limits research depth.'
+  );
+
+  add(
+    'autonomy-boundary',
+    'Autonomy can press against authority boundaries',
+    Math.max(0, preferences.autonomy - role.signature.autonomy) * (0.8 + role.signature.boundedAuthority / 180),
+    'Independent problem solving can create friction when the role requires clean escalation or tightly bounded decision rights.'
+  );
+
+  add(
+    'precision-overcheck',
+    'Precision can become overchecking',
+    Math.max(0, factors.formality - 62) * (role.signature.precision / 100) * (role.signature.volume / 100) * 1.55,
+    'High precision can become slower release or repeated verification when the role also carries heavy volume.'
+  );
+
+  add(
+    'urgency-reactivity',
+    'Urgency can become reactive switching',
+    Math.max(0, 48 - factors.patience) * (role.signature.interruption / 100) * (role.signature.volume / 100) * 1.9,
+    'Fast action can become priority churn when both volume and interruption are high.'
+  );
+
+  add(
+    'social-speed-documentation',
+    'Social speed can outrun documentation',
+    Math.max(0, factors.extraversion - 66) * (role.signature.externalInteraction / 100) * (role.signature.precision / 100) * 1.2,
+    'High communication energy can create downstream defects if documentation discipline does not keep pace.'
+  );
+
+  add(
+    'control-centralization',
+    'Ownership can become overcontrol',
+    Math.max(0, factors.dominance - 66) * (role.signature.boundedAuthority / 100) * 1.25,
+    'Strong ownership can become overcontrol when the operating system expects delegated or bounded decision rights.'
+  );
+
+  return signals.sort((a, b) => b.score - a.score);
+}
+
+function headlineFor({ behavioralFit, cognitiveTaskFit, environmentFit, boundaryFit }) {
+  const average = mean([behavioralFit, cognitiveTaskFit, environmentFit, boundaryFit]);
+  if (average >= 82) return 'Broad person × role overlap';
+  if (average >= 70) return 'Strong overlap with specific tensions';
+  if (average >= 58) return 'Mixed operating pattern';
+  return 'Distinct operating pattern';
 }
 
 export function deriveRoleInteraction(employee, role) {
   const factors = employeeFactors(employee);
+  const preferences = deriveDirectionalPreferences(employee);
+  const workValues = deriveDirectionalWorkValues(employee);
+
   const factorSignals = Object.entries(role.behavioralBands).map(([key, band]) => {
     const value = factors[key];
-    const [min, max] = band;
-    const distance = value < min ? min - value : value > max ? value - max : 0;
+    const distance = bandDistance(value, band);
     const state = distance === 0 ? 'aligned' : distance <= 12 ? 'adjacent' : 'contrast';
     return {
       key,
@@ -367,6 +213,7 @@ export function deriveRoleInteraction(employee, role) {
       band,
       distance,
       state,
+      score: rounded(bandScore(value, band)),
     };
   });
 
@@ -374,9 +221,93 @@ export function deriveRoleInteraction(employee, role) {
   const adjacent = factorSignals.filter(signal => signal.state === 'adjacent').length;
   const contrast = factorSignals.filter(signal => signal.state === 'contrast').length;
 
-  let headline = 'Distinct operating pattern';
-  if (aligned >= 3) headline = 'Broad behavioral overlap';
-  else if (aligned >= 2 || aligned + adjacent >= 3) headline = 'Mixed but workable pattern';
+  const components = {
+    behavioralFit: behavioralComponent(factors, role),
+    cognitiveTaskFit: dimensionalFit(preferences, role, ['volume', 'depth', 'exploration', 'precision']),
+    workValueFit: workValueFit(workValues, role),
+    environmentFit: dimensionalFit(preferences, role, ['externalInteraction', 'interruption']),
+    boundaryFit: dimensionalFit(preferences, role, ['autonomy', 'boundedAuthority']),
+    sustainabilityFit: sustainabilityComponent(preferences, role),
+  };
 
-  return { factors, factorSignals, aligned, adjacent, contrast, headline };
+  const inversion = inversionSignals(factors, preferences, role);
+  const inversionRisk = inversion.length
+    ? rounded(mean(inversion.slice(0, 3).map(item => item.score)))
+    : 0;
+
+  const internalCompatibilityIndex = rounded(
+    components.behavioralFit * 0.25 +
+    components.cognitiveTaskFit * 0.20 +
+    components.workValueFit * 0.10 +
+    components.environmentFit * 0.15 +
+    components.boundaryFit * 0.15 +
+    components.sustainabilityFit * 0.15 -
+    Math.max(0, inversionRisk - 50) * 0.08
+  );
+
+  return {
+    factors,
+    preferences,
+    workValues,
+    factorSignals,
+    aligned,
+    adjacent,
+    contrast,
+    components,
+    inversionRisk,
+    inversionSignals: inversion,
+    evidenceConfidence: evidenceConfidence(role),
+    evidence: evidenceForRole(role),
+    internalCompatibilityIndex,
+    orbitRadius: orbitRadiusForInteraction(internalCompatibilityIndex),
+    headline: headlineFor(components),
+  };
+}
+
+export function orbitRadiusForInteraction(internalCompatibilityIndex) {
+  const score = clamp(internalCompatibilityIndex);
+  return Math.round(112 + (100 - score) * 1.35);
+}
+
+export function deriveAdjacentRolePull(employee, selectedRole, limit = 4) {
+  const selected = deriveRoleInteraction(employee, selectedRole);
+
+  return ROLE_INTELLIGENCE_ROLES
+    .filter(candidate => candidate.id !== selectedRole.id)
+    .map(candidate => {
+      const candidateInteraction = deriveRoleInteraction(employee, candidate);
+      const similarity = roleSimilarity(selectedRole, candidate);
+      const relief = clamp(candidateInteraction.internalCompatibilityIndex - selected.internalCompatibilityIndex + 50);
+      const pull = rounded(
+        candidateInteraction.internalCompatibilityIndex * 0.58 +
+        similarity * 0.30 +
+        relief * 0.12
+      );
+
+      return {
+        role: candidate,
+        roleId: candidate.id,
+        title: candidate.title,
+        pull,
+        roleSimilarity: similarity,
+        candidateCompatibility: candidateInteraction.internalCompatibilityIndex,
+        selectedCompatibility: selected.internalCompatibilityIndex,
+        delta: candidateInteraction.internalCompatibilityIndex - selected.internalCompatibilityIndex,
+        evidenceConfidence: candidateInteraction.evidenceConfidence,
+      };
+    })
+    .sort((left, right) => right.pull - left.pull || left.title.localeCompare(right.title))
+    .slice(0, Math.max(1, limit));
+}
+
+export function deriveRoleLandscape(employee) {
+  return ROLE_INTELLIGENCE_ROLES
+    .map(role => ({
+      role,
+      interaction: deriveRoleInteraction(employee, role),
+    }))
+    .sort((left, right) =>
+      right.interaction.internalCompatibilityIndex - left.interaction.internalCompatibilityIndex ||
+      left.role.title.localeCompare(right.role.title)
+    );
 }
