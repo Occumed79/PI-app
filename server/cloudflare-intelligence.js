@@ -43,23 +43,36 @@ function cosine(left = [], right = []) {
   return denominator ? dot / denominator : -1;
 }
 
-async function ensureLensEmbeddings() {
-  const embedded = await cloudflareEmbed(lensDocuments.map(item => item.text));
-  if (!embedded?.vectors?.length) return null;
-  if (
-    lensEmbeddingCache.model !== embedded.model ||
-    !Array.isArray(lensEmbeddingCache.vectors) ||
-    lensEmbeddingCache.vectors.length !== lensDocuments.length
-  ) {
-    lensEmbeddingCache = {
-      model: embedded.model,
-      vectors: embedded.vectors,
+async function ensureLensEmbeddings({ force = false } = {}) {
+  const cacheReady = Boolean(
+    !force &&
+    lensEmbeddingCache.model &&
+    Array.isArray(lensEmbeddingCache.vectors) &&
+    lensEmbeddingCache.vectors.length === lensDocuments.length
+  );
+
+  if (cacheReady) {
+    return {
+      model: lensEmbeddingCache.model,
+      vectors: lensEmbeddingCache.vectors,
+      accountSlot: null,
+      cached: true,
     };
   }
+
+  const embedded = await cloudflareEmbed(lensDocuments.map(item => item.text));
+  if (!embedded?.vectors?.length) return null;
+
+  lensEmbeddingCache = {
+    model: embedded.model,
+    vectors: embedded.vectors,
+  };
+
   return {
-    model: lensEmbeddingCache.model,
-    vectors: lensEmbeddingCache.vectors,
+    model: embedded.model,
+    vectors: embedded.vectors,
     accountSlot: embedded.accountSlot,
+    cached: false,
   };
 }
 
@@ -72,10 +85,19 @@ async function semanticLensSelection(query) {
   let shortlist = [];
 
   try {
-    const [catalog, queryEmbedding] = await Promise.all([
+    let [catalog, queryEmbedding] = await Promise.all([
       ensureLensEmbeddings(),
       cloudflareEmbed([query]),
     ]);
+
+    if (
+      catalog?.model &&
+      queryEmbedding?.model &&
+      catalog.model !== queryEmbedding.model
+    ) {
+      catalog = await ensureLensEmbeddings({ force: true });
+      queryEmbedding = await cloudflareEmbed([query]);
+    }
 
     if (
       catalog?.vectors?.length === lensDocuments.length &&
@@ -85,6 +107,7 @@ async function semanticLensSelection(query) {
       embeddingMeta = {
         model: catalog.model,
         accountSlot: queryEmbedding.accountSlot,
+        catalogCached: Boolean(catalog.cached),
       };
       shortlist = lensDocuments
         .map((item, index) => ({
