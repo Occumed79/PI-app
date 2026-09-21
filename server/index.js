@@ -216,7 +216,7 @@ function roleGroundingSystemText(grounding, activeContextCategory = '', lifeLens
 
   const normalizedLifeLensMode = normalizeLifeLensMode(lifeLensMode);
   const lifeLensInstruction = normalizedLifeLensMode === 'authorized'
-    ? `EMPLOYEE-AUTHORIZED CONTEXT: The ${String(activeContextCategory || 'selected')} category was intentionally supplied for contextual interpretation. Do not turn it into a diagnosis or medical record, and do not infer facts beyond the supplied category.`
+    ? `USER-DESIGNATED AUTHORIZED CONTEXT: The user has designated the ${String(activeContextCategory || 'selected')} category as authorized for contextual interpretation. The app does not independently verify employee authorization. Do not state or imply employee authorization unless separately supported by provided data, do not turn the category into a diagnosis or medical record, and do not infer facts beyond the supplied category.`
     : `HYPOTHETICAL CONTEXT EXPLORATION: The ${String(activeContextCategory || 'selected')} category is a what-if lens only. Never infer that the selected employee has this condition or life context.`;
 
   return `AUTHORITATIVE ROLE-INTELLIGENCE GROUNDING
