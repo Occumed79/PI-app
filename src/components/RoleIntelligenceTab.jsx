@@ -266,54 +266,48 @@ function FactorSignals({ interaction }) {
 
 function LifeLensStrip({ role, activeCategory, onSelect }) {
   return (
-    <section className="border-t border-white/8 py-16">
+    <section>
       <div className="mb-8 max-w-3xl">
         <p className="text-xs font-semibold uppercase tracking-[0.22em] text-fuchsia-200/55">Life experience refraction</p>
         <h3 className="mt-3 text-3xl font-semibold tracking-tight text-white">The person stays the same. The operating conditions do not.</h3>
-        <p className="mt-4 text-sm leading-7 text-white/46">These lenses do not change the baseline role-alignment model. They show how context can amplify, suppress, mask, or distort performance inside a specific job environment.</p>
+        <p className="mt-4 text-sm leading-7 text-white/46">
+          These lenses do not change the baseline role-alignment model. They show how context can amplify, suppress, mask, or distort performance inside a specific job environment.
+        </p>
       </div>
 
-      <div className="-mx-2 overflow-x-auto px-2 pb-4">
-        <div className="flex min-w-max gap-2">
-          {CONTEXT_CATEGORY_ORDER.map(category => (
-            <button
-              key={category}
-              type="button"
-              onClick={() => onSelect(category)}
-              className={cx(
-                'rounded-full border px-4 py-2 text-xs transition',
-                activeCategory === category
-                  ? 'border-fuchsia-200/35 bg-fuchsia-400/15 text-fuchsia-100'
-                  : 'border-white/10 bg-white/[0.025] text-white/38 hover:text-white/70'
-              )}
-            >
-              {CONTEXT_CATEGORIES[category]}
-            </button>
-          ))}
-        </div>
-      </div>
+      <Tabs value={activeCategory} onValueChange={onSelect}>
+        <ScrollArea className="max-w-full pb-2">
+          <TabsList className="w-max flex-nowrap">
+            {CONTEXT_CATEGORY_ORDER.map(category => (
+              <TabsTrigger key={category} value={category}>
+                {CONTEXT_CATEGORIES[category]}
+              </TabsTrigger>
+            ))}
+          </TabsList>
+        </ScrollArea>
 
-      <AnimatePresence mode="wait">
-        <motion.div
-          key={`${role.id}-${activeCategory}`}
-          initial={{ opacity: 0, y: 18, filter: 'blur(8px)' }}
-          animate={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
-          exit={{ opacity: 0, y: -10, filter: 'blur(8px)' }}
-          transition={{ duration: 0.4 }}
-          className="mt-6 grid gap-8 border-l border-fuchsia-300/20 pl-6 lg:grid-cols-[1.2fr_.8fr]"
-        >
-          <div>
-            <div className="text-lg font-semibold text-white">{CONTEXT_CATEGORIES[activeCategory]}</div>
-            <p className="mt-3 max-w-3xl text-base leading-8 text-white/58">{LENS_COPY[activeCategory]}</p>
-            <p className="mt-4 text-sm leading-7 text-white/38">In <span className="text-white/70">{role.title}</span>, the most relevant role conditions are volume {role.signature.volume}, interruption {role.signature.interruption}, autonomy {role.signature.autonomy}, precision {role.signature.precision}, and boundary rigidity {role.signature.boundedAuthority}.</p>
-          </div>
-          <div>
-            <div className="text-xs font-semibold uppercase tracking-[0.18em] text-white/30">How to use this lens</div>
-            <p className="mt-3 text-sm leading-6 text-white/36">Treat the lens as a hypothetical operating-condition test. It does not reveal or assume that the employee has this life experience, and it never changes the baseline person × role model.</p>
-            <div className="mt-5 border-l border-white/10 pl-4 text-xs leading-6 text-white/28">Employee-specific private context stays outside this front-end explanation unless a future permissioned workflow explicitly brings it in.</div>
-          </div>
-        </motion.div>
-      </AnimatePresence>
+        {CONTEXT_CATEGORY_ORDER.map(category => (
+          <TabsContent key={category} value={category}>
+            <div className="grid gap-8 rounded-[28px] border border-white/8 bg-white/[0.02] p-6 lg:grid-cols-[1.2fr_.8fr]">
+              <div>
+                <div className="text-lg font-semibold text-white">{CONTEXT_CATEGORIES[category]}</div>
+                <p className="mt-3 max-w-3xl text-base leading-8 text-white/58">{LENS_COPY[category]}</p>
+                <p className="mt-4 text-sm leading-7 text-white/38">
+                  In <span className="text-white/70">{role.title}</span>, the most relevant operating conditions include
+                  volume {role.signature.volume}, interruption {role.signature.interruption}, autonomy {role.signature.autonomy},
+                  precision {role.signature.precision}, and boundary rigidity {role.signature.boundedAuthority}.
+                </p>
+              </div>
+              <div>
+                <div className="text-xs font-semibold uppercase tracking-[0.18em] text-white/30">How to use this lens</div>
+                <p className="mt-3 text-sm leading-6 text-white/36">
+                  Treat the lens as a hypothetical operating-condition test. It does not reveal or assume that the employee has this life experience, and it never changes the baseline person × role model.
+                </p>
+              </div>
+            </div>
+          </TabsContent>
+        ))}
+      </Tabs>
     </section>
   );
 }
