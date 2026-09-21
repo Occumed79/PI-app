@@ -590,6 +590,19 @@ function Workspace({ employee, onExit }) {
     [employee, selectedRole]
   );
 
+  const components = [
+    ['Behavioral', interaction.components.behavioralFit],
+    ['Task pattern', interaction.components.cognitiveTaskFit],
+    ['Work values', interaction.components.workValueFit],
+    ['Environment', interaction.components.environmentFit],
+    ['Boundaries', interaction.components.boundaryFit],
+    ['Sustainability', interaction.components.sustainabilityFit],
+  ];
+
+  const assistant = (
+    <RoleAssistantRail employee={employee} role={selectedRole} activeCategory={activeCategory}/>
+  );
+
   return (
     <div className="rounded-[36px] border border-white/8 bg-white/[0.018] p-4 sm:p-6">
       <div className="mb-6 flex flex-wrap items-center justify-between gap-3">
@@ -602,64 +615,173 @@ function Workspace({ employee, onExit }) {
         </div>
       </div>
 
-      <div className="grid gap-6 xl:grid-cols-[minmax(0,1fr)_370px]">
-        <main className="min-w-0">
-          <RoleOrbit employee={employee} selectedRole={selectedRole} onSelectRole={setSelectedRole}/>
-
-          <section className="mx-auto max-w-5xl px-2 py-16">
-            <AnimatePresence mode="wait">
-              <motion.div key={selectedRole.id} initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -12 }} transition={{ duration: 0.4 }}>
-                <div className="flex flex-wrap items-end justify-between gap-5">
-                  <div className="max-w-3xl">
-                    <p className="text-xs font-semibold uppercase tracking-[0.2em] text-sky-200/50">{interaction.headline}</p>
-                    <h2 className="mt-3 text-4xl font-semibold tracking-tight text-white">{selectedRole.title}</h2>
-                    <p className="mt-4 text-base leading-8 text-white/48">{selectedRole.purpose}</p>
-                  </div>
-                  <div className="text-right text-xs text-white/30">
-                    <div>{interaction.aligned} PI factors inside role band</div>
-                    <div className="mt-1">{interaction.adjacent} near band · {interaction.contrast} contrasting pull</div>
-                    <div className="mt-1">Evidence confidence {interaction.evidenceConfidence}/100</div>
-                  </div>
-                </div>
-                <div className="mt-6"><FactorSignals interaction={interaction}/></div>
-                <div className="mt-10"><SignatureBand role={selectedRole}/></div>
-              </motion.div>
-            </AnimatePresence>
-          </section>
-
-          <section className="border-t border-white/8 py-16">
-            <div className="grid gap-12 lg:grid-cols-3">
-              <div>
-                <div className="text-xs font-semibold uppercase tracking-[0.2em] text-emerald-200/50">Where the role rewards the pattern</div>
-                <div className="mt-5 space-y-5">{selectedRole.alignment.map(item => <p key={item} className="text-sm leading-7 text-white/52">{item}</p>)}</div>
-              </div>
-              <div>
-                <div className="text-xs font-semibold uppercase tracking-[0.2em] text-sky-200/50">Where friction can develop</div>
-                <div className="mt-5 space-y-5">{selectedRole.friction.map(item => <p key={item} className="text-sm leading-7 text-white/52">{item}</p>)}</div>
-              </div>
-              <div>
-                <div className="text-xs font-semibold uppercase tracking-[0.2em] text-fuchsia-200/50">Strength inversion</div>
-                <p className="mt-5 text-lg leading-8 text-white/72">{selectedRole.inversion}</p>
-              </div>
-            </div>
-          </section>
-
-          <LifeLensStrip role={selectedRole} activeCategory={activeCategory} onSelect={setActiveCategory}/>
-
-          <section className="border-t border-white/8 py-16">
-            <div className="mb-7 flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.2em] text-white/30"><Compass size={14}/> Adjacent role pull</div>
-            <div className="flex flex-wrap gap-3">
-              {adjacentPull.map(item => (
-                <button key={item.roleId} type="button" onClick={() => setSelectedRole(item.role)} className="group inline-flex items-center gap-3 rounded-full border border-white/10 bg-white/[0.025] px-4 py-3 text-sm text-white/55 transition hover:border-white/20 hover:text-white">
-                  {item.role.title}<ArrowRight size={14} className="transition group-hover:translate-x-1"/>
-                </button>
-              ))}
-            </div>
-          </section>
-        </main>
-
-        <RoleAssistantRail employee={employee} role={selectedRole} activeCategory={activeCategory}/>
+      <div className="mb-5 xl:hidden">
+        <Sheet>
+          <SheetTrigger className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/[0.035] px-4 py-2 text-sm text-white/62">
+            <MessageCircleMore size={15}/> Ask Role Intelligence
+          </SheetTrigger>
+          <SheetContent side="right" className="p-3">
+            {assistant}
+          </SheetContent>
+        </Sheet>
       </div>
+
+      <ResizablePanelGroup className="min-h-[760px]">
+        <ResizablePanel defaultSize={72} className="xl:pr-6">
+          <main className="min-w-0">
+            <RoleOrbit employee={employee} selectedRole={selectedRole} onSelectRole={setSelectedRole}/>
+
+            <section className="mx-auto max-w-5xl px-2 py-12">
+              <AnimatePresence mode="wait">
+                <motion.div
+                  key={selectedRole.id}
+                  initial={{ opacity: 0, y: 16 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: -10 }}
+                  transition={{ duration: 0.35 }}
+                >
+                  <div className="flex flex-wrap items-end justify-between gap-5">
+                    <div className="max-w-3xl">
+                      <p className="text-xs font-semibold uppercase tracking-[0.2em] text-sky-200/50">{interaction.headline}</p>
+                      <h2 className="mt-3 text-4xl font-semibold tracking-tight text-white">{selectedRole.title}</h2>
+                      <p className="mt-4 text-base leading-8 text-white/48">{selectedRole.purpose}</p>
+                    </div>
+                    <div className="text-right text-xs text-white/30">
+                      <div>{interaction.aligned} PI factors inside role band</div>
+                      <div className="mt-1">{interaction.adjacent} near band · {interaction.contrast} contrasting pull</div>
+                      <div className="mt-1">Evidence confidence {interaction.evidenceConfidence}/100</div>
+                    </div>
+                  </div>
+                </motion.div>
+              </AnimatePresence>
+
+              <Tabs defaultValue="interaction" className="mt-10">
+                <ScrollArea className="max-w-full pb-2">
+                  <TabsList className="w-max flex-nowrap">
+                    <TabsTrigger value="interaction">Interaction</TabsTrigger>
+                    <TabsTrigger value="interpretation">Interpretation</TabsTrigger>
+                    <TabsTrigger value="evidence">Evidence</TabsTrigger>
+                    <TabsTrigger value="context">Context lenses</TabsTrigger>
+                    <TabsTrigger value="adjacent">Adjacent roles</TabsTrigger>
+                  </TabsList>
+                </ScrollArea>
+
+                <TabsContent value="interaction">
+                  <div className="grid gap-8 lg:grid-cols-[.9fr_1.1fr]">
+                    <div>
+                      <div className="text-xs font-semibold uppercase tracking-[0.18em] text-white/30">PI factor signals</div>
+                      <div className="mt-4"><FactorSignals interaction={interaction}/></div>
+
+                      <div className="mt-8 text-xs font-semibold uppercase tracking-[0.18em] text-white/30">Interaction dimensions</div>
+                      <div className="mt-4 grid grid-cols-2 gap-x-6 gap-y-4">
+                        {components.map(([label, value]) => (
+                          <div key={label} className="border-b border-white/8 pb-3">
+                            <div className="text-xs text-white/34">{label}</div>
+                            <div className="mt-1 text-lg font-semibold text-white/76">{value}</div>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                    <div>
+                      <div className="text-xs font-semibold uppercase tracking-[0.18em] text-white/30">Role signature</div>
+                      <SignatureBand role={selectedRole}/>
+                    </div>
+                  </div>
+                </TabsContent>
+
+                <TabsContent value="interpretation">
+                  <Accordion type="single" defaultValue="alignment">
+                    <AccordionItem value="alignment">
+                      <AccordionTrigger>Where the role rewards the pattern</AccordionTrigger>
+                      <AccordionContent>
+                        <div className="space-y-4">
+                          {selectedRole.alignment.map(item => <p key={item}>{item}</p>)}
+                        </div>
+                      </AccordionContent>
+                    </AccordionItem>
+                    <AccordionItem value="friction">
+                      <AccordionTrigger>Where friction can develop</AccordionTrigger>
+                      <AccordionContent>
+                        <div className="space-y-4">
+                          {selectedRole.friction.map(item => <p key={item}>{item}</p>)}
+                        </div>
+                      </AccordionContent>
+                    </AccordionItem>
+                    <AccordionItem value="inversion">
+                      <AccordionTrigger>Strength inversion</AccordionTrigger>
+                      <AccordionContent>
+                        <p className="text-base leading-8 text-white/64">{selectedRole.inversion}</p>
+                        {interaction.inversionSignals.length > 0 && (
+                          <div className="mt-5 space-y-4">
+                            {interaction.inversionSignals.slice(0, 3).map(signal => (
+                              <div key={signal.id}>
+                                <div className="font-medium text-white/70">{signal.label}</div>
+                                <div className="mt-1 text-white/40">{signal.rationale}</div>
+                              </div>
+                            ))}
+                          </div>
+                        )}
+                      </AccordionContent>
+                    </AccordionItem>
+                  </Accordion>
+                </TabsContent>
+
+                <TabsContent value="evidence">
+                  <div className="mb-5 flex items-center justify-between gap-4">
+                    <div>
+                      <div className="text-xs font-semibold uppercase tracking-[0.18em] text-white/30">Evidence bundle</div>
+                      <div className="mt-2 text-sm text-white/45">External occupations are analogues, not claims that this Occu-Med role is identical to the source occupation.</div>
+                    </div>
+                    <Badge>Confidence {interaction.evidenceConfidence}/100</Badge>
+                  </div>
+                  <Accordion type="multiple">
+                    {interaction.evidence.map(source => (
+                      <AccordionItem key={source.id} value={source.id}>
+                        <AccordionTrigger>{source.label}</AccordionTrigger>
+                        <AccordionContent>
+                          <p>{source.note}</p>
+                          <p className="mt-2 text-xs text-white/28">{source.kind} · authority {source.authority} · directness {source.directness}</p>
+                        </AccordionContent>
+                      </AccordionItem>
+                    ))}
+                  </Accordion>
+                </TabsContent>
+
+                <TabsContent value="context">
+                  <LifeLensStrip role={selectedRole} activeCategory={activeCategory} onSelect={setActiveCategory}/>
+                </TabsContent>
+
+                <TabsContent value="adjacent">
+                  <div className="mb-6 flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.2em] text-white/30">
+                    <Compass size={14}/> Closest modeled role environments
+                  </div>
+                  <div className="flex flex-wrap gap-3">
+                    {adjacentPull.map(item => (
+                      <button
+                        key={item.roleId}
+                        type="button"
+                        onClick={() => setSelectedRole(item.role)}
+                        className="group inline-flex items-center gap-3 rounded-full border border-white/10 bg-white/[0.025] px-4 py-3 text-sm text-white/55 transition hover:border-white/20 hover:text-white"
+                      >
+                        {item.role.title}<ArrowRight size={14} className="transition group-hover:translate-x-1"/>
+                      </button>
+                    ))}
+                  </div>
+                  <p className="mt-5 max-w-3xl text-xs leading-6 text-white/28">
+                    Adjacent-role pull is calculated from role-environment similarity plus this person × role interaction. It is not a promotion or staffing recommendation.
+                  </p>
+                </TabsContent>
+              </Tabs>
+            </section>
+          </main>
+        </ResizablePanel>
+
+        <ResizableHandle withHandle/>
+
+        <ResizablePanel defaultSize={28} className="hidden xl:block">
+          {assistant}
+        </ResizablePanel>
+      </ResizablePanelGroup>
     </div>
   );
 }
