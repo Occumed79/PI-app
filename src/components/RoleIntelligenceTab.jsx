@@ -1,4 +1,4 @@
-import React, { useMemo, useRef, useState } from 'react';
+import React, { useEffect, useMemo, useRef, useState } from 'react';
 import { AnimatePresence, motion, useReducedMotion } from 'framer-motion';
 import { PolarAngleAxis, PolarGrid, Radar, RadarChart, ResponsiveContainer } from 'recharts';
 import {
@@ -576,6 +576,13 @@ function RoleAssistantRail({ employee, role, activeCategory, activeScene }) {
   const sceneLabel = ROLE_SCENE_LABELS[activeScene] || ROLE_SCENE_LABELS.baseline;
   const sceneQuestion = roleSceneQuestion(activeScene, employee, role, activeCategory);
 
+  useEffect(() => {
+    setMessages([]);
+    setInput('');
+    setError('');
+    setAnalysisMeta(null);
+  }, [employee?.id, employee?.name, role.id]);
+
   async function send() {
     const text = input.trim();
     if (!text || loading) return;
@@ -669,7 +676,11 @@ Rules:
           Ask Role Intelligence
         </div>
         <RoleVoiceWave state={loading ? 'thinking' : 'idle'} height={90} className="mt-3"/>
-        <p className="mt-1 text-xs leading-5 text-white/35">Ask why a pattern appears, compare roles, test a hypothetical work condition, or interrogate the active lens.</p>
+        <div className="mt-3 flex flex-wrap gap-2">
+          <Badge>{role.shortTitle}</Badge>
+          <Badge tone="info">{sceneLabel}</Badge>
+        </div>
+        <p className="mt-3 text-xs leading-5 text-white/35">Ask why a pattern appears, compare roles, test a hypothetical work condition, or interrogate the active lens.</p>
         {analysisMeta && (
           <div className="mt-4 flex flex-wrap gap-2">
             {analysisMeta.analyzers.length > 0 && (
