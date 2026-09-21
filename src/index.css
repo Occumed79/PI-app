@@ -397,34 +397,3 @@ body {
     transition: none !important;
   }
 }
-
-
-/* Magic UI Orbiting Circles pattern, adapted for the Role Intelligence shell. */
-@keyframes role-sourced-orbit {
-  from {
-    transform:
-      translate(-50%, -50%)
-      rotate(var(--orbit-angle))
-      translateY(var(--orbit-radius))
-      rotate(calc(var(--orbit-angle) * -1));
-  }
-  to {
-    transform:
-      translate(-50%, -50%)
-      rotate(calc(var(--orbit-angle) + 360deg))
-      translateY(var(--orbit-radius))
-      rotate(calc((var(--orbit-angle) * -1) - 360deg));
-  }
-}
-
-.role-orbit-item {
-  animation: role-sourced-orbit var(--orbit-duration) linear infinite;
-  transform-origin: center;
-  will-change: transform;
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .role-orbit-item {
-    animation-play-state: paused !important;
-  }
-}
