@@ -408,7 +408,7 @@ Rules:
             formality: employee.formality ?? profile.formality,
           }],
         }),
-        signal: AbortSignal.timeout(55000),
+        signal: AbortSignal.timeout(150000),
       });
       const data = await response.json().catch(() => ({}));
       if (!response.ok) throw new Error(data.message || `AI request failed (${response.status})`);
