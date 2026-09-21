@@ -171,3 +171,22 @@ export function SheetContent({ side = 'right', className = '', children }) {
     </>
   );
 }
+
+
+export function Badge({ tone = 'default', className = '', children }) {
+  const tones = {
+    default: 'border-white/10 bg-white/[0.035] text-white/55',
+    success: 'border-emerald-300/25 bg-emerald-500/10 text-emerald-200',
+    info: 'border-sky-300/25 bg-sky-500/10 text-sky-200',
+    warning: 'border-amber-300/25 bg-amber-500/10 text-amber-200',
+  };
+  return (
+    <span className={`inline-flex items-center rounded-full border px-3 py-1.5 text-xs ${tones[tone] || tones.default} ${className}`}>
+      {children}
+    </span>
+  );
+}
+
+export function ScrollArea({ className = '', children }) {
+  return <div className={`relative overflow-auto ${className}`}>{children}</div>;
+}
