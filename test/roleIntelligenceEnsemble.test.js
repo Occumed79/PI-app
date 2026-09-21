@@ -8,6 +8,7 @@ const roleUiSource = await readFile(new URL('../src/components/RoleIntelligenceT
 const roleEngineSource = await readFile(new URL('../src/data/roleIntelligence.js', import.meta.url), 'utf8');
 const roleCatalogSource = await readFile(new URL('../src/data/roleIntelligenceRoles.js', import.meta.url), 'utf8');
 const refractionSource = await readFile(new URL('../src/components/PatternRefraction.jsx', import.meta.url), 'utf8');
+const stickySource = await readFile(new URL('../src/components/StickyScrollReveal.jsx', import.meta.url), 'utf8');
 
 test('Role Intelligence uses two independent specialist analyzers before synthesis', () => {
   assert.match(managerSource, /Promise\.allSettled\(\[\s*callNvidiaRoleReasoner/);
@@ -209,4 +210,20 @@ test('role orbit uses sourced HoverCard previews before selection', () => {
   assert.match(roleUiSource, /<HoverCardTrigger/);
   assert.match(roleUiSource, /<HoverCardContent/);
   assert.match(roleUiSource, /interaction\.evidenceConfidence/);
+});
+
+
+test('scene-aware AI rail tracks the sourced sticky-scroll scene', () => {
+  assert.match(stickySource, /onActiveChange/);
+  assert.match(stickySource, /onActiveChange\?\.\(activeCard, content\[activeCard\]\)/);
+  assert.match(roleUiSource, /ROLE_SCENE_LABELS/);
+  assert.match(roleUiSource, /Current visualization scene:/);
+  assert.match(roleUiSource, /Current scene · \{sceneLabel\}/);
+  assert.match(roleUiSource, /onSceneChange=\{setActiveScene\}/);
+  assert.match(roleUiSource, /Interrogate this scene/);
+});
+
+test('scene-aware prompts keep underused capacity descriptive rather than prescriptive', () => {
+  assert.match(roleUiSource, /underused-capacity signals/);
+  assert.match(roleUiSource, /without treating them as measures of superior ability or as a recommendation to move roles/);
 });
