@@ -7,6 +7,7 @@ const serverSource = await readFile(new URL('../server/index.js', import.meta.ur
 const roleUiSource = await readFile(new URL('../src/components/RoleIntelligenceTab.jsx', import.meta.url), 'utf8');
 const roleEngineSource = await readFile(new URL('../src/data/roleIntelligence.js', import.meta.url), 'utf8');
 const roleCatalogSource = await readFile(new URL('../src/data/roleIntelligenceRoles.js', import.meta.url), 'utf8');
+const refractionSource = await readFile(new URL('../src/components/PatternRefraction.jsx', import.meta.url), 'utf8');
 
 test('Role Intelligence uses two independent specialist analyzers before synthesis', () => {
   assert.match(managerSource, /Promise\.allSettled\(\[\s*callNvidiaRoleReasoner/);
@@ -77,4 +78,15 @@ test('Role Intelligence shell uses sourced component structures instead of the o
   assert.match(roleUiSource, /SheetContent/);
   assert.match(roleUiSource, /RadarChart/);
   assert.doesNotMatch(roleUiSource, /function RoleMarquee/);
+});
+
+
+test('Figma Pattern Refraction is mounted in the context lens and stays visual-only', () => {
+  assert.match(roleUiSource, /import PatternRefraction/);
+  assert.match(roleUiSource, /<PatternRefraction/);
+  assert.match(roleUiSource, /Baseline unchanged/);
+  assert.match(refractionSource, /f1a4fc0f-dcc1-45e3-bad6-ec82abb7c7eb/);
+  assert.match(refractionSource, /navigator\.gpu/);
+  assert.match(refractionSource, /illustrative only/);
+  assert.doesNotMatch(refractionSource, /deriveRoleInteraction|internalCompatibilityIndex|evidenceConfidence|adjacentRole/i);
 });
