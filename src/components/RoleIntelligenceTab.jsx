@@ -9,8 +9,11 @@ import {
   ExternalLink,
   Info,
   MessageCircleMore,
+  Mic,
   Send,
   UserRound,
+  Volume2,
+  VolumeX,
 } from 'lucide-react';
 import SiriOrb from './smoothui/SiriOrb.jsx';
 import RoleVoiceWave from './RoleVoiceWave.jsx';
@@ -92,11 +95,13 @@ const ROLE_SCENE_LABELS = {
   'context-refraction': 'Life-experience refraction',
 };
 
-function roleSceneQuestion(activeScene, employee, role, activeCategory) {
+function roleSceneQuestion(activeScene, employee, role, activeCategory, lifeLensMode) {
   if (activeScene === 'demand-pressure') return `Explain the demand-pressure signals for ${employee.name} in ${role.title}. Which role demands are most different from the directional PI-derived work-style pull, and what could that look like operationally?`;
   if (activeScene === 'underused-capacity') return `Explain the underused-capacity signals for ${employee.name} in ${role.title} without treating them as measures of superior ability or as a recommendation to move roles.`;
   if (activeScene === 'strength-inversion') return `Explain the strongest strength-inversion signal for ${employee.name} in ${role.title}, including what environmental conditions could turn the strength into friction.`;
-  if (activeScene === 'context-refraction') return `Explain how the ${CONTEXT_CATEGORIES[activeCategory]} lens could change operating conditions in ${role.title} without changing baseline compatibility.`;
+  if (activeScene === 'context-refraction') return lifeLensMode === 'authorized'
+    ? `Interpret the employee-authorized ${CONTEXT_CATEGORIES[activeCategory]} context for ${role.title} without changing baseline compatibility or treating it as a diagnosis or medical record.`
+    : `Explore hypothetically how the ${CONTEXT_CATEGORIES[activeCategory]} lens could change operating conditions in ${role.title} without changing baseline compatibility or implying that it applies to ${employee.name}.`;
   return `Explain the baseline interaction between ${employee.name} and ${role.title}, separating the strongest overlap from the strongest tension.`;
 }
 
@@ -522,7 +527,7 @@ function InteractionNarrative({ role, interaction, activeCategory, onSceneChange
   );
 }
 
-function LifeLensStrip({ role, activeCategory, onSelect }) {
+function LifeLensStrip({ role, activeCategory, onSelect, lifeLensMode, onModeChange }) {
   const refractionSource = useMemo(() => <SignatureBand role={role}/>, [role]);
 
   return (
@@ -533,6 +538,15 @@ function LifeLensStrip({ role, activeCategory, onSelect }) {
         <p className="mt-4 text-sm leading-7 text-white/46">
           These lenses do not change the baseline role-interaction model. The visual refraction is an explanatory metaphor for how operating conditions can amplify, suppress, mask, or distort the expression of the same underlying pattern.
         </p>
+        <ToggleGroup
+          type="single"
+          value={lifeLensMode}
+          onValueChange={value => onModeChange(value || 'hypothetical')}
+          className="mt-5 w-fit"
+        >
+          <ToggleGroupItem value="hypothetical">Hypothetical</ToggleGroupItem>
+          <ToggleGroupItem value="authorized">Authorized context</ToggleGroupItem>
+        </ToggleGroup>
       </div>
 
       <Tabs value={activeCategory} onValueChange={onSelect}>
@@ -580,9 +594,15 @@ function LifeLensStrip({ role, activeCategory, onSelect }) {
                   <AccordionItem value="use">
                     <AccordionTrigger>How to use this lens</AccordionTrigger>
                     <AccordionContent>
-                      <p>
-                        Treat this as a hypothetical operating-condition test. It does not reveal or assume that the employee has this life experience, and it never changes the baseline person × role calculation.
-                      </p>
+                      {lifeLensMode === 'authorized' ? (
+                        <p>
+                          Treat this as context the employee intentionally supplied for contextual interpretation. It is not a diagnosis or medical record, and it never changes the baseline person × role calculation.
+                        </p>
+                      ) : (
+                        <p>
+                          Treat this as a hypothetical operating-condition test. It does not reveal or assume that the employee has this life experience, and it never changes the baseline person × role calculation.
+                        </p>
+                      )}
                     </AccordionContent>
                   </AccordionItem>
 
@@ -604,29 +624,68 @@ function LifeLensStrip({ role, activeCategory, onSelect }) {
   );
 }
 
-function RoleAssistantRail({ employee, role, activeCategory, activeScene }) {
+function RoleAssistantRail({ employee, role, activeCategory, activeScene, lifeLensMode }) {
   const [messages, setMessages] = useState([]);
   const [input, setInput] = useState('');
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
   const [analysisMeta, setAnalysisMeta] = useState(null);
+  const [voiceState, setVoiceState] = useState('idle');
+  const [speakReplies, setSpeakReplies] = useState(false);
+  const [voiceSupport, setVoiceSupport] = useState({ recognition: false, synthesis: false });
+  const recognitionRef = useRef(null);
   const profile = employeePiProfile(employee);
   const roleInteraction = useMemo(() => deriveRoleInteraction(employee, role), [employee, role]);
   const sceneLabel = ROLE_SCENE_LABELS[activeScene] || ROLE_SCENE_LABELS.baseline;
-  const sceneQuestion = roleSceneQuestion(activeScene, employee, role, activeCategory);
+  const sceneQuestion = roleSceneQuestion(activeScene, employee, role, activeCategory, lifeLensMode);
+  const waveState = loading ? 'thinking' : voiceState;
 
   useEffect(() => {
+    if (typeof window === 'undefined') return;
+    setVoiceSupport({
+      recognition: Boolean(window.SpeechRecognition || window.webkitSpeechRecognition),
+      synthesis: Boolean(window.speechSynthesis && window.SpeechSynthesisUtterance),
+    });
+  }, []);
+
+  useEffect(() => {
+    recognitionRef.current?.abort?.();
+    recognitionRef.current = null;
+    if (typeof window !== 'undefined') window.speechSynthesis?.cancel?.();
     setMessages([]);
     setInput('');
     setError('');
     setAnalysisMeta(null);
+    setVoiceState('idle');
   }, [employee?.id, employee?.name, role.id]);
 
-  async function send() {
-    const text = input.trim();
+  useEffect(() => () => {
+    recognitionRef.current?.abort?.();
+    if (typeof window !== 'undefined') window.speechSynthesis?.cancel?.();
+  }, []);
+
+  function speakReply(reply) {
+    if (!speakReplies || !voiceSupport.synthesis || typeof window === 'undefined') {
+      setVoiceState('idle');
+      return;
+    }
+
+    window.speechSynthesis.cancel();
+    const utterance = new SpeechSynthesisUtterance(
+      String(reply || '').replace(/[`*_#>\[\]]/g, '').slice(0, 12000)
+    );
+    utterance.onstart = () => setVoiceState('speaking');
+    utterance.onend = () => setVoiceState('idle');
+    utterance.onerror = () => setVoiceState('error');
+    window.speechSynthesis.speak(utterance);
+  }
+
+  async function send(overrideText = '') {
+    const text = (typeof overrideText === 'string' && overrideText.trim() ? overrideText : input).trim();
     if (!text || loading) return;
     setInput('');
     setError('');
+    setVoiceState('idle');
     const next = [...messages, { role: 'user', content: text }];
     setMessages(next);
     setLoading(true);
@@ -644,6 +703,7 @@ Deterministic interaction components: ${JSON.stringify(roleInteraction.component
 Evidence confidence: ${roleInteraction.evidenceConfidence}/100.
 Strength-inversion risk signal: ${roleInteraction.inversionRisk}/100.
 Active life-experience lens: ${CONTEXT_CATEGORIES[activeCategory]}.
+Life Lens permission mode: ${lifeLensMode === 'authorized' ? 'employee-authorized context intentionally supplied for contextual interpretation' : 'hypothetical exploration only; do not infer that it applies to the employee'}.
 Current visualization scene: ${sceneLabel}.
 
 Rules:
@@ -663,6 +723,7 @@ Rules:
           messages: next,
           roleId: role.id,
           activeContextCategory: activeCategory,
+          lifeLensMode: lifeLensMode,
           employees: [{
             id: employee.id,
             name: employee.name,
@@ -679,7 +740,8 @@ Rules:
       });
       const data = await response.json().catch(() => ({}));
       if (!response.ok) throw new Error(data.message || `AI request failed (${response.status})`);
-      setMessages(current => [...current, { role: 'assistant', content: data.reply || 'No response was returned.' }]);
+      const reply = data.reply || 'No response was returned.';
+      setMessages(current => [...current, { role: 'assistant', content: reply }]);
       setAnalysisMeta({
         consensusMode: data.consensusMode || null,
         analyzers: Array.isArray(data.analyzers) ? data.analyzers.map(item => item.provider).filter(Boolean) : [],
@@ -700,10 +762,61 @@ Rules:
         webSourceCount: Number(data.webResearch?.sourceCount) || 0,
         webSources: Array.isArray(data.webResearch?.sources) ? data.webResearch.sources : [],
       });
+      speakReply(reply);
     } catch (requestError) {
       setError(requestError?.message || 'The assistant could not complete the request.');
+      setVoiceState('error');
     } finally {
       setLoading(false);
+    }
+  }
+
+  function startListening() {
+    if (loading || typeof window === 'undefined') return;
+    const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+    if (!SpeechRecognition) {
+      setVoiceState('error');
+      setError('Voice input is unavailable in this browser. Type the question instead.');
+      return;
+    }
+
+    window.speechSynthesis?.cancel?.();
+    recognitionRef.current?.abort?.();
+    setError('');
+
+    const recognition = new SpeechRecognition();
+    recognitionRef.current = recognition;
+    recognition.lang = window.navigator?.language || 'en-US';
+    recognition.continuous = false;
+    recognition.interimResults = false;
+    recognition.maxAlternatives = 1;
+    recognition.onstart = () => setVoiceState('listening');
+    recognition.onresult = event => {
+      const transcript = Array.from(event.results || [])
+        .map(result => result?.[0]?.transcript || '')
+        .join(' ')
+        .trim();
+      if (!transcript) return;
+      setInput(transcript);
+      void send(transcript);
+    };
+    recognition.onerror = event => {
+      const permissionDenied = event?.error === 'not-allowed' || event?.error === 'service-not-allowed';
+      setVoiceState('error');
+      setError(permissionDenied
+        ? 'Microphone access was not granted. Type the question instead.'
+        : 'Voice input stopped. Type the question or try the microphone again.');
+    };
+    recognition.onend = () => {
+      recognitionRef.current = null;
+      setVoiceState(current => current === 'listening' ? 'idle' : current);
+    };
+
+    try {
+      recognition.start();
+    } catch {
+      setVoiceState('error');
+      setError('Voice input could not start. Type the question instead.');
     }
   }
 
@@ -714,7 +827,7 @@ Rules:
           <MessageCircleMore size={14}/>
           Ask Role Intelligence
         </div>
-        <RoleVoiceWave state={loading ? 'thinking' : 'idle'} height={90} className="mt-3"/>
+        <RoleVoiceWave state={waveState} height={90} className="mt-3"/>
         <div className="mt-3 flex flex-wrap gap-2">
           <Badge>{role.shortTitle}</Badge>
           <Badge tone="info">{sceneLabel}</Badge>
@@ -849,7 +962,40 @@ Rules:
             placeholder="Ask an abstract question…"
             className="max-h-28 min-h-10 flex-1 resize-none bg-transparent py-2 text-sm text-white outline-none placeholder:text-white/22"
           />
-          <button type="button" onClick={send} disabled={!input.trim() || loading} className="grid h-10 w-10 flex-none place-items-center rounded-full bg-white text-slate-950 transition disabled:cursor-not-allowed disabled:opacity-25" aria-label="Send role intelligence question">
+          <button
+            type="button"
+            onClick={startListening}
+            disabled={!voiceSupport.recognition || loading}
+            className={cx(
+              'grid h-10 w-10 flex-none place-items-center rounded-full border transition disabled:cursor-not-allowed disabled:opacity-25',
+              voiceState === 'listening'
+                ? 'border-sky-300/50 bg-sky-300 text-slate-950'
+                : 'border-white/10 bg-white/[0.06] text-white/62 hover:text-white'
+            )}
+            aria-label={voiceSupport.recognition ? 'Ask with voice' : 'Voice input unavailable'}
+            title={voiceSupport.recognition ? 'Ask with voice' : 'Voice input unavailable in this browser'}
+          >
+            <Mic size={16}/>
+          </button>
+          <button
+            type="button"
+            onClick={() => {
+              const next = !speakReplies;
+              setSpeakReplies(next);
+              if (!next && typeof window !== 'undefined') {
+                window.speechSynthesis?.cancel?.();
+                setVoiceState('idle');
+              }
+            }}
+            disabled={!voiceSupport.synthesis}
+            aria-pressed={speakReplies}
+            aria-label={speakReplies ? 'Disable spoken replies' : 'Enable spoken replies'}
+            title={voiceSupport.synthesis ? 'Spoken reply' : 'Speech readback unavailable in this browser'}
+            className="grid h-10 w-10 flex-none place-items-center rounded-full border border-white/10 bg-white/[0.06] text-white/62 transition hover:text-white disabled:cursor-not-allowed disabled:opacity-25"
+          >
+            {speakReplies ? <Volume2 size={16}/> : <VolumeX size={16}/>}
+          </button>
+          <button type="button" onClick={() => send()} disabled={!input.trim() || loading} className="grid h-10 w-10 flex-none place-items-center rounded-full bg-white text-slate-950 transition disabled:cursor-not-allowed disabled:opacity-25" aria-label="Send role intelligence question">
             <Send size={16}/>
           </button>
         </div>
@@ -1197,6 +1343,7 @@ function initialRoleForEmployee(employee) {
 function Workspace({ employee, onExit }) {
   const [selectedRole, setSelectedRole] = useState(() => initialRoleForEmployee(employee));
   const [activeCategory, setActiveCategory] = useState('work-history');
+  const [lifeLensMode, setLifeLensMode] = useState('hypothetical');
   const [activeScene, setActiveScene] = useState('baseline');
   const interaction = useMemo(() => deriveRoleInteraction(employee, selectedRole), [employee, selectedRole]);
   const adjacentPull = useMemo(
@@ -1219,6 +1366,7 @@ function Workspace({ employee, onExit }) {
       role={selectedRole}
       activeCategory={activeCategory}
       activeScene={activeScene}
+      lifeLensMode={lifeLensMode}
     />
   );
 
@@ -1399,7 +1547,13 @@ function Workspace({ employee, onExit }) {
                 </TabsContent>
 
                 <TabsContent value="context">
-                  <LifeLensStrip role={selectedRole} activeCategory={activeCategory} onSelect={setActiveCategory}/>
+                  <LifeLensStrip
+                    role={selectedRole}
+                    activeCategory={activeCategory}
+                    onSelect={setActiveCategory}
+                    lifeLensMode={lifeLensMode}
+                    onModeChange={setLifeLensMode}
+                  />
                 </TabsContent>
 
                 <TabsContent value="adjacent">

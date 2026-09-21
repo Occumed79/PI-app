@@ -53,6 +53,10 @@ function normalizeOverlayIds(value) {
   )].slice(0, 50);
 }
 
+function normalizeLifeLensMode(value) {
+  return value === 'authorized' ? 'authorized' : 'hypothetical';
+}
+
 function compactConversation(messages, limit = 16) {
   return safeArray(messages, 100)
     .filter(message => message && typeof message.content === 'string' && ['user', 'assistant'].includes(message.role))
@@ -207,8 +211,13 @@ function buildRoleGrounding(employee, roleId) {
   };
 }
 
-function roleGroundingSystemText(grounding, activeContextCategory = '') {
+function roleGroundingSystemText(grounding, activeContextCategory = '', lifeLensMode = 'hypothetical') {
   if (!grounding) return '';
+
+  const normalizedLifeLensMode = normalizeLifeLensMode(lifeLensMode);
+  const lifeLensInstruction = normalizedLifeLensMode === 'authorized'
+    ? `EMPLOYEE-AUTHORIZED CONTEXT: The ${String(activeContextCategory || 'selected')} category was intentionally supplied for contextual interpretation. Do not turn it into a diagnosis or medical record, and do not infer facts beyond the supplied category.`
+    : `HYPOTHETICAL CONTEXT EXPLORATION: The ${String(activeContextCategory || 'selected')} category is a what-if lens only. Never infer that the selected employee has this condition or life context.`;
 
   return `AUTHORITATIVE ROLE-INTELLIGENCE GROUNDING
 The following structured values come from the app's deterministic person × role engine and evidence catalog. Use them as the baseline. Do not silently replace them with your own score.
@@ -224,7 +233,9 @@ GROUNDING RULES:
 - Adjacent-role pull is descriptive exploration only, not a staffing or promotion recommendation.
 - Do not expose or invent an overall employment verdict.
 - Sensitive life-context information must not alter the baseline role interaction.
-- Active context lens, when present, is explanatory only: ${String(activeContextCategory || 'none')}.`;
+- Active context lens, when present, is explanatory only: ${String(activeContextCategory || 'none')}.
+- The Life Lens permission mode does not change deterministic baseline compatibility, component values, evidence confidence, adjacent-role pull, or orbit geometry.
+${lifeLensInstruction}`;
 }
 
 const ROLE_QUERY_ALIASES = Object.freeze({
@@ -729,7 +740,7 @@ app.post('/api/ai/scenario-analysis', async (req, res) => {
 
 
 app.post('/api/ai/role-intelligence', async (req, res) => {
-  const { system, messages, employees, roleId, activeContextCategory } = req.body || {};
+  const { system, messages, employees, roleId, activeContextCategory, lifeLensMode } = req.body || {};
   if (!Array.isArray(messages)) {
     return res.status(400).json({ ok: false, message: 'messages array required' });
   }
@@ -786,7 +797,7 @@ app.post('/api/ai/role-intelligence', async (req, res) => {
 
   const roleSystem = [
     String(system || ''),
-    roleGroundingSystemText(roleGrounding, activeContextCategory),
+    roleGroundingSystemText(roleGrounding, activeContextCategory, lifeLensMode),
     comparisonGroundingSystemText(comparisonGroundings),
     intelligence.context
       ? `AUXILIARY SEMANTIC LENS CONTEXT:\n${intelligence.context}`

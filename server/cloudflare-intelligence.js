@@ -11,6 +11,7 @@ import {
   cloudflareEmbed,
   cloudflareRerank,
   configuredProviderMap,
+  nvidiaEmbed,
   sanitizeProviderError,
 } from './ai-provider-manager.js';
 
@@ -25,6 +26,11 @@ const lensDocuments = HSI_LENS_REGISTRY.map(lens => ({
 }));
 
 let lensEmbeddingCache = {
+  model: null,
+  vectors: null,
+};
+
+let nvidiaLensEmbeddingCache = {
   model: null,
   vectors: null,
 };
@@ -76,50 +82,88 @@ async function ensureLensEmbeddings({ force = false } = {}) {
   };
 }
 
+async function ensureNvidiaLensEmbeddings() {
+  if (
+    nvidiaLensEmbeddingCache.model &&
+    Array.isArray(nvidiaLensEmbeddingCache.vectors) &&
+    nvidiaLensEmbeddingCache.vectors.length === lensDocuments.length
+  ) {
+    return { ...nvidiaLensEmbeddingCache, cached: true };
+  }
+
+  const embedded = await nvidiaEmbed(lensDocuments.map(item => item.text), { inputType: 'passage' });
+  if (!embedded?.vectors?.length) return null;
+  nvidiaLensEmbeddingCache = { model: embedded.model, vectors: embedded.vectors };
+  return { ...nvidiaLensEmbeddingCache, cached: false };
+}
+
+function embeddingShortlist(queryVector, catalog, provider) {
+  if (!queryVector || catalog?.vectors?.length !== lensDocuments.length) return [];
+  return lensDocuments.map((item, index) => ({
+    ...item,
+    similarity: cosine(queryVector, catalog.vectors[index]),
+    embeddingProvider: provider,
+  }));
+}
+
 async function semanticLensSelection(query) {
   if (!query || !configuredProviderMap().cloudflare) {
     return { lenses: [], metadata: { used: false } };
   }
 
   let embeddingMeta = null;
+  let nvidiaEmbeddingMeta = null;
   let shortlist = [];
 
-  try {
-    let [catalog, queryEmbedding] = await Promise.all([
-      ensureLensEmbeddings(),
-      cloudflareEmbed([query]),
-    ]);
+  const providers = configuredProviderMap();
+  const embeddingAttempts = await Promise.allSettled([
+    Promise.all([ensureLensEmbeddings(), cloudflareEmbed([query])]),
+    providers.nvidia
+      ? Promise.all([ensureNvidiaLensEmbeddings(), nvidiaEmbed([query], { inputType: 'query' })])
+      : Promise.resolve([null, null]),
+  ]);
 
-    if (
-      catalog?.model &&
-      queryEmbedding?.model &&
-      catalog.model !== queryEmbedding.model
-    ) {
-      catalog = await ensureLensEmbeddings({ force: true });
-      queryEmbedding = await cloudflareEmbed([query]);
+  const cloudflareAttempt = embeddingAttempts[0];
+  if (cloudflareAttempt.status === 'fulfilled') {
+    let [catalog, queryEmbedding] = cloudflareAttempt.value;
+    if (catalog?.model && queryEmbedding?.model && catalog.model !== queryEmbedding.model) {
+      try {
+        catalog = await ensureLensEmbeddings({ force: true });
+        queryEmbedding = await cloudflareEmbed([query]);
+      } catch {
+        catalog = null;
+        queryEmbedding = null;
+      }
     }
-
-    if (
-      catalog?.vectors?.length === lensDocuments.length &&
-      queryEmbedding?.vectors?.[0] &&
-      catalog.model === queryEmbedding.model
-    ) {
+    if (catalog?.model && queryEmbedding?.vectors?.[0] && catalog.model === queryEmbedding.model) {
       embeddingMeta = {
         model: catalog.model,
         accountSlot: queryEmbedding.accountSlot,
         catalogCached: Boolean(catalog.cached),
       };
-      shortlist = lensDocuments
-        .map((item, index) => ({
-          ...item,
-          similarity: cosine(queryEmbedding.vectors[0], catalog.vectors[index]),
-        }))
-        .sort((a, b) => b.similarity - a.similarity)
-        .slice(0, 20);
+      shortlist.push(...embeddingShortlist(queryEmbedding.vectors[0], catalog, 'cloudflare'));
     }
-  } catch {
-    shortlist = [];
   }
+
+  const nvidiaAttempt = embeddingAttempts[1];
+  if (nvidiaAttempt.status === 'fulfilled') {
+    const [catalog, queryEmbedding] = nvidiaAttempt.value;
+    if (catalog?.model && queryEmbedding?.vectors?.[0] && catalog.model === queryEmbedding.model) {
+      nvidiaEmbeddingMeta = {
+        model: catalog.model,
+        catalogCached: Boolean(catalog.cached),
+      };
+      shortlist.push(...embeddingShortlist(queryEmbedding.vectors[0], catalog, 'nvidia'));
+    }
+  }
+
+  shortlist = [...shortlist.reduce((bestById, item) => {
+    const current = bestById.get(item.id);
+    if (!current || item.similarity > current.similarity) bestById.set(item.id, item);
+    return bestById;
+  }, new Map()).values()]
+    .sort((a, b) => b.similarity - a.similarity)
+    .slice(0, 20);
 
   if (!shortlist.length) shortlist = lensDocuments.slice();
 
@@ -146,6 +190,7 @@ async function semanticLensSelection(query) {
       metadata: {
         used: Boolean(lenses.length),
         embeddingModel: embeddingMeta?.model || null,
+        nvidiaEmbeddingModel: nvidiaEmbeddingMeta?.model || null,
         rerankModel: reranked?.model || null,
         embeddingAccountSlot: embeddingMeta?.accountSlot || null,
         rerankAccountSlot: reranked?.accountSlot || null,
@@ -167,6 +212,7 @@ async function semanticLensSelection(query) {
       metadata: {
         used: Boolean(fallback.length),
         embeddingModel: embeddingMeta?.model || null,
+        nvidiaEmbeddingModel: nvidiaEmbeddingMeta?.model || null,
         rerankModel: null,
         embeddingAccountSlot: embeddingMeta?.accountSlot || null,
         rerankAccountSlot: null,

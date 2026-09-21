@@ -37,6 +37,29 @@ test('Role Intelligence UI calls the dedicated ensemble endpoint', () => {
   assert.match(roleUiSource, /fetch\('\/api\/ai\/role-intelligence'/);
 });
 
+test('Role Intelligence voice control uses browser speech input and optional spoken readback', () => {
+  assert.match(roleUiSource, /window\.SpeechRecognition \|\| window\.webkitSpeechRecognition/);
+  assert.match(roleUiSource, /recognition\.onresult/);
+  assert.match(roleUiSource, /send\(transcript\)/);
+  assert.match(roleUiSource, /window\.speechSynthesis/);
+  assert.match(roleUiSource, /new SpeechSynthesisUtterance/);
+  assert.match(roleUiSource, /voiceState.*'listening'/s);
+  assert.match(roleUiSource, /voiceState.*'speaking'/s);
+  assert.match(roleUiSource, /voiceState.*'error'/s);
+  assert.match(roleUiSource, /<RoleVoiceWave state=\{waveState\}/);
+});
+
+test('Life Lens explicitly distinguishes hypothetical exploration from authorized context', () => {
+  assert.match(roleUiSource, /lifeLensMode/);
+  assert.match(roleUiSource, /<ToggleGroupItem value="hypothetical">Hypothetical<\/ToggleGroupItem>/);
+  assert.match(roleUiSource, /<ToggleGroupItem value="authorized">Authorized context<\/ToggleGroupItem>/);
+  assert.match(roleUiSource, /lifeLensMode: lifeLensMode/);
+  assert.match(serverSource, /normalizeLifeLensMode/);
+  assert.match(serverSource, /HYPOTHETICAL CONTEXT EXPLORATION/);
+  assert.match(serverSource, /EMPLOYEE-AUTHORIZED CONTEXT/);
+  assert.match(serverSource, /does not change deterministic baseline compatibility/);
+});
+
 test('sensitive life context is explicitly barred from baseline role compatibility in analyzer instructions', () => {
   assert.match(managerSource, /Do not use health, disability, family, immigration, identity, neurodivergence/);
 });

@@ -48,6 +48,16 @@ test('Cloudflare intelligence performs semantic retrieval, classification, and c
   assert.match(intelligenceSource, /deriveLensProjection/);
 });
 
+test('NVIDIA Nemotron embedding is an optional additive retrieval path with Cloudflare preserved', () => {
+  assert.match(managerSource, /NVIDIA_EMBED_MODEL\s*=\s*'nvidia\/nemotron-3-embed-1b'/);
+  assert.match(managerSource, /export async function nvidiaEmbed/);
+  assert.match(managerSource, /integrate\.api\.nvidia\.com\/v1\/embeddings/);
+  assert.match(intelligenceSource, /cloudflareEmbed/);
+  assert.match(intelligenceSource, /nvidiaEmbed/);
+  assert.match(intelligenceSource, /Promise\.allSettled/);
+  assert.match(intelligenceSource, /nvidiaEmbeddingModel/);
+});
+
 test('chat route supplies employee context and can accept Cloudflare emergency replies', () => {
   assert.match(chatSource, /employees,/);
   assert.match(chatSource, /source === 'cloudflare'/);
