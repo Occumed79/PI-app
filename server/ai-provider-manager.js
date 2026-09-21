@@ -1,4 +1,5 @@
 import 'dotenv/config';
+import { benchmarkBoost, getArtificialAnalysisDiagnostics } from './artificial-analysis-intelligence.js';
 
 const DISCOVERY_TTL_MS = 6 * 60 * 60 * 1000;
 const DEFAULT_TIMEOUT_MS = 45000;
@@ -156,8 +157,17 @@ async function resolveGeminiModel(force = false) {
   for (const key of keys) {
     try {
       const models = await listGeminiModels(key);
-      const ranked = models
-        .map(model => ({ model, score: scoreGemini(model) }))
+      const ranked = (await Promise.all(models.map(async model => {
+        const localScore = scoreGemini(model);
+        if (!Number.isFinite(localScore)) return { model, score: localScore, benchmark: null };
+        const runtimeName = String(model?.baseModelId || model?.name || '').replace(/^models\//, '');
+        const benchmarked = await benchmarkBoost(runtimeName);
+        return {
+          model,
+          score: localScore + benchmarked.boost,
+          benchmark: benchmarked.benchmark,
+        };
+      })))
         .filter(item => Number.isFinite(item.score))
         .sort((a, b) => b.score - a.score);
       const selected = ranked[0]?.model;
@@ -214,8 +224,16 @@ async function resolveGroqModel(force = false) {
   for (const key of keys) {
     try {
       const models = await listGroqModels(key);
-      const ranked = models
-        .map(model => ({ model, score: scoreGroq(model) }))
+      const ranked = (await Promise.all(models.map(async model => {
+        const localScore = scoreGroq(model);
+        if (!Number.isFinite(localScore)) return { model, score: localScore, benchmark: null };
+        const benchmarked = await benchmarkBoost(model?.id);
+        return {
+          model,
+          score: localScore + benchmarked.boost,
+          benchmark: benchmarked.benchmark,
+        };
+      })))
         .filter(item => Number.isFinite(item.score))
         .sort((a, b) => b.score - a.score);
       if (!ranked.length) throw new Error('Groq returned no active chat-capable model matching the production policy.');
@@ -504,8 +522,17 @@ async function resolveMistralModel(force = false) {
   for (const key of keys) {
     try {
       const models = await listMistralModels(key);
-      const ranked = models
-        .map(model => ({ model, score: scoreMistral(model) }))
+      const ranked = (await Promise.all(models.map(async model => {
+        const localScore = scoreMistral(model);
+        if (!Number.isFinite(localScore)) return { model, score: localScore, benchmark: null };
+        const runtimeName = String(model?.id || model?.name || '');
+        const benchmarked = await benchmarkBoost(runtimeName);
+        return {
+          model,
+          score: localScore + benchmarked.boost,
+          benchmark: benchmarked.benchmark,
+        };
+      })))
         .filter(item => Number.isFinite(item.score))
         .sort((a, b) => b.score - a.score);
       if (!ranked.length) throw new Error('Mistral returned no active chat-capable model matching the Role Intelligence policy.');
@@ -986,6 +1013,7 @@ export function getProviderDiagnostics() {
     configured: configuredProviderMap(),
     keyCounts: providerKeyCounts(),
     primaryOrder: [...PRIMARY_PROVIDER_ORDER],
+    artificialAnalysis: getArtificialAnalysisDiagnostics(),
     models: {
       gemini: state.gemini.model,
       groq: state.groq.model,
