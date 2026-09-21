@@ -13,108 +13,53 @@ const SCENARIO_TEMPLATES = [
 
 // ── API helpers ───────────────────────────────────────────────────────────────
 
-async function callGemini(prompt) {
-  const key = import.meta.env.VITE_GEMINI_API_KEY;
-  if (!key) throw new Error('No Gemini key');
-  const res = await fetch(
-    `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${key}`,
-    {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ contents: [{ parts: [{ text: prompt }] }] }),
-    }
-  );
-  if (!res.ok) throw new Error(`Gemini ${res.status}`);
-  const data = await res.json();
-  return data.candidates?.[0]?.content?.parts?.[0]?.text || '';
-}
-
-async function callGroq(prompt) {
-  const key = import.meta.env.VITE_GROQ_API_KEY;
-  if (!key) throw new Error('No Groq key');
-  const res = await fetch('https://api.groq.com/openai/v1/chat/completions', {
+async function getAIResponse(scenario, profile) {
+  const response = await fetch('/api/ai/scenario-analysis', {
     method: 'POST',
-    headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${key}` },
+    headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({
-      model: 'llama-3.3-70b-versatile',
-      messages: [{ role: 'user', content: prompt }],
-      temperature: 0.7,
-      max_tokens: 1200,
+      scenario,
+      analysisGoal: 'Give practical, profile-aware management guidance tied to the completed PI baseline without inventing unprovided context.',
+      employeeProfile: {
+        name: profile.name,
+        profileName: profile.name,
+        piProfileId: profile.id,
+        profileId: profile.id,
+        factors: {
+          dominance: profile.dominance,
+          extraversion: profile.extraversion,
+          patience: profile.patience,
+          formality: profile.formality,
+        },
+        contextOverlays: [],
+      },
     }),
   });
-  if (!res.ok) throw new Error(`Groq ${res.status}`);
-  const data = await res.json();
-  return data.choices?.[0]?.message?.content || '';
-}
 
-async function getAIResponse(prompt) {
-  // Try Gemini first, fall back to Groq
-  try {
-    const text = await callGemini(prompt);
-    if (text) return { text, provider: 'Gemini' };
-  } catch (e) {
-    console.warn('Gemini failed, trying Groq:', e.message);
+  if (!response.ok) {
+    const body = await response.json().catch(() => null);
+    throw new Error(body?.message || `AI scenario request failed: ${response.status}`);
   }
-  try {
-    const text = await callGroq(prompt);
-    if (text) return { text, provider: 'Groq' };
-  } catch (e) {
-    console.warn('Groq also failed:', e.message);
-  }
-  return null;
+
+  const data = await response.json();
+  if (!data?.analysis) throw new Error('The AI service returned no usable scenario analysis.');
+  return data;
 }
 
-function buildPrompt(scenario, profile) {
-  return `You are a thoughtful, evidence-informed management coach specializing in behavioral psychology and workplace dynamics. You are helping a manager understand and navigate a situation involving a team member.
+function scenarioAnalysisToSections(analysis = {}) {
+  const list = value => Array.isArray(value) ? value.filter(Boolean) : [];
+  const numbered = value => list(value).map((item, index) => `${index + 1}. ${item}`).join('\n');
 
-TEAM MEMBER PROFILE — ${profile.name} (${profile.group} group):
-- Tagline: ${profile.tagline}
-- Summary: ${profile.short}
-- Behavioral drives: Dominance ${profile.dominance}/100, Extraversion ${profile.extraversion}/100, Patience ${profile.patience}/100, Formality ${profile.formality}/100
-- Core needs: ${profile.needs.join(', ')}
-- Strengths: ${profile.strengths.join(', ')}
-- Common traps/misreads: ${profile.traps.join(', ')}
-
-MANAGER'S SITUATION:
-"${scenario}"
-
-Please provide a structured, practical response with these four sections. Be direct, specific, and avoid generic advice — everything should connect back to this person's specific profile pattern.
-
-**How to Read This Person Right Now**
-(2-3 sentences explaining what's likely happening internally for this profile type given this situation. What lens should the manager use?)
-
-**Why This Happens With This Profile**
-(2-3 sentences on the behavioral logic — why someone with these specific drives reacts this way to this type of situation)
-
-**Best Manager Move**
-(3-4 concrete, actionable steps the manager should take. Be specific — what to say, when, how)
-
-**What NOT to Do**
-(2-3 things that would likely backfire with this profile type in this situation)
-
-Keep each section tight and practical. No vague motivational language. Write like a smart colleague who knows this person well, not a textbook.`;
-}
-
-function parseAIResponse(text) {
-  // Parse structured sections from AI response
-  const sections = {
-    read: '',
-    why: '',
-    action: '',
-    avoid: '',
+  return {
+    read: String(analysis.summary || ''),
+    why: [
+      ...list(analysis.sourcePiSignals),
+      ...list(analysis.crosswalkInterpretations),
+      ...list(analysis.alternativeExplanations),
+    ].join('\n\n'),
+    action: numbered(analysis.practicalApplications),
+    avoid: list(analysis.limitations).map(item => `• ${item}`).join('\n'),
   };
-
-  const readMatch = text.match(/\*\*How to Read.*?\*\*\s*([\s\S]*?)(?=\*\*Why|\*\*Best|\*\*What|$)/i);
-  const whyMatch = text.match(/\*\*Why This Happens.*?\*\*\s*([\s\S]*?)(?=\*\*Best|\*\*What|$)/i);
-  const actionMatch = text.match(/\*\*Best Manager Move.*?\*\*\s*([\s\S]*?)(?=\*\*What|$)/i);
-  const avoidMatch = text.match(/\*\*What NOT.*?\*\*\s*([\s\S]*?)(?=$)/i);
-
-  sections.read = readMatch?.[1]?.trim() || text.split('\n\n')[0] || text.slice(0, 300);
-  sections.why = whyMatch?.[1]?.trim() || '';
-  sections.action = actionMatch?.[1]?.trim() || '';
-  sections.avoid = avoidMatch?.[1]?.trim() || '';
-
-  return sections;
 }
 
 // ── Component ─────────────────────────────────────────────────────────────────
@@ -127,8 +72,6 @@ export default function AIScenarioCoach({ profile: initialProfile }) {
   const [error, setError] = useState(null);
   const [provider, setProvider] = useState(null);
 
-  const hasKeys = !!(import.meta.env.VITE_GEMINI_API_KEY || import.meta.env.VITE_GROQ_API_KEY);
-
   const handleAnalyze = async () => {
     if (!scenario || !selectedProfile) return;
     const profile = PI_PROFILES.find(p => p.id === selectedProfile || p.name.toLowerCase() === selectedProfile.toLowerCase());
@@ -139,18 +82,9 @@ export default function AIScenarioCoach({ profile: initialProfile }) {
     setResponse(null);
 
     try {
-      if (hasKeys) {
-        const result = await getAIResponse(buildPrompt(scenario, profile));
-        if (result) {
-          setResponse(parseAIResponse(result.text));
-          setProvider(result.provider);
-        } else {
-          setError('Both AI providers failed to respond. Check your API keys in settings.');
-        }
-      } else {
-        // Fallback: show configuration prompt
-        setError('API keys not configured. Add VITE_GEMINI_API_KEY and/or VITE_GROQ_API_KEY to your .env file to enable real AI responses.');
-      }
+      const result = await getAIResponse(scenario, profile);
+      setResponse(scenarioAnalysisToSections(result.analysis));
+      setProvider(result.source ? result.source.charAt(0).toUpperCase() + result.source.slice(1) : 'AI');
     } catch (err) {
       setError(err.message);
     } finally {
@@ -181,19 +115,7 @@ export default function AIScenarioCoach({ profile: initialProfile }) {
           )}
         </div>
 
-        {!hasKeys && !response && (
-          <div className="mb-5 rounded-2xl border border-amber-400/30 bg-amber-500/10 p-4">
-            <div className="flex items-start gap-2">
-              <AlertTriangle size={15} className="text-amber-400 mt-0.5 flex-shrink-0" />
-              <div>
-                <p className="text-sm font-medium text-amber-400 mb-1">API keys not configured</p>
-                <p className="text-xs text-amber-300/70">Add <code className="bg-black/30 px-1 rounded">VITE_GEMINI_API_KEY</code> and/or <code className="bg-black/30 px-1 rounded">VITE_GROQ_API_KEY</code> to your <code className="bg-black/30 px-1 rounded">.env</code> file to enable real AI responses. Both APIs are free.</p>
-              </div>
-            </div>
-          </div>
-        )}
-
-        {!response ? (
+                {!response ? (
           <>
             {/* Profile Selector */}
             <div className="mb-5">
