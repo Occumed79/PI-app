@@ -1,9 +1,9 @@
-import React, { useCallback, useEffect, useState } from 'react';
+import React, { Suspense, useCallback, useEffect, useState } from 'react';
 import { BrainCircuit, ClipboardList, Compass, Layers3 } from 'lucide-react';
 import VisualLensWorkspace from './VisualLensWorkspace.jsx';
 import EmployeeTab from './components/EmployeeTab.jsx';
 import AITab from './components/AITab.jsx';
-import RoleIntelligenceTab from './components/RoleIntelligenceTab.jsx';
+const RoleIntelligenceTab = React.lazy(() => import('./components/RoleIntelligenceTab.jsx'));
 
 function cx(...classes) {
   return classes.filter(Boolean).join(' ');
@@ -121,11 +121,19 @@ export default function RootApp() {
           </div>
         )}
         {mode === 'roles' && (
-          <RoleIntelligenceTab
-            employees={employees}
-            loading={employeesLoading}
-            loadError={employeesError}
-          />
+          <Suspense
+            fallback={(
+              <div className="grid min-h-[520px] place-items-center rounded-[36px] border border-white/8 bg-white/[0.018] text-sm text-white/35">
+                Loading Role Intelligence…
+              </div>
+            )}
+          >
+            <RoleIntelligenceTab
+              employees={employees}
+              loading={employeesLoading}
+              loadError={employeesError}
+            />
+          </Suspense>
         )}
       </div>
     </div>
