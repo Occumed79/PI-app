@@ -352,6 +352,7 @@ function RoleAssistantRail({ employee, role, activeCategory }) {
   const [input, setInput] = useState('');
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
+  const [analysisMeta, setAnalysisMeta] = useState(null);
   const profile = employeePiProfile(employee);
   const roleInteraction = useMemo(() => deriveRoleInteraction(employee, role), [employee, role]);
 
@@ -412,6 +413,13 @@ Rules:
       const data = await response.json().catch(() => ({}));
       if (!response.ok) throw new Error(data.message || `AI request failed (${response.status})`);
       setMessages(current => [...current, { role: 'assistant', content: data.reply || 'No response was returned.' }]);
+      setAnalysisMeta({
+        consensusMode: data.consensusMode || null,
+        analyzers: Array.isArray(data.analyzers) ? data.analyzers.map(item => item.provider).filter(Boolean) : [],
+        synthesizer: data.synthesizer?.provider || null,
+        evidenceConfidence: data.roleGrounding?.evidenceConfidence ?? null,
+        sourceCount: data.roleGrounding?.sourceCount ?? null,
+      });
     } catch (requestError) {
       setError(requestError?.message || 'The assistant could not complete the request.');
     } finally {
@@ -428,6 +436,22 @@ Rules:
         </div>
         <RoleVoiceWave state={loading ? 'thinking' : 'idle'} height={90} className="mt-3"/>
         <p className="mt-1 text-xs leading-5 text-white/35">Ask why a pattern appears, compare roles, test a hypothetical work condition, or interrogate the active lens.</p>
+        {analysisMeta && (
+          <div className="mt-4 flex flex-wrap gap-2">
+            {analysisMeta.analyzers.length > 0 && (
+              <Badge tone="info">{analysisMeta.analyzers.join(' + ')} analysis</Badge>
+            )}
+            {analysisMeta.synthesizer && (
+              <Badge>{analysisMeta.synthesizer} synthesis</Badge>
+            )}
+            {Number.isFinite(analysisMeta.sourceCount) && (
+              <Badge>{analysisMeta.sourceCount} role sources</Badge>
+            )}
+            {Number.isFinite(analysisMeta.evidenceConfidence) && (
+              <Badge>Evidence {analysisMeta.evidenceConfidence}/100</Badge>
+            )}
+          </div>
+        )}
       </div>
 
       <div className="min-h-0 flex-1 overflow-y-auto px-5 py-5">
