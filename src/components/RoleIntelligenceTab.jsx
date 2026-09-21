@@ -417,6 +417,10 @@ Rules:
         consensusMode: data.consensusMode || null,
         analyzers: Array.isArray(data.analyzers) ? data.analyzers.map(item => item.provider).filter(Boolean) : [],
         synthesizer: data.synthesizer?.provider || null,
+        agreement: data.consensus?.agreement || null,
+        disagreementCount: Array.isArray(data.consensus?.materialDisagreements)
+          ? data.consensus.materialDisagreements.length
+          : 0,
         evidenceConfidence: data.roleGrounding?.evidenceConfidence ?? null,
         sourceCount: data.roleGrounding?.sourceCount ?? null,
       });
@@ -443,6 +447,14 @@ Rules:
             )}
             {analysisMeta.synthesizer && (
               <Badge>{analysisMeta.synthesizer} synthesis</Badge>
+            )}
+            {analysisMeta.agreement && (
+              <Badge tone={analysisMeta.agreement === 'high' ? 'success' : analysisMeta.agreement === 'low' ? 'warning' : 'info'}>
+                Model agreement {analysisMeta.agreement}
+              </Badge>
+            )}
+            {analysisMeta.disagreementCount > 0 && (
+              <Badge tone="warning">{analysisMeta.disagreementCount} material disagreement{analysisMeta.disagreementCount === 1 ? '' : 's'}</Badge>
             )}
             {Number.isFinite(analysisMeta.sourceCount) && (
               <Badge>{analysisMeta.sourceCount} role sources</Badge>

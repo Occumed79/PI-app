@@ -701,6 +701,41 @@ function roleAnalyzerRecord(provider, result) {
   } : null;
 }
 
+
+function parseRoleSynthesis(value) {
+  const raw = String(value || '').trim();
+  if (!raw) return null;
+
+  try {
+    const parsed = JSON.parse(
+      raw
+        .replace(/^\`\`\`json\s*/i, '')
+        .replace(/^\`\`\`\s*/i, '')
+        .replace(/\`\`\`$/i, '')
+        .trim()
+    );
+
+    const agreement = ['high', 'moderate', 'low'].includes(parsed?.agreement)
+      ? parsed.agreement
+      : null;
+
+    return {
+      answer: typeof parsed?.answer === 'string' && parsed.answer.trim()
+        ? parsed.answer.trim()
+        : null,
+      agreement,
+      materialDisagreements: Array.isArray(parsed?.materialDisagreements)
+        ? parsed.materialDisagreements.filter(item => typeof item === 'string' && item.trim()).slice(0, 6)
+        : [],
+      unsupportedLeaps: Array.isArray(parsed?.unsupportedLeaps)
+        ? parsed.unsupportedLeaps.filter(item => typeof item === 'string' && item.trim()).slice(0, 6)
+        : [],
+    };
+  } catch {
+    return null;
+  }
+}
+
 export async function callRoleIntelligenceEnsemble({
   system = '',
   messages = [],
@@ -766,6 +801,12 @@ ROLE INTELLIGENCE ANALYZER RULES:
       analyzers,
       synthesizer: null,
       consensusMode: 'single-survivor-fallback',
+      consensus: {
+        agreement: null,
+        materialDisagreements: [],
+        unsupportedLeaps: [],
+        analystCount: 1,
+      },
       errors,
     };
   }
@@ -775,6 +816,19 @@ ROLE INTELLIGENCE ANALYZER RULES:
     content: `The independent Role Intelligence analyses below were generated from the same evidence.
 
 Do not simply choose a winner or average them. Reconcile points that are genuinely compatible, preserve material disagreements, identify unsupported leaps, and give the user one clear evidence-aware answer. Do not reveal chain-of-thought. Do not use sensitive life-context variables to alter baseline employment compatibility.
+
+Return ONLY valid JSON with exactly these keys:
+{
+  "answer": "the user-facing synthesized answer",
+  "agreement": "high" | "moderate" | "low",
+  "materialDisagreements": ["brief disagreement statements"],
+  "unsupportedLeaps": ["brief statements that one or more analysts asserted beyond the supplied evidence"]
+}
+
+Agreement describes agreement BETWEEN THE ANALYZERS, not employee suitability:
+- high: materially the same evidence-based interpretation; differences are mainly phrasing/detail
+- moderate: same broad interpretation but meaningful differences in caveats, emphasis, or causal explanation
+- low: materially conflicting interpretations of the supplied evidence
 
 ANALYSES:
 ${analyzers.map((item, index) => `ANALYST ${index + 1} (${item.provider} / ${item.model}):
@@ -786,19 +840,28 @@ ${item.reply}`).join('\n\n')}`,
     messages: synthesisMessages,
     temperature: 0.2,
     maxTokens,
-    jsonMode,
+    jsonMode: true,
     preferredProvider: 'groq',
   });
 
+  const structuredSynthesis = parseRoleSynthesis(synthesis?.reply);
+  const synthesizedAnswer = structuredSynthesis?.answer || synthesis?.reply || null;
+
   return {
-    reply: synthesis?.reply || analyzers.map(item => item.reply).join('\n\n---\n\n'),
+    reply: synthesizedAnswer || analyzers.map(item => item.reply).join('\n\n---\n\n'),
     analyzers,
     synthesizer: synthesis?.reply ? {
       provider: synthesis.provider,
       model: synthesis.model,
       keySlot: synthesis.keySlot,
     } : null,
-    consensusMode: synthesis?.reply ? 'independent-analysis-plus-third-party-synthesis' : 'parallel-analysis-no-synthesizer',
+    consensusMode: synthesizedAnswer ? 'independent-analysis-plus-third-party-synthesis' : 'parallel-analysis-no-synthesizer',
+    consensus: {
+      agreement: structuredSynthesis?.agreement || null,
+      materialDisagreements: structuredSynthesis?.materialDisagreements || [],
+      unsupportedLeaps: structuredSynthesis?.unsupportedLeaps || [],
+      analystCount: analyzers.length,
+    },
     errors: [...errors, ...(synthesis?.errors || [])],
   };
 }

@@ -129,3 +129,19 @@ test('comparison grounding explicitly forbids role winners and promotion targets
   assert.match(serverSource, /do not declare a winner, best role, promotion target, or employment decision/);
   assert.match(serverSource, /Evidence confidence is confidence in the modeled role evidence bundle, not confidence in employee performance/);
 });
+
+
+test('Role Intelligence synthesis returns structured high/moderate/low agreement metadata', () => {
+  assert.match(managerSource, /function parseRoleSynthesis/);
+  assert.match(managerSource, /"agreement": "high" \| "moderate" \| "low"/);
+  assert.match(managerSource, /materialDisagreements/);
+  assert.match(managerSource, /unsupportedLeaps/);
+  assert.match(managerSource, /jsonMode: true/);
+  assert.match(serverSource, /consensus: result\.consensus \|\| null/);
+});
+
+test('Role Intelligence UI labels model agreement rather than employee suitability', () => {
+  assert.match(roleUiSource, /Model agreement/);
+  assert.match(roleUiSource, /material disagreement/);
+  assert.match(roleUiSource, /data\.consensus\?\.agreement/);
+});
