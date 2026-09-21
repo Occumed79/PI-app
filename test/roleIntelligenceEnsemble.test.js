@@ -77,6 +77,11 @@ test('Role Intelligence shell uses sourced component structures instead of the o
   assert.match(roleUiSource, /AccordionItem/);
   assert.match(roleUiSource, /SheetContent/);
   assert.match(roleUiSource, /RadarChart/);
+  assert.match(roleUiSource, /CommandInput/);
+  assert.match(roleUiSource, /<Progress/);
+  assert.match(roleUiSource, /<Carousel/);
+  assert.match(roleUiSource, /<CarouselPrevious/);
+  assert.match(roleUiSource, /<CarouselNext/);
   assert.doesNotMatch(roleUiSource, /function RoleMarquee/);
 });
 

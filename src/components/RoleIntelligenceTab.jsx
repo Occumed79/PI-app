@@ -21,6 +21,18 @@ import {
   AccordionItem,
   AccordionTrigger,
   Badge,
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  CarouselNext,
+  CarouselPrevious,
+  Command,
+  CommandEmpty,
+  CommandGroup,
+  CommandInput,
+  CommandItem,
+  CommandList,
+  Progress,
   ResizableHandle,
   ResizablePanel,
   ResizablePanelGroup,
@@ -84,6 +96,8 @@ function orbColors(profile) {
 }
 
 function EmployeeConstellation({ employees, onSelect, loading, loadError }) {
+  const [query, setQuery] = useState('');
+
   if (loading) {
     return <div className="py-24 text-center text-sm text-white/38">Loading employee profiles…</div>;
   }
@@ -99,6 +113,16 @@ function EmployeeConstellation({ employees, onSelect, loading, loadError }) {
       </div>
     );
   }
+
+  const normalizedQuery = query.trim().toLowerCase();
+  const filteredEmployees = normalizedQuery
+    ? employees.filter(employee => [
+        employee.name,
+        employee.position,
+        employee.department,
+        employeePiProfile(employee).name,
+      ].filter(Boolean).join(' ').toLowerCase().includes(normalizedQuery))
+    : employees;
 
   const inner = employees.slice(0, 8);
   const outer = employees.slice(8);
@@ -134,26 +158,57 @@ function EmployeeConstellation({ employees, onSelect, loading, loadError }) {
   };
 
   return (
-    <div className="relative mx-auto h-[640px] max-w-5xl overflow-hidden rounded-[40px] border border-white/8 bg-black/15">
-      <div className="absolute left-1/2 top-1/2 z-10 -translate-x-1/2 -translate-y-1/2 text-center">
-        <SiriOrb size="190px" animationDuration={20}/>
-        <div className="absolute inset-0 grid place-items-center">
-          <div>
-            <div className="text-sm font-semibold text-white">Employees</div>
-            <div className="mt-1 text-[10px] uppercase tracking-[0.18em] text-white/34">Choose a profile</div>
+    <div className="mx-auto max-w-5xl">
+      <Command className="mx-auto mb-6 max-w-2xl">
+        <CommandInput
+          value={query}
+          onChange={event => setQuery(event.target.value)}
+          placeholder="Search employee, position, department, or PI profile…"
+        />
+        {query.trim() && (
+          <CommandList>
+            <CommandGroup heading="Employee profiles">
+              {filteredEmployees.length === 0 && <CommandEmpty>No matching employee profile.</CommandEmpty>}
+              {filteredEmployees.slice(0, 10).map(employee => {
+                const profile = employeePiProfile(employee);
+                return (
+                  <CommandItem key={employee.id || employee.name} onSelect={() => onSelect(employee)}>
+                    <span className="grid h-7 w-7 shrink-0 place-items-center rounded-full border border-white/10 bg-white/[0.04] text-[10px] font-semibold text-white/68">
+                      {(employee.name || '?').split(/\s+/).map(part => part[0]).join('').slice(0, 2).toUpperCase()}
+                    </span>
+                    <span className="min-w-0">
+                      <span className="block truncate font-medium text-white/74">{employee.name}</span>
+                      <span className="block truncate text-[11px] text-white/30">{employee.position || profile.name}</span>
+                    </span>
+                  </CommandItem>
+                );
+              })}
+            </CommandGroup>
+          </CommandList>
+        )}
+      </Command>
+
+      <div className="relative h-[640px] overflow-hidden rounded-[40px] border border-white/8 bg-black/15">
+        <div className="absolute left-1/2 top-1/2 z-10 -translate-x-1/2 -translate-y-1/2 text-center">
+          <SiriOrb size="190px" animationDuration={20}/>
+          <div className="absolute inset-0 grid place-items-center">
+            <div>
+              <div className="text-sm font-semibold text-white">Employees</div>
+              <div className="mt-1 text-[10px] uppercase tracking-[0.18em] text-white/34">Choose a profile</div>
+            </div>
           </div>
         </div>
-      </div>
 
-      <OrbitingCircles radius={210} duration={44} showPath>
-        {inner.map(employeeNode)}
-      </OrbitingCircles>
-
-      {outer.length > 0 && (
-        <OrbitingCircles radius={290} duration={58} reverse showPath>
-          {outer.map(employeeNode)}
+        <OrbitingCircles radius={210} duration={44} showPath>
+          {inner.map(employeeNode)}
         </OrbitingCircles>
-      )}
+
+        {outer.length > 0 && (
+          <OrbitingCircles radius={290} duration={58} reverse showPath>
+            {outer.map(employeeNode)}
+          </OrbitingCircles>
+        )}
+      </div>
     </div>
   );
 }
@@ -817,9 +872,12 @@ function Workspace({ employee, onExit }) {
                       <div className="mt-8 text-xs font-semibold uppercase tracking-[0.18em] text-white/30">Interaction dimensions</div>
                       <div className="mt-4 grid grid-cols-2 gap-x-6 gap-y-4">
                         {components.map(([label, value]) => (
-                          <div key={label} className="border-b border-white/8 pb-3">
-                            <div className="text-xs text-white/34">{label}</div>
-                            <div className="mt-1 text-lg font-semibold text-white/76">{value}</div>
+                          <div key={label} className="border-b border-white/8 pb-4">
+                            <div className="flex items-center justify-between gap-3">
+                              <div className="text-xs text-white/34">{label}</div>
+                              <div className="text-sm font-semibold tabular-nums text-white/68">{value}</div>
+                            </div>
+                            <Progress value={value} className="mt-2"/>
                           </div>
                         ))}
                       </div>
@@ -897,18 +955,30 @@ function Workspace({ employee, onExit }) {
                   <div className="mb-6 flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.2em] text-white/30">
                     <Compass size={14}/> Closest modeled role environments
                   </div>
-                  <div className="flex flex-wrap gap-3">
-                    {adjacentPull.map(item => (
-                      <button
-                        key={item.roleId}
-                        type="button"
-                        onClick={() => setSelectedRole(item.role)}
-                        className="group inline-flex items-center gap-3 rounded-full border border-white/10 bg-white/[0.025] px-4 py-3 text-sm text-white/55 transition hover:border-white/20 hover:text-white"
-                      >
-                        {item.role.title}<ArrowRight size={14} className="transition group-hover:translate-x-1"/>
-                      </button>
-                    ))}
-                  </div>
+                  <Carousel className="overflow-hidden rounded-[28px] border border-white/8 bg-black/10">
+                    <CarouselContent>
+                      {adjacentPull.map(item => (
+                        <CarouselItem key={item.roleId}>
+                          <button
+                            type="button"
+                            onClick={() => setSelectedRole(item.role)}
+                            className="group grid min-h-[220px] w-full place-items-center px-14 py-10 text-center"
+                          >
+                            <div className="max-w-xl">
+                              <div className="text-xs font-semibold uppercase tracking-[0.18em] text-sky-200/45">Adjacent modeled environment</div>
+                              <div className="mt-4 text-3xl font-semibold tracking-tight text-white">{item.role.title}</div>
+                              <div className="mt-3 text-sm leading-7 text-white/42">{item.role.purpose}</div>
+                              <div className="mt-5 inline-flex items-center gap-2 text-sm font-medium text-white/58 transition group-hover:text-white">
+                                Explore this role <ArrowRight size={14} className="transition group-hover:translate-x-1"/>
+                              </div>
+                            </div>
+                          </button>
+                        </CarouselItem>
+                      ))}
+                    </CarouselContent>
+                    <CarouselPrevious/>
+                    <CarouselNext/>
+                  </Carousel>
                   <p className="mt-5 max-w-3xl text-xs leading-6 text-white/28">
                     Adjacent-role pull is calculated from role-environment similarity plus this person × role interaction. It is not a promotion or staffing recommendation.
                   </p>

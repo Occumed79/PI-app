@@ -1,5 +1,5 @@
 import React from 'react';
-import { ChevronDown, X } from 'lucide-react';
+import { Check, ChevronDown, ChevronLeft, ChevronRight, Search, X } from 'lucide-react';
 
 // These primitives follow the Shadcn component structures surfaced by the
 // connected Magic Patterns Shadcn design system.
@@ -189,4 +189,222 @@ export function Badge({ tone = 'default', className = '', children }) {
 
 export function ScrollArea({ className = '', children }) {
   return <div className={`relative overflow-auto ${className}`}>{children}</div>;
+}
+
+
+export function Command({ className = '', children }) {
+  return (
+    <div data-slot="command" className={`flex size-full flex-col overflow-hidden rounded-xl border border-white/8 bg-white/[0.025] p-1 text-white/72 ${className}`}>
+      {children}
+    </div>
+  );
+}
+
+export function CommandInput({ className = '', ...props }) {
+  return (
+    <div data-slot="command-input-wrapper" className="p-1 pb-0">
+      <div className="flex h-10 items-center gap-2 rounded-lg border border-white/10 bg-black/15 px-3">
+        <Search className="size-4 shrink-0 text-white/28" />
+        <input
+          data-slot="command-input"
+          className={`w-full bg-transparent text-sm text-white outline-none placeholder:text-white/24 disabled:cursor-not-allowed disabled:opacity-50 ${className}`}
+          {...props}
+        />
+      </div>
+    </div>
+  );
+}
+
+export function CommandList({ className = '', children }) {
+  return <div data-slot="command-list" className={`max-h-72 overflow-y-auto overflow-x-hidden ${className}`}>{children}</div>;
+}
+
+export function CommandEmpty({ className = '', children }) {
+  return <div data-slot="command-empty" className={`py-6 text-center text-sm text-white/35 ${className}`}>{children}</div>;
+}
+
+export function CommandGroup({ heading, className = '', children }) {
+  return (
+    <div data-slot="command-group" className={`overflow-hidden p-1 ${className}`}>
+      {heading && <div className="px-2 py-1.5 text-xs font-medium uppercase tracking-[0.14em] text-white/26">{heading}</div>}
+      {children}
+    </div>
+  );
+}
+
+export function CommandItem({ disabled = false, checked = false, className = '', onSelect, children }) {
+  return (
+    <button
+      type="button"
+      data-slot="command-item"
+      disabled={disabled}
+      onClick={onSelect}
+      className={`relative flex w-full items-center gap-2 rounded-lg px-3 py-2 text-left text-sm outline-none transition hover:bg-white/[0.05] hover:text-white disabled:pointer-events-none disabled:opacity-50 ${className}`}
+    >
+      {children}
+      {checked && <Check className="ml-auto size-4 text-emerald-200" />}
+    </button>
+  );
+}
+
+export function CommandSeparator({ className = '' }) {
+  return <div data-slot="command-separator" className={`-mx-1 h-px bg-white/8 ${className}`} />;
+}
+
+export function Progress({ value = 0, max = 100, className = '' }) {
+  const percentage = Math.min(100, Math.max(0, (Number(value) / Math.max(1, Number(max))) * 100));
+  return (
+    <div
+      role="progressbar"
+      aria-valuemin={0}
+      aria-valuemax={max}
+      aria-valuenow={value}
+      data-slot="progress"
+      className={`relative flex h-1.5 w-full items-center overflow-hidden rounded-full bg-white/8 ${className}`}
+    >
+      <div
+        data-slot="progress-indicator"
+        className="size-full flex-1 bg-white/70 transition-all duration-500"
+        style={{ transform: `translateX(-${100 - percentage}%)` }}
+      />
+    </div>
+  );
+}
+
+const CarouselContext = React.createContext({
+  orientation: 'horizontal',
+  currentIndex: 0,
+  totalItems: 0,
+  scrollPrev: () => {},
+  scrollNext: () => {},
+  canScrollPrev: false,
+  canScrollNext: false,
+  setTotalItems: () => {},
+});
+
+export function Carousel({ orientation = 'horizontal', className = '', children }) {
+  const [currentIndex, setCurrentIndex] = React.useState(0);
+  const [totalItems, setTotalItems] = React.useState(0);
+  const scrollPrev = () => setCurrentIndex(prev => Math.max(0, prev - 1));
+  const scrollNext = () => setCurrentIndex(prev => Math.min(totalItems - 1, prev + 1));
+
+  return (
+    <CarouselContext.Provider value={{
+      orientation,
+      currentIndex,
+      totalItems,
+      scrollPrev,
+      scrollNext,
+      canScrollPrev: currentIndex > 0,
+      canScrollNext: currentIndex < totalItems - 1,
+      setTotalItems,
+    }}>
+      <div role="region" aria-roledescription="carousel" data-slot="carousel" className={`relative ${className}`}>
+        {children}
+      </div>
+    </CarouselContext.Provider>
+  );
+}
+
+export function CarouselContent({ className = '', children }) {
+  const { orientation, currentIndex, setTotalItems } = React.useContext(CarouselContext);
+  const childArray = React.Children.toArray(children);
+  React.useEffect(() => { setTotalItems(childArray.length); }, [childArray.length, setTotalItems]);
+  const offset = orientation === 'horizontal'
+    ? `translateX(-${currentIndex * 100}%)`
+    : `translateY(-${currentIndex * 100}%)`;
+
+  return (
+    <div className="overflow-hidden" data-slot="carousel-content">
+      <div
+        className={`flex transition-transform duration-300 ease-in-out ${orientation === 'vertical' ? 'flex-col' : ''} ${className}`}
+        style={{ transform: offset }}
+      >
+        {children}
+      </div>
+    </div>
+  );
+}
+
+export function CarouselItem({ className = '', children }) {
+  return (
+    <div role="group" aria-roledescription="slide" data-slot="carousel-item" className={`min-w-0 shrink-0 grow-0 basis-full ${className}`}>
+      {children}
+    </div>
+  );
+}
+
+export function CarouselPrevious({ className = '' }) {
+  const { scrollPrev, canScrollPrev, orientation } = React.useContext(CarouselContext);
+  return (
+    <button
+      type="button"
+      data-slot="carousel-previous"
+      disabled={!canScrollPrev}
+      onClick={scrollPrev}
+      className={`absolute z-20 inline-flex size-8 items-center justify-center rounded-full border border-white/10 bg-slate-950/90 text-white/60 shadow-sm transition hover:bg-white/10 hover:text-white disabled:opacity-20 ${orientation === 'horizontal' ? 'left-3 top-1/2 -translate-y-1/2' : 'left-1/2 top-3 -translate-x-1/2 rotate-90'} ${className}`}
+    >
+      <ChevronLeft className="size-4" />
+    </button>
+  );
+}
+
+export function CarouselNext({ className = '' }) {
+  const { scrollNext, canScrollNext, orientation } = React.useContext(CarouselContext);
+  return (
+    <button
+      type="button"
+      data-slot="carousel-next"
+      disabled={!canScrollNext}
+      onClick={scrollNext}
+      className={`absolute z-20 inline-flex size-8 items-center justify-center rounded-full border border-white/10 bg-slate-950/90 text-white/60 shadow-sm transition hover:bg-white/10 hover:text-white disabled:opacity-20 ${orientation === 'horizontal' ? 'right-3 top-1/2 -translate-y-1/2' : 'bottom-3 left-1/2 -translate-x-1/2 rotate-90'} ${className}`}
+    >
+      <ChevronRight className="size-4" />
+    </button>
+  );
+}
+
+const HoverCardContext = React.createContext({ open: false, setOpen: () => {} });
+
+export function HoverCard({ open, defaultOpen = false, onOpenChange, children }) {
+  const [internal, setInternal] = React.useState(defaultOpen);
+  const active = open ?? internal;
+  const setOpen = next => {
+    if (open === undefined) setInternal(next);
+    onOpenChange?.(next);
+  };
+  return (
+    <HoverCardContext.Provider value={{ open: active, setOpen }}>
+      <div className="relative inline-block">{children}</div>
+    </HoverCardContext.Provider>
+  );
+}
+
+export function HoverCardTrigger({ className = '', children }) {
+  const { setOpen } = React.useContext(HoverCardContext);
+  return (
+    <div
+      data-slot="hover-card-trigger"
+      onMouseEnter={() => setOpen(true)}
+      onMouseLeave={() => setOpen(false)}
+      className={className}
+    >
+      {children}
+    </div>
+  );
+}
+
+export function HoverCardContent({ className = '', children }) {
+  const { open, setOpen } = React.useContext(HoverCardContext);
+  if (!open) return null;
+  return (
+    <div
+      data-slot="hover-card-content"
+      onMouseEnter={() => setOpen(true)}
+      onMouseLeave={() => setOpen(false)}
+      className={`absolute left-1/2 top-full z-50 mt-2 w-72 -translate-x-1/2 rounded-2xl border border-white/10 bg-slate-950/95 p-4 text-sm text-white/58 shadow-2xl backdrop-blur-xl ${className}`}
+    >
+      {children}
+    </div>
+  );
 }
