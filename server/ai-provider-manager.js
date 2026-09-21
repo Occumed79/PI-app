@@ -518,20 +518,34 @@ export async function callPrimaryProvider(provider, {
 
 export async function callPrimaryPool(options = {}) {
   const errors = [];
-  for (const provider of PRIMARY_PROVIDER_ORDER) {
+  const preferredProvider = ['gemini', 'groq'].includes(options?.preferredProvider)
+    ? options.preferredProvider
+    : null;
+  const providerOrder = preferredProvider
+    ? [preferredProvider, ...PRIMARY_PROVIDER_ORDER.filter(provider => provider !== preferredProvider)]
+    : [...PRIMARY_PROVIDER_ORDER];
+
+  for (const provider of providerOrder) {
     if (!configuredProviderMap()[provider]) {
       errors.push(`${provider}: no API key configured.`);
       continue;
     }
     try {
       const result = await callPrimaryProvider(provider, options);
-      if (result?.reply) return { provider, ...result, errors };
+      if (result?.reply) return { provider, ...result, errors, providerOrder };
       errors.push(`${provider}: no response.`);
     } catch (error) {
       errors.push(`${provider}: ${sanitizeProviderError(error.message)}`);
     }
   }
-  return { provider: null, reply: null, model: null, keySlot: null, errors };
+  return {
+    provider: null,
+    reply: null,
+    model: null,
+    keySlot: null,
+    errors,
+    providerOrder,
+  };
 }
 
 function orderedCloudflareAccounts() {
