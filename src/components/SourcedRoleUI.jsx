@@ -493,3 +493,38 @@ export function ToggleGroupItem({ value, className = '', children }) {
     </button>
   );
 }
+
+
+export function Table({ className = '', children, ...props }) {
+  return (
+    <div data-slot="table-container" className="relative w-full overflow-x-auto">
+      <table data-slot="table" className={`w-full caption-bottom text-sm ${className}`} {...props}>
+        {children}
+      </table>
+    </div>
+  );
+}
+
+export function TableHeader({ className = '', children, ...props }) {
+  return <thead data-slot="table-header" className={`[&_tr]:border-b [&_tr]:border-white/8 ${className}`} {...props}>{children}</thead>;
+}
+
+export function TableBody({ className = '', children, ...props }) {
+  return <tbody data-slot="table-body" className={`[&_tr:last-child]:border-0 ${className}`} {...props}>{children}</tbody>;
+}
+
+export function TableRow({ className = '', children, ...props }) {
+  return <tr data-slot="table-row" className={`border-b border-white/8 transition-colors hover:bg-white/[0.025] ${className}`} {...props}>{children}</tr>;
+}
+
+export function TableHead({ className = '', children, ...props }) {
+  return <th data-slot="table-head" className={`h-10 px-3 text-left align-middle font-medium whitespace-nowrap text-white/50 ${className}`} {...props}>{children}</th>;
+}
+
+export function TableCell({ className = '', children, ...props }) {
+  return <td data-slot="table-cell" className={`p-3 align-middle whitespace-nowrap text-white/58 ${className}`} {...props}>{children}</td>;
+}
+
+export function TableCaption({ className = '', children, ...props }) {
+  return <caption data-slot="table-caption" className={`mt-4 text-left text-xs leading-5 text-white/28 ${className}`} {...props}>{children}</caption>;
+}
