@@ -98,9 +98,21 @@ function buildEmployeeContext(employee, relevantLenses) {
   const overlayIds = normalizeContextOverlayIds(employee?.contextOverlays);
   const context = applyContextOverlays(factors, overlayIds);
   const overlayLabels = overlayIds.map(id => CONTEXT_OVERLAY_BY_ID[id]?.label).filter(Boolean);
-  const projectionLines = relevantLenses
-    .map(lens => summarizeProjectionForAi(deriveLensProjection(lens, factors, overlayIds)))
+  const projections = relevantLenses.map(lens => ({
+    lens,
+    projection: deriveLensProjection(lens, factors, overlayIds),
+  }));
+  const projectionLines = projections
+    .map(({ projection }) => summarizeProjectionForAi(projection))
     .join('\n    ');
+  const projectionData = projections.map(({ lens, projection }) => ({
+    lensId: lens.id,
+    lens: lens.lens,
+    category: lens.category,
+    dimensions: Array.isArray(projection.dimensions)
+      ? projection.dimensions.map(item => ({ label: item.label, value: item.value, basis: item.basis }))
+      : [],
+  }));
 
   return [
     `Employee: ${employee.name}`,
@@ -118,6 +130,7 @@ function buildEmployeeContext(employee, relevantLenses) {
     `PI notes: ${employee.notes || 'none'}`,
     `Context notes: ${employee.contextNotes || 'none'}`,
     `Relevant calculated lens projections:\n    ${projectionLines}`,
+    `Exact visualization-ready lens data (use these values directly when charting): ${JSON.stringify(projectionData)}`,
   ].join('\n  ');
 }
 
