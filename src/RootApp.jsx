@@ -1,5 +1,5 @@
 import React, { useCallback, useEffect, useState } from 'react';
-import { BrainCircuit, ClipboardList, Layers3 } from 'lucide-react';
+import { BrainCircuit, ClipboardList, Layers3, LibraryBig } from 'lucide-react';
 import VisualLensWorkspace from './VisualLensWorkspace.jsx';
 import EmployeeTab from './components/EmployeeTab.jsx';
 import AITab from './components/AITab.jsx';
@@ -29,6 +29,13 @@ const MODES = [
     sub: 'Analyze PI-derived framework translations',
     Icon: BrainCircuit,
     active: 'border-emerald-300/40 bg-emerald-500/15',
+  },
+  {
+    id: 'library',
+    label: 'Chat Library',
+    sub: 'Saved conversations · DocBox',
+    Icon: LibraryBig,
+    active: 'border-violet-300/40 bg-violet-500/15',
   },
 ];
 
@@ -72,7 +79,7 @@ export default function RootApp() {
 
       <div className="relative mx-auto w-full max-w-[1760px] px-3 pb-6 pt-4 sm:px-4 lg:px-5">
         <div className="pi-glass-panel pi-nav-panel mb-5 rounded-3xl border border-white/10 bg-white/[0.06] p-3 shadow-2xl shadow-black/20 backdrop-blur-xl">
-          <div className="grid grid-cols-1 gap-2 sm:grid-cols-3">
+          <div className="grid grid-cols-1 gap-2 sm:grid-cols-2 xl:grid-cols-4">
             {MODES.map(({ id, label, sub, Icon, active }) => (
               <button
                 key={id}
@@ -110,6 +117,17 @@ export default function RootApp() {
         {mode === 'ai' && (
           <div className="pi-glass-panel rounded-3xl border border-white/10 bg-white/[0.03] shadow-2xl shadow-black/20">
             <AITab employees={employees} />
+          </div>
+        )}
+        {mode === 'library' && (
+          <div className="pi-glass-panel overflow-hidden rounded-3xl border border-white/10 bg-white/[0.03] shadow-2xl shadow-black/20">
+            <iframe
+              title="PI Chat Library"
+              src="https://doc-box-pichat-app.onrender.com/vault?embed=1"
+              className="block h-[calc(100vh-150px)] min-h-[760px] w-full border-0 bg-slate-950"
+              loading="eager"
+              referrerPolicy="strict-origin-when-cross-origin"
+            />
           </div>
         )}
       </div>

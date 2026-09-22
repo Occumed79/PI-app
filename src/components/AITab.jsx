@@ -595,7 +595,7 @@ export default function AITab({ employees = [] }) {
               <Pencil size={14}/>
             </button>
             <button type="button" onClick={exportConversationPdf} disabled={!conversationId} className="pi-glass-control inline-flex h-10 items-center gap-2 rounded-xl border border-sky-300/15 bg-sky-500/[0.08] px-3 text-xs font-semibold text-sky-100/70 transition hover:bg-sky-500/[0.14] hover:text-white disabled:cursor-not-allowed disabled:opacity-25">
-              <Download size={14}/> PDF
+              <Download size={14}/> Generate PDF
             </button>
             <button type="button" onClick={deleteConversation} disabled={!conversationId} className="pi-glass-control grid h-10 w-10 place-items-center rounded-xl border border-rose-300/10 bg-rose-500/[0.05] text-rose-100/45 transition hover:bg-rose-500/10 hover:text-rose-100 disabled:cursor-not-allowed disabled:opacity-25" aria-label="Delete conversation">
               <Trash2 size={14}/>
