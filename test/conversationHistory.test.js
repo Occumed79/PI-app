@@ -33,8 +33,8 @@ test('Crosswalk Assistant exposes history and PDF controls', () => {
   assert.match(chatSource, /Download size=\{14\}\/\> PDF/);
 });
 
-test('conversation PDF generator produces a valid PDF header and transcript content', () => {
-  const pdf = buildConversationPdf({
+test('conversation PDF generator produces a valid PDF header and transcript content', async () => {
+  const pdf = await buildConversationPdf({
     conversation: { title: 'Test Crosswalk Chat' },
     messages: [
       { role: 'user', messageText: 'Compare these factors.' },
