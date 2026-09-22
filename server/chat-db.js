@@ -65,7 +65,7 @@ const chatSchemaSql = `
     updated_at timestamptz default now()
   );
 
-  create unique index if not exists sv_files_storage_key_unique_idx on sv_files(storage_key);
+  create index if not exists sv_files_storage_key_idx on sv_files(storage_key);
   create index if not exists sv_files_upload_idx on sv_files(upload_date desc);
 `;
 
@@ -122,31 +122,45 @@ export async function syncConversationToDocBox(conversationId) {
   const storageUrl = 'pi-chat://' + conversation.id;
   const sizeBytes = Buffer.byteLength(transcript, 'utf8');
 
-  await chatPool.query(
-    `insert into sv_files
-      (name, original_name, file_type, mime_type, size_bytes, storage_url, storage_key, extracted_text, notes, tags, is_archived, upload_date, updated_at)
-     values ($1,$2,'chat','application/x-pi-chat',$3,$4,$5,$6,$7,$8,false,$9,$10)
-     on conflict (storage_key) do update set
-       name=excluded.name,
-       original_name=excluded.original_name,
-       size_bytes=excluded.size_bytes,
-       extracted_text=excluded.extracted_text,
-       notes=excluded.notes,
-       tags=excluded.tags,
-       updated_at=excluded.updated_at`,
-    [
-      conversation.title,
-      conversation.title + '.chat',
-      sizeBytes,
-      storageUrl,
-      storageKey,
-      transcript,
-      'Saved from PI Crosswalk Assistant',
-      ['PI Chat', 'Crosswalk Assistant'],
-      conversation.created_at,
-      conversation.updated_at,
-    ]
+  const mirrorValues = [
+    conversation.title,
+    conversation.title + '.chat',
+    sizeBytes,
+    storageUrl,
+    storageKey,
+    transcript,
+    'Saved from PI Crosswalk Assistant',
+    ['PI Chat', 'Crosswalk Assistant'],
+    conversation.created_at,
+    conversation.updated_at,
+  ];
+
+  const updated = await chatPool.query(
+    `update sv_files set
+       name=$1,
+       original_name=$2,
+       file_type='chat',
+       mime_type='application/x-pi-chat',
+       size_bytes=$3,
+       storage_url=$4,
+       extracted_text=$6,
+       notes=$7,
+       tags=$8,
+       is_archived=false,
+       updated_at=$10
+     where storage_key=$5
+     returning id`,
+    mirrorValues
   );
+
+  if (!updated.rowCount) {
+    await chatPool.query(
+      `insert into sv_files
+        (name, original_name, file_type, mime_type, size_bytes, storage_url, storage_key, extracted_text, notes, tags, is_archived, upload_date, updated_at)
+       values ($1,$2,'chat','application/x-pi-chat',$3,$4,$5,$6,$7,$8,false,$9,$10)`,
+      mirrorValues
+    );
+  }
 }
 
 export async function removeConversationFromDocBox(conversationId) {
