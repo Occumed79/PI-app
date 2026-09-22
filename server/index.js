@@ -4,6 +4,7 @@ import cors from 'cors';
 import path from 'path';
 import { fileURLToPath } from 'url';
 import { checkDatabaseConnection, pool } from './db.js';
+import { chatPool, chatQuery, syncConversationToDocBox, removeConversationFromDocBox } from './chat-db.js';
 import { buildConversationPdf } from './conversation-pdf.js';
 import {
   PRIMARY_PROVIDER_ORDER,
@@ -240,6 +241,12 @@ async function refineWithCritic({
 function requireDatabase(res) {
   if (pool) return true;
   res.status(503).json({ ok: false, message: 'DATABASE_URL is not configured on the Render service.' });
+  return false;
+}
+
+function requireChatDatabase(res) {
+  if (chatPool) return true;
+  res.status(503).json({ ok: false, message: 'PI_AI_CHATS_DATABASE_URL is not configured on the Render service.' });
   return false;
 }
 
@@ -482,9 +489,9 @@ function conversationMessageRow(row = {}) {
 }
 
 app.get('/api/ai/conversations', async (_req, res) => {
-  if (!requireDatabase(res)) return;
+  if (!requireChatDatabase(res)) return;
   try {
-    const result = await pool.query(
+    const result = await chatQuery(
       'select c.id, c.title, c.created_at, c.updated_at, count(m.id)::int as message_count, ' +
       "coalesce((select left(mm.message_text, 180) from ai_conversation_messages mm where mm.conversation_id = c.id order by mm.created_at desc, mm.id desc limit 1), '') as preview " +
       'from ai_conversations c left join ai_conversation_messages m on m.conversation_id = c.id ' +
@@ -497,13 +504,14 @@ app.get('/api/ai/conversations', async (_req, res) => {
 });
 
 app.post('/api/ai/conversations', async (req, res) => {
-  if (!requireDatabase(res)) return;
+  if (!requireChatDatabase(res)) return;
   const title = String(req.body?.title || 'New conversation').trim().slice(0, 160) || 'New conversation';
   try {
-    const result = await pool.query(
+    const result = await chatQuery(
       'insert into ai_conversations (title) values ($1) returning id, title, created_at, updated_at',
       [title]
     );
+    await syncConversationToDocBox(result.rows[0].id);
     res.status(201).json({ ok: true, conversation: conversationRow(result.rows[0]) });
   } catch (error) {
     res.status(500).json({ ok: false, message: error.message });
@@ -511,15 +519,15 @@ app.post('/api/ai/conversations', async (req, res) => {
 });
 
 app.get('/api/ai/conversations/:id', async (req, res) => {
-  if (!requireDatabase(res)) return;
+  if (!requireChatDatabase(res)) return;
   try {
-    const conversationResult = await pool.query(
+    const conversationResult = await chatQuery(
       'select id, title, created_at, updated_at from ai_conversations where id=$1',
       [req.params.id]
     );
     if (!conversationResult.rowCount) return res.status(404).json({ ok: false, message: 'Conversation not found.' });
 
-    const messageResult = await pool.query(
+    const messageResult = await chatQuery(
       'select id, conversation_id, role, source, message_text, visualizations, web_research, created_at ' +
       'from ai_conversation_messages where conversation_id=$1 order by created_at, id',
       [req.params.id]
@@ -535,15 +543,16 @@ app.get('/api/ai/conversations/:id', async (req, res) => {
 });
 
 app.put('/api/ai/conversations/:id', async (req, res) => {
-  if (!requireDatabase(res)) return;
+  if (!requireChatDatabase(res)) return;
   const title = String(req.body?.title || '').trim().slice(0, 160);
   if (!title) return res.status(400).json({ ok: false, message: 'Conversation title is required.' });
   try {
-    const result = await pool.query(
+    const result = await chatQuery(
       'update ai_conversations set title=$1 where id=$2 returning id, title, created_at, updated_at',
       [title, req.params.id]
     );
     if (!result.rowCount) return res.status(404).json({ ok: false, message: 'Conversation not found.' });
+    await syncConversationToDocBox(req.params.id);
     res.json({ ok: true, conversation: conversationRow(result.rows[0]) });
   } catch (error) {
     res.status(500).json({ ok: false, message: error.message });
@@ -551,9 +560,10 @@ app.put('/api/ai/conversations/:id', async (req, res) => {
 });
 
 app.delete('/api/ai/conversations/:id', async (req, res) => {
-  if (!requireDatabase(res)) return;
+  if (!requireChatDatabase(res)) return;
   try {
-    const result = await pool.query('delete from ai_conversations where id=$1 returning id', [req.params.id]);
+    await removeConversationFromDocBox(req.params.id);
+    const result = await chatQuery('delete from ai_conversations where id=$1 returning id', [req.params.id]);
     if (!result.rowCount) return res.status(404).json({ ok: false, message: 'Conversation not found.' });
     res.json({ ok: true, id: result.rows[0].id });
   } catch (error) {
@@ -562,7 +572,7 @@ app.delete('/api/ai/conversations/:id', async (req, res) => {
 });
 
 app.post('/api/ai/conversations/:id/messages', async (req, res) => {
-  if (!requireDatabase(res)) return;
+  if (!requireChatDatabase(res)) return;
   const role = req.body?.role === 'assistant' ? 'assistant' : req.body?.role === 'user' ? 'user' : '';
   if (!role) return res.status(400).json({ ok: false, message: 'role must be user or assistant.' });
 
@@ -572,10 +582,10 @@ app.post('/api/ai/conversations/:id/messages', async (req, res) => {
   const webResearch = req.body?.webResearch && typeof req.body.webResearch === 'object' ? req.body.webResearch : null;
 
   try {
-    const exists = await pool.query('select id from ai_conversations where id=$1', [req.params.id]);
+    const exists = await chatQuery('select id from ai_conversations where id=$1', [req.params.id]);
     if (!exists.rowCount) return res.status(404).json({ ok: false, message: 'Conversation not found.' });
 
-    const result = await pool.query(
+    const result = await chatQuery(
       'insert into ai_conversation_messages ' +
       '(conversation_id, role, source, message_text, visualizations, web_research) ' +
       'values ($1,$2,$3,$4,$5::jsonb,$6::jsonb) ' +
@@ -589,7 +599,8 @@ app.post('/api/ai/conversations/:id/messages', async (req, res) => {
         webResearch ? JSON.stringify(webResearch) : null,
       ]
     );
-    await pool.query('update ai_conversations set updated_at=now() where id=$1', [req.params.id]);
+    await chatQuery('update ai_conversations set updated_at=now() where id=$1', [req.params.id]);
+    await syncConversationToDocBox(req.params.id);
     res.status(201).json({ ok: true, message: conversationMessageRow(result.rows[0]) });
   } catch (error) {
     res.status(500).json({ ok: false, message: error.message });
@@ -597,15 +608,15 @@ app.post('/api/ai/conversations/:id/messages', async (req, res) => {
 });
 
 app.get('/api/ai/conversations/:id/pdf', async (req, res) => {
-  if (!requireDatabase(res)) return;
+  if (!requireChatDatabase(res)) return;
   try {
-    const conversationResult = await pool.query(
+    const conversationResult = await chatQuery(
       'select id, title, created_at, updated_at from ai_conversations where id=$1',
       [req.params.id]
     );
     if (!conversationResult.rowCount) return res.status(404).json({ ok: false, message: 'Conversation not found.' });
 
-    const messageResult = await pool.query(
+    const messageResult = await chatQuery(
       'select id, conversation_id, role, source, message_text, visualizations, web_research, created_at ' +
       'from ai_conversation_messages where conversation_id=$1 order by created_at, id',
       [req.params.id]
