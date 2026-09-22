@@ -30,7 +30,7 @@ test('Crosswalk Assistant exposes history and PDF controls', () => {
   assert.match(chatSource, /renameConversation/);
   assert.match(chatSource, /deleteConversation/);
   assert.match(chatSource, /exportConversationPdf/);
-  assert.match(chatSource, /> PDF</);
+  assert.match(chatSource, /Download size=\{14\}\/\> PDF/);
 });
 
 test('conversation PDF generator produces a valid PDF header and transcript content', () => {
