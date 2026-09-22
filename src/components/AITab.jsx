@@ -1,5 +1,5 @@
-import React, { useEffect, useMemo, useRef, useState } from 'react';
-import { AlertTriangle, ArrowUp, Sparkles } from 'lucide-react';
+import React, { useEffect, useRef, useState } from 'react';
+import { ArrowUp } from 'lucide-react';
 import SiriOrb from './smoothui/SiriOrb.jsx';
 import { parseMessageBlocks } from './chat/messageMarkdown.js';
 import { PI_PROFILES } from '../data/profiles.js';
@@ -283,8 +283,6 @@ export default function AITab({ employees = [] }) {
   const [loading, setLoading] = useState(false);
   const [aiHealth, setAiHealth] = useState(null);
   const bottomRef = useRef(null);
-  const employeeCountLabel = useMemo(() => `${employees.length} exact employee PI record${employees.length === 1 ? '' : 's'}`, [employees.length]);
-  const overlayCount = useMemo(() => employees.reduce((sum, employee) => sum + normalizeContextOverlayIds(employee.contextOverlays).length, 0), [employees]);
 
   useEffect(() => {
     bottomRef.current?.scrollIntoView({ behavior: 'smooth' });
@@ -397,15 +395,8 @@ export default function AITab({ employees = [] }) {
         <p className="text-sm leading-6 text-white/75">Ask me anything about an employee’s PI pattern, compare lenses, test a hypothetical life or work variable, or keep asking follow-up questions. I’ll use the stored PI data as context rather than forcing every reply into a fixed report.</p>
       </div>
 
-      <div className="mb-4 flex flex-wrap gap-2">
-        <span className="rounded-full border border-sky-400/25 bg-sky-500/10 px-3 py-1 text-xs font-medium text-sky-200">{PI_PROFILES.length} PI reference profiles</span>
-        <span className="rounded-full border border-violet-400/25 bg-violet-500/10 px-3 py-1 text-xs font-medium text-violet-200">{HSI_LENS_REGISTRY.length} calculated lenses</span>
-        <span className="rounded-full border border-emerald-400/20 bg-emerald-500/10 px-3 py-1 text-xs text-emerald-300">{employeeCountLabel}</span>
-        <span className="rounded-full border border-fuchsia-300/20 bg-fuchsia-500/10 px-3 py-1 text-xs text-fuchsia-200">{overlayCount} saved context variable{overlayCount === 1 ? '' : 's'}</span>
-      </div>
-
-      <div className="pi-chat-panel flex min-h-0 flex-1 flex-col overflow-hidden rounded-3xl border border-white/10 p-5">
-        <div className="flex flex-none justify-center pb-5 pt-1">
+      <div className="pi-chat-panel flex min-h-0 flex-1 flex-col overflow-hidden rounded-3xl border border-white/10 p-4 sm:p-5">
+        <div className="flex flex-none justify-center pb-3 pt-1">
           <SiriOrb
             size="192px"
             state={loading ? 'thinking' : aiHealth && !healthy ? 'error' : 'idle'}
