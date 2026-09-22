@@ -1,6 +1,7 @@
-import React, { useEffect, useMemo, useRef, useState } from 'react';
-import { AlertTriangle, ArrowUp, Sparkles } from 'lucide-react';
+import React, { useEffect, useRef, useState } from 'react';
+import { ArrowUp } from 'lucide-react';
 import SiriOrb from './smoothui/SiriOrb.jsx';
+import { parseMessageBlocks } from './chat/messageMarkdown.js';
 import { PI_PROFILES } from '../data/profiles.js';
 import { HSI_LENS_REGISTRY } from '../data/hsiLensRegistry.js';
 import { CROSSWALK_AI_RULES, CROSSWALK_MODEL } from '../data/crosswalkModel.js';
@@ -200,27 +201,40 @@ async function readApiError(response) {
 }
 
 function renderInline(text) {
-  return String(text || '').split(/(\*\*[^*]+\*\*|`[^`]+`)/g).filter(Boolean).map((part, index) => {
+  return String(text || '').split(/(\*\*[^*]+\*\*|`[^`]+`|<br\s*\/?\s*>)/gi).filter(Boolean).map((part, index) => {
     if (part.startsWith('**') && part.endsWith('**')) return <strong key={index} className="font-semibold text-white">{part.slice(2, -2)}</strong>;
     if (part.startsWith('`') && part.endsWith('`')) return <code key={index} className="rounded bg-black/30 px-1.5 py-0.5 text-[0.92em] text-sky-100">{part.slice(1, -1)}</code>;
+    if (/^<br\s*\/?\s*>$/i.test(part)) return <br key={index}/>;
     return <React.Fragment key={index}>{part}</React.Fragment>;
   });
 }
 
 function MessageContent({ text }) {
-  const lines = String(text || '').split('\n');
+  const blocks = parseMessageBlocks(text);
   return (
     <div className="space-y-2">
-      {lines.map((line, index) => {
-        const trimmed = line.trim();
-        if (!trimmed) return <div key={index} className="h-1" />;
-        const heading = trimmed.match(/^#{1,3}\s+(.+)$/);
-        if (heading) return <p key={index} className="pt-1 font-semibold text-white">{renderInline(heading[1])}</p>;
-        const bullet = trimmed.match(/^[-*]\s+(.+)$/);
-        if (bullet) return <div key={index} className="flex gap-2"><span className="mt-0.5 text-sky-300">•</span><p className="min-w-0">{renderInline(bullet[1])}</p></div>;
-        const numbered = trimmed.match(/^(\d+)\.\s+(.+)$/);
-        if (numbered) return <div key={index} className="flex gap-2"><span className="font-semibold text-sky-300">{numbered[1]}.</span><p className="min-w-0">{renderInline(numbered[2])}</p></div>;
-        return <p key={index}>{renderInline(trimmed)}</p>;
+      {blocks.map((block, index) => {
+        if (block.type === 'spacer') return <div key={index} className="h-1" />;
+        if (block.type === 'heading') return <p key={index} className="pt-1 font-semibold text-white">{renderInline(block.text)}</p>;
+        if (block.type === 'bullet') return <div key={index} className="flex gap-2"><span className="mt-0.5 text-sky-300">•</span><p className="min-w-0">{renderInline(block.text)}</p></div>;
+        if (block.type === 'numbered') return <div key={index} className="flex gap-2"><span className="font-semibold text-sky-300">{block.number}.</span><p className="min-w-0">{renderInline(block.text)}</p></div>;
+        if (block.type === 'table') return (
+          <div key={index} className="my-3 max-w-full overflow-x-auto rounded-xl border border-white/10">
+            <table className="w-full min-w-[560px] border-collapse text-left text-[13px] leading-5">
+              <thead className="bg-white/[0.07] text-white">
+                <tr>{block.headers.map((header, cellIndex) => <th key={cellIndex} className="border-b border-white/10 px-3 py-2 align-top font-semibold">{renderInline(header)}</th>)}</tr>
+              </thead>
+              <tbody className="divide-y divide-white/[0.07]">
+                {block.rows.map((row, rowIndex) => (
+                  <tr key={rowIndex} className="odd:bg-white/[0.018]">
+                    {row.map((cell, cellIndex) => <td key={cellIndex} className="px-3 py-2.5 align-top text-white/75">{renderInline(cell)}</td>)}
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        );
+        return <p key={index}>{renderInline(block.text)}</p>;
       })}
     </div>
   );
@@ -267,37 +281,12 @@ export default function AITab({ employees = [] }) {
   const [messages, setMessages] = useState([]);
   const [input, setInput] = useState('');
   const [loading, setLoading] = useState(false);
-  const [aiHealth, setAiHealth] = useState(null);
+  const [hasRequestError, setHasRequestError] = useState(false);
   const bottomRef = useRef(null);
-  const employeeCountLabel = useMemo(() => `${employees.length} exact employee PI record${employees.length === 1 ? '' : 's'}`, [employees.length]);
-  const overlayCount = useMemo(() => employees.reduce((sum, employee) => sum + normalizeContextOverlayIds(employee.contextOverlays).length, 0), [employees]);
 
   useEffect(() => {
     bottomRef.current?.scrollIntoView({ behavior: 'smooth' });
   }, [messages, loading]);
-
-  useEffect(() => {
-    let active = true;
-    fetch('/api/ai-chat', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        system: 'This is a provider health probe. Reply only with OK.',
-        messages: [{ role: 'user', content: 'Reply only with OK.' }],
-      }),
-      signal: AbortSignal.timeout(20000),
-    })
-      .then(response => response.ok ? response.json() : null)
-      .then(data => {
-        if (!active) return;
-        const source = ['gemini', 'groq', 'openrouter', 'cloudflare'].includes(data?.source) ? data.source : null;
-        setAiHealth({ healthy: Boolean(source), source });
-      })
-      .catch(() => {
-        if (active) setAiHealth({ healthy: false, source: null });
-      });
-    return () => { active = false; };
-  }, []);
 
   async function send() {
     const text = input.trim();
@@ -306,6 +295,7 @@ export default function AITab({ employees = [] }) {
     setInput('');
     setMessages(current => [...current, { role: 'user', text }]);
     setLoading(true);
+    setHasRequestError(false);
 
     const history = messages
       .filter(message => ['assistant', 'user'].includes(message.role) && !['error', 'welcome'].includes(message.source))
@@ -340,7 +330,6 @@ export default function AITab({ employees = [] }) {
         throw new Error('The server did not identify a live AI provider.');
       }
 
-      setAiHealth({ healthy: true, source: data.source });
       setMessages(current => [...current, {
         role: 'assistant',
         source: data.source,
@@ -348,7 +337,7 @@ export default function AITab({ employees = [] }) {
         webResearch: data.webResearch || null,
       }]);
     } catch (error) {
-      setAiHealth({ healthy: false, source: null });
+      setHasRequestError(true);
       const message = error?.name === 'TimeoutError'
         ? 'The live AI request timed out after 120 seconds. Please try again.'
         : `Live AI request failed: ${error?.message || 'Unknown error'}`;
@@ -365,43 +354,21 @@ export default function AITab({ employees = [] }) {
     }
   }
 
-  const healthy = aiHealth?.healthy;
-
   return (
-    <div className="flex h-[calc(100vh-200px)] min-h-[500px] flex-col p-5 sm:p-6">
-      <div className="mb-4 flex flex-wrap items-start justify-between gap-3">
-        <div>
-          <h1 className="text-3xl font-bold text-white">PI Crosswalk Assistant</h1>
-        </div>
-        {aiHealth && (
-          <span className={cx(
-            'flex items-center gap-2 rounded-full border px-3 py-1.5 text-xs font-semibold',
-            healthy
-              ? 'border-emerald-300/25 bg-emerald-500/10 text-emerald-200'
-              : 'border-amber-300/25 bg-amber-500/10 text-amber-200'
-          )}>
-            {healthy ? <Sparkles size={13}/> : <AlertTriangle size={13}/>}
-            {healthy ? `${providerLabel(aiHealth.source)} healthy` : 'Live AI unavailable'}
-          </span>
-        )}
+    <div className="flex h-[calc(100vh-145px)] min-h-[650px] flex-col p-4 sm:p-5">
+      <div className="mb-3">
+        <h1 className="text-3xl font-bold text-white">PI Crosswalk Assistant</h1>
       </div>
 
       <div className="mb-4 rounded-2xl border border-sky-400/20 bg-sky-500/10 px-4 py-3">
         <p className="text-sm leading-6 text-white/75">Ask me anything about an employee’s PI pattern, compare lenses, test a hypothetical life or work variable, or keep asking follow-up questions. I’ll use the stored PI data as context rather than forcing every reply into a fixed report.</p>
       </div>
 
-      <div className="mb-4 flex flex-wrap gap-2">
-        <span className="rounded-full border border-sky-400/25 bg-sky-500/10 px-3 py-1 text-xs font-medium text-sky-200">{PI_PROFILES.length} PI reference profiles</span>
-        <span className="rounded-full border border-violet-400/25 bg-violet-500/10 px-3 py-1 text-xs font-medium text-violet-200">{HSI_LENS_REGISTRY.length} calculated lenses</span>
-        <span className="rounded-full border border-emerald-400/20 bg-emerald-500/10 px-3 py-1 text-xs text-emerald-300">{employeeCountLabel}</span>
-        <span className="rounded-full border border-fuchsia-300/20 bg-fuchsia-500/10 px-3 py-1 text-xs text-fuchsia-200">{overlayCount} saved context variable{overlayCount === 1 ? '' : 's'}</span>
-      </div>
-
-      <div className="pi-chat-panel flex min-h-0 flex-1 flex-col overflow-hidden rounded-3xl border border-white/10 p-5">
-        <div className="flex flex-none justify-center pb-5 pt-1">
+      <div className="pi-chat-panel flex min-h-0 flex-1 flex-col overflow-hidden rounded-3xl border border-white/10 p-4 sm:p-5">
+        <div className="flex flex-none justify-center pb-3 pt-1">
           <SiriOrb
             size="192px"
-            state={loading ? 'thinking' : aiHealth && !healthy ? 'error' : 'idle'}
+            state={loading ? 'thinking' : hasRequestError ? 'error' : 'idle'}
           />
         </div>
 

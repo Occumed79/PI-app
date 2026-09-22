@@ -66,6 +66,13 @@ test('chat route supplies employee context and can accept Cloudflare emergency r
   assert.match(serverSource, /refineWithCritic/);
 });
 
+test('Crosswalk Assistant has no removed status-card icon references', () => {
+  assert.doesNotMatch(chatSource, /\bSparkles\b/);
+  assert.doesNotMatch(chatSource, /\bAlertTriangle\b/);
+  assert.doesNotMatch(chatSource, /Live AI unavailable|AI providers configured/);
+  assert.match(chatSource, /hasRequestError/);
+});
+
 test('Scenario Coach no longer exposes provider keys or hard-codes provider models in the browser', () => {
   assert.doesNotMatch(scenarioSource, /VITE_GEMINI_API_KEY/);
   assert.doesNotMatch(scenarioSource, /VITE_GROQ_API_KEY/);
