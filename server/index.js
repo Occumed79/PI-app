@@ -4,6 +4,7 @@ import cors from 'cors';
 import path from 'path';
 import { fileURLToPath } from 'url';
 import { checkDatabaseConnection, pool } from './db.js';
+import { buildConversationPdf } from './conversation-pdf.js';
 import {
   PRIMARY_PROVIDER_ORDER,
   callCloudflareChat,
@@ -450,6 +451,181 @@ app.post('/api/profiles', async (req, res) => {
       [name, groupName, dominance ?? null, extraversion ?? null, patience ?? null, formality ?? null, summary ?? null]
     );
     res.status(201).json({ ok: true, profile: result.rows[0] });
+  } catch (error) {
+    res.status(500).json({ ok: false, message: error.message });
+  }
+});
+
+
+function conversationRow(row = {}) {
+  return {
+    id: row.id,
+    title: row.title || 'New conversation',
+    createdAt: row.created_at,
+    updatedAt: row.updated_at,
+    messageCount: Number(row.message_count || 0),
+    preview: row.preview || '',
+  };
+}
+
+function conversationMessageRow(row = {}) {
+  return {
+    id: row.id,
+    conversationId: row.conversation_id,
+    role: row.role,
+    source: row.source || null,
+    text: row.message_text || '',
+    visualizations: Array.isArray(row.visualizations) ? row.visualizations : [],
+    webResearch: row.web_research || null,
+    createdAt: row.created_at,
+  };
+}
+
+app.get('/api/ai/conversations', async (_req, res) => {
+  if (!requireDatabase(res)) return;
+  try {
+    const result = await pool.query(
+      'select c.id, c.title, c.created_at, c.updated_at, count(m.id)::int as message_count, ' +
+      "coalesce((select left(mm.message_text, 180) from ai_conversation_messages mm where mm.conversation_id = c.id order by mm.created_at desc, mm.id desc limit 1), '') as preview " +
+      'from ai_conversations c left join ai_conversation_messages m on m.conversation_id = c.id ' +
+      'group by c.id order by c.updated_at desc, c.created_at desc limit 250'
+    );
+    res.json({ ok: true, conversations: result.rows.map(conversationRow) });
+  } catch (error) {
+    res.status(500).json({ ok: false, message: error.message });
+  }
+});
+
+app.post('/api/ai/conversations', async (req, res) => {
+  if (!requireDatabase(res)) return;
+  const title = String(req.body?.title || 'New conversation').trim().slice(0, 160) || 'New conversation';
+  try {
+    const result = await pool.query(
+      'insert into ai_conversations (title) values ($1) returning id, title, created_at, updated_at',
+      [title]
+    );
+    res.status(201).json({ ok: true, conversation: conversationRow(result.rows[0]) });
+  } catch (error) {
+    res.status(500).json({ ok: false, message: error.message });
+  }
+});
+
+app.get('/api/ai/conversations/:id', async (req, res) => {
+  if (!requireDatabase(res)) return;
+  try {
+    const conversationResult = await pool.query(
+      'select id, title, created_at, updated_at from ai_conversations where id=$1',
+      [req.params.id]
+    );
+    if (!conversationResult.rowCount) return res.status(404).json({ ok: false, message: 'Conversation not found.' });
+
+    const messageResult = await pool.query(
+      'select id, conversation_id, role, source, message_text, visualizations, web_research, created_at ' +
+      'from ai_conversation_messages where conversation_id=$1 order by created_at, id',
+      [req.params.id]
+    );
+    res.json({
+      ok: true,
+      conversation: conversationRow(conversationResult.rows[0]),
+      messages: messageResult.rows.map(conversationMessageRow),
+    });
+  } catch (error) {
+    res.status(500).json({ ok: false, message: error.message });
+  }
+});
+
+app.put('/api/ai/conversations/:id', async (req, res) => {
+  if (!requireDatabase(res)) return;
+  const title = String(req.body?.title || '').trim().slice(0, 160);
+  if (!title) return res.status(400).json({ ok: false, message: 'Conversation title is required.' });
+  try {
+    const result = await pool.query(
+      'update ai_conversations set title=$1 where id=$2 returning id, title, created_at, updated_at',
+      [title, req.params.id]
+    );
+    if (!result.rowCount) return res.status(404).json({ ok: false, message: 'Conversation not found.' });
+    res.json({ ok: true, conversation: conversationRow(result.rows[0]) });
+  } catch (error) {
+    res.status(500).json({ ok: false, message: error.message });
+  }
+});
+
+app.delete('/api/ai/conversations/:id', async (req, res) => {
+  if (!requireDatabase(res)) return;
+  try {
+    const result = await pool.query('delete from ai_conversations where id=$1 returning id', [req.params.id]);
+    if (!result.rowCount) return res.status(404).json({ ok: false, message: 'Conversation not found.' });
+    res.json({ ok: true, id: result.rows[0].id });
+  } catch (error) {
+    res.status(500).json({ ok: false, message: error.message });
+  }
+});
+
+app.post('/api/ai/conversations/:id/messages', async (req, res) => {
+  if (!requireDatabase(res)) return;
+  const role = req.body?.role === 'assistant' ? 'assistant' : req.body?.role === 'user' ? 'user' : '';
+  if (!role) return res.status(400).json({ ok: false, message: 'role must be user or assistant.' });
+
+  const source = role === 'assistant' ? String(req.body?.source || '').trim().slice(0, 80) || null : null;
+  const messageText = String(req.body?.text || '').slice(0, 50000);
+  const visualizations = Array.isArray(req.body?.visualizations) ? req.body.visualizations.slice(0, 6) : [];
+  const webResearch = req.body?.webResearch && typeof req.body.webResearch === 'object' ? req.body.webResearch : null;
+
+  try {
+    const exists = await pool.query('select id from ai_conversations where id=$1', [req.params.id]);
+    if (!exists.rowCount) return res.status(404).json({ ok: false, message: 'Conversation not found.' });
+
+    const result = await pool.query(
+      'insert into ai_conversation_messages ' +
+      '(conversation_id, role, source, message_text, visualizations, web_research) ' +
+      'values ($1,$2,$3,$4,$5::jsonb,$6::jsonb) ' +
+      'returning id, conversation_id, role, source, message_text, visualizations, web_research, created_at',
+      [
+        req.params.id,
+        role,
+        source,
+        messageText,
+        JSON.stringify(visualizations),
+        webResearch ? JSON.stringify(webResearch) : null,
+      ]
+    );
+    await pool.query('update ai_conversations set updated_at=now() where id=$1', [req.params.id]);
+    res.status(201).json({ ok: true, message: conversationMessageRow(result.rows[0]) });
+  } catch (error) {
+    res.status(500).json({ ok: false, message: error.message });
+  }
+});
+
+app.get('/api/ai/conversations/:id/pdf', async (req, res) => {
+  if (!requireDatabase(res)) return;
+  try {
+    const conversationResult = await pool.query(
+      'select id, title, created_at, updated_at from ai_conversations where id=$1',
+      [req.params.id]
+    );
+    if (!conversationResult.rowCount) return res.status(404).json({ ok: false, message: 'Conversation not found.' });
+
+    const messageResult = await pool.query(
+      'select id, conversation_id, role, source, message_text, visualizations, web_research, created_at ' +
+      'from ai_conversation_messages where conversation_id=$1 order by created_at, id',
+      [req.params.id]
+    );
+
+    const conversation = conversationRow(conversationResult.rows[0]);
+    const messages = messageResult.rows.map(conversationMessageRow).map(message => ({
+      ...message,
+      messageText: message.text,
+    }));
+    const pdf = buildConversationPdf({ conversation, messages });
+    const safeName = String(conversation.title || 'crosswalk-conversation')
+      .replace(/[^a-z0-9]+/gi, '-')
+      .replace(/^-+|-+$/g, '')
+      .slice(0, 80) || 'crosswalk-conversation';
+
+    res.setHeader('Content-Type', 'application/pdf');
+    res.setHeader('Content-Disposition', 'attachment; filename="' + safeName + '.pdf"');
+    res.setHeader('Content-Length', String(pdf.length));
+    res.send(pdf);
   } catch (error) {
     res.status(500).json({ ok: false, message: error.message });
   }

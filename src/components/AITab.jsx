@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { ArrowUp } from 'lucide-react';
+import { ArrowUp, Download, Pencil, Plus, Trash2 } from 'lucide-react';
 import SiriOrb from './smoothui/SiriOrb.jsx';
 import { parseMessageBlocks } from './chat/messageMarkdown.js';
 import SignalGlassVisualization from './chat/SignalGlassVisualization.jsx';
@@ -346,11 +346,139 @@ export default function AITab({ employees = [] }) {
   const [input, setInput] = useState('');
   const [loading, setLoading] = useState(false);
   const [hasRequestError, setHasRequestError] = useState(false);
+  const [conversations, setConversations] = useState([]);
+  const [conversationId, setConversationId] = useState('');
+  const [conversationTitle, setConversationTitle] = useState('');
+  const [historyLoading, setHistoryLoading] = useState(false);
+  const [historyError, setHistoryError] = useState('');
   const bottomRef = useRef(null);
 
   useEffect(() => {
     bottomRef.current?.scrollIntoView({ behavior: 'smooth' });
   }, [messages, loading]);
+
+
+  async function loadConversationList() {
+    setHistoryLoading(true);
+    setHistoryError('');
+    try {
+      const response = await fetch('/api/ai/conversations', { headers: { Accept: 'application/json' } });
+      const data = await response.json().catch(() => ({}));
+      if (!response.ok) throw new Error(data.message || 'Unable to load saved conversations.');
+      setConversations(Array.isArray(data.conversations) ? data.conversations : []);
+    } catch (error) {
+      setHistoryError(error?.message || 'Unable to load saved conversations.');
+    } finally {
+      setHistoryLoading(false);
+    }
+  }
+
+  useEffect(() => {
+    loadConversationList();
+  }, []);
+
+  async function createConversation(title) {
+    const response = await fetch('/api/ai/conversations', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ title }),
+    });
+    const data = await response.json().catch(() => ({}));
+    if (!response.ok) throw new Error(data.message || 'Unable to create conversation.');
+    const conversation = data.conversation;
+    setConversationId(conversation.id);
+    setConversationTitle(conversation.title);
+    setConversations(current => [conversation, ...current.filter(item => item.id !== conversation.id)]);
+    return conversation;
+  }
+
+  async function saveMessage(id, payload) {
+    if (!id) return null;
+    const response = await fetch('/api/ai/conversations/' + encodeURIComponent(id) + '/messages', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(payload),
+    });
+    const data = await response.json().catch(() => ({}));
+    if (!response.ok) throw new Error(data.message || 'Unable to save conversation message.');
+    return data.message;
+  }
+
+  function startNewConversation() {
+    setConversationId('');
+    setConversationTitle('');
+    setMessages([]);
+    setHasRequestError(false);
+    setHistoryError('');
+  }
+
+  async function openConversation(id) {
+    if (!id) {
+      startNewConversation();
+      return;
+    }
+    setHistoryLoading(true);
+    setHistoryError('');
+    try {
+      const response = await fetch('/api/ai/conversations/' + encodeURIComponent(id), {
+        headers: { Accept: 'application/json' },
+      });
+      const data = await response.json().catch(() => ({}));
+      if (!response.ok) throw new Error(data.message || 'Unable to open conversation.');
+      setConversationId(data.conversation.id);
+      setConversationTitle(data.conversation.title);
+      setMessages((data.messages || []).map(message => ({
+        role: message.role,
+        source: message.source || undefined,
+        text: message.text || '',
+        visualizations: Array.isArray(message.visualizations) ? message.visualizations : [],
+        webResearch: message.webResearch || null,
+      })));
+      setHasRequestError(false);
+    } catch (error) {
+      setHistoryError(error?.message || 'Unable to open conversation.');
+    } finally {
+      setHistoryLoading(false);
+    }
+  }
+
+  async function renameConversation() {
+    if (!conversationId) return;
+    const nextTitle = window.prompt('Conversation name', conversationTitle || 'Crosswalk conversation');
+    if (!nextTitle?.trim()) return;
+    try {
+      const response = await fetch('/api/ai/conversations/' + encodeURIComponent(conversationId), {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ title: nextTitle.trim() }),
+      });
+      const data = await response.json().catch(() => ({}));
+      if (!response.ok) throw new Error(data.message || 'Unable to rename conversation.');
+      setConversationTitle(data.conversation.title);
+      setConversations(current => current.map(item => item.id === conversationId ? { ...item, title: data.conversation.title } : item));
+    } catch (error) {
+      setHistoryError(error?.message || 'Unable to rename conversation.');
+    }
+  }
+
+  async function deleteConversation() {
+    if (!conversationId || !window.confirm('Delete this saved conversation?')) return;
+    try {
+      const response = await fetch('/api/ai/conversations/' + encodeURIComponent(conversationId), { method: 'DELETE' });
+      const data = await response.json().catch(() => ({}));
+      if (!response.ok) throw new Error(data.message || 'Unable to delete conversation.');
+      setConversations(current => current.filter(item => item.id !== conversationId));
+      startNewConversation();
+    } catch (error) {
+      setHistoryError(error?.message || 'Unable to delete conversation.');
+    }
+  }
+
+  function exportConversationPdf() {
+    if (!conversationId) return;
+    window.open('/api/ai/conversations/' + encodeURIComponent(conversationId) + '/pdf', '_blank', 'noopener,noreferrer');
+  }
+
 
   async function send() {
     const text = input.trim();
@@ -360,6 +488,18 @@ export default function AITab({ employees = [] }) {
     setMessages(current => [...current, { role: 'user', text }]);
     setLoading(true);
     setHasRequestError(false);
+
+    let activeConversationId = conversationId;
+    try {
+      if (!activeConversationId) {
+        const autoTitle = text.replace(/\s+/g, ' ').trim().slice(0, 72) || 'New conversation';
+        const created = await createConversation(autoTitle);
+        activeConversationId = created.id;
+      }
+      await saveMessage(activeConversationId, { role: 'user', text });
+    } catch (saveError) {
+      setHistoryError(saveError?.message || 'The message could not be saved.');
+    }
 
     const history = messages
       .filter(message => ['assistant', 'user'].includes(message.role) && !['error', 'welcome'].includes(message.source))
@@ -395,13 +535,20 @@ export default function AITab({ employees = [] }) {
       }
 
       const parsedReply = extractSignalGlassVisualizations(data.reply || '');
-      setMessages(current => [...current, {
+      const assistantMessage = {
         role: 'assistant',
         source: data.source,
         text: parsedReply.text || (parsedReply.visualizations.length ? 'Here is the visual analysis.' : 'The live AI provider returned an empty response.'),
         visualizations: parsedReply.visualizations,
         webResearch: data.webResearch || null,
-      }]);
+      };
+      setMessages(current => [...current, assistantMessage]);
+      try {
+        await saveMessage(activeConversationId, assistantMessage);
+        await loadConversationList();
+      } catch (saveError) {
+        setHistoryError(saveError?.message || 'The AI response could not be saved.');
+      }
     } catch (error) {
       setHasRequestError(true);
       const message = error?.name === 'TimeoutError'
@@ -423,7 +570,39 @@ export default function AITab({ employees = [] }) {
   return (
     <div className="flex h-[calc(100vh-145px)] min-h-[650px] flex-col p-4 sm:p-5">
       <div className="mb-3">
-        <h1 className="text-3xl font-bold text-white">PI Crosswalk Assistant</h1>
+        <div className="flex flex-col gap-3 xl:flex-row xl:items-center xl:justify-between">
+          <div>
+            <h1 className="text-3xl font-bold text-white">PI Crosswalk Assistant</h1>
+            <div className="mt-1 text-xs text-white/35">{conversationTitle || 'New unsaved conversation'}</div>
+          </div>
+          <div className="flex flex-wrap items-center gap-2">
+            <button type="button" onClick={startNewConversation} className="pi-glass-control inline-flex h-10 items-center gap-2 rounded-xl border border-white/10 bg-white/[0.05] px-3 text-xs font-semibold text-white/70 transition hover:bg-white/10 hover:text-white">
+              <Plus size={14}/> New
+            </button>
+            <select
+              value={conversationId}
+              onChange={event => openConversation(event.target.value)}
+              disabled={historyLoading}
+              className="h-10 min-w-[220px] max-w-[360px] rounded-xl border border-white/10 bg-black/30 px-3 text-xs text-white/75 outline-none"
+              aria-label="Saved Crosswalk conversations"
+            >
+              <option value="">{historyLoading ? 'Loading saved chats…' : 'Open saved chat…'}</option>
+              {conversations.map(item => (
+                <option key={item.id} value={item.id}>{item.title} · {item.messageCount || 0} messages</option>
+              ))}
+            </select>
+            <button type="button" onClick={renameConversation} disabled={!conversationId} className="pi-glass-control grid h-10 w-10 place-items-center rounded-xl border border-white/10 bg-white/[0.05] text-white/55 transition hover:bg-white/10 hover:text-white disabled:cursor-not-allowed disabled:opacity-25" aria-label="Rename conversation">
+              <Pencil size={14}/>
+            </button>
+            <button type="button" onClick={exportConversationPdf} disabled={!conversationId} className="pi-glass-control inline-flex h-10 items-center gap-2 rounded-xl border border-sky-300/15 bg-sky-500/[0.08] px-3 text-xs font-semibold text-sky-100/70 transition hover:bg-sky-500/[0.14] hover:text-white disabled:cursor-not-allowed disabled:opacity-25">
+              <Download size={14}/> PDF
+            </button>
+            <button type="button" onClick={deleteConversation} disabled={!conversationId} className="pi-glass-control grid h-10 w-10 place-items-center rounded-xl border border-rose-300/10 bg-rose-500/[0.05] text-rose-100/45 transition hover:bg-rose-500/10 hover:text-rose-100 disabled:cursor-not-allowed disabled:opacity-25" aria-label="Delete conversation">
+              <Trash2 size={14}/>
+            </button>
+          </div>
+        </div>
+        {historyError && <div className="mt-2 text-xs text-amber-200/65">{historyError}</div>}
       </div>
 
       <div className="mb-4 rounded-2xl border border-sky-400/20 bg-sky-500/10 px-4 py-3">
