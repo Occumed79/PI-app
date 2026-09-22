@@ -373,9 +373,22 @@ export default function AITab({ employees = [] }) {
   const healthy = aiHealth?.healthy;
 
   return (
-    <div className="flex h-[calc(100vh-145px)] min-h-[650px] flex-col p-4 sm:p-5">
-      <div className="mb-3">
-        <h1 className="text-3xl font-bold text-white">PI Crosswalk Assistant</h1>
+    <div className="flex h-[calc(100vh-200px)] min-h-[500px] flex-col p-5 sm:p-6">
+      <div className="mb-4 flex flex-wrap items-start justify-between gap-3">
+        <div>
+          <h1 className="text-3xl font-bold text-white">PI Crosswalk Assistant</h1>
+        </div>
+        {aiHealth && (
+          <span className={cx(
+            'flex items-center gap-2 rounded-full border px-3 py-1.5 text-xs font-semibold',
+            healthy
+              ? 'border-emerald-300/25 bg-emerald-500/10 text-emerald-200'
+              : 'border-amber-300/25 bg-amber-500/10 text-amber-200'
+          )}>
+            {healthy ? <Sparkles size={13}/> : <AlertTriangle size={13}/>}
+            {healthy ? (aiHealth.source ? `${providerLabel(aiHealth.source)} connected` : 'AI providers configured') : 'Live AI unavailable'}
+          </span>
+        )}
       </div>
 
       <div className="mb-4 rounded-2xl border border-sky-400/20 bg-sky-500/10 px-4 py-3">
