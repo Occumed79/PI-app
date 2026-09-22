@@ -182,9 +182,9 @@ score-radar, risk-gauge, bubble, scatter, activity-waveform, allocation-performa
 
 VISUAL SPEC FORMAT
 Emit each visualization as a fenced block using exactly this fence name:
-```signalglass-viz
+\`\`\`signalglass-viz
 {"type":"score-radar","title":"Example","subtitle":"Optional","data":[{"label":"Dimension A","value":72}],"config":{"labelKey":"label","series":[{"key":"value","label":"Score"}],"domain":[0,100]},"caption":"Optional"}
-```
+\`\`\`
 
 The JSON must be valid JSON with double-quoted keys and strings and no comments. Do not wrap it in Markdown other than the signalglass-viz fence.
 
