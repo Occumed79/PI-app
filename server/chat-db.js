@@ -65,7 +65,7 @@ const chatSchemaSql = `
     updated_at timestamptz default now()
   );
 
-  create index if not exists sv_files_storage_key_idx on sv_files(storage_key);
+  create unique index if not exists sv_files_storage_key_unique_idx on sv_files(storage_key);
   create index if not exists sv_files_upload_idx on sv_files(upload_date desc);
 `;
 
