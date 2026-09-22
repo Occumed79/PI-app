@@ -122,6 +122,16 @@ export async function syncConversationToDocBox(conversationId) {
   const storageUrl = 'pi-chat://' + conversation.id;
   const sizeBytes = Buffer.byteLength(transcript, 'utf8');
 
+  let folderResult = await chatPool.query(
+    "select id from sv_folders where lower(name)=lower('PI Chats') and parent_id is null order by created_at limit 1"
+  );
+  if (!folderResult.rowCount) {
+    folderResult = await chatPool.query(
+      "insert into sv_folders (name, color) values ('PI Chats', '#8b5cf6') returning id"
+    );
+  }
+  const folderId = folderResult.rows[0].id;
+
   const mirrorValues = [
     conversation.title,
     conversation.title + '.chat',
@@ -133,6 +143,7 @@ export async function syncConversationToDocBox(conversationId) {
     ['PI Chat', 'Crosswalk Assistant'],
     conversation.created_at,
     conversation.updated_at,
+    folderId,
   ];
 
   const updated = await chatPool.query(
@@ -147,7 +158,8 @@ export async function syncConversationToDocBox(conversationId) {
        notes=$7,
        tags=$8,
        is_archived=false,
-       updated_at=$10
+       updated_at=$10,
+       folder_id=$11
      where storage_key=$5
      returning id`,
     mirrorValues
@@ -156,8 +168,8 @@ export async function syncConversationToDocBox(conversationId) {
   if (!updated.rowCount) {
     await chatPool.query(
       `insert into sv_files
-        (name, original_name, file_type, mime_type, size_bytes, storage_url, storage_key, extracted_text, notes, tags, is_archived, upload_date, updated_at)
-       values ($1,$2,'chat','application/x-pi-chat',$3,$4,$5,$6,$7,$8,false,$9,$10)`,
+        (name, original_name, file_type, mime_type, size_bytes, storage_url, storage_key, extracted_text, notes, tags, is_archived, upload_date, updated_at, folder_id)
+       values ($1,$2,'chat','application/x-pi-chat',$3,$4,$5,$6,$7,$8,false,$9,$10,$11)`,
       mirrorValues
     );
   }
