@@ -43,6 +43,27 @@ create index if not exists employee_pi_profiles_name_idx
 create index if not exists employee_pi_profiles_context_overlays_idx
   on employee_pi_profiles using gin (context_overlays);
 
+create table if not exists ai_conversations (
+  id uuid primary key default gen_random_uuid(),
+  title text not null default 'New conversation',
+  created_at timestamptz not null default now(),
+  updated_at timestamptz not null default now()
+);
+
+create table if not exists ai_conversation_messages (
+  id uuid primary key default gen_random_uuid(),
+  conversation_id uuid not null references ai_conversations(id) on delete cascade,
+  role text not null check (role in ('user', 'assistant')),
+  source text,
+  message_text text not null default '',
+  visualizations jsonb not null default '[]'::jsonb,
+  web_research jsonb,
+  created_at timestamptz not null default now()
+);
+
+create index if not exists ai_conversation_messages_conversation_idx
+  on ai_conversation_messages (conversation_id, created_at, id);
+
 create table if not exists hsi_mappings (
   lens_id text not null,
   profile_id text not null,
@@ -72,6 +93,11 @@ for each row execute function set_updated_at();
 drop trigger if exists employee_pi_profiles_set_updated_at on employee_pi_profiles;
 create trigger employee_pi_profiles_set_updated_at
 before update on employee_pi_profiles
+for each row execute function set_updated_at();
+
+drop trigger if exists ai_conversations_set_updated_at on ai_conversations;
+create trigger ai_conversations_set_updated_at
+before update on ai_conversations
 for each row execute function set_updated_at();
 
 drop trigger if exists hsi_mappings_set_updated_at on hsi_mappings;
