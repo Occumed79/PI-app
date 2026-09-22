@@ -556,7 +556,7 @@ export default function SignalGlassVisualization({ spec }) {
     if (['choropleth-map', 'cartogram'].includes(type)) return <TileCartogram spec={spec} />;
     if (['bar', 'bar-chart', 'barplot'].includes(type)) return <StandardCartesian spec={spec} mode="bar" />;
     if (type === 'histogram') return <StandardCartesian spec={spec} mode="histogram" />;
-    if (['area', 'area-chart', 'area-plot', 'animated-area-chart'].includes(type)) return <StandardCartesian spec={spec} mode="area" />;
+    if (['area', 'area-chart', 'area-plot', 'animated-area', 'animated-area-chart'].includes(type)) return <StandardCartesian spec={spec} mode="area" />;
     if (['stream', 'streamchart'].includes(type)) return <StandardCartesian spec={spec} mode="stream" />;
     if (['allocation-performance', 'allocation-performance-chart'].includes(type)) return <StandardCartesian spec={spec} mode="allocation-performance" />;
     if (['waveform', 'activity-waveform', 'activity-waveform-chart'].includes(type)) return <StandardCartesian spec={spec} mode="waveform" />;
