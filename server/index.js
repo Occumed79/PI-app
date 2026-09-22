@@ -314,6 +314,7 @@ app.get('/api/health', (_req, res) => {
     service: 'pi-crosswalk-intelligence',
     environment: process.env.NODE_ENV || 'development',
     databaseConfigured: Boolean(process.env.DATABASE_URL),
+    chatDatabaseConfigured: Boolean(process.env.PI_AI_CHATS_DATABASE_URL),
     aiConfigured: PRIMARY_PROVIDER_ORDER.some(provider => diagnostics.configured[provider]) || diagnostics.configured.cloudflare,
     providerConfigured: diagnostics.configured,
     providerKeyCounts: diagnostics.keyCounts,
@@ -627,7 +628,7 @@ app.get('/api/ai/conversations/:id/pdf', async (req, res) => {
       ...message,
       messageText: message.text,
     }));
-    const pdf = buildConversationPdf({ conversation, messages });
+    const pdf = await buildConversationPdf({ conversation, messages });
     const safeName = String(conversation.title || 'crosswalk-conversation')
       .replace(/[^a-z0-9]+/gi, '-')
       .replace(/^-+|-+$/g, '')
