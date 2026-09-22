@@ -70,7 +70,7 @@ export default function RootApp() {
         <div className="pi-refraction-noise"/>
       </div>
 
-      <div className="relative mx-auto max-w-[1480px] px-4 pb-10 pt-5 sm:px-6 lg:px-8">
+      <div className="relative mx-auto w-full max-w-[1760px] px-3 pb-6 pt-4 sm:px-4 lg:px-5">
         <div className="pi-glass-panel pi-nav-panel mb-5 rounded-3xl border border-white/10 bg-white/[0.06] p-3 shadow-2xl shadow-black/20 backdrop-blur-xl">
           <div className="grid grid-cols-1 gap-2 sm:grid-cols-3">
             {MODES.map(({ id, label, sub, Icon, active }) => (
