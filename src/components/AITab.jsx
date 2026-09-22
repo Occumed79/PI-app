@@ -281,28 +281,12 @@ export default function AITab({ employees = [] }) {
   const [messages, setMessages] = useState([]);
   const [input, setInput] = useState('');
   const [loading, setLoading] = useState(false);
-  const [aiHealth, setAiHealth] = useState(null);
+  const [hasRequestError, setHasRequestError] = useState(false);
   const bottomRef = useRef(null);
 
   useEffect(() => {
     bottomRef.current?.scrollIntoView({ behavior: 'smooth' });
   }, [messages, loading]);
-
-  useEffect(() => {
-    let active = true;
-    fetch('/api/health', { signal: AbortSignal.timeout(20000) })
-      .then(response => response.ok ? response.json() : null)
-      .then(data => {
-        if (!active) return;
-        const configured = data?.providerConfigured || {};
-        const healthy = Boolean(data?.ok && data?.aiConfigured);
-        setAiHealth({ healthy, source: null, configured });
-      })
-      .catch(() => {
-        if (active) setAiHealth({ healthy: false, source: null });
-      });
-    return () => { active = false; };
-  }, []);
 
   async function send() {
     const text = input.trim();
@@ -311,6 +295,7 @@ export default function AITab({ employees = [] }) {
     setInput('');
     setMessages(current => [...current, { role: 'user', text }]);
     setLoading(true);
+    setHasRequestError(false);
 
     const history = messages
       .filter(message => ['assistant', 'user'].includes(message.role) && !['error', 'welcome'].includes(message.source))
@@ -345,7 +330,6 @@ export default function AITab({ employees = [] }) {
         throw new Error('The server did not identify a live AI provider.');
       }
 
-      setAiHealth(current => ({ ...current, healthy: true, source: data.source }));
       setMessages(current => [...current, {
         role: 'assistant',
         source: data.source,
@@ -353,7 +337,7 @@ export default function AITab({ employees = [] }) {
         webResearch: data.webResearch || null,
       }]);
     } catch (error) {
-      setAiHealth({ healthy: false, source: null });
+      setHasRequestError(true);
       const message = error?.name === 'TimeoutError'
         ? 'The live AI request timed out after 120 seconds. Please try again.'
         : `Live AI request failed: ${error?.message || 'Unknown error'}`;
@@ -370,25 +354,10 @@ export default function AITab({ employees = [] }) {
     }
   }
 
-  const healthy = aiHealth?.healthy;
-
   return (
-    <div className="flex h-[calc(100vh-200px)] min-h-[500px] flex-col p-5 sm:p-6">
-      <div className="mb-4 flex flex-wrap items-start justify-between gap-3">
-        <div>
-          <h1 className="text-3xl font-bold text-white">PI Crosswalk Assistant</h1>
-        </div>
-        {aiHealth && (
-          <span className={cx(
-            'flex items-center gap-2 rounded-full border px-3 py-1.5 text-xs font-semibold',
-            healthy
-              ? 'border-emerald-300/25 bg-emerald-500/10 text-emerald-200'
-              : 'border-amber-300/25 bg-amber-500/10 text-amber-200'
-          )}>
-            {healthy ? <Sparkles size={13}/> : <AlertTriangle size={13}/>}
-            {healthy ? (aiHealth.source ? `${providerLabel(aiHealth.source)} connected` : 'AI providers configured') : 'Live AI unavailable'}
-          </span>
-        )}
+    <div className="flex h-[calc(100vh-145px)] min-h-[650px] flex-col p-4 sm:p-5">
+      <div className="mb-3">
+        <h1 className="text-3xl font-bold text-white">PI Crosswalk Assistant</h1>
       </div>
 
       <div className="mb-4 rounded-2xl border border-sky-400/20 bg-sky-500/10 px-4 py-3">
@@ -399,7 +368,7 @@ export default function AITab({ employees = [] }) {
         <div className="flex flex-none justify-center pb-3 pt-1">
           <SiriOrb
             size="192px"
-            state={loading ? 'thinking' : aiHealth && !healthy ? 'error' : 'idle'}
+            state={loading ? 'thinking' : hasRequestError ? 'error' : 'idle'}
           />
         </div>
 
