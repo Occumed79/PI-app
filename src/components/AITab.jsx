@@ -275,7 +275,7 @@ function MessageContent({ text }) {
 function extractSignalGlassVisualizations(reply) {
   const raw = String(reply || '');
   const visualizations = [];
-  const cleaned = raw.replace(/\`\`\`signalglass-viz\\s*([\\s\\S]*?)\`\`\`/gi, (_match, jsonText) => {
+  const cleaned = raw.replace(/```signalglass-viz\s*([\s\S]*?)```/gi, (_match, jsonText) => {
     if (visualizations.length >= 3) return '';
     try {
       const parsed = JSON.parse(String(jsonText || '').trim());
@@ -286,7 +286,7 @@ function extractSignalGlassVisualizations(reply) {
     return '';
   });
   return {
-    text: cleaned.replace(/\\n{3,}/g, '\\n\\n').trim(),
+    text: cleaned.replace(/\n{3,}/g, '\n\n').trim(),
     visualizations,
   };
 }
