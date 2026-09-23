@@ -94,7 +94,7 @@ function LensSidebar({ lenses, activeLens, onSelect, query, setQuery }) {
   }, {}), [lenses]);
 
   return (
-    <aside className="pi-luminous-card hidden h-[calc(100vh-2rem)] min-h-[620px] flex-col overflow-hidden rounded-3xl border border-sky-300/15 bg-[#090d1d]/88 backdrop-blur-xl lg:sticky lg:top-4 lg:flex" style={glowVars('#38bdf8')}>
+    <aside className="pi-luminous-card hidden min-h-full flex-col rounded-3xl border border-sky-300/15 bg-[#090d1d]/88 backdrop-blur-xl lg:flex" style={glowVars('#38bdf8')}>
       <div className="border-b border-white/[0.08] px-5 py-4">
         <p className="text-xs font-semibold uppercase tracking-[0.18em] text-sky-200/75">Complete lens library</p>
         <p className="mt-1 text-lg font-bold text-white">{DISPLAY_LENSES.length} source lenses</p>
@@ -107,7 +107,7 @@ function LensSidebar({ lenses, activeLens, onSelect, query, setQuery }) {
           {query && <button type="button" onClick={() => setQuery('')} className="text-white/40 hover:text-white" aria-label="Clear search"><X size={14}/></button>}
         </div>
       </div>
-      <div className="flex-1 space-y-5 overflow-y-auto px-3 py-4">
+      <div className="flex-1 space-y-5 px-3 py-4">
         {Object.entries(grouped).map(([category, items]) => {
           const { Icon, color, classes } = categoryMeta(category);
           return (
