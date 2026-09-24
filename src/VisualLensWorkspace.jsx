@@ -230,7 +230,7 @@ export default function VisualLensWorkspace() {
         <LensSidebar lenses={filteredLenses} activeLens={activeLens} onSelect={setActiveLens} query={query} setQuery={setQuery}/>
 
         <main className="min-w-0 space-y-5">
-          <GlassCard className="overflow-hidden p-5 sm:p-6" glow={meta.color}>
+          <GlassCard className="pi-border-glow overflow-hidden p-5 sm:p-6" glow={meta.color}>
             <div className="flex flex-col gap-5 xl:flex-row xl:items-start xl:justify-between">
               <div className="min-w-0 flex-1">
                 <div className="mb-3 flex flex-wrap gap-2">
