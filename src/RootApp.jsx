@@ -33,7 +33,7 @@ const MODES = [
   {
     id: 'library',
     label: 'Chat Library',
-    sub: 'Saved conversations · DocBox',
+    sub: 'Saved conversations · chat archive',
     Icon: LibraryBig,
     active: 'border-violet-300/40 bg-violet-500/15',
   },
@@ -123,7 +123,7 @@ export default function RootApp() {
           <div className="pi-glass-panel overflow-hidden rounded-3xl border border-white/10 bg-white/[0.03] shadow-2xl shadow-black/20">
             <iframe
               title="PI Chat Library"
-              src="https://doc-box-pichat-app.onrender.com/vault?embed=1"
+              src="https://doc-box-pichat-app.onrender.com/?embed=1"
               className="block h-[calc(100vh-150px)] min-h-[760px] w-full border-0 bg-slate-950"
               loading="eager"
               referrerPolicy="strict-origin-when-cross-origin"
