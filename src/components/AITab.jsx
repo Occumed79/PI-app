@@ -568,7 +568,7 @@ export default function AITab({ employees = [] }) {
   }
 
   return (
-    <div className="flex h-[calc(100vh-145px)] min-h-[650px] flex-col p-4 sm:p-5">
+    <div className="flex h-[calc(100vh-145px)] min-h-[620px] flex-col p-4 sm:p-5">
       <div className="mb-3">
         <div className="flex flex-col gap-3 xl:flex-row xl:items-center xl:justify-between">
           <div>
@@ -605,14 +605,10 @@ export default function AITab({ employees = [] }) {
         {historyError && <div className="mt-2 text-xs text-amber-200/65">{historyError}</div>}
       </div>
 
-      <div className="mb-4 rounded-2xl border border-sky-400/20 bg-sky-500/10 px-4 py-3">
-        <p className="text-sm leading-6 text-white/75">Ask me anything about an employee’s PI pattern, compare lenses, test a hypothetical life or work variable, or keep asking follow-up questions. I’ll use the stored PI data as context rather than forcing every reply into a fixed report.</p>
-      </div>
-
       <div className="pi-chat-panel flex min-h-0 flex-1 flex-col overflow-hidden rounded-3xl border border-white/10 p-4 sm:p-5">
-        <div className="flex flex-none justify-center pb-3 pt-1">
+        <div className={cx("flex flex-none justify-center", messages.length ? "pb-3 pt-1" : "pb-1 pt-8")}>
           <SiriOrb
-            size="192px"
+            size={messages.length ? "144px" : "176px"}
             state={loading ? 'thinking' : hasRequestError ? 'error' : 'idle'}
           />
         </div>
