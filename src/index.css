@@ -397,3 +397,172 @@ body {
     transition: none !important;
   }
 }
+
+
+/* Cinematic control system: metallic buttons + selective border glow */
+.pi-shell button:not([class*='absolute inset-0']):not(:disabled)::before {
+  position: absolute;
+  inset: 0;
+  z-index: 4;
+  padding: 1px;
+  pointer-events: none;
+  content: '';
+  border-radius: inherit;
+  background: conic-gradient(
+    from 125deg,
+    rgba(255,255,255,.28),
+    rgba(125,211,252,.72),
+    rgba(216,180,254,.88),
+    rgba(253,224,71,.72),
+    rgba(244,114,182,.62),
+    rgba(255,255,255,.24)
+  );
+  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  opacity: .28;
+  transition: opacity 180ms ease, filter 220ms ease;
+}
+
+.pi-shell button:not([class*='absolute inset-0']):not(:disabled):hover::before,
+.pi-shell button:not([class*='absolute inset-0']):not(:disabled):focus-visible::before {
+  opacity: .9;
+  filter:
+    drop-shadow(0 0 8px rgba(125,211,252,.22))
+    drop-shadow(0 0 14px rgba(216,180,254,.18));
+}
+
+.pi-shell button:not([class*='absolute inset-0']):not(:disabled) {
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,.09),
+    0 0 0 1px rgba(255,255,255,.018);
+}
+
+.pi-border-glow {
+  animation: pi-border-glow-cycle 7s ease-in-out infinite;
+}
+
+@keyframes pi-border-glow-cycle {
+  0%, 100% {
+    border-color: rgba(125,211,252,.18) !important;
+    box-shadow:
+      inset 0 1px 0 rgba(255,255,255,.12),
+      0 0 18px rgba(56,189,248,.10),
+      0 18px 48px rgba(0,0,0,.24);
+  }
+  33% {
+    border-color: rgba(216,180,254,.28) !important;
+    box-shadow:
+      inset 0 1px 0 rgba(255,255,255,.13),
+      0 0 25px rgba(168,85,247,.14),
+      0 18px 48px rgba(0,0,0,.25);
+  }
+  66% {
+    border-color: rgba(244,114,182,.24) !important;
+    box-shadow:
+      inset 0 1px 0 rgba(255,255,255,.13),
+      0 0 24px rgba(244,114,182,.12),
+      0 18px 48px rgba(0,0,0,.25);
+  }
+}
+
+/* Idle orbital asset beneath the AI orb. */
+.pi-idle-orbit {
+  position: relative;
+  width: min(520px, 92%);
+  height: 250px;
+  margin: -10px auto 12px;
+  flex: 0 0 auto;
+  pointer-events: none;
+  opacity: .84;
+  perspective: 900px;
+}
+
+.pi-idle-orbit-core {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  display: grid;
+  place-items: center;
+  width: 132px;
+  height: 132px;
+  transform: translate(-50%, -50%);
+  border: 1px solid rgba(255,255,255,.08);
+  border-radius: 999px;
+  background:
+    radial-gradient(circle at 35% 28%, rgba(255,255,255,.09), transparent 28%),
+    radial-gradient(circle at 50% 50%, rgba(56,189,248,.06), rgba(10,12,20,.12) 68%);
+  box-shadow: inset 0 0 28px rgba(125,211,252,.04), 0 0 45px rgba(168,85,247,.05);
+}
+
+.pi-idle-orbit-core span {
+  max-width: 90px;
+  text-align: center;
+  color: rgba(255,255,255,.24);
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: .16em;
+  text-transform: uppercase;
+}
+
+.pi-idle-orbit-ring {
+  position: absolute;
+  inset: 0;
+  animation: pi-orbit-spin 28s linear infinite;
+}
+
+.pi-idle-orbit-node {
+  --orbit-radius: 102px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  display: grid;
+  width: 66px;
+  height: 50px;
+  place-items: center;
+  transform:
+    translate(-50%, -50%)
+    rotate(var(--orbit-angle))
+    translateY(calc(var(--orbit-radius) * -1))
+    rotate(calc(var(--orbit-angle) * -1));
+  border: 1px solid rgba(255,255,255,.11);
+  border-radius: 16px;
+  background: linear-gradient(145deg, rgba(255,255,255,.06), rgba(255,255,255,.018));
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.08), 0 8px 24px rgba(0,0,0,.24);
+  backdrop-filter: blur(10px);
+  animation: pi-orbit-node-pulse 4.8s ease-in-out infinite;
+  animation-delay: var(--orbit-delay);
+}
+
+.pi-idle-orbit-glyph {
+  color: rgba(186,230,253,.78);
+  font-size: 19px;
+  line-height: 1;
+  text-shadow: 0 0 12px rgba(56,189,248,.28);
+}
+
+.pi-idle-orbit-label {
+  margin-top: -4px;
+  color: rgba(255,255,255,.32);
+  font-size: 7px;
+  font-weight: 700;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+}
+
+@keyframes pi-orbit-spin {
+  to { transform: rotate(360deg); }
+}
+
+@keyframes pi-orbit-node-pulse {
+  0%,100% { opacity: .52; filter: saturate(.9); }
+  50% { opacity: 1; filter: saturate(1.25) brightness(1.08); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .pi-border-glow,
+  .pi-idle-orbit-ring,
+  .pi-idle-orbit-node {
+    animation: none !important;
+  }
+}

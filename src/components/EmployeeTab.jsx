@@ -434,7 +434,7 @@ function EmployeeDetail({ employee, onBack, onEdit, onDelete }) {
         </div>
       </div>
 
-      <div className="rounded-3xl border border-white/10 bg-white/[0.05] p-6">
+      <div className="pi-border-glow rounded-3xl border border-white/10 bg-white/[0.05] p-6">
         <div className="flex flex-wrap items-start justify-between gap-5">
           <div className="flex items-start gap-4">
             <div className="flex h-14 w-14 flex-shrink-0 items-center justify-center rounded-2xl text-2xl font-black text-slate-900" style={{ background: profile.color }}>
@@ -731,12 +731,12 @@ export default function EmployeeTab({ employees = [], setEmployees, loading, loa
         <div className="flex min-h-[320px] flex-col items-center justify-center rounded-3xl border border-dashed border-white/15 text-center"><User size={40} className="mb-4 text-white/15"/><p className="text-lg font-semibold text-white/40">{employees.length ? 'No matching employees' : 'No employee PI results stored yet'}</p><p className="mt-1 max-w-md text-sm text-white/25">Add the completed PI profile and exact factor values. Life variables can be stored or tested temporarily inside a lens.</p></div>
       ) : (
         <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
-          {filteredEmployees.map(employee => {
+          {filteredEmployees.map((employee, index) => {
             const profile = profileFor(employee);
             const factors = employeeFactors(employee, profile);
             const overlays = employeeOverlayIds(employee);
             return (
-              <button key={employee.id} type="button" onClick={() => setViewingId(employee.id)} className="group rounded-3xl border border-white/10 bg-white/[0.04] p-5 text-left transition hover:border-white/25 hover:bg-white/[0.08]">
+              <button key={employee.id} type="button" onClick={() => setViewingId(employee.id)} className={cx('group rounded-3xl border border-white/10 bg-white/[0.04] p-5 text-left transition hover:border-white/25 hover:bg-white/[0.08]', index % 3 === 0 && 'pi-border-glow')}>
                 <div className="mb-4 flex items-center gap-3"><div className="flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-2xl text-xl font-black text-slate-900" style={{ background: profile.color }}>{(employee.name || 'U')[0].toUpperCase()}</div><div className="min-w-0"><p className="truncate font-bold text-white">{employee.name}</p><p className="truncate text-xs text-white/40">{employee.position || 'Position not entered'}</p></div></div>
                 <p className="mb-2 truncate text-xs text-white/30">{employee.department || 'Department not entered'}</p>
                 <div className="flex items-center justify-between gap-2"><div className="flex items-center gap-2"><span className="h-2 w-2 rounded-full" style={{ background: profile.color }}/><span className="text-xs font-medium text-white/60">{profile.name}</span></div>{overlays.length > 0 && <span className="rounded-full border border-fuchsia-300/15 bg-fuchsia-500/10 px-2 py-0.5 text-[10px] text-fuchsia-200">{overlays.length} variable{overlays.length === 1 ? '' : 's'}</span>}</div>
