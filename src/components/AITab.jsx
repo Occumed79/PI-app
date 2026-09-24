@@ -3,6 +3,7 @@ import { ArrowUp, Download, Pencil, Plus, Trash2 } from 'lucide-react';
 import SiriOrb from './smoothui/SiriOrb.jsx';
 import { parseMessageBlocks } from './chat/messageMarkdown.js';
 import SignalGlassVisualization from './chat/SignalGlassVisualization.jsx';
+import IdleOrbitalVisual from './chat/IdleOrbitalVisual.jsx';
 import { PI_PROFILES } from '../data/profiles.js';
 import { HSI_LENS_REGISTRY } from '../data/hsiLensRegistry.js';
 import { CROSSWALK_AI_RULES, CROSSWALK_MODEL } from '../data/crosswalkModel.js';
@@ -176,6 +177,9 @@ You can communicate part of an answer visually inside the Crosswalk Assistant. W
 - The written answer must still explain the important conclusion. The visual supplements the prose; it does not replace it.
 - Choose the visualization form that best expresses the structure of the answer rather than defaulting to a bar chart.
 - You may emit up to 3 visualizations in one answer when each communicates a genuinely different point.
+- Actively consider a visual when the user asks to compare 4+ dimensions, show relative intensity, explain a relationship network, show composition, or communicate change over time. Do not wait for the user to explicitly say “make a chart.”
+- Use the native visualization engine rather than ASCII art, Markdown pseudo-charts, or prose pretending to be a chart.
+- Match the visual family to the structure: radar for multivariate profiles; gauge for a single bounded score; heatmap for matrices; network/chord/arc for relationships; bubble/scatter for two or three numeric dimensions; stream/area/line for change; pie/donut/radial only for genuine part-to-whole or radial comparisons; map families only when grounded coordinates or geographic data exist.
 
 SUPPORTED VISUAL TYPES
 score-radar, risk-gauge, bubble, scatter, activity-waveform, allocation-performance, animated-area, radial, pie, donut, bar, histogram, heatmap, circular-bar, line, connected-scatter, area, stream, timeseries, map, choropleth-map, hexbin-map, cartogram, connection-map, bubble-map, chord, network, arc.
@@ -351,6 +355,7 @@ export default function AITab({ employees = [] }) {
   const [conversationTitle, setConversationTitle] = useState('');
   const [historyLoading, setHistoryLoading] = useState(false);
   const [historyError, setHistoryError] = useState('');
+  const [composerFocused, setComposerFocused] = useState(false);
   const bottomRef = useRef(null);
 
   useEffect(() => {
@@ -613,6 +618,8 @@ export default function AITab({ employees = [] }) {
           />
         </div>
 
+        <IdleOrbitalVisual visible={!loading && messages.length === 0 && !input.trim() && !composerFocused} />
+
         <div className="min-h-0 flex-1 overflow-y-auto pr-2">
           <div className="space-y-5 pb-2">
             {messages.map((message, index) => {
@@ -668,6 +675,8 @@ export default function AITab({ employees = [] }) {
             value={input}
             onChange={event => setInput(event.target.value)}
             onKeyDown={onKeyDown}
+            onFocus={() => setComposerFocused(true)}
+            onBlur={() => setComposerFocused(false)}
             placeholder="Ask a question or continue the conversation…"
             rows={1}
             className="max-h-36 min-h-[44px] flex-1 resize-none bg-transparent py-3 text-sm text-white outline-none placeholder:text-white/25"
