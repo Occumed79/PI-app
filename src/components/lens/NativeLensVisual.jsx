@@ -231,7 +231,7 @@ function ColorWheel({ data, lens, title = 'Color energy wheel' }) {
       <div className="grid items-center gap-5 md:grid-cols-2">
         <div className="relative mx-auto h-56 w-56 rounded-full sm:h-64 sm:w-64" style={{ background: `conic-gradient(${gradient})`, filter: 'saturate(1.18) brightness(1.06)', boxShadow: '0 0 12px rgba(56,189,248,.38), 0 0 34px rgba(129,140,248,.30), 0 0 56px rgba(244,114,182,.17), inset 0 0 24px rgba(255,255,255,.15)' }}>
           <div className="absolute inset-10 rounded-full border border-white/15 bg-slate-950/90 shadow-[inset_0_0_22px_rgba(255,255,255,0.06)]" />
-          <div className="absolute inset-0 flex items-center justify-center px-10 text-center text-sm font-bold text-white">{lens.lens}</div>
+          <div className="absolute inset-0 flex items-center justify-center px-10 text-center text-sm font-bold text-white/85">Color energies</div>
         </div>
         <Bars data={values} limit={8} />
       </div>
