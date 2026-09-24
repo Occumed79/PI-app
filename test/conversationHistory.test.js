@@ -57,7 +57,7 @@ test('conversation PDF generator produces a valid PDF header and transcript cont
 
 test('Tab 4 embeds the dedicated DocBox chat library', () => {
   assert.match(rootSource, /id: 'library'/);
-  assert.match(rootSource, /doc-box-pichat-app\.onrender\.com\/vault\?embed=1/);
+  assert.match(rootSource, /doc-box-pichat-app\\.onrender\\.com\\/\\?embed=1/);
 });
 
 test('saved chats use the dedicated chat database and mirror into DocBox', () => {
