@@ -9,7 +9,6 @@ import { HSI_LENS_REGISTRY } from '../data/hsiLensRegistry.js';
 import { CROSSWALK_AI_RULES, CROSSWALK_MODEL } from '../data/crosswalkModel.js';
 import { normalizePiFactors } from '../data/piCrosswalkEngine.js';
 import {
-import MetalButton from './ui/MetalButton.jsx';
   applyContextOverlays,
   deriveLensProjection,
   summarizeProjectionForAi,
@@ -18,6 +17,7 @@ import {
   CONTEXT_OVERLAY_BY_ID,
   normalizeContextOverlayIds,
 } from '../data/contextOverlayCatalog.js';
+import MetalButton from './ui/MetalButton.jsx';
 
 function cx(...classes) {
   return classes.filter(Boolean).join(' ');
