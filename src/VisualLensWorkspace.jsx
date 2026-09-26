@@ -232,7 +232,15 @@ export default function VisualLensWorkspace() {
         <LensSidebar lenses={filteredLenses} activeLens={activeLens} onSelect={setActiveLens} query={query} setQuery={setQuery}/>
 
         <main className="min-w-0 space-y-5">
-          <GlassCard className="pi-border-glow overflow-hidden p-5 sm:p-6" glow={meta.color}>
+          <BorderGlow
+            className="overflow-hidden p-5 sm:p-6"
+            backgroundColor="#0a0d18"
+            borderRadius={24}
+            colors={[meta.color, '#f472b6', '#38bdf8']}
+            glowColor="200 90 70"
+            glowRadius={36}
+            fillOpacity={0.42}
+          >
             <div className="flex flex-col gap-5 xl:flex-row xl:items-start xl:justify-between">
               <div className="min-w-0 flex-1">
                 <div className="mb-3 flex flex-wrap gap-2">
@@ -250,7 +258,7 @@ export default function VisualLensWorkspace() {
               <MetalButton type="button" onClick={() => setShowModal(true)} className="pi-luminous-control rounded-xl border border-sky-300/30 bg-sky-500/[0.14] px-4 py-2.5 text-sm font-semibold text-sky-50 hover:bg-sky-500/[0.20]" style={glowVars(meta.color)}>Open full lens detail</MetalButton>
               <span className="self-center text-xs text-white/45">Calculated from the selected profile’s exact D/E/P/F scores.</span>
             </div>
-          </GlassCard>
+          </BorderGlow>
 
           <LensExplainerCard lens={activeLens} projection={projection}/>
           <NativeLensVisual lens={activeLens} result={nativeResult}/>
