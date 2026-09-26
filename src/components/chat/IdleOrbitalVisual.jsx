@@ -1,118 +1,93 @@
 import React from 'react';
+import OrbitalImageWheel from '../smoothui/OrbitalImageWheel.tsx';
+
+function svgData(body, accent = '#7dd3fc', accent2 = '#c4b5fd') {
+  const svg = `
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 96 96">
+      <defs>
+        <radialGradient id="bg" cx="30%" cy="20%" r="90%">
+          <stop offset="0%" stop-color="#20273a"/>
+          <stop offset="65%" stop-color="#111522"/>
+          <stop offset="100%" stop-color="#090b12"/>
+        </radialGradient>
+        <linearGradient id="accent" x1="0" x2="1">
+          <stop offset="0%" stop-color="${accent}"/>
+          <stop offset="100%" stop-color="${accent2}"/>
+        </linearGradient>
+        <filter id="glow"><feGaussianBlur stdDeviation="2.8" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+      </defs>
+      <rect width="96" height="96" rx="48" fill="url(#bg)"/>
+      <circle cx="48" cy="48" r="42" fill="none" stroke="#ffffff" stroke-opacity=".08"/>
+      <g stroke="url(#accent)" fill="none" stroke-linecap="round" stroke-linejoin="round" filter="url(#glow)">
+        ${body}
+      </g>
+    </svg>`;
+  return `data:image/svg+xml;charset=UTF-8,${encodeURIComponent(svg)}`;
+}
 
 const ITEMS = [
-  { id: 'radar', label: 'Radar' },
-  { id: 'network', label: 'Network' },
-  { id: 'heatmap', label: 'Heatmap' },
-  { id: 'gauge', label: 'Gauge' },
-  { id: 'chord', label: 'Chord' },
-  { id: 'stream', label: 'Stream' },
-  { id: 'map', label: 'Map' },
-  { id: 'bubble', label: 'Bubble' },
+  {
+    id: 'radar',
+    label: 'Radar',
+    alt: 'Radar visualization',
+    image: svgData('<polygon points="48,20 70,36 62,66 34,70 23,40" fill="#7dd3fc" fill-opacity=".16" stroke-width="3"/><circle cx="48" cy="20" r="2" fill="#fff"/><circle cx="70" cy="36" r="2" fill="#fff"/><circle cx="62" cy="66" r="2" fill="#fff"/>')
+  },
+  {
+    id: 'network',
+    label: 'Network',
+    alt: 'Network visualization',
+    image: svgData('<path d="M25 61 45 29l27 18M45 29l5 39M25 61l25 7 22-21" stroke-width="2.5"/><circle cx="25" cy="61" r="4" fill="#c4b5fd"/><circle cx="45" cy="29" r="4" fill="#c4b5fd"/><circle cx="72" cy="47" r="4" fill="#c4b5fd"/><circle cx="50" cy="68" r="4" fill="#c4b5fd"/>', '#c4b5fd', '#f9a8d4')
+  },
+  {
+    id: 'heatmap',
+    label: 'Heatmap',
+    alt: 'Heatmap visualization',
+    image: svgData('<rect x="23" y="25" width="12" height="12" rx="2" fill="#f9a8d4" fill-opacity=".45"/><rect x="39" y="25" width="12" height="12" rx="2" fill="#f9a8d4" fill-opacity=".85"/><rect x="55" y="25" width="12" height="12" rx="2" fill="#f9a8d4" fill-opacity=".6"/><rect x="23" y="41" width="12" height="12" rx="2" fill="#7dd3fc" fill-opacity=".8"/><rect x="39" y="41" width="12" height="12" rx="2" fill="#7dd3fc" fill-opacity=".35"/><rect x="55" y="41" width="12" height="12" rx="2" fill="#7dd3fc" fill-opacity=".95"/><rect x="23" y="57" width="12" height="12" rx="2" fill="#c4b5fd" fill-opacity=".5"/><rect x="39" y="57" width="12" height="12" rx="2" fill="#c4b5fd" fill-opacity=".9"/><rect x="55" y="57" width="12" height="12" rx="2" fill="#c4b5fd" fill-opacity=".65"/>', '#f9a8d4', '#7dd3fc')
+  },
+  {
+    id: 'gauge',
+    label: 'Gauge',
+    alt: 'Gauge visualization',
+    image: svgData('<path d="M24 62a25 25 0 0 1 50 0" stroke="#ffffff" stroke-opacity=".18" stroke-width="7"/><path d="M24 62a25 25 0 0 1 36-22" stroke-width="7"/><path d="M49 62 62 43" stroke-width="3"/><circle cx="49" cy="62" r="4" fill="#7dd3fc"/>')
+  },
+  {
+    id: 'chord',
+    label: 'Chord',
+    alt: 'Chord visualization',
+    image: svgData('<circle cx="48" cy="48" r="28" stroke-width="2" stroke-opacity=".35"/><path d="M27 37C55 31 69 41 70 55M25 56C43 76 64 70 70 34M38 22C30 48 40 67 63 72" stroke-width="2.5"/>', '#a7f3d0', '#7dd3fc')
+  },
+  {
+    id: 'stream',
+    label: 'Stream',
+    alt: 'Stream visualization',
+    image: svgData('<path d="M18 54C30 28 40 70 52 40s20 11 30-6" stroke-width="4"/><path d="M18 65C31 44 41 74 53 55s20 12 29-4" stroke-width="2" stroke-opacity=".45"/>', '#67e8f9', '#a7f3d0')
+  },
+  {
+    id: 'map',
+    label: 'Map',
+    alt: 'Map visualization',
+    image: svgData('<path d="M25 28 40 23l18 9 14-5v41l-14 5-18-9-15 5Z" stroke-width="2" stroke-opacity=".45"/><circle cx="39" cy="44" r="4" fill="#f9a8d4"/><circle cx="62" cy="54" r="4" fill="#f9a8d4"/><path d="M39 44c7 2 14 5 23 10" stroke-width="2" stroke-dasharray="4 4"/>', '#f9a8d4', '#c4b5fd')
+  },
+  {
+    id: 'bubble',
+    label: 'Bubble',
+    alt: 'Bubble visualization',
+    image: svgData('<circle cx="34" cy="59" r="11" fill="#7dd3fc" fill-opacity=".4"/><circle cx="53" cy="37" r="15" fill="#c4b5fd" fill-opacity=".7"/><circle cx="67" cy="61" r="8" fill="#f9a8d4" fill-opacity=".62"/>', '#7dd3fc', '#f9a8d4')
+  }
 ];
-
-function MiniVisual({ type }) {
-  if (type === 'radar') {
-    return (
-      <svg viewBox="0 0 44 32" aria-hidden="true">
-        <polygon points="22,3 37,12 32,27 13,28 6,13" fill="rgba(56,189,248,.28)" stroke="currentColor" strokeWidth="1.4" />
-        <circle cx="22" cy="3" r="1.6" fill="currentColor" />
-        <circle cx="37" cy="12" r="1.6" fill="currentColor" />
-        <circle cx="32" cy="27" r="1.6" fill="currentColor" />
-        <circle cx="13" cy="28" r="1.6" fill="currentColor" />
-        <circle cx="6" cy="13" r="1.6" fill="currentColor" />
-      </svg>
-    );
-  }
-  if (type === 'network') {
-    return (
-      <svg viewBox="0 0 44 32" aria-hidden="true">
-        <path d="M8 22 20 8l15 6M20 8l3 18M8 22l15 4 12-12" fill="none" stroke="currentColor" strokeWidth="1.3" opacity=".65" />
-        {[['8','22'],['20','8'],['35','14'],['23','26']].map(([x,y]) => <circle key={x+y} cx={x} cy={y} r="2.3" fill="currentColor" />)}
-      </svg>
-    );
-  }
-  if (type === 'heatmap') {
-    const values = [.35,.72,.48,.88,.58,.32,.78,.52,.94,.43,.68,.27];
-    return (
-      <svg viewBox="0 0 44 32" aria-hidden="true">
-        {values.map((value, index) => {
-          const x = 4 + (index % 4) * 9.5;
-          const y = 3 + Math.floor(index / 4) * 9.2;
-          return <rect key={index} x={x} y={y} width="7.5" height="7.2" rx="1.4" fill="currentColor" opacity={value} />;
-        })}
-      </svg>
-    );
-  }
-  if (type === 'gauge') {
-    return (
-      <svg viewBox="0 0 44 32" aria-hidden="true">
-        <path d="M7 25a15 15 0 0 1 30 0" fill="none" stroke="currentColor" strokeWidth="3" opacity=".24" strokeLinecap="round" />
-        <path d="M7 25a15 15 0 0 1 22-13" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" />
-        <path d="M22 25 30 15" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" />
-        <circle cx="22" cy="25" r="2.3" fill="currentColor" />
-      </svg>
-    );
-  }
-  if (type === 'chord') {
-    return (
-      <svg viewBox="0 0 44 32" aria-hidden="true">
-        <circle cx="22" cy="16" r="12" fill="none" stroke="currentColor" strokeWidth="1.2" opacity=".34" />
-        <path d="M12 10C25 7 31 11 34 19M10 19C19 29 29 27 34 12M17 5C13 17 18 25 29 27" fill="none" stroke="currentColor" strokeWidth="1.4" opacity=".88" />
-      </svg>
-    );
-  }
-  if (type === 'stream') {
-    return (
-      <svg viewBox="0 0 44 32" aria-hidden="true">
-        <path d="M3 20C9 6 15 27 22 13s12 5 19-3" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
-        <path d="M3 25C9 14 15 30 22 19s12 6 19-2" fill="none" stroke="currentColor" strokeWidth="1.1" opacity=".38" strokeLinecap="round" />
-      </svg>
-    );
-  }
-  if (type === 'map') {
-    return (
-      <svg viewBox="0 0 44 32" aria-hidden="true">
-        <path d="M8 7 17 4l10 5 9-3v20l-9 3-10-5-9 3Z" fill="none" stroke="currentColor" strokeWidth="1.2" opacity=".5" />
-        <circle cx="17" cy="14" r="2.2" fill="currentColor" />
-        <circle cx="30" cy="18" r="2.2" fill="currentColor" />
-        <path d="M17 14c4 1 8 2 13 4" fill="none" stroke="currentColor" strokeWidth="1.2" strokeDasharray="2 2" />
-      </svg>
-    );
-  }
-  return (
-    <svg viewBox="0 0 44 32" aria-hidden="true">
-      <circle cx="12" cy="21" r="5" fill="currentColor" opacity=".45" />
-      <circle cx="24" cy="11" r="7" fill="currentColor" opacity=".82" />
-      <circle cx="33" cy="22" r="4" fill="currentColor" opacity=".62" />
-    </svg>
-  );
-}
 
 export default function IdleOrbitalVisual({ visible = true }) {
   if (!visible) return null;
 
   return (
-    <div className="pi-idle-orbit" aria-hidden="true">
-      <div className="pi-idle-orbit-track pi-idle-orbit-track-a" />
-      <div className="pi-idle-orbit-track pi-idle-orbit-track-b" />
-      <div className="pi-idle-orbit-ring">
-        {ITEMS.map((item, index) => {
-          const angle = (360 / ITEMS.length) * index;
-          return (
-            <div
-              key={item.id}
-              className="pi-idle-orbit-node"
-              style={{ '--orbit-angle': `${angle}deg`, '--orbit-delay': `${index * -0.42}s` }}
-            >
-              <div className="pi-idle-orbit-node-inner">
-                <span className="pi-idle-orbit-mini"><MiniVisual type={item.id} /></span>
-                <span className="pi-idle-orbit-label">{item.label}</span>
-              </div>
-            </div>
-          );
-        })}
-      </div>
+    <div className="pi-smooth-orbital">
+      <OrbitalImageWheel
+        autoRotate
+        autoRotateSpeed={10}
+        items={ITEMS}
+        radius={105}
+        snap
+      />
     </div>
   );
 }
