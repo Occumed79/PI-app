@@ -566,3 +566,162 @@ body {
     animation: none !important;
   }
 }
+
+
+/* Verified 2026-09-26: stronger shared liquid-metal ring treatment. */
+@property --pi-metal-angle {
+  syntax: '<angle>';
+  inherits: false;
+  initial-value: 0deg;
+}
+
+.pi-shell button:not([class*='absolute inset-0']):not(:disabled)::before {
+  padding: 1.25px;
+  background: conic-gradient(
+    from var(--pi-metal-angle),
+    rgba(255,255,255,.24) 0deg,
+    rgba(125,211,252,.88) 48deg,
+    rgba(255,255,255,.96) 88deg,
+    rgba(216,180,254,.96) 132deg,
+    rgba(253,224,71,.82) 185deg,
+    rgba(244,114,182,.88) 236deg,
+    rgba(103,232,249,.92) 298deg,
+    rgba(255,255,255,.24) 360deg
+  );
+  opacity: .52;
+  filter: drop-shadow(0 0 5px rgba(125,211,252,.10));
+  animation: pi-metal-ring-turn 7.5s linear infinite;
+}
+
+.pi-shell button:not([class*='absolute inset-0']):not(:disabled):hover::before,
+.pi-shell button:not([class*='absolute inset-0']):not(:disabled):focus-visible::before {
+  opacity: 1;
+  filter:
+    drop-shadow(0 0 7px rgba(125,211,252,.34))
+    drop-shadow(0 0 12px rgba(216,180,254,.26))
+    drop-shadow(0 0 18px rgba(253,224,71,.12));
+}
+
+@keyframes pi-metal-ring-turn {
+  to { --pi-metal-angle: 360deg; }
+}
+
+/* Orbital visual: visual assets remain upright while the wheel rotates. */
+.pi-idle-orbit {
+  position: relative;
+  width: min(460px, 94%);
+  height: 250px;
+  margin: -18px auto 4px;
+  flex: 0 0 auto;
+  pointer-events: none;
+  opacity: 1;
+  perspective: 900px;
+}
+
+.pi-idle-orbit-track {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  border: 1px solid rgba(186,230,253,.08);
+  border-radius: 999px;
+  transform: translate(-50%, -50%);
+  box-shadow: 0 0 34px rgba(56,189,248,.035);
+}
+
+.pi-idle-orbit-track-a {
+  width: 238px;
+  height: 238px;
+}
+
+.pi-idle-orbit-track-b {
+  width: 168px;
+  height: 168px;
+  border-color: rgba(216,180,254,.06);
+}
+
+.pi-idle-orbit-ring {
+  position: absolute;
+  inset: 0;
+  animation: pi-orbit-spin 24s linear infinite;
+}
+
+.pi-idle-orbit-node {
+  --orbit-radius: 112px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 82px;
+  height: 64px;
+  transform:
+    translate(-50%, -50%)
+    rotate(var(--orbit-angle))
+    translateY(calc(var(--orbit-radius) * -1))
+    rotate(calc(var(--orbit-angle) * -1));
+  animation: pi-orbit-node-pulse 4.6s ease-in-out infinite;
+  animation-delay: var(--orbit-delay);
+}
+
+.pi-idle-orbit-node-inner {
+  display: grid;
+  width: 100%;
+  height: 100%;
+  grid-template-rows: 1fr auto;
+  place-items: center;
+  padding: 7px 8px 6px;
+  border: 1px solid color-mix(in srgb, currentColor 32%, rgba(255,255,255,.08));
+  border-radius: 18px;
+  background:
+    radial-gradient(circle at 28% 8%, rgba(255,255,255,.08), transparent 38%),
+    linear-gradient(145deg, rgba(255,255,255,.07), rgba(7,10,18,.56));
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,.12),
+    0 9px 25px rgba(0,0,0,.30),
+    0 0 18px color-mix(in srgb, currentColor 16%, transparent);
+  backdrop-filter: blur(13px) saturate(130%);
+  animation: pi-orbit-counterspin 24s linear infinite;
+}
+
+.pi-idle-orbit-node:nth-child(1),
+.pi-idle-orbit-node:nth-child(5) { color: #7dd3fc; }
+.pi-idle-orbit-node:nth-child(2),
+.pi-idle-orbit-node:nth-child(6) { color: #c4b5fd; }
+.pi-idle-orbit-node:nth-child(3),
+.pi-idle-orbit-node:nth-child(7) { color: #f9a8d4; }
+.pi-idle-orbit-node:nth-child(4),
+.pi-idle-orbit-node:nth-child(8) { color: #67e8f9; }
+
+.pi-idle-orbit-mini {
+  display: grid;
+  width: 48px;
+  height: 34px;
+  place-items: center;
+  filter: drop-shadow(0 0 8px color-mix(in srgb, currentColor 34%, transparent));
+}
+
+.pi-idle-orbit-mini svg {
+  display: block;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+}
+
+.pi-idle-orbit-label {
+  margin-top: 1px;
+  color: rgba(255,255,255,.56);
+  font-size: 7.5px;
+  font-weight: 750;
+  letter-spacing: .11em;
+  text-transform: uppercase;
+}
+
+@keyframes pi-orbit-counterspin {
+  to { transform: rotate(-360deg); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .pi-shell button::before,
+  .pi-idle-orbit-ring,
+  .pi-idle-orbit-node-inner {
+    animation: none !important;
+  }
+}
