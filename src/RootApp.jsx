@@ -99,6 +99,7 @@ export default function RootApp() {
             {MODES.map(({ id, label, sub, Icon, active }) => (
               <MetalButton
                 key={id}
+                metalFxClassName="w-full"
                 type="button"
                 onClick={() => setMode(id)}
                 className={cx(
