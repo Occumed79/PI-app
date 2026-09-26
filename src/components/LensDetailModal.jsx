@@ -6,6 +6,7 @@ import {
 } from '../data/canonicalLensProjection.js';
 import NativeLensVisual from './lens/NativeLensVisual.jsx';
 import LensExplainerCard from './LensExplainerCard.jsx';
+import MetalButton from './ui/MetalButton.jsx';
 
 function glowVars(color = '#38bdf8') {
   return {
@@ -68,7 +69,7 @@ export default function LensDetailModal({ lens, profile, onClose }) {
             <h2 className="break-words text-xl font-bold leading-tight text-white sm:text-2xl">{lens.lens}</h2>
             <p className="mt-1 max-w-3xl text-sm leading-6 text-white/55">{lens.visualReason || lens.why}</p>
           </div>
-          <button type="button" onClick={onClose} className="pi-luminous-control flex-shrink-0 rounded-xl border border-white/10 bg-white/[0.07] p-2.5 text-white/60 transition hover:bg-white/[0.12] hover:text-white" style={glowVars('#38bdf8')} aria-label="Close"><X size={18}/></button>
+          <MetalButton type="button" metalVariant="circle" onClick={onClose} className="pi-luminous-control flex-shrink-0 rounded-xl border border-white/10 bg-white/[0.07] p-2.5 text-white/60 transition hover:bg-white/[0.12] hover:text-white" style={glowVars('#38bdf8')} aria-label="Close"><X size={18}/></MetalButton>
         </header>
 
         <div className="flex-1 space-y-5 overflow-y-auto p-4 sm:p-6">
