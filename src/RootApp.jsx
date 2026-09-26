@@ -3,6 +3,7 @@ import { BrainCircuit, ClipboardList, Layers3, LibraryBig } from 'lucide-react';
 import VisualLensWorkspace from './VisualLensWorkspace.jsx';
 import EmployeeTab from './components/EmployeeTab.jsx';
 import AITab from './components/AITab.jsx';
+import ChatLibraryFrame from './components/ChatLibraryFrame.jsx';
 
 function cx(...classes) {
   return classes.filter(Boolean).join(' ');
@@ -67,6 +68,20 @@ export default function RootApp() {
     loadEmployees();
   }, [loadEmployees]);
 
+  useEffect(() => {
+    const controller = new AbortController();
+    const timeout = window.setTimeout(() => controller.abort(), 70000);
+    fetch('/api/chat-library/ready', {
+      headers: { Accept: 'application/json' },
+      cache: 'no-store',
+      signal: controller.signal,
+    }).catch(() => undefined).finally(() => window.clearTimeout(timeout));
+    return () => {
+      window.clearTimeout(timeout);
+      controller.abort();
+    };
+  }, []);
+
   return (
     <div className="pi-shell min-h-screen bg-slate-950 text-white">
       <div className="pi-ambient pointer-events-none fixed inset-0 overflow-hidden" aria-hidden="true">
@@ -121,13 +136,7 @@ export default function RootApp() {
         )}
         {mode === 'library' && (
           <div className="pi-glass-panel overflow-hidden rounded-3xl border border-white/10 bg-white/[0.03] shadow-2xl shadow-black/20">
-            <iframe
-              title="PI Chat Library"
-              src="https://doc-box-pichat-app.onrender.com/?embed=1"
-              className="block h-[calc(100vh-150px)] min-h-[760px] w-full border-0 bg-slate-950"
-              loading="eager"
-              referrerPolicy="strict-origin-when-cross-origin"
-            />
+            <ChatLibraryFrame />
           </div>
         )}
       </div>
