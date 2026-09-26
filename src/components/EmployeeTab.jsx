@@ -436,7 +436,15 @@ function EmployeeDetail({ employee, onBack, onEdit, onDelete }) {
         </div>
       </div>
 
-      <div className="pi-border-glow rounded-3xl border border-white/10 bg-white/[0.05] p-6">
+      <BorderGlow
+        className="p-6"
+        backgroundColor="#0c101a"
+        borderRadius={24}
+        colors={['#c084fc', '#38bdf8', '#f472b6']}
+        glowColor="275 85 72"
+        glowRadius={34}
+        fillOpacity={0.4}
+      >
         <div className="flex flex-wrap items-start justify-between gap-5">
           <div className="flex items-start gap-4">
             <div className="flex h-14 w-14 flex-shrink-0 items-center justify-center rounded-2xl text-2xl font-black text-slate-900" style={{ background: profile.color }}>
@@ -474,7 +482,7 @@ function EmployeeDetail({ employee, onBack, onEdit, onDelete }) {
             <p className="mt-2 whitespace-pre-wrap text-sm leading-6 text-white/70">{employee.notes}</p>
           </div>
         )}
-      </div>
+      </BorderGlow>
 
       <div className="mt-6">
         <div className="mb-4">
@@ -722,7 +730,17 @@ export default function EmployeeTab({ employees = [], setEmployees, loading, loa
 
       <div className="mb-5 grid gap-3 sm:grid-cols-[minmax(0,1fr)_auto]">
         <div className="flex items-center gap-2 rounded-2xl border border-white/10 bg-black/20 px-4 py-3"><Search size={16} className="text-white/30"/><input value={query} onChange={event => setQuery(event.target.value)} placeholder="Search employee, PI profile, or life variable…" className="w-full bg-transparent text-sm text-white outline-none placeholder:text-white/25"/></div>
-        <div className="flex items-center gap-2 rounded-2xl border border-emerald-400/20 bg-emerald-500/10 px-4 py-3 text-sm text-emerald-200"><Database size={16}/> {employees.length} stored record{employees.length === 1 ? '' : 's'}</div>
+        <BorderGlow
+          className="flex items-center gap-2 px-4 py-3 text-sm text-emerald-100"
+          backgroundColor="#081711"
+          borderRadius={16}
+          colors={['#34d399', '#38bdf8', '#c084fc']}
+          glowColor="155 75 62"
+          glowRadius={26}
+          fillOpacity={0.32}
+        >
+          <Database size={16}/> {employees.length} stored record{employees.length === 1 ? '' : 's'}
+        </BorderGlow>
       </div>
 
       {(loadError || actionError) && <div className="mb-5 rounded-2xl border border-red-400/20 bg-red-500/10 px-4 py-3 text-sm text-red-200">{actionError || loadError}</div>}
@@ -738,7 +756,7 @@ export default function EmployeeTab({ employees = [], setEmployees, loading, loa
             const factors = employeeFactors(employee, profile);
             const overlays = employeeOverlayIds(employee);
             return (
-              <MetalButton key={employee.id} type="button" onClick={() => setViewingId(employee.id)} className={cx('group rounded-3xl border border-white/10 bg-white/[0.04] p-5 text-left transition hover:border-white/25 hover:bg-white/[0.08]', index % 3 === 0 && 'pi-border-glow')}>
+              <MetalButton key={employee.id} type="button" onClick={() => setViewingId(employee.id)} className={cx('group rounded-3xl border border-white/10 bg-white/[0.04] p-5 text-left transition hover:border-white/25 hover:bg-white/[0.08]')}>
                 <div className="mb-4 flex items-center gap-3"><div className="flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-2xl text-xl font-black text-slate-900" style={{ background: profile.color }}>{(employee.name || 'U')[0].toUpperCase()}</div><div className="min-w-0"><p className="truncate font-bold text-white">{employee.name}</p><p className="truncate text-xs text-white/40">{employee.position || 'Position not entered'}</p></div></div>
                 <p className="mb-2 truncate text-xs text-white/30">{employee.department || 'Department not entered'}</p>
                 <div className="flex items-center justify-between gap-2"><div className="flex items-center gap-2"><span className="h-2 w-2 rounded-full" style={{ background: profile.color }}/><span className="text-xs font-medium text-white/60">{profile.name}</span></div>{overlays.length > 0 && <span className="rounded-full border border-fuchsia-300/15 bg-fuchsia-500/10 px-2 py-0.5 text-[10px] text-fuchsia-200">{overlays.length} variable{overlays.length === 1 ? '' : 's'}</span>}</div>
