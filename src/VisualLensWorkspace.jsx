@@ -1,5 +1,6 @@
 import React, { useEffect, useMemo, useState } from 'react';
 import {
+import MetalButton from './components/ui/MetalButton.jsx';
   Brain,
   BrainCircuit,
   Gauge,
@@ -105,7 +106,7 @@ function LensSidebar({ lenses, activeLens, onSelect, query, setQuery }) {
           <div className="flex items-center gap-2 rounded-xl border border-white/10 bg-black/25 px-3 py-2.5">
             <Search size={15} className="flex-shrink-0 text-white/40" />
             <input value={query} onChange={event => setQuery(event.target.value)} placeholder="Search lenses…" className="w-full bg-transparent text-sm text-white outline-none placeholder:text-white/30" />
-            {query && <button type="button" onClick={() => setQuery('')} className="text-white/40 hover:text-white" aria-label="Clear search"><X size={14}/></button>}
+            {query && <MetalButton type="button" onClick={() => setQuery('')} className="text-white/40 hover:text-white" aria-label="Clear search"><X size={14}/></MetalButton>}
           </div>
         </div>
         <div className="min-h-0 flex-1 space-y-5 overflow-y-auto px-3 py-4">
@@ -116,7 +117,7 @@ function LensSidebar({ lenses, activeLens, onSelect, query, setQuery }) {
                 <div className="mb-2 flex items-center gap-2 px-1 text-[11px] font-semibold uppercase tracking-[0.16em] text-white/45"><Icon size={12}/>{category} · {items.length}</div>
                 <div className="space-y-1">
                   {items.map(lens => (
-                    <button
+                    <MetalButton
                       key={lens.id}
                       type="button"
                       onClick={() => onSelect(lens)}
@@ -130,7 +131,7 @@ function LensSidebar({ lenses, activeLens, onSelect, query, setQuery }) {
                     >
                       <span className="block break-words">{lens.lens}</span>
                       {lens.canonicalLens !== lens.lens && <span className="mt-1 block text-[10px] text-white/35">Visual family: {lens.canonicalLens}</span>}
-                    </button>
+                    </MetalButton>
                   ))}
                 </div>
               </div>
@@ -148,7 +149,7 @@ function MobileLensControl({ lenses, activeLens, onSelect, query, setQuery }) {
   return (
     <GlassCard className="p-3 lg:hidden" glow={meta.color}>
       <div className="flex items-center gap-3">
-        <button type="button" onClick={() => setOpen(value => !value)} className="rounded-xl border border-white/10 bg-white/[0.07] p-2.5 text-white/75" aria-label="Open lens navigation"><Menu size={18}/></button>
+        <MetalButton type="button" onClick={() => setOpen(value => !value)} className="rounded-xl border border-white/10 bg-white/[0.07] p-2.5 text-white/75" aria-label="Open lens navigation"><Menu size={18}/></MetalButton>
         <div className="min-w-0 flex-1"><p className="text-[10px] uppercase tracking-[0.16em] text-white/40">Current lens</p><p className="break-words text-sm font-semibold text-white">{activeLens.lens}</p></div>
         <span className="rounded-full border border-white/10 bg-white/[0.07] px-2.5 py-1 text-xs text-white/55">{lenses.length}</span>
       </div>
@@ -158,7 +159,7 @@ function MobileLensControl({ lenses, activeLens, onSelect, query, setQuery }) {
           <div className="mt-3 max-h-[55vh] space-y-1 overflow-y-auto pr-1">
             {lenses.map(lens => {
               const itemMeta = categoryMeta(lens.category);
-              return <button key={lens.id} type="button" style={glowVars(itemMeta.color)} onClick={() => { onSelect(lens); setOpen(false); }} className={cx('pi-luminous-control w-full rounded-xl border px-3 py-2.5 text-left text-sm', activeLens.id === lens.id ? itemMeta.classes : 'border-white/[0.06] bg-white/[0.035] text-white/65')}>{lens.lens}</button>;
+              return <MetalButton key={lens.id} type="button" style={glowVars(itemMeta.color)} onClick={() => { onSelect(lens); setOpen(false); }} className={cx('pi-luminous-control w-full rounded-xl border px-3 py-2.5 text-left text-sm', activeLens.id === lens.id ? itemMeta.classes : 'border-white/[0.06] bg-white/[0.035] text-white/65')}>{lens.lens}</MetalButton>;
             })}
           </div>
         </div>
@@ -222,7 +223,7 @@ export default function VisualLensWorkspace() {
         {categories.map(category => {
           const categoryMetaValue = category === 'All' ? CATEGORY_META.Other : categoryMeta(category);
           const count = category === 'All' ? DISPLAY_LENSES.length : DISPLAY_LENSES.filter(lens => lens.category === category).length;
-          return <button key={category} type="button" style={glowVars(categoryMetaValue.color)} onClick={() => setActiveCategory(category)} className={cx('pi-luminous-control flex-shrink-0 rounded-full border px-3 py-1.5 text-xs transition', activeCategory === category ? 'border-white/25 bg-white/[0.14] text-white' : 'border-white/10 bg-white/[0.045] text-white/55 hover:text-white')}>{category} <span className="ml-1 opacity-60">{count}</span></button>;
+          return <MetalButton key={category} type="button" style={glowVars(categoryMetaValue.color)} onClick={() => setActiveCategory(category)} className={cx('pi-luminous-control flex-shrink-0 rounded-full border px-3 py-1.5 text-xs transition', activeCategory === category ? 'border-white/25 bg-white/[0.14] text-white' : 'border-white/10 bg-white/[0.045] text-white/55 hover:text-white')}>{category} <span className="ml-1 opacity-60">{count}</span></MetalButton>;
         })}
       </div>
 
@@ -245,7 +246,7 @@ export default function VisualLensWorkspace() {
               <div className="pi-color-tile w-full rounded-2xl border border-white/10 bg-black/25 p-4 xl:w-[21rem]" style={glowVars(profile.color)}><ProfileSelector profile={profile} onChange={setProfile}/></div>
             </div>
             <div className="mt-5 flex flex-wrap gap-3 border-t border-white/[0.08] pt-4">
-              <button type="button" onClick={() => setShowModal(true)} className="pi-luminous-control rounded-xl border border-sky-300/30 bg-sky-500/[0.14] px-4 py-2.5 text-sm font-semibold text-sky-50 hover:bg-sky-500/[0.20]" style={glowVars(meta.color)}>Open full lens detail</button>
+              <MetalButton type="button" onClick={() => setShowModal(true)} className="pi-luminous-control rounded-xl border border-sky-300/30 bg-sky-500/[0.14] px-4 py-2.5 text-sm font-semibold text-sky-50 hover:bg-sky-500/[0.20]" style={glowVars(meta.color)}>Open full lens detail</MetalButton>
               <span className="self-center text-xs text-white/45">Calculated from the selected profile’s exact D/E/P/F scores.</span>
             </div>
           </GlassCard>
