@@ -725,3 +725,79 @@ body {
     animation: none !important;
   }
 }
+
+
+/* Exact-source effect integration: real metal-fx + SmoothUI wheel. */
+.pi-shell button::before,
+.pi-shell button::after {
+  content: none !important;
+}
+
+.pi-metal-fx {
+  position: relative;
+  isolation: isolate;
+  display: inline-flex;
+  width: fit-content;
+  max-width: 100%;
+  flex-direction: column;
+  align-items: stretch;
+  overflow: visible !important;
+  line-height: 1;
+  vertical-align: middle;
+}
+
+.pi-metal-fx.w-full {
+  display: flex;
+  width: 100%;
+}
+
+.pi-metal-fx.flex-1 {
+  flex: 1 1 0%;
+}
+
+.pi-metal-fx::before {
+  position: absolute;
+  inset: 0;
+  z-index: 10;
+  border-radius: inherit;
+  box-shadow: inset 0 0 0 1px rgba(255,255,255,.10);
+  pointer-events: none;
+  content: "";
+}
+
+.pi-metal-fx > button {
+  position: relative;
+  z-index: 1;
+}
+
+.pi-smooth-orbital {
+  display: grid;
+  place-items: center;
+  width: min(430px, 100%);
+  min-height: 290px;
+  margin: -18px auto 2px;
+}
+
+.pi-smooth-orbital [role="application"] {
+  filter:
+    drop-shadow(0 24px 52px rgba(0,0,0,.28))
+    drop-shadow(0 0 28px rgba(125,211,252,.07));
+}
+
+.pi-smooth-orbital button {
+  background: rgba(12,15,24,.78);
+  backdrop-filter: blur(12px) saturate(130%);
+}
+
+.pi-smooth-orbital button[aria-current="true"] {
+  border-color: rgba(125,211,252,.78) !important;
+  box-shadow:
+    0 0 0 1px rgba(125,211,252,.18),
+    0 0 28px rgba(56,189,248,.20) !important;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .pi-smooth-orbital [role="application"] {
+    filter: none;
+  }
+}
