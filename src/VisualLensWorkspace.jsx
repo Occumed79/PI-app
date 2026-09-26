@@ -1,6 +1,5 @@
 import React, { useEffect, useMemo, useState } from 'react';
 import {
-import MetalButton from './components/ui/MetalButton.jsx';
   Brain,
   BrainCircuit,
   Gauge,
@@ -22,6 +21,8 @@ import {
 import NativeLensVisual from './components/lens/NativeLensVisual.jsx';
 import LensExplainerCard from './components/LensExplainerCard.jsx';
 import LensDetailModal from './components/LensDetailModal.jsx';
+import MetalButton from './components/ui/MetalButton.jsx';
+import BorderGlow from './components/effects/BorderGlow.jsx';
 
 function cx(...classes) {
   return classes.filter(Boolean).join(' ');
