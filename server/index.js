@@ -331,6 +331,75 @@ app.get('/api/health', (_req, res) => {
   });
 });
 
+const CHAT_LIBRARY_ORIGIN = String(
+  process.env.CHAT_LIBRARY_ORIGIN || 'https://doc-box-pichat-app.onrender.com'
+).replace(/\/+$/, '');
+
+async function probeChatLibrary() {
+  const controller = new AbortController();
+  const timeout = setTimeout(() => controller.abort(), 60000);
+  const startedAt = Date.now();
+
+  try {
+    const response = await fetch(`${CHAT_LIBRARY_ORIGIN}/api/folders`, {
+      method: 'GET',
+      headers: {
+        Accept: 'application/json',
+        'User-Agent': 'pi-crosswalk-chat-library-probe/1.0',
+      },
+      signal: controller.signal,
+    });
+
+    const contentType = String(response.headers.get('content-type') || '').toLowerCase();
+    const raw = await response.text();
+    let payload = null;
+    if (contentType.includes('application/json')) {
+      try {
+        payload = JSON.parse(raw);
+      } catch {
+        payload = null;
+      }
+    }
+
+    const ready = response.ok && contentType.includes('application/json') && payload !== null;
+    return {
+      ok: ready,
+      upstreamStatus: response.status,
+      latencyMs: Date.now() - startedAt,
+      contentType,
+    };
+  } finally {
+    clearTimeout(timeout);
+  }
+}
+
+app.get('/api/chat-library/ready', async (_req, res) => {
+  res.setHeader('Cache-Control', 'no-store, max-age=0');
+  try {
+    const probe = await probeChatLibrary();
+    if (!probe.ok) {
+      return res.status(503).json({
+        ok: false,
+        message: 'Chat Library is still waking up.',
+        ...probe,
+      });
+    }
+    return res.json({
+      ok: true,
+      message: 'Chat Library is ready.',
+      ...probe,
+    });
+  } catch (error) {
+    return res.status(503).json({
+      ok: false,
+      message: error?.name === 'AbortError'
+        ? 'Chat Library wake-up timed out.'
+        : (error?.message || 'Chat Library is unavailable.'),
+    });
+  }
+});
+
+
 app.post('/api/ai/provider-refresh', async (_req, res) => {
   try {
     const diagnostics = await refreshProviderCapabilities({ force: true });

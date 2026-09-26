@@ -36,6 +36,8 @@ import {
   normalizeContextOverlayIds,
 } from '../data/contextOverlayCatalog.js';
 import LensVisual from './LensVisual.jsx';
+import MetalButton from './ui/MetalButton.jsx';
+import BorderGlow from './effects/BorderGlow.jsx';
 
 const FACTORS = [
   ['dominance', 'Dominance', 'D'],
@@ -92,9 +94,9 @@ function ContextBadge({ overlayId, onRemove, compact = false }) {
     <span className={cx('inline-flex items-center gap-1.5 rounded-full border border-fuchsia-300/20 bg-fuchsia-500/10 text-fuchsia-100', compact ? 'px-2 py-0.5 text-[10px]' : 'px-3 py-1 text-xs')}>
       {item.label}
       {onRemove && (
-        <button type="button" onClick={() => onRemove(overlayId)} className="rounded-full p-0.5 text-fuchsia-100/45 hover:bg-white/10 hover:text-white" aria-label={`Remove ${item.label}`}>
+        <MetalButton type="button" onClick={() => onRemove(overlayId)} className="rounded-full p-0.5 text-fuchsia-100/45 hover:bg-white/10 hover:text-white" aria-label={`Remove ${item.label}`}>
           <X size={11}/>
-        </button>
+        </MetalButton>
       )}
     </span>
   );
@@ -266,7 +268,7 @@ function ContextOverlaySelector({ value, onChange, compact = false }) {
               {group.overlays.map(item => {
                 const checked = selected.includes(item.id);
                 return (
-                  <button key={item.id} type="button" onClick={() => toggle(item.id)} className={cx('rounded-xl border p-2.5 text-left transition', checked ? 'border-fuchsia-300/30 bg-fuchsia-500/15' : 'border-white/8 bg-white/[0.025] hover:border-white/18 hover:bg-white/[0.05]')}>
+                  <MetalButton key={item.id} metalFxClassName="w-full" type="button" onClick={() => toggle(item.id)} className={cx('w-full rounded-xl border p-2.5 text-left transition', checked ? 'border-fuchsia-300/30 bg-fuchsia-500/15' : 'border-white/8 bg-white/[0.025] hover:border-white/18 hover:bg-white/[0.05]')}>
                     <div className="flex items-start gap-2">
                       <span className={cx('mt-0.5 flex h-4 w-4 flex-shrink-0 items-center justify-center rounded border text-[10px]', checked ? 'border-fuchsia-300/50 bg-fuchsia-300 text-slate-950' : 'border-white/20 text-transparent')}>✓</span>
                       <div>
@@ -274,7 +276,7 @@ function ContextOverlaySelector({ value, onChange, compact = false }) {
                         <p className="mt-1 text-[10px] leading-4 text-white/30">{item.description}</p>
                       </div>
                     </div>
-                  </button>
+                  </MetalButton>
                 );
               })}
             </div>
@@ -313,9 +315,9 @@ function LensModal({ lens, employee, onClose }) {
             <h2 className="text-2xl font-bold text-white">{lens.lens}</h2>
             <p className="mt-1 text-sm leading-6 text-white/50">{lens.why}</p>
           </div>
-          <button type="button" onClick={onClose} className="rounded-xl border border-white/10 p-2 text-white/40 transition hover:text-white" aria-label="Close lens detail">
+          <MetalButton type="button" onClick={onClose} className="rounded-xl border border-white/10 p-2 text-white/40 transition hover:text-white" aria-label="Close lens detail">
             <X size={18}/>
-          </button>
+          </MetalButton>
         </div>
 
         <div className="space-y-5 p-6">
@@ -421,20 +423,28 @@ function EmployeeDetail({ employee, onBack, onEdit, onDelete }) {
   return (
     <div className="p-5 sm:p-6">
       <div className="mb-5 flex flex-wrap items-center justify-between gap-3">
-        <button type="button" onClick={onBack} className="flex items-center gap-2 text-sm text-white/45 transition hover:text-white">
+        <MetalButton type="button" onClick={onBack} className="flex items-center gap-2 text-sm text-white/45 transition hover:text-white">
           <ArrowLeft size={16}/> All employee PI profiles
-        </button>
+        </MetalButton>
         <div className="flex gap-2">
-          <button type="button" onClick={() => onEdit(employee)} className="flex items-center gap-2 rounded-xl border border-white/10 bg-white/5 px-3 py-2 text-sm text-white/70 hover:bg-white/10">
+          <MetalButton type="button" onClick={() => onEdit(employee)} className="flex items-center gap-2 rounded-xl border border-white/10 bg-white/5 px-3 py-2 text-sm text-white/70 hover:bg-white/10">
             <Pencil size={14}/> Edit
-          </button>
-          <button type="button" onClick={() => onDelete(employee)} className="flex items-center gap-2 rounded-xl border border-red-400/20 bg-red-500/10 px-3 py-2 text-sm text-red-200 hover:bg-red-500/15">
+          </MetalButton>
+          <MetalButton type="button" onClick={() => onDelete(employee)} className="flex items-center gap-2 rounded-xl border border-red-400/20 bg-red-500/10 px-3 py-2 text-sm text-red-200 hover:bg-red-500/15">
             <Trash2 size={14}/> Delete
-          </button>
+          </MetalButton>
         </div>
       </div>
 
-      <div className="pi-border-glow rounded-3xl border border-white/10 bg-white/[0.05] p-6">
+      <BorderGlow
+        className="p-6"
+        backgroundColor="#0c101a"
+        borderRadius={24}
+        colors={['#c084fc', '#38bdf8', '#f472b6']}
+        glowColor="275 85 72"
+        glowRadius={34}
+        fillOpacity={0.4}
+      >
         <div className="flex flex-wrap items-start justify-between gap-5">
           <div className="flex items-start gap-4">
             <div className="flex h-14 w-14 flex-shrink-0 items-center justify-center rounded-2xl text-2xl font-black text-slate-900" style={{ background: profile.color }}>
@@ -472,7 +482,7 @@ function EmployeeDetail({ employee, onBack, onEdit, onDelete }) {
             <p className="mt-2 whitespace-pre-wrap text-sm leading-6 text-white/70">{employee.notes}</p>
           </div>
         )}
-      </div>
+      </BorderGlow>
 
       <div className="mt-6">
         <div className="mb-4">
@@ -498,21 +508,21 @@ function EmployeeDetail({ employee, onBack, onEdit, onDelete }) {
 
         <div className="mt-5 grid gap-2 md:grid-cols-2 xl:grid-cols-3">
           {filteredLenses.slice(0, visibleLensCount).map(lens => (
-            <button key={lens.id} type="button" onClick={() => setSelectedLens(lens)} className="flex items-center justify-between gap-3 rounded-2xl border border-white/8 bg-white/[0.035] p-3 text-left transition hover:border-white/20 hover:bg-white/[0.07]">
+            <MetalButton key={lens.id} metalFxClassName="w-full" type="button" onClick={() => setSelectedLens(lens)} className="flex w-full items-center justify-between gap-3 rounded-2xl border border-white/8 bg-white/[0.035] p-3 text-left transition hover:border-white/20 hover:bg-white/[0.07]">
               <div className="min-w-0">
                 <div className="mb-1 flex flex-wrap gap-1.5"><CatBadge category={lens.category}/><span className="rounded-full border border-sky-300/15 bg-sky-500/[0.07] px-2 py-0.5 text-[9px] uppercase tracking-widest text-sky-200/65">exact projection</span></div>
                 <p className="truncate text-sm font-semibold text-white">{lens.lens}</p>
                 <p className="truncate text-xs text-white/35">{lens.visualLabel}</p>
               </div>
               <ChevronRight size={16} className="flex-shrink-0 text-white/25"/>
-            </button>
+            </MetalButton>
           ))}
         </div>
 
         {visibleLensCount < filteredLenses.length && (
-          <button type="button" onClick={() => setVisibleLensCount(count => count + 18)} className="mt-4 w-full rounded-xl border border-white/10 bg-white/5 px-4 py-2.5 text-sm text-white/60 hover:bg-white/10 hover:text-white">
+          <MetalButton type="button" onClick={() => setVisibleLensCount(count => count + 18)} className="mt-4 w-full rounded-xl border border-white/10 bg-white/5 px-4 py-2.5 text-sm text-white/60 hover:bg-white/10 hover:text-white">
             Show 18 more ({filteredLenses.length - visibleLensCount} remaining)
-          </button>
+          </MetalButton>
         )}
       </div>
 
@@ -587,7 +597,7 @@ function EmployeeForm({ initialEmployee, onSave, onCancel }) {
             <h2 className="text-xl font-bold text-white">{initialEmployee ? 'Edit Employee PI Result' : 'Add Completed Employee PI Result'}</h2>
             <p className="mt-1 text-sm text-white/40">Enter the actual PI result, then optionally save known life or environmental variables.</p>
           </div>
-          <button type="button" onClick={onCancel} className="rounded-xl border border-white/10 p-2 text-white/40 hover:text-white" aria-label="Close form"><X size={18}/></button>
+          <MetalButton type="button" onClick={onCancel} className="rounded-xl border border-white/10 p-2 text-white/40 hover:text-white" aria-label="Close form"><X size={18}/></MetalButton>
         </div>
 
         <div className="grid gap-4 sm:grid-cols-2">
@@ -601,9 +611,9 @@ function EmployeeForm({ initialEmployee, onSave, onCancel }) {
           <p className="mb-2 text-xs font-semibold uppercase tracking-widest text-white/40">Completed PI reference profile</p>
           <div className="grid max-h-56 grid-cols-2 gap-2 overflow-y-auto sm:grid-cols-3">
             {PI_PROFILES.map(profile => (
-              <button key={profile.id} type="button" onClick={() => selectProfile(profile)} className={cx('flex items-center gap-2 rounded-xl border px-3 py-2 text-left transition', form.piProfileId === profile.id ? 'border-sky-400/40 bg-sky-500/15 text-white' : 'border-white/10 text-white/55 hover:bg-white/8')}>
+              <MetalButton key={profile.id} metalFxClassName="w-full" type="button" onClick={() => selectProfile(profile)} className={cx('flex w-full items-center gap-2 rounded-xl border px-3 py-2 text-left transition', form.piProfileId === profile.id ? 'border-sky-400/40 bg-sky-500/15 text-white' : 'border-white/10 text-white/55 hover:bg-white/8')}>
                 <span className="h-2 w-2 flex-shrink-0 rounded-full" style={{ background: profile.color }}/><span className="truncate text-sm font-medium">{profile.name}</span>
-              </button>
+              </MetalButton>
             ))}
           </div>
           <p className="mt-2 text-xs text-white/30">Selecting a profile loads its reference values. Replace them below with the employee’s actual PI scores.</p>
@@ -632,10 +642,10 @@ function EmployeeForm({ initialEmployee, onSave, onCancel }) {
         {error && <div className="mt-4 rounded-xl border border-red-400/20 bg-red-500/10 px-4 py-3 text-sm text-red-200">{error}</div>}
 
         <div className="mt-5 flex justify-end gap-3">
-          <button type="button" onClick={onCancel} className="rounded-xl border border-white/10 px-4 py-2.5 text-sm text-white/55 hover:bg-white/5">Cancel</button>
-          <button type="button" onClick={submit} disabled={!valid || saving} className={cx('flex items-center gap-2 rounded-xl border px-4 py-2.5 text-sm font-semibold transition', valid && !saving ? 'border-sky-400/40 bg-sky-500/20 text-white hover:bg-sky-500/30' : 'cursor-not-allowed border-white/10 bg-white/5 text-white/25')}>
+          <MetalButton type="button" onClick={onCancel} className="rounded-xl border border-white/10 px-4 py-2.5 text-sm text-white/55 hover:bg-white/5">Cancel</MetalButton>
+          <MetalButton type="button" onClick={submit} disabled={!valid || saving} className={cx('flex items-center gap-2 rounded-xl border px-4 py-2.5 text-sm font-semibold transition', valid && !saving ? 'border-sky-400/40 bg-sky-500/20 text-white hover:bg-sky-500/30' : 'cursor-not-allowed border-white/10 bg-white/5 text-white/25')}>
             <Save size={15}/> {saving ? 'Saving…' : initialEmployee ? 'Save Changes' : 'Save Employee PI Result'}
-          </button>
+          </MetalButton>
         </div>
       </div>
     </div>
@@ -713,14 +723,24 @@ export default function EmployeeTab({ employees = [], setEmployees, loading, loa
           <p className="mt-1 text-sm text-white/40">Persist exact PI factors and optional life/environment variables in Neon.</p>
         </div>
         <div className="flex gap-2">
-          <button type="button" onClick={reloadEmployees} className="flex items-center gap-2 rounded-2xl border border-white/10 bg-white/5 px-4 py-2.5 text-sm text-white/55 hover:bg-white/10 hover:text-white" disabled={loading}><RefreshCw size={15} className={loading ? 'animate-spin' : ''}/> Refresh</button>
-          <button type="button" onClick={openCreate} className="flex items-center gap-2 rounded-2xl border border-sky-400/40 bg-sky-500/20 px-4 py-2.5 text-sm font-semibold text-white hover:bg-sky-500/30"><Plus size={16}/> Add PI Result</button>
+          <MetalButton type="button" onClick={reloadEmployees} className="flex items-center gap-2 rounded-2xl border border-white/10 bg-white/5 px-4 py-2.5 text-sm text-white/55 hover:bg-white/10 hover:text-white" disabled={loading}><RefreshCw size={15} className={loading ? 'animate-spin' : ''}/> Refresh</MetalButton>
+          <MetalButton type="button" onClick={openCreate} className="flex items-center gap-2 rounded-2xl border border-sky-400/40 bg-sky-500/20 px-4 py-2.5 text-sm font-semibold text-white hover:bg-sky-500/30"><Plus size={16}/> Add PI Result</MetalButton>
         </div>
       </div>
 
       <div className="mb-5 grid gap-3 sm:grid-cols-[minmax(0,1fr)_auto]">
         <div className="flex items-center gap-2 rounded-2xl border border-white/10 bg-black/20 px-4 py-3"><Search size={16} className="text-white/30"/><input value={query} onChange={event => setQuery(event.target.value)} placeholder="Search employee, PI profile, or life variable…" className="w-full bg-transparent text-sm text-white outline-none placeholder:text-white/25"/></div>
-        <div className="flex items-center gap-2 rounded-2xl border border-emerald-400/20 bg-emerald-500/10 px-4 py-3 text-sm text-emerald-200"><Database size={16}/> {employees.length} stored record{employees.length === 1 ? '' : 's'}</div>
+        <BorderGlow
+          className="flex items-center gap-2 px-4 py-3 text-sm text-emerald-100"
+          backgroundColor="#081711"
+          borderRadius={16}
+          colors={['#34d399', '#38bdf8', '#c084fc']}
+          glowColor="155 75 62"
+          glowRadius={26}
+          fillOpacity={0.32}
+        >
+          <Database size={16}/> {employees.length} stored record{employees.length === 1 ? '' : 's'}
+        </BorderGlow>
       </div>
 
       {(loadError || actionError) && <div className="mb-5 rounded-2xl border border-red-400/20 bg-red-500/10 px-4 py-3 text-sm text-red-200">{actionError || loadError}</div>}
@@ -736,13 +756,13 @@ export default function EmployeeTab({ employees = [], setEmployees, loading, loa
             const factors = employeeFactors(employee, profile);
             const overlays = employeeOverlayIds(employee);
             return (
-              <button key={employee.id} type="button" onClick={() => setViewingId(employee.id)} className={cx('group rounded-3xl border border-white/10 bg-white/[0.04] p-5 text-left transition hover:border-white/25 hover:bg-white/[0.08]', index % 3 === 0 && 'pi-border-glow')}>
+              <MetalButton key={employee.id} metalFxClassName="w-full" type="button" onClick={() => setViewingId(employee.id)} className={cx('group h-full w-full rounded-3xl border border-white/10 bg-white/[0.04] p-5 text-left transition hover:border-white/25 hover:bg-white/[0.08]')}>
                 <div className="mb-4 flex items-center gap-3"><div className="flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-2xl text-xl font-black text-slate-900" style={{ background: profile.color }}>{(employee.name || 'U')[0].toUpperCase()}</div><div className="min-w-0"><p className="truncate font-bold text-white">{employee.name}</p><p className="truncate text-xs text-white/40">{employee.position || 'Position not entered'}</p></div></div>
                 <p className="mb-2 truncate text-xs text-white/30">{employee.department || 'Department not entered'}</p>
                 <div className="flex items-center justify-between gap-2"><div className="flex items-center gap-2"><span className="h-2 w-2 rounded-full" style={{ background: profile.color }}/><span className="text-xs font-medium text-white/60">{profile.name}</span></div>{overlays.length > 0 && <span className="rounded-full border border-fuchsia-300/15 bg-fuchsia-500/10 px-2 py-0.5 text-[10px] text-fuchsia-200">{overlays.length} variable{overlays.length === 1 ? '' : 's'}</span>}</div>
                 <div className="mt-4 grid grid-cols-4 gap-1">{FACTORS.map(([key, , abbreviation]) => <div key={key} className="rounded-lg bg-black/20 px-1.5 py-2 text-center"><div className="text-[9px] text-white/25">{abbreviation}</div><div className="text-xs font-semibold text-white/70">{factors[key]}</div></div>)}</div>
                 <p className="mt-3 flex items-center justify-end gap-1 text-xs text-white/25 transition group-hover:text-white/45">Open all-lens profile <ChevronRight size={13}/></p>
-              </button>
+              </MetalButton>
             );
           })}
         </div>

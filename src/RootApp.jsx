@@ -3,6 +3,8 @@ import { BrainCircuit, ClipboardList, Layers3, LibraryBig } from 'lucide-react';
 import VisualLensWorkspace from './VisualLensWorkspace.jsx';
 import EmployeeTab from './components/EmployeeTab.jsx';
 import AITab from './components/AITab.jsx';
+import ChatLibraryFrame from './components/ChatLibraryFrame.jsx';
+import MetalButton from './components/ui/MetalButton.jsx';
 
 function cx(...classes) {
   return classes.filter(Boolean).join(' ');
@@ -67,6 +69,20 @@ export default function RootApp() {
     loadEmployees();
   }, [loadEmployees]);
 
+  useEffect(() => {
+    const controller = new AbortController();
+    const timeout = window.setTimeout(() => controller.abort(), 70000);
+    fetch('/api/chat-library/ready', {
+      headers: { Accept: 'application/json' },
+      cache: 'no-store',
+      signal: controller.signal,
+    }).catch(() => undefined).finally(() => window.clearTimeout(timeout));
+    return () => {
+      window.clearTimeout(timeout);
+      controller.abort();
+    };
+  }, []);
+
   return (
     <div className="pi-shell min-h-screen bg-slate-950 text-white">
       <div className="pi-ambient pointer-events-none fixed inset-0 overflow-hidden" aria-hidden="true">
@@ -81,8 +97,9 @@ export default function RootApp() {
         <div className="pi-glass-panel pi-nav-panel mb-5 rounded-3xl border border-white/10 bg-white/[0.06] p-3 shadow-2xl shadow-black/20 backdrop-blur-xl">
           <div className="grid grid-cols-1 gap-2 sm:grid-cols-2 xl:grid-cols-4">
             {MODES.map(({ id, label, sub, Icon, active }) => (
-              <button
+              <MetalButton
                 key={id}
+                metalFxClassName="w-full"
                 type="button"
                 onClick={() => setMode(id)}
                 className={cx(
@@ -97,7 +114,7 @@ export default function RootApp() {
                   <div className="truncate text-sm font-semibold">{label}</div>
                   <div className="truncate text-xs opacity-65">{sub}</div>
                 </div>
-              </button>
+              </MetalButton>
             ))}
           </div>
         </div>
@@ -121,13 +138,7 @@ export default function RootApp() {
         )}
         {mode === 'library' && (
           <div className="pi-glass-panel overflow-hidden rounded-3xl border border-white/10 bg-white/[0.03] shadow-2xl shadow-black/20">
-            <iframe
-              title="PI Chat Library"
-              src="https://doc-box-pichat-app.onrender.com/?embed=1"
-              className="block h-[calc(100vh-150px)] min-h-[760px] w-full border-0 bg-slate-950"
-              loading="eager"
-              referrerPolicy="strict-origin-when-cross-origin"
-            />
+            <ChatLibraryFrame />
           </div>
         )}
       </div>
