@@ -303,7 +303,7 @@ function LensModal({ lens, employee, onClose }) {
 
   return (
     <div className="fixed inset-0 z-50 flex items-start justify-center overflow-y-auto p-4 py-8" role="dialog" aria-modal="true" aria-label={`${lens.lens} crosswalk detail`}>
-      <MetalButton className="absolute inset-0 bg-black/85 backdrop-blur-sm" onClick={onClose} aria-label="Close lens detail"/>
+      <button className="absolute inset-0 bg-black/85 backdrop-blur-sm" onClick={onClose} aria-label="Close lens detail"/>
       <div className="relative z-10 w-full max-w-5xl rounded-3xl border border-white/15 bg-slate-900 shadow-2xl">
         <div className="flex items-start justify-between gap-4 border-b border-white/10 px-6 py-5">
           <div>
@@ -590,7 +590,7 @@ function EmployeeForm({ initialEmployee, onSave, onCancel }) {
 
   return (
     <div className="fixed inset-0 z-50 flex items-start justify-center overflow-y-auto p-4 py-8" role="dialog" aria-modal="true" aria-label={initialEmployee ? 'Edit employee PI profile' : 'Add employee PI profile'}>
-      <MetalButton className="absolute inset-0 bg-black/80 backdrop-blur-sm" onClick={onCancel} aria-label="Cancel"/>
+      <button className="absolute inset-0 bg-black/80 backdrop-blur-sm" onClick={onCancel} aria-label="Cancel"/>
       <div className="relative z-10 w-full max-w-4xl rounded-3xl border border-white/15 bg-slate-900 p-6 shadow-2xl">
         <div className="mb-5 flex items-center justify-between">
           <div>
