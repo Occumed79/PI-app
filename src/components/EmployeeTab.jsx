@@ -1,6 +1,5 @@
 import React, { Component, useMemo, useState } from 'react';
 import {
-import MetalButton from './ui/MetalButton.jsx';
   AlertTriangle,
   ArrowLeft,
   CalendarDays,
@@ -37,6 +36,8 @@ import {
   normalizeContextOverlayIds,
 } from '../data/contextOverlayCatalog.js';
 import LensVisual from './LensVisual.jsx';
+import MetalButton from './ui/MetalButton.jsx';
+import BorderGlow from './effects/BorderGlow.jsx';
 
 const FACTORS = [
   ['dominance', 'Dominance', 'D'],
