@@ -75,6 +75,8 @@ export default function BorderGlow({
   animated = false,
   colors = ['#c084fc', '#f472b6', '#38bdf8'],
   fillOpacity = 0.5,
+  style = {},
+  contentClassName = 'z-[1] relative flex flex-col overflow-auto',
   children,
 }) {
   const cardRef = useRef(null);
@@ -182,6 +184,7 @@ export default function BorderGlow({
         borderRadius,
         transform: 'translate3d(0, 0, 0.01px)',
         boxShadow: 'rgba(0,0,0,0.1) 0 1px 2px, rgba(0,0,0,0.1) 0 2px 4px, rgba(0,0,0,0.1) 0 4px 8px, rgba(0,0,0,0.1) 0 8px 16px, rgba(0,0,0,0.1) 0 16px 32px, rgba(0,0,0,0.1) 0 32px 64px',
+        ...style,
       }}
     >
       <div
@@ -248,7 +251,7 @@ export default function BorderGlow({
           }}
         />
       </span>
-      <div className="z-[1] relative flex flex-col overflow-auto">{children}</div>
+      <div className={contentClassName}>{children}</div>
     </div>
   );
 }
