@@ -143,7 +143,13 @@ export default function RootApp() {
                 />
               </video>
             </div>
-            <div className="relative z-10">
+            <div
+              className="relative z-10"
+              style={{
+                background:
+                  'linear-gradient(160deg, rgba(7,9,16,0.985) 0%, rgba(10,12,20,0.975) 56%, rgba(8,10,17,0.965) 100%)',
+              }}
+            >
               <EmployeeTab
                 employees={employees}
                 setEmployees={setEmployees}
