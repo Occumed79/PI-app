@@ -96,11 +96,11 @@ function LensSidebar({ lenses, activeLens, onSelect, query, setQuery, maxHeight 
 
   return (
     <aside
-      className="pi-luminous-card hidden self-start overflow-hidden rounded-3xl border border-sky-300/15 bg-[#090d1d]/88 backdrop-blur-xl lg:sticky lg:top-4 lg:block"
+      className="pi-luminous-card hidden self-start overflow-hidden rounded-3xl border border-sky-300/15 bg-[#090d1d]/88 backdrop-blur-xl lg:block"
       style={{
         ...glowVars('#38bdf8'),
-        height: maxHeight ? `${maxHeight}px` : 'calc(100vh - 2rem)',
-        maxHeight: maxHeight ? `${maxHeight}px` : 'calc(100vh - 2rem)',
+        height: maxHeight ? `${maxHeight}px` : 'auto',
+        minHeight: maxHeight ? `${maxHeight}px` : undefined,
       }}
     >
       <div className="flex h-full min-h-0 flex-col overflow-hidden rounded-3xl">
@@ -230,8 +230,7 @@ export default function VisualLensWorkspace() {
 
     const updateSidebarHeight = () => {
       const rightHeight = Math.ceil(target.getBoundingClientRect().height);
-      const viewportCap = Math.max(420, window.innerHeight - 32);
-      setSidebarHeight(Math.max(420, Math.min(rightHeight, viewportCap)));
+      setSidebarHeight(Math.max(420, rightHeight));
     };
 
     updateSidebarHeight();
