@@ -84,6 +84,24 @@ export default function RootApp() {
 
   return (
     <div className="pi-shell min-h-screen bg-slate-950 text-white">
+      {mode === 'builder' && (
+        <video
+          className="pointer-events-none fixed inset-0 z-0 h-screen w-screen object-cover"
+          autoPlay
+          muted
+          loop
+          playsInline
+          preload="auto"
+          tabIndex={-1}
+          aria-hidden="true"
+        >
+          <source
+            src="https://pi-chat-library-assets.floot.app/_cdn/static/e1801261-b7ac-4232-8dc9-681c76872fdf-pi-tab2-user-background.mp4"
+            type="video/mp4"
+          />
+        </video>
+      )}
+
       <div className="pi-ambient pointer-events-none fixed inset-0 overflow-hidden" aria-hidden="true">
         <div className="pi-orb pi-orb-a absolute -left-28 top-0 h-96 w-96 rounded-full bg-sky-500/10 blur-3xl"/>
         <div className="pi-orb pi-orb-b absolute right-0 top-40 h-96 w-96 rounded-full bg-fuchsia-500/8 blur-3xl"/>
@@ -92,7 +110,7 @@ export default function RootApp() {
         <div className="pi-refraction-noise"/>
       </div>
 
-      <div className="relative mx-auto w-full max-w-[1760px] px-3 pb-6 pt-4 sm:px-4 lg:px-5">
+      <div className="relative z-10 mx-auto w-full max-w-[1760px] px-3 pb-6 pt-4 sm:px-4 lg:px-5">
         <div className="pi-glass-panel pi-nav-panel mb-5 rounded-3xl border border-white/10 bg-white/[0.06] p-3 shadow-2xl shadow-black/20 backdrop-blur-xl">
           <div className="grid grid-cols-1 gap-2 sm:grid-cols-2 xl:grid-cols-4">
             {MODES.map(({ id, label, sub, Icon, active }) => (
@@ -119,33 +137,8 @@ export default function RootApp() {
 
         {mode === 'hsi' && <VisualLensWorkspace />}
         {mode === 'builder' && (
-          <div
-            className="relative"
-            style={{ minHeight: 'calc(100dvh - 8rem)' }}
-          >
-            <video
-              className="pointer-events-none absolute inset-0 h-full w-full object-cover"
-              autoPlay
-              muted
-              loop
-              playsInline
-              preload="auto"
-              tabIndex={-1}
-              aria-hidden="true"
-            >
-              <source
-                src="https://pi-chat-library-assets.floot.app/_cdn/static/e1801261-b7ac-4232-8dc9-681c76872fdf-pi-tab2-user-background.mp4"
-                type="video/mp4"
-              />
-            </video>
-
-            <div
-              className="pi-glass-panel relative z-10 rounded-3xl border border-white/10 shadow-2xl shadow-black/20"
-              style={{
-                background:
-                  'linear-gradient(160deg, rgba(7,9,16,0.985) 0%, rgba(10,12,20,0.975) 56%, rgba(8,10,17,0.965) 100%)',
-              }}
-            >
+          <div className="relative min-h-[calc(100dvh-8rem)]">
+            <div className="pi-glass-panel relative rounded-3xl border border-white/10 bg-slate-950/55 shadow-2xl shadow-black/20 backdrop-blur-xl">
               <EmployeeTab
                 employees={employees}
                 setEmployees={setEmployees}
