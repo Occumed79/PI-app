@@ -8,6 +8,7 @@ const dbSource = await readFile(new URL('../server/db.js', import.meta.url), 'ut
 const chatSource = await readFile(new URL('../src/components/AITab.jsx', import.meta.url), 'utf8');
 const rootSource = await readFile(new URL('../src/RootApp.jsx', import.meta.url), 'utf8');
 const chatDbSource = await readFile(new URL('../server/chat-db.js', import.meta.url), 'utf8');
+const chatLibraryFrameSource = await readFile(new URL('../src/components/ChatLibraryFrame.jsx', import.meta.url), 'utf8');
 
 test('Tab 3 conversation history is persisted in Neon-backed tables', () => {
   assert.match(dbSource, /create table if not exists ai_conversations/);
@@ -55,9 +56,12 @@ test('conversation PDF generator produces a valid PDF header and transcript cont
 });
 
 
-test('Tab 4 embeds the dedicated DocBox chat library', () => {
+test('Tab 4 gates the dedicated Chat Library behind a readiness probe', () => {
   assert.match(rootSource, /id: 'library'/);
-  assert.ok(rootSource.includes('https://doc-box-pichat-app.onrender.com/?embed=1'));
+  assert.match(rootSource, /ChatLibraryFrame/);
+  assert.match(serverSource, /\/api\/chat-library\/ready/);
+  assert.ok(chatLibraryFrameSource.includes('https://doc-box-pichat-app.onrender.com/?embed=1'));
+  assert.match(chatLibraryFrameSource, /phase === 'ready'/);
 });
 
 test('saved chats use the dedicated chat database and mirror into DocBox', () => {

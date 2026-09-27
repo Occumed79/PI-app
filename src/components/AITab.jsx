@@ -17,6 +17,7 @@ import {
   CONTEXT_OVERLAY_BY_ID,
   normalizeContextOverlayIds,
 } from '../data/contextOverlayCatalog.js';
+import MetalButton from './ui/MetalButton.jsx';
 
 function cx(...classes) {
   return classes.filter(Boolean).join(' ');
@@ -581,9 +582,9 @@ export default function AITab({ employees = [] }) {
             <div className="mt-1 text-xs text-white/35">{conversationTitle || 'New unsaved conversation'}</div>
           </div>
           <div className="flex flex-wrap items-center gap-2">
-            <button type="button" onClick={startNewConversation} className="pi-glass-control inline-flex h-10 items-center gap-2 rounded-xl border border-white/10 bg-white/[0.05] px-3 text-xs font-semibold text-white/70 transition hover:bg-white/10 hover:text-white">
+            <MetalButton type="button" onClick={startNewConversation} className="pi-glass-control inline-flex h-10 items-center gap-2 rounded-xl border border-white/10 bg-white/[0.05] px-3 text-xs font-semibold text-white/70 transition hover:bg-white/10 hover:text-white">
               <Plus size={14}/> New
-            </button>
+            </MetalButton>
             <select
               value={conversationId}
               onChange={event => openConversation(event.target.value)}
@@ -596,15 +597,15 @@ export default function AITab({ employees = [] }) {
                 <option key={item.id} value={item.id}>{item.title} · {item.messageCount || 0} messages</option>
               ))}
             </select>
-            <button type="button" onClick={renameConversation} disabled={!conversationId} className="pi-glass-control grid h-10 w-10 place-items-center rounded-xl border border-white/10 bg-white/[0.05] text-white/55 transition hover:bg-white/10 hover:text-white disabled:cursor-not-allowed disabled:opacity-25" aria-label="Rename conversation">
+            <MetalButton type="button" onClick={renameConversation} disabled={!conversationId} className="pi-glass-control grid h-10 w-10 place-items-center rounded-xl border border-white/10 bg-white/[0.05] text-white/55 transition hover:bg-white/10 hover:text-white disabled:cursor-not-allowed disabled:opacity-25" aria-label="Rename conversation">
               <Pencil size={14}/>
-            </button>
-            <button type="button" onClick={exportConversationPdf} disabled={!conversationId} className="pi-glass-control inline-flex h-10 items-center gap-2 rounded-xl border border-sky-300/15 bg-sky-500/[0.08] px-3 text-xs font-semibold text-sky-100/70 transition hover:bg-sky-500/[0.14] hover:text-white disabled:cursor-not-allowed disabled:opacity-25">
+            </MetalButton>
+            <MetalButton type="button" onClick={exportConversationPdf} disabled={!conversationId} className="pi-glass-control inline-flex h-10 items-center gap-2 rounded-xl border border-sky-300/15 bg-sky-500/[0.08] px-3 text-xs font-semibold text-sky-100/70 transition hover:bg-sky-500/[0.14] hover:text-white disabled:cursor-not-allowed disabled:opacity-25">
               <Download size={14}/> Generate PDF
-            </button>
-            <button type="button" onClick={deleteConversation} disabled={!conversationId} className="pi-glass-control grid h-10 w-10 place-items-center rounded-xl border border-rose-300/10 bg-rose-500/[0.05] text-rose-100/45 transition hover:bg-rose-500/10 hover:text-rose-100 disabled:cursor-not-allowed disabled:opacity-25" aria-label="Delete conversation">
+            </MetalButton>
+            <MetalButton type="button" onClick={deleteConversation} disabled={!conversationId} className="pi-glass-control grid h-10 w-10 place-items-center rounded-xl border border-rose-300/10 bg-rose-500/[0.05] text-rose-100/45 transition hover:bg-rose-500/10 hover:text-rose-100 disabled:cursor-not-allowed disabled:opacity-25" aria-label="Delete conversation">
               <Trash2 size={14}/>
-            </button>
+            </MetalButton>
           </div>
         </div>
         {historyError && <div className="mt-2 text-xs text-amber-200/65">{historyError}</div>}
@@ -681,7 +682,7 @@ export default function AITab({ employees = [] }) {
             rows={1}
             className="max-h-36 min-h-[44px] flex-1 resize-none bg-transparent py-3 text-sm text-white outline-none placeholder:text-white/25"
           />
-          <button
+          <MetalButton
             type="button"
             onClick={send}
             disabled={!input.trim() || loading}
@@ -694,7 +695,7 @@ export default function AITab({ employees = [] }) {
             aria-label="Send crosswalk question"
           >
             <ArrowUp size={18} strokeWidth={2.4}/>
-          </button>
+          </MetalButton>
         </div>
       </div>
     </div>
