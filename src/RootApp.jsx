@@ -120,31 +120,27 @@ export default function RootApp() {
         {mode === 'hsi' && <VisualLensWorkspace />}
         {mode === 'builder' && (
           <div
-            className="pi-glass-panel relative overflow-hidden rounded-3xl border border-white/10 bg-white/[0.03] shadow-2xl shadow-black/20"
+            className="relative"
             style={{ minHeight: 'calc(100dvh - 8rem)' }}
           >
-            <div
-              className="pointer-events-none"
+            <video
+              className="pointer-events-none absolute inset-0 h-full w-full object-cover"
+              autoPlay
+              muted
+              loop
+              playsInline
+              preload="auto"
+              tabIndex={-1}
               aria-hidden="true"
-              style={{ position: 'absolute', inset: 0, zIndex: 0 }}
             >
-              <video
-                className="h-full w-full object-cover"
-                autoPlay
-                muted
-                loop
-                playsInline
-                preload="auto"
-                tabIndex={-1}
-              >
-                <source
-                  src="https://pi-chat-library-assets.floot.app/_cdn/static/e1801261-b7ac-4232-8dc9-681c76872fdf-pi-tab2-user-background.mp4"
-                  type="video/mp4"
-                />
-              </video>
-            </div>
+              <source
+                src="https://pi-chat-library-assets.floot.app/_cdn/static/e1801261-b7ac-4232-8dc9-681c76872fdf-pi-tab2-user-background.mp4"
+                type="video/mp4"
+              />
+            </video>
+
             <div
-              className="relative z-10"
+              className="pi-glass-panel relative z-10 rounded-3xl border border-white/10 shadow-2xl shadow-black/20"
               style={{
                 background:
                   'linear-gradient(160deg, rgba(7,9,16,0.985) 0%, rgba(10,12,20,0.975) 56%, rgba(8,10,17,0.965) 100%)',
