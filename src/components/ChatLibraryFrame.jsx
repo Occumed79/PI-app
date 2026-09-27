@@ -1,6 +1,5 @@
 import React, { useCallback, useEffect, useRef, useState } from 'react';
 import SiriOrb from './smoothui/SiriOrb.jsx';
-import MetalButton from './ui/MetalButton.jsx';
 
 const LIBRARY_SRC = 'https://doc-box-pichat-app.onrender.com/?embed=1';
 
@@ -96,13 +95,13 @@ export default function ChatLibraryFrame() {
             </h2>
             <p className="mt-3 max-w-md text-sm leading-6 text-white/48">{message || 'Loading the workspace…'}</p>
             {phase === 'error' && (
-              <MetalButton
+              <button
                 type="button"
                 onClick={wakeLibrary}
                 className="pi-glass-control mt-5 rounded-xl border border-white/12 bg-white/[0.05] px-4 py-2 text-xs font-semibold text-white/70 hover:bg-white/10 hover:text-white"
               >
                 Retry now
-              </MetalButton>
+              </button>
             )}
           </div>
         </div>
