@@ -139,7 +139,7 @@ function LensSidebar({ lenses, activeLens, onSelect, query, setQuery, maxHeight 
                       onClick={() => onSelect(lens)}
                       style={glowVars(color)}
                       className={cx(
-                        'pi-luminous-control w-full rounded-xl border px-3 py-2.5 text-left text-sm leading-5 transition',
+                        'pi-luminous-control pi-neon-control w-full rounded-xl border px-3 py-2.5 text-left text-sm leading-5 transition',
                         activeLens?.id === lens.id
                           ? classes
                           : 'border-transparent text-white/60 hover:border-white/15 hover:bg-white/[0.07] hover:text-white'
