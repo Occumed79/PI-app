@@ -801,3 +801,37 @@ body {
     filter: none;
   }
 }
+
+
+/* 2026-09-27 integration repair */
+.pi-metal-fx::before { content: none !important; }
+.pi-metal-fx {
+  overflow: visible !important;
+}
+.pi-metal-fx > button {
+  width: 100%;
+}
+
+.pi-smooth-orbital {
+  display: grid;
+  place-items: center;
+  width: 224px;
+  height: 224px;
+  min-height: 224px;
+  margin: 10px auto 0;
+  flex: 0 0 224px;
+  overflow: visible;
+}
+.pi-smooth-orbital [role="application"] {
+  position: relative !important;
+  width: 224px !important;
+  height: 224px !important;
+  margin: 0 auto !important;
+}
+.pi-smooth-orbital [role="application"] > button {
+  position: absolute !important;
+  top: 50% !important;
+  left: 50% !important;
+  width: 80px !important;
+  height: 80px !important;
+}
