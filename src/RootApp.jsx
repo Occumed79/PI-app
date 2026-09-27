@@ -4,7 +4,6 @@ import VisualLensWorkspace from './VisualLensWorkspace.jsx';
 import EmployeeTab from './components/EmployeeTab.jsx';
 import AITab from './components/AITab.jsx';
 import ChatLibraryFrame from './components/ChatLibraryFrame.jsx';
-import AppleEntrance from './components/AppleEntrance.jsx';
 
 function cx(...classes) {
   return classes.filter(Boolean).join(' ');
@@ -42,7 +41,6 @@ const MODES = [
 ];
 
 export default function RootApp() {
-  const [entered, setEntered] = useState(false);
   const [mode, setMode] = useState('hsi');
   const [employees, setEmployees] = useState([]);
   const [employeesLoading, setEmployeesLoading] = useState(true);
@@ -83,8 +81,6 @@ export default function RootApp() {
       controller.abort();
     };
   }, []);
-
-  if (!entered) return <AppleEntrance onEnter={() => setEntered(true)} />;
 
   return (
     <div className="pi-shell min-h-screen bg-slate-950 text-white">
