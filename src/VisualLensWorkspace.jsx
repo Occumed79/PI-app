@@ -95,15 +95,24 @@ function LensSidebar({ lenses, activeLens, onSelect, query, setQuery, maxHeight 
   }, {}), [lenses]);
 
   return (
-    <aside
-      className="pi-luminous-card hidden self-start overflow-hidden rounded-3xl border border-sky-300/15 bg-[#090d1d]/88 backdrop-blur-xl lg:block"
+    <BorderGlow
+      className="hidden self-start overflow-hidden lg:grid"
+      backgroundColor="rgba(9,13,29,0.76)"
+      borderRadius={24}
+      colors={['#38bdf8', '#a78bfa', '#f472b6']}
+      glowColor="200 90 70"
+      glowRadius={34}
+      fillOpacity={0.28}
+      contentClassName="z-[1] relative flex h-full min-h-0 flex-col overflow-hidden"
       style={{
-        ...glowVars('#38bdf8'),
-        height: maxHeight ? `${maxHeight}px` : 'auto',
-        minHeight: maxHeight ? `${maxHeight}px` : undefined,
+        height: maxHeight ? `${maxHeight}px` : '900px',
+        minHeight: maxHeight ? `${maxHeight}px` : '900px',
+        maxHeight: maxHeight ? `${maxHeight}px` : '900px',
+        overflow: 'hidden',
+        contain: 'layout paint',
       }}
     >
-      <div className="flex h-full min-h-0 flex-col overflow-hidden rounded-3xl">
+      <aside className="flex h-full min-h-0 flex-col overflow-hidden">
         <div className="border-b border-white/[0.08] px-5 py-4">
           <p className="text-xs font-semibold uppercase tracking-[0.18em] text-sky-200/75">Complete lens library</p>
           <p className="mt-1 text-lg font-bold text-white">{DISPLAY_LENSES.length} source lenses</p>
@@ -116,7 +125,7 @@ function LensSidebar({ lenses, activeLens, onSelect, query, setQuery, maxHeight 
             {query && <button type="button" onClick={() => setQuery('')} className="text-white/40 hover:text-white" aria-label="Clear search"><X size={14}/></button>}
           </div>
         </div>
-        <div className="min-h-0 flex-1 space-y-5 overflow-y-auto px-3 py-4">
+        <div className="min-h-0 flex-1 space-y-5 overflow-y-auto overscroll-contain px-3 py-4">
           {Object.entries(grouped).map(([category, items]) => {
             const { Icon, color, classes } = categoryMeta(category);
             return (
@@ -145,8 +154,8 @@ function LensSidebar({ lenses, activeLens, onSelect, query, setQuery, maxHeight 
             );
           })}
         </div>
-      </div>
-    </aside>
+      </aside>
+    </BorderGlow>
   );
 }
 
