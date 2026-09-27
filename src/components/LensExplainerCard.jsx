@@ -26,12 +26,12 @@ export default function LensExplainerCard({ lens, projection, compact = false })
   return (
     <BorderGlow
       className="overflow-hidden p-4 sm:p-5"
-      backgroundColor="rgba(8,12,24,0.68)"
+      backgroundColor="#0a0d18"
       borderRadius={24}
       colors={['#38bdf8', '#a78bfa', '#34d399']}
       glowColor="200 90 70"
       glowRadius={34}
-      fillOpacity={0.30}
+      fillOpacity={0}
     >
       <div className="mb-4 flex flex-wrap items-start justify-between gap-3">
         <div>
