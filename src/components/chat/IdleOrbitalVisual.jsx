@@ -30,9 +30,6 @@ export default function IdleOrbitalVisual({ visible = true }) {
         items={ITEMS}
         snap
       />
-      <p className="pi-smooth-orbital-help">
-        Drag to spin, or focus an item and use Arrow Left / Right.
-      </p>
     </div>
   );
 }
