@@ -120,20 +120,26 @@ export default function RootApp() {
         {mode === 'hsi' && <VisualLensWorkspace />}
         {mode === 'builder' && (
           <div className="pi-glass-panel relative overflow-hidden rounded-3xl border border-white/10 bg-white/[0.03] shadow-2xl shadow-black/20">
-            <video
-              className="pointer-events-none absolute inset-0 h-full w-full object-cover"
-              autoPlay
-              muted
-              loop
-              playsInline
-              preload="auto"
+            <div
+              className="pointer-events-none"
               aria-hidden="true"
+              style={{ position: 'absolute', inset: 0, zIndex: 0 }}
             >
-              <source
-                src="https://pi-chat-library-assets.floot.app/_cdn/static/e1801261-b7ac-4232-8dc9-681c76872fdf-pi-tab2-user-background.mp4"
-                type="video/mp4"
-              />
-            </video>
+              <video
+                className="h-full w-full object-cover"
+                autoPlay
+                muted
+                loop
+                playsInline
+                preload="auto"
+                tabIndex={-1}
+              >
+                <source
+                  src="https://pi-chat-library-assets.floot.app/_cdn/static/e1801261-b7ac-4232-8dc9-681c76872fdf-pi-tab2-user-background.mp4"
+                  type="video/mp4"
+                />
+              </video>
+            </div>
             <div className="relative z-10">
               <EmployeeTab
                 employees={employees}
