@@ -1,5 +1,5 @@
 import React, { useCallback, useEffect, useRef, useState } from 'react';
-import SiriOrb from './smoothui/SiriOrb.jsx';
+import IdleOrbitalVisual from './chat/IdleOrbitalVisual.jsx';
 
 const LIBRARY_SRC = 'https://doc-box-pichat-app.onrender.com/?embed=1';
 
@@ -18,7 +18,6 @@ async function requestLibraryReady(signal) {
 
 export default function ChatLibraryFrame() {
   const [phase, setPhase] = useState('waking');
-  const [message, setMessage] = useState('Preparing your saved conversation workspace…');
   const [frameLoaded, setFrameLoaded] = useState(false);
   const retryTimer = useRef(null);
 
@@ -29,20 +28,15 @@ export default function ChatLibraryFrame() {
     }
 
     setPhase('waking');
-    setMessage('Preparing your saved conversation workspace…');
     const controller = new AbortController();
     const timeout = window.setTimeout(() => controller.abort(), 70000);
 
     try {
       await requestLibraryReady(controller.signal);
       setPhase('ready');
-      setMessage('');
     } catch (error) {
       const aborted = error?.name === 'AbortError';
       setPhase('error');
-      setMessage(aborted
-        ? 'The Chat Library is taking longer than expected to wake.'
-        : (error?.message || 'The Chat Library is still waking up.'));
       retryTimer.current = window.setTimeout(() => {
         wakeLibrary();
       }, 4500);
@@ -87,22 +81,8 @@ export default function ChatLibraryFrame() {
             <div className="absolute left-[12%] top-[18%] h-48 w-48 rounded-full bg-cyan-400/10 blur-3xl" />
             <div className="absolute bottom-[12%] right-[14%] h-56 w-56 rounded-full bg-fuchsia-400/10 blur-3xl" />
           </div>
-          <div className="relative flex max-w-lg flex-col items-center px-8 text-center">
-            <SiriOrb size="150px" state={phase === 'error' ? 'error' : 'thinking'} />
-            <p className="mt-6 text-xs font-semibold uppercase tracking-[0.22em] text-white/35">Chat Library</p>
-            <h2 className="mt-2 text-2xl font-semibold text-white">
-              {phase === 'error' ? 'Still waking up' : 'Opening your library'}
-            </h2>
-            <p className="mt-3 max-w-md text-sm leading-6 text-white/48">{message || 'Loading the workspace…'}</p>
-            {phase === 'error' && (
-              <button
-                type="button"
-                onClick={wakeLibrary}
-                className="pi-glass-control mt-5 rounded-xl border border-white/12 bg-white/[0.05] px-4 py-2 text-xs font-semibold text-white/70 hover:bg-white/10 hover:text-white"
-              >
-                Retry now
-              </button>
-            )}
+          <div className="relative grid place-items-center px-8">
+            <IdleOrbitalVisual visible />
           </div>
         </div>
       )}
