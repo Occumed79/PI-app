@@ -34,8 +34,7 @@ export default function ChatLibraryFrame() {
     try {
       await requestLibraryReady(controller.signal);
       setPhase('ready');
-    } catch (error) {
-      const aborted = error?.name === 'AbortError';
+    } catch {
       setPhase('error');
       retryTimer.current = window.setTimeout(() => {
         wakeLibrary();
