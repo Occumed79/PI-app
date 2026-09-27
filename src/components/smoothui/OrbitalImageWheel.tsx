@@ -154,6 +154,11 @@ export default function OrbitalImageWheel({
     [cancelActiveFrame, commitRotation, shouldReduceMotion]
   );
 
+  const recomputePause = useCallback(() => {
+    const { hidden, interacting } = pauseReasonsRef.current;
+    setIsPaused(hidden || interacting);
+  }, []);
+
   const startMomentum = useCallback(() => {
     cancelActiveFrame();
     let velocity = velocityRef.current;
@@ -177,11 +182,6 @@ export default function OrbitalImageWheel({
     };
     activeFrameRef.current = requestAnimationFrame(tick);
   }, [cancelActiveFrame, commitRotation, nearestItemAngleTo, recomputePause, snap, snapTo]);
-
-  const recomputePause = useCallback(() => {
-    const { hidden, interacting } = pauseReasonsRef.current;
-    setIsPaused(hidden || interacting);
-  }, []);
 
   // Pause auto-rotate while the tab is hidden.
   useEffect(() => {
