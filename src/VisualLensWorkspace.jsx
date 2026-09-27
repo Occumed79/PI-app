@@ -97,12 +97,12 @@ function LensSidebar({ lenses, activeLens, onSelect, query, setQuery, maxHeight 
   return (
     <BorderGlow
       className="pi-tab1-sidebar-shell hidden self-start overflow-hidden lg:grid"
-      backgroundColor="rgba(9,13,29,0.76)"
+      backgroundColor="#090d1d"
       borderRadius={24}
       colors={['#38bdf8', '#a78bfa', '#f472b6']}
       glowColor="200 90 70"
       glowRadius={34}
-      fillOpacity={0.28}
+      fillOpacity={0}
       contentClassName="z-[1] relative flex h-full min-h-0 flex-col overflow-hidden"
       style={{
         height: maxHeight ? `${maxHeight}px` : '900px',
@@ -188,12 +188,12 @@ function FactorGrid({ profile }) {
   return (
     <BorderGlow
       className="overflow-hidden p-4 sm:p-5"
-      backgroundColor="rgba(9,13,24,0.66)"
+      backgroundColor="#0a0d18"
       borderRadius={24}
       colors={[profile.color, '#38bdf8', '#a78bfa']}
       glowColor="200 90 70"
       glowRadius={34}
-      fillOpacity={0.28}
+      fillOpacity={0}
     >
       <p className="mb-3 text-xs font-semibold uppercase tracking-[0.18em] text-white/45">Source PI factor scores</p>
       <div className="grid grid-cols-2 gap-3 sm:grid-cols-4">
