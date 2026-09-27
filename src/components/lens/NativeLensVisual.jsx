@@ -103,12 +103,12 @@ function Panel({ title, subtitle, children, className = '' }) {
   return (
     <BorderGlow
       className={`overflow-hidden p-4 sm:p-5 ${className}`}
-      backgroundColor="rgba(5,8,18,0.70)"
+      backgroundColor="#0a0d18"
       borderRadius={24}
       colors={['#38bdf8', '#818cf8', '#f472b6']}
       glowColor="200 90 70"
       glowRadius={34}
-      fillOpacity={0.28}
+      fillOpacity={0}
     >
       <div className="mb-4">
         <div className="text-sm font-semibold text-white">{title}</div>
