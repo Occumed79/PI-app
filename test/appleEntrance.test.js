@@ -6,15 +6,15 @@ const entrance = await readFile(new URL('../src/components/AppleEntrance.jsx', i
 const root = await readFile(new URL('../src/RootApp.jsx', import.meta.url), 'utf8');
 
 test('entrance uses path-drawn hello and click-to-enter artwork', () => {
-  assert.match(entrance, /viewBox="0 0 638 200"/);
-  assert.match(entrance, /M8\\.69214 166\\.553/);
-  assert.match(entrance, /motion\\.path/);
-  assert.match(entrance, /aria-label="Click to enter"/);
-  assert.doesNotMatch(entrance, /<text\\b/i);
+  assert.ok(entrance.includes('viewBox="0 0 638 200"'));
+  assert.ok(entrance.includes('M8.69214 166.553'));
+  assert.ok(entrance.includes('<motion.path'));
+  assert.ok(entrance.includes('aria-label="Click to enter"'));
+  assert.equal(entrance.includes('<text'), false);
 });
 
 test('root gates the workspace behind the entrance', () => {
-  assert.match(root, /AppleEntrance/);
-  assert.match(root, /entered/);
-  assert.match(root, /onEnter/);
+  assert.ok(root.includes('AppleEntrance'));
+  assert.ok(root.includes('entered'));
+  assert.ok(root.includes('onEnter'));
 });
