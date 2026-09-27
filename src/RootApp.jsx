@@ -4,7 +4,6 @@ import VisualLensWorkspace from './VisualLensWorkspace.jsx';
 import EmployeeTab from './components/EmployeeTab.jsx';
 import AITab from './components/AITab.jsx';
 import ChatLibraryFrame from './components/ChatLibraryFrame.jsx';
-import MetalButton from './components/ui/MetalButton.jsx';
 
 function cx(...classes) {
   return classes.filter(Boolean).join(' ');
@@ -97,9 +96,8 @@ export default function RootApp() {
         <div className="pi-glass-panel pi-nav-panel mb-5 rounded-3xl border border-white/10 bg-white/[0.06] p-3 shadow-2xl shadow-black/20 backdrop-blur-xl">
           <div className="grid grid-cols-1 gap-2 sm:grid-cols-2 xl:grid-cols-4">
             {MODES.map(({ id, label, sub, Icon, active }) => (
-              <MetalButton
+              <button
                 key={id}
-                metalFxClassName="w-full"
                 type="button"
                 onClick={() => setMode(id)}
                 className={cx(
@@ -114,7 +112,7 @@ export default function RootApp() {
                   <div className="truncate text-sm font-semibold">{label}</div>
                   <div className="truncate text-xs opacity-65">{sub}</div>
                 </div>
-              </MetalButton>
+              </button>
             ))}
           </div>
         </div>
