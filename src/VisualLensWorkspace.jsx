@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo, useState } from 'react';
+import React, { useEffect, useLayoutEffect, useMemo, useRef, useState } from 'react';
 import {
   Brain,
   BrainCircuit,
@@ -87,7 +87,7 @@ function ProfileSelector({ profile, onChange, compact = false }) {
   );
 }
 
-function LensSidebar({ lenses, activeLens, onSelect, query, setQuery }) {
+function LensSidebar({ lenses, activeLens, onSelect, query, setQuery, maxHeight }) {
   const grouped = useMemo(() => lenses.reduce((groups, lens) => {
     const category = lens.category || 'Other';
     if (!groups[category]) groups[category] = [];
@@ -96,8 +96,15 @@ function LensSidebar({ lenses, activeLens, onSelect, query, setQuery }) {
   }, {}), [lenses]);
 
   return (
-    <aside className="pi-luminous-card hidden self-stretch rounded-3xl border border-sky-300/15 bg-[#090d1d]/88 backdrop-blur-xl lg:block" style={glowVars('#38bdf8')}>
-      <div className="sticky top-4 flex max-h-[calc(100vh-2rem)] flex-col overflow-hidden rounded-3xl">
+    <aside
+      className="pi-luminous-card hidden self-start overflow-hidden rounded-3xl border border-sky-300/15 bg-[#090d1d]/88 backdrop-blur-xl lg:sticky lg:top-4 lg:block"
+      style={{
+        ...glowVars('#38bdf8'),
+        height: maxHeight ? `${maxHeight}px` : 'calc(100vh - 2rem)',
+        maxHeight: maxHeight ? `${maxHeight}px` : 'calc(100vh - 2rem)',
+      }}
+    >
+      <div className="flex h-full min-h-0 flex-col overflow-hidden rounded-3xl">
         <div className="border-b border-white/[0.08] px-5 py-4">
           <p className="text-xs font-semibold uppercase tracking-[0.18em] text-sky-200/75">Complete lens library</p>
           <p className="mt-1 text-lg font-bold text-white">{DISPLAY_LENSES.length} source lenses</p>
@@ -197,6 +204,8 @@ export default function VisualLensWorkspace() {
   const [query, setQuery] = useState('');
   const [activeCategory, setActiveCategory] = useState('All');
   const [showModal, setShowModal] = useState(false);
+  const mainRef = useRef(null);
+  const [sidebarHeight, setSidebarHeight] = useState(null);
 
   const categories = useMemo(() => ['All', ...new Set(DISPLAY_LENSES.map(lens => lens.category || 'Other'))], []);
   const filteredLenses = useMemo(() => {
@@ -216,6 +225,27 @@ export default function VisualLensWorkspace() {
   const nativeResult = useMemo(() => projectionToNativeResult(activeLens, projection), [activeLens, projection]);
   const meta = categoryMeta(activeLens.category);
 
+  useLayoutEffect(() => {
+    const target = mainRef.current;
+    if (!target) return undefined;
+
+    const updateSidebarHeight = () => {
+      const rightHeight = Math.ceil(target.getBoundingClientRect().height);
+      const viewportCap = Math.max(420, window.innerHeight - 32);
+      setSidebarHeight(Math.max(420, Math.min(rightHeight, viewportCap)));
+    };
+
+    updateSidebarHeight();
+    const observer = new ResizeObserver(updateSidebarHeight);
+    observer.observe(target);
+    window.addEventListener('resize', updateSidebarHeight);
+
+    return () => {
+      observer.disconnect();
+      window.removeEventListener('resize', updateSidebarHeight);
+    };
+  }, [activeLens.id, profile.id]);
+
   return (
     <div className="space-y-4 text-white">
       <MobileLensControl lenses={filteredLenses} activeLens={activeLens} onSelect={setActiveLens} query={query} setQuery={setQuery}/>
@@ -229,9 +259,9 @@ export default function VisualLensWorkspace() {
       </div>
 
       <div className="grid gap-5 lg:grid-cols-[20rem_minmax(0,1fr)]">
-        <LensSidebar lenses={filteredLenses} activeLens={activeLens} onSelect={setActiveLens} query={query} setQuery={setQuery}/>
+        <LensSidebar lenses={filteredLenses} activeLens={activeLens} onSelect={setActiveLens} query={query} setQuery={setQuery} maxHeight={sidebarHeight}/>
 
-        <main className="min-w-0 space-y-5">
+        <main ref={mainRef} className="min-w-0 space-y-5">
           <BorderGlow
             className="overflow-hidden p-5 sm:p-6"
             backgroundColor="#0a0d18"
