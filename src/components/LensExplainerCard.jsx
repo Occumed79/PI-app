@@ -1,6 +1,7 @@
 import React from 'react';
 import { BookOpen, Eye, Lightbulb, ShieldAlert, Waypoints } from 'lucide-react';
 import { getLensExplainer } from '../data/lensExplainers.js';
+import BorderGlow from './effects/BorderGlow.jsx';
 
 const ITEMS = [
   ['whatItIs', 'What this lens is', BookOpen, 'text-sky-100 border-sky-300/25 bg-sky-500/[0.10]', '#38bdf8'],
@@ -23,7 +24,15 @@ export default function LensExplainerCard({ lens, projection, compact = false })
   const explainer = getLensExplainer(lens, projection);
 
   return (
-    <section className="pi-luminous-card rounded-3xl border border-sky-300/15 bg-white/[0.055] p-4 shadow-xl shadow-black/15 backdrop-blur-xl sm:p-5" style={glowVars('#38bdf8')}>
+    <BorderGlow
+      className="overflow-hidden p-4 sm:p-5"
+      backgroundColor="rgba(8,12,24,0.68)"
+      borderRadius={24}
+      colors={['#38bdf8', '#a78bfa', '#34d399']}
+      glowColor="200 90 70"
+      glowRadius={34}
+      fillOpacity={0.30}
+    >
       <div className="mb-4 flex flex-wrap items-start justify-between gap-3">
         <div>
           <p className="text-xs font-semibold uppercase tracking-[0.18em] text-sky-200/80">Lens explainer</p>
@@ -49,6 +58,6 @@ export default function LensExplainerCard({ lens, projection, compact = false })
           </article>
         ))}
       </div>
-    </section>
+    </BorderGlow>
   );
 }
