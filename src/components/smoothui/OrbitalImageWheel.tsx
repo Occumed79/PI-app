@@ -4,7 +4,6 @@ const cn = (...classes: Array<string | false | null | undefined>) => classes.fil
 import { useReducedMotion } from "motion/react";
 import {
   type KeyboardEvent,
-  type FocusEvent as ReactFocusEvent,
   type PointerEvent as ReactPointerEvent,
   useCallback,
   useEffect,
@@ -94,9 +93,8 @@ export default function OrbitalImageWheel({
   } | null>(null);
   const justDraggedRef = useRef(false);
 
-  const [isHoverDevice, setIsHoverDevice] = useState(false);
   const [isPaused, setIsPaused] = useState(false);
-  const pauseReasonsRef = useRef({ focus: false, hidden: false, hover: false });
+  const pauseReasonsRef = useRef({ hidden: false, interacting: false });
 
   const itemAngle = items.length > 0 ? 360 / items.length : 0;
 
@@ -156,6 +154,11 @@ export default function OrbitalImageWheel({
     [cancelActiveFrame, commitRotation, shouldReduceMotion]
   );
 
+  const recomputePause = useCallback(() => {
+    const { hidden, interacting } = pauseReasonsRef.current;
+    setIsPaused(hidden || interacting);
+  }, []);
+
   const startMomentum = useCallback(() => {
     cancelActiveFrame();
     let velocity = velocityRef.current;
@@ -171,26 +174,14 @@ export default function OrbitalImageWheel({
           snapTo(nearestItemAngleTo(rotationRef.current));
         }
         activeFrameRef.current = null;
+        pauseReasonsRef.current.interacting = false;
+        recomputePause();
         return;
       }
       activeFrameRef.current = requestAnimationFrame(tick);
     };
     activeFrameRef.current = requestAnimationFrame(tick);
-  }, [cancelActiveFrame, commitRotation, nearestItemAngleTo, snap, snapTo]);
-
-  // Detect hover-capable pointer devices before enabling hover-based pause.
-  useEffect(() => {
-    const mediaQuery = window.matchMedia("(hover: hover) and (pointer: fine)");
-    const update = () => setIsHoverDevice(mediaQuery.matches);
-    update();
-    mediaQuery.addEventListener("change", update);
-    return () => mediaQuery.removeEventListener("change", update);
-  }, []);
-
-  const recomputePause = useCallback(() => {
-    const { focus, hidden, hover } = pauseReasonsRef.current;
-    setIsPaused(focus || hidden || hover);
-  }, []);
+  }, [cancelActiveFrame, commitRotation, nearestItemAngleTo, recomputePause, snap, snapTo]);
 
   // Pause auto-rotate while the tab is hidden.
   useEffect(() => {
@@ -232,35 +223,11 @@ export default function OrbitalImageWheel({
 
   useEffect(() => cancelActiveFrame, [cancelActiveFrame]);
 
-  const handlePointerEnter = useCallback(() => {
-    pauseReasonsRef.current.hover = true;
-    recomputePause();
-  }, [recomputePause]);
-
-  const handlePointerLeave = useCallback(() => {
-    pauseReasonsRef.current.hover = false;
-    recomputePause();
-  }, [recomputePause]);
-
-  const handleFocus = useCallback(() => {
-    pauseReasonsRef.current.focus = true;
-    recomputePause();
-  }, [recomputePause]);
-
-  const handleBlur = useCallback(
-    (event: ReactFocusEvent<HTMLDivElement>) => {
-      if (event.currentTarget.contains(event.relatedTarget)) {
-        return;
-      }
-      pauseReasonsRef.current.focus = false;
-      recomputePause();
-    },
-    [recomputePause]
-  );
-
   const handlePointerDown = useCallback(
     (event: ReactPointerEvent<HTMLDivElement>) => {
       cancelActiveFrame();
+      pauseReasonsRef.current.interacting = true;
+      recomputePause();
       dragRef.current = {
         lastTime: performance.now(),
         lastX: event.clientX,
@@ -269,7 +236,7 @@ export default function OrbitalImageWheel({
       };
       event.currentTarget.setPointerCapture(event.pointerId);
     },
-    [cancelActiveFrame]
+    [cancelActiveFrame, recomputePause]
   );
 
   const handlePointerMove = useCallback(
@@ -301,6 +268,8 @@ export default function OrbitalImageWheel({
       const drag = dragRef.current;
       dragRef.current = null;
       if (!drag) {
+        pauseReasonsRef.current.interacting = false;
+        recomputePause();
         return;
       }
       event.currentTarget.releasePointerCapture(drag.pointerId);
@@ -310,11 +279,13 @@ export default function OrbitalImageWheel({
         if (snap) {
           snapTo(nearestItemAngleTo(rotationRef.current));
         }
+        pauseReasonsRef.current.interacting = false;
+        recomputePause();
         return;
       }
       startMomentum();
     },
-    [nearestItemAngleTo, shouldReduceMotion, snap, snapTo, startMomentum]
+    [nearestItemAngleTo, recomputePause, shouldReduceMotion, snap, snapTo, startMomentum]
   );
 
   const handleKeyDown = useCallback(
@@ -373,14 +344,11 @@ export default function OrbitalImageWheel({
     <div
       aria-label="Orbital image wheel"
       className={cn("relative mx-auto touch-none select-none", className)}
-      onBlur={handleBlur}
-      onFocus={handleFocus}
       onKeyDown={handleKeyDown}
       onPointerDown={handlePointerDown}
-      onPointerEnter={isHoverDevice ? handlePointerEnter : undefined}
-      onPointerLeave={isHoverDevice ? handlePointerLeave : undefined}
       onPointerMove={handlePointerMove}
       onPointerUp={handlePointerUp}
+      onPointerCancel={handlePointerUp}
       role="application"
       style={{ height: diameter, width: diameter }}
     >
