@@ -1,4 +1,5 @@
 import React from 'react';
+import BorderGlow from '../effects/BorderGlow.jsx';
 import {
   getNativeBarLimit,
   getNativeVisualFamily,
@@ -100,13 +101,21 @@ function getData(result) {
 
 function Panel({ title, subtitle, children, className = '' }) {
   return (
-    <section className={`pi-luminous-card rounded-3xl border border-sky-300/15 bg-black/25 p-4 sm:p-5 ${className}`} style={glowVars('#38bdf8')}>
+    <BorderGlow
+      className={`overflow-hidden p-4 sm:p-5 ${className}`}
+      backgroundColor="rgba(5,8,18,0.70)"
+      borderRadius={24}
+      colors={['#38bdf8', '#818cf8', '#f472b6']}
+      glowColor="200 90 70"
+      glowRadius={34}
+      fillOpacity={0.28}
+    >
       <div className="mb-4">
         <div className="text-sm font-semibold text-white">{title}</div>
         {subtitle && <div className="mt-1 break-words text-xs leading-5 text-white/55">{subtitle}</div>}
       </div>
       {children}
-    </section>
+    </BorderGlow>
   );
 }
 
