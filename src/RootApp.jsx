@@ -4,6 +4,7 @@ import VisualLensWorkspace from './VisualLensWorkspace.jsx';
 import EmployeeTab from './components/EmployeeTab.jsx';
 import AITab from './components/AITab.jsx';
 import ChatLibraryFrame from './components/ChatLibraryFrame.jsx';
+import BorderGlow from './components/effects/BorderGlow.jsx';
 
 function cx(...classes) {
   return classes.filter(Boolean).join(' ');
@@ -15,28 +16,36 @@ const MODES = [
     label: 'PI Crosswalk Intelligence',
     sub: 'PI source profiles · cross-framework lenses',
     Icon: Layers3,
-    active: 'border-sky-300/40 bg-sky-500/15',
+    active: 'bg-sky-500/15',
+    colors: ['#38bdf8', '#a78bfa', '#f472b6'],
+    glow: '200 90 70',
   },
   {
     id: 'builder',
     label: 'Employee PI Profiles',
     sub: 'Store completed Predictive Index results',
     Icon: ClipboardList,
-    active: 'border-fuchsia-300/40 bg-fuchsia-500/15',
+    active: 'bg-fuchsia-500/15',
+    colors: ['#f472b6', '#c084fc', '#38bdf8'],
+    glow: '315 85 72',
   },
   {
     id: 'ai',
     label: 'Crosswalk Assistant',
     sub: 'Analyze PI-derived framework translations',
     Icon: BrainCircuit,
-    active: 'border-emerald-300/40 bg-emerald-500/15',
+    active: 'bg-emerald-500/15',
+    colors: ['#34d399', '#38bdf8', '#a78bfa'],
+    glow: '160 80 65',
   },
   {
     id: 'library',
     label: 'Chat Library',
     sub: 'Saved conversations · chat archive',
     Icon: LibraryBig,
-    active: 'border-violet-300/40 bg-violet-500/15',
+    active: 'bg-violet-500/15',
+    colors: ['#a78bfa', '#f472b6', '#38bdf8'],
+    glow: '265 85 72',
   },
 ];
 
@@ -113,24 +122,36 @@ export default function RootApp() {
       <div className="relative z-10 mx-auto w-full max-w-[1760px] px-3 pb-6 pt-4 sm:px-4 lg:px-5">
         <div className="pi-glass-panel pi-nav-panel mb-5 rounded-3xl border border-white/10 bg-white/[0.06] p-3 shadow-2xl shadow-black/20 backdrop-blur-xl">
           <div className="grid grid-cols-1 gap-2 sm:grid-cols-2 xl:grid-cols-4">
-            {MODES.map(({ id, label, sub, Icon, active }) => (
-              <button
+            {MODES.map(({ id, label, sub, Icon, active, colors, glow }) => (
+              <BorderGlow
                 key={id}
-                type="button"
-                onClick={() => setMode(id)}
-                className={cx(
-                  'pi-glass-control flex items-center gap-3 rounded-2xl border px-4 py-3 text-left transition',
-                  mode === id
-                    ? `${active} text-white`
-                    : 'border-white/10 bg-white/[0.03] text-white/55 hover:bg-white/10 hover:text-white'
-                )}
+                className="min-w-0 overflow-hidden"
+                backgroundColor="rgba(13,17,28,0.72)"
+                borderRadius={16}
+                colors={colors}
+                glowColor={glow}
+                glowRadius={26}
+                fillOpacity={0.30}
+                animated={mode === id}
+                contentClassName="z-[1] relative min-w-0"
               >
-                <Icon className="h-5 w-5 flex-shrink-0"/>
-                <div className="min-w-0">
-                  <div className="truncate text-sm font-semibold">{label}</div>
-                  <div className="truncate text-xs opacity-65">{sub}</div>
-                </div>
-              </button>
+                <button
+                  type="button"
+                  onClick={() => setMode(id)}
+                  className={cx(
+                    'pi-glass-control flex w-full items-center gap-3 rounded-2xl px-4 py-3 text-left transition',
+                    mode === id
+                      ? `${active} text-white`
+                      : 'bg-white/[0.025] text-white/60 hover:bg-white/[0.07] hover:text-white'
+                  )}
+                >
+                  <Icon className="h-5 w-5 flex-shrink-0"/>
+                  <div className="min-w-0">
+                    <div className="truncate text-sm font-semibold">{label}</div>
+                    <div className="truncate text-xs opacity-65">{sub}</div>
+                  </div>
+                </button>
+              </BorderGlow>
             ))}
           </div>
         </div>
