@@ -764,3 +764,32 @@ body {
     margin-block: -36px !important;
   }
 }
+
+
+/* Tab 1 neon card language: match the animated BorderGlow hero without making every list row heavyweight. */
+.pi-neon-control {
+  background:
+    linear-gradient(145deg, rgba(255,255,255,.045), rgba(7,10,18,.40));
+  border-color: color-mix(in srgb, var(--glow-solid) 28%, rgba(255,255,255,.08)) !important;
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,.10),
+    0 0 0 1px color-mix(in srgb, var(--glow-solid) 8%, transparent),
+    0 0 16px color-mix(in srgb, var(--glow-solid) 13%, transparent);
+}
+
+.pi-neon-control:hover,
+.pi-neon-control:focus-visible {
+  border-color: color-mix(in srgb, var(--glow-solid) 62%, rgba(255,255,255,.18)) !important;
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,.14),
+    0 0 0 1px color-mix(in srgb, var(--glow-solid) 18%, transparent),
+    0 0 28px color-mix(in srgb, var(--glow-solid) 34%, transparent),
+    0 10px 28px rgba(0,0,0,.24);
+}
+
+@media print {
+  .pi-tab1-sidebar-shell {
+    overflow: hidden !important;
+    break-inside: avoid !important;
+  }
+}
