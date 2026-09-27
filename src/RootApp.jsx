@@ -119,7 +119,10 @@ export default function RootApp() {
 
         {mode === 'hsi' && <VisualLensWorkspace />}
         {mode === 'builder' && (
-          <div className="pi-glass-panel relative overflow-hidden rounded-3xl border border-white/10 bg-white/[0.03] shadow-2xl shadow-black/20">
+          <div
+            className="pi-glass-panel relative overflow-hidden rounded-3xl border border-white/10 bg-white/[0.03] shadow-2xl shadow-black/20"
+            style={{ minHeight: 'calc(100dvh - 8rem)' }}
+          >
             <div
               className="pointer-events-none"
               aria-hidden="true"
