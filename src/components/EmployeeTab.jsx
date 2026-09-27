@@ -437,12 +437,12 @@ function EmployeeDetail({ employee, onBack, onEdit, onDelete }) {
 
       <BorderGlow
         className="p-6"
-        backgroundColor="#0c101a"
+        backgroundColor="#12182b"
         borderRadius={24}
         colors={['#c084fc', '#38bdf8', '#f472b6']}
         glowColor="275 85 72"
         glowRadius={34}
-        fillOpacity={0.4}
+        fillOpacity={0}
       >
         <div className="flex flex-wrap items-start justify-between gap-5">
           <div className="flex items-start gap-4">
