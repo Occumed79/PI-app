@@ -835,3 +835,66 @@ body {
   width: 80px !important;
   height: 80px !important;
 }
+
+
+/* 2026-09-27: match SmoothUI OrbitalImageWheel demo geometry exactly. */
+.pi-smooth-orbital-demo {
+  width: 100%;
+  max-width: 512px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+  padding: 8px 16px 12px;
+}
+
+.pi-smooth-orbital-demo [role="application"] {
+  position: relative !important;
+  width: 400px !important;
+  height: 400px !important;
+  margin: 0 auto !important;
+  filter: none !important;
+}
+
+.pi-smooth-orbital-demo [role="application"] > button {
+  position: absolute !important;
+  top: 50% !important;
+  left: 50% !important;
+  width: 80px !important;
+  height: 80px !important;
+  border-radius: 9999px !important;
+  padding: 0 !important;
+  background: transparent !important;
+  overflow: hidden !important;
+  box-shadow: 0 6px 14px rgba(0,0,0,.24) !important;
+}
+
+.pi-smooth-orbital-demo [role="application"] > button[aria-current="true"] {
+  border-color: #ef5da8 !important;
+  box-shadow:
+    0 0 0 2px rgba(239,93,168,.95),
+    0 8px 18px rgba(0,0,0,.28) !important;
+}
+
+.pi-smooth-orbital-demo [role="application"] > button img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.pi-smooth-orbital-help {
+  color: rgba(255,255,255,.52);
+  font-size: 12px;
+  line-height: 1.4;
+  text-align: center;
+}
+
+@media (max-width: 560px) {
+  .pi-smooth-orbital-demo [role="application"] {
+    transform: scale(.82);
+    transform-origin: center;
+    margin-block: -36px !important;
+  }
+}
