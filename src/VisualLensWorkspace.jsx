@@ -96,7 +96,7 @@ function LensSidebar({ lenses, activeLens, onSelect, query, setQuery, maxHeight 
 
   return (
     <BorderGlow
-      className="hidden self-start overflow-hidden lg:grid"
+      className="pi-tab1-sidebar-shell hidden self-start overflow-hidden lg:grid"
       backgroundColor="rgba(9,13,29,0.76)"
       borderRadius={24}
       colors={['#38bdf8', '#a78bfa', '#f472b6']}
