@@ -83,9 +83,9 @@ export default function IdleOrbitalVisual({ visible = true }) {
     <div className="pi-smooth-orbital">
       <OrbitalImageWheel
         autoRotate
-        autoRotateSpeed={10}
+        autoRotateSpeed={8}
         items={ITEMS}
-        radius={105}
+        radius={72}
         snap
       />
     </div>

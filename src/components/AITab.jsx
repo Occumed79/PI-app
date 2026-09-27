@@ -612,14 +612,16 @@ export default function AITab({ employees = [] }) {
       </div>
 
       <div className="pi-chat-panel flex min-h-0 flex-1 flex-col overflow-hidden rounded-3xl border border-white/10 p-4 sm:p-5">
-        <div className={cx("flex flex-none justify-center", messages.length ? "pb-3 pt-1" : "pb-1 pt-8")}>
+        <div className={cx(
+          "flex flex-none flex-col items-center justify-center",
+          messages.length ? "pb-3 pt-1" : "pb-3 pt-5"
+        )}>
           <SiriOrb
-            size={messages.length ? "144px" : "176px"}
+            size={messages.length ? "144px" : "154px"}
             state={loading ? 'thinking' : hasRequestError ? 'error' : 'idle'}
           />
+          <IdleOrbitalVisual visible={!loading && messages.length === 0 && !input.trim() && !composerFocused} />
         </div>
-
-        <IdleOrbitalVisual visible={!loading && messages.length === 0 && !input.trim() && !composerFocused} />
 
         <div className="min-h-0 flex-1 overflow-y-auto pr-2">
           <div className="space-y-5 pb-2">
