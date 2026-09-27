@@ -186,7 +186,15 @@ function MobileLensControl({ lenses, activeLens, onSelect, query, setQuery }) {
 
 function FactorGrid({ profile }) {
   return (
-    <GlassCard className="p-4 sm:p-5" glow={profile.color}>
+    <BorderGlow
+      className="overflow-hidden p-4 sm:p-5"
+      backgroundColor="rgba(9,13,24,0.66)"
+      borderRadius={24}
+      colors={[profile.color, '#38bdf8', '#a78bfa']}
+      glowColor="200 90 70"
+      glowRadius={34}
+      fillOpacity={0.28}
+    >
       <p className="mb-3 text-xs font-semibold uppercase tracking-[0.18em] text-white/45">Source PI factor scores</p>
       <div className="grid grid-cols-2 gap-3 sm:grid-cols-4">
         {[
@@ -202,7 +210,7 @@ function FactorGrid({ profile }) {
           </div>
         ))}
       </div>
-    </GlassCard>
+    </BorderGlow>
   );
 }
 
