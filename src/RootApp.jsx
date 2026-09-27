@@ -126,12 +126,12 @@ export default function RootApp() {
               <BorderGlow
                 key={id}
                 className="min-w-0 overflow-hidden"
-                backgroundColor="rgba(13,17,28,0.72)"
+                backgroundColor="#0d111c"
                 borderRadius={16}
                 colors={colors}
                 glowColor={glow}
                 glowRadius={26}
-                fillOpacity={0.30}
+                fillOpacity={0}
                 animated={mode === id}
                 contentClassName="z-[1] relative min-w-0"
               >
