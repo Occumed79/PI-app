@@ -60,7 +60,7 @@ test('Tab 4 gates the dedicated Chat Library behind a readiness probe', () => {
   assert.match(rootSource, /id: 'library'/);
   assert.match(rootSource, /ChatLibraryFrame/);
   assert.match(serverSource, /\/api\/chat-library\/ready/);
-  assert.ok(chatLibraryFrameSource.includes('https://doc-box-pichat-app.onrender.com/?embed=1'));
+  assert.ok(chatLibraryFrameSource.includes('https://doc-box-pichat-app.onrender.com/vault?embed=1'));
   assert.match(chatLibraryFrameSource, /phase === 'ready'/);
 });
 
