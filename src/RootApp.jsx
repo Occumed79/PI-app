@@ -5,6 +5,7 @@ import EmployeeTab from './components/EmployeeTab.jsx';
 import AITab from './components/AITab.jsx';
 import ChatLibraryFrame from './components/ChatLibraryFrame.jsx';
 import BorderGlow from './components/effects/BorderGlow.jsx';
+import Tab2Entrance from './components/Tab2Entrance.jsx';
 
 function cx(...classes) {
   return classes.filter(Boolean).join(' ');
@@ -51,6 +52,7 @@ const MODES = [
 
 export default function RootApp() {
   const [mode, setMode] = useState('hsi');
+  const [builderEntered, setBuilderEntered] = useState(false);
   const [employees, setEmployees] = useState([]);
   const [employeesLoading, setEmployeesLoading] = useState(true);
   const [employeesError, setEmployeesError] = useState('');
@@ -160,15 +162,19 @@ export default function RootApp() {
         {mode === 'hsi' && <VisualLensWorkspace />}
         {mode === 'builder' && (
           <div className="relative min-h-[calc(100dvh-8rem)]">
-            <div className="pi-glass-panel relative rounded-3xl border border-white/10 bg-slate-950/55 shadow-2xl shadow-black/20 backdrop-blur-xl">
-              <EmployeeTab
-                employees={employees}
-                setEmployees={setEmployees}
-                loading={employeesLoading}
-                loadError={employeesError}
-                reloadEmployees={loadEmployees}
-              />
-            </div>
+            {!builderEntered ? (
+              <Tab2Entrance onEnter={() => setBuilderEntered(true)} />
+            ) : (
+              <div className="pi-glass-panel relative rounded-3xl border border-white/10 bg-slate-950/55 shadow-2xl shadow-black/20 backdrop-blur-xl">
+                <EmployeeTab
+                  employees={employees}
+                  setEmployees={setEmployees}
+                  loading={employeesLoading}
+                  loadError={employeesError}
+                  reloadEmployees={loadEmployees}
+                />
+              </div>
+            )}
           </div>
         )}
         {mode === 'ai' && (
