@@ -93,23 +93,24 @@ export default function RootApp() {
 
   return (
     <div className="pi-shell min-h-screen bg-slate-950 text-white">
-      {mode === 'builder' && (
-        <video
-          className="pointer-events-none fixed inset-0 z-0 h-screen w-screen object-cover"
-          autoPlay
-          muted
-          loop
-          playsInline
-          preload="auto"
-          tabIndex={-1}
-          aria-hidden="true"
-        >
-          <source
-            src="https://pi-chat-library-assets.floot.app/_cdn/static/e1801261-b7ac-4232-8dc9-681c76872fdf-pi-tab2-user-background.mp4"
-            type="video/mp4"
-          />
-        </video>
-      )}
+      <video
+        className={cx(
+          'pointer-events-none fixed inset-0 z-0 h-screen w-screen object-cover transition-opacity duration-200',
+          mode === 'builder' ? 'opacity-100' : 'opacity-0'
+        )}
+        autoPlay
+        muted
+        loop
+        playsInline
+        preload="auto"
+        tabIndex={-1}
+        aria-hidden="true"
+      >
+        <source
+          src="https://pi-chat-library-assets.floot.app/_cdn/static/e1801261-b7ac-4232-8dc9-681c76872fdf-pi-tab2-user-background.mp4"
+          type="video/mp4"
+        />
+      </video>
 
       <div className="pi-ambient pointer-events-none fixed inset-0 overflow-hidden" aria-hidden="true">
         <div className="pi-orb pi-orb-a absolute -left-28 top-0 h-96 w-96 rounded-full bg-sky-500/10 blur-3xl"/>
@@ -175,11 +176,15 @@ export default function RootApp() {
             <AITab employees={employees} />
           </div>
         )}
-        {mode === 'library' && (
-          <div className="pi-glass-panel overflow-hidden rounded-3xl border border-white/10 bg-white/[0.03] shadow-2xl shadow-black/20">
-            <ChatLibraryFrame />
-          </div>
-        )}
+        <div
+          className={cx(
+            'pi-glass-panel overflow-hidden rounded-3xl border border-white/10 bg-white/[0.03] shadow-2xl shadow-black/20',
+            mode === 'library' ? 'block' : 'hidden'
+          )}
+          aria-hidden={mode !== 'library'}
+        >
+          <ChatLibraryFrame />
+        </div>
       </div>
     </div>
   );
