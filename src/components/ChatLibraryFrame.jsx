@@ -1,7 +1,7 @@
 import React, { useCallback, useEffect, useRef, useState } from 'react';
 import IdleOrbitalVisual from './chat/IdleOrbitalVisual.jsx';
 
-const LIBRARY_SRC = 'https://doc-box-pichat-app.onrender.com/vault?embed=1';
+const LIBRARY_SRC = 'https://doc-box-pichat-app.onrender.com/?embed=1';
 
 async function requestLibraryReady(signal) {
   const response = await fetch('/api/chat-library/ready', {
